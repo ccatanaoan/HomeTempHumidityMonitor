@@ -1,0 +1,256 @@
+﻿Version=2.2
+NumberOfModules=0
+Build1=Default,B4RDev
+NumberOfFiles=0
+NumberOfLibraries=7
+Library1=rcore
+Library2=resp8266
+Library3=resp8266wifi
+Library4=rmqtt
+Library5=reeprom
+Library6=rrandomaccessfile
+Library7=rdht
+@EndOfDesignText@
+
+#Region Project Attributes
+	#AutoFlushLogs: True
+	#CheckArrayBounds: True
+	#StackBufferSize: 600
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'Public variables can be accessed from all modules.
+	Public Serial1 As Serial
+	Private d1pins As D1Pins
+	Private pin16 As Pin
+	Private d6 As Pin
+	Private WiFi As ESP8266WiFi
+	Private WiFiStr As WiFiSocket
+	Private MQTT As MqttClient
+	Private MQTTOpt As MqttConnectOptions
+	Private MQTTUser As String = "vynckfaq"
+	Private MQTTPassword As String = "KHSV1Q1qSUUY"
+	Private MQTTHostName As String = "m14.cloudmqtt.com"
+	Private MQTTPort As Int = 11816
+	Private StopRelay As Boolean = False
+	Private ESP As ESP8266
+	Private WiFiSSID As String = "CloydNote8"
+	Private WiFiPassword As String = "adjj6347"
+	Private RelayOpenDelay As ULong = 5000
+	Private RelayClosedDelay As ULong = 15000
+	
+	Public DHT11sensor As dht                'DHT11 sensor
+	Public Timer1 As Timer                    'Timer for reading DHT11 measures at desired interval
+	Public DHT11pin As Pin                    'Arduino Pin connected to DHT11 signal
+	Public Interval As Int                    'Interval as seconds
+	Private d3pins As D1Pins
+	Dim humidity,temperature As Double        'Humidity/Temperature DHT11 readings
+End Sub
+
+Private Sub AppStart
+	Serial1.Initialize(115200)
+	Delay(3000)
+	Log("AppStart")
+	' Pin 2 is the blue LED
+	' Pin 16 is the red LED
+	' D6 = pin 12 is the logic/signal pin. Use 3.3v pin of Node MCU.
+	
+	pin16.Initialize(16, pin16.MODE_OUTPUT)
+	d6.Initialize(d1pins.D6, d6.MODE_OUTPUT)
+	
+	' Connect to WiFi
+	ConnectToWifi
+
+	' Connect to CloudMQTT broker
+	Dim ClientId As String = Rnd(0, 999999999) 'create a unique id
+	MQTT.Initialize2(WiFiStr.stream, MQTTHostName, MQTTPort, ClientId, "MQTT_MessageArrived", "MQTT_Disconnected")
+	MQTTOpt.Initialize(MQTTUser, MQTTPassword)
+	MQTT_Connect(0)
+	
+	' WriteToEEPROM(5000, 15000)
+	' ClearEEPROM
+	' ReadFromEEPROM
+	
+	' Infinite relay toggle
+	'RelayOpen(0)
+	
+	Interval=5                                        '5 sec Timer Interval
+	DHT11pin.Initialize(d3pins.D3, DHT11pin.MODE_INPUT)        'Initialize at Arduino Pin 3
+	Timer1.Initialize("Timer1_Tick", Interval * 1000)
+	Timer1.Enabled=True
+End Sub
+
+Sub Timer1_Tick
+	DHT11sensor.Read11(DHT11pin.PinNumber)            'Reading the DHT11 measure
+	humidity=DHT11sensor.GetHumidity                'Get humidity from readed measure
+	temperature=DHT11sensor.GetTemperature            'Get temperature from readed measure
+	Log("Humidity = ",humidity, " %", "  Temperature = ",temperature * 9 / 5 + 32, " ºF")
+	Dim s As String  = JoinStrings(Array As String("Humidity = ",humidity, " %", "  Temperature = ",temperature * 9 / 5 + 32, " ºF"))
+	MQTT.Publish("Cloyd",s)
+End Sub
+
+Sub MQTT_Connect(Unused As Byte)
+	If WiFi.IsConnected = False Then
+		ConnectToWifi
+	End If
+	If MQTT.Connect = False Then
+		Log("Connecting to broker")
+		MQTT.Connect2(MQTTOpt)
+		CallSubPlus("MQTT_Connect", 1000, 0)
+	Else
+		pin16.DigitalWrite(False)
+		Log("Connected to broker")
+		MQTT.Subscribe("Cloyd", 0)
+	End If
+End Sub
+
+Private Sub RelayClose (tag As Byte)
+	If WiFi.IsConnected = False Then
+		ConnectToWifi
+	End If
+	If StopRelay Then
+		Return
+	End If
+	Log("*Relay has been closed")
+	MQTT.Publish("Cloyd","*Relay has been closed")
+	d6.DigitalWrite(True)
+	CallSubPlus("RelayOpen", RelayClosedDelay, 0)
+End Sub
+
+Private Sub RelayOpen (tag As Byte)
+	If WiFi.IsConnected = False Then
+		ConnectToWifi
+	End If
+	If StopRelay Then
+		Return
+	End If
+	Log("*Relay has been opened")
+	MQTT.Publish("Cloyd","*Relay has been opened")
+	d6.DigitalWrite(False)
+	CallSubPlus("RelayClose", RelayOpenDelay, 0)
+End Sub
+
+Sub mqtt_MessageArrived (Topic As String, Payload() As Byte)
+	pin16.DigitalWrite(False)
+	Log("Message arrived. Topic=", Topic, " Payload=", Payload)
+	If Payload="Remotely close relay" Then
+		MQTT.Publish("Cloyd","*Closing relay by remote")
+		d6.DigitalWrite(True)
+		StopRelay = True
+	Else If Payload="Remotely open relay" Then
+		MQTT.Publish("Cloyd","*Opening relay by remote")
+		StopRelay = False
+		RelayOpen(0)
+	Else If Payload = "Restart controller" Then
+		MQTT.Publish("Cloyd","*Restarting relay by remote")
+		ESP.Restart
+	Else If Payload = "Check relay status" Then
+		If StopRelay Then
+			MQTT.Publish("Cloyd","*Relay is permanently closed")
+		else If d6.DigitalRead Then
+			MQTT.Publish("Cloyd","*Relay is closed")
+		Else
+			MQTT.Publish("Cloyd","*Relay is open")
+		End If
+	End If
+End Sub
+
+Sub mqtt_Disconnected
+	pin16.DigitalWrite(True)
+	Log("Disconnected from broker")
+	MQTT.Close
+	If WiFi.IsConnected = False Then
+		ConnectToWifi
+	End If
+	MQTT_Connect(0)
+End Sub
+
+Sub ConnectToWifi
+	WiFi.Connect2(WiFiSSID, WiFiPassword)
+
+	If WiFi.IsConnected Then
+		Log("Connected to WiFi, Local IP ", WiFi.LocalIp)
+	Else
+		Log("Not Connected to WiFi")
+	End If
+End Sub
+
+Sub WriteToEEPROM(OpenDelay As ULong, ClosedDelay As ULong)
+	Dim ListOfObjectsToStore() As Object = Array(OpenDelay, ClosedDelay)
+	Dim ByteDataToStore() As Byte
+	Dim bc As ByteConverter
+	Dim serializator As B4RSerializator
+	Dim eeprom As EEPROM
+
+	' Convert the array of objects into a sequence of bytes.
+	ByteDataToStore = serializator.ConvertArrayToBytes(ListOfObjectsToStore)
+ 
+	Log("Writing delay settings into the EEPROM")
+	
+	' Store the length of the data being written into the EEPROM as an Integer taking up two bytes at Storage Location 700 in the EEPROM
+	eeprom.WriteBytes(bc.IntsToBytes(Array As Int(ByteDataToStore.Length)), 700)
+	
+	' Now write out all the bytes into the EEPROM
+	eeprom.WriteBytes(ByteDataToStore, 702)
+End Sub
+
+Sub ReadFromEEPROM
+	Dim be(10) As Object 'used as a storage buffer for the serializator
+	Dim bc As ByteConverter
+	Dim serializator As B4RSerializator
+	Dim eeprom As EEPROM
+
+	Dim ByteLengthOfDataInEEPROM() As Byte
+	Dim ActualLengthOfDataInEEPROM As Int
+	Dim ByteDataInEEPROM() As Byte
+	Dim ObjectsInEEPROM() As Object
+	
+	Log("Reading delay settings from the EEPROM")
+	
+	'Get two bytes out of the EEPROM from location 700
+	ByteLengthOfDataInEEPROM = eeprom.ReadBytes(700, 2)
+	
+	'Convert these two bytes into an Integer - this is the number of bytes making up the objects that are stored in the EEPROM
+	ActualLengthOfDataInEEPROM =  bc.IntsFromBytes(ByteLengthOfDataInEEPROM)(0)
+     
+	'Get all that byte data out of the EEPROM
+	ByteDataInEEPROM = eeprom.ReadBytes(702, ActualLengthOfDataInEEPROM)
+
+	'Convert those bytes back into an array of objects
+	ObjectsInEEPROM = serializator.ConvertBytesToArray(ByteDataInEEPROM, be)
+
+	' Now list all the objects
+	'	For Each o As Object In ObjectsInEEPROM
+	'		Log(o)
+	'	Next
+
+	RelayOpenDelay = ObjectsInEEPROM(0)
+	RelayClosedDelay = ObjectsInEEPROM(1)
+	
+	If IsNumber(RelayOpenDelay) = False Then
+		Log("EEPROM's relay open delay is non-numeric. Setting to 20 minutes.")
+		RelayOpenDelay = 1200000
+		WriteToEEPROM(1200000, 7200000)
+	End If
+	
+	If IsNumber(RelayClosedDelay) = False Then
+		Log("EEPROM's relay closed delay is non-numeric. Setting to 2 hours.")
+		RelayClosedDelay = 7200000
+		WriteToEEPROM(1200000, 7200000)
+	End If
+
+	Log("RelayOpenDelay: ", RelayOpenDelay)
+	Log("RelayClosedDelay: ", RelayClosedDelay)
+End Sub
+
+Sub ClearEEPROM
+	Dim eeprom As EEPROM
+	Dim i As UInt
+	
+	Log("Size: ", eeprom.Size, " bytes")
+	For i = 0 To eeprom.Size
+		eeprom.WriteBytes(Array As Byte(0), i)
+		Log(i)
+	Next
+End Sub
