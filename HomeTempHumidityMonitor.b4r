@@ -83,7 +83,7 @@ End Sub
 
 Sub Timer1_Tick
 	DHT11sensor.Read11(DHT11pin.PinNumber)            'Reading the DHT11 measure
-	humidity=DHT11sensor.GetHumidity                'Get humidity from readed measure
+	humidity=DHT11sensor.GetHumidity + 15               'Get humidity from readed measure
 	temperature=DHT11sensor.GetTemperature            'Get temperature from readed measure
 	Log("Humidity = ",humidity, " %", "  Temperature = ",temperature * 9 / 5 + 32, " ºF")
 	Dim s As String  = JoinStrings(Array As String("Humidity = ",humidity, " %", "  Temperature = ",temperature * 9 / 5 + 32, " ºF"))
