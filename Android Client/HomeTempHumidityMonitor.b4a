@@ -1,5 +1,5 @@
-﻿Build1=Default,andy.home.system
-File1=0.png
+﻿Build1=Default,cloyd.home.monitor
+File1=0.jpg
 File2=1.bal
 File3=off.png
 File4=on.png
@@ -21,14 +21,13 @@ Library8=xui
 Library9=stringutils
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="21"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">~\n~        <item name="colorPrimary">#0098FF</item>~\n~        <item name="colorPrimaryDark">#007CF5</item>~\n~        <item name="colorAccent">#66CD00</item>~\n~        <item name="windowNoTitle">true</item>~\n~        <item name="windowActionBar">false</item>~\n~    </style>~\n~</resources>~\n~)
 Module1=CustomListView
-Module2=Starter
 NumberOfFiles=4
 NumberOfLibraries=10
-NumberOfModules=2
+NumberOfModules=1
 Version=7.8
 @EndOfDesignText@
 #Region  Project Attributes 
-	#ApplicationLabel: Andy Home Automation
+	#ApplicationLabel: Cloyd Home Monitor
 	#VersionCode: 1
 	#VersionName: 1.0
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
@@ -44,9 +43,9 @@ Version=7.8
 	#Extends: android.support.v7.app.AppCompatActivity
 Sub Process_Globals
 	Private MQTT As MqttClient
-    Private MQTTUser As String = "dbgdbcqw"
-    Private MQTTPassword As String = "Nc3F4APoO801"
-    Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:15093"
+	Private MQTTUser As String = "vynckfaq"
+	Private MQTTPassword As String = "KHSV1Q1qSUUY"
+	Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:11816"
     Private BC As ByteConverter
 	Private cartBitmap As Bitmap
 	Private badge As Int
@@ -70,12 +69,12 @@ Sub Activity_Create(FirstTime As Boolean)
 	    End If
 		Activity.LoadLayout("1")
 		Dim bd As BitmapDrawable
-		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
+		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.jpg", 32dip, 32dip, True))
 		ACToolBarLight1.NavigationIconDrawable = bd
 		ToolbarHelper.Initialize
 		Dim cs As CSBuilder
-		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Andy Home").PopAll
-		ToolbarHelper.subTitle = "Automation System v" & GetVersionCode
+		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Cloyd Home Monitor v").PopAll & GetVersionCode
+		ToolbarHelper.subTitle = ""
 		ToolbarHelper.ShowUpIndicator = False 'set to true to show the up arrow
 		ACToolBarLight1.InitMenuListener
 		Dim jo As JavaObject = ACToolBarLight1
@@ -121,7 +120,7 @@ Sub MQTT_Connected (Success As Boolean)
 			AddEvent("MQTT error connecting")
 	    Else
 			AddEvent("Connected to MQTT broker")
-	        MQTT.Subscribe("Andy", 0)
+	        MQTT.Subscribe("Cloyd", 0)
 			btnRefresh_Click
 	    End If
 	Catch
@@ -173,9 +172,9 @@ Sub tglRelaySwitch_CheckedChange(Checked As Boolean)
 		End If
 		
 		If Checked Then
-			MQTT.Publish("Andy", BC.StringToBytes("Remotely open relay", "utf8"))
+			'MQTT.Publish("Cloyd", BC.StringToBytes("Remotely open relay", "utf8"))
 		Else
-			MQTT.Publish("Andy", BC.StringToBytes("Remotely close relay", "utf8"))
+			'MQTT.Publish("Cloyd", BC.StringToBytes("Remotely close relay", "utf8"))
 		End If
 		btnRefresh_Click
 	Catch
@@ -188,7 +187,7 @@ Sub btnRefresh_Click
 		If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 			MQTT_Connect
 		End If
-		MQTT.Publish("Andy", BC.StringToBytes("Check relay status", "utf8"))		
+'		MQTT.Publish("Cloyd", BC.StringToBytes("Check relay status", "utf8"))		
 	Catch
 		AddEvent("btnRefresh_Click: " & LastException)
 	End Try
@@ -199,13 +198,13 @@ Sub btnRestart_Click
 	Try	
 		Dim result As Int
 		Dim bd As BitmapDrawable
-		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-		result = Msgbox2("Restart the controller?", "Andy Home Automation", "Yes", "", "No", bd.Bitmap)
+		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.jpg", 32dip, 32dip, True))
+		result = Msgbox2("Restart the controller?", "Cloyd Home Monitor", "Yes", "", "No", bd.Bitmap)
 		If result = DialogResponse.POSITIVE Then
 			If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 			MQTT_Connect
 			End If
-			MQTT.Publish("Andy", BC.StringToBytes("Restart controller", "utf8"))
+'			MQTT.Publish("Cloyd", BC.StringToBytes("Restart controller", "utf8"))
 		End If	
 	Catch
 		AddEvent("btnRestart_Click: " & LastException)
@@ -226,8 +225,8 @@ End Sub
 Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
-		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-		Msgbox2("Andy Home Automation System v" & GetVersionCode & CRLF & "Developed by Cloyd Catanaoan" & CRLF & "March 13, 2018", "About", "OK", "", "", bd.Bitmap)
+		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.jpg", 32dip, 32dip, True))
+		Msgbox2("Cloyd Home Monitor v" & GetVersionCode & CRLF & "Developed by Cloyd Catanaoan" & CRLF & "March 13, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try

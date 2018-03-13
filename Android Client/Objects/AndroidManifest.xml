@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	package="andy.home.system"
+	package="cloyd.home.monitor"
 	android:versionCode="1"
 	android:versionName="1.0"
 	android:installLocation="internalOnly">
@@ -14,13 +14,13 @@
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<application
 		android:icon="@drawable/icon"
-		android:label="Andy Home Automation"
+		android:label="Cloyd Home Monitor"
 		android:theme="@style/MyAppTheme">
 		<activity
 			android:windowSoftInputMode="stateHidden"
 			android:launchMode="singleTop"
 			android:name=".main"
-			android:label="Andy Home Automation"
+			android:label="Cloyd Home Monitor"
 			android:screenOrientation="unspecified">
 			<intent-filter>
 			   <action android:name="android.intent.action.MAIN" />
@@ -28,9 +28,5 @@
 			</intent-filter>
 			
 		</activity>
-		<service android:name=".starter">
-		</service>
-		<receiver android:name=".starter$starter_BR">
-		</receiver>
 	</application>
 </manifest>
