@@ -35,8 +35,8 @@ Sub Process_Globals
 	Private MQTTPort As Int = 11816
 	Private StopRelay As Boolean = False
 	Private ESP As ESP8266
-	Private WiFiSSID As String = "CloydNote8"
-	Private WiFiPassword As String = "adjj6347"
+	Private WiFiSSID As String = "Rise Above This Home"
+	Private WiFiPassword As String = "SteelReserve"
 	Private RelayOpenDelay As ULong = 5000
 	Private RelayClosedDelay As ULong = 15000
 	
