@@ -1,12 +1,14 @@
 ﻿Build1=Default,cloyd.home.monitor
 File1=0.jpg
 File2=1.bal
-File3=off.png
-File4=on.png
+File3=crysta.ttf
+File4=off.png
+File5=on.png
 FileGroup1=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
+FileGroup5=Default Group
 Group=Default Group
 IconFile=
 Library1=core
@@ -21,9 +23,10 @@ Library8=xui
 Library9=stringutils
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="21"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">~\n~        <item name="colorPrimary">#0098FF</item>~\n~        <item name="colorPrimaryDark">#007CF5</item>~\n~        <item name="colorAccent">#66CD00</item>~\n~        <item name="windowNoTitle">true</item>~\n~        <item name="windowActionBar">false</item>~\n~    </style>~\n~</resources>~\n~)
 Module1=CustomListView
-NumberOfFiles=4
+Module2=Gauge
+NumberOfFiles=5
 NumberOfLibraries=10
-NumberOfModules=1
+NumberOfModules=2
 Version=7.8
 @EndOfDesignText@
 #Region  Project Attributes 
@@ -46,19 +49,20 @@ Sub Process_Globals
 	Private MQTTUser As String = "vynckfaq"
 	Private MQTTPassword As String = "KHSV1Q1qSUUY"
 	Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:11816"
-    Private BC As ByteConverter
 	Private cartBitmap As Bitmap
+	Private bc As ByteConverter
 	Private badge As Int
+
 End Sub
 
 Sub Globals
 	Private ACToolBarLight1 As ACToolBarLight
 	Private ToolbarHelper As ACActionBar
-	Private btnRefresh As ACButton
-	Private tglRelaySwitch As ACSwitch
-	Private btnRestart As ACButton
 	Private clv1 As CustomListView
 	Private gblACMenu As ACMenu
+	Private xui As XUI
+	Private GaugeHumidity As Gauge
+	Private GaugeTemp As Gauge
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -79,7 +83,14 @@ Sub Activity_Create(FirstTime As Boolean)
 		ACToolBarLight1.InitMenuListener
 		Dim jo As JavaObject = ACToolBarLight1
 		Dim xl As XmlLayoutBuilder
-		jo.RunMethod("setPopupTheme", Array(xl.GetResourceId("style", "ToolbarMenu")))		
+		jo.RunMethod("setPopupTheme", Array(xl.GetResourceId("style", "ToolbarMenu")))	
+		
+		GaugeHumidity.SetRanges(Array(GaugeHumidity.CreateRange(0, 68, xui.Color_Green), _
+		GaugeHumidity.CreateRange(68, 80, xui.Color_Yellow), _
+		GaugeHumidity.CreateRange(80, 100, xui.Color_Red)))
+		GaugeTemp.SetRanges(Array(GaugeTemp.CreateRange(0, 78, xui.Color_Green), _
+	    GaugeTemp.CreateRange(78, 90, xui.Color_Yellow), _
+	    GaugeTemp.CreateRange(90, 100, xui.Color_Red)))	
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -121,7 +132,6 @@ Sub MQTT_Connected (Success As Boolean)
 	    Else
 			AddEvent("Connected to MQTT broker")
 	        MQTT.Subscribe("Cloyd", 0)
-			btnRefresh_Click
 	    End If
 	Catch
 		AddEvent("MQTT_Connected: " & LastException)
@@ -132,6 +142,7 @@ End Sub
 Private Sub MQTT_Disconnected
 	Try
 		gblACMenu.Clear
+		gblACMenu.Add(0, 0, "Restart board",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		AddEvent("Disconnected from MQTT broker")
 	Catch
@@ -149,6 +160,24 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			ShowRelayIcon("off.png")
 		End If
 		AddEvent(status)
+		Dim a As Int = status.IndexOf("Humidity =")
+		If a <> -1 Then
+			Dim b As String = status.SubString2(0,status.IndexOf("%"))
+			b = b.Replace("Humidity =","")
+			Log(b)
+			GaugeHumidity.CurrentValue = b
+		Else
+			GaugeHumidity.CurrentValue = 0
+		End If
+		Dim a As Int = status.IndexOf("Temperature =")
+		If a <> -1 Then
+			Dim b As String = status.SubString2(status.IndexOf("Temperature ="),status.IndexOf("º"))
+			b = b.Replace("Temperature =","")
+			Log(b)
+			GaugeTemp.CurrentValue = b
+		Else
+			GaugeTemp.CurrentValue = 0
+		End If
 	Catch
 		AddEvent("MQTT_MessageArrived: " & LastException)
 	End Try
@@ -165,57 +194,25 @@ Sub AddEvent(text As String)
 	End Try
 End Sub
 
-Sub tglRelaySwitch_CheckedChange(Checked As Boolean)
-	Try
-		If MQTT.IsInitialized = False Or MQTT.Connected = False Then
-			MQTT_Connect
-		End If
-		
-		If Checked Then
-			'MQTT.Publish("Cloyd", BC.StringToBytes("Remotely open relay", "utf8"))
-		Else
-			'MQTT.Publish("Cloyd", BC.StringToBytes("Remotely close relay", "utf8"))
-		End If
-		btnRefresh_Click
-	Catch
-		AddEvent("tglRelaySwitch_CheckedChange: " & LastException)
-	End Try
-End Sub
-
-Sub btnRefresh_Click
-	Try	
-		If MQTT.IsInitialized = False Or MQTT.Connected = False Then
-			MQTT_Connect
-		End If
-'		MQTT.Publish("Cloyd", BC.StringToBytes("Check relay status", "utf8"))		
-	Catch
-		AddEvent("btnRefresh_Click: " & LastException)
-	End Try
-
-End Sub
-
-Sub btnRestart_Click
-	Try	
-		Dim result As Int
-		Dim bd As BitmapDrawable
-		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.jpg", 32dip, 32dip, True))
-		result = Msgbox2("Restart the controller?", "Cloyd Home Monitor", "Yes", "", "No", bd.Bitmap)
-		If result = DialogResponse.POSITIVE Then
-			If MQTT.IsInitialized = False Or MQTT.Connected = False Then
-			MQTT_Connect
-			End If
-'			MQTT.Publish("Cloyd", BC.StringToBytes("Restart controller", "utf8"))
-		End If	
-	Catch
-		AddEvent("btnRestart_Click: " & LastException)
-	End Try
-
-End Sub
-
 Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 	Try
 		If Item.Title = "About" Then
 			ShowAboutMenu
+		else if Item.Title = "Restart board" Then
+			Try
+				Dim result As Int
+				Dim bd As BitmapDrawable
+				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.jpg", 32dip, 32dip, True))
+				result = Msgbox2("Restart the controller?", "Cloyd Home Monitor", "Yes", "", "No", bd.Bitmap)
+				If result = DialogResponse.POSITIVE Then
+					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
+						MQTT_Connect
+					End If
+					MQTT.Publish("Cloyd", bc.StringToBytes("Restart controller", "utf8"))
+				End If
+			Catch
+				AddEvent(LastException)
+			End Try
 		End If
 	Catch
 		Log(LastException)
@@ -250,6 +247,7 @@ Sub Activity_Createmenu(Menu As ACMenu)
 	Try
 		Menu.Clear
 		gblACMenu = Menu
+		Menu.Add(0, 0, "Restart board",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
 		Log(LastException)
@@ -263,6 +261,7 @@ Sub ShowRelayIcon(state As String)
 		item.ShowAsAction = item.SHOW_AS_ACTION_ALWAYS
 		cartBitmap = LoadBitmap(File.DirAssets, state)
 		UpdateIcon("relay", AddBadgeToIcon(cartBitmap, badge))
+		gblACMenu.Add(0, 0, "Restart board",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 	Catch
 		Log(LastException)
