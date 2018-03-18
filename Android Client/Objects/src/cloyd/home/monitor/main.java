@@ -358,7 +358,7 @@ mostCurrent._activity.LoadLayout("1",mostCurrent.activityBA);
  //BA.debugLineNum = 44;BA.debugLine="Dim bd As BitmapDrawable";
 _bd = new anywheresoftware.b4a.objects.drawable.BitmapDrawable();
  //BA.debugLineNum = 45;BA.debugLine="bd.Initialize(LoadBitmapResize(File.DirAssets, \"";
-_bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"0.jpg",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
+_bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"0.png",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
  //BA.debugLineNum = 46;BA.debugLine="ACToolBarLight1.NavigationIconDrawable = bd";
 mostCurrent._actoolbarlight1.setNavigationIconDrawable((android.graphics.drawable.Drawable)(_bd.getObject()));
  //BA.debugLineNum = 47;BA.debugLine="ToolbarHelper.Initialize";
@@ -381,9 +381,9 @@ _xl = new anywheresoftware.b4a.object.XmlLayoutBuilder();
  //BA.debugLineNum = 55;BA.debugLine="jo.RunMethod(\"setPopupTheme\", Array(xl.GetResour";
 _jo.RunMethod("setPopupTheme",new Object[]{(Object)(_xl.GetResourceId("style","ToolbarMenu"))});
  //BA.debugLineNum = 57;BA.debugLine="GaugeHumidity.SetRanges(Array(GaugeHumidity.Crea";
-mostCurrent._gaugehumidity._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugehumidity._createrange((float) (0),(float) (68),mostCurrent._xui.Color_Green)),(Object)(mostCurrent._gaugehumidity._createrange((float) (68),(float) (80),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugehumidity._createrange((float) (80),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugehumidity._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugehumidity._createrange((float) (0),(float) (70),mostCurrent._xui.Color_Green)),(Object)(mostCurrent._gaugehumidity._createrange((float) (70),(float) (80),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugehumidity._createrange((float) (80),(float) (100),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 60;BA.debugLine="GaugeTemp.SetRanges(Array(GaugeTemp.CreateRange(";
-mostCurrent._gaugetemp._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugetemp._createrange((float) (0),(float) (78),mostCurrent._xui.Color_Green)),(Object)(mostCurrent._gaugetemp._createrange((float) (78),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugetemp._createrange((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugetemp._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugetemp._createrange((float) (0),(float) (75),mostCurrent._xui.Color_Green)),(Object)(mostCurrent._gaugetemp._createrange((float) (75),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugetemp._createrange((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
  } 
        catch (Exception e21) {
 			processBA.setLastException(e21); //BA.debugLineNum = 64;BA.debugLine="ToastMessageShow(LastException,True)";
@@ -448,7 +448,7 @@ _result = 0;
  //BA.debugLineNum = 173;BA.debugLine="Dim bd As BitmapDrawable";
 _bd = new anywheresoftware.b4a.objects.drawable.BitmapDrawable();
  //BA.debugLineNum = 174;BA.debugLine="bd.Initialize(LoadBitmapResize(File.DirAssets,";
-_bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"0.jpg",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
+_bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"0.png",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
  //BA.debugLineNum = 175;BA.debugLine="result = Msgbox2(\"Restart the controller?\", \"C";
 _result = anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Restart the controller?"),BA.ObjectToCharSequence("Cloyd Home Monitor"),"Yes","","No",_bd.getBitmap(),mostCurrent.activityBA);
  //BA.debugLineNum = 176;BA.debugLine="If result = DialogResponse.POSITIVE Then";
@@ -858,7 +858,7 @@ anywheresoftware.b4a.objects.drawable.BitmapDrawable _bd = null;
 try { //BA.debugLineNum = 193;BA.debugLine="Dim bd As BitmapDrawable";
 _bd = new anywheresoftware.b4a.objects.drawable.BitmapDrawable();
  //BA.debugLineNum = 194;BA.debugLine="bd.Initialize(LoadBitmapResize(File.DirAssets, \"";
-_bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"0.jpg",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
+_bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"0.png",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
  //BA.debugLineNum = 195;BA.debugLine="Msgbox2(\"Cloyd Home Monitor v\" & GetVersionCode";
 anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Cloyd Home Monitor v"+_getversioncode()+anywheresoftware.b4a.keywords.Common.CRLF+"Developed by Cloyd Catanaoan"+anywheresoftware.b4a.keywords.Common.CRLF+"March 13, 2018"),BA.ObjectToCharSequence("About"),"OK","","",_bd.getBitmap(),mostCurrent.activityBA);
  } 

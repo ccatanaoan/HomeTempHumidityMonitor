@@ -1,5 +1,5 @@
 ﻿Build1=Default,cloyd.home.monitor
-File1=0.jpg
+File1=0.png
 File2=1.bal
 File3=crysta.ttf
 File4=off.png
@@ -73,7 +73,7 @@ Sub Activity_Create(FirstTime As Boolean)
 	    End If
 		Activity.LoadLayout("1")
 		Dim bd As BitmapDrawable
-		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.jpg", 32dip, 32dip, True))
+		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 		ACToolBarLight1.NavigationIconDrawable = bd
 		ToolbarHelper.Initialize
 		Dim cs As CSBuilder
@@ -85,11 +85,11 @@ Sub Activity_Create(FirstTime As Boolean)
 		Dim xl As XmlLayoutBuilder
 		jo.RunMethod("setPopupTheme", Array(xl.GetResourceId("style", "ToolbarMenu")))	
 		
-		GaugeHumidity.SetRanges(Array(GaugeHumidity.CreateRange(0, 68, xui.Color_Green), _
-		GaugeHumidity.CreateRange(68, 80, xui.Color_Yellow), _
+		GaugeHumidity.SetRanges(Array(GaugeHumidity.CreateRange(0, 70, xui.Color_Green), _
+		GaugeHumidity.CreateRange(70, 80, xui.Color_Yellow), _
 		GaugeHumidity.CreateRange(80, 100, xui.Color_Red)))
-		GaugeTemp.SetRanges(Array(GaugeTemp.CreateRange(0, 78, xui.Color_Green), _
-	    GaugeTemp.CreateRange(78, 90, xui.Color_Yellow), _
+		GaugeTemp.SetRanges(Array(GaugeTemp.CreateRange(0, 75, xui.Color_Green), _
+	    GaugeTemp.CreateRange(75, 90, xui.Color_Yellow), _
 	    GaugeTemp.CreateRange(90, 100, xui.Color_Red)))	
 	Catch
 		ToastMessageShow(LastException,True)
@@ -202,7 +202,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 			Try
 				Dim result As Int
 				Dim bd As BitmapDrawable
-				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.jpg", 32dip, 32dip, True))
+				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 				result = Msgbox2("Restart the controller?", "Cloyd Home Monitor", "Yes", "", "No", bd.Bitmap)
 				If result = DialogResponse.POSITIVE Then
 					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
@@ -222,7 +222,7 @@ End Sub
 Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
-		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.jpg", 32dip, 32dip, True))
+		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 		Msgbox2("Cloyd Home Monitor v" & GetVersionCode & CRLF & "Developed by Cloyd Catanaoan" & CRLF & "March 13, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
