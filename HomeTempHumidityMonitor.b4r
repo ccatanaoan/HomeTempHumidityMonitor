@@ -7,8 +7,19 @@ Library1=rcore
 Library2=resp8266
 Library3=resp8266wifi
 Library4=rmqtt
-Library5=rdht
+Library5=rrandomaccessfile
 @EndOfDesignText@
+' Author: Cloyd Nino Catanaoan
+'
+' Features:
+'  - Determine heat index
+'  - Determine dewpoint
+'  - Determine thermal comfort:
+'    * Empiric comfort function based on comfort profiles(parametric lines)
+'    * Multiple comfort profiles possible. Default based on http://epb.apogee.net/res/refcomf.asp  (References invalid)
+'    * Determine If it's too cold, hot, humid, dry, based on current comfort profile
+'    * More info at [Determining Thermal Comfort Using a humidity And temperature Sensor](https://www.azosensors.com/article.aspx?ArticleID=487)
+'  - Determine human perception based on humidity, temperature And dew point according To Horstmeyer, Steve (2006-08-15). [Relative humidity....Relative To What? The Dew Point temperature...a better approach](http://www.shorstmeyer.com/wxfaqs/humidity/humidity.html)
 
 #Region Project Attributes
 	#AutoFlushLogs: True
@@ -34,12 +45,17 @@ Sub Process_Globals
 	Private ESP As ESP8266
 	Private WiFiSSID As String = "Rise Above This Home"
 	Private WiFiPassword As String = "SteelReserve"
-	Public DHT11sensor As dht                'DHT11 sensor
 	Public Timer1 As Timer                    'Timer for reading DHT11 measures at desired interval
 	Public DHT11pin As Pin                    ' ESP8266 Pin connected to DHT11 signal
 	Public Interval As Int                    'Interval as seconds
 	Private d3pins As D1Pins
-	Dim humidity,temperature As Double        'Humidity/Temperature DHT11 readings
+	Public DHT11Temp As Double
+	Public DHT11Hum As Double
+	Public DHT11State As Int
+	Public DHT11HeatIndex As Double
+	Public DHT11DewPoint As Double
+	Public DHT11Perception As Int
+	Public DHT11ComfortStatus As Int
 End Sub
 
 Private Sub AppStart
@@ -69,19 +85,8 @@ Private Sub AppStart
 	Interval = 5                                        '5 sec Timer Interval
 	DHT11pin.Initialize(d3pins.D3, DHT11pin.MODE_INPUT)        'Initialize at Arduino Pin 3
 	Timer1.Initialize("Timer1_Tick", Interval * 1000)
+	RunNative("setup",Null)
 	Timer1.Enabled=True
-End Sub
-
-Sub Timer1_Tick
-	DHT11sensor.Read11(DHT11pin.PinNumber)            'Reading the DHT11 measure
-	humidity = DHT11sensor.GetHumidity + 12               'Get humidity from readed measure
-	temperature = DHT11sensor.GetTemperature * 9 / 5 + 32         'Get temperature from readed measure
-	Log("Humidity = ",humidity, " %", "  Temperature = ",temperature, " ºF")
-	
-	If WiFi.IsConnected Then
-		Dim s As String  = JoinStrings(Array As String("Humidity = ",humidity, " %", "  Temperature = ",temperature, " ºF"))
-		MQTT.Publish("Cloyd",s)
-	End If
 End Sub
 
 Sub MQTT_Connect(Unused As Byte)
@@ -124,6 +129,144 @@ Sub ConnectToWifi
 		Log("Not Connected to WiFi")
 	End If
 End Sub
+
+Sub Timer1_Tick
+	RunNative("ReadDHT1",Null)
+
+	Dim localstate As String
+	Select Case DHT11State
+		Case 0
+			' The sensor samples And its checksum are OK.
+			localstate = "OK"
+		Case 1
+			localstate = "TIMEOUT"
+			' A timeout occurred, And communication has failed.
+		Case 2
+			' The checksum test failed. This means that data was received but may Not be correct.
+			localstate = "CHECKSUM"
+	End Select
+
+	Dim localperception As String
+	Select Case DHT11Perception
+		Case 0
+			localperception = "A Bit dry For some"
+		Case 1
+			localperception = "Very comfortable"
+		Case 2
+			localperception = "Comfortable"
+		Case 3
+			localperception = "OK For most, but all perceive the humidity at upper edge"
+		Case 4
+			localperception = "Somewhat uncomfortable For most people at upper edge"
+		Case 5
+			localperception = "Very humid, quite uncomfortable"
+		Case 6
+			localperception = "Extremely uncomfortable, oppressive"
+		Case 7
+			localperception = "Severely high, even deadly For asthma related illnesses"
+	End Select
+	
+	Dim localcomfortstatus As String
+	Select Case DHT11ComfortStatus
+		Case 0
+			localcomfortstatus = "OK"
+		Case 1
+			localcomfortstatus = "Too hot"
+		Case 2
+			localcomfortstatus = "Too cold"
+		Case 4
+			localcomfortstatus = "Too dry"
+		Case 5
+			localcomfortstatus = "Hot and dry"
+		Case 6
+			localcomfortstatus = "Cold and dry"
+		Case 8
+			localcomfortstatus = "Too humid"
+		Case 9
+			localcomfortstatus = "Hot and humid"
+		Case 10
+			localcomfortstatus = "Cold and humid"
+		Case Else
+			localcomfortstatus = "Unknown"
+	End Select
+	
+	Log("State: ", localstate, " Temp: ", DHT11Temp, " ºF Humidity: " , DHT11Hum, " %", " HeatIndex: ", DHT11HeatIndex, " Dew Point: ", DHT11DewPoint, " Perception: ", localperception, " Comfort Status: ", localcomfortstatus)
+	If WiFi.IsConnected Then
+		Dim s As String  
+		If localstate = "OK" Then
+			's = JoinStrings(Array As String("Humidity = ", DHT11Hum, " %", "  Temperature = ", DHT11Temp, " ºF"))
+			s = JoinStrings(Array As String("Humidity = ", DHT11Hum, " %", " Temperature = ", DHT11Temp, " ºF",CRLF, " Perception = ", localperception, CRLF, " Comfort Status = ", localcomfortstatus, CRLF," HeatIndex: ", DHT11HeatIndex," ºF"))
+			Dim bc As ByteConverter
+			Log("Payload length: ", bc.StringToBytes(s).length)
+			If bc.StringToBytes(s).length >= 150 Then
+				s = JoinStrings(Array As String("Humidity = ", DHT11Hum, " %", " Temperature = ", DHT11Temp, " ºF",CRLF, " Perception = ", localperception))
+			End If
+		Else
+			s = JoinStrings(Array As String("Humidity = 0 %", "  Temperature = 0 ºF"))
+		End If
+		MQTT.Publish("Cloyd",s)
+	End If
+End Sub
+
+#If C
+#include "DHTesp.h"
+
+#define DHT1Pin 0 //change here the IO-Pin
+#define DHTTYPE DHT11
+
+ComfortState cf;
+DHTesp dht11;
+
+void setup(B4R::Object* o){
+dht11.setup(DHT1Pin);
+}
+
+void ReadDHT1(B4R::Object* o) {
+	 b4r_main::_dht11state = dht11.getStatus();
+	 // Add 12 percent based on home hygrometer.
+ 	 float humidity = dht11.getHumidity() + 12;
+ 	 float temperature = dht11.toFahrenheit(dht11.getTemperature());
+     b4r_main::_dht11hum  = humidity; 
+     b4r_main::_dht11temp = temperature; 
+	 b4r_main::_dht11heatindex = dht11.computeHeatIndex(temperature, humidity, true);
+	 b4r_main::_dht11dewpoint = dht11.computeDewPoint(temperature, humidity, true);
+	 b4r_main::_dht11perception = dht11.computePerception(temperature, humidity, true);
+	 float cr = dht11.getComfortRatio(cf, temperature, humidity, true);
+
+	  switch(cf) {
+	    case Comfort_OK:
+	      b4r_main::_dht11comfortstatus = 0;
+	      break;
+	    case Comfort_TooHot:
+	      b4r_main::_dht11comfortstatus = 1;
+	      break;
+	    case Comfort_TooCold:
+	      b4r_main::_dht11comfortstatus = 2;
+	      break;
+	    case Comfort_TooDry:
+	      b4r_main::_dht11comfortstatus = 4;
+	      break;
+	    case Comfort_TooHumid:
+	      b4r_main::_dht11comfortstatus = 8;
+	      break;
+	    case Comfort_HotAndHumid:
+	      b4r_main::_dht11comfortstatus = 9;
+	      break;
+	    case Comfort_HotAndDry:
+	      b4r_main::_dht11comfortstatus = 5;
+	      break;
+	    case Comfort_ColdAndHumid:
+	      b4r_main::_dht11comfortstatus = 10;
+	      break;
+	    case Comfort_ColdAndDry:
+	      b4r_main::_dht11comfortstatus = 6;
+	      break;
+	    default:
+	      b4r_main::_dht11comfortstatus = -1;
+	      break;
+	  };
+  }
+#End If
 
 #if C
 void SetSTA(B4R::Object* o) {

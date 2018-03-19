@@ -1,6 +1,6 @@
-C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\dht.cpp.o: \
- C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\dht.cpp \
- C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\dht.h \
+C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\libraries\DHT\DHTesp.cpp.o: \
+ C:\Program\ Files\ (x86)\Arduino\libraries\DHT\DHTesp.cpp \
+ C:\Program\ Files\ (x86)\Arduino\libraries\DHT\DHTesp.h \
  C:\Users\ccatanaoan\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266/Arduino.h \
  C:\Users\ccatanaoan\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1/tools/sdk/libc/xtensa-lx106-elf/include/stdlib.h \
  C:\Users\ccatanaoan\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1/tools/sdk/libc/xtensa-lx106-elf/include/machine/ieeefp.h \

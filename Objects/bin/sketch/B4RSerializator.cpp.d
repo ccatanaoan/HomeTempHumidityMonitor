@@ -1,5 +1,5 @@
-C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\rDHT.cpp.o: \
- C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\rDHT.cpp \
+C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\B4RSerializator.cpp.o: \
+ C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\B4RSerializator.cpp \
  C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\B4RDefines.h \
  C:\Users\ccatanaoan\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266/Arduino.h \
  C:\Users\ccatanaoan\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1/tools/sdk/libc/xtensa-lx106-elf/include/stdlib.h \
@@ -87,6 +87,5 @@ C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\rDHT.cpp.o: \
  C:\Users\ccatanaoan\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\libraries\ESP8266WiFi\src/include/slist.h \
  C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\rMQTT.h \
  C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\PubSubClient.h \
- C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\rDht.h \
- C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\dht.h \
+ C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\rRandomAccessFile.h \
  C:\Users\CCATAN~1\Desktop\HOMETE~1\Objects\bin\sketch\b4r_main.h

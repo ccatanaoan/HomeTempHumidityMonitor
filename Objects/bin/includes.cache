@@ -20,12 +20,22 @@
     "Includepath": ""
   },
   {
+    "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\AsyncStreams.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
     "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RArduino.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
     "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RCore.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RSerializator.cpp",
     "Include": "",
     "Includepath": ""
   },
@@ -40,7 +50,17 @@
     "Includepath": ""
   },
   {
+    "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\ByteConverter.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
     "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\PubSubClient.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\RandomAccessFile.cpp",
     "Include": "",
     "Includepath": ""
   },
@@ -51,16 +71,11 @@
   },
   {
     "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_main.cpp",
-    "Include": "",
-    "Includepath": ""
+    "Include": "DHTesp.h",
+    "Includepath": "C:\\Program Files (x86)\\Arduino\\libraries\\DHT"
   },
   {
-    "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\dht.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rDHT.cpp",
+    "Sourcefile": "C:\\Users\\CCATAN~1\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_main.cpp",
     "Include": "",
     "Includepath": ""
   },
@@ -131,6 +146,11 @@
   },
   {
     "Sourcefile": "C:\\Users\\ccatanaoan\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiUdp.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Program Files (x86)\\Arduino\\libraries\\DHT\\DHTesp.cpp",
     "Include": "",
     "Includepath": ""
   }
