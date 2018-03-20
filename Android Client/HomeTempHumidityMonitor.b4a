@@ -1,4 +1,4 @@
-﻿Build1=Default,cloyd.home.monitor
+﻿Build1=Default,cloyd.home.weather.station
 File1=0.png
 File2=1.bal
 File3=crysta.ttf
@@ -23,10 +23,10 @@ Module2=Gauge
 NumberOfFiles=3
 NumberOfLibraries=10
 NumberOfModules=2
-Version=7.8
+Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
-	#ApplicationLabel: Cloyd Home Monitor
+	#ApplicationLabel: Home Weather Station
 	#VersionCode: 1
 	#VersionName: 1.0
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
@@ -77,7 +77,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		ACToolBarLight1.NavigationIconDrawable = bd
 		ToolbarHelper.Initialize
 		Dim cs As CSBuilder
-		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Cloyd Home Monitor").PopAll
+		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Home Weather Station").PopAll
 		ToolbarHelper.subTitle = ""
 		ToolbarHelper.ShowUpIndicator = False 'set to true to show the up arrow
 		ACToolBarLight1.InitMenuListener
@@ -273,7 +273,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				Dim result As Int
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-				result = Msgbox2("Restart the controller?", "Cloyd Home Monitor", "Yes", "", "No", bd.Bitmap)
+				result = Msgbox2("Restart the controller?", "Home Weather Station", "Yes", "", "No", bd.Bitmap)
 				If result = DialogResponse.POSITIVE Then
 					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 						MQTT_Connect
@@ -293,7 +293,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-		Msgbox2("Cloyd Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 13, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Home Weather Station v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 20, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
