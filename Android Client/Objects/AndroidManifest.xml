@@ -21,7 +21,7 @@
 			android:launchMode="singleTop"
 			android:name=".main"
 			android:label="Cloyd Home Monitor"
-			android:screenOrientation="unspecified">
+			android:screenOrientation="portrait">
 			<intent-filter>
 			   <action android:name="android.intent.action.MAIN" />
 			   <category android:name="android.intent.category.LAUNCHER" />

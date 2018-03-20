@@ -2,13 +2,9 @@
 File1=0.png
 File2=1.bal
 File3=crysta.ttf
-File4=off.png
-File5=on.png
 FileGroup1=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
-FileGroup4=Default Group
-FileGroup5=Default Group
 Group=Default Group
 IconFile=
 Library1=core
@@ -17,14 +13,14 @@ Library2=appcompat
 Library3=javaobject
 Library4=xmllayoutbuilder
 Library5=jmqtt
-Library6=randomaccessfile
+Library6=callsubutils
 Library7=byteconverter
 Library8=xui
 Library9=stringutils
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="21"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">~\n~        <item name="colorPrimary">#0098FF</item>~\n~        <item name="colorPrimaryDark">#007CF5</item>~\n~        <item name="colorAccent">#66CD00</item>~\n~        <item name="windowNoTitle">true</item>~\n~        <item name="windowActionBar">false</item>~\n~    </style>~\n~</resources>~\n~)
 Module1=CustomListView
 Module2=Gauge
-NumberOfFiles=5
+NumberOfFiles=3
 NumberOfLibraries=10
 NumberOfModules=2
 Version=7.8
@@ -34,7 +30,7 @@ Version=7.8
 	#VersionCode: 1
 	#VersionName: 1.0
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
-	#SupportedOrientations: unspecified
+	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
 	#BridgeLogger:True
 #End Region
@@ -49,10 +45,8 @@ Sub Process_Globals
 	Private MQTTUser As String = "vynckfaq"
 	Private MQTTPassword As String = "KHSV1Q1qSUUY"
 	Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:11816"
-	Private cartBitmap As Bitmap
 	Private bc As ByteConverter
-	Private badge As Int
-
+	Private csu As CallSubUtils
 End Sub
 
 Sub Globals
@@ -63,12 +57,18 @@ Sub Globals
 	Private xui As XUI
 	Private GaugeHumidity As Gauge
 	Private GaugeTemp As Gauge
+	Private GaugeDewPoint As Gauge
+	Private GaugeHeatIndex As Gauge
+	Private lblComfort As Label
+	Private lblPerception As Label
+	Private lblLastUpdate As Label
+	Private lblPing As Label
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
 	Try
 		If FirstTime Then
-	        'CallSub(Me, MQTT_Connect)
+			csu.Initialize
 			MQTT_Connect
 	    End If
 		Activity.LoadLayout("1")
@@ -77,7 +77,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		ACToolBarLight1.NavigationIconDrawable = bd
 		ToolbarHelper.Initialize
 		Dim cs As CSBuilder
-		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Cloyd Home Monitor v").PopAll & GetVersionCode
+		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Cloyd Home Monitor").PopAll
 		ToolbarHelper.subTitle = ""
 		ToolbarHelper.ShowUpIndicator = False 'set to true to show the up arrow
 		ACToolBarLight1.InitMenuListener
@@ -91,6 +91,23 @@ Sub Activity_Create(FirstTime As Boolean)
 		GaugeTemp.SetRanges(Array(GaugeTemp.CreateRange(0, 75, xui.Color_Green), _
 	    GaugeTemp.CreateRange(75, 90, xui.Color_Yellow), _
 	    GaugeTemp.CreateRange(90, 100, xui.Color_Red)))	
+		GaugeHeatIndex.SetRanges(Array(GaugeHeatIndex.CreateRange(0, 75, xui.Color_Green), _
+	    GaugeHeatIndex.CreateRange(75, 90, xui.Color_Yellow), _
+	    GaugeHeatIndex.CreateRange(90, 100, xui.Color_Red)))	
+		GaugeDewPoint.SetRanges(Array(GaugeHeatIndex.CreateRange(0, 75, xui.Color_Green), _
+	    GaugeDewPoint.CreateRange(75, 90, xui.Color_Yellow), _
+	    GaugeDewPoint.CreateRange(90, 100, xui.Color_Red)))			
+		GaugeTemp.CurrentValue = 0
+		GaugeHumidity.CurrentValue = 0
+		Dim cs As CSBuilder
+		cs.Initialize
+		lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append("No data available").PopAll
+		lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append("No data available").PopAll
+		GaugeHeatIndex.CurrentValue = 0
+		GaugeDewPoint.CurrentValue = 0
+		DateTime.DateFormat = "MMMM d, h:mm:ss a"
+		lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append("").PopAll
+		lblPing.Visible = False
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -145,6 +162,7 @@ Private Sub MQTT_Disconnected
 		gblACMenu.Add(0, 0, "Restart board",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		AddEvent("Disconnected from MQTT broker")
+		MQTT_Connect
 	Catch
 		Log(LastException)
 	End Try
@@ -152,37 +170,89 @@ End Sub
 
 Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 	Try
+		lblPing.SetVisibleAnimated(500, True)
+		csu.CallSubPlus(Me, "HidePing", 700)
+		
 		Dim status As String 
 		status = BytesToString(Payload, 0, Payload.Length, "UTF8")
-		If status="*Relay has been opened" Or status = "*Relay is open" Then
-			ShowRelayIcon("on.png")
-		else if status = "*Relay has been closed" Or status = "*Relay is closed" Then
-			ShowRelayIcon("off.png")
-		End If
 		AddEvent(status)
-		Dim a As Int = status.IndexOf("Humidity =")
-		If a <> -1 Then
-			Dim b As String = status.SubString2(0,status.IndexOf("%"))
-			b = b.Replace("Humidity =","")
-			Log(b)
-			GaugeHumidity.CurrentValue = b
-		Else
-			GaugeHumidity.CurrentValue = 0
-		End If
-		Dim a As Int = status.IndexOf("Temperature =")
-		If a <> -1 Then
-			Dim b As String = status.SubString2(status.IndexOf("Temperature ="),status.IndexOf("º"))
-			b = b.Replace("Temperature =","")
-			Log(b)
-			GaugeTemp.CurrentValue = b
-		Else
-			GaugeTemp.CurrentValue = 0
+
+		Dim a() As String = Regex.Split("\|",status)
+		If a.Length = 7 Then
+			Dim cs As CSBuilder
+			cs.Initialize
+			If a(0) = "OK" Then
+				GaugeTemp.CurrentValue = a(1)
+				GaugeHumidity.CurrentValue = a(2)
+				lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append(GetPerception(a(3))).PopAll
+				lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
+				GaugeHeatIndex.CurrentValue = a(5)
+				GaugeDewPoint.CurrentValue = a(6)
+			Else
+				GaugeTemp.CurrentValue = 0
+				GaugeHumidity.CurrentValue = 0
+				lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
+				lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
+				GaugeHeatIndex.CurrentValue = 0
+				GaugeDewPoint.CurrentValue = 0
+			End If
+			DateTime.DateFormat = "MMMM d, h:mm:ss a"
+			lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
 		End If
 	Catch
 		AddEvent("MQTT_MessageArrived: " & LastException)
 	End Try
 End Sub
 
+Sub GetPerception(DHT11Perception As String) As String
+	Dim localperception As String
+	Select Case DHT11Perception
+		Case 0
+			localperception = "A bit dry For some"
+		Case 1
+			localperception = "Very comfortable"
+		Case 2
+			localperception = "Comfortable"
+		Case 3
+			localperception = "OK for most, but all perceive the humidity at upper edge"
+		Case 4
+			localperception = "Somewhat uncomfortable For most people at upper edge"
+		Case 5
+			localperception = "Very humid, quite uncomfortable"
+		Case 6
+			localperception = "Extremely uncomfortable, oppressive"
+		Case 7
+			localperception = "Severely high, even deadly For asthma related illnesses"
+	End Select
+	Return localperception
+End Sub
+
+Sub GetComfort(DHT11ComfortStatus As String) As String
+	Dim localcomfortstatus As String
+	Select Case DHT11ComfortStatus
+		Case 0
+			localcomfortstatus = "OK"
+		Case 1
+			localcomfortstatus = "Too hot"
+		Case 2
+			localcomfortstatus = "Too cold"
+		Case 4
+			localcomfortstatus = "Too dry"
+		Case 5
+			localcomfortstatus = "Hot and dry"
+		Case 6
+			localcomfortstatus = "Cold and dry"
+		Case 8
+			localcomfortstatus = "Too humid"
+		Case 9
+			localcomfortstatus = "Hot and humid"
+		Case 10
+			localcomfortstatus = "Cold and humid"
+		Case Else
+			localcomfortstatus = "Unknown"
+	End Select
+	Return localcomfortstatus
+End Sub
 Sub AddEvent(text As String)
 	Try
 		DateTime.DateFormat = "MMM d h:mm:ss a"
@@ -223,7 +293,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-		Msgbox2("Cloyd Home Monitor v" & GetVersionCode & CRLF & "Developed by Cloyd Catanaoan" & CRLF & "March 13, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Cloyd Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 13, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -254,74 +324,8 @@ Sub Activity_Createmenu(Menu As ACMenu)
 	End Try
 End Sub
 
-Sub ShowRelayIcon(state As String)
-	Try
-		gblACMenu.Clear
-		Dim item As ACMenuItem = ACToolBarLight1.Menu.Add2(0, 0, "relay", Null)
-		item.ShowAsAction = item.SHOW_AS_ACTION_ALWAYS
-		cartBitmap = LoadBitmap(File.DirAssets, state)
-		UpdateIcon("relay", AddBadgeToIcon(cartBitmap, badge))
-		gblACMenu.Add(0, 0, "Restart board",Null)
-		gblACMenu.Add(0, 0, "About",Null)
-	Catch
-		Log(LastException)
-	End Try
-End Sub
-
-Sub UpdateIcon(MenuTitle As String, Icon As Bitmap)
-	Try
-		Dim m As ACMenuItem = GetMenuItem(MenuTitle)
-		m.Icon = BitmapToBitmapDrawable(Icon)
-	Catch
-		Log(LastException)
-	End Try
-End Sub
-
-Sub BitmapToBitmapDrawable (bitmap As Bitmap) As BitmapDrawable
-	Try
-		Dim bd As BitmapDrawable
-		bd.Initialize(bitmap)
-		Return bd
-	Catch
-		Log(LastException)
-		Return Null
-	End Try
-End Sub
-
-Sub GetMenuItem(Title As String) As ACMenuItem
-	Try
-		For i = 0 To ACToolBarLight1.Menu.Size - 1
-			Dim m As ACMenuItem = ACToolBarLight1.Menu.GetItem(i)
-			If m.Title = Title Then
-				Return m
-			End If
-		Next
-		Return Null
-	Catch
-		Log(LastException)
-		Return Null
-	End Try
-	
-End Sub
-
-Sub AddBadgeToIcon(bmp As Bitmap, Number As Int) As Bitmap
-	Dim mbmp As Bitmap
-	Try
-		Dim cvs As Canvas
-		mbmp.InitializeMutable(32dip, 32dip)
-		cvs.Initialize2(mbmp)
-		Dim target As Rect
-		target.Initialize(0, 0, mbmp.Width, mbmp.Height)
-		cvs.DrawBitmap(bmp, Null, target)
-		If Number > 0 Then
-			cvs.DrawCircle(mbmp.Width - 8dip, 8dip, 8dip, Colors.Red, True, 0)
-			cvs.DrawText(Min(Number, 9), mbmp.Width - 8dip, 12dip, Typeface.DEFAULT_BOLD, 12, Colors.White, "CENTER")
-		End If
-		Return mbmp
-	Catch
-		Log(LastException)
-		Return Null
-	End Try
+Private Sub HidePing
+	lblPing.SetVisibleAnimated(200, False)
 End Sub
 
 #If Java
