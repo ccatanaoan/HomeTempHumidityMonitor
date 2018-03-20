@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package android.support.v7.appcompat;
+package cloyd.home.weather.station;
 
 public final class R {
     public static final class anim {
