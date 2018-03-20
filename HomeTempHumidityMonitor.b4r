@@ -193,17 +193,8 @@ Sub Timer1_Tick
 	Log("State: ", localstate, " Temp: ", DHT11Temp, " ºF Humidity: " , DHT11Hum, " %", " HeatIndex: ", DHT11HeatIndex, " Dew Point: ", DHT11DewPoint, " Perception: ", localperception, " Comfort Status: ", localcomfortstatus)
 	If WiFi.IsConnected Then
 		Dim s As String  
-		If localstate = "OK" Then
-			's = JoinStrings(Array As String("Humidity = ", DHT11Hum, " %", "  Temperature = ", DHT11Temp, " ºF"))
-			s = JoinStrings(Array As String("Humidity = ", DHT11Hum, " %", " Temperature = ", DHT11Temp, " ºF",CRLF, " Perception = ", localperception, CRLF, " Comfort Status = ", localcomfortstatus, CRLF," HeatIndex: ", DHT11HeatIndex," ºF"))
-			Dim bc As ByteConverter
-			Log("Payload length: ", bc.StringToBytes(s).length)
-			If bc.StringToBytes(s).length >= 150 Then
-				s = JoinStrings(Array As String("Humidity = ", DHT11Hum, " %", " Temperature = ", DHT11Temp, " ºF",CRLF, " Perception = ", localperception))
-			End If
-		Else
-			s = JoinStrings(Array As String("Humidity = 0 %", "  Temperature = 0 ºF"))
-		End If
+		s = JoinStrings(Array As String(localstate,"|",DHT11Temp, "|",DHT11Hum , "|",DHT11Perception, "|", DHT11ComfortStatus, "|", DHT11HeatIndex,"|", DHT11DewPoint))
+		Log("Sending to MQTT: ",s)
 		MQTT.Publish("Cloyd",s)
 	End If
 End Sub
