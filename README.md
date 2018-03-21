@@ -1,6 +1,8 @@
 # Cloyd-Home-Weather-Station
 I wrote and developed these ESP8266 program and Android mobile application client for our home automation. The mobile application can remotely control and monitor the sensor via cloud MQTT.
 
+The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated TCP/IP protocol stack that can give any microcontroller access to the WiFi network.
+
 ## Features that are sent to the Android mobile application client via cloud MQTT
 - Temperature
 - Relative humidity
