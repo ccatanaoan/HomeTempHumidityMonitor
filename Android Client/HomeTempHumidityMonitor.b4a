@@ -108,6 +108,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		DateTime.DateFormat = "MMMM d, h:mm:ss a"
 		lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append("").PopAll
 		lblPing.Visible = False
+		Log(Activity.Width)
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
