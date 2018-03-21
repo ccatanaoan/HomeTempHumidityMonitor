@@ -3,7 +3,7 @@ I wrote and developed these ESP8266 program and Android mobile application clien
 
 The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated TCP/IP protocol stack that can give any microcontroller access to the WiFi network.
 
-## Information sent from the sensor to the Android mobile app client via cloud MQTT
+## Information sent from the sensor to the Android mobile app via cloud MQTT
 - Temperature
 - Relative humidity
 - Dew point
