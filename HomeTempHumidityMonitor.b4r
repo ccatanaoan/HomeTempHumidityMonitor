@@ -146,24 +146,34 @@ Sub Timer1_Tick
 			localstate = "CHECKSUM"
 	End Select
 
+	' Return value       Dew point                        Human perception[6]
+	'    7         Over 26 °C (>78.8°F)     Severely high, even deadly For asthma related illnesses
+	'    6         24–26 °C (75.2-78.8°F)   Extremely uncomfortable, oppressive
+	'    5         21–24 °C (69.8-75.2°F)   Very humid, quite uncomfortable
+	'    4         18–21 °C (64.4-69.8°F)   Somewhat uncomfortable For most people at upper limit
+	'    3         16–18 °C (60.8-64.4°F)   OK For most, but everyone perceives the humidity at upper limit
+	'    2         13–16 °C (55.4-60.8°F)   Comfortable
+	'    1         10–12 °C (50-53.6°F)     Very comfortable
+	'    0         Under 10 °C (<50°F)      Feels like the western US, a Bit dry To some
+	
 	Dim localperception As String
 	Select Case DHT11Perception
 		Case 0
-			localperception = "A Bit dry For some"
+			localperception = "Feels like the western US, a bit dry to some"
 		Case 1
 			localperception = "Very comfortable"
 		Case 2
 			localperception = "Comfortable"
 		Case 3
-			localperception = "OK For most, but all perceive the humidity at upper edge"
+			localperception = "OK but everyone perceives the humidity at upper limit"
 		Case 4
-			localperception = "Somewhat uncomfortable For most people at upper edge"
+			localperception = "Somewhat uncomfortable for most people at upper limit"
 		Case 5
 			localperception = "Very humid, quite uncomfortable"
 		Case 6
 			localperception = "Extremely uncomfortable, oppressive"
 		Case 7
-			localperception = "Severely high, even deadly For asthma related illnesses"
+			localperception = "Severely high, even deadly for asthma related illnesses"
 	End Select
 	
 	Dim localcomfortstatus As String
