@@ -6,7 +6,6 @@ The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated
 ## Information sent from the sensor to the Android mobile app via cloud MQTT
 - Temperature
 - Relative humidity
-- Dew point
 - Heat index
 - Dew point
 - Thermal comfort:
