@@ -69,21 +69,21 @@ views.get("gaugehumidity").vw.setLeft((int)((50d / 100 * width)));
 views.get("gaugehumidity").vw.setWidth((int)((100d / 100 * width)+(10d * scale) - ((50d / 100 * width))));
 //BA.debugLineNum = 34;BA.debugLine="lblLastUpdate.Top = GaugeHumidity.Bottom + 60dip"[1/General script]
 views.get("lbllastupdate").vw.setTop((int)((views.get("gaugehumidity").vw.getTop() + views.get("gaugehumidity").vw.getHeight())+(60d * scale)));
-//BA.debugLineNum = 36;BA.debugLine="lblPing.Top = GaugeHumidity.Bottom + 60dip"[1/General script]
-views.get("lblping").vw.setTop((int)((views.get("gaugehumidity").vw.getTop() + views.get("gaugehumidity").vw.getHeight())+(60d * scale)));
-//BA.debugLineNum = 37;BA.debugLine="lblPing.Right = 100%x"[1/General script]
-views.get("lblping").vw.setLeft((int)((100d / 100 * width) - (views.get("lblping").vw.getWidth())));
-//BA.debugLineNum = 39;BA.debugLine="lblAuthor.Bottom = 100%y"[1/General script]
+//BA.debugLineNum = 36;BA.debugLine="lblAuthor.Bottom = 100%y"[1/General script]
 views.get("lblauthor").vw.setTop((int)((100d / 100 * height) - (views.get("lblauthor").vw.getHeight())));
-//BA.debugLineNum = 40;BA.debugLine="lblAuthor.Width = 100%x"[1/General script]
+//BA.debugLineNum = 37;BA.debugLine="lblAuthor.Width = 100%x"[1/General script]
 views.get("lblauthor").vw.setWidth((int)((100d / 100 * width)));
-//BA.debugLineNum = 42;BA.debugLine="If (100%y)<(lblLastUpdate.Bottom) Then"[1/General script]
+//BA.debugLineNum = 39;BA.debugLine="If (100%y)<(lblLastUpdate.Bottom) Then"[1/General script]
 if ((((100d / 100 * height))<((views.get("lbllastupdate").vw.getTop() + views.get("lbllastupdate").vw.getHeight())))) { 
 ;
-//BA.debugLineNum = 43;BA.debugLine="lblLastUpdate.Top = GaugeHumidity.Bottom + 20dip"[1/General script]
+//BA.debugLineNum = 40;BA.debugLine="lblLastUpdate.Top = GaugeHumidity.Bottom + 20dip"[1/General script]
 views.get("lbllastupdate").vw.setTop((int)((views.get("gaugehumidity").vw.getTop() + views.get("gaugehumidity").vw.getHeight())+(20d * scale)));
-//BA.debugLineNum = 44;BA.debugLine="End If"[1/General script]
+//BA.debugLineNum = 41;BA.debugLine="End If"[1/General script]
 ;};
+//BA.debugLineNum = 43;BA.debugLine="lblPing.Top = lblLastUpdate.Top"[1/General script]
+views.get("lblping").vw.setTop((int)((views.get("lbllastupdate").vw.getTop())));
+//BA.debugLineNum = 44;BA.debugLine="lblPing.Right = 100%x"[1/General script]
+views.get("lblping").vw.setLeft((int)((100d / 100 * width) - (views.get("lblping").vw.getWidth())));
 
 }
 }
