@@ -27,8 +27,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Home Weather Station
-	#VersionCode: 11
-	#VersionName: 1.1
+	#VersionCode: 12
+	#VersionName: 1.2
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -93,18 +93,17 @@ Sub Activity_Create(FirstTime As Boolean)
 	    GaugeTemp.CreateRange(90, 100, xui.Color_Red)))	
 		GaugeHeatIndex.SetRanges(Array(GaugeHeatIndex.CreateRange(0, 75, xui.Color_RGB(100,221,23)), _
 	    GaugeHeatIndex.CreateRange(75, 90, xui.Color_Yellow), _
-	    GaugeHeatIndex.CreateRange(90, 100, xui.Color_Red)))	
-		GaugeDewPoint.SetRanges(Array(GaugeHeatIndex.CreateRange(0, 75, xui.Color_RGB(100,221,23)), _
-	    GaugeDewPoint.CreateRange(75, 90, xui.Color_Yellow), _
-	    GaugeDewPoint.CreateRange(90, 100, xui.Color_Red)))			
-		GaugeTemp.CurrentValue = 0
-		GaugeHumidity.CurrentValue = 0
+	    GaugeHeatIndex.CreateRange(90, 100, xui.Color_Red)))
+		' Dew Point	
+		' https://material.io/guidelines/style/color.html#
+		GaugeDewPoint.SetRanges(Array(GaugeDewPoint.CreateRange(0,64.4, xui.Color_RGB(100,221,23)), _ 
+		GaugeDewPoint.CreateRange(64.4,78.8, xui.Color_Yellow), _
+	    GaugeDewPoint.CreateRange(78.8, 100, xui.Color_Red)))
+		' Dew Point
 		Dim cs As CSBuilder
 		cs.Initialize
 		lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append("No data available").PopAll
 		lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append("No data available").PopAll
-		GaugeHeatIndex.CurrentValue = 0
-		GaugeDewPoint.CurrentValue = 0
 		DateTime.DateFormat = "MMMM d, h:mm:ss a"
 		lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append("").PopAll
 		lblPing.Visible = False
@@ -189,12 +188,12 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 				GaugeHeatIndex.CurrentValue = a(5)
 				GaugeDewPoint.CurrentValue = a(6)
 			Else
-				GaugeTemp.CurrentValue = 0
-				GaugeHumidity.CurrentValue = 0
+				GaugeTemp.CurrentValue = 50
+				GaugeHumidity.CurrentValue = 50
 				lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
 				lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
-				GaugeHeatIndex.CurrentValue = 0
-				GaugeDewPoint.CurrentValue = 0
+				GaugeHeatIndex.CurrentValue = 50
+				GaugeDewPoint.CurrentValue = 50
 			End If
 			DateTime.DateFormat = "MMMM d, h:mm:ss a"
 			lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
@@ -205,24 +204,34 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 End Sub
 
 Sub GetPerception(DHT11Perception As String) As String
+	' Return value       Dew point                        Human perception[6]
+	'    7         Over 26 °C (>78.8°F)     Severely high, even deadly For asthma related illnesses
+	'    6         24–26 °C (75.2-78.8°F)   Extremely uncomfortable, oppressive
+	'    5         21–24 °C (69.8-75.2°F)   Very humid, quite uncomfortable
+	'    4         18–21 °C (64.4-69.8°F)   Somewhat uncomfortable For most people at upper limit
+	'    3         16–18 °C (60.8-64.4°F)   OK For most, but everyone perceives the humidity at upper limit
+	'    2         13–16 °C (55.4-60.8°F)   Comfortable
+	'    1         10–12 °C (50-53.6°F)     Very comfortable
+	'    0         Under 10 °C (<50°F)      Feels like the western US, a Bit dry To some
+	
 	Dim localperception As String
 	Select Case DHT11Perception
 		Case 0
-			localperception = "A bit dry For some"
+			localperception = "Feels like the western US, a bit dry to some"
 		Case 1
 			localperception = "Very comfortable"
 		Case 2
 			localperception = "Comfortable"
 		Case 3
-			localperception = "OK for most, but all perceive the humidity at upper edge"
+			localperception = "OK but everyone perceives the humidity at upper limit"
 		Case 4
-			localperception = "Somewhat uncomfortable For most people at upper edge"
+			localperception = "Somewhat uncomfortable for most people at upper limit"
 		Case 5
 			localperception = "Very humid, quite uncomfortable"
 		Case 6
 			localperception = "Extremely uncomfortable, oppressive"
 		Case 7
-			localperception = "Severely high, even deadly For asthma related illnesses"
+			localperception = "Severely high, even deadly for asthma related illnesses"
 	End Select
 	Return localperception
 End Sub
@@ -293,7 +302,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-		Msgbox2("Home Weather Station v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 21, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Home Weather Station v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 22, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try

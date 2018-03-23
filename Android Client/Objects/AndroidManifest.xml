@@ -2,8 +2,8 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="cloyd.home.weather.station"
-	android:versionCode="11"
-	android:versionName="1.1"
+	android:versionCode="12"
+	android:versionName="1.2"
 	android:installLocation="internalOnly">
 	
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>
