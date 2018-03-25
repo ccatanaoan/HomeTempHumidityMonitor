@@ -9,7 +9,7 @@ Library3=resp8266wifi
 Library4=rmqtt
 Library5=rrandomaccessfile
 @EndOfDesignText@
-' Author: Cloyd Nino Catanaoan
+' Home Weather Station Using DHT22 (AM2302)
 '
 ' Features:
 '  - Determine heat index
@@ -20,6 +20,11 @@ Library5=rrandomaccessfile
 '    * Determine If it's too cold, hot, humid, dry, based on current comfort profile
 '    * More info at [Determining Thermal Comfort Using a humidity And temperature Sensor](https://www.azosensors.com/article.aspx?ArticleID=487)
 '  - Determine human perception based on humidity, temperature And dew point according To Horstmeyer, Steve (2006-08-15). [Relative humidity....Relative To What? The Dew Point temperature...a better approach](http://www.shorstmeyer.com/wxfaqs/humidity/humidity.html)
+
+'     DHT-22 Sensor   ->      ESP8266
+'          OUT        ->        D3
+'          GRD -      ->        GRD
+'          VCC +      ->        3.3V
 
 #Region Project Attributes
 	#AutoFlushLogs: True
@@ -45,17 +50,17 @@ Sub Process_Globals
 	Private ESP As ESP8266
 	Private WiFiSSID As String = "Rise Above This Home"
 	Private WiFiPassword As String = "SteelReserve"
-	Public Timer1 As Timer                    'Timer for reading DHT11 measures at desired interval
-	Public DHT11pin As Pin                    ' ESP8266 Pin connected to DHT11 signal
+	Public Timer1 As Timer                    'Timer for reading DHT22 measures at desired interval
+	Public DHT22pin As Pin                    ' ESP8266 Pin connected to DHT22 signal
 	Public Interval As Int                    'Interval as seconds
 	Private d3pins As D1Pins
-	Public DHT11Temp As Double
-	Public DHT11Hum As Double
-	Public DHT11State As Int
-	Public DHT11HeatIndex As Double
-	Public DHT11DewPoint As Double
-	Public DHT11Perception As Int
-	Public DHT11ComfortStatus As Int
+	Public DHT22Temp As Double
+	Public DHT22Hum As Double
+	Public DHT22State As Int
+	Public DHT22HeatIndex As Double
+	Public DHT22DewPoint As Double
+	Public DHT22Perception As Int
+	Public DHT22ComfortStatus As Int
 End Sub
 
 Private Sub AppStart
@@ -81,9 +86,9 @@ Private Sub AppStart
 	MQTTOpt.Initialize(MQTTUser, MQTTPassword)
 	MQTT_Connect(0)
 	
-	' Loop for DHT11 reading
+	' Loop for DHT22 reading
 	Interval = 5                                        '5 sec Timer Interval
-	DHT11pin.Initialize(d3pins.D3, DHT11pin.MODE_INPUT)        'Initialize at Arduino Pin 3
+	DHT22pin.Initialize(d3pins.D3, DHT22pin.MODE_INPUT) 'Initialize at Arduino Pin 3
 	Timer1.Initialize("Timer1_Tick", Interval * 1000)
 	RunNative("setup",Null)
 	Timer1.Enabled=True
@@ -134,7 +139,7 @@ Sub Timer1_Tick
 	RunNative("ReadDHT1",Null)
 
 	Dim localstate As String
-	Select Case DHT11State
+	Select Case DHT22State
 		Case 0
 			' The sensor samples And its checksum are OK.
 			localstate = "OK"
@@ -157,7 +162,7 @@ Sub Timer1_Tick
 	'    0         Under 10 °C (<50°F)      Feels like the western US, a Bit dry To some
 	
 	Dim localperception As String
-	Select Case DHT11Perception
+	Select Case DHT22Perception
 		Case 0
 			localperception = "Feels like the western US, a bit dry to some"
 		Case 1
@@ -177,7 +182,7 @@ Sub Timer1_Tick
 	End Select
 	
 	Dim localcomfortstatus As String
-	Select Case DHT11ComfortStatus
+	Select Case DHT22ComfortStatus
 		Case 0
 			localcomfortstatus = "OK"
 		Case 1
@@ -200,10 +205,10 @@ Sub Timer1_Tick
 			localcomfortstatus = "Unknown"
 	End Select
 	
-	Log("State: ", localstate, " Temp: ", DHT11Temp, " ºF Humidity: " , DHT11Hum, " %", " HeatIndex: ", DHT11HeatIndex, " Dew Point: ", DHT11DewPoint, " Perception: ", localperception, " Comfort Status: ", localcomfortstatus)
+	Log("State: ", localstate, " Temp: ", DHT22Temp, " ºF Humidity: " , DHT22Hum, " % Perception: ", localperception, " Comfort Status: ", localcomfortstatus, " HeatIndex: ", DHT22HeatIndex, " ºF Dew Point: ", DHT22DewPoint," ºF")
 	If WiFi.IsConnected Then
 		Dim s As String  
-		s = JoinStrings(Array As String(localstate,"|",DHT11Temp, "|",DHT11Hum , "|",DHT11Perception, "|", DHT11ComfortStatus, "|", DHT11HeatIndex,"|", DHT11DewPoint))
+		s = JoinStrings(Array As String(localstate,"|",DHT22Temp, "|",DHT22Hum , "|",DHT22Perception, "|", DHT22ComfortStatus, "|", DHT22HeatIndex,"|", DHT22DewPoint))
 		Log("Sending to MQTT: ",s)
 		MQTT.Publish("Cloyd",s)
 	End If
@@ -212,58 +217,57 @@ End Sub
 #If C
 #include "DHTesp.h"
 
-#define DHT1Pin 0 //change here the IO-Pin
-#define DHTTYPE DHT11
+#define DHT22Pin 0 //change here the IO-Pin
 
 ComfortState cf;
-DHTesp dht11;
+DHTesp dht22;
 
 void setup(B4R::Object* o){
-dht11.setup(DHT1Pin);
+	dht22.setup(DHT22Pin);
 }
 
 void ReadDHT1(B4R::Object* o) {
-	 b4r_main::_dht11state = dht11.getStatus();
+	 b4r_main::_dht22state = dht22.getStatus();
 	 // Add 12 percent based on home hygrometer.
- 	 float humidity = dht11.getHumidity() + 12;
- 	 float temperature = dht11.toFahrenheit(dht11.getTemperature());
-     b4r_main::_dht11hum  = humidity; 
-     b4r_main::_dht11temp = temperature; 
-	 b4r_main::_dht11heatindex = dht11.computeHeatIndex(temperature, humidity, true);
-	 b4r_main::_dht11dewpoint = dht11.computeDewPoint(temperature, humidity, true);
-	 b4r_main::_dht11perception = dht11.computePerception(temperature, humidity, true);
-	 float cr = dht11.getComfortRatio(cf, temperature, humidity, true);
+ 	 float humidity = dht22.getHumidity() + 13;
+ 	 float temperature = dht22.toFahrenheit(dht22.getTemperature());
+     b4r_main::_dht22hum  = humidity; 
+     b4r_main::_dht22temp = temperature; 
+	 b4r_main::_dht22heatindex = dht22.computeHeatIndex(temperature, humidity, true);
+	 b4r_main::_dht22dewpoint = dht22.computeDewPoint(temperature, humidity, true);
+	 b4r_main::_dht22perception = dht22.computePerception(temperature, humidity, true);
+	 float cr = dht22.getComfortRatio(cf, temperature, humidity, true);
 
 	  switch(cf) {
 	    case Comfort_OK:
-	      b4r_main::_dht11comfortstatus = 0;
+	      b4r_main::_dht22comfortstatus = 0;
 	      break;
 	    case Comfort_TooHot:
-	      b4r_main::_dht11comfortstatus = 1;
+	      b4r_main::_dht22comfortstatus = 1;
 	      break;
 	    case Comfort_TooCold:
-	      b4r_main::_dht11comfortstatus = 2;
+	      b4r_main::_dht22comfortstatus = 2;
 	      break;
 	    case Comfort_TooDry:
-	      b4r_main::_dht11comfortstatus = 4;
+	      b4r_main::_dht22comfortstatus = 4;
 	      break;
 	    case Comfort_TooHumid:
-	      b4r_main::_dht11comfortstatus = 8;
+	      b4r_main::_dht22comfortstatus = 8;
 	      break;
 	    case Comfort_HotAndHumid:
-	      b4r_main::_dht11comfortstatus = 9;
+	      b4r_main::_dht22comfortstatus = 9;
 	      break;
 	    case Comfort_HotAndDry:
-	      b4r_main::_dht11comfortstatus = 5;
+	      b4r_main::_dht22comfortstatus = 5;
 	      break;
 	    case Comfort_ColdAndHumid:
-	      b4r_main::_dht11comfortstatus = 10;
+	      b4r_main::_dht22comfortstatus = 10;
 	      break;
 	    case Comfort_ColdAndDry:
-	      b4r_main::_dht11comfortstatus = 6;
+	      b4r_main::_dht22comfortstatus = 6;
 	      break;
 	    default:
-	      b4r_main::_dht11comfortstatus = -1;
+	      b4r_main::_dht22comfortstatus = -1;
 	      break;
 	  };
   }
