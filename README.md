@@ -17,7 +17,8 @@ The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated
 
 ## Hardware used for Internet of Things (IoT):
 * NodeMcu LUA WIFI Board Based on ESP8266 CP2102 Module.
-* DHT11 Temperature & Humidity Sensor Module.
+* ~~DHT11 Temperature & Humidity Sensor Module.~~
+* Upgraded to DHT22 (AM2302) Temperature & Humidity Sensor Module.
 
 ## Mobile application used for Internet of Things (IoT):
 - Custom-made Android mobile application
