@@ -35,8 +35,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Home Weather Station
-	#VersionCode: 13
-	#VersionName: 1.3
+	#VersionCode: 14
+	#VersionName: 1.4
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -79,7 +79,7 @@ Sub Globals
 	Private GaugeAirQuality As Gauge
 	Private lblAirQuality As Label
 	Private lblAirQualityLastUpdate As Label
-	Private WebView1 As WebView
+	Private WebView1 As WebView 'ignore
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -147,6 +147,13 @@ Sub Activity_Create(FirstTime As Boolean)
 End Sub
 
 Sub Activity_Resume
+	Try	
+		TabStrip1.ScrollTo(0,False)
+		TabStrip1_PageSelected(0)
+	Catch
+		Log(LastException)
+	End Try
+	
 	Try
 		If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 			MQTT_Connect
@@ -157,7 +164,10 @@ Sub Activity_Resume
 End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
-
+	If UserClosed = False Then
+		WebView1.StopLoading
+		WebView1.RemoveView
+	End If
 End Sub
 
 'Connect to CloudMQTT broker
@@ -296,6 +306,7 @@ Sub GetComfort(DHT11ComfortStatus As String) As String
 	End Select
 	Return localcomfortstatus
 End Sub
+
 Sub AddEvent(text As String)
 	Try
 		DateTime.DateFormat = "MMM d h:mm:ss a"
@@ -336,7 +347,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-		Msgbox2("Home Weather Station v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 25, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Home Weather Station v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 26, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -385,9 +396,12 @@ public boolean _onCreateOptionsMenu(android.view.Menu menu) {
 
 Sub TabStrip1_PageSelected (Position As Int)
 	If Position = 2 Then
+		WebView1.JavaScriptEnabled = True
 		Activity.addview(WebView1,0dip,108dip,100%x,100%y)
-		WebView1.LoadURL("http://www.suntzu-software.com")
+		WebView1.LoadURL("http://cloyd.mynetgear.com")
+		WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
 	Else
+		WebView1.StopLoading
 		WebView1.RemoveView
 	End If
 End Sub
@@ -403,12 +417,10 @@ Public Sub GetAllTabLabels (tabstrip As TabStrip) As List
 		If v Is Label Then res.Add(v)
 	Next
 	Return res
-   
 End Sub
 
-Sub Activity_KeyPress (KeyCode As Int) As Boolean
+Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 	If KeyCode = KeyCodes.KEYCODE_BACK Then
-		Log( TabStrip1.CurrentPage)
 		If TabStrip1.CurrentPage = 2 Then
 			TabStrip1.ScrollTo(1,True)
 			TabStrip1_PageSelected(1)
@@ -421,14 +433,16 @@ Sub Activity_KeyPress (KeyCode As Int) As Boolean
 	End If
 	
 End Sub
+
 Sub WebView1_PageFinished (Url As String)
-	
-End Sub
+	Dim Obj1 As Reflector
+	Dim s As String 'ignore
+	Dim f As Float 'ignore
 
-Sub WebView1_OverrideUrl (Url As String) As Boolean
-	
-End Sub
+	Obj1.Target = WebView1
+	s = Obj1.TypeName
+	f = Obj1.RunMethod("getScale")
 
-Sub WebView1_UserAndPasswordRequired (Host As String, Realm As String) As String()
-	
+	Obj1.Target = WebView1
+	Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
 End Sub
