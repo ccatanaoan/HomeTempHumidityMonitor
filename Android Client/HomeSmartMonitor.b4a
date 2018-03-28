@@ -1,4 +1,4 @@
-﻿Build1=Default,cloyd.home.weather.station
+﻿Build1=Default,cloyd.home.smart.monitor
 File1=0.png
 File2=1.bal
 File3=2.bal
@@ -34,9 +34,9 @@ NumberOfModules=2
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
-	#ApplicationLabel: Home Weather Station
-	#VersionCode: 14
-	#VersionName: 1.4
+	#ApplicationLabel: Home Smart Monitor
+	#VersionCode: 15
+	#VersionName: 1.5
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -89,9 +89,10 @@ Sub Activity_Create(FirstTime As Boolean)
 			MQTT_Connect
 		End If
 		Activity.LoadLayout("Main")
-		TabStrip1.LoadLayout("1", "Temp & Humidity  " & Chr(0xF2C7))
-		TabStrip1.LoadLayout("2", "Air Quality  " & Chr(0xF289))
-		TabStrip1.LoadLayout("3", "Security Camera  " & Chr(0xF030))
+		TabStrip1.LoadLayout("1", "Temp & Humidity " & Chr(0xF2C7))
+		TabStrip1.LoadLayout("2", "Air Quality(CO) " & Chr(0xF289))
+		TabStrip1.LoadLayout("3", "Security Cam " & Chr(0xF030))
+
 		For Each lbl As Label In GetAllTabLabels(TabStrip1)
 			lbl.Typeface = Typeface.FONTAWESOME
 		Next
@@ -101,7 +102,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		ACToolBarLight1.NavigationIconDrawable = bd
 		ToolbarHelper.Initialize
 		Dim cs As CSBuilder
-		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Home Weather Station").PopAll
+		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Home Smart Monitor").PopAll
 		ToolbarHelper.subTitle = ""
 		ToolbarHelper.ShowUpIndicator = False 'set to true to show the up arrow
 		ACToolBarLight1.InitMenuListener
@@ -327,7 +328,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				Dim result As Int
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-				result = Msgbox2("Restart the controller?", "Home Weather Station", "Yes", "", "No", bd.Bitmap)
+				result = Msgbox2("Restart the controller?", "Home Smart Monitor", "Yes", "", "No", bd.Bitmap)
 				If result = DialogResponse.POSITIVE Then
 					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 						MQTT_Connect
@@ -347,7 +348,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-		Msgbox2("Home Weather Station v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 26, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 27, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
