@@ -2794,35 +2794,35 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionBar_background cloyd.home.weather.station:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundSplit cloyd.home.weather.station:backgroundSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_backgroundStacked cloyd.home.weather.station:backgroundStacked}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetEnd cloyd.home.weather.station:contentInsetEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetEndWithActions cloyd.home.weather.station:contentInsetEndWithActions}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetLeft cloyd.home.weather.station:contentInsetLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetRight cloyd.home.weather.station:contentInsetRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetStart cloyd.home.weather.station:contentInsetStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_contentInsetStartWithNavigation cloyd.home.weather.station:contentInsetStartWithNavigation}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_customNavigationLayout cloyd.home.weather.station:customNavigationLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_displayOptions cloyd.home.weather.station:displayOptions}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_divider cloyd.home.weather.station:divider}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_elevation cloyd.home.weather.station:elevation}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_height cloyd.home.weather.station:height}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_hideOnContentScroll cloyd.home.weather.station:hideOnContentScroll}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_homeAsUpIndicator cloyd.home.weather.station:homeAsUpIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_homeLayout cloyd.home.weather.station:homeLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_icon cloyd.home.weather.station:icon}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle cloyd.home.weather.station:indeterminateProgressStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_itemPadding cloyd.home.weather.station:itemPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_logo cloyd.home.weather.station:logo}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_navigationMode cloyd.home.weather.station:navigationMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_popupTheme cloyd.home.weather.station:popupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarPadding cloyd.home.weather.station:progressBarPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_progressBarStyle cloyd.home.weather.station:progressBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_subtitle cloyd.home.weather.station:subtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_subtitleTextStyle cloyd.home.weather.station:subtitleTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_title cloyd.home.weather.station:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionBar_titleTextStyle cloyd.home.weather.station:titleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_background cloyd.home.smart.monitor:background}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundSplit cloyd.home.smart.monitor:backgroundSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_backgroundStacked cloyd.home.smart.monitor:backgroundStacked}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetEnd cloyd.home.smart.monitor:contentInsetEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetEndWithActions cloyd.home.smart.monitor:contentInsetEndWithActions}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetLeft cloyd.home.smart.monitor:contentInsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetRight cloyd.home.smart.monitor:contentInsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetStart cloyd.home.smart.monitor:contentInsetStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_contentInsetStartWithNavigation cloyd.home.smart.monitor:contentInsetStartWithNavigation}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_customNavigationLayout cloyd.home.smart.monitor:customNavigationLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_displayOptions cloyd.home.smart.monitor:displayOptions}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_divider cloyd.home.smart.monitor:divider}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_elevation cloyd.home.smart.monitor:elevation}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_height cloyd.home.smart.monitor:height}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_hideOnContentScroll cloyd.home.smart.monitor:hideOnContentScroll}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_homeAsUpIndicator cloyd.home.smart.monitor:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_homeLayout cloyd.home.smart.monitor:homeLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_icon cloyd.home.smart.monitor:icon}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_indeterminateProgressStyle cloyd.home.smart.monitor:indeterminateProgressStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_itemPadding cloyd.home.smart.monitor:itemPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_logo cloyd.home.smart.monitor:logo}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_navigationMode cloyd.home.smart.monitor:navigationMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_popupTheme cloyd.home.smart.monitor:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarPadding cloyd.home.smart.monitor:progressBarPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_progressBarStyle cloyd.home.smart.monitor:progressBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_subtitle cloyd.home.smart.monitor:subtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_subtitleTextStyle cloyd.home.smart.monitor:subtitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_title cloyd.home.smart.monitor:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionBar_titleTextStyle cloyd.home.smart.monitor:titleTextStyle}</code></td><td></td></tr>
            </table>
            @see #ActionBar_background
            @see #ActionBar_backgroundSplit
@@ -2865,17 +2865,17 @@ containing a value of this type.
             0x7f010076
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#background}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#background}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:background
+          @attr name cloyd.home.smart.monitor:background
         */
         public static final int ActionBar_background = 10;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -2883,11 +2883,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:backgroundSplit
+          @attr name cloyd.home.smart.monitor:backgroundSplit
         */
         public static final int ActionBar_backgroundSplit = 12;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#backgroundStacked}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#backgroundStacked}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -2895,11 +2895,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:backgroundStacked
+          @attr name cloyd.home.smart.monitor:backgroundStacked
         */
         public static final int ActionBar_backgroundStacked = 11;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -2911,11 +2911,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetEnd
+          @attr name cloyd.home.smart.monitor:contentInsetEnd
         */
         public static final int ActionBar_contentInsetEnd = 21;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetEndWithActions}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetEndWithActions}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -2927,11 +2927,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetEndWithActions
+          @attr name cloyd.home.smart.monitor:contentInsetEndWithActions
         */
         public static final int ActionBar_contentInsetEndWithActions = 25;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -2943,11 +2943,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetLeft
+          @attr name cloyd.home.smart.monitor:contentInsetLeft
         */
         public static final int ActionBar_contentInsetLeft = 22;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -2959,11 +2959,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetRight
+          @attr name cloyd.home.smart.monitor:contentInsetRight
         */
         public static final int ActionBar_contentInsetRight = 23;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -2975,11 +2975,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetStart
+          @attr name cloyd.home.smart.monitor:contentInsetStart
         */
         public static final int ActionBar_contentInsetStart = 20;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetStartWithNavigation}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetStartWithNavigation}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -2991,21 +2991,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetStartWithNavigation
+          @attr name cloyd.home.smart.monitor:contentInsetStartWithNavigation
         */
         public static final int ActionBar_contentInsetStartWithNavigation = 24;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#customNavigationLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#customNavigationLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:customNavigationLayout
+          @attr name cloyd.home.smart.monitor:customNavigationLayout
         */
         public static final int ActionBar_customNavigationLayout = 13;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#displayOptions}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#displayOptions}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3023,21 +3023,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>showCustom</code></td><td>0x10</td><td></td></tr>
 <tr><td><code>disableHome</code></td><td>0x20</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:displayOptions
+          @attr name cloyd.home.smart.monitor:displayOptions
         */
         public static final int ActionBar_displayOptions = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#divider}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#divider}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:divider
+          @attr name cloyd.home.smart.monitor:divider
         */
         public static final int ActionBar_divider = 9;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#elevation}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#elevation}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3049,11 +3049,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:elevation
+          @attr name cloyd.home.smart.monitor:elevation
         */
         public static final int ActionBar_elevation = 26;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#height}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#height}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3065,11 +3065,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:height
+          @attr name cloyd.home.smart.monitor:height
         */
         public static final int ActionBar_height = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#hideOnContentScroll}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#hideOnContentScroll}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3079,51 +3079,51 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:hideOnContentScroll
+          @attr name cloyd.home.smart.monitor:hideOnContentScroll
         */
         public static final int ActionBar_hideOnContentScroll = 19;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:homeAsUpIndicator
+          @attr name cloyd.home.smart.monitor:homeAsUpIndicator
         */
         public static final int ActionBar_homeAsUpIndicator = 28;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#homeLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#homeLayout}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:homeLayout
+          @attr name cloyd.home.smart.monitor:homeLayout
         */
         public static final int ActionBar_homeLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#icon}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#icon}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:icon
+          @attr name cloyd.home.smart.monitor:icon
         */
         public static final int ActionBar_icon = 7;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#indeterminateProgressStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#indeterminateProgressStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:indeterminateProgressStyle
+          @attr name cloyd.home.smart.monitor:indeterminateProgressStyle
         */
         public static final int ActionBar_indeterminateProgressStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#itemPadding}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#itemPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3135,21 +3135,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:itemPadding
+          @attr name cloyd.home.smart.monitor:itemPadding
         */
         public static final int ActionBar_itemPadding = 18;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#logo}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#logo}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:logo
+          @attr name cloyd.home.smart.monitor:logo
         */
         public static final int ActionBar_logo = 8;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#navigationMode}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#navigationMode}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3163,21 +3163,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>listMode</code></td><td>1</td><td></td></tr>
 <tr><td><code>tabMode</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:navigationMode
+          @attr name cloyd.home.smart.monitor:navigationMode
         */
         public static final int ActionBar_navigationMode = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#popupTheme}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:popupTheme
+          @attr name cloyd.home.smart.monitor:popupTheme
         */
         public static final int ActionBar_popupTheme = 27;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#progressBarPadding}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#progressBarPadding}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3189,21 +3189,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:progressBarPadding
+          @attr name cloyd.home.smart.monitor:progressBarPadding
         */
         public static final int ActionBar_progressBarPadding = 17;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#progressBarStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#progressBarStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:progressBarStyle
+          @attr name cloyd.home.smart.monitor:progressBarStyle
         */
         public static final int ActionBar_progressBarStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#subtitle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3213,21 +3213,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:subtitle
+          @attr name cloyd.home.smart.monitor:subtitle
         */
         public static final int ActionBar_subtitle = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:subtitleTextStyle
+          @attr name cloyd.home.smart.monitor:subtitleTextStyle
         */
         public static final int ActionBar_subtitleTextStyle = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#title}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#title}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
@@ -3237,17 +3237,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:title
+          @attr name cloyd.home.smart.monitor:title
         */
         public static final int ActionBar_title = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:titleTextStyle
+          @attr name cloyd.home.smart.monitor:titleTextStyle
         */
         public static final int ActionBar_titleTextStyle = 5;
         /** Attributes that can be used with a ActionBarLayout.
@@ -3299,12 +3299,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionMode_background cloyd.home.weather.station:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_backgroundSplit cloyd.home.weather.station:backgroundSplit}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_closeItemLayout cloyd.home.weather.station:closeItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_height cloyd.home.weather.station:height}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_subtitleTextStyle cloyd.home.weather.station:subtitleTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionMode_titleTextStyle cloyd.home.weather.station:titleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_background cloyd.home.smart.monitor:background}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_backgroundSplit cloyd.home.smart.monitor:backgroundSplit}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_closeItemLayout cloyd.home.smart.monitor:closeItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_height cloyd.home.smart.monitor:height}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_subtitleTextStyle cloyd.home.smart.monitor:subtitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActionMode_titleTextStyle cloyd.home.smart.monitor:titleTextStyle}</code></td><td></td></tr>
            </table>
            @see #ActionMode_background
            @see #ActionMode_backgroundSplit
@@ -3318,17 +3318,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010020, 0x7f010030
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#background}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#background}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:background
+          @attr name cloyd.home.smart.monitor:background
         */
         public static final int ActionMode_background = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#backgroundSplit}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#backgroundSplit}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -3336,21 +3336,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:backgroundSplit
+          @attr name cloyd.home.smart.monitor:backgroundSplit
         */
         public static final int ActionMode_backgroundSplit = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#closeItemLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#closeItemLayout}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:closeItemLayout
+          @attr name cloyd.home.smart.monitor:closeItemLayout
         */
         public static final int ActionMode_closeItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#height}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#height}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
@@ -3362,27 +3362,27 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:height
+          @attr name cloyd.home.smart.monitor:height
         */
         public static final int ActionMode_height = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#subtitleTextStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#subtitleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:subtitleTextStyle
+          @attr name cloyd.home.smart.monitor:subtitleTextStyle
         */
         public static final int ActionMode_subtitleTextStyle = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleTextStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleTextStyle}
           attribute's value can be found in the {@link #ActionMode} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:titleTextStyle
+          @attr name cloyd.home.smart.monitor:titleTextStyle
         */
         public static final int ActionMode_titleTextStyle = 1;
         /** Attributes that can be used with a ActivityChooserView.
@@ -3391,8 +3391,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable cloyd.home.weather.station:expandActivityOverflowButtonDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActivityChooserView_initialActivityCount cloyd.home.weather.station:initialActivityCount}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActivityChooserView_expandActivityOverflowButtonDrawable cloyd.home.smart.monitor:expandActivityOverflowButtonDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #ActivityChooserView_initialActivityCount cloyd.home.smart.monitor:initialActivityCount}</code></td><td></td></tr>
            </table>
            @see #ActivityChooserView_expandActivityOverflowButtonDrawable
            @see #ActivityChooserView_initialActivityCount
@@ -3401,17 +3401,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010031, 0x7f010032
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#expandActivityOverflowButtonDrawable}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#expandActivityOverflowButtonDrawable}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:expandActivityOverflowButtonDrawable
+          @attr name cloyd.home.smart.monitor:expandActivityOverflowButtonDrawable
         */
         public static final int ActivityChooserView_expandActivityOverflowButtonDrawable = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#initialActivityCount}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#initialActivityCount}
           attribute's value can be found in the {@link #ActivityChooserView} array.
 
 
@@ -3421,7 +3421,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:initialActivityCount
+          @attr name cloyd.home.smart.monitor:initialActivityCount
         */
         public static final int ActivityChooserView_initialActivityCount = 0;
         /** Attributes that can be used with a AlertDialog.
@@ -3431,13 +3431,13 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AlertDialog_android_layout android:layout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_buttonIconDimen cloyd.home.weather.station:buttonIconDimen}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_buttonPanelSideLayout cloyd.home.weather.station:buttonPanelSideLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_listItemLayout cloyd.home.weather.station:listItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_listLayout cloyd.home.weather.station:listLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_multiChoiceItemLayout cloyd.home.weather.station:multiChoiceItemLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_showTitle cloyd.home.weather.station:showTitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AlertDialog_singleChoiceItemLayout cloyd.home.weather.station:singleChoiceItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_buttonIconDimen cloyd.home.smart.monitor:buttonIconDimen}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_buttonPanelSideLayout cloyd.home.smart.monitor:buttonPanelSideLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_listItemLayout cloyd.home.smart.monitor:listItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_listLayout cloyd.home.smart.monitor:listLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_multiChoiceItemLayout cloyd.home.smart.monitor:multiChoiceItemLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_showTitle cloyd.home.smart.monitor:showTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AlertDialog_singleChoiceItemLayout cloyd.home.smart.monitor:singleChoiceItemLayout}</code></td><td></td></tr>
            </table>
            @see #AlertDialog_android_layout
            @see #AlertDialog_buttonIconDimen
@@ -3459,7 +3459,7 @@ containing a value of this type.
         */
         public static final int AlertDialog_android_layout = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonIconDimen}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonIconDimen}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -3471,51 +3471,51 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:buttonIconDimen
+          @attr name cloyd.home.smart.monitor:buttonIconDimen
         */
         public static final int AlertDialog_buttonIconDimen = 7;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonPanelSideLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonPanelSideLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:buttonPanelSideLayout
+          @attr name cloyd.home.smart.monitor:buttonPanelSideLayout
         */
         public static final int AlertDialog_buttonPanelSideLayout = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listItemLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:listItemLayout
+          @attr name cloyd.home.smart.monitor:listItemLayout
         */
         public static final int AlertDialog_listItemLayout = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:listLayout
+          @attr name cloyd.home.smart.monitor:listLayout
         */
         public static final int AlertDialog_listLayout = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#multiChoiceItemLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#multiChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:multiChoiceItemLayout
+          @attr name cloyd.home.smart.monitor:multiChoiceItemLayout
         */
         public static final int AlertDialog_multiChoiceItemLayout = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#showTitle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#showTitle}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
@@ -3525,17 +3525,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:showTitle
+          @attr name cloyd.home.smart.monitor:showTitle
         */
         public static final int AlertDialog_showTitle = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#singleChoiceItemLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#singleChoiceItemLayout}
           attribute's value can be found in the {@link #AlertDialog} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:singleChoiceItemLayout
+          @attr name cloyd.home.smart.monitor:singleChoiceItemLayout
         */
         public static final int AlertDialog_singleChoiceItemLayout = 4;
         /** Attributes that can be used with a AppCompatImageView.
@@ -3545,9 +3545,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatImageView_android_src android:src}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatImageView_srcCompat cloyd.home.weather.station:srcCompat}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatImageView_tint cloyd.home.weather.station:tint}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatImageView_tintMode cloyd.home.weather.station:tintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatImageView_srcCompat cloyd.home.smart.monitor:srcCompat}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatImageView_tint cloyd.home.smart.monitor:tint}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatImageView_tintMode cloyd.home.smart.monitor:tintMode}</code></td><td></td></tr>
            </table>
            @see #AppCompatImageView_android_src
            @see #AppCompatImageView_srcCompat
@@ -3564,17 +3564,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int AppCompatImageView_android_src = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#srcCompat}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#srcCompat}
           attribute's value can be found in the {@link #AppCompatImageView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:srcCompat
+          @attr name cloyd.home.smart.monitor:srcCompat
         */
         public static final int AppCompatImageView_srcCompat = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#tint}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#tint}
           attribute's value can be found in the {@link #AppCompatImageView} array.
 
 
@@ -3585,11 +3585,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:tint
+          @attr name cloyd.home.smart.monitor:tint
         */
         public static final int AppCompatImageView_tint = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#tintMode}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#tintMode}
           attribute's value can be found in the {@link #AppCompatImageView} array.
 
 
@@ -3606,7 +3606,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:tintMode
+          @attr name cloyd.home.smart.monitor:tintMode
         */
         public static final int AppCompatImageView_tintMode = 3;
         /** Attributes that can be used with a AppCompatSeekBar.
@@ -3616,9 +3616,9 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatSeekBar_android_thumb android:thumb}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatSeekBar_tickMark cloyd.home.weather.station:tickMark}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTint cloyd.home.weather.station:tickMarkTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTintMode cloyd.home.weather.station:tickMarkTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatSeekBar_tickMark cloyd.home.smart.monitor:tickMark}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTint cloyd.home.smart.monitor:tickMarkTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatSeekBar_tickMarkTintMode cloyd.home.smart.monitor:tickMarkTintMode}</code></td><td></td></tr>
            </table>
            @see #AppCompatSeekBar_android_thumb
            @see #AppCompatSeekBar_tickMark
@@ -3635,17 +3635,17 @@ containing a value of this type.
         */
         public static final int AppCompatSeekBar_android_thumb = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#tickMark}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#tickMark}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:tickMark
+          @attr name cloyd.home.smart.monitor:tickMark
         */
         public static final int AppCompatSeekBar_tickMark = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#tickMarkTint}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#tickMarkTint}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
@@ -3656,11 +3656,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:tickMarkTint
+          @attr name cloyd.home.smart.monitor:tickMarkTint
         */
         public static final int AppCompatSeekBar_tickMarkTint = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#tickMarkTintMode}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#tickMarkTintMode}
           attribute's value can be found in the {@link #AppCompatSeekBar} array.
 
 
@@ -3677,7 +3677,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:tickMarkTintMode
+          @attr name cloyd.home.smart.monitor:tickMarkTintMode
         */
         public static final int AppCompatSeekBar_tickMarkTintMode = 3;
         /** Attributes that can be used with a AppCompatTextHelper.
@@ -3755,13 +3755,13 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #AppCompatTextView_android_textAppearance android:textAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_autoSizeMaxTextSize cloyd.home.weather.station:autoSizeMaxTextSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_autoSizeMinTextSize cloyd.home.weather.station:autoSizeMinTextSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_autoSizePresetSizes cloyd.home.weather.station:autoSizePresetSizes}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_autoSizeStepGranularity cloyd.home.weather.station:autoSizeStepGranularity}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_autoSizeTextType cloyd.home.weather.station:autoSizeTextType}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_fontFamily cloyd.home.weather.station:fontFamily}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTextView_textAllCaps cloyd.home.weather.station:textAllCaps}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_autoSizeMaxTextSize cloyd.home.smart.monitor:autoSizeMaxTextSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_autoSizeMinTextSize cloyd.home.smart.monitor:autoSizeMinTextSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_autoSizePresetSizes cloyd.home.smart.monitor:autoSizePresetSizes}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_autoSizeStepGranularity cloyd.home.smart.monitor:autoSizeStepGranularity}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_autoSizeTextType cloyd.home.smart.monitor:autoSizeTextType}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_fontFamily cloyd.home.smart.monitor:fontFamily}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTextView_textAllCaps cloyd.home.smart.monitor:textAllCaps}</code></td><td></td></tr>
            </table>
            @see #AppCompatTextView_android_textAppearance
            @see #AppCompatTextView_autoSizeMaxTextSize
@@ -3783,7 +3783,7 @@ containing a value of this type.
         */
         public static final int AppCompatTextView_android_textAppearance = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#autoSizeMaxTextSize}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#autoSizeMaxTextSize}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -3795,11 +3795,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:autoSizeMaxTextSize
+          @attr name cloyd.home.smart.monitor:autoSizeMaxTextSize
         */
         public static final int AppCompatTextView_autoSizeMaxTextSize = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#autoSizeMinTextSize}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#autoSizeMinTextSize}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -3811,21 +3811,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:autoSizeMinTextSize
+          @attr name cloyd.home.smart.monitor:autoSizeMinTextSize
         */
         public static final int AppCompatTextView_autoSizeMinTextSize = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#autoSizePresetSizes}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#autoSizePresetSizes}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:autoSizePresetSizes
+          @attr name cloyd.home.smart.monitor:autoSizePresetSizes
         */
         public static final int AppCompatTextView_autoSizePresetSizes = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#autoSizeStepGranularity}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#autoSizeStepGranularity}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -3837,11 +3837,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:autoSizeStepGranularity
+          @attr name cloyd.home.smart.monitor:autoSizeStepGranularity
         */
         public static final int AppCompatTextView_autoSizeStepGranularity = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#autoSizeTextType}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#autoSizeTextType}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -3854,11 +3854,11 @@ containing a value of this type.
 <tr><td><code>none</code></td><td>0</td><td></td></tr>
 <tr><td><code>uniform</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:autoSizeTextType
+          @attr name cloyd.home.smart.monitor:autoSizeTextType
         */
         public static final int AppCompatTextView_autoSizeTextType = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontFamily}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontFamily}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
@@ -3868,18 +3868,18 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:fontFamily
+          @attr name cloyd.home.smart.monitor:fontFamily
         */
         public static final int AppCompatTextView_fontFamily = 7;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAllCaps}
           attribute's value can be found in the {@link #AppCompatTextView} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name cloyd.home.weather.station:textAllCaps
+          @attr name cloyd.home.smart.monitor:textAllCaps
         */
         public static final int AppCompatTextView_textAllCaps = 1;
         /** Attributes that can be used with a AppCompatTheme.
@@ -3888,126 +3888,126 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarDivider cloyd.home.weather.station:actionBarDivider}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarItemBackground cloyd.home.weather.station:actionBarItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarPopupTheme cloyd.home.weather.station:actionBarPopupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarSize cloyd.home.weather.station:actionBarSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarSplitStyle cloyd.home.weather.station:actionBarSplitStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarStyle cloyd.home.weather.station:actionBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTabBarStyle cloyd.home.weather.station:actionBarTabBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTabStyle cloyd.home.weather.station:actionBarTabStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTabTextStyle cloyd.home.weather.station:actionBarTabTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarTheme cloyd.home.weather.station:actionBarTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionBarWidgetTheme cloyd.home.weather.station:actionBarWidgetTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionButtonStyle cloyd.home.weather.station:actionButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionDropDownStyle cloyd.home.weather.station:actionDropDownStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionMenuTextAppearance cloyd.home.weather.station:actionMenuTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionMenuTextColor cloyd.home.weather.station:actionMenuTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeBackground cloyd.home.weather.station:actionModeBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCloseButtonStyle cloyd.home.weather.station:actionModeCloseButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCloseDrawable cloyd.home.weather.station:actionModeCloseDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCopyDrawable cloyd.home.weather.station:actionModeCopyDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeCutDrawable cloyd.home.weather.station:actionModeCutDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeFindDrawable cloyd.home.weather.station:actionModeFindDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModePasteDrawable cloyd.home.weather.station:actionModePasteDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModePopupWindowStyle cloyd.home.weather.station:actionModePopupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeSelectAllDrawable cloyd.home.weather.station:actionModeSelectAllDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeShareDrawable cloyd.home.weather.station:actionModeShareDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeSplitBackground cloyd.home.weather.station:actionModeSplitBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeStyle cloyd.home.weather.station:actionModeStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionModeWebSearchDrawable cloyd.home.weather.station:actionModeWebSearchDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionOverflowButtonStyle cloyd.home.weather.station:actionOverflowButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_actionOverflowMenuStyle cloyd.home.weather.station:actionOverflowMenuStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_activityChooserViewStyle cloyd.home.weather.station:activityChooserViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogButtonGroupStyle cloyd.home.weather.station:alertDialogButtonGroupStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogCenterButtons cloyd.home.weather.station:alertDialogCenterButtons}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogStyle cloyd.home.weather.station:alertDialogStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_alertDialogTheme cloyd.home.weather.station:alertDialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarDivider cloyd.home.smart.monitor:actionBarDivider}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarItemBackground cloyd.home.smart.monitor:actionBarItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarPopupTheme cloyd.home.smart.monitor:actionBarPopupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarSize cloyd.home.smart.monitor:actionBarSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarSplitStyle cloyd.home.smart.monitor:actionBarSplitStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarStyle cloyd.home.smart.monitor:actionBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTabBarStyle cloyd.home.smart.monitor:actionBarTabBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTabStyle cloyd.home.smart.monitor:actionBarTabStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTabTextStyle cloyd.home.smart.monitor:actionBarTabTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarTheme cloyd.home.smart.monitor:actionBarTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionBarWidgetTheme cloyd.home.smart.monitor:actionBarWidgetTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionButtonStyle cloyd.home.smart.monitor:actionButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionDropDownStyle cloyd.home.smart.monitor:actionDropDownStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionMenuTextAppearance cloyd.home.smart.monitor:actionMenuTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionMenuTextColor cloyd.home.smart.monitor:actionMenuTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeBackground cloyd.home.smart.monitor:actionModeBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCloseButtonStyle cloyd.home.smart.monitor:actionModeCloseButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCloseDrawable cloyd.home.smart.monitor:actionModeCloseDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCopyDrawable cloyd.home.smart.monitor:actionModeCopyDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeCutDrawable cloyd.home.smart.monitor:actionModeCutDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeFindDrawable cloyd.home.smart.monitor:actionModeFindDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModePasteDrawable cloyd.home.smart.monitor:actionModePasteDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModePopupWindowStyle cloyd.home.smart.monitor:actionModePopupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeSelectAllDrawable cloyd.home.smart.monitor:actionModeSelectAllDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeShareDrawable cloyd.home.smart.monitor:actionModeShareDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeSplitBackground cloyd.home.smart.monitor:actionModeSplitBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeStyle cloyd.home.smart.monitor:actionModeStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionModeWebSearchDrawable cloyd.home.smart.monitor:actionModeWebSearchDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionOverflowButtonStyle cloyd.home.smart.monitor:actionOverflowButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_actionOverflowMenuStyle cloyd.home.smart.monitor:actionOverflowMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_activityChooserViewStyle cloyd.home.smart.monitor:activityChooserViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogButtonGroupStyle cloyd.home.smart.monitor:alertDialogButtonGroupStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogCenterButtons cloyd.home.smart.monitor:alertDialogCenterButtons}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogStyle cloyd.home.smart.monitor:alertDialogStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_alertDialogTheme cloyd.home.smart.monitor:alertDialogTheme}</code></td><td></td></tr>
            <tr><td><code>{@link #AppCompatTheme_android_windowAnimationStyle android:windowAnimationStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #AppCompatTheme_android_windowIsFloating android:windowIsFloating}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_autoCompleteTextViewStyle cloyd.home.weather.station:autoCompleteTextViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_borderlessButtonStyle cloyd.home.weather.station:borderlessButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarButtonStyle cloyd.home.weather.station:buttonBarButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarNegativeButtonStyle cloyd.home.weather.station:buttonBarNegativeButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarNeutralButtonStyle cloyd.home.weather.station:buttonBarNeutralButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarPositiveButtonStyle cloyd.home.weather.station:buttonBarPositiveButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonBarStyle cloyd.home.weather.station:buttonBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonStyle cloyd.home.weather.station:buttonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_buttonStyleSmall cloyd.home.weather.station:buttonStyleSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_checkboxStyle cloyd.home.weather.station:checkboxStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_checkedTextViewStyle cloyd.home.weather.station:checkedTextViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorAccent cloyd.home.weather.station:colorAccent}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorBackgroundFloating cloyd.home.weather.station:colorBackgroundFloating}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorButtonNormal cloyd.home.weather.station:colorButtonNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorControlActivated cloyd.home.weather.station:colorControlActivated}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorControlHighlight cloyd.home.weather.station:colorControlHighlight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorControlNormal cloyd.home.weather.station:colorControlNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorError cloyd.home.weather.station:colorError}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorPrimary cloyd.home.weather.station:colorPrimary}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorPrimaryDark cloyd.home.weather.station:colorPrimaryDark}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_colorSwitchThumbNormal cloyd.home.weather.station:colorSwitchThumbNormal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_controlBackground cloyd.home.weather.station:controlBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dialogPreferredPadding cloyd.home.weather.station:dialogPreferredPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dialogTheme cloyd.home.weather.station:dialogTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dividerHorizontal cloyd.home.weather.station:dividerHorizontal}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dividerVertical cloyd.home.weather.station:dividerVertical}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dropDownListViewStyle cloyd.home.weather.station:dropDownListViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_dropdownListPreferredItemHeight cloyd.home.weather.station:dropdownListPreferredItemHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_editTextBackground cloyd.home.weather.station:editTextBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_editTextColor cloyd.home.weather.station:editTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_editTextStyle cloyd.home.weather.station:editTextStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_homeAsUpIndicator cloyd.home.weather.station:homeAsUpIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_imageButtonStyle cloyd.home.weather.station:imageButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listChoiceBackgroundIndicator cloyd.home.weather.station:listChoiceBackgroundIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listDividerAlertDialog cloyd.home.weather.station:listDividerAlertDialog}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listMenuViewStyle cloyd.home.weather.station:listMenuViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPopupWindowStyle cloyd.home.weather.station:listPopupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeight cloyd.home.weather.station:listPreferredItemHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightLarge cloyd.home.weather.station:listPreferredItemHeightLarge}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightSmall cloyd.home.weather.station:listPreferredItemHeightSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingLeft cloyd.home.weather.station:listPreferredItemPaddingLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingRight cloyd.home.weather.station:listPreferredItemPaddingRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_panelBackground cloyd.home.weather.station:panelBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_panelMenuListTheme cloyd.home.weather.station:panelMenuListTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_panelMenuListWidth cloyd.home.weather.station:panelMenuListWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_popupMenuStyle cloyd.home.weather.station:popupMenuStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_popupWindowStyle cloyd.home.weather.station:popupWindowStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_radioButtonStyle cloyd.home.weather.station:radioButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_ratingBarStyle cloyd.home.weather.station:ratingBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleIndicator cloyd.home.weather.station:ratingBarStyleIndicator}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleSmall cloyd.home.weather.station:ratingBarStyleSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_searchViewStyle cloyd.home.weather.station:searchViewStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_seekBarStyle cloyd.home.weather.station:seekBarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_selectableItemBackground cloyd.home.weather.station:selectableItemBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_selectableItemBackgroundBorderless cloyd.home.weather.station:selectableItemBackgroundBorderless}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_spinnerDropDownItemStyle cloyd.home.weather.station:spinnerDropDownItemStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_spinnerStyle cloyd.home.weather.station:spinnerStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_switchStyle cloyd.home.weather.station:switchStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceLargePopupMenu cloyd.home.weather.station:textAppearanceLargePopupMenu}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItem cloyd.home.weather.station:textAppearanceListItem}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItemSecondary cloyd.home.weather.station:textAppearanceListItemSecondary}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItemSmall cloyd.home.weather.station:textAppearanceListItemSmall}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearancePopupMenuHeader cloyd.home.weather.station:textAppearancePopupMenuHeader}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultSubtitle cloyd.home.weather.station:textAppearanceSearchResultSubtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultTitle cloyd.home.weather.station:textAppearanceSearchResultTitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textAppearanceSmallPopupMenu cloyd.home.weather.station:textAppearanceSmallPopupMenu}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textColorAlertDialogListItem cloyd.home.weather.station:textColorAlertDialogListItem}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_textColorSearchUrl cloyd.home.weather.station:textColorSearchUrl}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_toolbarNavigationButtonStyle cloyd.home.weather.station:toolbarNavigationButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_toolbarStyle cloyd.home.weather.station:toolbarStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_tooltipForegroundColor cloyd.home.weather.station:tooltipForegroundColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_tooltipFrameBackground cloyd.home.weather.station:tooltipFrameBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_viewInflaterClass cloyd.home.weather.station:viewInflaterClass}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowActionBar cloyd.home.weather.station:windowActionBar}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowActionBarOverlay cloyd.home.weather.station:windowActionBarOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowActionModeOverlay cloyd.home.weather.station:windowActionModeOverlay}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMajor cloyd.home.weather.station:windowFixedHeightMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMinor cloyd.home.weather.station:windowFixedHeightMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMajor cloyd.home.weather.station:windowFixedWidthMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMinor cloyd.home.weather.station:windowFixedWidthMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMajor cloyd.home.weather.station:windowMinWidthMajor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMinor cloyd.home.weather.station:windowMinWidthMinor}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppCompatTheme_windowNoTitle cloyd.home.weather.station:windowNoTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_autoCompleteTextViewStyle cloyd.home.smart.monitor:autoCompleteTextViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_borderlessButtonStyle cloyd.home.smart.monitor:borderlessButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarButtonStyle cloyd.home.smart.monitor:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarNegativeButtonStyle cloyd.home.smart.monitor:buttonBarNegativeButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarNeutralButtonStyle cloyd.home.smart.monitor:buttonBarNeutralButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarPositiveButtonStyle cloyd.home.smart.monitor:buttonBarPositiveButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonBarStyle cloyd.home.smart.monitor:buttonBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonStyle cloyd.home.smart.monitor:buttonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_buttonStyleSmall cloyd.home.smart.monitor:buttonStyleSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_checkboxStyle cloyd.home.smart.monitor:checkboxStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_checkedTextViewStyle cloyd.home.smart.monitor:checkedTextViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorAccent cloyd.home.smart.monitor:colorAccent}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorBackgroundFloating cloyd.home.smart.monitor:colorBackgroundFloating}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorButtonNormal cloyd.home.smart.monitor:colorButtonNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorControlActivated cloyd.home.smart.monitor:colorControlActivated}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorControlHighlight cloyd.home.smart.monitor:colorControlHighlight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorControlNormal cloyd.home.smart.monitor:colorControlNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorError cloyd.home.smart.monitor:colorError}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorPrimary cloyd.home.smart.monitor:colorPrimary}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorPrimaryDark cloyd.home.smart.monitor:colorPrimaryDark}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_colorSwitchThumbNormal cloyd.home.smart.monitor:colorSwitchThumbNormal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_controlBackground cloyd.home.smart.monitor:controlBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dialogPreferredPadding cloyd.home.smart.monitor:dialogPreferredPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dialogTheme cloyd.home.smart.monitor:dialogTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dividerHorizontal cloyd.home.smart.monitor:dividerHorizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dividerVertical cloyd.home.smart.monitor:dividerVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dropDownListViewStyle cloyd.home.smart.monitor:dropDownListViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_dropdownListPreferredItemHeight cloyd.home.smart.monitor:dropdownListPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_editTextBackground cloyd.home.smart.monitor:editTextBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_editTextColor cloyd.home.smart.monitor:editTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_editTextStyle cloyd.home.smart.monitor:editTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_homeAsUpIndicator cloyd.home.smart.monitor:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_imageButtonStyle cloyd.home.smart.monitor:imageButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listChoiceBackgroundIndicator cloyd.home.smart.monitor:listChoiceBackgroundIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listDividerAlertDialog cloyd.home.smart.monitor:listDividerAlertDialog}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listMenuViewStyle cloyd.home.smart.monitor:listMenuViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPopupWindowStyle cloyd.home.smart.monitor:listPopupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeight cloyd.home.smart.monitor:listPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightLarge cloyd.home.smart.monitor:listPreferredItemHeightLarge}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemHeightSmall cloyd.home.smart.monitor:listPreferredItemHeightSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingLeft cloyd.home.smart.monitor:listPreferredItemPaddingLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_listPreferredItemPaddingRight cloyd.home.smart.monitor:listPreferredItemPaddingRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_panelBackground cloyd.home.smart.monitor:panelBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_panelMenuListTheme cloyd.home.smart.monitor:panelMenuListTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_panelMenuListWidth cloyd.home.smart.monitor:panelMenuListWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_popupMenuStyle cloyd.home.smart.monitor:popupMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_popupWindowStyle cloyd.home.smart.monitor:popupWindowStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_radioButtonStyle cloyd.home.smart.monitor:radioButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_ratingBarStyle cloyd.home.smart.monitor:ratingBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleIndicator cloyd.home.smart.monitor:ratingBarStyleIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_ratingBarStyleSmall cloyd.home.smart.monitor:ratingBarStyleSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_searchViewStyle cloyd.home.smart.monitor:searchViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_seekBarStyle cloyd.home.smart.monitor:seekBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_selectableItemBackground cloyd.home.smart.monitor:selectableItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_selectableItemBackgroundBorderless cloyd.home.smart.monitor:selectableItemBackgroundBorderless}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_spinnerDropDownItemStyle cloyd.home.smart.monitor:spinnerDropDownItemStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_spinnerStyle cloyd.home.smart.monitor:spinnerStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_switchStyle cloyd.home.smart.monitor:switchStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceLargePopupMenu cloyd.home.smart.monitor:textAppearanceLargePopupMenu}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItem cloyd.home.smart.monitor:textAppearanceListItem}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItemSecondary cloyd.home.smart.monitor:textAppearanceListItemSecondary}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceListItemSmall cloyd.home.smart.monitor:textAppearanceListItemSmall}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearancePopupMenuHeader cloyd.home.smart.monitor:textAppearancePopupMenuHeader}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultSubtitle cloyd.home.smart.monitor:textAppearanceSearchResultSubtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceSearchResultTitle cloyd.home.smart.monitor:textAppearanceSearchResultTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textAppearanceSmallPopupMenu cloyd.home.smart.monitor:textAppearanceSmallPopupMenu}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textColorAlertDialogListItem cloyd.home.smart.monitor:textColorAlertDialogListItem}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_textColorSearchUrl cloyd.home.smart.monitor:textColorSearchUrl}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_toolbarNavigationButtonStyle cloyd.home.smart.monitor:toolbarNavigationButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_toolbarStyle cloyd.home.smart.monitor:toolbarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_tooltipForegroundColor cloyd.home.smart.monitor:tooltipForegroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_tooltipFrameBackground cloyd.home.smart.monitor:tooltipFrameBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_viewInflaterClass cloyd.home.smart.monitor:viewInflaterClass}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowActionBar cloyd.home.smart.monitor:windowActionBar}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowActionBarOverlay cloyd.home.smart.monitor:windowActionBarOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowActionModeOverlay cloyd.home.smart.monitor:windowActionModeOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMajor cloyd.home.smart.monitor:windowFixedHeightMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedHeightMinor cloyd.home.smart.monitor:windowFixedHeightMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMajor cloyd.home.smart.monitor:windowFixedWidthMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowFixedWidthMinor cloyd.home.smart.monitor:windowFixedWidthMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMajor cloyd.home.smart.monitor:windowMinWidthMajor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowMinWidthMinor cloyd.home.smart.monitor:windowMinWidthMinor}</code></td><td></td></tr>
+           <tr><td><code>{@link #AppCompatTheme_windowNoTitle cloyd.home.smart.monitor:windowNoTitle}</code></td><td></td></tr>
            </table>
            @see #AppCompatTheme_actionBarDivider
            @see #AppCompatTheme_actionBarItemBackground
@@ -4163,37 +4163,37 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f0100b9, 0x7f0100ba, 0x7f0100bb, 0x7f0100bc
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarDivider}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarDivider}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarDivider
+          @attr name cloyd.home.smart.monitor:actionBarDivider
         */
         public static final int AppCompatTheme_actionBarDivider = 23;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarItemBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarItemBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarItemBackground
+          @attr name cloyd.home.smart.monitor:actionBarItemBackground
         */
         public static final int AppCompatTheme_actionBarItemBackground = 24;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarPopupTheme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarPopupTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarPopupTheme
+          @attr name cloyd.home.smart.monitor:actionBarPopupTheme
         */
         public static final int AppCompatTheme_actionBarPopupTheme = 17;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarSize}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarSize}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4213,111 +4213,111 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:actionBarSize
+          @attr name cloyd.home.smart.monitor:actionBarSize
         */
         public static final int AppCompatTheme_actionBarSize = 22;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarSplitStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarSplitStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarSplitStyle
+          @attr name cloyd.home.smart.monitor:actionBarSplitStyle
         */
         public static final int AppCompatTheme_actionBarSplitStyle = 19;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarStyle
+          @attr name cloyd.home.smart.monitor:actionBarStyle
         */
         public static final int AppCompatTheme_actionBarStyle = 18;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarTabBarStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarTabBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarTabBarStyle
+          @attr name cloyd.home.smart.monitor:actionBarTabBarStyle
         */
         public static final int AppCompatTheme_actionBarTabBarStyle = 13;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarTabStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarTabStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarTabStyle
+          @attr name cloyd.home.smart.monitor:actionBarTabStyle
         */
         public static final int AppCompatTheme_actionBarTabStyle = 12;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarTabTextStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarTabTextStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarTabTextStyle
+          @attr name cloyd.home.smart.monitor:actionBarTabTextStyle
         */
         public static final int AppCompatTheme_actionBarTabTextStyle = 14;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarTheme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarTheme
+          @attr name cloyd.home.smart.monitor:actionBarTheme
         */
         public static final int AppCompatTheme_actionBarTheme = 20;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionBarWidgetTheme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionBarWidgetTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionBarWidgetTheme
+          @attr name cloyd.home.smart.monitor:actionBarWidgetTheme
         */
         public static final int AppCompatTheme_actionBarWidgetTheme = 21;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionButtonStyle
+          @attr name cloyd.home.smart.monitor:actionButtonStyle
         */
         public static final int AppCompatTheme_actionButtonStyle = 50;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionDropDownStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionDropDownStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionDropDownStyle
+          @attr name cloyd.home.smart.monitor:actionDropDownStyle
         */
         public static final int AppCompatTheme_actionDropDownStyle = 46;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionMenuTextAppearance}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionMenuTextAppearance}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionMenuTextAppearance
+          @attr name cloyd.home.smart.monitor:actionMenuTextAppearance
         */
         public static final int AppCompatTheme_actionMenuTextAppearance = 25;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionMenuTextColor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionMenuTextColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4325,181 +4325,181 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:actionMenuTextColor
+          @attr name cloyd.home.smart.monitor:actionMenuTextColor
         */
         public static final int AppCompatTheme_actionMenuTextColor = 26;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeBackground
+          @attr name cloyd.home.smart.monitor:actionModeBackground
         */
         public static final int AppCompatTheme_actionModeBackground = 29;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeCloseButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeCloseButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeCloseButtonStyle
+          @attr name cloyd.home.smart.monitor:actionModeCloseButtonStyle
         */
         public static final int AppCompatTheme_actionModeCloseButtonStyle = 28;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeCloseDrawable}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeCloseDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeCloseDrawable
+          @attr name cloyd.home.smart.monitor:actionModeCloseDrawable
         */
         public static final int AppCompatTheme_actionModeCloseDrawable = 31;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeCopyDrawable}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeCopyDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeCopyDrawable
+          @attr name cloyd.home.smart.monitor:actionModeCopyDrawable
         */
         public static final int AppCompatTheme_actionModeCopyDrawable = 33;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeCutDrawable}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeCutDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeCutDrawable
+          @attr name cloyd.home.smart.monitor:actionModeCutDrawable
         */
         public static final int AppCompatTheme_actionModeCutDrawable = 32;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeFindDrawable}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeFindDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeFindDrawable
+          @attr name cloyd.home.smart.monitor:actionModeFindDrawable
         */
         public static final int AppCompatTheme_actionModeFindDrawable = 37;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModePasteDrawable}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModePasteDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModePasteDrawable
+          @attr name cloyd.home.smart.monitor:actionModePasteDrawable
         */
         public static final int AppCompatTheme_actionModePasteDrawable = 34;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModePopupWindowStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModePopupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModePopupWindowStyle
+          @attr name cloyd.home.smart.monitor:actionModePopupWindowStyle
         */
         public static final int AppCompatTheme_actionModePopupWindowStyle = 39;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeSelectAllDrawable}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeSelectAllDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeSelectAllDrawable
+          @attr name cloyd.home.smart.monitor:actionModeSelectAllDrawable
         */
         public static final int AppCompatTheme_actionModeSelectAllDrawable = 35;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeShareDrawable}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeShareDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeShareDrawable
+          @attr name cloyd.home.smart.monitor:actionModeShareDrawable
         */
         public static final int AppCompatTheme_actionModeShareDrawable = 36;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeSplitBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeSplitBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeSplitBackground
+          @attr name cloyd.home.smart.monitor:actionModeSplitBackground
         */
         public static final int AppCompatTheme_actionModeSplitBackground = 30;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeStyle
+          @attr name cloyd.home.smart.monitor:actionModeStyle
         */
         public static final int AppCompatTheme_actionModeStyle = 27;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionModeWebSearchDrawable}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionModeWebSearchDrawable}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionModeWebSearchDrawable
+          @attr name cloyd.home.smart.monitor:actionModeWebSearchDrawable
         */
         public static final int AppCompatTheme_actionModeWebSearchDrawable = 38;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionOverflowButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionOverflowButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionOverflowButtonStyle
+          @attr name cloyd.home.smart.monitor:actionOverflowButtonStyle
         */
         public static final int AppCompatTheme_actionOverflowButtonStyle = 15;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionOverflowMenuStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionOverflowMenuStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionOverflowMenuStyle
+          @attr name cloyd.home.smart.monitor:actionOverflowMenuStyle
         */
         public static final int AppCompatTheme_actionOverflowMenuStyle = 16;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#activityChooserViewStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#activityChooserViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:activityChooserViewStyle
+          @attr name cloyd.home.smart.monitor:activityChooserViewStyle
         */
         public static final int AppCompatTheme_activityChooserViewStyle = 58;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#alertDialogButtonGroupStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#alertDialogButtonGroupStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:alertDialogButtonGroupStyle
+          @attr name cloyd.home.smart.monitor:alertDialogButtonGroupStyle
         */
         public static final int AppCompatTheme_alertDialogButtonGroupStyle = 95;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#alertDialogCenterButtons}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#alertDialogCenterButtons}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4509,27 +4509,27 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:alertDialogCenterButtons
+          @attr name cloyd.home.smart.monitor:alertDialogCenterButtons
         */
         public static final int AppCompatTheme_alertDialogCenterButtons = 96;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#alertDialogStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#alertDialogStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:alertDialogStyle
+          @attr name cloyd.home.smart.monitor:alertDialogStyle
         */
         public static final int AppCompatTheme_alertDialogStyle = 94;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#alertDialogTheme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#alertDialogTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:alertDialogTheme
+          @attr name cloyd.home.smart.monitor:alertDialogTheme
         */
         public static final int AppCompatTheme_alertDialogTheme = 97;
         /**
@@ -4545,117 +4545,117 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int AppCompatTheme_android_windowIsFloating = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#autoCompleteTextViewStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#autoCompleteTextViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:autoCompleteTextViewStyle
+          @attr name cloyd.home.smart.monitor:autoCompleteTextViewStyle
         */
         public static final int AppCompatTheme_autoCompleteTextViewStyle = 102;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#borderlessButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#borderlessButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:borderlessButtonStyle
+          @attr name cloyd.home.smart.monitor:borderlessButtonStyle
         */
         public static final int AppCompatTheme_borderlessButtonStyle = 55;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonBarButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonBarButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:buttonBarButtonStyle
+          @attr name cloyd.home.smart.monitor:buttonBarButtonStyle
         */
         public static final int AppCompatTheme_buttonBarButtonStyle = 52;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonBarNegativeButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonBarNegativeButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:buttonBarNegativeButtonStyle
+          @attr name cloyd.home.smart.monitor:buttonBarNegativeButtonStyle
         */
         public static final int AppCompatTheme_buttonBarNegativeButtonStyle = 100;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonBarNeutralButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonBarNeutralButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:buttonBarNeutralButtonStyle
+          @attr name cloyd.home.smart.monitor:buttonBarNeutralButtonStyle
         */
         public static final int AppCompatTheme_buttonBarNeutralButtonStyle = 101;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonBarPositiveButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonBarPositiveButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:buttonBarPositiveButtonStyle
+          @attr name cloyd.home.smart.monitor:buttonBarPositiveButtonStyle
         */
         public static final int AppCompatTheme_buttonBarPositiveButtonStyle = 99;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonBarStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:buttonBarStyle
+          @attr name cloyd.home.smart.monitor:buttonBarStyle
         */
         public static final int AppCompatTheme_buttonBarStyle = 51;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:buttonStyle
+          @attr name cloyd.home.smart.monitor:buttonStyle
         */
         public static final int AppCompatTheme_buttonStyle = 103;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonStyleSmall}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonStyleSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:buttonStyleSmall
+          @attr name cloyd.home.smart.monitor:buttonStyleSmall
         */
         public static final int AppCompatTheme_buttonStyleSmall = 104;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#checkboxStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#checkboxStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:checkboxStyle
+          @attr name cloyd.home.smart.monitor:checkboxStyle
         */
         public static final int AppCompatTheme_checkboxStyle = 105;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#checkedTextViewStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#checkedTextViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:checkedTextViewStyle
+          @attr name cloyd.home.smart.monitor:checkedTextViewStyle
         */
         public static final int AppCompatTheme_checkedTextViewStyle = 106;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorAccent}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorAccent}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4666,11 +4666,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:colorAccent
+          @attr name cloyd.home.smart.monitor:colorAccent
         */
         public static final int AppCompatTheme_colorAccent = 86;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorBackgroundFloating}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorBackgroundFloating}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4681,11 +4681,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:colorBackgroundFloating
+          @attr name cloyd.home.smart.monitor:colorBackgroundFloating
         */
         public static final int AppCompatTheme_colorBackgroundFloating = 93;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorButtonNormal}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorButtonNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4696,11 +4696,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:colorButtonNormal
+          @attr name cloyd.home.smart.monitor:colorButtonNormal
         */
         public static final int AppCompatTheme_colorButtonNormal = 90;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorControlActivated}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorControlActivated}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4711,11 +4711,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:colorControlActivated
+          @attr name cloyd.home.smart.monitor:colorControlActivated
         */
         public static final int AppCompatTheme_colorControlActivated = 88;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorControlHighlight}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorControlHighlight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4726,11 +4726,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:colorControlHighlight
+          @attr name cloyd.home.smart.monitor:colorControlHighlight
         */
         public static final int AppCompatTheme_colorControlHighlight = 89;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorControlNormal}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorControlNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4741,11 +4741,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:colorControlNormal
+          @attr name cloyd.home.smart.monitor:colorControlNormal
         */
         public static final int AppCompatTheme_colorControlNormal = 87;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorError}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorError}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4753,11 +4753,11 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:colorError
+          @attr name cloyd.home.smart.monitor:colorError
         */
         public static final int AppCompatTheme_colorError = 118;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorPrimary}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorPrimary}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4768,11 +4768,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:colorPrimary
+          @attr name cloyd.home.smart.monitor:colorPrimary
         */
         public static final int AppCompatTheme_colorPrimary = 84;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorPrimaryDark}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorPrimaryDark}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4783,11 +4783,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:colorPrimaryDark
+          @attr name cloyd.home.smart.monitor:colorPrimaryDark
         */
         public static final int AppCompatTheme_colorPrimaryDark = 85;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#colorSwitchThumbNormal}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#colorSwitchThumbNormal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4798,21 +4798,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:colorSwitchThumbNormal
+          @attr name cloyd.home.smart.monitor:colorSwitchThumbNormal
         */
         public static final int AppCompatTheme_colorSwitchThumbNormal = 91;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#controlBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#controlBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:controlBackground
+          @attr name cloyd.home.smart.monitor:controlBackground
         */
         public static final int AppCompatTheme_controlBackground = 92;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#dialogPreferredPadding}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#dialogPreferredPadding}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4824,51 +4824,51 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:dialogPreferredPadding
+          @attr name cloyd.home.smart.monitor:dialogPreferredPadding
         */
         public static final int AppCompatTheme_dialogPreferredPadding = 44;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#dialogTheme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#dialogTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:dialogTheme
+          @attr name cloyd.home.smart.monitor:dialogTheme
         */
         public static final int AppCompatTheme_dialogTheme = 43;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#dividerHorizontal}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#dividerHorizontal}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:dividerHorizontal
+          @attr name cloyd.home.smart.monitor:dividerHorizontal
         */
         public static final int AppCompatTheme_dividerHorizontal = 57;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#dividerVertical}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#dividerVertical}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:dividerVertical
+          @attr name cloyd.home.smart.monitor:dividerVertical
         */
         public static final int AppCompatTheme_dividerVertical = 56;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#dropDownListViewStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#dropDownListViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:dropDownListViewStyle
+          @attr name cloyd.home.smart.monitor:dropDownListViewStyle
         */
         public static final int AppCompatTheme_dropDownListViewStyle = 75;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#dropdownListPreferredItemHeight}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#dropdownListPreferredItemHeight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4880,21 +4880,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:dropdownListPreferredItemHeight
+          @attr name cloyd.home.smart.monitor:dropdownListPreferredItemHeight
         */
         public static final int AppCompatTheme_dropdownListPreferredItemHeight = 47;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#editTextBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#editTextBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:editTextBackground
+          @attr name cloyd.home.smart.monitor:editTextBackground
         */
         public static final int AppCompatTheme_editTextBackground = 64;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#editTextColor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#editTextColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4902,81 +4902,81 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:editTextColor
+          @attr name cloyd.home.smart.monitor:editTextColor
         */
         public static final int AppCompatTheme_editTextColor = 63;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#editTextStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#editTextStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:editTextStyle
+          @attr name cloyd.home.smart.monitor:editTextStyle
         */
         public static final int AppCompatTheme_editTextStyle = 107;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#homeAsUpIndicator}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#homeAsUpIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:homeAsUpIndicator
+          @attr name cloyd.home.smart.monitor:homeAsUpIndicator
         */
         public static final int AppCompatTheme_homeAsUpIndicator = 49;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#imageButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#imageButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:imageButtonStyle
+          @attr name cloyd.home.smart.monitor:imageButtonStyle
         */
         public static final int AppCompatTheme_imageButtonStyle = 65;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listChoiceBackgroundIndicator}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listChoiceBackgroundIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:listChoiceBackgroundIndicator
+          @attr name cloyd.home.smart.monitor:listChoiceBackgroundIndicator
         */
         public static final int AppCompatTheme_listChoiceBackgroundIndicator = 83;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listDividerAlertDialog}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listDividerAlertDialog}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:listDividerAlertDialog
+          @attr name cloyd.home.smart.monitor:listDividerAlertDialog
         */
         public static final int AppCompatTheme_listDividerAlertDialog = 45;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listMenuViewStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listMenuViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:listMenuViewStyle
+          @attr name cloyd.home.smart.monitor:listMenuViewStyle
         */
         public static final int AppCompatTheme_listMenuViewStyle = 115;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listPopupWindowStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listPopupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:listPopupWindowStyle
+          @attr name cloyd.home.smart.monitor:listPopupWindowStyle
         */
         public static final int AppCompatTheme_listPopupWindowStyle = 76;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listPreferredItemHeight}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listPreferredItemHeight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -4988,11 +4988,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:listPreferredItemHeight
+          @attr name cloyd.home.smart.monitor:listPreferredItemHeight
         */
         public static final int AppCompatTheme_listPreferredItemHeight = 70;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listPreferredItemHeightLarge}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listPreferredItemHeightLarge}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5004,11 +5004,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:listPreferredItemHeightLarge
+          @attr name cloyd.home.smart.monitor:listPreferredItemHeightLarge
         */
         public static final int AppCompatTheme_listPreferredItemHeightLarge = 72;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listPreferredItemHeightSmall}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listPreferredItemHeightSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5020,11 +5020,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:listPreferredItemHeightSmall
+          @attr name cloyd.home.smart.monitor:listPreferredItemHeightSmall
         */
         public static final int AppCompatTheme_listPreferredItemHeightSmall = 71;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listPreferredItemPaddingLeft}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listPreferredItemPaddingLeft}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5036,11 +5036,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:listPreferredItemPaddingLeft
+          @attr name cloyd.home.smart.monitor:listPreferredItemPaddingLeft
         */
         public static final int AppCompatTheme_listPreferredItemPaddingLeft = 73;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#listPreferredItemPaddingRight}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#listPreferredItemPaddingRight}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5052,31 +5052,31 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:listPreferredItemPaddingRight
+          @attr name cloyd.home.smart.monitor:listPreferredItemPaddingRight
         */
         public static final int AppCompatTheme_listPreferredItemPaddingRight = 74;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#panelBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#panelBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:panelBackground
+          @attr name cloyd.home.smart.monitor:panelBackground
         */
         public static final int AppCompatTheme_panelBackground = 80;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#panelMenuListTheme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#panelMenuListTheme}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:panelMenuListTheme
+          @attr name cloyd.home.smart.monitor:panelMenuListTheme
         */
         public static final int AppCompatTheme_panelMenuListTheme = 82;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#panelMenuListWidth}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#panelMenuListWidth}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5088,221 +5088,221 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:panelMenuListWidth
+          @attr name cloyd.home.smart.monitor:panelMenuListWidth
         */
         public static final int AppCompatTheme_panelMenuListWidth = 81;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#popupMenuStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#popupMenuStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:popupMenuStyle
+          @attr name cloyd.home.smart.monitor:popupMenuStyle
         */
         public static final int AppCompatTheme_popupMenuStyle = 61;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#popupWindowStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#popupWindowStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:popupWindowStyle
+          @attr name cloyd.home.smart.monitor:popupWindowStyle
         */
         public static final int AppCompatTheme_popupWindowStyle = 62;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#radioButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#radioButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:radioButtonStyle
+          @attr name cloyd.home.smart.monitor:radioButtonStyle
         */
         public static final int AppCompatTheme_radioButtonStyle = 108;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#ratingBarStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#ratingBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:ratingBarStyle
+          @attr name cloyd.home.smart.monitor:ratingBarStyle
         */
         public static final int AppCompatTheme_ratingBarStyle = 109;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#ratingBarStyleIndicator}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#ratingBarStyleIndicator}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:ratingBarStyleIndicator
+          @attr name cloyd.home.smart.monitor:ratingBarStyleIndicator
         */
         public static final int AppCompatTheme_ratingBarStyleIndicator = 110;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#ratingBarStyleSmall}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#ratingBarStyleSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:ratingBarStyleSmall
+          @attr name cloyd.home.smart.monitor:ratingBarStyleSmall
         */
         public static final int AppCompatTheme_ratingBarStyleSmall = 111;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#searchViewStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#searchViewStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:searchViewStyle
+          @attr name cloyd.home.smart.monitor:searchViewStyle
         */
         public static final int AppCompatTheme_searchViewStyle = 69;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#seekBarStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#seekBarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:seekBarStyle
+          @attr name cloyd.home.smart.monitor:seekBarStyle
         */
         public static final int AppCompatTheme_seekBarStyle = 112;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#selectableItemBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#selectableItemBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:selectableItemBackground
+          @attr name cloyd.home.smart.monitor:selectableItemBackground
         */
         public static final int AppCompatTheme_selectableItemBackground = 53;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#selectableItemBackgroundBorderless}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#selectableItemBackgroundBorderless}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:selectableItemBackgroundBorderless
+          @attr name cloyd.home.smart.monitor:selectableItemBackgroundBorderless
         */
         public static final int AppCompatTheme_selectableItemBackgroundBorderless = 54;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#spinnerDropDownItemStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#spinnerDropDownItemStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:spinnerDropDownItemStyle
+          @attr name cloyd.home.smart.monitor:spinnerDropDownItemStyle
         */
         public static final int AppCompatTheme_spinnerDropDownItemStyle = 48;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#spinnerStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#spinnerStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:spinnerStyle
+          @attr name cloyd.home.smart.monitor:spinnerStyle
         */
         public static final int AppCompatTheme_spinnerStyle = 113;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#switchStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#switchStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:switchStyle
+          @attr name cloyd.home.smart.monitor:switchStyle
         */
         public static final int AppCompatTheme_switchStyle = 114;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAppearanceLargePopupMenu}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAppearanceLargePopupMenu}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:textAppearanceLargePopupMenu
+          @attr name cloyd.home.smart.monitor:textAppearanceLargePopupMenu
         */
         public static final int AppCompatTheme_textAppearanceLargePopupMenu = 40;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAppearanceListItem}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAppearanceListItem}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:textAppearanceListItem
+          @attr name cloyd.home.smart.monitor:textAppearanceListItem
         */
         public static final int AppCompatTheme_textAppearanceListItem = 77;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAppearanceListItemSecondary}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAppearanceListItemSecondary}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:textAppearanceListItemSecondary
+          @attr name cloyd.home.smart.monitor:textAppearanceListItemSecondary
         */
         public static final int AppCompatTheme_textAppearanceListItemSecondary = 78;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAppearanceListItemSmall}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAppearanceListItemSmall}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:textAppearanceListItemSmall
+          @attr name cloyd.home.smart.monitor:textAppearanceListItemSmall
         */
         public static final int AppCompatTheme_textAppearanceListItemSmall = 79;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAppearancePopupMenuHeader}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAppearancePopupMenuHeader}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:textAppearancePopupMenuHeader
+          @attr name cloyd.home.smart.monitor:textAppearancePopupMenuHeader
         */
         public static final int AppCompatTheme_textAppearancePopupMenuHeader = 42;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAppearanceSearchResultSubtitle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAppearanceSearchResultSubtitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:textAppearanceSearchResultSubtitle
+          @attr name cloyd.home.smart.monitor:textAppearanceSearchResultSubtitle
         */
         public static final int AppCompatTheme_textAppearanceSearchResultSubtitle = 67;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAppearanceSearchResultTitle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAppearanceSearchResultTitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:textAppearanceSearchResultTitle
+          @attr name cloyd.home.smart.monitor:textAppearanceSearchResultTitle
         */
         public static final int AppCompatTheme_textAppearanceSearchResultTitle = 66;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAppearanceSmallPopupMenu}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAppearanceSmallPopupMenu}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:textAppearanceSmallPopupMenu
+          @attr name cloyd.home.smart.monitor:textAppearanceSmallPopupMenu
         */
         public static final int AppCompatTheme_textAppearanceSmallPopupMenu = 41;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textColorAlertDialogListItem}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textColorAlertDialogListItem}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5310,11 +5310,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:textColorAlertDialogListItem
+          @attr name cloyd.home.smart.monitor:textColorAlertDialogListItem
         */
         public static final int AppCompatTheme_textColorAlertDialogListItem = 98;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textColorSearchUrl}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textColorSearchUrl}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5322,31 +5322,31 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:textColorSearchUrl
+          @attr name cloyd.home.smart.monitor:textColorSearchUrl
         */
         public static final int AppCompatTheme_textColorSearchUrl = 68;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#toolbarNavigationButtonStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#toolbarNavigationButtonStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:toolbarNavigationButtonStyle
+          @attr name cloyd.home.smart.monitor:toolbarNavigationButtonStyle
         */
         public static final int AppCompatTheme_toolbarNavigationButtonStyle = 60;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#toolbarStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#toolbarStyle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:toolbarStyle
+          @attr name cloyd.home.smart.monitor:toolbarStyle
         */
         public static final int AppCompatTheme_toolbarStyle = 59;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#tooltipForegroundColor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#tooltipForegroundColor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5354,21 +5354,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:tooltipForegroundColor
+          @attr name cloyd.home.smart.monitor:tooltipForegroundColor
         */
         public static final int AppCompatTheme_tooltipForegroundColor = 117;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#tooltipFrameBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#tooltipFrameBackground}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:tooltipFrameBackground
+          @attr name cloyd.home.smart.monitor:tooltipFrameBackground
         */
         public static final int AppCompatTheme_tooltipFrameBackground = 116;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#viewInflaterClass}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#viewInflaterClass}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5378,11 +5378,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:viewInflaterClass
+          @attr name cloyd.home.smart.monitor:viewInflaterClass
         */
         public static final int AppCompatTheme_viewInflaterClass = 119;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowActionBar}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowActionBar}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5392,11 +5392,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowActionBar
+          @attr name cloyd.home.smart.monitor:windowActionBar
         */
         public static final int AppCompatTheme_windowActionBar = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowActionBarOverlay}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowActionBarOverlay}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5406,11 +5406,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowActionBarOverlay
+          @attr name cloyd.home.smart.monitor:windowActionBarOverlay
         */
         public static final int AppCompatTheme_windowActionBarOverlay = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowActionModeOverlay}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowActionModeOverlay}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5420,11 +5420,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowActionModeOverlay
+          @attr name cloyd.home.smart.monitor:windowActionModeOverlay
         */
         public static final int AppCompatTheme_windowActionModeOverlay = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowFixedHeightMajor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowFixedHeightMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5439,11 +5439,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowFixedHeightMajor
+          @attr name cloyd.home.smart.monitor:windowFixedHeightMajor
         */
         public static final int AppCompatTheme_windowFixedHeightMajor = 9;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowFixedHeightMinor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowFixedHeightMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5458,11 +5458,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowFixedHeightMinor
+          @attr name cloyd.home.smart.monitor:windowFixedHeightMinor
         */
         public static final int AppCompatTheme_windowFixedHeightMinor = 7;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowFixedWidthMajor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowFixedWidthMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5477,11 +5477,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowFixedWidthMajor
+          @attr name cloyd.home.smart.monitor:windowFixedWidthMajor
         */
         public static final int AppCompatTheme_windowFixedWidthMajor = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowFixedWidthMinor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowFixedWidthMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5496,11 +5496,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowFixedWidthMinor
+          @attr name cloyd.home.smart.monitor:windowFixedWidthMinor
         */
         public static final int AppCompatTheme_windowFixedWidthMinor = 8;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowMinWidthMajor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowMinWidthMajor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5515,11 +5515,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowMinWidthMajor
+          @attr name cloyd.home.smart.monitor:windowMinWidthMajor
         */
         public static final int AppCompatTheme_windowMinWidthMajor = 10;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowMinWidthMinor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowMinWidthMinor}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5534,11 +5534,11 @@ some parent container.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowMinWidthMinor
+          @attr name cloyd.home.smart.monitor:windowMinWidthMinor
         */
         public static final int AppCompatTheme_windowMinWidthMinor = 11;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#windowNoTitle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#windowNoTitle}
           attribute's value can be found in the {@link #AppCompatTheme} array.
 
 
@@ -5548,7 +5548,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:windowNoTitle
+          @attr name cloyd.home.smart.monitor:windowNoTitle
         */
         public static final int AppCompatTheme_windowNoTitle = 3;
         /** Attributes that can be used with a ButtonBarLayout.
@@ -5557,7 +5557,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ButtonBarLayout_allowStacking cloyd.home.weather.station:allowStacking}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarLayout_allowStacking cloyd.home.smart.monitor:allowStacking}</code></td><td></td></tr>
            </table>
            @see #ButtonBarLayout_allowStacking
          */
@@ -5565,7 +5565,7 @@ containing a value of this type.
             0x7f0100bd
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#allowStacking}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#allowStacking}
           attribute's value can be found in the {@link #ButtonBarLayout} array.
 
 
@@ -5575,7 +5575,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:allowStacking
+          @attr name cloyd.home.smart.monitor:allowStacking
         */
         public static final int ButtonBarLayout_allowStacking = 0;
         /** Attributes that can be used with a ColorStateListItem.
@@ -5584,7 +5584,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ColorStateListItem_alpha cloyd.home.weather.station:alpha}</code></td><td></td></tr>
+           <tr><td><code>{@link #ColorStateListItem_alpha cloyd.home.smart.monitor:alpha}</code></td><td></td></tr>
            <tr><td><code>{@link #ColorStateListItem_android_alpha android:alpha}</code></td><td></td></tr>
            <tr><td><code>{@link #ColorStateListItem_android_color android:color}</code></td><td></td></tr>
            </table>
@@ -5596,7 +5596,7 @@ containing a value of this type.
             0x010101a5, 0x0101031f, 0x7f0100be
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#alpha}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#alpha}
           attribute's value can be found in the {@link #ColorStateListItem} array.
 
 
@@ -5606,7 +5606,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:alpha
+          @attr name cloyd.home.smart.monitor:alpha
         */
         public static final int ColorStateListItem_alpha = 2;
         /**
@@ -5628,8 +5628,8 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CompoundButton_android_button android:button}</code></td><td></td></tr>
-           <tr><td><code>{@link #CompoundButton_buttonTint cloyd.home.weather.station:buttonTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #CompoundButton_buttonTintMode cloyd.home.weather.station:buttonTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #CompoundButton_buttonTint cloyd.home.smart.monitor:buttonTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #CompoundButton_buttonTintMode cloyd.home.smart.monitor:buttonTintMode}</code></td><td></td></tr>
            </table>
            @see #CompoundButton_android_button
            @see #CompoundButton_buttonTint
@@ -5645,7 +5645,7 @@ containing a value of this type.
         */
         public static final int CompoundButton_android_button = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonTint}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonTint}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -5656,11 +5656,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:buttonTint
+          @attr name cloyd.home.smart.monitor:buttonTint
         */
         public static final int CompoundButton_buttonTint = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonTintMode}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonTintMode}
           attribute's value can be found in the {@link #CompoundButton} array.
 
 
@@ -5677,7 +5677,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:buttonTintMode
+          @attr name cloyd.home.smart.monitor:buttonTintMode
         */
         public static final int CompoundButton_buttonTintMode = 2;
         /** Attributes that can be used with a CoordinatorLayout.
@@ -5686,8 +5686,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #CoordinatorLayout_keylines cloyd.home.weather.station:keylines}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_statusBarBackground cloyd.home.weather.station:statusBarBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_keylines cloyd.home.smart.monitor:keylines}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_statusBarBackground cloyd.home.smart.monitor:statusBarBackground}</code></td><td></td></tr>
            </table>
            @see #CoordinatorLayout_keylines
            @see #CoordinatorLayout_statusBarBackground
@@ -5696,17 +5696,17 @@ containing a value of this type.
             0x7f010001, 0x7f010002
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#keylines}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#keylines}
           attribute's value can be found in the {@link #CoordinatorLayout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:keylines
+          @attr name cloyd.home.smart.monitor:keylines
         */
         public static final int CoordinatorLayout_keylines = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#statusBarBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#statusBarBackground}
           attribute's value can be found in the {@link #CoordinatorLayout} array.
 
 
@@ -5714,7 +5714,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name cloyd.home.weather.station:statusBarBackground
+          @attr name cloyd.home.smart.monitor:statusBarBackground
         */
         public static final int CoordinatorLayout_statusBarBackground = 1;
         /** Attributes that can be used with a CoordinatorLayout_Layout.
@@ -5724,12 +5724,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #CoordinatorLayout_Layout_android_layout_gravity android:layout_gravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchor cloyd.home.weather.station:layout_anchor}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchorGravity cloyd.home.weather.station:layout_anchorGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_behavior cloyd.home.weather.station:layout_behavior}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_dodgeInsetEdges cloyd.home.weather.station:layout_dodgeInsetEdges}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_insetEdge cloyd.home.weather.station:layout_insetEdge}</code></td><td></td></tr>
-           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_keyline cloyd.home.weather.station:layout_keyline}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchor cloyd.home.smart.monitor:layout_anchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_anchorGravity cloyd.home.smart.monitor:layout_anchorGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_behavior cloyd.home.smart.monitor:layout_behavior}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_dodgeInsetEdges cloyd.home.smart.monitor:layout_dodgeInsetEdges}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_insetEdge cloyd.home.smart.monitor:layout_insetEdge}</code></td><td></td></tr>
+           <tr><td><code>{@link #CoordinatorLayout_Layout_layout_keyline cloyd.home.smart.monitor:layout_keyline}</code></td><td></td></tr>
            </table>
            @see #CoordinatorLayout_Layout_android_layout_gravity
            @see #CoordinatorLayout_Layout_layout_anchor
@@ -5750,17 +5750,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int CoordinatorLayout_Layout_android_layout_gravity = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#layout_anchor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#layout_anchor}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:layout_anchor
+          @attr name cloyd.home.smart.monitor:layout_anchor
         */
         public static final int CoordinatorLayout_Layout_layout_anchor = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#layout_anchorGravity}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#layout_anchorGravity}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -5785,11 +5785,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>start</code></td><td>0x00800003</td><td></td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:layout_anchorGravity
+          @attr name cloyd.home.smart.monitor:layout_anchorGravity
         */
         public static final int CoordinatorLayout_Layout_layout_anchorGravity = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#layout_behavior}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#layout_behavior}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -5799,11 +5799,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:layout_behavior
+          @attr name cloyd.home.smart.monitor:layout_behavior
         */
         public static final int CoordinatorLayout_Layout_layout_behavior = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#layout_dodgeInsetEdges}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#layout_dodgeInsetEdges}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -5822,11 +5822,11 @@ containing a value of this type.
 <tr><td><code>end</code></td><td>0x00800005</td><td></td></tr>
 <tr><td><code>all</code></td><td>0x77</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:layout_dodgeInsetEdges
+          @attr name cloyd.home.smart.monitor:layout_dodgeInsetEdges
         */
         public static final int CoordinatorLayout_Layout_layout_dodgeInsetEdges = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#layout_insetEdge}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#layout_insetEdge}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -5844,11 +5844,11 @@ containing a value of this type.
 <tr><td><code>start</code></td><td>0x00800003</td><td></td></tr>
 <tr><td><code>end</code></td><td>0x00800005</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:layout_insetEdge
+          @attr name cloyd.home.smart.monitor:layout_insetEdge
         */
         public static final int CoordinatorLayout_Layout_layout_insetEdge = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#layout_keyline}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#layout_keyline}
           attribute's value can be found in the {@link #CoordinatorLayout_Layout} array.
 
 
@@ -5858,7 +5858,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:layout_keyline
+          @attr name cloyd.home.smart.monitor:layout_keyline
         */
         public static final int CoordinatorLayout_Layout_layout_keyline = 3;
         /** Attributes that can be used with a DrawerArrowToggle.
@@ -5867,14 +5867,14 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_arrowHeadLength cloyd.home.weather.station:arrowHeadLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_arrowShaftLength cloyd.home.weather.station:arrowShaftLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_barLength cloyd.home.weather.station:barLength}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_color cloyd.home.weather.station:color}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_drawableSize cloyd.home.weather.station:drawableSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_gapBetweenBars cloyd.home.weather.station:gapBetweenBars}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_spinBars cloyd.home.weather.station:spinBars}</code></td><td></td></tr>
-           <tr><td><code>{@link #DrawerArrowToggle_thickness cloyd.home.weather.station:thickness}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_arrowHeadLength cloyd.home.smart.monitor:arrowHeadLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_arrowShaftLength cloyd.home.smart.monitor:arrowShaftLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_barLength cloyd.home.smart.monitor:barLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_color cloyd.home.smart.monitor:color}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_drawableSize cloyd.home.smart.monitor:drawableSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_gapBetweenBars cloyd.home.smart.monitor:gapBetweenBars}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_spinBars cloyd.home.smart.monitor:spinBars}</code></td><td></td></tr>
+           <tr><td><code>{@link #DrawerArrowToggle_thickness cloyd.home.smart.monitor:thickness}</code></td><td></td></tr>
            </table>
            @see #DrawerArrowToggle_arrowHeadLength
            @see #DrawerArrowToggle_arrowShaftLength
@@ -5890,7 +5890,7 @@ containing a value of this type.
             0x7f0100c5, 0x7f0100c6, 0x7f0100c7, 0x7f0100c8
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#arrowHeadLength}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#arrowHeadLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -5902,11 +5902,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:arrowHeadLength
+          @attr name cloyd.home.smart.monitor:arrowHeadLength
         */
         public static final int DrawerArrowToggle_arrowHeadLength = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#arrowShaftLength}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#arrowShaftLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -5918,11 +5918,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:arrowShaftLength
+          @attr name cloyd.home.smart.monitor:arrowShaftLength
         */
         public static final int DrawerArrowToggle_arrowShaftLength = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#barLength}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#barLength}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -5934,11 +5934,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:barLength
+          @attr name cloyd.home.smart.monitor:barLength
         */
         public static final int DrawerArrowToggle_barLength = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#color}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#color}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -5949,11 +5949,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:color
+          @attr name cloyd.home.smart.monitor:color
         */
         public static final int DrawerArrowToggle_color = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#drawableSize}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#drawableSize}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -5965,11 +5965,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:drawableSize
+          @attr name cloyd.home.smart.monitor:drawableSize
         */
         public static final int DrawerArrowToggle_drawableSize = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#gapBetweenBars}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#gapBetweenBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -5981,11 +5981,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:gapBetweenBars
+          @attr name cloyd.home.smart.monitor:gapBetweenBars
         */
         public static final int DrawerArrowToggle_gapBetweenBars = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#spinBars}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#spinBars}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -5995,11 +5995,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:spinBars
+          @attr name cloyd.home.smart.monitor:spinBars
         */
         public static final int DrawerArrowToggle_spinBars = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#thickness}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#thickness}
           attribute's value can be found in the {@link #DrawerArrowToggle} array.
 
 
@@ -6011,7 +6011,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:thickness
+          @attr name cloyd.home.smart.monitor:thickness
         */
         public static final int DrawerArrowToggle_thickness = 7;
         /** Attributes that can be used with a FontFamily.
@@ -6020,12 +6020,12 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FontFamily_fontProviderAuthority cloyd.home.weather.station:fontProviderAuthority}</code></td><td></td></tr>
-           <tr><td><code>{@link #FontFamily_fontProviderCerts cloyd.home.weather.station:fontProviderCerts}</code></td><td></td></tr>
-           <tr><td><code>{@link #FontFamily_fontProviderFetchStrategy cloyd.home.weather.station:fontProviderFetchStrategy}</code></td><td></td></tr>
-           <tr><td><code>{@link #FontFamily_fontProviderFetchTimeout cloyd.home.weather.station:fontProviderFetchTimeout}</code></td><td></td></tr>
-           <tr><td><code>{@link #FontFamily_fontProviderPackage cloyd.home.weather.station:fontProviderPackage}</code></td><td></td></tr>
-           <tr><td><code>{@link #FontFamily_fontProviderQuery cloyd.home.weather.station:fontProviderQuery}</code></td><td></td></tr>
+           <tr><td><code>{@link #FontFamily_fontProviderAuthority cloyd.home.smart.monitor:fontProviderAuthority}</code></td><td></td></tr>
+           <tr><td><code>{@link #FontFamily_fontProviderCerts cloyd.home.smart.monitor:fontProviderCerts}</code></td><td></td></tr>
+           <tr><td><code>{@link #FontFamily_fontProviderFetchStrategy cloyd.home.smart.monitor:fontProviderFetchStrategy}</code></td><td></td></tr>
+           <tr><td><code>{@link #FontFamily_fontProviderFetchTimeout cloyd.home.smart.monitor:fontProviderFetchTimeout}</code></td><td></td></tr>
+           <tr><td><code>{@link #FontFamily_fontProviderPackage cloyd.home.smart.monitor:fontProviderPackage}</code></td><td></td></tr>
+           <tr><td><code>{@link #FontFamily_fontProviderQuery cloyd.home.smart.monitor:fontProviderQuery}</code></td><td></td></tr>
            </table>
            @see #FontFamily_fontProviderAuthority
            @see #FontFamily_fontProviderCerts
@@ -6039,7 +6039,7 @@ containing a value of this type.
             0x7f01000d, 0x7f01000e
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontProviderAuthority}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontProviderAuthority}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -6049,21 +6049,21 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:fontProviderAuthority
+          @attr name cloyd.home.smart.monitor:fontProviderAuthority
         */
         public static final int FontFamily_fontProviderAuthority = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontProviderCerts}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontProviderCerts}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:fontProviderCerts
+          @attr name cloyd.home.smart.monitor:fontProviderCerts
         */
         public static final int FontFamily_fontProviderCerts = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontProviderFetchStrategy}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontProviderFetchStrategy}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -6076,11 +6076,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>blocking</code></td><td>0</td><td></td></tr>
 <tr><td><code>async</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:fontProviderFetchStrategy
+          @attr name cloyd.home.smart.monitor:fontProviderFetchStrategy
         */
         public static final int FontFamily_fontProviderFetchStrategy = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontProviderFetchTimeout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontProviderFetchTimeout}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -6098,11 +6098,11 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>forever</code></td><td>-1</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:fontProviderFetchTimeout
+          @attr name cloyd.home.smart.monitor:fontProviderFetchTimeout
         */
         public static final int FontFamily_fontProviderFetchTimeout = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontProviderPackage}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontProviderPackage}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -6112,11 +6112,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:fontProviderPackage
+          @attr name cloyd.home.smart.monitor:fontProviderPackage
         */
         public static final int FontFamily_fontProviderPackage = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontProviderQuery}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontProviderQuery}
           attribute's value can be found in the {@link #FontFamily} array.
 
 
@@ -6126,7 +6126,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:fontProviderQuery
+          @attr name cloyd.home.smart.monitor:fontProviderQuery
         */
         public static final int FontFamily_fontProviderQuery = 2;
         /** Attributes that can be used with a FontFamilyFont.
@@ -6138,9 +6138,9 @@ containing a value of this type.
            <tr><td><code>{@link #FontFamilyFont_android_font android:font}</code></td><td></td></tr>
            <tr><td><code>{@link #FontFamilyFont_android_fontStyle android:fontStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #FontFamilyFont_android_fontWeight android:fontWeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #FontFamilyFont_font cloyd.home.weather.station:font}</code></td><td></td></tr>
-           <tr><td><code>{@link #FontFamilyFont_fontStyle cloyd.home.weather.station:fontStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #FontFamilyFont_fontWeight cloyd.home.weather.station:fontWeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #FontFamilyFont_font cloyd.home.smart.monitor:font}</code></td><td></td></tr>
+           <tr><td><code>{@link #FontFamilyFont_fontStyle cloyd.home.smart.monitor:fontStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #FontFamilyFont_fontWeight cloyd.home.smart.monitor:fontWeight}</code></td><td></td></tr>
            </table>
            @see #FontFamilyFont_android_font
            @see #FontFamilyFont_android_fontStyle
@@ -6172,17 +6172,17 @@ containing a value of this type.
         */
         public static final int FontFamilyFont_android_fontWeight = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#font}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#font}
           attribute's value can be found in the {@link #FontFamilyFont} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:font
+          @attr name cloyd.home.smart.monitor:font
         */
         public static final int FontFamilyFont_font = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontStyle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontStyle}
           attribute's value can be found in the {@link #FontFamilyFont} array.
 
 
@@ -6195,11 +6195,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>normal</code></td><td>0</td><td></td></tr>
 <tr><td><code>italic</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:fontStyle
+          @attr name cloyd.home.smart.monitor:fontStyle
         */
         public static final int FontFamilyFont_fontStyle = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontWeight}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontWeight}
           attribute's value can be found in the {@link #FontFamilyFont} array.
 
 
@@ -6209,7 +6209,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:fontWeight
+          @attr name cloyd.home.smart.monitor:fontWeight
         */
         public static final int FontFamilyFont_fontWeight = 5;
         /** Attributes that can be used with a LinearLayoutCompat.
@@ -6223,10 +6223,10 @@ containing a value of this type.
            <tr><td><code>{@link #LinearLayoutCompat_android_gravity android:gravity}</code></td><td></td></tr>
            <tr><td><code>{@link #LinearLayoutCompat_android_orientation android:orientation}</code></td><td></td></tr>
            <tr><td><code>{@link #LinearLayoutCompat_android_weightSum android:weightSum}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_divider cloyd.home.weather.station:divider}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_dividerPadding cloyd.home.weather.station:dividerPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_measureWithLargestChild cloyd.home.weather.station:measureWithLargestChild}</code></td><td></td></tr>
-           <tr><td><code>{@link #LinearLayoutCompat_showDividers cloyd.home.weather.station:showDividers}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_divider cloyd.home.smart.monitor:divider}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_dividerPadding cloyd.home.smart.monitor:dividerPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_measureWithLargestChild cloyd.home.smart.monitor:measureWithLargestChild}</code></td><td></td></tr>
+           <tr><td><code>{@link #LinearLayoutCompat_showDividers cloyd.home.smart.monitor:showDividers}</code></td><td></td></tr>
            </table>
            @see #LinearLayoutCompat_android_baselineAligned
            @see #LinearLayoutCompat_android_baselineAlignedChildIndex
@@ -6274,17 +6274,17 @@ containing a value of this type.
         */
         public static final int LinearLayoutCompat_android_weightSum = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#divider}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#divider}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:divider
+          @attr name cloyd.home.smart.monitor:divider
         */
         public static final int LinearLayoutCompat_divider = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#dividerPadding}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#dividerPadding}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -6296,11 +6296,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:dividerPadding
+          @attr name cloyd.home.smart.monitor:dividerPadding
         */
         public static final int LinearLayoutCompat_dividerPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#measureWithLargestChild}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#measureWithLargestChild}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -6310,11 +6310,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:measureWithLargestChild
+          @attr name cloyd.home.smart.monitor:measureWithLargestChild
         */
         public static final int LinearLayoutCompat_measureWithLargestChild = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#showDividers}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#showDividers}
           attribute's value can be found in the {@link #LinearLayoutCompat} array.
 
 
@@ -6329,7 +6329,7 @@ containing a value of this type.
 <tr><td><code>middle</code></td><td>2</td><td></td></tr>
 <tr><td><code>end</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:showDividers
+          @attr name cloyd.home.smart.monitor:showDividers
         */
         public static final int LinearLayoutCompat_showDividers = 7;
         /** Attributes that can be used with a LinearLayoutCompat_Layout.
@@ -6468,10 +6468,10 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MenuItem_actionLayout cloyd.home.weather.station:actionLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_actionProviderClass cloyd.home.weather.station:actionProviderClass}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_actionViewClass cloyd.home.weather.station:actionViewClass}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_alphabeticModifiers cloyd.home.weather.station:alphabeticModifiers}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionLayout cloyd.home.smart.monitor:actionLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionProviderClass cloyd.home.smart.monitor:actionProviderClass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_actionViewClass cloyd.home.smart.monitor:actionViewClass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_alphabeticModifiers cloyd.home.smart.monitor:alphabeticModifiers}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_alphabeticShortcut android:alphabeticShortcut}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_checkable android:checkable}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_checked android:checked}</code></td><td></td></tr>
@@ -6485,12 +6485,12 @@ containing a value of this type.
            <tr><td><code>{@link #MenuItem_android_title android:title}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_titleCondensed android:titleCondensed}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuItem_android_visible android:visible}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_contentDescription cloyd.home.weather.station:contentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_iconTint cloyd.home.weather.station:iconTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_iconTintMode cloyd.home.weather.station:iconTintMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_numericModifiers cloyd.home.weather.station:numericModifiers}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_showAsAction cloyd.home.weather.station:showAsAction}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuItem_tooltipText cloyd.home.weather.station:tooltipText}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_contentDescription cloyd.home.smart.monitor:contentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_iconTint cloyd.home.smart.monitor:iconTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_iconTintMode cloyd.home.smart.monitor:iconTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_numericModifiers cloyd.home.smart.monitor:numericModifiers}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_showAsAction cloyd.home.smart.monitor:showAsAction}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuItem_tooltipText cloyd.home.smart.monitor:tooltipText}</code></td><td></td></tr>
            </table>
            @see #MenuItem_actionLayout
            @see #MenuItem_actionProviderClass
@@ -6525,17 +6525,17 @@ containing a value of this type.
             0x7f0100d3, 0x7f0100d4, 0x7f0100d5
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionLayout}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:actionLayout
+          @attr name cloyd.home.smart.monitor:actionLayout
         */
         public static final int MenuItem_actionLayout = 16;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionProviderClass}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionProviderClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -6545,11 +6545,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:actionProviderClass
+          @attr name cloyd.home.smart.monitor:actionProviderClass
         */
         public static final int MenuItem_actionProviderClass = 18;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#actionViewClass}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#actionViewClass}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -6559,11 +6559,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:actionViewClass
+          @attr name cloyd.home.smart.monitor:actionViewClass
         */
         public static final int MenuItem_actionViewClass = 17;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#alphabeticModifiers}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#alphabeticModifiers}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -6580,7 +6580,7 @@ containing a value of this type.
 <tr><td><code>SYM</code></td><td>0x4</td><td></td></tr>
 <tr><td><code>FUNCTION</code></td><td>0x8</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:alphabeticModifiers
+          @attr name cloyd.home.smart.monitor:alphabeticModifiers
         */
         public static final int MenuItem_alphabeticModifiers = 13;
         /**
@@ -6662,7 +6662,7 @@ containing a value of this type.
         */
         public static final int MenuItem_android_visible = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentDescription}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentDescription}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -6672,11 +6672,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentDescription
+          @attr name cloyd.home.smart.monitor:contentDescription
         */
         public static final int MenuItem_contentDescription = 19;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#iconTint}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#iconTint}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -6687,11 +6687,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:iconTint
+          @attr name cloyd.home.smart.monitor:iconTint
         */
         public static final int MenuItem_iconTint = 21;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#iconTintMode}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#iconTintMode}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -6708,11 +6708,11 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:iconTintMode
+          @attr name cloyd.home.smart.monitor:iconTintMode
         */
         public static final int MenuItem_iconTintMode = 22;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#numericModifiers}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#numericModifiers}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -6729,11 +6729,11 @@ containing a value of this type.
 <tr><td><code>SYM</code></td><td>0x4</td><td></td></tr>
 <tr><td><code>FUNCTION</code></td><td>0x8</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:numericModifiers
+          @attr name cloyd.home.smart.monitor:numericModifiers
         */
         public static final int MenuItem_numericModifiers = 14;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#showAsAction}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#showAsAction}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -6749,11 +6749,11 @@ containing a value of this type.
 <tr><td><code>withText</code></td><td>4</td><td></td></tr>
 <tr><td><code>collapseActionView</code></td><td>8</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:showAsAction
+          @attr name cloyd.home.smart.monitor:showAsAction
         */
         public static final int MenuItem_showAsAction = 15;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#tooltipText}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#tooltipText}
           attribute's value can be found in the {@link #MenuItem} array.
 
 
@@ -6763,7 +6763,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:tooltipText
+          @attr name cloyd.home.smart.monitor:tooltipText
         */
         public static final int MenuItem_tooltipText = 20;
         /** Attributes that can be used with a MenuView.
@@ -6779,8 +6779,8 @@ containing a value of this type.
            <tr><td><code>{@link #MenuView_android_itemTextAppearance android:itemTextAppearance}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuView_android_verticalDivider android:verticalDivider}</code></td><td></td></tr>
            <tr><td><code>{@link #MenuView_android_windowAnimationStyle android:windowAnimationStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuView_preserveIconSpacing cloyd.home.weather.station:preserveIconSpacing}</code></td><td></td></tr>
-           <tr><td><code>{@link #MenuView_subMenuArrow cloyd.home.weather.station:subMenuArrow}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuView_preserveIconSpacing cloyd.home.smart.monitor:preserveIconSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MenuView_subMenuArrow cloyd.home.smart.monitor:subMenuArrow}</code></td><td></td></tr>
            </table>
            @see #MenuView_android_headerBackground
            @see #MenuView_android_horizontalDivider
@@ -6840,7 +6840,7 @@ containing a value of this type.
         */
         public static final int MenuView_android_windowAnimationStyle = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#preserveIconSpacing}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#preserveIconSpacing}
           attribute's value can be found in the {@link #MenuView} array.
 
 
@@ -6850,17 +6850,17 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:preserveIconSpacing
+          @attr name cloyd.home.smart.monitor:preserveIconSpacing
         */
         public static final int MenuView_preserveIconSpacing = 7;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#subMenuArrow}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#subMenuArrow}
           attribute's value can be found in the {@link #MenuView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:subMenuArrow
+          @attr name cloyd.home.smart.monitor:subMenuArrow
         */
         public static final int MenuView_subMenuArrow = 8;
         /** Attributes that can be used with a PopupWindow.
@@ -6871,7 +6871,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #PopupWindow_android_popupAnimationStyle android:popupAnimationStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #PopupWindow_android_popupBackground android:popupBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #PopupWindow_overlapAnchor cloyd.home.weather.station:overlapAnchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PopupWindow_overlapAnchor cloyd.home.smart.monitor:overlapAnchor}</code></td><td></td></tr>
            </table>
            @see #PopupWindow_android_popupAnimationStyle
            @see #PopupWindow_android_popupBackground
@@ -6893,7 +6893,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int PopupWindow_android_popupBackground = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#overlapAnchor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#overlapAnchor}
           attribute's value can be found in the {@link #PopupWindow} array.
 
 
@@ -6903,7 +6903,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:overlapAnchor
+          @attr name cloyd.home.smart.monitor:overlapAnchor
         */
         public static final int PopupWindow_overlapAnchor = 2;
         /** Attributes that can be used with a PopupWindowBackgroundState.
@@ -6912,7 +6912,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PopupWindowBackgroundState_state_above_anchor cloyd.home.weather.station:state_above_anchor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PopupWindowBackgroundState_state_above_anchor cloyd.home.smart.monitor:state_above_anchor}</code></td><td></td></tr>
            </table>
            @see #PopupWindowBackgroundState_state_above_anchor
          */
@@ -6920,7 +6920,7 @@ containing a value of this type.
             0x7f0100d9
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#state_above_anchor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#state_above_anchor}
           attribute's value can be found in the {@link #PopupWindowBackgroundState} array.
 
 
@@ -6930,7 +6930,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:state_above_anchor
+          @attr name cloyd.home.smart.monitor:state_above_anchor
         */
         public static final int PopupWindowBackgroundState_state_above_anchor = 0;
         /** Attributes that can be used with a RecycleListView.
@@ -6939,8 +6939,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #RecycleListView_paddingBottomNoButtons cloyd.home.weather.station:paddingBottomNoButtons}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecycleListView_paddingTopNoTitle cloyd.home.weather.station:paddingTopNoTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecycleListView_paddingBottomNoButtons cloyd.home.smart.monitor:paddingBottomNoButtons}</code></td><td></td></tr>
+           <tr><td><code>{@link #RecycleListView_paddingTopNoTitle cloyd.home.smart.monitor:paddingTopNoTitle}</code></td><td></td></tr>
            </table>
            @see #RecycleListView_paddingBottomNoButtons
            @see #RecycleListView_paddingTopNoTitle
@@ -6949,7 +6949,7 @@ containing a value of this type.
             0x7f0100da, 0x7f0100db
         };
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#paddingBottomNoButtons}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#paddingBottomNoButtons}
           attribute's value can be found in the {@link #RecycleListView} array.
 
 
@@ -6961,11 +6961,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:paddingBottomNoButtons
+          @attr name cloyd.home.smart.monitor:paddingBottomNoButtons
         */
         public static final int RecycleListView_paddingBottomNoButtons = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#paddingTopNoTitle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#paddingTopNoTitle}
           attribute's value can be found in the {@link #RecycleListView} array.
 
 
@@ -6977,7 +6977,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:paddingTopNoTitle
+          @attr name cloyd.home.smart.monitor:paddingTopNoTitle
         */
         public static final int RecycleListView_paddingTopNoTitle = 1;
         /** Attributes that can be used with a SearchView.
@@ -6990,19 +6990,19 @@ containing a value of this type.
            <tr><td><code>{@link #SearchView_android_imeOptions android:imeOptions}</code></td><td></td></tr>
            <tr><td><code>{@link #SearchView_android_inputType android:inputType}</code></td><td></td></tr>
            <tr><td><code>{@link #SearchView_android_maxWidth android:maxWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_closeIcon cloyd.home.weather.station:closeIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_commitIcon cloyd.home.weather.station:commitIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_defaultQueryHint cloyd.home.weather.station:defaultQueryHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_goIcon cloyd.home.weather.station:goIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_iconifiedByDefault cloyd.home.weather.station:iconifiedByDefault}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_layout cloyd.home.weather.station:layout}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_queryBackground cloyd.home.weather.station:queryBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_queryHint cloyd.home.weather.station:queryHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_searchHintIcon cloyd.home.weather.station:searchHintIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_searchIcon cloyd.home.weather.station:searchIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_submitBackground cloyd.home.weather.station:submitBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_suggestionRowLayout cloyd.home.weather.station:suggestionRowLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #SearchView_voiceIcon cloyd.home.weather.station:voiceIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_closeIcon cloyd.home.smart.monitor:closeIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_commitIcon cloyd.home.smart.monitor:commitIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_defaultQueryHint cloyd.home.smart.monitor:defaultQueryHint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_goIcon cloyd.home.smart.monitor:goIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_iconifiedByDefault cloyd.home.smart.monitor:iconifiedByDefault}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_layout cloyd.home.smart.monitor:layout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_queryBackground cloyd.home.smart.monitor:queryBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_queryHint cloyd.home.smart.monitor:queryHint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_searchHintIcon cloyd.home.smart.monitor:searchHintIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_searchIcon cloyd.home.smart.monitor:searchIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_submitBackground cloyd.home.smart.monitor:submitBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_suggestionRowLayout cloyd.home.smart.monitor:suggestionRowLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SearchView_voiceIcon cloyd.home.smart.monitor:voiceIcon}</code></td><td></td></tr>
            </table>
            @see #SearchView_android_focusable
            @see #SearchView_android_imeOptions
@@ -7054,27 +7054,27 @@ containing a value of this type.
         */
         public static final int SearchView_android_maxWidth = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#closeIcon}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#closeIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:closeIcon
+          @attr name cloyd.home.smart.monitor:closeIcon
         */
         public static final int SearchView_closeIcon = 8;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#commitIcon}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#commitIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:commitIcon
+          @attr name cloyd.home.smart.monitor:commitIcon
         */
         public static final int SearchView_commitIcon = 13;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#defaultQueryHint}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#defaultQueryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -7084,21 +7084,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:defaultQueryHint
+          @attr name cloyd.home.smart.monitor:defaultQueryHint
         */
         public static final int SearchView_defaultQueryHint = 7;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#goIcon}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#goIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:goIcon
+          @attr name cloyd.home.smart.monitor:goIcon
         */
         public static final int SearchView_goIcon = 9;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#iconifiedByDefault}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#iconifiedByDefault}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -7108,31 +7108,31 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:iconifiedByDefault
+          @attr name cloyd.home.smart.monitor:iconifiedByDefault
         */
         public static final int SearchView_iconifiedByDefault = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#layout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#layout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:layout
+          @attr name cloyd.home.smart.monitor:layout
         */
         public static final int SearchView_layout = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#queryBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#queryBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:queryBackground
+          @attr name cloyd.home.smart.monitor:queryBackground
         */
         public static final int SearchView_queryBackground = 15;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#queryHint}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#queryHint}
           attribute's value can be found in the {@link #SearchView} array.
 
 
@@ -7142,57 +7142,57 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:queryHint
+          @attr name cloyd.home.smart.monitor:queryHint
         */
         public static final int SearchView_queryHint = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#searchHintIcon}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#searchHintIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:searchHintIcon
+          @attr name cloyd.home.smart.monitor:searchHintIcon
         */
         public static final int SearchView_searchHintIcon = 11;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#searchIcon}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#searchIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:searchIcon
+          @attr name cloyd.home.smart.monitor:searchIcon
         */
         public static final int SearchView_searchIcon = 10;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#submitBackground}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#submitBackground}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:submitBackground
+          @attr name cloyd.home.smart.monitor:submitBackground
         */
         public static final int SearchView_submitBackground = 16;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#suggestionRowLayout}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#suggestionRowLayout}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:suggestionRowLayout
+          @attr name cloyd.home.smart.monitor:suggestionRowLayout
         */
         public static final int SearchView_suggestionRowLayout = 14;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#voiceIcon}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#voiceIcon}
           attribute's value can be found in the {@link #SearchView} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:voiceIcon
+          @attr name cloyd.home.smart.monitor:voiceIcon
         */
         public static final int SearchView_voiceIcon = 12;
         /** Attributes that can be used with a Spinner.
@@ -7205,7 +7205,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #Spinner_android_entries android:entries}</code></td><td></td></tr>
            <tr><td><code>{@link #Spinner_android_popupBackground android:popupBackground}</code></td><td></td></tr>
            <tr><td><code>{@link #Spinner_android_prompt android:prompt}</code></td><td></td></tr>
-           <tr><td><code>{@link #Spinner_popupTheme cloyd.home.weather.station:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Spinner_popupTheme cloyd.home.smart.monitor:popupTheme}</code></td><td></td></tr>
            </table>
            @see #Spinner_android_dropDownWidth
            @see #Spinner_android_entries
@@ -7242,13 +7242,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int Spinner_android_prompt = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#popupTheme}
           attribute's value can be found in the {@link #Spinner} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:popupTheme
+          @attr name cloyd.home.smart.monitor:popupTheme
         */
         public static final int Spinner_popupTheme = 4;
         /** Attributes that can be used with a SwitchCompat.
@@ -7260,17 +7260,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><td><code>{@link #SwitchCompat_android_textOff android:textOff}</code></td><td></td></tr>
            <tr><td><code>{@link #SwitchCompat_android_textOn android:textOn}</code></td><td></td></tr>
            <tr><td><code>{@link #SwitchCompat_android_thumb android:thumb}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_showText cloyd.home.weather.station:showText}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_splitTrack cloyd.home.weather.station:splitTrack}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchMinWidth cloyd.home.weather.station:switchMinWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchPadding cloyd.home.weather.station:switchPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_switchTextAppearance cloyd.home.weather.station:switchTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTextPadding cloyd.home.weather.station:thumbTextPadding}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTint cloyd.home.weather.station:thumbTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_thumbTintMode cloyd.home.weather.station:thumbTintMode}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_track cloyd.home.weather.station:track}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_trackTint cloyd.home.weather.station:trackTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #SwitchCompat_trackTintMode cloyd.home.weather.station:trackTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_showText cloyd.home.smart.monitor:showText}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_splitTrack cloyd.home.smart.monitor:splitTrack}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchMinWidth cloyd.home.smart.monitor:switchMinWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchPadding cloyd.home.smart.monitor:switchPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_switchTextAppearance cloyd.home.smart.monitor:switchTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTextPadding cloyd.home.smart.monitor:thumbTextPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTint cloyd.home.smart.monitor:thumbTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_thumbTintMode cloyd.home.smart.monitor:thumbTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_track cloyd.home.smart.monitor:track}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_trackTint cloyd.home.smart.monitor:trackTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchCompat_trackTintMode cloyd.home.smart.monitor:trackTintMode}</code></td><td></td></tr>
            </table>
            @see #SwitchCompat_android_textOff
            @see #SwitchCompat_android_textOn
@@ -7312,7 +7312,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int SwitchCompat_android_thumb = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#showText}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#showText}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -7322,11 +7322,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:showText
+          @attr name cloyd.home.smart.monitor:showText
         */
         public static final int SwitchCompat_showText = 13;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#splitTrack}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#splitTrack}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -7336,11 +7336,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:splitTrack
+          @attr name cloyd.home.smart.monitor:splitTrack
         */
         public static final int SwitchCompat_splitTrack = 12;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#switchMinWidth}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#switchMinWidth}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -7352,11 +7352,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:switchMinWidth
+          @attr name cloyd.home.smart.monitor:switchMinWidth
         */
         public static final int SwitchCompat_switchMinWidth = 10;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#switchPadding}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#switchPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -7368,21 +7368,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:switchPadding
+          @attr name cloyd.home.smart.monitor:switchPadding
         */
         public static final int SwitchCompat_switchPadding = 11;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#switchTextAppearance}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#switchTextAppearance}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:switchTextAppearance
+          @attr name cloyd.home.smart.monitor:switchTextAppearance
         */
         public static final int SwitchCompat_switchTextAppearance = 9;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#thumbTextPadding}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#thumbTextPadding}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -7394,11 +7394,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:thumbTextPadding
+          @attr name cloyd.home.smart.monitor:thumbTextPadding
         */
         public static final int SwitchCompat_thumbTextPadding = 8;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#thumbTint}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#thumbTint}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -7409,11 +7409,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:thumbTint
+          @attr name cloyd.home.smart.monitor:thumbTint
         */
         public static final int SwitchCompat_thumbTint = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#thumbTintMode}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#thumbTintMode}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -7430,21 +7430,21 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:thumbTintMode
+          @attr name cloyd.home.smart.monitor:thumbTintMode
         */
         public static final int SwitchCompat_thumbTintMode = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#track}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#track}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:track
+          @attr name cloyd.home.smart.monitor:track
         */
         public static final int SwitchCompat_track = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#trackTint}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#trackTint}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -7455,11 +7455,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:trackTint
+          @attr name cloyd.home.smart.monitor:trackTint
         */
         public static final int SwitchCompat_trackTint = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#trackTintMode}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#trackTintMode}
           attribute's value can be found in the {@link #SwitchCompat} array.
 
 
@@ -7476,7 +7476,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:trackTintMode
+          @attr name cloyd.home.smart.monitor:trackTintMode
         */
         public static final int SwitchCompat_trackTintMode = 7;
         /** Attributes that can be used with a TextAppearance.
@@ -7496,8 +7496,8 @@ containing a value of this type.
            <tr><td><code>{@link #TextAppearance_android_textSize android:textSize}</code></td><td></td></tr>
            <tr><td><code>{@link #TextAppearance_android_textStyle android:textStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #TextAppearance_android_typeface android:typeface}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextAppearance_fontFamily cloyd.home.weather.station:fontFamily}</code></td><td></td></tr>
-           <tr><td><code>{@link #TextAppearance_textAllCaps cloyd.home.weather.station:textAllCaps}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextAppearance_fontFamily cloyd.home.smart.monitor:fontFamily}</code></td><td></td></tr>
+           <tr><td><code>{@link #TextAppearance_textAllCaps cloyd.home.smart.monitor:textAllCaps}</code></td><td></td></tr>
            </table>
            @see #TextAppearance_android_fontFamily
            @see #TextAppearance_android_shadowColor
@@ -7586,7 +7586,7 @@ containing a value of this type.
         */
         public static final int TextAppearance_android_typeface = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#fontFamily}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#fontFamily}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
@@ -7596,18 +7596,18 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:fontFamily
+          @attr name cloyd.home.smart.monitor:fontFamily
         */
         public static final int TextAppearance_fontFamily = 12;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#textAllCaps}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#textAllCaps}
           attribute's value can be found in the {@link #TextAppearance} array.
 
 
           <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a boolean value, either "<code>true</code>" or "<code>false</code>".
-          @attr name cloyd.home.weather.station:textAllCaps
+          @attr name cloyd.home.smart.monitor:textAllCaps
         */
         public static final int TextAppearance_textAllCaps = 11;
         /** Attributes that can be used with a Toolbar.
@@ -7618,33 +7618,33 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #Toolbar_android_gravity android:gravity}</code></td><td></td></tr>
            <tr><td><code>{@link #Toolbar_android_minHeight android:minHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_buttonGravity cloyd.home.weather.station:buttonGravity}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_collapseContentDescription cloyd.home.weather.station:collapseContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_collapseIcon cloyd.home.weather.station:collapseIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetEnd cloyd.home.weather.station:contentInsetEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetEndWithActions cloyd.home.weather.station:contentInsetEndWithActions}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetLeft cloyd.home.weather.station:contentInsetLeft}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetRight cloyd.home.weather.station:contentInsetRight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetStart cloyd.home.weather.station:contentInsetStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_contentInsetStartWithNavigation cloyd.home.weather.station:contentInsetStartWithNavigation}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_logo cloyd.home.weather.station:logo}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_logoDescription cloyd.home.weather.station:logoDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_maxButtonHeight cloyd.home.weather.station:maxButtonHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_navigationContentDescription cloyd.home.weather.station:navigationContentDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_navigationIcon cloyd.home.weather.station:navigationIcon}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_popupTheme cloyd.home.weather.station:popupTheme}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitle cloyd.home.weather.station:subtitle}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitleTextAppearance cloyd.home.weather.station:subtitleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_subtitleTextColor cloyd.home.weather.station:subtitleTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_title cloyd.home.weather.station:title}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMargin cloyd.home.weather.station:titleMargin}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginBottom cloyd.home.weather.station:titleMarginBottom}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginEnd cloyd.home.weather.station:titleMarginEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginStart cloyd.home.weather.station:titleMarginStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMarginTop cloyd.home.weather.station:titleMarginTop}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleMargins cloyd.home.weather.station:titleMargins}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleTextAppearance cloyd.home.weather.station:titleTextAppearance}</code></td><td></td></tr>
-           <tr><td><code>{@link #Toolbar_titleTextColor cloyd.home.weather.station:titleTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_buttonGravity cloyd.home.smart.monitor:buttonGravity}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_collapseContentDescription cloyd.home.smart.monitor:collapseContentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_collapseIcon cloyd.home.smart.monitor:collapseIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetEnd cloyd.home.smart.monitor:contentInsetEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetEndWithActions cloyd.home.smart.monitor:contentInsetEndWithActions}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetLeft cloyd.home.smart.monitor:contentInsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetRight cloyd.home.smart.monitor:contentInsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetStart cloyd.home.smart.monitor:contentInsetStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_contentInsetStartWithNavigation cloyd.home.smart.monitor:contentInsetStartWithNavigation}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_logo cloyd.home.smart.monitor:logo}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_logoDescription cloyd.home.smart.monitor:logoDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_maxButtonHeight cloyd.home.smart.monitor:maxButtonHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_navigationContentDescription cloyd.home.smart.monitor:navigationContentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_navigationIcon cloyd.home.smart.monitor:navigationIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_popupTheme cloyd.home.smart.monitor:popupTheme}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitle cloyd.home.smart.monitor:subtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitleTextAppearance cloyd.home.smart.monitor:subtitleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_subtitleTextColor cloyd.home.smart.monitor:subtitleTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_title cloyd.home.smart.monitor:title}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMargin cloyd.home.smart.monitor:titleMargin}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginBottom cloyd.home.smart.monitor:titleMarginBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginEnd cloyd.home.smart.monitor:titleMarginEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginStart cloyd.home.smart.monitor:titleMarginStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMarginTop cloyd.home.smart.monitor:titleMarginTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleMargins cloyd.home.smart.monitor:titleMargins}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleTextAppearance cloyd.home.smart.monitor:titleTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #Toolbar_titleTextColor cloyd.home.smart.monitor:titleTextColor}</code></td><td></td></tr>
            </table>
            @see #Toolbar_android_gravity
            @see #Toolbar_android_minHeight
@@ -7699,7 +7699,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int Toolbar_android_minHeight = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#buttonGravity}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#buttonGravity}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7712,11 +7712,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>top</code></td><td>0x30</td><td></td></tr>
 <tr><td><code>bottom</code></td><td>0x50</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:buttonGravity
+          @attr name cloyd.home.smart.monitor:buttonGravity
         */
         public static final int Toolbar_buttonGravity = 21;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#collapseContentDescription}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#collapseContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7726,21 +7726,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:collapseContentDescription
+          @attr name cloyd.home.smart.monitor:collapseContentDescription
         */
         public static final int Toolbar_collapseContentDescription = 23;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#collapseIcon}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#collapseIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:collapseIcon
+          @attr name cloyd.home.smart.monitor:collapseIcon
         */
         public static final int Toolbar_collapseIcon = 22;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetEnd}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7752,11 +7752,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetEnd
+          @attr name cloyd.home.smart.monitor:contentInsetEnd
         */
         public static final int Toolbar_contentInsetEnd = 6;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetEndWithActions}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetEndWithActions}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7768,11 +7768,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetEndWithActions
+          @attr name cloyd.home.smart.monitor:contentInsetEndWithActions
         */
         public static final int Toolbar_contentInsetEndWithActions = 10;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetLeft}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetLeft}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7784,11 +7784,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetLeft
+          @attr name cloyd.home.smart.monitor:contentInsetLeft
         */
         public static final int Toolbar_contentInsetLeft = 7;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetRight}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetRight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7800,11 +7800,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetRight
+          @attr name cloyd.home.smart.monitor:contentInsetRight
         */
         public static final int Toolbar_contentInsetRight = 8;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetStart}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7816,11 +7816,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetStart
+          @attr name cloyd.home.smart.monitor:contentInsetStart
         */
         public static final int Toolbar_contentInsetStart = 5;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#contentInsetStartWithNavigation}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#contentInsetStartWithNavigation}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7832,21 +7832,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:contentInsetStartWithNavigation
+          @attr name cloyd.home.smart.monitor:contentInsetStartWithNavigation
         */
         public static final int Toolbar_contentInsetStartWithNavigation = 9;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#logo}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#logo}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:logo
+          @attr name cloyd.home.smart.monitor:logo
         */
         public static final int Toolbar_logo = 4;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#logoDescription}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#logoDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7856,11 +7856,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:logoDescription
+          @attr name cloyd.home.smart.monitor:logoDescription
         */
         public static final int Toolbar_logoDescription = 26;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#maxButtonHeight}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#maxButtonHeight}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7872,11 +7872,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:maxButtonHeight
+          @attr name cloyd.home.smart.monitor:maxButtonHeight
         */
         public static final int Toolbar_maxButtonHeight = 20;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#navigationContentDescription}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#navigationContentDescription}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7886,31 +7886,31 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:navigationContentDescription
+          @attr name cloyd.home.smart.monitor:navigationContentDescription
         */
         public static final int Toolbar_navigationContentDescription = 25;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#navigationIcon}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#navigationIcon}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:navigationIcon
+          @attr name cloyd.home.smart.monitor:navigationIcon
         */
         public static final int Toolbar_navigationIcon = 24;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#popupTheme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#popupTheme}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:popupTheme
+          @attr name cloyd.home.smart.monitor:popupTheme
         */
         public static final int Toolbar_popupTheme = 11;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#subtitle}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#subtitle}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7920,21 +7920,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:subtitle
+          @attr name cloyd.home.smart.monitor:subtitle
         */
         public static final int Toolbar_subtitle = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#subtitleTextAppearance}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#subtitleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:subtitleTextAppearance
+          @attr name cloyd.home.smart.monitor:subtitleTextAppearance
         */
         public static final int Toolbar_subtitleTextAppearance = 13;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#subtitleTextColor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#subtitleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7945,11 +7945,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:subtitleTextColor
+          @attr name cloyd.home.smart.monitor:subtitleTextColor
         */
         public static final int Toolbar_subtitleTextColor = 28;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#title}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#title}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7959,11 +7959,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:title
+          @attr name cloyd.home.smart.monitor:title
         */
         public static final int Toolbar_title = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleMargin}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleMargin}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7975,11 +7975,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:titleMargin
+          @attr name cloyd.home.smart.monitor:titleMargin
         */
         public static final int Toolbar_titleMargin = 14;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleMarginBottom}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleMarginBottom}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -7991,11 +7991,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:titleMarginBottom
+          @attr name cloyd.home.smart.monitor:titleMarginBottom
         */
         public static final int Toolbar_titleMarginBottom = 18;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleMarginEnd}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleMarginEnd}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -8007,11 +8007,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:titleMarginEnd
+          @attr name cloyd.home.smart.monitor:titleMarginEnd
         */
         public static final int Toolbar_titleMarginEnd = 16;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleMarginStart}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleMarginStart}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -8023,11 +8023,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:titleMarginStart
+          @attr name cloyd.home.smart.monitor:titleMarginStart
         */
         public static final int Toolbar_titleMarginStart = 15;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleMarginTop}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleMarginTop}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -8039,11 +8039,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:titleMarginTop
+          @attr name cloyd.home.smart.monitor:titleMarginTop
         */
         public static final int Toolbar_titleMarginTop = 17;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleMargins}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleMargins}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -8055,21 +8055,21 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:titleMargins
+          @attr name cloyd.home.smart.monitor:titleMargins
         */
         public static final int Toolbar_titleMargins = 19;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleTextAppearance}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleTextAppearance}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:titleTextAppearance
+          @attr name cloyd.home.smart.monitor:titleTextAppearance
         */
         public static final int Toolbar_titleTextAppearance = 12;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#titleTextColor}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#titleTextColor}
           attribute's value can be found in the {@link #Toolbar} array.
 
 
@@ -8080,7 +8080,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:titleTextColor
+          @attr name cloyd.home.smart.monitor:titleTextColor
         */
         public static final int Toolbar_titleTextColor = 27;
         /** Attributes that can be used with a View.
@@ -8091,9 +8091,9 @@ containing a value of this type.
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #View_android_focusable android:focusable}</code></td><td></td></tr>
            <tr><td><code>{@link #View_android_theme android:theme}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_paddingEnd cloyd.home.weather.station:paddingEnd}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_paddingStart cloyd.home.weather.station:paddingStart}</code></td><td></td></tr>
-           <tr><td><code>{@link #View_theme cloyd.home.weather.station:theme}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_paddingEnd cloyd.home.smart.monitor:paddingEnd}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_paddingStart cloyd.home.smart.monitor:paddingStart}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_theme cloyd.home.smart.monitor:theme}</code></td><td></td></tr>
            </table>
            @see #View_android_focusable
            @see #View_android_theme
@@ -8118,7 +8118,7 @@ containing a value of this type.
         */
         public static final int View_android_theme = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#paddingEnd}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#paddingEnd}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -8130,11 +8130,11 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:paddingEnd
+          @attr name cloyd.home.smart.monitor:paddingEnd
         */
         public static final int View_paddingEnd = 3;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#paddingStart}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#paddingStart}
           attribute's value can be found in the {@link #View} array.
 
 
@@ -8146,17 +8146,17 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:paddingStart
+          @attr name cloyd.home.smart.monitor:paddingStart
         */
         public static final int View_paddingStart = 2;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#theme}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#theme}
           attribute's value can be found in the {@link #View} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name cloyd.home.weather.station:theme
+          @attr name cloyd.home.smart.monitor:theme
         */
         public static final int View_theme = 4;
         /** Attributes that can be used with a ViewBackgroundHelper.
@@ -8166,8 +8166,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #ViewBackgroundHelper_android_background android:background}</code></td><td></td></tr>
-           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTint cloyd.home.weather.station:backgroundTint}</code></td><td></td></tr>
-           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTintMode cloyd.home.weather.station:backgroundTintMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTint cloyd.home.smart.monitor:backgroundTint}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewBackgroundHelper_backgroundTintMode cloyd.home.smart.monitor:backgroundTintMode}</code></td><td></td></tr>
            </table>
            @see #ViewBackgroundHelper_android_background
            @see #ViewBackgroundHelper_backgroundTint
@@ -8183,7 +8183,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int ViewBackgroundHelper_android_background = 0;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#backgroundTint}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#backgroundTint}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -8194,11 +8194,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name cloyd.home.weather.station:backgroundTint
+          @attr name cloyd.home.smart.monitor:backgroundTint
         */
         public static final int ViewBackgroundHelper_backgroundTint = 1;
         /**
-          <p>This symbol is the offset where the {@link cloyd.home.weather.station.R.attr#backgroundTintMode}
+          <p>This symbol is the offset where the {@link cloyd.home.smart.monitor.R.attr#backgroundTintMode}
           attribute's value can be found in the {@link #ViewBackgroundHelper} array.
 
 
@@ -8215,7 +8215,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 <tr><td><code>add</code></td><td>16</td><td></td></tr>
 </table>
-          @attr name cloyd.home.weather.station:backgroundTintMode
+          @attr name cloyd.home.smart.monitor:backgroundTintMode
         */
         public static final int ViewBackgroundHelper_backgroundTintMode = 2;
         /** Attributes that can be used with a ViewStubCompat.

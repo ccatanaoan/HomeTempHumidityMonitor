@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	package="cloyd.home.weather.station"
-	android:versionCode="14"
-	android:versionName="1.4"
+	package="cloyd.home.smart.monitor"
+	android:versionCode="15"
+	android:versionName="1.5"
 	android:installLocation="internalOnly">
 	
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>
@@ -14,13 +14,13 @@
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<application
 		android:icon="@drawable/icon"
-		android:label="Home Weather Station"
+		android:label="Home Smart Monitor"
 		android:theme="@style/MyAppTheme">
 		<activity
 			android:windowSoftInputMode="stateHidden"
 			android:launchMode="singleTop"
 			android:name=".main"
-			android:label="Home Weather Station"
+			android:label="Home Smart Monitor"
 			android:screenOrientation="portrait">
 			<intent-filter>
 			   <action android:name="android.intent.action.MAIN" />

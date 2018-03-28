@@ -1,0 +1,449 @@
+﻿Build1=Default,cloyd.home.smart.monitor
+File1=0.png
+File2=1.bal
+File3=2.bal
+File4=3.bal
+File5=crysta.ttf
+File6=Main.bal
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+Group=Default Group
+IconFile=
+Library1=core
+Library10=phone
+Library11=tabstripviewpager
+Library12=reflection
+Library2=appcompat
+Library3=javaobject
+Library4=xmllayoutbuilder
+Library5=jmqtt
+Library6=callsubutils
+Library7=byteconverter
+Library8=xui
+Library9=stringutils
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)
+Module1=CustomListView
+Module2=Gauge
+NumberOfFiles=6
+NumberOfLibraries=12
+NumberOfModules=2
+Version=8
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Home Smart Monitor
+	#VersionCode: 15
+	#VersionName: 1.5
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: False
+	#BridgeLogger:True
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+	#Extends: android.support.v7.app.AppCompatActivity
+	#AdditionalJar: com.android.support:support-v4
+	
+Sub Process_Globals
+	Private MQTT As MqttClient
+	Private MQTTUser As String = "vynckfaq"
+	Private MQTTPassword As String = "KHSV1Q1qSUUY"
+	Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:11816"
+	Private bc As ByteConverter
+	Private csu As CallSubUtils
+	
+End Sub
+
+Sub Globals
+	Private ACToolBarLight1 As ACToolBarLight
+	Private ToolbarHelper As ACActionBar
+	Private clv1 As CustomListView
+	Private gblACMenu As ACMenu
+	Private xui As XUI
+	Private GaugeHumidity As Gauge
+	Private GaugeTemp As Gauge
+	Private GaugeDewPoint As Gauge
+	Private GaugeHeatIndex As Gauge
+	Private lblComfort As Label
+	Private lblPerception As Label
+	Private lblLastUpdate As Label
+	Private lblPing As Label
+	Private TabStrip1 As TabStrip
+	Private lblFontAwesome As Label
+	Private GaugeAirQuality As Gauge
+	Private lblAirQuality As Label
+	Private lblAirQualityLastUpdate As Label
+	Private WebView1 As WebView 'ignore
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Try
+		If FirstTime Then
+			csu.Initialize
+			MQTT_Connect
+		End If
+		Activity.LoadLayout("Main")
+		TabStrip1.LoadLayout("1", "Temp & Humidity " & Chr(0xF2C7))
+		TabStrip1.LoadLayout("2", "Air Quality(CO) " & Chr(0xF289))
+		TabStrip1.LoadLayout("3", "Security Cam " & Chr(0xF030))
+
+		For Each lbl As Label In GetAllTabLabels(TabStrip1)
+			lbl.Typeface = Typeface.FONTAWESOME
+		Next
+		
+		Dim bd As BitmapDrawable
+		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
+		ACToolBarLight1.NavigationIconDrawable = bd
+		ToolbarHelper.Initialize
+		Dim cs As CSBuilder
+		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Home Smart Monitor").PopAll
+		ToolbarHelper.subTitle = ""
+		ToolbarHelper.ShowUpIndicator = False 'set to true to show the up arrow
+		ACToolBarLight1.InitMenuListener
+		Dim jo As JavaObject = ACToolBarLight1
+		Dim xl As XmlLayoutBuilder
+		jo.RunMethod("setPopupTheme", Array(xl.GetResourceId("style", "ToolbarMenu")))	
+		
+		GaugeHumidity.SetRanges(Array(GaugeHumidity.CreateRange(0, 70, xui.Color_RGB(100,221,23)), _
+		GaugeHumidity.CreateRange(70, 80, xui.Color_Yellow), _
+		GaugeHumidity.CreateRange(80, 100, xui.Color_Red)))
+		GaugeTemp.SetRanges(Array(GaugeTemp.CreateRange(0, 75, xui.Color_RGB(100,221,23)), _
+	    GaugeTemp.CreateRange(75, 90, xui.Color_Yellow), _
+	    GaugeTemp.CreateRange(90, 100, xui.Color_Red)))	
+		GaugeHeatIndex.SetRanges(Array(GaugeHeatIndex.CreateRange(0, 75, xui.Color_RGB(100,221,23)), _
+	    GaugeHeatIndex.CreateRange(75, 90, xui.Color_Yellow), _
+	    GaugeHeatIndex.CreateRange(90, 100, xui.Color_Red)))
+		' Dew Point	
+		' https://material.io/guidelines/style/color.html#
+		GaugeDewPoint.SetRanges(Array(GaugeDewPoint.CreateRange(0,64.4, xui.Color_RGB(100,221,23)), _ 
+		GaugeDewPoint.CreateRange(64.4,78.8, xui.Color_Yellow), _
+	    GaugeDewPoint.CreateRange(78.8, 100, xui.Color_Red)))
+		' Dew Point
+		
+		GaugeAirQuality.SetRanges(Array(GaugeTemp.CreateRange(0, 800, xui.Color_RGB(100,221,23)), _
+	    GaugeAirQuality.CreateRange(800, 1800, xui.Color_Yellow), _
+	    GaugeAirQuality.CreateRange(1800, 2000, xui.Color_Red)))	
+		
+		Dim cs As CSBuilder
+		cs.Initialize
+		lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append("No data available").PopAll
+		lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append("No data available").PopAll
+		DateTime.DateFormat = "MMMM d, h:mm:ss a"
+		lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append("").PopAll
+		lblPing.Visible = False
+		
+		lblAirQualityLastUpdate.Top = lblLastUpdate.top
+		
+		WebView1.Initialize("WebView1")
+		
+	Catch
+		ToastMessageShow(LastException,True)
+	End Try
+End Sub
+
+Sub Activity_Resume
+	Try	
+		TabStrip1.ScrollTo(0,False)
+		TabStrip1_PageSelected(0)
+	Catch
+		Log(LastException)
+	End Try
+	
+	Try
+		If MQTT.IsInitialized = False Or MQTT.Connected = False Then
+			MQTT_Connect
+		End If
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	If UserClosed = False Then
+		WebView1.StopLoading
+		WebView1.RemoveView
+	End If
+End Sub
+
+'Connect to CloudMQTT broker
+Sub MQTT_Connect
+	Try
+		Dim ClientId As String = Rnd(0, 999999999) 'create a unique id
+        MQTT.Initialize("MQTT", MQTTServerURI, ClientId)
+
+        Dim ConnOpt As MqttConnectOptions
+        ConnOpt.Initialize(MQTTUser, MQTTPassword)
+        MQTT.Connect2(ConnOpt)
+	Catch
+		AddEvent("MQTT_Connect: " & LastException)
+	End Try
+End Sub
+
+Sub MQTT_Connected (Success As Boolean)
+	Try	
+		If Success = False Then
+	        Log(LastException)
+			AddEvent("MQTT error connecting")
+	    Else
+			AddEvent("Connected to MQTT broker")
+	        MQTT.Subscribe("Cloyd", 0)
+	    End If
+	Catch
+		AddEvent("MQTT_Connected: " & LastException)
+	End Try
+    
+End Sub
+
+Private Sub MQTT_Disconnected
+	Try
+		gblACMenu.Clear
+		gblACMenu.Add(0, 0, "Restart board",Null)
+		gblACMenu.Add(0, 0, "About",Null)
+		AddEvent("Disconnected from MQTT broker")
+		MQTT_Connect
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
+Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
+	Try
+		lblPing.SetVisibleAnimated(500, True)
+		csu.CallSubPlus(Me, "HidePing", 700)
+		
+		Dim status As String 
+		status = BytesToString(Payload, 0, Payload.Length, "UTF8")
+		AddEvent(status)
+
+		Dim a() As String = Regex.Split("\|",status)
+		If a.Length = 7 Then
+			Dim cs As CSBuilder
+			cs.Initialize
+			If a(0) = "OK" Then
+				GaugeTemp.CurrentValue = a(1)
+				GaugeHumidity.CurrentValue = a(2)
+				lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append(GetPerception(a(3))).PopAll
+				lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
+				GaugeHeatIndex.CurrentValue = a(5)
+				GaugeDewPoint.CurrentValue = a(6)
+			Else
+				GaugeTemp.CurrentValue = 50
+				GaugeHumidity.CurrentValue = 50
+				lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
+				lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
+				GaugeHeatIndex.CurrentValue = 50
+				GaugeDewPoint.CurrentValue = 50
+			End If
+			DateTime.DateFormat = "MMMM d, h:mm:ss a"
+			lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
+		End If
+	Catch
+		AddEvent("MQTT_MessageArrived: " & LastException)
+	End Try
+End Sub
+
+Sub GetPerception(DHT11Perception As String) As String
+	' Return value       Dew point                        Human perception[6]
+	'    7         Over 26 °C (>78.8°F)     Severely high, even deadly For asthma related illnesses
+	'    6         24–26 °C (75.2-78.8°F)   Extremely uncomfortable, oppressive
+	'    5         21–24 °C (69.8-75.2°F)   Very humid, quite uncomfortable
+	'    4         18–21 °C (64.4-69.8°F)   Somewhat uncomfortable For most people at upper limit
+	'    3         16–18 °C (60.8-64.4°F)   OK For most, but everyone perceives the humidity at upper limit
+	'    2         13–16 °C (55.4-60.8°F)   Comfortable
+	'    1         10–12 °C (50-53.6°F)     Very comfortable
+	'    0         Under 10 °C (<50°F)      Feels like the western US, a Bit dry To some
+	
+	Dim localperception As String
+	Select Case DHT11Perception
+		Case 0
+			localperception = "Feels like the western US, a bit dry to some"
+		Case 1
+			localperception = "Very comfortable"
+		Case 2
+			localperception = "Comfortable"
+		Case 3
+			localperception = "OK but everyone perceives the humidity at upper limit"
+		Case 4
+			localperception = "Somewhat uncomfortable for most people at upper limit"
+		Case 5
+			localperception = "Very humid, quite uncomfortable"
+		Case 6
+			localperception = "Extremely uncomfortable, oppressive"
+		Case 7
+			localperception = "Severely high, even deadly for asthma related illnesses"
+	End Select
+	Return localperception
+End Sub
+
+Sub GetComfort(DHT11ComfortStatus As String) As String
+	Dim localcomfortstatus As String
+	Select Case DHT11ComfortStatus
+		Case 0
+			localcomfortstatus = "OK"
+		Case 1
+			localcomfortstatus = "Too hot"
+		Case 2
+			localcomfortstatus = "Too cold"
+		Case 4
+			localcomfortstatus = "Too dry"
+		Case 5
+			localcomfortstatus = "Hot and dry"
+		Case 6
+			localcomfortstatus = "Cold and dry"
+		Case 8
+			localcomfortstatus = "Too humid"
+		Case 9
+			localcomfortstatus = "Hot and humid"
+		Case 10
+			localcomfortstatus = "Cold and humid"
+		Case Else
+			localcomfortstatus = "Unknown"
+	End Select
+	Return localcomfortstatus
+End Sub
+
+Sub AddEvent(text As String)
+	Try
+		DateTime.DateFormat = "MMM d h:mm:ss a"
+		clv1.AddTextItem(DateTime.Date(DateTime.Now) & ": " & text, text)
+		Sleep(100)
+		clv1.ScrollToItem(clv1.Size-1)
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
+Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
+	Try
+		If Item.Title = "About" Then
+			ShowAboutMenu
+		else if Item.Title = "Restart board" Then
+			Try
+				Dim result As Int
+				Dim bd As BitmapDrawable
+				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
+				result = Msgbox2("Restart the controller?", "Home Smart Monitor", "Yes", "", "No", bd.Bitmap)
+				If result = DialogResponse.POSITIVE Then
+					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
+						MQTT_Connect
+					End If
+					MQTT.Publish("Cloyd", bc.StringToBytes("Restart controller", "utf8"))
+				End If
+			Catch
+				AddEvent(LastException)
+			End Try
+		End If
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
+Sub ShowAboutMenu
+	Try
+		Dim bd As BitmapDrawable
+		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
+		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 27, 2018", "About", "OK", "", "", bd.Bitmap)
+	Catch
+		Log(LastException)
+	End Try
+	
+End Sub
+
+Sub GetVersionCode() As String
+	Dim AppVersion As String
+	Try
+		Dim pm As PackageManager
+	    Dim packageName As String
+	    packageName =  Application.PackageName
+	    AppVersion = pm.GetVersionName(packageName)
+	Catch
+		Log(LastException)
+	End Try
+	Return AppVersion
+End Sub
+
+Sub Activity_Createmenu(Menu As ACMenu)
+	Try
+		Menu.Clear
+		gblACMenu = Menu
+		Menu.Add(0, 0, "Restart board",Null)
+		Menu.Add(0, 0, "About",Null)
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
+Private Sub HidePing
+	lblPing.SetVisibleAnimated(200, False)
+End Sub
+
+#If Java
+
+public boolean _onCreateOptionsMenu(android.view.Menu menu) {
+    if (processBA.subExists("activity_createmenu")) {
+        processBA.raiseEvent2(null, true, "activity_createmenu", false, new de.amberhome.objects.appcompat.ACMenuWrapper(menu));
+        return true;
+    }
+    else
+        return false;
+}
+#End If
+
+Sub TabStrip1_PageSelected (Position As Int)
+	If Position = 2 Then
+		WebView1.JavaScriptEnabled = True
+		Activity.addview(WebView1,0dip,108dip,100%x,100%y)
+		WebView1.LoadURL("http://cloyd.mynetgear.com")
+		WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
+	Else
+		WebView1.StopLoading
+		WebView1.RemoveView
+	End If
+End Sub
+
+Public Sub GetAllTabLabels (tabstrip As TabStrip) As List
+	Dim jo As JavaObject = tabstrip
+	Dim r As Reflector
+	r.Target = jo.GetField("tabStrip")
+	Dim tc As Panel = r.GetField("tabsContainer")
+	Dim res As List
+	res.Initialize
+	For Each v As View In tc
+		If v Is Label Then res.Add(v)
+	Next
+	Return res
+End Sub
+
+Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
+	If KeyCode = KeyCodes.KEYCODE_BACK Then
+		If TabStrip1.CurrentPage = 2 Then
+			TabStrip1.ScrollTo(1,True)
+			TabStrip1_PageSelected(1)
+			Return True
+		Else If TabStrip1.CurrentPage = 1 Then
+			TabStrip1.ScrollTo(0,True)
+			TabStrip1_PageSelected(0)
+			Return True
+		End If
+	End If
+	
+End Sub
+
+Sub WebView1_PageFinished (Url As String)
+	Dim Obj1 As Reflector
+	Dim s As String 'ignore
+	Dim f As Float 'ignore
+
+	Obj1.Target = WebView1
+	s = Obj1.TypeName
+	f = Obj1.RunMethod("getScale")
+
+	Obj1.Target = WebView1
+	Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
+End Sub

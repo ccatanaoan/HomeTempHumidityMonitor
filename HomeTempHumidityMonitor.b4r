@@ -2,12 +2,11 @@
 NumberOfModules=0
 Build1=Default,B4RDev
 NumberOfFiles=0
-NumberOfLibraries=5
+NumberOfLibraries=4
 Library1=rcore
 Library2=resp8266
 Library3=resp8266wifi
 Library4=rmqtt
-Library5=rrandomaccessfile
 @EndOfDesignText@
 ' Home Weather Station Using DHT22 (AM2302)
 '
@@ -230,7 +229,7 @@ void ReadDHT1(B4R::Object* o) {
 	 b4r_main::_dht22state = dht22.getStatus();
 	 // Add 12 percent based on home hygrometer.
  	 float humidity = dht22.getHumidity() + 13;
- 	 float temperature = dht22.toFahrenheit(dht22.getTemperature());
+ 	 float temperature = dht22.toFahrenheit(dht22.getTemperature()) + 0.5;
      b4r_main::_dht22hum  = humidity; 
      b4r_main::_dht22temp = temperature; 
 	 b4r_main::_dht22heatindex = dht22.computeHeatIndex(temperature, humidity, true);
