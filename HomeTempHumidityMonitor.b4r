@@ -68,9 +68,7 @@ Sub Process_Globals
 	Private ESP As ESP8266
 	Private WiFiSSID As String = "Rise Above This Home"
 	Private WiFiPassword As String = "SteelReserve"
-	Public Timer1 As Timer                    'Timer for reading DHT22 measures at desired interval
 	Public DHT22pin As Pin                    ' ESP8266 Pin connected to DHT22 signal
-	Public Interval As Int                    'Interval as seconds
 	Private d3pins As D1Pins
 	Public DHT22Temp As Double
 	Public DHT22Hum As Double
@@ -85,7 +83,7 @@ Sub Process_Globals
 End Sub
 
 Private Sub AppStart
-	Serial1.Initialize(115200)
+	Serial1.Initialize(74880)
 	Delay(3000)
 	Log("AppStart")
 	' Pin 2 is the blue LED
@@ -101,22 +99,19 @@ Private Sub AppStart
 	' Connect to WiFi
 	ConnectToWifi
 
-	' Connect to CloudMQTT broker
+	' Connect to cloud MQTT broker
 	Dim ClientId As String = Rnd(0, 999999999) 'create a unique id
 	MQTT.Initialize2(WiFiStr.stream, MQTTHostName, MQTTPort, ClientId, "MQTT_MessageArrived", "MQTT_Disconnected")
 	MQTTOpt.Initialize(MQTTUser, MQTTPassword)
 	MQTT_Connect(0)
 	
 	' Loop for DHT22 reading
-	Interval = 5                                        '5 sec Timer Interval
-	DHT22pin.Initialize(d3pins.D3, DHT22pin.MODE_INPUT) 'Initialize at Arduino Pin 3
-	Timer1.Initialize("Timer1_Tick", Interval * 1000)
+	DHT22pin.Initialize(d3pins.D3, DHT22pin.MODE_INPUT) 
 	RunNative("setup",Null)
-	Timer1.Enabled=True
-	
-	' Init the pin with MQ-7 connected
+	ReadWeather(0)
+		
+	' Loop for MQ-7 reading
 	MQ7Pin.Initialize(MQ7PinNumber, MQ7Pin.MODE_INPUT)
-
 	Preparation1(0)
 End Sub
 
@@ -124,6 +119,7 @@ Sub MQTT_Connect(Unused As Byte)
 	If WiFi.IsConnected = False Then
 		ConnectToWifi
 	End If
+	
 	If MQTT.Connect = False Then
 		Log("Connecting to broker")
 		MQTT.Connect2(MQTTOpt)
@@ -139,6 +135,7 @@ End Sub
 Sub mqtt_MessageArrived (Topic As String, Payload() As Byte)
 	pin16.DigitalWrite(False)
 	Log("Message arrived. Topic=", Topic, " Payload=", Payload)
+	
 	If Topic = "TempHumid" Then
 		If Payload = "Restart controller" Then
 			MQTT.Publish("TempHumid","*Restarting relay by remote")
@@ -151,7 +148,6 @@ Sub mqtt_MessageArrived (Topic As String, Payload() As Byte)
 			MQTT.Publish("MQ7",s)
 		End If
 	End If
-
 End Sub
 
 Sub mqtt_Disconnected
@@ -165,14 +161,14 @@ Sub ConnectToWifi
 	WiFi.Connect2(WiFiSSID, WiFiPassword)
 
 	If WiFi.IsConnected Then
-		Log("Connected to WiFi, Local IP ", WiFi.LocalIp)
+		Log("Connected to ",WiFiSSID," network, Local IP ", WiFi.LocalIp)
 	Else
 		Log("Not Connected to WiFi")
 	End If
 End Sub
 
-Sub Timer1_Tick
-	RunNative("ReadDHT1",Null)
+Sub ReadWeather(tag As Byte)
+	RunNative("ReadDHT22",Null)
 
 	Dim localstate As String
 	Select Case DHT22State
@@ -248,6 +244,8 @@ Sub Timer1_Tick
 		Log("Sending TempHumid to MQTT: ",s)
  		MQTT.Publish("TempHumid",s)
 	End If
+	
+	CallSubPlus("ReadWeather",5000,0)
 End Sub
 
 Sub Preparation1(tag As Byte)
@@ -280,8 +278,10 @@ Sub ReadSensor2(tag As Byte)
 	
 	Dim s As String
 	s = JoinStrings(Array As String(rawvoltage))
-	Log("Sending MQ7 to MQTT: ",s)
-	MQTT.Publish("MQ7",s)
+	Log("Sending ppm via MQTT: ",s)
+	If WiFi.IsConnected Then 
+		MQTT.Publish("MQ7",s)
+	End If
 	
 	' Detecting range: 20ppm-2000ppm carbon monoxide
 	' Air quality-cases: < 200 perfect | 200 - 800 normal | > 800 - 1800 high | > 1800 abnormal
@@ -298,11 +298,6 @@ Sub ReadSensor2(tag As Byte)
 	End If
 	Log("*************************")
 	
-	Dim s As String
-	s = JoinStrings(Array As String(rawvoltage))
-	Log("Sending MQ7 to MQTT: ",s)
-	MQTT.Publish("MQ7",s)
-	
 	CallSubPlus("Preparation1",1000,0)
 End Sub
 
@@ -318,7 +313,11 @@ void setup(B4R::Object* o){
 	dht22.setup(DHT22Pin);
 }
 
-void ReadDHT1(B4R::Object* o) {
+ void SetSTA(B4R::Object* o) {
+   WiFi.mode(WIFI_STA);
+}
+
+void ReadDHT22(B4R::Object* o) {
 	 b4r_main::_dht22state = dht22.getStatus();
 	 // Add 12 percent based on home hygrometer.
  	 float humidity = dht22.getHumidity() + 13;
@@ -364,11 +363,4 @@ void ReadDHT1(B4R::Object* o) {
 	  };
   }
 #End If
-
-#if C
-void SetSTA(B4R::Object* o) {
-   WiFi.mode(WIFI_STA);
-}
-#end if
-
 

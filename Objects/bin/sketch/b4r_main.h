@@ -29,9 +29,7 @@ static Int _mqttport;
 static B4R::B4RESP8266* _esp;
 static B4R::B4RString* _wifissid;
 static B4R::B4RString* _wifipassword;
-static B4R::Timer* _timer1;
 static B4R::Pin* _dht22pin;
-static Int _interval;
 static B4R::D1Pins* _d3pins;
 static Double _dht22temp;
 static Double _dht22hum;
@@ -45,7 +43,7 @@ static Byte _mq7pinnumber;
 static UInt _readvoltage;
 static void _readsensor1(Byte _tag);
 static void _readsensor2(Byte _tag);
-static void _timer1_tick();
+static void _readweather(Byte _tag);
 };
 
 #endif
