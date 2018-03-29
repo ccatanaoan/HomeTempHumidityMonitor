@@ -1,5 +1,5 @@
 # Cloyd Smart Home Monitor System
-I wrote and developed these ESP8266 programs and Android mobile application client for our home automation. The mobile application can remotely control and monitor the live stream camera and sensors via cloud MQTT. 
+I wrote and developed these ESP8266 programs and Android mobile application client for our home automation. The mobile application can remotely control and monitor the live stream camera and sensors via cloud MQTT anywhere in the world. 
 
 I used one ESP8266 microcontroller for the Arduino camera video streaming as it is process-intensive. And another one to power and read the DHT22 and MQ-7 sensors. The Android app and the two microcontrollers subscribe to their own topics and publish payloads (MQTT) to communicate and sync up with each other.
 
