@@ -3,11 +3,11 @@ I wrote and developed these ESP8266 programs and Android mobile application clie
 
 I used one ESP8266 microcontroller for the Arduino camera video streaming as it is process-intensive. And another one to power and read the DHT22 and MQ-7 sensors. The Android app and the two microcontrollers subscribe to their own topics and publish payloads (MQTT) to communicate and sync up with each other.
 
-This project has started as a simple home weather station but turned in to a full-blown home smart monitoring system. :+1:
+This project has started as a simple home weather station but turned in to a full-blown smart home monitoring system. :+1:
 
 The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated TCP/IP protocol stack that can give any microcontroller access to the WiFi network.
 
-### Information sent from the sensors at home to the Android mobile app via cloud MQTT
+### Data sent from the sensors at home to the Android mobile app via cloud MQTT
 - Carbon monoxide level in parts per million (ppm)
 - Air quality based on ppm level
 - Live security camera video stream
@@ -29,6 +29,6 @@ The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated
 * MQ-7 Carbon monoxide Sensor
 * Arduino camera 2 MP
 
-### Mobile application used for Internet of Things (IoT):
+### Mobile application and protocols used for Internet of Things (IoT):
 - Custom-made Android mobile application
 - Cloud MQTT
