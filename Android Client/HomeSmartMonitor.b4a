@@ -35,8 +35,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Home Smart Monitor
-	#VersionCode: 15
-	#VersionName: 1.5
+	#VersionCode: 16
+	#VersionName: 1.6
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -129,6 +129,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		GaugeAirQuality.SetRanges(Array(GaugeTemp.CreateRange(0, 800, xui.Color_RGB(100,221,23)), _
 	    GaugeAirQuality.CreateRange(800, 1800, xui.Color_Yellow), _
 	    GaugeAirQuality.CreateRange(1800, 2000, xui.Color_Red)))	
+		GaugeAirQuality.CurrentValue=0
 		
 		Dim cs As CSBuilder
 		cs.Initialize
@@ -192,7 +193,8 @@ Sub MQTT_Connected (Success As Boolean)
 			AddEvent("MQTT error connecting")
 	    Else
 			AddEvent("Connected to MQTT broker")
-	        MQTT.Subscribe("Cloyd", 0)
+	        MQTT.Subscribe("TempHumid", 0)
+			MQTT.Subscribe("MQ7", 0)
 	    End If
 	Catch
 		AddEvent("MQTT_Connected: " & LastException)
@@ -214,38 +216,74 @@ End Sub
 
 Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 	Try
-		lblPing.SetVisibleAnimated(500, True)
-		csu.CallSubPlus(Me, "HidePing", 700)
+		If Topic = "TempHumid" Then
+			lblPing.SetVisibleAnimated(500, True)
+			csu.CallSubPlus(Me, "HidePing", 700)
 		
-		Dim status As String 
-		status = BytesToString(Payload, 0, Payload.Length, "UTF8")
-		AddEvent(status)
+			Dim status As String
+			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
+			AddEvent(status)
 
-		Dim a() As String = Regex.Split("\|",status)
-		If a.Length = 7 Then
+			Dim a() As String = Regex.Split("\|",status)
+			If a.Length = 7 Then
+				Dim cs As CSBuilder
+				cs.Initialize
+				If a(0) = "OK" Then
+					GaugeTemp.CurrentValue = a(1)
+					GaugeHumidity.CurrentValue = a(2)
+					lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append(GetPerception(a(3))).PopAll
+					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
+					GaugeHeatIndex.CurrentValue = a(5)
+					GaugeDewPoint.CurrentValue = a(6)
+				Else
+					GaugeTemp.CurrentValue = 50
+					GaugeHumidity.CurrentValue = 50
+					lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
+					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
+					GaugeHeatIndex.CurrentValue = 50
+					GaugeDewPoint.CurrentValue = 50
+				End If
+				DateTime.DateFormat = "MMMM d, h:mm:ss a"
+				lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
+			End If
+		Else If Topic = "MQ7" Then
+			Dim status As String
 			Dim cs As CSBuilder
 			cs.Initialize
-			If a(0) = "OK" Then
-				GaugeTemp.CurrentValue = a(1)
-				GaugeHumidity.CurrentValue = a(2)
-				lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append(GetPerception(a(3))).PopAll
-				lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
-				GaugeHeatIndex.CurrentValue = a(5)
-				GaugeDewPoint.CurrentValue = a(6)
+			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
+			Log("MQ7 status: " & status)
+			If status > 0 Then
+				GaugeAirQuality.CurrentValue = status
+				lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(status)).PopAll
+				DateTime.DateFormat = "MMMM d, h:mm:ss a"
+				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
 			Else
-				GaugeTemp.CurrentValue = 50
-				GaugeHumidity.CurrentValue = 50
-				lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
-				lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
-				GaugeHeatIndex.CurrentValue = 50
-				GaugeDewPoint.CurrentValue = 50
+				GaugeAirQuality.CurrentValue = 0
+				lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
+				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
 			End If
-			DateTime.DateFormat = "MMMM d, h:mm:ss a"
-			lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
+			
 		End If
+		
 	Catch
 		AddEvent("MQTT_MessageArrived: " & LastException)
 	End Try
+End Sub
+
+Sub GetAirQuality(number As Int) As String
+	' Detecting range: 20ppm-2000ppm carbon monoxide
+	' Air quality-cases: < 200 perfect | 200 - 800 normal | > 800 - 1800 high | > 1800 abnormal
+	If number <= 200 Then
+		Return("Carbon monoxide perfect")
+	else if ((number > 200) And (number < 800)) Or number = 800 Then
+		Return("Carbon monoxide normal")
+	else if ((number > 800) And (number < 1800)) Or number = 1800 Then
+		Return("Carbon monoxide high")
+	else If number > 1800 Then
+		Return("ALARM Carbon monoxide very high")
+	Else
+		Return("MQ-7 - cant read any value - check the sensor!")
+	End If
 End Sub
 
 Sub GetPerception(DHT11Perception As String) As String
@@ -333,7 +371,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 						MQTT_Connect
 					End If
-					MQTT.Publish("Cloyd", bc.StringToBytes("Restart controller", "utf8"))
+					MQTT.Publish("TempHumid", bc.StringToBytes("Restart controller", "utf8"))
 				End If
 			Catch
 				AddEvent(LastException)
@@ -348,7 +386,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 27, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 28, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -404,6 +442,9 @@ Sub TabStrip1_PageSelected (Position As Int)
 	Else
 		WebView1.StopLoading
 		WebView1.RemoveView
+	End If
+	If Position = 1 Then
+		MQTT.Publish("MQ7", bc.StringToBytes("Read voltage", "utf8"))
 	End If
 End Sub
 

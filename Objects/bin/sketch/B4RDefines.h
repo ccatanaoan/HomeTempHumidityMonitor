@@ -10,7 +10,7 @@
 #include <Print.h>
 #include <Client.h>
 #define AUTO_FLUSH_LOGS true
-#define STACK_BUFFER_SIZE 600
+#define STACK_BUFFER_SIZE 2000
 #if defined(ESP_H) || PLATFORM_ID == 0xAE
 	#define B4R_MEMORY_ALIGNMENT 3
 #else
@@ -25,7 +25,6 @@
 #include "rESP8266.h"
 #include "rESP8266WiFi.h"
 #include "rMQTT.h"
-#include "rRandomAccessFile.h"
 
 
 #include "b4r_main.h"

@@ -25,10 +25,29 @@ Library4=rmqtt
 '          GRD -      ->        GRD
 '          VCC +      ->        3.3V
 
+'************************************************************************
+
+' Carbon Monoxide (CO) Monitor Using MQ-7 sensor
+'
+' I used the following sites To help me reach the outcome:
+'
+' Gas Sensor "Carbon Monoxide" - MQ-7 aka "Flying-Fish" - https://www.hackster.io/ingo-lohs/gas-sensor-carbon-monoxide-mq-7-aka-flying-fish-e58457
+' ARDUINO CO MONITOR USING MQ-7 SENSOR - http://www.instructables.com/id/Arduino-CO-Monitor-Using-MQ-7-Sensor/
+
+' MQ-7 Carbon Monoxide Sensor: It is sensitive To gases like Alcohol (hand sanitizer), Butane (a lighter) And Difluoroethane (compressed "air" duster), among other gasses. 
+' Datasheet found here: http://cvrr.ucsd.edu/ece156/ECE156Sensors/Carbon_Monoxide.pdf
+
+'     MQ-7 Sensor    ->      ESP8266
+'         A0         ->        A0
+'         D0         ->        D0
+'         VCC        ->        VIN (5.5V)
+'         GRD        ->        GRD
+
+
 #Region Project Attributes
 	#AutoFlushLogs: True
 	#CheckArrayBounds: True
-	#StackBufferSize: 600
+	#StackBufferSize: 2000
 #End Region
 
 Sub Process_Globals
@@ -60,6 +79,9 @@ Sub Process_Globals
 	Public DHT22DewPoint As Double
 	Public DHT22Perception As Int
 	Public DHT22ComfortStatus As Int
+	Private MQ7Pin As Pin                 ' Output pin connected from the MQ-7 sensor
+	Private MQ7PinNumber As Byte = 0x00   ' Pin number used is A0 (Analog)
+	Private readVoltage As UInt
 End Sub
 
 Private Sub AppStart
@@ -91,6 +113,11 @@ Private Sub AppStart
 	Timer1.Initialize("Timer1_Tick", Interval * 1000)
 	RunNative("setup",Null)
 	Timer1.Enabled=True
+	
+	' Init the pin with MQ-7 connected
+	MQ7Pin.Initialize(MQ7PinNumber, MQ7Pin.MODE_INPUT)
+
+	Preparation1(0)
 End Sub
 
 Sub MQTT_Connect(Unused As Byte)
@@ -104,17 +131,27 @@ Sub MQTT_Connect(Unused As Byte)
 	Else
 		pin16.DigitalWrite(False)
 		Log("Connected to broker")
-		MQTT.Subscribe("Cloyd", 0)
+		MQTT.Subscribe("TempHumid", 0)
+		MQTT.Subscribe("MQ7", 0)
 	End If
 End Sub
 
 Sub mqtt_MessageArrived (Topic As String, Payload() As Byte)
 	pin16.DigitalWrite(False)
 	Log("Message arrived. Topic=", Topic, " Payload=", Payload)
-	If Payload = "Restart controller" Then
-		MQTT.Publish("Cloyd","*Restarting relay by remote")
-		ESP.Restart
+	If Topic = "TempHumid" Then
+		If Payload = "Restart controller" Then
+			MQTT.Publish("TempHumid","*Restarting relay by remote")
+			ESP.Restart
+		End If
+	Else If Topic = "MQ7" Then
+		If Payload = "Read voltage" Then
+			Dim s As String
+			s = JoinStrings(Array As String(readVoltage))
+			MQTT.Publish("MQ7",s)
+		End If
 	End If
+
 End Sub
 
 Sub mqtt_Disconnected
@@ -208,9 +245,65 @@ Sub Timer1_Tick
 	If WiFi.IsConnected Then
 		Dim s As String  
 		s = JoinStrings(Array As String(localstate,"|",DHT22Temp, "|",DHT22Hum , "|",DHT22Perception, "|", DHT22ComfortStatus, "|", DHT22HeatIndex,"|", DHT22DewPoint))
-		Log("Sending to MQTT: ",s)
-		MQTT.Publish("Cloyd",s)
+		Log("Sending TempHumid to MQTT: ",s)
+ 		MQTT.Publish("TempHumid",s)
 	End If
+End Sub
+
+Sub Preparation1(tag As Byte)
+	Log("Turn the heater fully on")
+	MQ7Pin.AnalogWrite(255) ' HIGH = 255
+	Log("Heat for 1 min")
+	CallSubPlus("Preparation2",60000,0)
+End Sub
+
+Sub Preparation2(tag As Byte)
+	Log("Now reducing the heating power: turn the heater to approx 1.4V")
+	MQ7Pin.AnalogWrite(71.4) ' 255x1400/5000
+	Log("Heat for 90 sec")
+	CallSubPlus("ReadSensor1",90000,0)
+End Sub
+
+Sub ReadSensor1(tag As Byte)
+	Log("We need to read the sensor at 5V, but must not let it heat up. So hurry!")
+	MQ7Pin.AnalogWrite(255)
+	Log("Delay for 50 milli")
+	CallSubPlus("ReadSensor2",50,0) ' Getting an analog read apparently takes 100uSec
+End Sub
+
+Sub ReadSensor2(tag As Byte)
+	Dim rawvoltage As UInt = MQ7Pin.AnalogRead
+	
+	Log("*************************")
+	Log("MQ-7 PPM: ",rawvoltage)
+	readVoltage = rawvoltage
+	
+	Dim s As String
+	s = JoinStrings(Array As String(rawvoltage))
+	Log("Sending MQ7 to MQTT: ",s)
+	MQTT.Publish("MQ7",s)
+	
+	' Detecting range: 20ppm-2000ppm carbon monoxide
+	' Air quality-cases: < 200 perfect | 200 - 800 normal | > 800 - 1800 high | > 1800 abnormal
+	If rawvoltage <= 200 Then
+		Log("Air-Quality: CO perfect")
+	else if ((rawvoltage > 200) And (rawvoltage < 800)) Or rawvoltage = 800 Then
+		Log("Air-Quality: CO normal")
+	else if ((rawvoltage > 800) And (rawvoltage < 1800)) Or rawvoltage = 1800 Then
+		Log("Air-Quality: CO high")
+	else If rawvoltage > 1800 Then
+		Log("Air-Quality: ALARM CO very high")
+	Else
+		Log("MQ-7 - cant read any value - check the sensor!")
+	End If
+	Log("*************************")
+	
+	Dim s As String
+	s = JoinStrings(Array As String(rawvoltage))
+	Log("Sending MQ7 to MQTT: ",s)
+	MQTT.Publish("MQ7",s)
+	
+	CallSubPlus("Preparation1",1000,0)
 End Sub
 
 #If C
