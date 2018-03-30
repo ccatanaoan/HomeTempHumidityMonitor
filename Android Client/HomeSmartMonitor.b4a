@@ -128,9 +128,10 @@ Sub Activity_Create(FirstTime As Boolean)
 	    GaugeDewPoint.CreateRange(78.8, 100, xui.Color_Red)))
 		' Dew Point
 		
-		GaugeAirQuality.SetRanges(Array(GaugeTemp.CreateRange(0, 800, xui.Color_RGB(100,221,23)), _
-	    GaugeAirQuality.CreateRange(800, 1800, xui.Color_Yellow), _
-	    GaugeAirQuality.CreateRange(1800, 2000, xui.Color_Red)))	
+		GaugeAirQuality.SetRanges(Array(GaugeTemp.CreateRange(0, 100, xui.Color_RGB(100,221,23)), _
+		GaugeAirQuality.CreateRange(100, 400, xui.Color_Green), _
+	    GaugeAirQuality.CreateRange(400, 900, xui.Color_Yellow), _
+	    GaugeAirQuality.CreateRange(900, 1000, xui.Color_Red)))	
 		GaugeAirQuality.CurrentValue=0
 		
 		Dim cs As CSBuilder
@@ -276,13 +277,13 @@ End Sub
 Sub GetAirQuality(number As Int) As String
 	' Detecting range: 20ppm-2000ppm carbon monoxide
 	' Air quality-cases: < 200 perfect | 200 - 800 normal | > 800 - 1800 high | > 1800 abnormal
-	If number <= 200 Then
+	If number <= 100 Then
 		Return("Carbon monoxide perfect")
-	else if ((number > 200) And (number < 800)) Or number = 800 Then
+	else if ((number > 100) And (number < 400)) Or number = 400 Then
 		Return("Carbon monoxide normal")
-	else if ((number > 800) And (number < 1800)) Or number = 1800 Then
+	else if ((number > 400) And (number < 900)) Or number = 900 Then
 		Return("Carbon monoxide high")
-	else If number > 1800 Then
+	else If number > 900 Then
 		Return("ALARM Carbon monoxide very high")
 	Else
 		Return("MQ-7 - cant read any value - check the sensor!")

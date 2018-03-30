@@ -66,7 +66,7 @@ Sub Process_Globals
 	Private MQTTHostName As String = "m14.cloudmqtt.com"
 	Private MQTTPort As Int = 11816
 	Private ESP As ESP8266
-	Private WiFiSSID As String = "Rise Above This Home" 
+	Private WiFiSSID As String = "Rise Above This Home"
 	Private WiFiPassword As String = "SteelReserve" 
 	Public DHT22pin As Pin                    ' ESP8266 Pin connected to DHT22 signal
 	Private d3pins As D1Pins
@@ -250,31 +250,31 @@ End Sub
 
 Sub Preparation1(tag As Byte)
 	Log("Turn the heater fully on")
-	MQ7Pin.AnalogWrite(255) ' HIGH = 255
+	MQ7Pin.AnalogWrite(1024) ' HIGH = 1024
 	Log("Heat for 1 min")
 	CallSubPlus("Preparation2",60000,0)
 End Sub
 
 Sub Preparation2(tag As Byte)
-	Log("Now reducing the heating power: turn the heater to approx 1.4V")
-	MQ7Pin.AnalogWrite(71.4) ' 255x1400/5000
+	Log("Now reducing the heating power: turn the heater to approx 1.5V")
+	MQ7Pin.AnalogWrite(307.2) ' 1024x1500/5000; 1024 is Arduino 5V's steps, 1500/5000 got from 1.5V/5V
 	Log("Heat for 90 sec")
 	CallSubPlus("ReadSensor1",90000,0)
 End Sub
 
 Sub ReadSensor1(tag As Byte)
 	Log("We need to read the sensor at 5V, but must not let it heat up. So hurry!")
-	MQ7Pin.AnalogWrite(255)
+	MQ7Pin.AnalogWrite(1024)
 	Log("Delay for 50 milli")
 	CallSubPlus("ReadSensor2",50,0) ' Getting an analog read apparently takes 100uSec
 End Sub
 
 Sub ReadSensor2(tag As Byte)
-	Dim rawvoltage As UInt = MQ7Pin.AnalogRead
+	Dim rawvoltage As UInt = MQ7Pin.AnalogRead / 2
 	
 	Log("*************************")
 	Log("MQ-7 PPM: ",rawvoltage)
-	readVoltage = rawvoltage
+	readVoltage = rawvoltage 
 	
 	Dim s As String
 	s = JoinStrings(Array As String(rawvoltage))
@@ -285,13 +285,13 @@ Sub ReadSensor2(tag As Byte)
 	
 	' Detecting range: 20ppm-2000ppm carbon monoxide
 	' Air quality-cases: < 200 perfect | 200 - 800 normal | > 800 - 1800 high | > 1800 abnormal
-	If rawvoltage <= 200 Then
+	If rawvoltage <= 100 Then
 		Log("Air-Quality: CO perfect")
-	else if ((rawvoltage > 200) And (rawvoltage < 800)) Or rawvoltage = 800 Then
+	else if ((rawvoltage > 100) And (rawvoltage < 400)) Or rawvoltage = 400 Then
 		Log("Air-Quality: CO normal")
-	else if ((rawvoltage > 800) And (rawvoltage < 1800)) Or rawvoltage = 1800 Then
+	else if ((rawvoltage > 400) And (rawvoltage < 900)) Or rawvoltage = 900 Then
 		Log("Air-Quality: CO high")
-	else If rawvoltage > 1800 Then
+	else If rawvoltage > 900 Then
 		Log("Air-Quality: ALARM CO very high")
 	Else
 		Log("MQ-7 - cant read any value - check the sensor!")

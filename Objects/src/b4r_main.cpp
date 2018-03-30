@@ -254,8 +254,8 @@ const UInt cp = B4R::StackMemory::cp;
  //BA.debugLineNum = 241;BA.debugLine="Sub Preparation1(tag As Byte)";
  //BA.debugLineNum = 242;BA.debugLine="Log(\"Turn the heater fully on\")";
 B4R::Common::LogHelper(1,102,F("Turn the heater fully on"));
- //BA.debugLineNum = 243;BA.debugLine="MQ7Pin.AnalogWrite(255) ' HIGH = 255";
-b4r_main::_mq7pin->AnalogWrite((UInt) (255));
+ //BA.debugLineNum = 243;BA.debugLine="MQ7Pin.AnalogWrite(1024) ' HIGH = 1024";
+b4r_main::_mq7pin->AnalogWrite((UInt) (1024));
  //BA.debugLineNum = 244;BA.debugLine="Log(\"Heat for 1 min\")";
 B4R::Common::LogHelper(1,102,F("Heat for 1 min"));
  //BA.debugLineNum = 245;BA.debugLine="CallSubPlus(\"Preparation2\",60000,0)";
@@ -267,9 +267,9 @@ void b4r_main::_preparation2(Byte _tag){
 const UInt cp = B4R::StackMemory::cp;
  //BA.debugLineNum = 248;BA.debugLine="Sub Preparation2(tag As Byte)";
  //BA.debugLineNum = 249;BA.debugLine="Log(\"Now reducing the heating power: turn the hea";
-B4R::Common::LogHelper(1,102,F("Now reducing the heating power: turn the heater to approx 1.4V"));
- //BA.debugLineNum = 250;BA.debugLine="MQ7Pin.AnalogWrite(71.4) ' 255x1400/5000";
-b4r_main::_mq7pin->AnalogWrite((UInt) (71.4));
+B4R::Common::LogHelper(1,102,F("Now reducing the heating power: turn the heater to approx 1.5V"));
+ //BA.debugLineNum = 250;BA.debugLine="MQ7Pin.AnalogWrite(307.2) ' 1024x1500/5000; 1024";
+b4r_main::_mq7pin->AnalogWrite((UInt) (307.2));
  //BA.debugLineNum = 251;BA.debugLine="Log(\"Heat for 90 sec\")";
 B4R::Common::LogHelper(1,102,F("Heat for 90 sec"));
  //BA.debugLineNum = 252;BA.debugLine="CallSubPlus(\"ReadSensor1\",90000,0)";
@@ -348,8 +348,8 @@ const UInt cp = B4R::StackMemory::cp;
  //BA.debugLineNum = 255;BA.debugLine="Sub ReadSensor1(tag As Byte)";
  //BA.debugLineNum = 256;BA.debugLine="Log(\"We need to read the sensor at 5V, but must n";
 B4R::Common::LogHelper(1,102,F("We need to read the sensor at 5V, but must not let it heat up. So hurry!"));
- //BA.debugLineNum = 257;BA.debugLine="MQ7Pin.AnalogWrite(255)";
-b4r_main::_mq7pin->AnalogWrite((UInt) (255));
+ //BA.debugLineNum = 257;BA.debugLine="MQ7Pin.AnalogWrite(1024)";
+b4r_main::_mq7pin->AnalogWrite((UInt) (1024));
  //BA.debugLineNum = 258;BA.debugLine="Log(\"Delay for 50 milli\")";
 B4R::Common::LogHelper(1,102,F("Delay for 50 milli"));
  //BA.debugLineNum = 259;BA.debugLine="CallSubPlus(\"ReadSensor2\",50,0) ' Getting an anal";
@@ -365,8 +365,8 @@ B4R::B4RString* be_ann179_11e1[1];
 B4R::Array be_ann179_11e2;
 B4R::B4RString be_ann182_4;
  //BA.debugLineNum = 262;BA.debugLine="Sub ReadSensor2(tag As Byte)";
- //BA.debugLineNum = 263;BA.debugLine="Dim rawvoltage As UInt = MQ7Pin.AnalogRead";
-_rawvoltage = b4r_main::_mq7pin->AnalogRead();
+ //BA.debugLineNum = 263;BA.debugLine="Dim rawvoltage As UInt = MQ7Pin.AnalogRead / 2";
+_rawvoltage = (UInt) (b4r_main::_mq7pin->AnalogRead()/(Double)2);
  //BA.debugLineNum = 265;BA.debugLine="Log(\"*************************\")";
 B4R::Common::LogHelper(1,102,F("*************************"));
  //BA.debugLineNum = 266;BA.debugLine="Log(\"MQ-7 PPM: \",rawvoltage)";
@@ -384,17 +384,17 @@ if (b4r_main::_wifi->getIsConnected()) {
  //BA.debugLineNum = 273;BA.debugLine="MQTT.Publish(\"MQ7\",s)";
 b4r_main::_mqtt->Publish(be_ann182_4.wrap("MQ7"),(_s)->GetBytes());
  };
- //BA.debugLineNum = 278;BA.debugLine="If rawvoltage <= 200 Then";
-if (_rawvoltage<=200) { 
+ //BA.debugLineNum = 278;BA.debugLine="If rawvoltage <= 100 Then";
+if (_rawvoltage<=100) { 
  //BA.debugLineNum = 279;BA.debugLine="Log(\"Air-Quality: CO perfect\")";
 B4R::Common::LogHelper(1,102,F("Air-Quality: CO perfect"));
- }else if(((_rawvoltage>200) && (_rawvoltage<800)) || _rawvoltage==800) { 
+ }else if(((_rawvoltage>100) && (_rawvoltage<400)) || _rawvoltage==400) { 
  //BA.debugLineNum = 281;BA.debugLine="Log(\"Air-Quality: CO normal\")";
 B4R::Common::LogHelper(1,102,F("Air-Quality: CO normal"));
- }else if(((_rawvoltage>800) && (_rawvoltage<1800)) || _rawvoltage==1800) { 
+ }else if(((_rawvoltage>400) && (_rawvoltage<900)) || _rawvoltage==900) { 
  //BA.debugLineNum = 283;BA.debugLine="Log(\"Air-Quality: CO high\")";
 B4R::Common::LogHelper(1,102,F("Air-Quality: CO high"));
- }else if(_rawvoltage>1800) { 
+ }else if(_rawvoltage>900) { 
  //BA.debugLineNum = 285;BA.debugLine="Log(\"Air-Quality: ALARM CO very high\")";
 B4R::Common::LogHelper(1,102,F("Air-Quality: ALARM CO very high"));
  }else {
