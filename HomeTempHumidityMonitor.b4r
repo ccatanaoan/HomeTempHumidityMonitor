@@ -283,8 +283,8 @@ Sub ReadSensor2(tag As Byte)
 		MQTT.Publish("MQ7",s)
 	End If
 	
-	' Detecting range: 20ppm-2000ppm carbon monoxide
-	' Air quality-cases: < 200 perfect | 200 - 800 normal | > 800 - 1800 high | > 1800 abnormal
+	' Detecting range: 10ppm-1000ppm carbon monoxide
+	' Air quality-cases: < 100 perfect | 100 - 400 normal | > 400 - 900 high | > 900 abnormal
 	If rawvoltage <= 100 Then
 		Log("Air-Quality: CO perfect")
 	else if ((rawvoltage > 100) And (rawvoltage < 400)) Or rawvoltage = 400 Then
