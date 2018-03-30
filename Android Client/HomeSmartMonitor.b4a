@@ -3,14 +3,16 @@ File1=0.png
 File2=1.bal
 File3=2.bal
 File4=3.bal
-File5=crysta.ttf
-File6=Main.bal
+File5=cloyd.png
+File6=crysta.ttf
+File7=Main.bal
 FileGroup1=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
 FileGroup5=Default Group
 FileGroup6=Default Group
+FileGroup7=Default Group
 Group=Default Group
 IconFile=
 Library1=core
@@ -28,15 +30,15 @@ Library9=stringutils
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)
 Module1=CustomListView
 Module2=Gauge
-NumberOfFiles=6
+NumberOfFiles=7
 NumberOfLibraries=12
 NumberOfModules=2
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Home Smart Monitor
-	#VersionCode: 16
-	#VersionName: 1.6
+	#VersionCode: 17
+	#VersionName: 1.7
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -102,7 +104,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		ACToolBarLight1.NavigationIconDrawable = bd
 		ToolbarHelper.Initialize
 		Dim cs As CSBuilder
-		ToolbarHelper.Title= cs.Initialize.Size(18).Append("Home Smart Monitor").PopAll
+		ToolbarHelper.Title= cs.Initialize.Size(22).Append("Home Smart Monitor").PopAll
 		ToolbarHelper.subTitle = ""
 		ToolbarHelper.ShowUpIndicator = False 'set to true to show the up arrow
 		ACToolBarLight1.InitMenuListener
@@ -138,8 +140,9 @@ Sub Activity_Create(FirstTime As Boolean)
 		DateTime.DateFormat = "MMMM d, h:mm:ss a"
 		lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append("").PopAll
 		lblPing.Visible = False
-		
-		lblAirQualityLastUpdate.Top = lblLastUpdate.top
+		GaugeAirQuality.CurrentValue = 0
+		lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
+		lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
 		
 		WebView1.Initialize("WebView1")
 		
@@ -228,23 +231,23 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			If a.Length = 7 Then
 				Dim cs As CSBuilder
 				cs.Initialize
-				If a(0) = "OK" Then
+				If a(0) = "OK" And a(1) > 0 Then
 					GaugeTemp.CurrentValue = a(1)
 					GaugeHumidity.CurrentValue = a(2)
 					lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append(GetPerception(a(3))).PopAll
 					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
 					GaugeHeatIndex.CurrentValue = a(5)
 					GaugeDewPoint.CurrentValue = a(6)
+					DateTime.DateFormat = "MMMM d, h:mm:ss a"
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
 				Else
-					GaugeTemp.CurrentValue = 50
-					GaugeHumidity.CurrentValue = 50
-					lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
-					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
-					GaugeHeatIndex.CurrentValue = 50
-					GaugeDewPoint.CurrentValue = 50
+'					GaugeTemp.CurrentValue = 50
+'					GaugeHumidity.CurrentValue = 50
+'					lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
+'					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
+'					GaugeHeatIndex.CurrentValue = 50
+'					GaugeDewPoint.CurrentValue = 50
 				End If
-				DateTime.DateFormat = "MMMM d, h:mm:ss a"
-				lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
 			End If
 		Else If Topic = "MQ7" Then
 			Dim status As String
@@ -385,8 +388,8 @@ End Sub
 Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
-		bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 28, 2018", "About", "OK", "", "", bd.Bitmap)
+		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
+		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 29, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
