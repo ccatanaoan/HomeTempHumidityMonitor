@@ -64,7 +64,7 @@ void setup(B4R::Object* o){
 void ReadDHT22(B4R::Object* o) {
 	 b4r_main::_dht22state = dht22.getStatus();
 	 // Add 12 percent based on home hygrometer.
- 	 float humidity = dht22.getHumidity() + 13;
+ 	 float humidity = dht22.getHumidity() + 13.5;
  	 float temperature = dht22.toFahrenheit(dht22.getTemperature()) + 0.5;
      b4r_main::_dht22hum  = humidity; 
      b4r_main::_dht22temp = temperature; 
@@ -110,8 +110,8 @@ void b4r_main::_appstart(){
 const UInt cp = B4R::StackMemory::cp;
 B4R::B4RString* _clientid = B4R::B4RString::EMPTY;
  //BA.debugLineNum = 75;BA.debugLine="Private Sub AppStart";
- //BA.debugLineNum = 76;BA.debugLine="Serial1.Initialize(74880)";
-b4r_main::_serial1->Initialize((ULong) (74880));
+ //BA.debugLineNum = 76;BA.debugLine="Serial1.Initialize(115200)";
+b4r_main::_serial1->Initialize((ULong) (115200));
  //BA.debugLineNum = 77;BA.debugLine="Delay(3000)";
 Common_Delay((ULong) (3000));
  //BA.debugLineNum = 78;BA.debugLine="Log(\"AppStart\")";
@@ -403,9 +403,9 @@ B4R::Common::LogHelper(1,102,F("MQ-7 - cant read any value - check the sensor!")
  };
  //BA.debugLineNum = 289;BA.debugLine="Log(\"*************************\")";
 B4R::Common::LogHelper(1,102,F("*************************"));
- //BA.debugLineNum = 291;BA.debugLine="CallSubPlus(\"Preparation1\",1000,0)";
+ //BA.debugLineNum = 290;BA.debugLine="CallSubPlus(\"Preparation1\",1000,0)";
 B4R::__c->CallSubPlus(_preparation1,(ULong) (1000),(Byte) (0));
- //BA.debugLineNum = 292;BA.debugLine="End Sub";
+ //BA.debugLineNum = 291;BA.debugLine="End Sub";
 B4R::StackMemory::cp = cp;
 }
 void b4r_main::_readweather(Byte _tag){

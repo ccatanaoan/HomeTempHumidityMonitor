@@ -66,8 +66,8 @@ Sub Process_Globals
 	Private MQTTHostName As String = "m14.cloudmqtt.com"
 	Private MQTTPort As Int = 11816
 	Private ESP As ESP8266
-	Private WiFiSSID As String = "Rise Above This Home"
-	Private WiFiPassword As String = "SteelReserve"
+	Private WiFiSSID As String = "Rise Above This Home" 
+	Private WiFiPassword As String = "SteelReserve" 
 	Public DHT22pin As Pin                    ' ESP8266 Pin connected to DHT22 signal
 	Private d3pins As D1Pins
 	Public DHT22Temp As Double
@@ -83,7 +83,7 @@ Sub Process_Globals
 End Sub
 
 Private Sub AppStart
-	Serial1.Initialize(74880)
+	Serial1.Initialize(115200)
 	Delay(3000)
 	Log("AppStart")
 	' Pin 2 is the blue LED
@@ -169,7 +169,7 @@ End Sub
 
 Sub ReadWeather(tag As Byte)
 	RunNative("ReadDHT22",Null)
-
+	
 	Dim localstate As String
 	Select Case DHT22State
 		Case 0
@@ -297,7 +297,6 @@ Sub ReadSensor2(tag As Byte)
 		Log("MQ-7 - cant read any value - check the sensor!")
 	End If
 	Log("*************************")
-	
 	CallSubPlus("Preparation1",1000,0)
 End Sub
 
@@ -320,7 +319,7 @@ void setup(B4R::Object* o){
 void ReadDHT22(B4R::Object* o) {
 	 b4r_main::_dht22state = dht22.getStatus();
 	 // Add 12 percent based on home hygrometer.
- 	 float humidity = dht22.getHumidity() + 13;
+ 	 float humidity = dht22.getHumidity() + 13.5;
  	 float temperature = dht22.toFahrenheit(dht22.getTemperature()) + 0.5;
      b4r_main::_dht22hum  = humidity; 
      b4r_main::_dht22temp = temperature; 
