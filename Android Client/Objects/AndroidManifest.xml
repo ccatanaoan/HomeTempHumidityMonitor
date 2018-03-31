@@ -2,8 +2,8 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="cloyd.home.smart.monitor"
-	android:versionCode="17"
-	android:versionName="1.7"
+	android:versionCode="18"
+	android:versionName="1.8"
 	android:installLocation="internalOnly">
 	
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>
@@ -12,6 +12,7 @@
 	    android:smallScreens="true" 
 	    android:anyDensity="true"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<application
 		android:icon="@drawable/icon"
 		android:label="Home Smart Monitor"
@@ -28,5 +29,9 @@
 			</intent-filter>
 			
 		</activity>
+		<service android:name="anywheresoftware.b4a.samples.httputils2.httputils2service">
+		</service>
+		<receiver android:name="anywheresoftware.b4a.samples.httputils2.httputils2service$httputils2service_BR">
+		</receiver>
 	</application>
 </manifest>

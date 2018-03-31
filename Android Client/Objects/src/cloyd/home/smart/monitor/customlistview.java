@@ -43,6 +43,7 @@ public int _mfirstvisibleindex = 0;
 public int _mlastvisibleindex = 0;
 public boolean _monitorvisiblerange = false;
 public boolean _firescrollchanged = false;
+public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public cloyd.home.smart.monitor.main _main = null;
 public static class _clvitem{
 public boolean IsInitialized;

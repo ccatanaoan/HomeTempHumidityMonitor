@@ -53,6 +53,7 @@ public int _gaugetype = 0;
 public int _anglerange = 0;
 public int _angleoffset = 0;
 public int _backgroundcolor = 0;
+public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public cloyd.home.smart.monitor.main _main = null;
 public static class _gaugerange{
 public boolean IsInitialized;
