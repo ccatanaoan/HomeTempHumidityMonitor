@@ -67,7 +67,7 @@ const char *AP_ssid = "arducam_esp8266";
 const char *AP_password = "APpassword";
 
 //Station mode you should put your ssid and password
-const char *ssid = "Rise Above This Home"; // Put your SSID here
+const char *ssid = "RiseAboveThisHome"; // Put your SSID here
 const char *password = "SteelReserve"; // Put your PASSWORD here
 
 static IPAddress ip(192, 168, 0, 88); // static IP used for browser access: http://IPaddress
@@ -618,6 +618,13 @@ void clearData()
   handleNotFound();
 }
 
+///////////////////////////////////////////////////////
+//   restart board -- Cloyd                          //
+///////////////////////////////////////////////////////
+void restartBoard()
+{
+  ESP.restart();
+}
 
 /////////////////////////////////////
 //  handles form submission        //
@@ -820,7 +827,8 @@ void setup() {
   server.on("/capture", HTTP_GET, serverCapture);
   server.on("/stream", HTTP_GET, serverStream);
   server.on("/submit", handleSubmit);
-  server.on("/clear", clearData);
+  server.on("/clear", clearData); 
+  server.on("/restart", restartBoard); // Cloyd
   server.onNotFound(handleNotFound);
   server.begin();
   Serial.println("Server started");
