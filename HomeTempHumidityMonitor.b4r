@@ -66,7 +66,7 @@ Sub Process_Globals
 	Private MQTTHostName As String = "m14.cloudmqtt.com"
 	Private MQTTPort As Int = 11816
 	Private ESP As ESP8266
-	Private WiFiSSID As String = "Rise Above This Home"
+	Private WiFiSSID As String = "RiseAboveThisHome"
 	Private WiFiPassword As String = "SteelReserve" 
 	Public DHT22pin As Pin                    ' ESP8266 Pin connected to DHT22 signal
 	Private d3pins As D1Pins
