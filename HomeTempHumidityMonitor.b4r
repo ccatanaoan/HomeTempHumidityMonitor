@@ -47,7 +47,7 @@ Library4=rmqtt
 #Region Project Attributes
 	#AutoFlushLogs: True
 	#CheckArrayBounds: True
-	#StackBufferSize: 2000
+	#StackBufferSize: 3000
 #End Region
 
 Sub Process_Globals
@@ -144,7 +144,7 @@ Sub mqtt_MessageArrived (Topic As String, Payload() As Byte)
 	Else If Topic = "MQ7" Then
 		If Payload = "Read voltage" Then
 			Dim s As String
-			s = JoinStrings(Array As String(readVoltage))
+			s = JoinStrings(Array As String("readVoltage|",readVoltage))
 			MQTT.Publish("MQ7",s)
 		End If
 	End If
@@ -183,16 +183,6 @@ Sub ReadWeather(tag As Byte)
 			localstate = "CHECKSUM"
 	End Select
 
-	' Return value       Dew point                        Human perception[6]
-	'    7         Over 26 °C (>78.8°F)     Severely high, even deadly For asthma related illnesses
-	'    6         24–26 °C (75.2-78.8°F)   Extremely uncomfortable, oppressive
-	'    5         21–24 °C (69.8-75.2°F)   Very humid, quite uncomfortable
-	'    4         18–21 °C (64.4-69.8°F)   Somewhat uncomfortable For most people at upper limit
-	'    3         16–18 °C (60.8-64.4°F)   OK For most, but everyone perceives the humidity at upper limit
-	'    2         13–16 °C (55.4-60.8°F)   Comfortable
-	'    1         10–12 °C (50-53.6°F)     Very comfortable
-	'    0         Under 10 °C (<50°F)      Feels like the western US, a Bit dry To some
-	
 	Dim localperception As String
 	Select Case DHT22Perception
 		Case 0
@@ -239,10 +229,12 @@ Sub ReadWeather(tag As Byte)
 	
 	Log("State: ", localstate, " Temp: ", DHT22Temp, " ºF Humidity: " , DHT22Hum, " % Perception: ", localperception, " Comfort Status: ", localcomfortstatus, " HeatIndex: ", DHT22HeatIndex, " ºF Dew Point: ", DHT22DewPoint," ºF")
 	If WiFi.IsConnected Then
-		Dim s As String  
-		s = JoinStrings(Array As String(localstate,"|",DHT22Temp, "|",DHT22Hum , "|",DHT22Perception, "|", DHT22ComfortStatus, "|", DHT22HeatIndex,"|", DHT22DewPoint))
-		Log("Sending TempHumid to MQTT: ",s)
- 		MQTT.Publish("TempHumid",s)
+		If IsNumber(DHT22Temp) Then
+			Dim s As String
+			s = JoinStrings(Array As String(localstate,"|",DHT22Temp, "|",DHT22Hum , "|",DHT22Perception, "|", DHT22ComfortStatus, "|", DHT22HeatIndex,"|", DHT22DewPoint))
+			Log("Sending TempHumid to MQTT: ",s)
+			MQTT.Publish("TempHumid",s)
+		End If
 	End If
 	
 	CallSubPlus("ReadWeather",5000,0)
@@ -283,8 +275,6 @@ Sub ReadSensor2(tag As Byte)
 		MQTT.Publish("MQ7",s)
 	End If
 	
-	' Detecting range: 10ppm-1000ppm carbon monoxide
-	' Air quality-cases: < 100 perfect | 100 - 400 normal | > 400 - 900 high | > 900 abnormal
 	If rawvoltage <= 100 Then
 		Log("Air-Quality: CO perfect")
 	else if ((rawvoltage > 100) And (rawvoltage < 400)) Or rawvoltage = 400 Then
@@ -297,6 +287,7 @@ Sub ReadSensor2(tag As Byte)
 		Log("MQ-7 - cant read any value - check the sensor!")
 	End If
 	Log("*************************")
+	
 	CallSubPlus("Preparation1",1000,0)
 End Sub
 

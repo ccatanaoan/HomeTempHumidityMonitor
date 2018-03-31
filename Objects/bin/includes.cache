@@ -10,32 +10,67 @@
     "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\variants\\nodemcu"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\ArduCam_ESP8266_FileCapture.ino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\src.ino.cpp",
     "Include": "ESP8266WiFi.h",
     "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\ArduCam_ESP8266_FileCapture.ino.cpp",
-    "Include": "ESP8266WebServer.h",
-    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WebServer\\src"
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\src.ino.cpp",
+    "Include": "",
+    "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\ArduCam_ESP8266_FileCapture.ino.cpp",
-    "Include": "Wire.h",
-    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\Wire"
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RArduino.cpp",
+    "Include": "",
+    "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\ArduCam_ESP8266_FileCapture.ino.cpp",
-    "Include": "ArduCAM.h",
-    "Includepath": "C:\\Program Files (x86)\\Arduino\\libraries\\ArduCAM"
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RCore.cpp",
+    "Include": "",
+    "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\ArduCam_ESP8266_FileCapture.ino.cpp",
-    "Include": "SPI.h",
-    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\SPI"
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RStream.cpp",
+    "Include": "",
+    "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\ArduCam_ESP8266_FileCapture.ino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\BufferedWiFiClient.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\PubSubClient.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Scheduler.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_main.cpp",
+    "Include": "DHTesp.h",
+    "Includepath": "C:\\Program Files (x86)\\Arduino\\libraries\\DHT"
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_main.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rESP8266.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rESP8266WiFi.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rMQTT.cpp",
     "Include": "",
     "Includepath": ""
   },
@@ -95,37 +130,7 @@
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WebServer\\src\\ESP8266WebServer.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WebServer\\src\\ESP8266WebServerSecure.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WebServer\\src\\Parsing.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WebServer\\src\\detail\\mimetable.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\Wire\\Wire.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Program Files (x86)\\Arduino\\libraries\\ArduCAM\\ArduCAM.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\SPI\\SPI.cpp",
+    "Sourcefile": "C:\\Program Files (x86)\\Arduino\\libraries\\DHT\\DHTesp.cpp",
     "Include": "",
     "Includepath": ""
   }

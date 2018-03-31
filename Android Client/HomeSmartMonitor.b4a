@@ -21,6 +21,7 @@ Library11=tabstripviewpager
 Library12=reflection
 Library13=httputils2
 Library14=http
+Library15=randomaccessfile
 Library2=appcompat
 Library3=javaobject
 Library4=xmllayoutbuilder
@@ -33,7 +34,7 @@ ManifestCode='This code will be applied to the manifest file during compilation.
 Module1=CustomListView
 Module2=Gauge
 NumberOfFiles=7
-NumberOfLibraries=14
+NumberOfLibraries=15
 NumberOfModules=2
 Version=8
 @EndOfDesignText@
@@ -243,13 +244,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					GaugeDewPoint.CurrentValue = a(6)
 					DateTime.DateFormat = "MMMM d, h:mm:ss a"
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
-				Else
-'					GaugeTemp.CurrentValue = 50
-'					GaugeHumidity.CurrentValue = 50
-'					lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
-'					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(a(0)).PopAll
-'					GaugeHeatIndex.CurrentValue = 50
-'					GaugeDewPoint.CurrentValue = 50
 				End If
 			End If
 		Else If Topic = "MQ7" Then
@@ -258,15 +252,34 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			cs.Initialize
 			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
 			Log("MQ7 status: " & status)
-			If status > 0 Then
+			If IsNumber(status) And status > 0 Then
 				GaugeAirQuality.CurrentValue = status
 				lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(status)).PopAll
 				DateTime.DateFormat = "MMMM d, h:mm:ss a"
 				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
 			Else
-				GaugeAirQuality.CurrentValue = 0
-				lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
-				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
+				Dim a() As String = Regex.Split("\|",status)
+				
+				DateTime.DateFormat = "MMMM d, h:mm:ss a"
+				If IsNumber(status) And status < 1 Then
+					GaugeAirQuality.CurrentValue = 0
+					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
+				else If a.Length = 2 Then
+					If IsNumber(a(1)) And a(1) > 0 Then
+						GaugeAirQuality.CurrentValue = a(1)
+						lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(1))).PopAll
+						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
+					else If IsNumber(a(1)) And a(1) <1 Then
+						GaugeAirQuality.CurrentValue = 0
+						lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
+						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
+					End If
+				Else
+					'GaugeAirQuality.CurrentValue = 0
+					'lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
+				End If
+
 			End If
 			
 		End If
@@ -415,7 +428,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 30, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 31, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
