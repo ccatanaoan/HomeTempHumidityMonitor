@@ -19,6 +19,8 @@ Library1=core
 Library10=phone
 Library11=tabstripviewpager
 Library12=reflection
+Library13=httputils2
+Library14=http
 Library2=appcompat
 Library3=javaobject
 Library4=xmllayoutbuilder
@@ -31,14 +33,14 @@ ManifestCode='This code will be applied to the manifest file during compilation.
 Module1=CustomListView
 Module2=Gauge
 NumberOfFiles=7
-NumberOfLibraries=12
+NumberOfLibraries=14
 NumberOfModules=2
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Home Smart Monitor
-	#VersionCode: 17
-	#VersionName: 1.7
+	#VersionCode: 18
+	#VersionName: 1.8
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -370,12 +372,35 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				Dim result As Int
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-				result = Msgbox2("Restart the controller?", "Home Smart Monitor", "Yes", "", "No", bd.Bitmap)
-				If result = DialogResponse.POSITIVE Then
-					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
-						MQTT_Connect
+				If TabStrip1.CurrentPage = 2 Then
+					result = Msgbox2("Restart the CAMERA controller?", "Home Smart Monitor", "Yes", "", "No", bd.Bitmap)
+					If result = DialogResponse.POSITIVE Then
+						WebView1.StopLoading
+						WebView1.RemoveView
+						Dim j As HttpJob
+						j.Initialize("", Me)
+						j.PostString("http://cloyd.mynetgear.com/restart","")
+						j.GetRequest.Timeout = 1500
+						Wait For (j) JobDone(j As HttpJob)
+						If j.Success Then
+							Log(j.GetString)
+						End If
+						j.Release
+						WebView1.Initialize("WebView1")
+						WebView1.JavaScriptEnabled = True
+						Activity.addview(WebView1,0dip,108dip,100%x,100%y)
+						ToastMessageShow("Restarting the camera",True)
+						WebView1.LoadURL("http://cloyd.mynetgear.com")
+						WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
 					End If
-					MQTT.Publish("TempHumid", bc.StringToBytes("Restart controller", "utf8"))
+				Else
+					result = Msgbox2("Restart the WEATHER controller?", "Home Smart Monitor", "Yes", "", "No", bd.Bitmap)
+					If result = DialogResponse.POSITIVE Then
+						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
+							MQTT_Connect
+						End If
+						MQTT.Publish("TempHumid", bc.StringToBytes("Restart controller", "utf8"))
+					End If
 				End If
 			Catch
 				AddEvent(LastException)
@@ -390,7 +415,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 29, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 30, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
