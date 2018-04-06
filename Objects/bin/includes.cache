@@ -2,250 +2,135 @@
   {
     "Sourcefile": "",
     "Include": "",
-    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\cores\\esp32"
+    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\cores\\esp8266"
   },
   {
     "Sourcefile": "",
     "Include": "",
-    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\variants\\esp32"
+    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\variants\\nodemcu"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Home.ino.cpp",
-    "Include": "WiFi.h",
-    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src"
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\src.ino.cpp",
+    "Include": "ESP8266WiFi.h",
+    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Home.ino.cpp",
-    "Include": "MQTT.h",
-    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\MQTT\\src"
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Home.ino.cpp",
-    "Include": "M5Stack.h",
-    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src"
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Home.ino.cpp",
-    "Include": "Wire.h",
-    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\Wire\\src"
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Home.ino.cpp",
-    "Include": "SPI.h",
-    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\SPI\\src"
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Home.ino.cpp",
-    "Include": "FS.h",
-    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\FS\\src"
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Home.ino.cpp",
-    "Include": "SD.h",
-    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\SD\\src"
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Home.ino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\src.ino.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\ETH.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RArduino.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\WiFi.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RCore.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\WiFiAP.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RStream.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\WiFiClient.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\BufferedWiFiClient.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\WiFiGeneric.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\PubSubClient.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\WiFiMulti.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Scheduler.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\WiFiSTA.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_main.cpp",
+    "Include": "DHTesp.h",
+    "Includepath": "C:\\Program Files (x86)\\Arduino\\libraries\\DHT"
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_main.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\WiFiScan.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rESP8266.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\WiFiServer.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rESP8266WiFi.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\WiFi\\src\\WiFiUdp.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rMQTT.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\MQTT\\src\\lwmqtt\\client.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFi.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\MQTT\\src\\lwmqtt\\helpers.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiAP.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\MQTT\\src\\lwmqtt\\packet.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiGeneric.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\MQTT\\src\\lwmqtt\\string.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiMulti.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\MQTT\\src\\system.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiSTA.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\Fonts\\Font16.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiScan.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\Fonts\\Font32rle.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiClient.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\Fonts\\Font64rle.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiClientSecure.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\Fonts\\Font72rle.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiServer.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\Fonts\\Font7srle.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiServerSecure.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\Fonts\\glcdfont.c",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiUdp.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\M5LoRa.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\M5Stack.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\Button.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\DHT12.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\Display.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\M5Timer.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\MPU9250.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\Speaker.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\bmp_map.c",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\m5_logo.c",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\quaternionFilters.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\M5Stack\\src\\utility\\startup_music.c",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\Wire\\src\\Wire.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\SPI\\src\\SPI.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\FS\\src\\FS.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\FS\\src\\vfs_api.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\SD\\src\\SD.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\SD\\src\\sd_diskio.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\hardware\\espressif\\esp32\\libraries\\SD\\src\\sd_diskio_crc.c",
+    "Sourcefile": "C:\\Program Files (x86)\\Arduino\\libraries\\DHT\\DHTesp.cpp",
     "Include": "",
     "Includepath": ""
   }

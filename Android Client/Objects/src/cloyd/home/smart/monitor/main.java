@@ -480,27 +480,27 @@ anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.
 return "";
 }
 public static boolean  _activity_keypress(int _keycode) throws Exception{
- //BA.debugLineNum = 466;BA.debugLine="Sub Activity_KeyPress (KeyCode As Int) As Boolean";
- //BA.debugLineNum = 467;BA.debugLine="If KeyCode = KeyCodes.KEYCODE_BACK Then";
+ //BA.debugLineNum = 469;BA.debugLine="Sub Activity_KeyPress (KeyCode As Int) As Boolean";
+ //BA.debugLineNum = 470;BA.debugLine="If KeyCode = KeyCodes.KEYCODE_BACK Then";
 if (_keycode==anywheresoftware.b4a.keywords.Common.KeyCodes.KEYCODE_BACK) { 
- //BA.debugLineNum = 468;BA.debugLine="If TabStrip1.CurrentPage = 2 Then";
+ //BA.debugLineNum = 471;BA.debugLine="If TabStrip1.CurrentPage = 2 Then";
 if (mostCurrent._tabstrip1.getCurrentPage()==2) { 
- //BA.debugLineNum = 469;BA.debugLine="TabStrip1.ScrollTo(1,True)";
+ //BA.debugLineNum = 472;BA.debugLine="TabStrip1.ScrollTo(1,True)";
 mostCurrent._tabstrip1.ScrollTo((int) (1),anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 470;BA.debugLine="TabStrip1_PageSelected(1)";
+ //BA.debugLineNum = 473;BA.debugLine="TabStrip1_PageSelected(1)";
 _tabstrip1_pageselected((int) (1));
- //BA.debugLineNum = 471;BA.debugLine="Return True";
+ //BA.debugLineNum = 474;BA.debugLine="Return True";
 if (true) return anywheresoftware.b4a.keywords.Common.True;
  }else if(mostCurrent._tabstrip1.getCurrentPage()==1) { 
- //BA.debugLineNum = 473;BA.debugLine="TabStrip1.ScrollTo(0,True)";
+ //BA.debugLineNum = 476;BA.debugLine="TabStrip1.ScrollTo(0,True)";
 mostCurrent._tabstrip1.ScrollTo((int) (0),anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 474;BA.debugLine="TabStrip1_PageSelected(0)";
+ //BA.debugLineNum = 477;BA.debugLine="TabStrip1_PageSelected(0)";
 _tabstrip1_pageselected((int) (0));
- //BA.debugLineNum = 475;BA.debugLine="Return True";
+ //BA.debugLineNum = 478;BA.debugLine="Return True";
 if (true) return anywheresoftware.b4a.keywords.Common.True;
  };
  };
- //BA.debugLineNum = 479;BA.debugLine="End Sub";
+ //BA.debugLineNum = 482;BA.debugLine="End Sub";
 return false;
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
@@ -937,22 +937,22 @@ anywheresoftware.b4a.agraham.reflection.Reflection _r = null;
 anywheresoftware.b4a.objects.PanelWrapper _tc = null;
 anywheresoftware.b4a.objects.collections.List _res = null;
 anywheresoftware.b4a.objects.ConcreteViewWrapper _v = null;
- //BA.debugLineNum = 453;BA.debugLine="Public Sub GetAllTabLabels (tabstrip As TabStrip)";
- //BA.debugLineNum = 454;BA.debugLine="Dim jo As JavaObject = tabstrip";
+ //BA.debugLineNum = 456;BA.debugLine="Public Sub GetAllTabLabels (tabstrip As TabStrip)";
+ //BA.debugLineNum = 457;BA.debugLine="Dim jo As JavaObject = tabstrip";
 _jo = new anywheresoftware.b4j.object.JavaObject();
 _jo.setObject((java.lang.Object)(_tabstrip));
- //BA.debugLineNum = 455;BA.debugLine="Dim r As Reflector";
+ //BA.debugLineNum = 458;BA.debugLine="Dim r As Reflector";
 _r = new anywheresoftware.b4a.agraham.reflection.Reflection();
- //BA.debugLineNum = 456;BA.debugLine="r.Target = jo.GetField(\"tabStrip\")";
+ //BA.debugLineNum = 459;BA.debugLine="r.Target = jo.GetField(\"tabStrip\")";
 _r.Target = _jo.GetField("tabStrip");
- //BA.debugLineNum = 457;BA.debugLine="Dim tc As Panel = r.GetField(\"tabsContainer\")";
+ //BA.debugLineNum = 460;BA.debugLine="Dim tc As Panel = r.GetField(\"tabsContainer\")";
 _tc = new anywheresoftware.b4a.objects.PanelWrapper();
 _tc.setObject((android.view.ViewGroup)(_r.GetField("tabsContainer")));
- //BA.debugLineNum = 458;BA.debugLine="Dim res As List";
+ //BA.debugLineNum = 461;BA.debugLine="Dim res As List";
 _res = new anywheresoftware.b4a.objects.collections.List();
- //BA.debugLineNum = 459;BA.debugLine="res.Initialize";
+ //BA.debugLineNum = 462;BA.debugLine="res.Initialize";
 _res.Initialize();
- //BA.debugLineNum = 460;BA.debugLine="For Each v As View In tc";
+ //BA.debugLineNum = 463;BA.debugLine="For Each v As View In tc";
 _v = new anywheresoftware.b4a.objects.ConcreteViewWrapper();
 {
 final anywheresoftware.b4a.BA.IterableList group7 = _tc;
@@ -961,14 +961,14 @@ final int groupLen7 = group7.getSize()
 ;
 for (; index7 < groupLen7;index7++){
 _v.setObject((android.view.View)(group7.Get(index7)));
- //BA.debugLineNum = 461;BA.debugLine="If v Is Label Then res.Add(v)";
+ //BA.debugLineNum = 464;BA.debugLine="If v Is Label Then res.Add(v)";
 if (_v.getObjectOrNull() instanceof android.widget.TextView) { 
 _res.Add((Object)(_v.getObject()));};
  }
 };
- //BA.debugLineNum = 463;BA.debugLine="Return res";
+ //BA.debugLineNum = 466;BA.debugLine="Return res";
 if (true) return _res;
- //BA.debugLineNum = 464;BA.debugLine="End Sub";
+ //BA.debugLineNum = 467;BA.debugLine="End Sub";
 return null;
 }
 public static String  _getcomfort(String _dht11comfortstatus) throws Exception{
@@ -1364,7 +1364,7 @@ _bd = new anywheresoftware.b4a.objects.drawable.BitmapDrawable();
  //BA.debugLineNum = 390;BA.debugLine="bd.Initialize(LoadBitmapResize(File.DirAssets, \"";
 _bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"cloyd.png",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
  //BA.debugLineNum = 391;BA.debugLine="Msgbox2(\"Home Smart Monitor v\" & GetVersionCode";
-anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Home Smart Monitor v"+_getversioncode()+anywheresoftware.b4a.keywords.Common.CRLF+anywheresoftware.b4a.keywords.Common.CRLF+"Developed by Cloyd Nino Catanaoan"+anywheresoftware.b4a.keywords.Common.CRLF+"March 31, 2018"),BA.ObjectToCharSequence("About"),"OK","","",_bd.getBitmap(),mostCurrent.activityBA);
+anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Home Smart Monitor v"+_getversioncode()+anywheresoftware.b4a.keywords.Common.CRLF+anywheresoftware.b4a.keywords.Common.CRLF+"Developed by Cloyd Nino Catanaoan"+anywheresoftware.b4a.keywords.Common.CRLF+"April 5, 2018"),BA.ObjectToCharSequence("About"),"OK","","",_bd.getBitmap(),mostCurrent.activityBA);
  } 
        catch (Exception e6) {
 			processBA.setLastException(e6); //BA.debugLineNum = 393;BA.debugLine="Log(LastException)";
@@ -1391,36 +1391,41 @@ mostCurrent._webview1.StopLoading();
  //BA.debugLineNum = 446;BA.debugLine="WebView1.RemoveView";
 mostCurrent._webview1.RemoveView();
  };
- //BA.debugLineNum = 448;BA.debugLine="If Position = 1 Then";
+ //BA.debugLineNum = 448;BA.debugLine="If Position = 0 Then";
+if (_position==0) { 
+ //BA.debugLineNum = 449;BA.debugLine="MQTT.Publish(\"TempHumid\", bc.StringToBytes(\"Read";
+_mqtt.Publish("TempHumid",_bc.StringToBytes("Read weather","utf8"));
+ };
+ //BA.debugLineNum = 451;BA.debugLine="If Position = 1 Then";
 if (_position==1) { 
- //BA.debugLineNum = 449;BA.debugLine="MQTT.Publish(\"MQ7\", bc.StringToBytes(\"Read volta";
+ //BA.debugLineNum = 452;BA.debugLine="MQTT.Publish(\"MQ7\", bc.StringToBytes(\"Read volta";
 _mqtt.Publish("MQ7",_bc.StringToBytes("Read voltage","utf8"));
  };
- //BA.debugLineNum = 451;BA.debugLine="End Sub";
+ //BA.debugLineNum = 454;BA.debugLine="End Sub";
 return "";
 }
 public static String  _webview1_pagefinished(String _url) throws Exception{
 anywheresoftware.b4a.agraham.reflection.Reflection _obj1 = null;
 String _s = "";
 float _f = 0f;
- //BA.debugLineNum = 481;BA.debugLine="Sub WebView1_PageFinished (Url As String)";
- //BA.debugLineNum = 482;BA.debugLine="Dim Obj1 As Reflector";
+ //BA.debugLineNum = 484;BA.debugLine="Sub WebView1_PageFinished (Url As String)";
+ //BA.debugLineNum = 485;BA.debugLine="Dim Obj1 As Reflector";
 _obj1 = new anywheresoftware.b4a.agraham.reflection.Reflection();
- //BA.debugLineNum = 483;BA.debugLine="Dim s As String 'ignore";
+ //BA.debugLineNum = 486;BA.debugLine="Dim s As String 'ignore";
 _s = "";
- //BA.debugLineNum = 484;BA.debugLine="Dim f As Float 'ignore";
+ //BA.debugLineNum = 487;BA.debugLine="Dim f As Float 'ignore";
 _f = 0f;
- //BA.debugLineNum = 486;BA.debugLine="Obj1.Target = WebView1";
+ //BA.debugLineNum = 489;BA.debugLine="Obj1.Target = WebView1";
 _obj1.Target = (Object)(mostCurrent._webview1.getObject());
- //BA.debugLineNum = 487;BA.debugLine="s = Obj1.TypeName";
+ //BA.debugLineNum = 490;BA.debugLine="s = Obj1.TypeName";
 _s = _obj1.getTypeName();
- //BA.debugLineNum = 488;BA.debugLine="f = Obj1.RunMethod(\"getScale\")";
+ //BA.debugLineNum = 491;BA.debugLine="f = Obj1.RunMethod(\"getScale\")";
 _f = (float)(BA.ObjectToNumber(_obj1.RunMethod("getScale")));
- //BA.debugLineNum = 490;BA.debugLine="Obj1.Target = WebView1";
+ //BA.debugLineNum = 493;BA.debugLine="Obj1.Target = WebView1";
 _obj1.Target = (Object)(mostCurrent._webview1.getObject());
- //BA.debugLineNum = 491;BA.debugLine="Obj1.RunMethod2(\"setInitialScale\", \"230\", \"java.l";
+ //BA.debugLineNum = 494;BA.debugLine="Obj1.RunMethod2(\"setInitialScale\", \"230\", \"java.l";
 _obj1.RunMethod2("setInitialScale","230","java.lang.int");
- //BA.debugLineNum = 492;BA.debugLine="End Sub";
+ //BA.debugLineNum = 495;BA.debugLine="End Sub";
 return "";
 }
 

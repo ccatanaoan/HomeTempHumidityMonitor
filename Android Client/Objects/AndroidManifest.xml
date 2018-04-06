@@ -2,8 +2,8 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="cloyd.home.smart.monitor"
-	android:versionCode="18"
-	android:versionName="1.8"
+	android:versionCode="19"
+	android:versionName="1.9"
 	android:installLocation="internalOnly">
 	
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>

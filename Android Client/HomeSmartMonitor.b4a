@@ -21,7 +21,6 @@ Library11=tabstripviewpager
 Library12=reflection
 Library13=httputils2
 Library14=http
-Library15=randomaccessfile
 Library2=appcompat
 Library3=javaobject
 Library4=xmllayoutbuilder
@@ -34,14 +33,14 @@ ManifestCode='This code will be applied to the manifest file during compilation.
 Module1=CustomListView
 Module2=Gauge
 NumberOfFiles=7
-NumberOfLibraries=15
+NumberOfLibraries=14
 NumberOfModules=2
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Home Smart Monitor
-	#VersionCode: 18
-	#VersionName: 1.8
+	#VersionCode: 19
+	#VersionName: 1.9
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -428,7 +427,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "March 31, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 5, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -484,6 +483,9 @@ Sub TabStrip1_PageSelected (Position As Int)
 	Else
 		WebView1.StopLoading
 		WebView1.RemoveView
+	End If
+	If Position = 0 Then
+		MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 	End If
 	If Position = 1 Then
 		MQTT.Publish("MQ7", bc.StringToBytes("Read voltage", "utf8"))
