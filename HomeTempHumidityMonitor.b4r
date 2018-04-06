@@ -93,8 +93,8 @@ Private Sub AppStart
 	pin16.Initialize(16, pin16.MODE_OUTPUT)
 	d6.Initialize(d1pins.D6, d6.MODE_OUTPUT)
 	
-	Log("Stopping access point")
-	RunNative("SetSTA", Null)
+	'Log("Stopping access point")
+	'RunNative("SetSTA", Null)
 	
 	' Connect to WiFi
 	ConnectToWifi
@@ -140,6 +140,8 @@ Sub mqtt_MessageArrived (Topic As String, Payload() As Byte)
 		If Payload = "Restart controller" Then
 			MQTT.Publish("TempHumid","*Restarting relay by remote")
 			ESP.Restart
+		else If Payload = "Read weather" Then
+			ReadWeather(0)
 		End If
 	Else If Topic = "MQ7" Then
 		If Payload = "Read voltage" Then
@@ -158,6 +160,7 @@ Sub mqtt_Disconnected
 End Sub
 
 Sub ConnectToWifi
+	Log("Connecting to WiFi")
 	WiFi.Connect2(WiFiSSID, WiFiPassword)
 
 	If WiFi.IsConnected Then
@@ -176,8 +179,8 @@ Sub ReadWeather(tag As Byte)
 			' The sensor samples And its checksum are OK.
 			localstate = "OK"
 		Case 1
-			localstate = "TIMEOUT"
 			' A timeout occurred, And communication has failed.
+			localstate = "TIMEOUT"
 		Case 2
 			' The checksum test failed. This means that data was received but may Not be correct.
 			localstate = "CHECKSUM"
@@ -229,7 +232,7 @@ Sub ReadWeather(tag As Byte)
 	
 	Log("State: ", localstate, " Temp: ", DHT22Temp, " ºF Humidity: " , DHT22Hum, " % Perception: ", localperception, " Comfort Status: ", localcomfortstatus, " HeatIndex: ", DHT22HeatIndex, " ºF Dew Point: ", DHT22DewPoint," ºF")
 	If WiFi.IsConnected Then
-		If IsNumber(DHT22Temp) Then
+		If localstate = "OK" And IsNumber(DHT22Temp) Then
 			Dim s As String
 			s = JoinStrings(Array As String(localstate,"|",DHT22Temp, "|",DHT22Hum , "|",DHT22Perception, "|", DHT22ComfortStatus, "|", DHT22HeatIndex,"|", DHT22DewPoint))
 			Log("Sending TempHumid to MQTT: ",s)
@@ -237,7 +240,7 @@ Sub ReadWeather(tag As Byte)
 		End If
 	End If
 	
-	CallSubPlus("ReadWeather",5000,0)
+	CallSubPlus("ReadWeather",6000,0)
 End Sub
 
 Sub Preparation1(tag As Byte)
