@@ -149,6 +149,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		WebView1.Initialize("WebView1")
 		
+		MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
