@@ -1308,8 +1308,8 @@ mostCurrent._lblcomfort.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().
 mostCurrent._gaugeheatindex._setcurrentvalue((float)(Double.parseDouble(_a[(int) (5)])));
  //BA.debugLineNum = 204;BA.debugLine="GaugeDewPoint.CurrentValue = a(6)";
 mostCurrent._gaugedewpoint._setcurrentvalue((float)(Double.parseDouble(_a[(int) (6)])));
- //BA.debugLineNum = 205;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd hh:mm:ss z\"";
-anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yy-MM-dd hh:mm:ss z");
+ //BA.debugLineNum = 205;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
+anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yy-MM-dd HH:mm:ss z");
  //BA.debugLineNum = 206;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(7) &";
 _ticks = anywheresoftware.b4a.keywords.Common.DateTime.DateParse(_a[(int) (7)]+" "+_a[(int) (8)]+" GMT");
  //BA.debugLineNum = 207;BA.debugLine="DateTime.DateFormat = \"MMMM d, yyyy hh:mm:ss";
@@ -1339,8 +1339,8 @@ if (anywheresoftware.b4a.keywords.Common.IsNumber(_a[(int) (0)]) && (double)(Dou
 mostCurrent._gaugeairquality._setcurrentvalue((float)(Double.parseDouble(_a[(int) (0)])));
  //BA.debugLineNum = 221;BA.debugLine="lblAirQuality.Text = cs.Initialize.Bold.Appen";
 mostCurrent._lblairquality.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Air Quality: ")).Pop().Append(BA.ObjectToCharSequence(_getairquality((int)(Double.parseDouble(_a[(int) (0)]))))).PopAll().getObject()));
- //BA.debugLineNum = 222;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd hh:mm:ss z\"";
-anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yy-MM-dd hh:mm:ss z");
+ //BA.debugLineNum = 222;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
+anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yy-MM-dd HH:mm:ss z");
  //BA.debugLineNum = 223;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(1) &";
 _ticks = anywheresoftware.b4a.keywords.Common.DateTime.DateParse(_a[(int) (1)]+" "+_a[(int) (2)]+" GMT");
  //BA.debugLineNum = 224;BA.debugLine="DateTime.DateFormat = \"MMMM d, yyyy hh:mm:ss";
