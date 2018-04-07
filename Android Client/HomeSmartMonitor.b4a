@@ -1,4 +1,4 @@
-﻿Build1=Default,cloyd.home.smart.monitor
+﻿Build1=Default,cloyd.smart.home.monitor
 File1=0.png
 File2=1.bal
 File3=2.bal
@@ -38,9 +38,9 @@ NumberOfModules=2
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
-	#ApplicationLabel: Home Smart Monitor
-	#VersionCode: 19
-	#VersionName: 1.9
+	#ApplicationLabel: Smart Home Monitor
+	#VersionCode: 191
+	#VersionName: 1.9.1
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -106,7 +106,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		ACToolBarLight1.NavigationIconDrawable = bd
 		ToolbarHelper.Initialize
 		Dim cs As CSBuilder
-		ToolbarHelper.Title= cs.Initialize.Size(22).Append("Home Smart Monitor").PopAll
+		ToolbarHelper.Title= cs.Initialize.Size(22).Append("Smart Home Monitor").PopAll
 		ToolbarHelper.subTitle = ""
 		ToolbarHelper.ShowUpIndicator = False 'set to true to show the up arrow
 		ACToolBarLight1.InitMenuListener
@@ -138,13 +138,13 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		Dim cs As CSBuilder
 		cs.Initialize
-		lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Color(Colors.Red).Append("No data available").PopAll
-		lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append("No data available").PopAll
+		lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append("Waiting for data...").PopAll
+		lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append("Waiting for data...").PopAll
 		DateTime.DateFormat = "MMMM d, h:mm:ss a"
 		lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append("").PopAll
 		lblPing.Visible = False
 		GaugeAirQuality.CurrentValue = 0
-		lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
+		lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append("Waiting for data...").PopAll
 		lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
 		
 		WebView1.Initialize("WebView1")
@@ -231,7 +231,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			AddEvent(status)
 
 			Dim a() As String = Regex.Split("\|",status)
-			If a.Length = 7 Then
+			If a.Length = 9 Then
 				Dim cs As CSBuilder
 				cs.Initialize
 				If a(0) = "OK" And a(1) > 0 Then
@@ -241,8 +241,10 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
 					GaugeHeatIndex.CurrentValue = a(5)
 					GaugeDewPoint.CurrentValue = a(6)
-					DateTime.DateFormat = "MMMM d, h:mm:ss a"
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
+					DateTime.DateFormat = "yy-MM-dd hh:mm:ss z"
+					Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
+					DateTime.DateFormat = "MMMM d, yyyy hh:mm:ss z"
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
 				End If
 			End If
 		Else If Topic = "MQ7" Then
@@ -251,38 +253,18 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			cs.Initialize
 			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
 			Log("MQ7 status: " & status)
-			If IsNumber(status) And status > 0 Then
-				GaugeAirQuality.CurrentValue = status
-				lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(status)).PopAll
-				DateTime.DateFormat = "MMMM d, h:mm:ss a"
-				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
-			Else
-				Dim a() As String = Regex.Split("\|",status)
-				
-				DateTime.DateFormat = "MMMM d, h:mm:ss a"
-				If IsNumber(status) And status < 1 Then
-					GaugeAirQuality.CurrentValue = 0
-					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
-				else If a.Length = 2 Then
-					If IsNumber(a(1)) And a(1) > 0 Then
-						GaugeAirQuality.CurrentValue = a(1)
-						lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(1))).PopAll
-						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
-					else If IsNumber(a(1)) And a(1) <1 Then
-						GaugeAirQuality.CurrentValue = 0
-						lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
-						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
-					End If
-				Else
-					'GaugeAirQuality.CurrentValue = 0
-					'lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").PopAll
+			Dim a() As String = Regex.Split("\|",status)
+			If a.Length = 3 Then
+				If IsNumber(a(0)) And a(0) > 0 Then
+					GaugeAirQuality.CurrentValue = a(0)
+					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
+					DateTime.DateFormat = "yy-MM-dd hh:mm:ss z"
+					Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
+					DateTime.DateFormat = "MMMM d, yyyy hh:mm:ss z"
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
 				End If
-
 			End If
-			
 		End If
-		
 	Catch
 		AddEvent("MQTT_MessageArrived: " & LastException)
 	End Try
@@ -385,7 +367,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 				If TabStrip1.CurrentPage = 2 Then
-					result = Msgbox2("Restart the CAMERA controller?", "Home Smart Monitor", "Yes", "", "No", bd.Bitmap)
+					result = Msgbox2("Restart the CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
 					If result = DialogResponse.POSITIVE Then
 						WebView1.StopLoading
 						WebView1.RemoveView
@@ -405,8 +387,16 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 						WebView1.LoadURL("http://cloyd.mynetgear.com")
 						WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
 					End If
+				else If TabStrip1.CurrentPage = 1 Then
+					result = Msgbox2("Restart the AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+					If result = DialogResponse.POSITIVE Then
+						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
+							MQTT_Connect
+						End If
+						MQTT.Publish("MQ7", bc.StringToBytes("Restart controller", "utf8"))
+					End If
 				Else
-					result = Msgbox2("Restart the WEATHER controller?", "Home Smart Monitor", "Yes", "", "No", bd.Bitmap)
+					result = Msgbox2("Restart the WEATHER controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
 					If result = DialogResponse.POSITIVE Then
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
@@ -427,7 +417,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Home Smart Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 5, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 7, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try

@@ -20,12 +20,22 @@
     "Includepath": ""
   },
   {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\AsyncStreams.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
     "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RArduino.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
     "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RCore.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RSerializator.cpp",
     "Include": "",
     "Includepath": ""
   },
@@ -40,7 +50,17 @@
     "Includepath": ""
   },
   {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\ByteConverter.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
     "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\PubSubClient.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\RandomAccessFile.cpp",
     "Include": "",
     "Includepath": ""
   },
@@ -56,6 +76,11 @@
   },
   {
     "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_main.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_timenist.cpp",
     "Include": "",
     "Includepath": ""
   },

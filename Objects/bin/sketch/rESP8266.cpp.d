@@ -87,4 +87,6 @@ C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\rESP8266.cpp.o: \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\libraries\ESP8266WiFi\src/include/slist.h \
  C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\rMQTT.h \
  C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\PubSubClient.h \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\b4r_main.h
+ C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\rRandomAccessFile.h \
+ C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\b4r_main.h \
+ C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\b4r_timenist.h

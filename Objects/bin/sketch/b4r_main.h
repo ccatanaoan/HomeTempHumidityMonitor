@@ -1,6 +1,7 @@
 
 #ifndef b4r_main_h
 #define b4r_main_h
+class b4r_timenist;
 
 class b4r_main {
 public:
@@ -11,8 +12,6 @@ static void _connecttowifi();
 static void _mqtt_connect(Byte _unused);
 static void _mqtt_disconnected();
 static void _mqtt_messagearrived(B4R::B4RString* _topic,B4R::Array* _payload);
-static void _preparation1(Byte _tag);
-static void _preparation2(Byte _tag);
 static void _process_globals();
 static B4R::Serial* _serial1;
 static B4R::D1Pins* _d1pins;
@@ -38,12 +37,10 @@ static Double _dht22heatindex;
 static Double _dht22dewpoint;
 static Int _dht22perception;
 static Int _dht22comfortstatus;
-static B4R::Pin* _mq7pin;
-static Byte _mq7pinnumber;
-static UInt _readvoltage;
-static void _readsensor1(Byte _tag);
-static void _readsensor2(Byte _tag);
+static B4R::ByteConverter* _bc;
+static b4r_timenist* _timenist;
 static void _readweather(Byte _tag);
+static void _timeisavailable();
 };
 
 #endif
