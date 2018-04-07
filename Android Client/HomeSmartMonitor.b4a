@@ -242,8 +242,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					GaugeHeatIndex.CurrentValue = a(5)
 					GaugeDewPoint.CurrentValue = a(6)
 					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+
 					Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
-					DateTime.DateFormat = "MMMM d, yyyy hh:mm:ss z"
+					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
 				End If
 			End If
@@ -260,8 +261,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
 					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 					Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
-					DateTime.DateFormat = "MMMM d, yyyy hh:mm:ss z"
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(DateTime.Now)).PopAll
+					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
 				End If
 			End If
 		End If
