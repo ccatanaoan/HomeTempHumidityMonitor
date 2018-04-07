@@ -149,7 +149,9 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		WebView1.Initialize("WebView1")
 		
-		MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
+		If MQTT.IsInitialized And MQTT.Connected  Then
+			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
+		End If
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
