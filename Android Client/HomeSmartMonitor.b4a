@@ -86,7 +86,6 @@ Sub Globals
 	Private lblAirQuality As Label
 	Private lblAirQualityLastUpdate As Label
 	Private WebView1 As WebView 'ignore
-	Dim Notification1 As Notification
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -156,13 +155,6 @@ Sub Activity_Create(FirstTime As Boolean)
 		If MQTT.IsInitialized And MQTT.Connected  Then
 			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 		End If
-		
-		If Notification1.IsInitialized = False Then
-			Notification1.Initialize
-		End If
-		Notification1.Cancel(725)
-		Notification1.Cancel(726)
-		
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -180,16 +172,6 @@ Sub Activity_Resume
 		If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 			MQTT_Connect
 		End If
-	Catch
-		Log(LastException)
-	End Try
-	
-	Try
-		If Notification1.IsInitialized = False Then
-			Notification1.Initialize
-		End If
-		Notification1.Cancel(725)
-		Notification1.Cancel(726)
 	Catch
 		Log(LastException)
 	End Try
