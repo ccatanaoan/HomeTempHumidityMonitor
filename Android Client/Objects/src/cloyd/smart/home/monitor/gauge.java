@@ -55,6 +55,7 @@ public int _angleoffset = 0;
 public int _backgroundcolor = 0;
 public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public cloyd.smart.home.monitor.main _main = null;
+public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public static class _gaugerange{
 public boolean IsInitialized;
 public float LowValue;
@@ -70,104 +71,26 @@ Color = 0;
 		public String toString() {
 			return BA.TypeToString(this, false);
 		}}
-public void  _animatevalueto(float _newvalue) throws Exception{
-ResumableSub_AnimateValueTo rsub = new ResumableSub_AnimateValueTo(this,_newvalue);
-rsub.resume(ba, null);
-}
-public static class ResumableSub_AnimateValueTo extends BA.ResumableSub {
-public ResumableSub_AnimateValueTo(cloyd.smart.home.monitor.gauge parent,float _newvalue) {
-this.parent = parent;
-this._newvalue = _newvalue;
-}
-cloyd.smart.home.monitor.gauge parent;
-float _newvalue;
+public String  _animatevalueto(float _newvalue) throws Exception{
 long _n = 0L;
 int _duration = 0;
 float _start = 0f;
 float _tempvalue = 0f;
-
-@Override
-public void resume(BA ba, Object[] result) throws Exception{
-
-    while (true) {
-        switch (state) {
-            case -1:
-return;
-
-case 0:
-//C
-this.state = 1;
+ //BA.debugLineNum = 228;BA.debugLine="Private Sub AnimateValueTo(NewValue As Float)";
  //BA.debugLineNum = 229;BA.debugLine="Dim n As Long = DateTime.Now";
-_n = parent.__c.DateTime.getNow();
+_n = __c.DateTime.getNow();
  //BA.debugLineNum = 230;BA.debugLine="Dim duration As Int = Abs(mCurrentValue - NewValu";
-_duration = (int) (parent.__c.Abs(parent._mcurrentvalue-_newvalue)/(double)100*parent._durationfromzeroto100+1000);
+_duration = (int) (__c.Abs(_mcurrentvalue-_newvalue)/(double)100*_durationfromzeroto100+1000);
  //BA.debugLineNum = 231;BA.debugLine="Dim start As Float = mCurrentValue";
-_start = parent._mcurrentvalue;
+_start = _mcurrentvalue;
  //BA.debugLineNum = 232;BA.debugLine="mCurrentValue = NewValue";
-parent._mcurrentvalue = _newvalue;
+_mcurrentvalue = _newvalue;
  //BA.debugLineNum = 233;BA.debugLine="Dim tempValue As Float";
 _tempvalue = 0f;
- //BA.debugLineNum = 234;BA.debugLine="Do While DateTime.Now < n + duration";
-if (true) break;
-
-case 1:
-//do while
-this.state = 10;
-while (parent.__c.DateTime.getNow()<_n+_duration) {
-this.state = 3;
-if (true) break;
-}
-if (true) break;
-
-case 3:
-//C
-this.state = 4;
- //BA.debugLineNum = 235;BA.debugLine="tempValue = ValueFromTimeEaseInOut(DateTime.Now";
-_tempvalue = parent._valuefromtimeeaseinout((float) (parent.__c.DateTime.getNow()-_n),_start,(float) (_newvalue-_start),_duration);
- //BA.debugLineNum = 236;BA.debugLine="DrawIndicator(tempValue)";
-parent._drawindicator(_tempvalue);
- //BA.debugLineNum = 237;BA.debugLine="Sleep(10)";
-parent.__c.Sleep(ba,this,(int) (10));
-this.state = 11;
-return;
-case 11:
-//C
-this.state = 4;
-;
- //BA.debugLineNum = 238;BA.debugLine="If NewValue <> mCurrentValue Then Return 'will h";
-if (true) break;
-
-case 4:
-//if
-this.state = 9;
-if (_newvalue!=parent._mcurrentvalue) { 
-this.state = 6;
-;}if (true) break;
-
-case 6:
-//C
-this.state = 9;
-if (true) return ;
-if (true) break;
-
-case 9:
-//C
-this.state = 1;
-;
- if (true) break;
-
-case 10:
-//C
-this.state = -1;
-;
  //BA.debugLineNum = 240;BA.debugLine="DrawIndicator(mCurrentValue)";
-parent._drawindicator(parent._mcurrentvalue);
+_drawindicator(_mcurrentvalue);
  //BA.debugLineNum = 241;BA.debugLine="End Sub";
-if (true) break;
-
-            }
-        }
-    }
+return "";
 }
 public String  _base_resize(double _width,double _height) throws Exception{
  //BA.debugLineNum = 84;BA.debugLine="Private Sub Base_Resize (Width As Double, Height A";

@@ -12,6 +12,8 @@
 	    android:smallScreens="true" 
 	    android:anyDensity="true"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<application
 		android:icon="@drawable/icon"
@@ -29,6 +31,13 @@
 			</intent-filter>
 			
 		</activity>
+		<service android:name=".smarthomemonitor">
+		</service>
+		<receiver android:name=".smarthomemonitor$smarthomemonitor_BR">
+			<intent-filter>
+			<action android:name="android.intent.action.BOOT_COMPLETED"/>
+			</intent-filter>
+		</receiver>
 		<service android:name="anywheresoftware.b4a.samples.httputils2.httputils2service">
 		</service>
 		<receiver android:name="anywheresoftware.b4a.samples.httputils2.httputils2service$httputils2service_BR">
