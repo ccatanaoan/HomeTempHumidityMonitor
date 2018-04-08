@@ -92,6 +92,7 @@ End Sub
 Sub Activity_Create(FirstTime As Boolean)
 	Try
 		If FirstTime Then
+			StartService(SmartHomeMonitor)
 			csu.Initialize
 			MQTT_Connect
 		End If
@@ -162,7 +163,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		Notification1.Cancel(725)
 		Notification1.Cancel(726)
 		
-		StartService(SmartHomeMonitor)
+		
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
