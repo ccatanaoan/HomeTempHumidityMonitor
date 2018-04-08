@@ -21,12 +21,9 @@ End Sub
 
 Sub Service_Create
 	Notification1.Initialize
-	Notification1.Icon = "icon"
-	Notification1.Sound = False
-	Notification1.Vibrate = False
-	Notification1.AutoCancel = True
-	Notification1.SetInfo("Smart Home Monitor","The service is running",Main)
 	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
+	CreateNotification("Temperature","Temperature","temp",Main,True,True,True,"Temperature")
+	CreateNotification("Carbon Monoxide","Carbon Monoxide","co",Main,True,True,True,"Carbon Monoxide")
 End Sub
 
 Sub Service_Start (StartingIntent As Intent)
@@ -90,9 +87,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Dim NotificationText As String
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
 					If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  Then
-						CreateNotification(GetPerception(a(3)),NotificationText,"temp",Me,True,True).Notify(725)
+						CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,True,True,True,"Temperature").Notify(725)
 					Else
-						CreateNotification(GetPerception(a(3)),NotificationText,"temp",Me,True,True).Cancel(725)
+						Notification1.Cancel(725)
 					End If
 				End If
 			End If
@@ -107,10 +104,10 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 				If IsNumber(a(0)) And a(0) > 0 Then
 					Dim NotificationText As String
 					NotificationText = GetAirQuality(a(0)) & " | " & a(0) & " ppm"
-					If a(0) > 400 Then
-						CreateNotification("Air quality",NotificationText,"co",Me,True,True).Notify(726)
+					If a(0) > 400   Then
+						CreateNotification("Air quality",NotificationText,"co",Main,True,True,True,"Carbon Monoxide").Notify(726)
 					Else
-						CreateNotification("Air quality",NotificationText,"co",Me,True,True).Cancel(726)
+						Notification1.Cancel(726)
 					End If
 				End If
 			End If
@@ -121,7 +118,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 End Sub
 
 Private Sub CreateNotification(Title As String, Content As String, Icon As String, TargetActivity As Object, _
-    Sound As Boolean, Vibrate As Boolean) As Notification
+    Sound As Boolean, Vibrate As Boolean, ShowBadge As Boolean, ChannelName As String) As Notification
 	Dim p As Phone
 	If p.SdkVersion >= 21 Then
 		Dim nb As NotificationBuilder
@@ -140,14 +137,17 @@ Private Sub CreateNotification(Title As String, Content As String, Icon As Strin
 			manager.InitializeStatic("android.app.NotificationManager")
 			Dim Channel As JavaObject
 			Dim importance As String
-			If Sound Then importance = "IMPORTANCE_DEFAULT" Else importance = "IMPORTANCE_LOW"
-			Dim ChannelVisibleName As String = Application.LabelName
+			If Sound Then importance = "IMPORTANCE_HIGH" Else importance = "IMPORTANCE_LOW"
+			Dim ChannelVisibleName As String = ChannelName 'Application.LabelName
 			Channel.InitializeNewInstance("android.app.NotificationChannel", _
-                   Array("MyChannelId1", ChannelVisibleName, manager.GetField(importance)))
+                   Array(ChannelName, ChannelVisibleName, manager.GetField(importance)))
+			'modify the channel
+			'For example: disable the badge feature
+			Channel.RunMethod("setShowBadge", Array(ShowBadge))
 			manager = ctxt.RunMethod("getSystemService", Array("notification"))
 			manager.RunMethod("createNotificationChannel", Array(Channel))
 			Dim jo As JavaObject = nb
-			jo.RunMethod("setChannelId", Array("MyChannelId1"))
+			jo.RunMethod("setChannelId", Array(ChannelName))
 		End If
 		Return  nb.GetNotification
 	Else
