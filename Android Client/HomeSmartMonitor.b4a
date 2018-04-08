@@ -21,6 +21,7 @@ Library11=tabstripviewpager
 Library12=reflection
 Library13=httputils2
 Library14=http
+Library15=notificationbuilder
 Library2=appcompat
 Library3=javaobject
 Library4=xmllayoutbuilder
@@ -32,9 +33,10 @@ Library9=stringutils
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)
 Module1=CustomListView
 Module2=Gauge
+Module3=SmartHomeMonitor
 NumberOfFiles=7
-NumberOfLibraries=14
-NumberOfModules=2
+NumberOfLibraries=15
+NumberOfModules=3
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
@@ -84,6 +86,7 @@ Sub Globals
 	Private lblAirQuality As Label
 	Private lblAirQualityLastUpdate As Label
 	Private WebView1 As WebView 'ignore
+	Dim Notification1 As Notification
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -152,6 +155,14 @@ Sub Activity_Create(FirstTime As Boolean)
 		If MQTT.IsInitialized And MQTT.Connected  Then
 			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 		End If
+		
+		If Notification1.IsInitialized = False Then
+			Notification1.Initialize
+		End If
+		Notification1.Cancel(725)
+		Notification1.Cancel(726)
+		
+		StartService(SmartHomeMonitor)
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -169,6 +180,16 @@ Sub Activity_Resume
 		If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 			MQTT_Connect
 		End If
+	Catch
+		Log(LastException)
+	End Try
+	
+	Try
+		If Notification1.IsInitialized = False Then
+			Notification1.Initialize
+		End If
+		Notification1.Cancel(725)
+		Notification1.Cancel(726)
 	Catch
 		Log(LastException)
 	End Try
@@ -199,7 +220,7 @@ Sub MQTT_Connected (Success As Boolean)
 	Try	
 		If Success = False Then
 	        Log(LastException)
-			AddEvent("MQTT error connecting")
+			MQTT_Connect
 	    Else
 			AddEvent("Connected to MQTT broker")
 	        MQTT.Subscribe("TempHumid", 0)

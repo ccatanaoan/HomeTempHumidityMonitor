@@ -237,12 +237,12 @@ Private Sub AnimateValueTo(NewValue As Float)
 	Dim start As Float = mCurrentValue
 	mCurrentValue = NewValue
 	Dim tempValue As Float
-	Do While DateTime.Now < n + duration
-		tempValue = ValueFromTimeEaseInOut(DateTime.Now - n, start, NewValue - start, duration)
-		DrawIndicator(tempValue)
-		Sleep(10)
-		If NewValue <> mCurrentValue Then Return 'will happen if another update has started
-	Loop
+'	Do While DateTime.Now < n + duration
+'		tempValue = ValueFromTimeEaseInOut(DateTime.Now - n, start, NewValue - start, duration)
+'		DrawIndicator(tempValue)
+'		Sleep(10)
+'		If NewValue <> mCurrentValue Then Return 'will happen if another update has started
+'	Loop
 	DrawIndicator(mCurrentValue)
 End Sub
 
