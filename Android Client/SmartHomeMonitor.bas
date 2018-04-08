@@ -22,6 +22,7 @@ End Sub
 Sub Service_Create
 	Notification1.Initialize
 	Notification1.Icon = "icon"
+	Notification1.Sound = False
 	Notification1.Vibrate = False
 	Notification1.AutoCancel = True
 	Notification1.SetInfo("Smart Home Monitor","The service is running",Main)
@@ -89,9 +90,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Dim NotificationText As String
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
 					If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  Then
-						CreateNotification(GetPerception(a(3)),NotificationText,"icon",Me,True,True).Notify(725)
+						CreateNotification(GetPerception(a(3)),NotificationText,"temp",Me,True,True).Notify(725)
 					Else
-						CreateNotification(GetPerception(a(3)),NotificationText,"icon",Me,True,True).Cancel(725)
+						CreateNotification(GetPerception(a(3)),NotificationText,"temp",Me,True,True).Cancel(725)
 					End If
 				End If
 			End If
@@ -107,9 +108,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Dim NotificationText As String
 					NotificationText = GetAirQuality(a(0)) & " | " & a(0) & " ppm"
 					If a(0) > 400 Then
-						CreateNotification("Air quality",NotificationText,"icon",Me,True,True).Notify(726)
+						CreateNotification("Air quality",NotificationText,"co",Me,True,True).Notify(726)
 					Else
-						CreateNotification("Air quality",NotificationText,"icon",Me,True,True).Cancel(726)
+						CreateNotification("Air quality",NotificationText,"co",Me,True,True).Cancel(726)
 					End If
 				End If
 			End If

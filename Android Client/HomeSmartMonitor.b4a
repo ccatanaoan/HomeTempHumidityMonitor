@@ -163,7 +163,6 @@ Sub Activity_Create(FirstTime As Boolean)
 		Notification1.Cancel(725)
 		Notification1.Cancel(726)
 		
-		
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
