@@ -127,7 +127,7 @@ public static String _mqttserveruri = "";
 public static anywheresoftware.b4a.objects.NotificationWrapper _notification1 = null;
 public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public cloyd.smart.home.monitor.main _main = null;
-public static anywheresoftware.b4a.objects.NotificationWrapper  _createnotification(String _title,String _content,String _icon,Object _targetactivity,boolean _sound,boolean _vibrate) throws Exception{
+public static anywheresoftware.b4a.objects.NotificationWrapper  _createnotification(String _title,String _content,String _icon,Object _targetactivity,boolean _sound,boolean _vibrate,boolean _showbadge,String _channelname) throws Exception{
 anywheresoftware.b4a.phone.Phone _p = null;
 barxdroid.NotificationBuilder.NotificationBuilder _nb = null;
 anywheresoftware.b4j.object.JavaObject _ctxt = null;
@@ -137,52 +137,54 @@ String _importance = "";
 String _channelvisiblename = "";
 anywheresoftware.b4j.object.JavaObject _jo = null;
 anywheresoftware.b4a.objects.NotificationWrapper _n = null;
- //BA.debugLineNum = 117;BA.debugLine="Private Sub CreateNotification(Title As String, Co";
- //BA.debugLineNum = 119;BA.debugLine="Dim p As Phone";
+ //BA.debugLineNum = 114;BA.debugLine="Private Sub CreateNotification(Title As String, Co";
+ //BA.debugLineNum = 116;BA.debugLine="Dim p As Phone";
 _p = new anywheresoftware.b4a.phone.Phone();
- //BA.debugLineNum = 120;BA.debugLine="If p.SdkVersion >= 21 Then";
+ //BA.debugLineNum = 117;BA.debugLine="If p.SdkVersion >= 21 Then";
 if (_p.getSdkVersion()>=21) { 
- //BA.debugLineNum = 121;BA.debugLine="Dim nb As NotificationBuilder";
+ //BA.debugLineNum = 118;BA.debugLine="Dim nb As NotificationBuilder";
 _nb = new barxdroid.NotificationBuilder.NotificationBuilder();
- //BA.debugLineNum = 122;BA.debugLine="nb.Initialize";
+ //BA.debugLineNum = 119;BA.debugLine="nb.Initialize";
 _nb.Initialize(processBA);
- //BA.debugLineNum = 123;BA.debugLine="nb.DefaultSound = Sound";
+ //BA.debugLineNum = 120;BA.debugLine="nb.DefaultSound = Sound";
 _nb.setDefaultSound(_sound);
- //BA.debugLineNum = 124;BA.debugLine="nb.DefaultVibrate = Vibrate";
+ //BA.debugLineNum = 121;BA.debugLine="nb.DefaultVibrate = Vibrate";
 _nb.setDefaultVibrate(_vibrate);
- //BA.debugLineNum = 125;BA.debugLine="nb.ContentTitle = Title";
+ //BA.debugLineNum = 122;BA.debugLine="nb.ContentTitle = Title";
 _nb.setContentTitle(_title);
- //BA.debugLineNum = 126;BA.debugLine="nb.ContentText = Content";
+ //BA.debugLineNum = 123;BA.debugLine="nb.ContentText = Content";
 _nb.setContentText(_content);
- //BA.debugLineNum = 127;BA.debugLine="nb.setActivity(TargetActivity)";
+ //BA.debugLineNum = 124;BA.debugLine="nb.setActivity(TargetActivity)";
 _nb.setActivity(processBA,_targetactivity);
- //BA.debugLineNum = 128;BA.debugLine="nb.OnlyAlertOnce = True";
+ //BA.debugLineNum = 125;BA.debugLine="nb.OnlyAlertOnce = True";
 _nb.setOnlyAlertOnce(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 129;BA.debugLine="nb.SmallIcon = Icon";
+ //BA.debugLineNum = 126;BA.debugLine="nb.SmallIcon = Icon";
 _nb.setSmallIcon(_icon);
- //BA.debugLineNum = 130;BA.debugLine="If p.SdkVersion >= 26 Then";
+ //BA.debugLineNum = 127;BA.debugLine="If p.SdkVersion >= 26 Then";
 if (_p.getSdkVersion()>=26) { 
- //BA.debugLineNum = 131;BA.debugLine="Dim ctxt As JavaObject";
+ //BA.debugLineNum = 128;BA.debugLine="Dim ctxt As JavaObject";
 _ctxt = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 132;BA.debugLine="ctxt.InitializeContext";
+ //BA.debugLineNum = 129;BA.debugLine="ctxt.InitializeContext";
 _ctxt.InitializeContext(processBA);
- //BA.debugLineNum = 133;BA.debugLine="Dim manager As JavaObject";
+ //BA.debugLineNum = 130;BA.debugLine="Dim manager As JavaObject";
 _manager = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 134;BA.debugLine="manager.InitializeStatic(\"android.app.Notificat";
+ //BA.debugLineNum = 131;BA.debugLine="manager.InitializeStatic(\"android.app.Notificat";
 _manager.InitializeStatic("android.app.NotificationManager");
- //BA.debugLineNum = 135;BA.debugLine="Dim Channel As JavaObject";
+ //BA.debugLineNum = 132;BA.debugLine="Dim Channel As JavaObject";
 _channel = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 136;BA.debugLine="Dim importance As String";
+ //BA.debugLineNum = 133;BA.debugLine="Dim importance As String";
 _importance = "";
- //BA.debugLineNum = 137;BA.debugLine="If Sound Then importance = \"IMPORTANCE_DEFAULT\"";
+ //BA.debugLineNum = 134;BA.debugLine="If Sound Then importance = \"IMPORTANCE_HIGH\" El";
 if (_sound) { 
-_importance = "IMPORTANCE_DEFAULT";}
+_importance = "IMPORTANCE_HIGH";}
 else {
 _importance = "IMPORTANCE_LOW";};
- //BA.debugLineNum = 138;BA.debugLine="Dim ChannelVisibleName As String = Application.";
-_channelvisiblename = anywheresoftware.b4a.keywords.Common.Application.getLabelName();
- //BA.debugLineNum = 139;BA.debugLine="Channel.InitializeNewInstance(\"android.app.Noti";
-_channel.InitializeNewInstance("android.app.NotificationChannel",new Object[]{(Object)("MyChannelId1"),(Object)(_channelvisiblename),_manager.GetField(_importance)});
+ //BA.debugLineNum = 135;BA.debugLine="Dim ChannelVisibleName As String = ChannelName";
+_channelvisiblename = _channelname;
+ //BA.debugLineNum = 136;BA.debugLine="Channel.InitializeNewInstance(\"android.app.Noti";
+_channel.InitializeNewInstance("android.app.NotificationChannel",new Object[]{(Object)(_channelname),(Object)(_channelvisiblename),_manager.GetField(_importance)});
+ //BA.debugLineNum = 140;BA.debugLine="Channel.RunMethod(\"setShowBadge\", Array(ShowBad";
+_channel.RunMethod("setShowBadge",new Object[]{(Object)(_showbadge)});
  //BA.debugLineNum = 141;BA.debugLine="manager = ctxt.RunMethod(\"getSystemService\", Ar";
 _manager.setObject((java.lang.Object)(_ctxt.RunMethod("getSystemService",new Object[]{(Object)("notification")})));
  //BA.debugLineNum = 142;BA.debugLine="manager.RunMethod(\"createNotificationChannel\",";
@@ -190,8 +192,8 @@ _manager.RunMethod("createNotificationChannel",new Object[]{(Object)(_channel.ge
  //BA.debugLineNum = 143;BA.debugLine="Dim jo As JavaObject = nb";
 _jo = new anywheresoftware.b4j.object.JavaObject();
 _jo.setObject((java.lang.Object)(_nb.getObject()));
- //BA.debugLineNum = 144;BA.debugLine="jo.RunMethod(\"setChannelId\", Array(\"MyChannelId";
-_jo.RunMethod("setChannelId",new Object[]{(Object)("MyChannelId1")});
+ //BA.debugLineNum = 144;BA.debugLine="jo.RunMethod(\"setChannelId\", Array(ChannelName)";
+_jo.RunMethod("setChannelId",new Object[]{(Object)(_channelname)});
  };
  //BA.debugLineNum = 146;BA.debugLine="Return  nb.GetNotification";
 if (true) return (anywheresoftware.b4a.objects.NotificationWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.NotificationWrapper(), (java.lang.Object)(_nb.GetNotification(processBA)));
@@ -339,60 +341,60 @@ return "";
 public static String  _mqtt_connect() throws Exception{
 String _clientid = "";
 anywheresoftware.b4j.objects.MqttAsyncClientWrapper.MqttConnectOptionsWrapper _connopt = null;
- //BA.debugLineNum = 36;BA.debugLine="Sub MQTT_Connect";
- //BA.debugLineNum = 37;BA.debugLine="Try";
-try { //BA.debugLineNum = 38;BA.debugLine="Dim ClientId As String = Rnd(0, 999999999) 'crea";
+ //BA.debugLineNum = 33;BA.debugLine="Sub MQTT_Connect";
+ //BA.debugLineNum = 34;BA.debugLine="Try";
+try { //BA.debugLineNum = 35;BA.debugLine="Dim ClientId As String = Rnd(0, 999999999) 'crea";
 _clientid = BA.NumberToString(anywheresoftware.b4a.keywords.Common.Rnd((int) (0),(int) (999999999)));
- //BA.debugLineNum = 39;BA.debugLine="MQTT.Initialize(\"MQTT\", MQTTServerURI, ClientId)";
+ //BA.debugLineNum = 36;BA.debugLine="MQTT.Initialize(\"MQTT\", MQTTServerURI, ClientId)";
 _mqtt.Initialize(processBA,"MQTT",_mqttserveruri,_clientid);
- //BA.debugLineNum = 41;BA.debugLine="Dim ConnOpt As MqttConnectOptions";
+ //BA.debugLineNum = 38;BA.debugLine="Dim ConnOpt As MqttConnectOptions";
 _connopt = new anywheresoftware.b4j.objects.MqttAsyncClientWrapper.MqttConnectOptionsWrapper();
- //BA.debugLineNum = 42;BA.debugLine="ConnOpt.Initialize(MQTTUser, MQTTPassword)";
+ //BA.debugLineNum = 39;BA.debugLine="ConnOpt.Initialize(MQTTUser, MQTTPassword)";
 _connopt.Initialize(_mqttuser,_mqttpassword);
- //BA.debugLineNum = 43;BA.debugLine="MQTT.Connect2(ConnOpt)";
+ //BA.debugLineNum = 40;BA.debugLine="MQTT.Connect2(ConnOpt)";
 _mqtt.Connect2((org.eclipse.paho.client.mqttv3.MqttConnectOptions)(_connopt.getObject()));
  } 
        catch (Exception e8) {
-			processBA.setLastException(e8); //BA.debugLineNum = 45;BA.debugLine="Log(LastException)";
+			processBA.setLastException(e8); //BA.debugLineNum = 42;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)));
  };
- //BA.debugLineNum = 47;BA.debugLine="End Sub";
+ //BA.debugLineNum = 44;BA.debugLine="End Sub";
 return "";
 }
 public static String  _mqtt_connected(boolean _success) throws Exception{
- //BA.debugLineNum = 49;BA.debugLine="Sub MQTT_Connected (Success As Boolean)";
- //BA.debugLineNum = 50;BA.debugLine="Try";
-try { //BA.debugLineNum = 51;BA.debugLine="If Success = False Then";
+ //BA.debugLineNum = 46;BA.debugLine="Sub MQTT_Connected (Success As Boolean)";
+ //BA.debugLineNum = 47;BA.debugLine="Try";
+try { //BA.debugLineNum = 48;BA.debugLine="If Success = False Then";
 if (_success==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 52;BA.debugLine="Log(LastException)";
+ //BA.debugLineNum = 49;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)));
- //BA.debugLineNum = 53;BA.debugLine="MQTT_Connect";
+ //BA.debugLineNum = 50;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  }else {
- //BA.debugLineNum = 55;BA.debugLine="MQTT.Subscribe(\"TempHumid\", 0)";
+ //BA.debugLineNum = 52;BA.debugLine="MQTT.Subscribe(\"TempHumid\", 0)";
 _mqtt.Subscribe("TempHumid",(int) (0));
- //BA.debugLineNum = 56;BA.debugLine="MQTT.Subscribe(\"MQ7\", 0)";
+ //BA.debugLineNum = 53;BA.debugLine="MQTT.Subscribe(\"MQ7\", 0)";
 _mqtt.Subscribe("MQ7",(int) (0));
  };
  } 
        catch (Exception e10) {
-			processBA.setLastException(e10); //BA.debugLineNum = 59;BA.debugLine="Log(LastException)";
+			processBA.setLastException(e10); //BA.debugLineNum = 56;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)));
  };
- //BA.debugLineNum = 62;BA.debugLine="End Sub";
+ //BA.debugLineNum = 59;BA.debugLine="End Sub";
 return "";
 }
 public static String  _mqtt_disconnected() throws Exception{
- //BA.debugLineNum = 64;BA.debugLine="Private Sub MQTT_Disconnected";
- //BA.debugLineNum = 65;BA.debugLine="Try";
-try { //BA.debugLineNum = 66;BA.debugLine="MQTT_Connect";
+ //BA.debugLineNum = 61;BA.debugLine="Private Sub MQTT_Disconnected";
+ //BA.debugLineNum = 62;BA.debugLine="Try";
+try { //BA.debugLineNum = 63;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  } 
        catch (Exception e4) {
-			processBA.setLastException(e4); //BA.debugLineNum = 68;BA.debugLine="Log(LastException)";
+			processBA.setLastException(e4); //BA.debugLineNum = 65;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)));
  };
- //BA.debugLineNum = 70;BA.debugLine="End Sub";
+ //BA.debugLineNum = 67;BA.debugLine="End Sub";
 return "";
 }
 public static String  _mqtt_messagearrived(String _topic,byte[] _payload) throws Exception{
@@ -400,76 +402,76 @@ String _status = "";
 String[] _a = null;
 anywheresoftware.b4a.objects.CSBuilder _cs = null;
 String _notificationtext = "";
- //BA.debugLineNum = 72;BA.debugLine="Private Sub MQTT_MessageArrived (Topic As String,";
- //BA.debugLineNum = 73;BA.debugLine="Try";
-try { //BA.debugLineNum = 74;BA.debugLine="If Topic = \"TempHumid\" Then";
+ //BA.debugLineNum = 69;BA.debugLine="Private Sub MQTT_MessageArrived (Topic As String,";
+ //BA.debugLineNum = 70;BA.debugLine="Try";
+try { //BA.debugLineNum = 71;BA.debugLine="If Topic = \"TempHumid\" Then";
 if ((_topic).equals("TempHumid")) { 
- //BA.debugLineNum = 76;BA.debugLine="Dim status As String";
+ //BA.debugLineNum = 73;BA.debugLine="Dim status As String";
 _status = "";
- //BA.debugLineNum = 77;BA.debugLine="status = BytesToString(Payload, 0, Payload.Leng";
+ //BA.debugLineNum = 74;BA.debugLine="status = BytesToString(Payload, 0, Payload.Leng";
 _status = anywheresoftware.b4a.keywords.Common.BytesToString(_payload,(int) (0),_payload.length,"UTF8");
- //BA.debugLineNum = 79;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
+ //BA.debugLineNum = 76;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
 _a = anywheresoftware.b4a.keywords.Common.Regex.Split("\\|",_status);
- //BA.debugLineNum = 80;BA.debugLine="If a.Length = 9 Then";
+ //BA.debugLineNum = 77;BA.debugLine="If a.Length = 9 Then";
 if (_a.length==9) { 
- //BA.debugLineNum = 81;BA.debugLine="Dim cs As CSBuilder";
+ //BA.debugLineNum = 78;BA.debugLine="Dim cs As CSBuilder";
 _cs = new anywheresoftware.b4a.objects.CSBuilder();
- //BA.debugLineNum = 82;BA.debugLine="cs.Initialize";
+ //BA.debugLineNum = 79;BA.debugLine="cs.Initialize";
 _cs.Initialize();
- //BA.debugLineNum = 83;BA.debugLine="If a(0) = \"OK\" And a(1) > 0 Then";
+ //BA.debugLineNum = 80;BA.debugLine="If a(0) = \"OK\" And a(1) > 0 Then";
 if ((_a[(int) (0)]).equals("OK") && (double)(Double.parseDouble(_a[(int) (1)]))>0) { 
- //BA.debugLineNum = 84;BA.debugLine="Dim NotificationText As String";
+ //BA.debugLineNum = 81;BA.debugLine="Dim NotificationText As String";
 _notificationtext = "";
- //BA.debugLineNum = 85;BA.debugLine="NotificationText = \"Temperature: \" & a(1) & \"";
+ //BA.debugLineNum = 82;BA.debugLine="NotificationText = \"Temperature: \" & a(1) & \"";
 _notificationtext = "Temperature: "+_a[(int) (1)]+"°F | Humidity: "+_a[(int) (2)]+"% | Comfort: "+_getcomfort(_a[(int) (4)]);
- //BA.debugLineNum = 86;BA.debugLine="If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  T";
+ //BA.debugLineNum = 83;BA.debugLine="If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  T";
 if (((double)(Double.parseDouble(_a[(int) (3)]))>3) || ((_a[(int) (4)]).equals(BA.NumberToString(0)) == false && (_a[(int) (4)]).equals(BA.NumberToString(2)) == false)) { 
- //BA.debugLineNum = 87;BA.debugLine="CreateNotification(GetPerception(a(3)),Notif";
-_createnotification(_getperception(_a[(int) (3)]),_notificationtext,"temp",smarthomemonitor.getObject(),anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True).Notify((int) (725));
+ //BA.debugLineNum = 84;BA.debugLine="CreateNotification(GetPerception(a(3)),Notif";
+_createnotification(_getperception(_a[(int) (3)]),_notificationtext,"temp",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True,"Temperature").Notify((int) (725));
  }else {
- //BA.debugLineNum = 89;BA.debugLine="CreateNotification(GetPerception(a(3)),Notif";
-_createnotification(_getperception(_a[(int) (3)]),_notificationtext,"temp",smarthomemonitor.getObject(),anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True).Cancel((int) (725));
+ //BA.debugLineNum = 86;BA.debugLine="Notification1.Cancel(725)";
+_notification1.Cancel((int) (725));
  };
  };
  };
  }else if((_topic).equals("MQ7")) { 
- //BA.debugLineNum = 94;BA.debugLine="Dim status As String";
+ //BA.debugLineNum = 91;BA.debugLine="Dim status As String";
 _status = "";
- //BA.debugLineNum = 95;BA.debugLine="Dim cs As CSBuilder";
+ //BA.debugLineNum = 92;BA.debugLine="Dim cs As CSBuilder";
 _cs = new anywheresoftware.b4a.objects.CSBuilder();
- //BA.debugLineNum = 96;BA.debugLine="cs.Initialize";
+ //BA.debugLineNum = 93;BA.debugLine="cs.Initialize";
 _cs.Initialize();
- //BA.debugLineNum = 97;BA.debugLine="status = BytesToString(Payload, 0, Payload.Leng";
+ //BA.debugLineNum = 94;BA.debugLine="status = BytesToString(Payload, 0, Payload.Leng";
 _status = anywheresoftware.b4a.keywords.Common.BytesToString(_payload,(int) (0),_payload.length,"UTF8");
- //BA.debugLineNum = 98;BA.debugLine="Log(\"MQ7 status: \" & status)";
+ //BA.debugLineNum = 95;BA.debugLine="Log(\"MQ7 status: \" & status)";
 anywheresoftware.b4a.keywords.Common.Log("MQ7 status: "+_status);
- //BA.debugLineNum = 99;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
+ //BA.debugLineNum = 96;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
 _a = anywheresoftware.b4a.keywords.Common.Regex.Split("\\|",_status);
- //BA.debugLineNum = 100;BA.debugLine="If a.Length = 3 Then";
+ //BA.debugLineNum = 97;BA.debugLine="If a.Length = 3 Then";
 if (_a.length==3) { 
- //BA.debugLineNum = 101;BA.debugLine="If IsNumber(a(0)) And a(0) > 0 Then";
+ //BA.debugLineNum = 98;BA.debugLine="If IsNumber(a(0)) And a(0) > 0 Then";
 if (anywheresoftware.b4a.keywords.Common.IsNumber(_a[(int) (0)]) && (double)(Double.parseDouble(_a[(int) (0)]))>0) { 
- //BA.debugLineNum = 102;BA.debugLine="Dim NotificationText As String";
+ //BA.debugLineNum = 99;BA.debugLine="Dim NotificationText As String";
 _notificationtext = "";
- //BA.debugLineNum = 103;BA.debugLine="NotificationText = GetAirQuality(a(0)) & \" |";
+ //BA.debugLineNum = 100;BA.debugLine="NotificationText = GetAirQuality(a(0)) & \" |";
 _notificationtext = _getairquality((int)(Double.parseDouble(_a[(int) (0)])))+" | "+_a[(int) (0)]+" ppm";
- //BA.debugLineNum = 104;BA.debugLine="If a(0) > 400 Then";
+ //BA.debugLineNum = 101;BA.debugLine="If a(0) > 400   Then";
 if ((double)(Double.parseDouble(_a[(int) (0)]))>400) { 
- //BA.debugLineNum = 105;BA.debugLine="CreateNotification(\"Air quality\",Notificatio";
-_createnotification("Air quality",_notificationtext,"co",smarthomemonitor.getObject(),anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True).Notify((int) (726));
+ //BA.debugLineNum = 102;BA.debugLine="CreateNotification(\"Air quality\",Notificatio";
+_createnotification("Air quality",_notificationtext,"co",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True,"Carbon Monoxide").Notify((int) (726));
  }else {
- //BA.debugLineNum = 107;BA.debugLine="CreateNotification(\"Air quality\",Notificatio";
-_createnotification("Air quality",_notificationtext,"co",smarthomemonitor.getObject(),anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True).Cancel((int) (726));
+ //BA.debugLineNum = 104;BA.debugLine="Notification1.Cancel(726)";
+_notification1.Cancel((int) (726));
  };
  };
  };
  };
  } 
        catch (Exception e39) {
-			processBA.setLastException(e39); //BA.debugLineNum = 113;BA.debugLine="Log(LastException)";
+			processBA.setLastException(e39); //BA.debugLineNum = 110;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)));
  };
- //BA.debugLineNum = 115;BA.debugLine="End Sub";
+ //BA.debugLineNum = 112;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
@@ -491,31 +493,25 @@ public static String  _service_create() throws Exception{
  //BA.debugLineNum = 16;BA.debugLine="Sub Service_Create";
  //BA.debugLineNum = 17;BA.debugLine="Notification1.Initialize";
 _notification1.Initialize();
- //BA.debugLineNum = 18;BA.debugLine="Notification1.Icon = \"icon\"";
-_notification1.setIcon("icon");
- //BA.debugLineNum = 19;BA.debugLine="Notification1.Sound = False";
-_notification1.setSound(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 20;BA.debugLine="Notification1.Vibrate = False";
-_notification1.setVibrate(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 21;BA.debugLine="Notification1.AutoCancel = True";
-_notification1.setAutoCancel(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 22;BA.debugLine="Notification1.SetInfo(\"Smart Home Monitor\",\"The s";
-_notification1.SetInfoNew(processBA,BA.ObjectToCharSequence("Smart Home Monitor"),BA.ObjectToCharSequence("The service is running"),(Object)(mostCurrent._main.getObject()));
- //BA.debugLineNum = 23;BA.debugLine="Service.AutomaticForegroundMode = Service.AUTOMAT";
+ //BA.debugLineNum = 18;BA.debugLine="Service.AutomaticForegroundMode = Service.AUTOMAT";
 mostCurrent._service.AutomaticForegroundMode = mostCurrent._service.AUTOMATIC_FOREGROUND_ALWAYS;
- //BA.debugLineNum = 24;BA.debugLine="End Sub";
+ //BA.debugLineNum = 19;BA.debugLine="CreateNotification(\"Temperature\",\"Temperature\",\"t";
+_createnotification("Temperature","Temperature","temp",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True,"Temperature");
+ //BA.debugLineNum = 20;BA.debugLine="CreateNotification(\"Carbon Monoxide\",\"Carbon Mono";
+_createnotification("Carbon Monoxide","Carbon Monoxide","co",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True,anywheresoftware.b4a.keywords.Common.True,"Carbon Monoxide");
+ //BA.debugLineNum = 21;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_destroy() throws Exception{
- //BA.debugLineNum = 31;BA.debugLine="Sub Service_Destroy";
- //BA.debugLineNum = 33;BA.debugLine="End Sub";
+ //BA.debugLineNum = 28;BA.debugLine="Sub Service_Destroy";
+ //BA.debugLineNum = 30;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{
- //BA.debugLineNum = 26;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
- //BA.debugLineNum = 27;BA.debugLine="MQTT_Connect";
+ //BA.debugLineNum = 23;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
+ //BA.debugLineNum = 24;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
- //BA.debugLineNum = 29;BA.debugLine="End Sub";
+ //BA.debugLineNum = 26;BA.debugLine="End Sub";
 return "";
 }
 }
