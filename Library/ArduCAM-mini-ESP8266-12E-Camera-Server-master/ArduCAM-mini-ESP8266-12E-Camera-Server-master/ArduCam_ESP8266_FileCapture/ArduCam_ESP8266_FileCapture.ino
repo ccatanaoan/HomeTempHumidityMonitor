@@ -80,7 +80,7 @@ int fileTotalKB = 0;
 int fileUsedKB = 0; int fileCount = 0;
 String errMsg = "";
 int imgMode = 0; // 0: stream  1: capture
-int resolution = 3;
+int resolution = 4;
 // resolutions:
 // 0 = 160x120
 // 1 = 176x144
@@ -442,14 +442,14 @@ void handleNotFound() {
   String message = "<html><head>\n";
   message += "</head><body>\n";
   message += "<form action=\"http://" + ipStr + "/submit\" method=\"POST\">";
-  message += "<h1>ESP8266-12E Arducam Mini</h1>\n";
+  message += "<h1>Catanaoan Security Camera</h1>\n";
   if (errMsg != "")
     message += "<div style=\"color:red\">" + errMsg + "</div>";
 
 
   if (imgMode == 0) // stream mode
   {
-    message += "<div><h2>Video Streaming</h2></div> \n";
+    message += "<div><h2>Live Video Streaming [Main Door]</h2></div> \n";
     message += "<div><img id=\"ArduCam\" src=\"http://" + ipStr + "/stream\" ></div>\n";
     imgMode = 1; // set back to capture mode so it doesn't get stuck in streaming mode
 
