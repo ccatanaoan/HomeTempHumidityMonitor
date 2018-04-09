@@ -41,8 +41,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 192
-	#VersionName: 1.9.2
+	#VersionCode: 193
+	#VersionName: 1.9.3
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -96,12 +96,20 @@ Sub Activity_Create(FirstTime As Boolean)
 			MQTT_Connect
 		End If
 		Activity.LoadLayout("Main")
-		TabStrip1.LoadLayout("1", "Temp & Humidity " & Chr(0xF2C7))
-		TabStrip1.LoadLayout("2", "Air Quality(CO) " & Chr(0xF289))
-		TabStrip1.LoadLayout("3", "Security Cam " & Chr(0xF030))
+		TabStrip1.LoadLayout("1", "Temp & Humidity  " & Chr(0xF2C7))
+		TabStrip1.LoadLayout("2", "Air Quality (CO)  " & Chr(0xF289))
+		TabStrip1.LoadLayout("3", "Security Camera  " & Chr(0xF030))
 
 		For Each lbl As Label In GetAllTabLabels(TabStrip1)
+			' To add icon
 			lbl.Typeface = Typeface.FONTAWESOME
+			' To add space around the label text
+			lbl.Padding = Array As Int(0, 0, 0, 0)
+		Next
+		
+		For Each v As View In GetAllTabLabels(TabStrip1)
+			' To equally align the tab headers
+			v.Width = 33%x
 		Next
 		
 		Dim bd As BitmapDrawable
@@ -424,7 +432,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 8, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 9, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
