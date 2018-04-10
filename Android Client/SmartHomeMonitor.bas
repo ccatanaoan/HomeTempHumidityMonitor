@@ -22,8 +22,8 @@ End Sub
 Sub Service_Create
 	Notification1.Initialize
 	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
-	CreateNotification("Temperature","Temperature","temp",Main,True,True,True,"Temperature")
-	CreateNotification("Carbon Monoxide","Carbon Monoxide","co",Main,True,True,True,"Carbon Monoxide")
+	CreateNotification("Temperature","Temperature","temp",Main,False,False,True,"Temperature")
+	CreateNotification("Carbon Monoxide","Carbon Monoxide","co",Main,False,False,True,"Carbon Monoxide")
 End Sub
 
 Sub Service_Start (StartingIntent As Intent)
@@ -87,7 +87,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Dim NotificationText As String
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
 					If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  Then
-						CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,True,True,True,"Temperature").Notify(725)
+						CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 					Else
 						Notification1.Cancel(725)
 					End If
@@ -105,7 +105,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Dim NotificationText As String
 					NotificationText = GetAirQuality(a(0)) & " | " & a(0) & " ppm"
 					If a(0) > 400   Then
-						CreateNotification("Air quality",NotificationText,"co",Main,True,True,True,"Carbon Monoxide").Notify(726)
+						CreateNotification("Air quality",NotificationText,"co",Main,False,False,True,"Carbon Monoxide").Notify(726)
 					Else
 						Notification1.Cancel(726)
 					End If
@@ -137,7 +137,8 @@ Private Sub CreateNotification(Title As String, Content As String, Icon As Strin
 			manager.InitializeStatic("android.app.NotificationManager")
 			Dim Channel As JavaObject
 			Dim importance As String
-			If Sound Then importance = "IMPORTANCE_HIGH" Else importance = "IMPORTANCE_LOW"
+			'If Sound Then importance = "IMPORTANCE_HIGH" Else importance = "IMPORTANCE_LOW"
+			importance = "IMPORTANCE_HIGH"
 			Dim ChannelVisibleName As String = ChannelName 'Application.LabelName
 			Channel.InitializeNewInstance("android.app.NotificationChannel", _
                    Array(ChannelName, ChannelVisibleName, manager.GetField(importance)))
