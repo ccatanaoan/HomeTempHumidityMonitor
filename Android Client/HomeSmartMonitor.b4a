@@ -22,6 +22,7 @@ Library12=reflection
 Library13=httputils2
 Library14=http
 Library15=notificationbuilder
+Library16=notificationlistener
 Library2=appcompat
 Library3=javaobject
 Library4=xmllayoutbuilder
@@ -30,19 +31,20 @@ Library6=callsubutils
 Library7=byteconverter
 Library8=xui
 Library9=stringutils
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor Notification Listener"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)
 Module1=CustomListView
 Module2=Gauge
 Module3=SmartHomeMonitor
+Module4=NotificationService
 NumberOfFiles=7
-NumberOfLibraries=15
-NumberOfModules=3
+NumberOfLibraries=16
+NumberOfModules=4
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 193
-	#VersionName: 1.9.3
+	#VersionCode: 194
+	#VersionName: 1.9.4
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -225,6 +227,7 @@ End Sub
 Private Sub MQTT_Disconnected
 	Try
 		gblACMenu.Clear
+		gblACMenu.Add(0, 0, "Enable Notification Listener",Null)
 		gblACMenu.Add(0, 0, "Restart board",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		AddEvent("Disconnected from MQTT broker")
@@ -376,6 +379,10 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 	Try
 		If Item.Title = "About" Then
 			ShowAboutMenu
+		Else If Item.Title = "Enable Notification Listener" Then
+			Dim In As Intent
+			In.Initialize("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS", "")
+			StartActivity(In)
 		else if Item.Title = "Restart board" Then
 			Try
 				Dim result As Int
@@ -432,7 +439,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 9, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 10, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -456,6 +463,7 @@ Sub Activity_Createmenu(Menu As ACMenu)
 	Try
 		Menu.Clear
 		gblACMenu = Menu
+		Menu.Add(0, 0, "Enable Notification Listener",Null)
 		Menu.Add(0, 0, "Restart board",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
