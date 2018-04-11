@@ -16,7 +16,9 @@ Sub Process_Globals
 	Private MQTTUser As String = "vynckfaq"
 	Private MQTTPassword As String = "KHSV1Q1qSUUY"
 	Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:11816"
-	Dim Notification1 As Notification
+	Private Notification1 As Notification
+	Public IsAirQualityNotificationOnGoing As Boolean 
+	Public IsTempHumidityNotificationOnGoing As Boolean
 End Sub
 
 Sub Service_Create
@@ -87,8 +89,11 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Dim NotificationText As String
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
 					If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  Then
-						CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
+						If IsTempHumidityNotificationOnGoing = False Then
+							CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
+						End If
 					Else
+						IsTempHumidityNotificationOnGoing = False
 						Notification1.Cancel(725)
 					End If
 				End If
@@ -103,10 +108,13 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			If a.Length = 3 Then
 				If IsNumber(a(0)) And a(0) > 0 Then
 					Dim NotificationText As String
-					NotificationText = GetAirQuality(a(0)) & " | " & a(0) & " ppm"
-					If a(0) > 400   Then
-						CreateNotification("Air quality",NotificationText,"co",Main,False,False,True,"Carbon Monoxide").Notify(726)
+					NotificationText = GetAirQuality(a(0)) & " at " & a(0) & " ppm"
+					If a(0) > 400 Then
+						If IsAirQualityNotificationOnGoing = False Then
+							CreateNotification("Air quality",NotificationText,"co",Main,False,False,True,"Carbon Monoxide").Notify(726)
+						End If
 					Else
+						IsAirQualityNotificationOnGoing = False
 						Notification1.Cancel(726)
 					End If
 				End If
@@ -176,21 +184,21 @@ Sub GetPerception(DHT11Perception As String) As String
 	Dim localperception As String
 	Select Case DHT11Perception
 		Case 0
-			localperception = "Feels like the western US, a bit dry to some"
+			localperception = "Home feels like the western US, a bit dry to some"
 		Case 1
-			localperception = "Very comfortable"
+			localperception = "Home is very comfortable"
 		Case 2
-			localperception = "Comfortable"
+			localperception = "Home is comfortable"
 		Case 3
-			localperception = "OK but everyone perceives the humidity at upper limit"
+			localperception = "Home is okay but the humidity at upper limit"
 		Case 4
-			localperception = "Somewhat uncomfortable for most people at upper limit"
+			localperception = "Home is uncomfortable at upper limit"
 		Case 5
-			localperception = "Very humid, quite uncomfortable"
+			localperception = "Home is very humid, quite uncomfortable"
 		Case 6
-			localperception = "Extremely uncomfortable, oppressive"
+			localperception = "Home is extremely uncomfortable, oppressive"
 		Case 7
-			localperception = "Severely high, even deadly for asthma related illnesses"
+			localperception = "Home humidity is severely high, even deadly for asthma related illnesses"
 	End Select
 	Return localperception
 End Sub
@@ -226,13 +234,13 @@ Sub GetAirQuality(number As Int) As String
 	' Detecting range: 10ppm-1000ppm carbon monoxide
 	' Air quality-cases: < 100 perfect | 100 - 400 normal | > 400 - 900 high | > 900 abnormal
 	If number <= 100 Then
-		Return("Carbon monoxide perfect")
+		Return("Carbon monoxide level is perfect")
 	else if ((number > 100) And (number < 400)) Or number = 400 Then
-		Return("Carbon monoxide normal")
+		Return("Carbon monoxide level is normal")
 	else if ((number > 400) And (number < 900)) Or number = 900 Then
-		Return("Carbon monoxide high")
+		Return("Carbon monoxide level is high")
 	else If number > 900 Then
-		Return("ALARM Carbon monoxide very high")
+		Return("ALARM Carbon monoxide level is very high")
 	Else
 		Return("MQ-7 - cant read any value - check the sensor!")
 	End If

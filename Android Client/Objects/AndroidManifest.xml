@@ -2,8 +2,8 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="cloyd.smart.home.monitor"
-	android:versionCode="193"
-	android:versionName="1.9.3"
+	android:versionCode="194"
+	android:versionName="1.9.4"
 	android:installLocation="internalOnly">
 	
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>
@@ -19,6 +19,14 @@
 		android:icon="@drawable/icon"
 		android:label="Smart Home Monitor"
 		android:theme="@style/MyAppTheme">
+		
+		<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"
+		   android:label="Smart Home Monitor Notification Listener"
+		  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+		  <intent-filter>
+		  <action android:name="android.service.notification.NotificationListenerService" />
+		  </intent-filter>
+		</service>
 		<activity
 			android:windowSoftInputMode="stateHidden"
 			android:launchMode="singleTop"
@@ -37,6 +45,10 @@
 			<intent-filter>
 			<action android:name="android.intent.action.BOOT_COMPLETED"/>
 			</intent-filter>
+		</receiver>
+		<service android:name=".notificationservice">
+		</service>
+		<receiver android:name=".notificationservice$notificationservice_BR">
 		</receiver>
 		<service android:name="anywheresoftware.b4a.samples.httputils2.httputils2service">
 		</service>

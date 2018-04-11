@@ -56,6 +56,7 @@ public int _backgroundcolor = 0;
 public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
+public cloyd.smart.home.monitor.notificationservice _notificationservice = null;
 public static class _gaugerange{
 public boolean IsInitialized;
 public float LowValue;
