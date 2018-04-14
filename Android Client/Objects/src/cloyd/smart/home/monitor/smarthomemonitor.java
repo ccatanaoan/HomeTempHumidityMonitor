@@ -518,6 +518,8 @@ public static String  _service_create() throws Exception{
  //BA.debugLineNum = 18;BA.debugLine="Sub Service_Create";
  //BA.debugLineNum = 19;BA.debugLine="Notification1.Initialize2(Notification1.IMPORTANC";
 _notification1.Initialize2(_notification1.IMPORTANCE_DEFAULT);
+ //BA.debugLineNum = 20;BA.debugLine="Service.AutomaticForegroundMode = Service.AUTOMAT";
+mostCurrent._service.AutomaticForegroundMode = mostCurrent._service.AUTOMATIC_FOREGROUND_ALWAYS;
  //BA.debugLineNum = 21;BA.debugLine="CreateNotification(\"Temperature\",\"Temperature\",\"t";
 _createnotification("Temperature","Temperature","temp",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Temperature");
  //BA.debugLineNum = 22;BA.debugLine="CreateNotification(\"Carbon Monoxide\",\"Carbon Mono";
@@ -532,8 +534,8 @@ _notification1.setAutoCancel(anywheresoftware.b4a.keywords.Common.False);
 _notification1.setSound(anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 28;BA.debugLine="Notification1.SetInfo(\"Smart Home Monitor\",\"Servi";
 _notification1.SetInfoNew(processBA,BA.ObjectToCharSequence("Smart Home Monitor"),BA.ObjectToCharSequence("Service is running. Tap to open."),(Object)(mostCurrent._main.getObject()));
- //BA.debugLineNum = 29;BA.debugLine="Service.StartForeground(724,Notification1)";
-mostCurrent._service.StartForeground((int) (724),(android.app.Notification)(_notification1.getObject()));
+ //BA.debugLineNum = 29;BA.debugLine="Service.AutomaticForegroundNotification = Notific";
+mostCurrent._service.AutomaticForegroundNotification = (android.app.Notification)(_notification1.getObject());
  //BA.debugLineNum = 30;BA.debugLine="End Sub";
 return "";
 }
