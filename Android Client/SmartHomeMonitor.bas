@@ -23,7 +23,7 @@ End Sub
 
 Sub Service_Create
 	Notification1.Initialize2(Notification1.IMPORTANCE_DEFAULT)
-	'Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
+	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
 	CreateNotification("Temperature","Temperature","temp",Main,False,False,True,"Temperature")
 	CreateNotification("Carbon Monoxide","Carbon Monoxide","co",Main,False,False,True,"Carbon Monoxide")
 
@@ -32,7 +32,7 @@ Sub Service_Create
 	Notification1.AutoCancel = False
 	Notification1.Sound = False
 	Notification1.SetInfo("Smart Home Monitor","Service is running. Tap to open.",Main)
-	Service.StartForeground(724,Notification1)
+	Service.AutomaticForegroundNotification = Notification1
 End Sub
 
 Sub Service_Start (StartingIntent As Intent)
