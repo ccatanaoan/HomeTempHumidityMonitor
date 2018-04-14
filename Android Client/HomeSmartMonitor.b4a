@@ -509,27 +509,31 @@ public boolean _onCreateOptionsMenu(android.view.Menu menu) {
 #End If
 
 Sub TabStrip1_PageSelected (Position As Int)
-	If Position = 2 Then
-		WebView1.JavaScriptEnabled = True
-		Activity.addview(WebView1,0dip,108dip,100%x,100%y)
-		WebView1.LoadURL("http://cloyd.mynetgear.com")
-		WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
-	Else
-		WebView1.StopLoading
-		WebView1.RemoveView
-	End If
-	If Position = 0 Then
-		If MQTT.IsInitialized And MQTT.Connected  Then
-			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
+	Try
+		If Position = 2 Then
+			WebView1.JavaScriptEnabled = True
+			Activity.addview(WebView1,0dip,108dip,100%x,100%y)
+			WebView1.LoadURL("http://cloyd.mynetgear.com")
+			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
+		Else
+			WebView1.StopLoading
+			WebView1.RemoveView
 		End If
-		CheckTempHumiditySetting
-	End If
-	If Position = 1 Then
-		If MQTT.IsInitialized And MQTT.Connected  Then
-			MQTT.Publish("MQ7", bc.StringToBytes("Read voltage", "utf8"))
+		If Position = 0 Then
+			If MQTT.IsInitialized And MQTT.Connected  Then
+				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
+			End If
+			CheckTempHumiditySetting
 		End If
-		CheckAirQualitySetting
-	End If
+		If Position = 1 Then
+			If MQTT.IsInitialized And MQTT.Connected  Then
+				MQTT.Publish("MQ7", bc.StringToBytes("Read voltage", "utf8"))
+			End If
+			CheckAirQualitySetting
+		End If
+	Catch
+		Log(LastException)
+	End Try
 End Sub
 
 Public Sub GetAllTabLabels (tabstrip As TabStrip) As List
@@ -561,57 +565,69 @@ Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 End Sub
 
 Sub WebView1_PageFinished (Url As String)
-	Dim Obj1 As Reflector
-	Dim s As String 'ignore
-	Dim f As Float 'ignore
+	Try
+		Dim Obj1 As Reflector
+		Dim s As String 'ignore
+		Dim f As Float 'ignore
 
-	Obj1.Target = WebView1
-	s = Obj1.TypeName
-	f = Obj1.RunMethod("getScale")
+		Obj1.Target = WebView1
+		s = Obj1.TypeName
+		f = Obj1.RunMethod("getScale")
 
-	Obj1.Target = WebView1
-	Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
+		Obj1.Target = WebView1
+		Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
+	Catch
+		Log(LastException)
+	End Try
 End Sub
 
 Sub CheckAirQualitySetting
-	If lblAirQuality.Text.Contains("Waiting for data...") Then
-		Dim cs As CSBuilder
-		cs.Initialize
-		Dim a() As String = Regex.Split("\|",StateManager.GetSetting("AirQuality"))
-		If a.Length = 3 Then
-			If IsNumber(a(0)) And a(0) > 0 Then
-				GaugeAirQuality.CurrentValue = a(0)
-				lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
-				DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
-				Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
-				DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
+	Try
+		If lblAirQuality.Text.Contains("Waiting for data...") Then
+			Dim cs As CSBuilder
+			cs.Initialize
+			Dim a() As String = Regex.Split("\|",StateManager.GetSetting("AirQuality"))
+			If a.Length = 3 Then
+				If IsNumber(a(0)) And a(0) > 0 Then
+					GaugeAirQuality.CurrentValue = a(0)
+					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
+					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+					Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
+					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
+				End If
 			End If
 		End If
-	End If
+	Catch
+		Log(LastException)
+	End Try
 End Sub
 
 Sub CheckTempHumiditySetting
-	If lblPerception.Text.Contains("Waiting for data...") Then
-		Dim cs As CSBuilder
-		cs.Initialize
-		Dim a() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidity"))
-		If a.Length = 9 Then
+	Try
+		If lblPerception.Text.Contains("Waiting for data...") Then
 			Dim cs As CSBuilder
 			cs.Initialize
-			If a(0) = "OK" And a(1) > 0 Then
-				GaugeTemp.CurrentValue = a(1)
-				GaugeHumidity.CurrentValue = a(2)
-				lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append(GetPerception(a(3))).PopAll
-				lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
-				GaugeHeatIndex.CurrentValue = a(5)
-				GaugeDewPoint.CurrentValue = a(6)
-				DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+			Dim a() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidity"))
+			If a.Length = 9 Then
+				Dim cs As CSBuilder
+				cs.Initialize
+				If a(0) = "OK" And a(1) > 0 Then
+					GaugeTemp.CurrentValue = a(1)
+					GaugeHumidity.CurrentValue = a(2)
+					lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append(GetPerception(a(3))).PopAll
+					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
+					GaugeHeatIndex.CurrentValue = a(5)
+					GaugeDewPoint.CurrentValue = a(6)
+					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 
-				Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
-				DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-				lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
+					Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
+					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
+				End If
 			End If
 		End If
-	End If
+	Catch
+		Log(LastException)
+	End Try
 End Sub
