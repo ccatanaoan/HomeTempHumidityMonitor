@@ -67,7 +67,7 @@ Sub Process_Globals
 	Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:11816"
 	Private bc As ByteConverter
 	Private csu As CallSubUtils
-	
+	Private OldIntent As Intent
 End Sub
 
 Sub Globals
@@ -173,9 +173,26 @@ Sub Activity_Create(FirstTime As Boolean)
 End Sub
 
 Sub Activity_Resume
-	Try	
-		TabStrip1.ScrollTo(0,False)
-		TabStrip1_PageSelected(0)
+	Try
+		Dim in As Intent = Activity.GetStartingIntent
+		Dim NotificationClicked As String
+		If in.IsInitialized And in <> OldIntent Then
+			OldIntent = in
+			If in.HasExtra("Notification_Tag") Then
+				NotificationClicked = in.GetExtra("Notification_Tag")
+			End If
+		End If
+		If NotificationClicked = "Temperature" Then
+			TabStrip1.ScrollTo(0,False)
+			TabStrip1_PageSelected(0)
+		Else If NotificationClicked = "Carbon Monoxide" Then
+			TabStrip1.ScrollTo(1,False)
+			TabStrip1_PageSelected(1)
+		Else
+			TabStrip1.ScrollTo(0,False)
+			TabStrip1_PageSelected(0)
+		End If
+
 	Catch
 		Log(LastException)
 	End Try

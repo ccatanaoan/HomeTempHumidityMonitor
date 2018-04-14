@@ -22,10 +22,17 @@ Sub Process_Globals
 End Sub
 
 Sub Service_Create
-	Notification1.Initialize
-	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
+	Notification1.Initialize2(Notification1.IMPORTANCE_DEFAULT)
+	'Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
 	CreateNotification("Temperature","Temperature","temp",Main,False,False,True,"Temperature")
 	CreateNotification("Carbon Monoxide","Carbon Monoxide","co",Main,False,False,True,"Carbon Monoxide")
+
+	Notification1.Icon = "icon"
+	Notification1.Vibrate = False
+	Notification1.AutoCancel = False
+	Notification1.Sound = False
+	Notification1.SetInfo("Smart Home Monitor","Service is running. Tap to open.",Main)
+	Service.StartForeground(724,Notification1)
 End Sub
 
 Sub Service_Start (StartingIntent As Intent)
@@ -117,7 +124,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					NotificationText = GetAirQuality(a(0)) & ", at " & a(0) & " ppm"
 					If a(0) > 400 Then
 						If IsAirQualityNotificationOnGoing = False Then
-							CreateNotification("Air quality",NotificationText,"co",Main,False,False,True,"Carbon Monoxide").Notify(726)
+							CreateNotification("Air Quality",NotificationText,"co",Main,False,False,True,"Carbon Monoxide").Notify(726)
 						End If
 					Else
 						IsAirQualityNotificationOnGoing = False
@@ -144,6 +151,7 @@ Private Sub CreateNotification(Title As String, Content As String, Icon As Strin
 		nb.setActivity(TargetActivity)
 		nb.OnlyAlertOnce = True
 		nb.SmallIcon = Icon
+		nb.Tag = ChannelName
 		If p.SdkVersion >= 26 Then
 			Dim ctxt As JavaObject
 			ctxt.InitializeContext
