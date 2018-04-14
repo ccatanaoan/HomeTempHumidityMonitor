@@ -23,6 +23,7 @@ Library13=httputils2
 Library14=http
 Library15=notificationbuilder
 Library16=notificationlistener
+Library17=randomaccessfile
 Library2=appcompat
 Library3=javaobject
 Library4=xmllayoutbuilder
@@ -36,9 +37,10 @@ Module1=CustomListView
 Module2=Gauge
 Module3=SmartHomeMonitor
 Module4=NotificationService
+Module5=StateManager
 NumberOfFiles=7
-NumberOfLibraries=16
-NumberOfModules=4
+NumberOfLibraries=17
+NumberOfModules=5
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
@@ -282,6 +284,19 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
 				End If
 			End If
+			If lblAirQuality.Text = "Waiting for data..." Or GaugeAirQuality.CurrentValue = 0 Then
+				a = Regex.Split("\|",StateManager.GetSetting("AirQuality"))
+				If a.Length = 3 Then
+					If IsNumber(a(0)) And a(0) > 0 Then
+						GaugeAirQuality.CurrentValue = a(0)
+						lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
+						DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+						Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
+						DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
+					End If
+				End If
+			End If
 		End If
 	Catch
 		AddEvent("MQTT_MessageArrived: " & LastException)
@@ -324,9 +339,9 @@ Sub GetPerception(DHT11Perception As String) As String
 		Case 2
 			localperception = "Comfortable"
 		Case 3
-			localperception = "OK but everyone perceives the humidity at upper limit"
+			localperception = "OK but the humidity is at upper limit"
 		Case 4
-			localperception = "Somewhat uncomfortable for most people at upper limit"
+			localperception = "Uncomfortable and the humidity is at upper limit"
 		Case 5
 			localperception = "Very humid, quite uncomfortable"
 		Case 6

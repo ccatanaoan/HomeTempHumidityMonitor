@@ -124,6 +124,7 @@ public static anywheresoftware.b4a.objects.NotificationListenerWrapper.Notificat
 public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
+public cloyd.smart.home.monitor.statemanager _statemanager = null;
 public static String  _clearall() throws Exception{
  //BA.debugLineNum = 51;BA.debugLine="Sub ClearAll";
  //BA.debugLineNum = 52;BA.debugLine="listener.ClearAll";
