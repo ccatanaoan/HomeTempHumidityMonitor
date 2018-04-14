@@ -95,7 +95,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						If IsTempHumidityNotificationOnGoing = False Then
 							CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 						End If
-					Else
+					Else						
 						IsTempHumidityNotificationOnGoing = False
 						Notification1.Cancel(725)
 					End If
@@ -114,7 +114,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					StateManager.SaveSettings
 					
 					Dim NotificationText As String
-					NotificationText = GetAirQuality(a(0)) & " at " & a(0) & " ppm"
+					NotificationText = GetAirQuality(a(0)) & ", at " & a(0) & " ppm"
 					If a(0) > 400 Then
 						If IsAirQualityNotificationOnGoing = False Then
 							CreateNotification("Air quality",NotificationText,"co",Main,False,False,True,"Carbon Monoxide").Notify(726)
@@ -198,13 +198,13 @@ Sub GetPerception(DHT11Perception As String) As String
 		Case 3
 			localperception = "Home is okay but the humidity is at upper limit"
 		Case 4
-			localperception = "Home is uncomfortable and the humidity is at upper limit"
+			localperception = "Home is uncomfortable, and the humidity is at upper limit"
 		Case 5
-			localperception = "Home is very humid, quite uncomfortable"
+			localperception = "Home is very humid, and quite uncomfortable"
 		Case 6
-			localperception = "Home is extremely uncomfortable, oppressive"
+			localperception = "Home is extremely uncomfortable, and oppressive"
 		Case 7
-			localperception = "Home humidity is severely high, even deadly for asthma related illnesses"
+			localperception = "Home humidity is severely high, and even deadly for asthma related illnesses"
 	End Select
 	Return localperception
 End Sub

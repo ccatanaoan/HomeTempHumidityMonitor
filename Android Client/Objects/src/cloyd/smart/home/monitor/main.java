@@ -1220,8 +1220,8 @@ case 2: {
 _localperception = "Comfortable";
  break; }
 case 3: {
- //BA.debugLineNum = 286;BA.debugLine="localperception = \"OK but the humidity is at up";
-_localperception = "OK but the humidity is at upper limit";
+ //BA.debugLineNum = 286;BA.debugLine="localperception = \"OK but humidity is at upper";
+_localperception = "OK but humidity is at upper limit";
  break; }
 case 4: {
  //BA.debugLineNum = 288;BA.debugLine="localperception = \"Uncomfortable and the humidi";

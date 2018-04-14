@@ -143,10 +143,7 @@ public static String  _listener_notificationposted(anywheresoftware.b4a.objects.
 anywheresoftware.b4a.phone.Phone _p = null;
 anywheresoftware.b4j.object.JavaObject _jno = null;
 anywheresoftware.b4j.object.JavaObject _extras = null;
-String _title = "";
  //BA.debugLineNum = 18;BA.debugLine="Sub Listener_NotificationPosted (SBN As StatusBarN";
- //BA.debugLineNum = 19;BA.debugLine="Log(\"NotificationPosted, package = \" & SBN.Packag";
-anywheresoftware.b4a.keywords.Common.Log("NotificationPosted, package = "+_sbn.getPackageName()+", id = "+BA.NumberToString(_sbn.getId())+", text = "+_sbn.getTickerText());
  //BA.debugLineNum = 21;BA.debugLine="Dim p As Phone";
 _p = new anywheresoftware.b4a.phone.Phone();
  //BA.debugLineNum = 22;BA.debugLine="If p.SdkVersion >= 19 Then";
@@ -159,12 +156,6 @@ _extras = new anywheresoftware.b4j.object.JavaObject();
 _extras.setObject((java.lang.Object)(_jno.GetField("extras")));
  //BA.debugLineNum = 25;BA.debugLine="extras.RunMethod(\"size\", Null)";
 _extras.RunMethod("size",(Object[])(anywheresoftware.b4a.keywords.Common.Null));
- //BA.debugLineNum = 26;BA.debugLine="Log(extras)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(_extras));
- //BA.debugLineNum = 27;BA.debugLine="Dim title As String = extras.RunMethod(\"getStrin";
-_title = BA.ObjectToString(_extras.RunMethod("getString",new Object[]{(Object)("android.title")}));
- //BA.debugLineNum = 28;BA.debugLine="LogColor(\"Title = \" & title, Colors.Blue)";
-anywheresoftware.b4a.keywords.Common.LogColor("Title = "+_title,anywheresoftware.b4a.keywords.Common.Colors.Blue);
  //BA.debugLineNum = 29;BA.debugLine="If SBN.PackageName = \"cloyd.smart.home.monitor\"";
 if ((_sbn.getPackageName()).equals("cloyd.smart.home.monitor")) { 
  //BA.debugLineNum = 30;BA.debugLine="If SBN.Id = 726 Then";
@@ -182,8 +173,6 @@ return "";
 }
 public static String  _listener_notificationremoved(anywheresoftware.b4a.objects.NotificationListenerWrapper.StatusBarNotificationWrapper _sbn) throws Exception{
  //BA.debugLineNum = 39;BA.debugLine="Sub Listener_NotificationRemoved (SBN As StatusBar";
- //BA.debugLineNum = 40;BA.debugLine="Log(\"NotificationRemoved, package = \" & SBN.Packa";
-anywheresoftware.b4a.keywords.Common.Log("NotificationRemoved, package = "+_sbn.getPackageName()+", id = "+BA.NumberToString(_sbn.getId())+", text = "+_sbn.getTickerText());
  //BA.debugLineNum = 42;BA.debugLine="If SBN.PackageName = \"cloyd.smart.home.monitor\" T";
 if ((_sbn.getPackageName()).equals("cloyd.smart.home.monitor")) { 
  //BA.debugLineNum = 43;BA.debugLine="If SBN.Id = 726 Then";

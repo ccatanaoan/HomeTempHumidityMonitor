@@ -317,20 +317,20 @@ case 3: {
 _localperception = "Home is okay but the humidity is at upper limit";
  break; }
 case 4: {
- //BA.debugLineNum = 195;BA.debugLine="localperception = \"Home is uncomfortable and th";
-_localperception = "Home is uncomfortable and the humidity is at upper limit";
+ //BA.debugLineNum = 195;BA.debugLine="localperception = \"Home is uncomfortable, and t";
+_localperception = "Home is uncomfortable, and the humidity is at upper limit";
  break; }
 case 5: {
- //BA.debugLineNum = 197;BA.debugLine="localperception = \"Home is very humid, quite un";
-_localperception = "Home is very humid, quite uncomfortable";
+ //BA.debugLineNum = 197;BA.debugLine="localperception = \"Home is very humid, and quit";
+_localperception = "Home is very humid, and quite uncomfortable";
  break; }
 case 6: {
  //BA.debugLineNum = 199;BA.debugLine="localperception = \"Home is extremely uncomforta";
-_localperception = "Home is extremely uncomfortable, oppressive";
+_localperception = "Home is extremely uncomfortable, and oppressive";
  break; }
 case 7: {
  //BA.debugLineNum = 201;BA.debugLine="localperception = \"Home humidity is severely hi";
-_localperception = "Home humidity is severely high, even deadly for asthma related illnesses";
+_localperception = "Home humidity is severely high, and even deadly for asthma related illnesses";
  break; }
 }
 ;
@@ -467,8 +467,8 @@ mostCurrent._statemanager._setsetting(processBA,"AirQuality",_status);
 mostCurrent._statemanager._savesettings(processBA);
  //BA.debugLineNum = 110;BA.debugLine="Dim NotificationText As String";
 _notificationtext = "";
- //BA.debugLineNum = 111;BA.debugLine="NotificationText = GetAirQuality(a(0)) & \" at";
-_notificationtext = _getairquality((int)(Double.parseDouble(_a[(int) (0)])))+" at "+_a[(int) (0)]+" ppm";
+ //BA.debugLineNum = 111;BA.debugLine="NotificationText = GetAirQuality(a(0)) & \", a";
+_notificationtext = _getairquality((int)(Double.parseDouble(_a[(int) (0)])))+", at "+_a[(int) (0)]+" ppm";
  //BA.debugLineNum = 112;BA.debugLine="If a(0) > 400 Then";
 if ((double)(Double.parseDouble(_a[(int) (0)]))>400) { 
  //BA.debugLineNum = 113;BA.debugLine="If IsAirQualityNotificationOnGoing = False T";
