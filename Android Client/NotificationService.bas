@@ -22,16 +22,16 @@ Sub Service_Start (StartingIntent As Intent)
 End Sub
 
 Sub Listener_NotificationPosted (SBN As StatusBarNotification)
-	Log("NotificationPosted, package = " & SBN.PackageName & ", id = " & SBN.Id & _
-		", text = " & SBN.TickerText)
+	'Log("NotificationPosted, package = " & SBN.PackageName & ", id = " & SBN.Id & _
+		'", text = " & SBN.TickerText)
 	Dim p As Phone
 	If p.SdkVersion >= 19 Then
 		Dim jno As JavaObject = SBN.Notification
 		Dim extras As JavaObject = jno.GetField("extras")
 		extras.RunMethod("size", Null)
-		Log(extras)
-		Dim title As String = extras.RunMethod("getString", Array As Object("android.title"))
-		LogColor("Title = " & title, Colors.Blue)
+		'Log(extras)
+		'Dim title As String = extras.RunMethod("getString", Array As Object("android.title"))
+		'LogColor("Title = " & title, Colors.Blue)
 		If SBN.PackageName = "cloyd.smart.home.monitor" Then
 			If SBN.Id = 726 Then
 				SmartHomeMonitor.IsAirQualityNotificationOnGoing = True
@@ -43,8 +43,8 @@ Sub Listener_NotificationPosted (SBN As StatusBarNotification)
 End Sub
 
 Sub Listener_NotificationRemoved (SBN As StatusBarNotification)
-	Log("NotificationRemoved, package = " & SBN.PackageName & ", id = " & SBN.Id & _
-		", text = " & SBN.TickerText)
+	'Log("NotificationRemoved, package = " & SBN.PackageName & ", id = " & SBN.Id & _
+		'", text = " & SBN.TickerText)
 	If SBN.PackageName = "cloyd.smart.home.monitor" Then
 		If SBN.Id = 726 Then
 			SmartHomeMonitor.IsAirQualityNotificationOnGoing = False

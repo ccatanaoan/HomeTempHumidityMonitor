@@ -328,7 +328,7 @@ Sub GetPerception(DHT11Perception As String) As String
 		Case 2
 			localperception = "Comfortable"
 		Case 3
-			localperception = "OK but the humidity is at upper limit"
+			localperception = "OK but humidity is at upper limit"
 		Case 4
 			localperception = "Uncomfortable and the humidity is at upper limit"
 		Case 5
