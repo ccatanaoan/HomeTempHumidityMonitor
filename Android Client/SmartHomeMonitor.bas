@@ -86,6 +86,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 				Dim cs As CSBuilder
 				cs.Initialize
 				If a(0) = "OK" And a(1) > 0 Then
+					StateManager.SetSetting("TempHumidity",status)
+					StateManager.SaveSettings
+					
 					Dim NotificationText As String
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
 					If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  Then
