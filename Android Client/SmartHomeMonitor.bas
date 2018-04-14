@@ -79,7 +79,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		If Topic = "TempHumid" Then
 		
 			Dim status As String
-			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
+			status = BytesToString(Payload, 0, Payload.Length, "UTF8") 
 
 			Dim a() As String = Regex.Split("\|",status)
 			If a.Length = 9 Then
@@ -98,15 +98,18 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					End If
 				End If
 			End If
-		Else If Topic = "MQ7" Then
+		Else If Topic = "MQ7" Then 
 			Dim status As String
 			Dim cs As CSBuilder
 			cs.Initialize
-			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
+			status = BytesToString(Payload, 0, Payload.Length, "UTF8") ' MQ7 status: 334|18-04-14|00:20:54
 			Log("MQ7 status: " & status)
 			Dim a() As String = Regex.Split("\|",status)
 			If a.Length = 3 Then
 				If IsNumber(a(0)) And a(0) > 0 Then
+					StateManager.SetSetting("AirQuality",status)
+					StateManager.SaveSettings
+					
 					Dim NotificationText As String
 					NotificationText = GetAirQuality(a(0)) & " at " & a(0) & " ppm"
 					If a(0) > 400 Then
@@ -190,9 +193,9 @@ Sub GetPerception(DHT11Perception As String) As String
 		Case 2
 			localperception = "Home is comfortable"
 		Case 3
-			localperception = "Home is okay but the humidity at upper limit"
+			localperception = "Home is okay but the humidity is at upper limit"
 		Case 4
-			localperception = "Home is uncomfortable at upper limit"
+			localperception = "Home is uncomfortable and the humidity is at upper limit"
 		Case 5
 			localperception = "Home is very humid, quite uncomfortable"
 		Case 6
