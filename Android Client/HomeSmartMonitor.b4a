@@ -102,7 +102,9 @@ Sub Activity_Create(FirstTime As Boolean)
 		Activity.LoadLayout("Main")
 		TabStrip1.LoadLayout("1", "Temp & Humidity  " & Chr(0xF2C7))
 		TabStrip1.LoadLayout("2", "Air Quality (CO)  " & Chr(0xF289))
-		TabStrip1.LoadLayout("3", "Security Camera  " & Chr(0xF030))
+		TabStrip1.LoadLayout("3", "Main Door" & CRLF & "Security Camera  " & Chr(0xF030))
+		Dim lbl As Label = GetAllTabLabels(TabStrip1).Get(2) 'third tab
+		lbl.SingleLine = False
 
 		For Each lbl As Label In GetAllTabLabels(TabStrip1)
 			' To add icon
