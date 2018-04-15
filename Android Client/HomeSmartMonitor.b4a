@@ -1,11 +1,12 @@
 ﻿Build1=Default,cloyd.smart.home.monitor
 File1=0.png
 File2=1.bal
-File3=2.bal
-File4=3.bal
-File5=cloyd.png
-File6=crysta.ttf
-File7=Main.bal
+File3=1ScrollView.bal
+File4=2.bal
+File5=3.bal
+File6=cloyd.png
+File7=crysta.ttf
+File8=Main.bal
 FileGroup1=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
@@ -13,6 +14,7 @@ FileGroup4=Default Group
 FileGroup5=Default Group
 FileGroup6=Default Group
 FileGroup7=Default Group
+FileGroup8=Default Group
 Group=Default Group
 IconFile=
 Library1=core
@@ -38,15 +40,15 @@ Module2=Gauge
 Module3=SmartHomeMonitor
 Module4=NotificationService
 Module5=StateManager
-NumberOfFiles=7
+NumberOfFiles=8
 NumberOfLibraries=17
 NumberOfModules=5
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 197
-	#VersionName: 1.9.7
+	#VersionCode: 198
+	#VersionName: 1.9.8
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -90,6 +92,8 @@ Sub Globals
 	Private lblAirQuality As Label
 	Private lblAirQualityLastUpdate As Label
 	Private WebView1 As WebView 'ignore
+	Private ScrollView1 As ScrollView
+	Private Panel1 As Panel
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -100,7 +104,12 @@ Sub Activity_Create(FirstTime As Boolean)
 			MQTT_Connect
 		End If
 		Activity.LoadLayout("Main")
-		TabStrip1.LoadLayout("1", "Temp & Humidity  " & Chr(0xF2C7))
+
+		TabStrip1.LoadLayout("1ScrollView", "Temp & Humidity  " & Chr(0xF2C7))
+		'ScrollView1.Initialize(1000)
+		ScrollView1.Panel.LoadLayout("1")
+		Panel1.Height = Panel1.Height + 100dip
+		ScrollView1.Panel.Height = Panel1.Height 
 		TabStrip1.LoadLayout("2", "Air Quality (CO)  " & Chr(0xF289))
 		TabStrip1.LoadLayout("3", "Security Camera  " & Chr(0xF030))
 '		TabStrip1.LoadLayout("3", "Main Door" & CRLF & "Security Camera  " & Chr(0xF030))
