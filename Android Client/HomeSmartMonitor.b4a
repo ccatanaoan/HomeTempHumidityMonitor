@@ -26,6 +26,7 @@ Library14=http
 Library15=notificationbuilder
 Library16=notificationlistener
 Library17=randomaccessfile
+Library18=designsupport
 Library2=appcompat
 Library3=javaobject
 Library4=xmllayoutbuilder
@@ -41,7 +42,7 @@ Module3=SmartHomeMonitor
 Module4=NotificationService
 Module5=StateManager
 NumberOfFiles=8
-NumberOfLibraries=17
+NumberOfLibraries=18
 NumberOfModules=5
 Version=8
 @EndOfDesignText@
@@ -59,6 +60,7 @@ Version=8
 	#FullScreen: False
 	#IncludeTitle: True
 #End Region
+	#AdditionalRes: "..\resource"
 	#Extends: android.support.v7.app.AppCompatActivity
 	#AdditionalJar: com.android.support:support-v4
 	
@@ -94,6 +96,10 @@ Sub Globals
 	Private WebView1 As WebView 'ignore
 	Private ScrollView1 As ScrollView
 	Private Panel1 As Panel
+	Private xml As XmlLayoutBuilder
+	Private DSBottomNavigationView1 As DSBottomNavigationView
+	Private PanelWebView As Panel
+	Private WebView2 As WebView 'ignore
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -175,7 +181,12 @@ Sub Activity_Create(FirstTime As Boolean)
 		lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append("Waiting for data...").PopAll
 		lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
 		
+		' Add Items to the BottomNavigationView
+		DSBottomNavigationView1.Menu.Add2(1, 1, "Main Door", xml.GetDrawable("ic_home_black_24dp")).Checked = True
+		DSBottomNavigationView1.Menu.Add2(2, 2, "Kitchen", xml.GetDrawable("ic_android_black_24dp"))
+		
 		WebView1.Initialize("WebView1")
+		WebView2.Initialize("WebView2")
 		
 		If MQTT.IsInitialized And MQTT.Connected  Then
 			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
@@ -437,11 +448,12 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 						End If
 						j.Release
 						WebView1.Initialize("WebView1")
-						WebView1.JavaScriptEnabled = True
-						Activity.addview(WebView1,0dip,108dip,100%x,100%y)
-						ToastMessageShow("Restarting the camera",True)
-						WebView1.LoadURL("http://cloyd.mynetgear.com")
-						WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
+						DSBottomNavigationView1.CheckedItem=1
+'						WebView1.JavaScriptEnabled = True
+'						Activity.addview(WebView1,0dip,108dip,100%x,PanelWebView.Height)
+'						ToastMessageShow("Restarting the camera",True)
+'						WebView1.LoadURL("http://cloyd.mynetgear.com")
+'						WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
 					End If
 				else If TabStrip1.CurrentPage = 1 Then
 					result = Msgbox2("Restart the AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
@@ -473,7 +485,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 14, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 15, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -524,10 +536,11 @@ public boolean _onCreateOptionsMenu(android.view.Menu menu) {
 Sub TabStrip1_PageSelected (Position As Int)
 	Try
 		If Position = 2 Then
-			WebView1.JavaScriptEnabled = True
-			Activity.addview(WebView1,0dip,108dip,100%x,100%y)
-			WebView1.LoadURL("http://cloyd.mynetgear.com")
-			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
+			DSBottomNavigationView1.CheckedItem=1
+'			WebView1.JavaScriptEnabled = True
+'			Activity.addview(WebView1,0dip,108dip,100%x,PanelWebView.Height)
+'			WebView1.LoadURL("http://cloyd.mynetgear.com")
+'			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
 		Else
 			WebView1.StopLoading
 			WebView1.RemoveView
@@ -588,7 +601,11 @@ Sub WebView1_PageFinished (Url As String)
 		f = Obj1.RunMethod("getScale")
 
 		Obj1.Target = WebView1
-		Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
+		If WebView1.Url.Contains("cloyd.mynetgear.com:81") Then
+			Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
+		Else
+			Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
+		End If
 	Catch
 		Log(LastException)
 	End Try
@@ -643,4 +660,34 @@ Sub CheckTempHumiditySetting
 	Catch
 		Log(LastException)
 	End Try
+End Sub
+
+Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
+	WebView1.StopLoading
+	WebView1.RemoveView
+	WebView1.JavaScriptEnabled = True
+	Activity.addview(WebView1,0dip,108dip,100%x,PanelWebView.Height)
+	Select MenuItem.Id
+		Case 1
+			WebView1.LoadHtml($"<div>
+			<table width="100%" height="100%" align="center" valign="center">
+			<tr><td align="middle">
+					Waiting for the main door camera feed...
+			</td></tr>
+			</table>
+			</div>"$)			
+			WebView1.LoadURL("http://cloyd.mynetgear.com")
+			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
+		Case 2
+			WebView1.LoadHtml($"<div>
+			<table width="100%" height="100%" align="center" valign="center">
+			<tr><td align="middle">
+					Waiting for the kitchen camera feed...
+			</td></tr>
+			</table>
+			</div>"$)
+			WebView2.LoadURL("http://cloyd.mynetgear.com:81/?&ql=1")
+			Sleep(150)
+			WebView1.LoadURL("http://cloyd.mynetgear.com:81/stream")
+	End Select
 End Sub
