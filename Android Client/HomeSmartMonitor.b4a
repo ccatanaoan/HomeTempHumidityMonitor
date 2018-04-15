@@ -184,7 +184,8 @@ Sub Activity_Create(FirstTime As Boolean)
 		' Add Items to the BottomNavigationView
 		DSBottomNavigationView1.Menu.Add2(1, 1, "Main Door", xml.GetDrawable("ic_home_black_24dp")).Checked = True
 		DSBottomNavigationView1.Menu.Add2(2, 2, "Kitchen", xml.GetDrawable("ic_android_black_24dp"))
-		
+		DSBottomNavigationView1.SetItemIconColors(Colors.LightGray, Colors.Blue, Colors.DarkGray)
+
 		WebView1.Initialize("WebView1")
 		WebView2.Initialize("WebView2")
 		
@@ -264,7 +265,6 @@ Sub MQTT_Connected (Success As Boolean)
 	Catch
 		AddEvent("MQTT_Connected: " & LastException)
 	End Try
-    
 End Sub
 
 Private Sub MQTT_Disconnected
@@ -434,26 +434,40 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 				If TabStrip1.CurrentPage = 2 Then
-					result = Msgbox2("Restart the CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
-					If result = DialogResponse.POSITIVE Then
-						WebView1.StopLoading
-						WebView1.RemoveView
-						Dim j As HttpJob
-						j.Initialize("", Me)
-						j.PostString("http://cloyd.mynetgear.com/restart","")
-						j.GetRequest.Timeout = 1500
-						Wait For (j) JobDone(j As HttpJob)
-						If j.Success Then
-							Log(j.GetString)
+					If WebView1.Url.Contains("cloyd.mynetgear.com:81") Then
+						result = Msgbox2("Restart the kitchen CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+						If result = DialogResponse.POSITIVE Then
+							WebView1.StopLoading
+							WebView1.RemoveView
+							Dim j As HttpJob
+							j.Initialize("", Me)
+							j.PostString("http://cloyd.mynetgear.com:81/restart","")
+							j.GetRequest.Timeout = 1500
+							Wait For (j) JobDone(j As HttpJob)
+							If j.Success Then
+								Log(j.GetString)
+							End If
+							j.Release
+							WebView1.Initialize("WebView1")
+							DSBottomNavigationView1.CheckedItem=2
 						End If
-						j.Release
-						WebView1.Initialize("WebView1")
-						DSBottomNavigationView1.CheckedItem=1
-'						WebView1.JavaScriptEnabled = True
-'						Activity.addview(WebView1,0dip,108dip,100%x,PanelWebView.Height)
-'						ToastMessageShow("Restarting the camera",True)
-'						WebView1.LoadURL("http://cloyd.mynetgear.com")
-'						WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
+					Else
+						result = Msgbox2("Restart the main door CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+						If result = DialogResponse.POSITIVE Then
+							WebView1.StopLoading
+							WebView1.RemoveView
+							Dim j As HttpJob
+							j.Initialize("", Me)
+							j.PostString("http://cloyd.mynetgear.com/restart","")
+							j.GetRequest.Timeout = 1500
+							Wait For (j) JobDone(j As HttpJob)
+							If j.Success Then
+								Log(j.GetString)
+							End If
+							j.Release
+							WebView1.Initialize("WebView1")
+							DSBottomNavigationView1.CheckedItem=1
+						End If
 					End If
 				else If TabStrip1.CurrentPage = 1 Then
 					result = Msgbox2("Restart the AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
@@ -537,10 +551,6 @@ Sub TabStrip1_PageSelected (Position As Int)
 	Try
 		If Position = 2 Then
 			DSBottomNavigationView1.CheckedItem=1
-'			WebView1.JavaScriptEnabled = True
-'			Activity.addview(WebView1,0dip,108dip,100%x,PanelWebView.Height)
-'			WebView1.LoadURL("http://cloyd.mynetgear.com")
-'			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
 		Else
 			WebView1.StopLoading
 			WebView1.RemoveView
@@ -686,6 +696,7 @@ Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
 			</td></tr>
 			</table>
 			</div>"$)
+			' Use WebView2 instead of WebView1 to avoid showing the web server response.
 			WebView2.LoadURL("http://cloyd.mynetgear.com:81/?&ql=1")
 			Sleep(150)
 			WebView1.LoadURL("http://cloyd.mynetgear.com:81/stream")
