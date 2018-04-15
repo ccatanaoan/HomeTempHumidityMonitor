@@ -102,9 +102,10 @@ Sub Activity_Create(FirstTime As Boolean)
 		Activity.LoadLayout("Main")
 		TabStrip1.LoadLayout("1", "Temp & Humidity  " & Chr(0xF2C7))
 		TabStrip1.LoadLayout("2", "Air Quality (CO)  " & Chr(0xF289))
-		TabStrip1.LoadLayout("3", "Main Door" & CRLF & "Security Camera  " & Chr(0xF030))
-		Dim lbl As Label = GetAllTabLabels(TabStrip1).Get(2) 'third tab
-		lbl.SingleLine = False
+		TabStrip1.LoadLayout("3", "Security Camera  " & Chr(0xF030))
+'		TabStrip1.LoadLayout("3", "Main Door" & CRLF & "Security Camera  " & Chr(0xF030))
+'		Dim lbl As Label = GetAllTabLabels(TabStrip1).Get(2) 'third tab
+'		lbl.SingleLine = False
 
 		For Each lbl As Label In GetAllTabLabels(TabStrip1)
 			' To add icon
@@ -142,13 +143,14 @@ Sub Activity_Create(FirstTime As Boolean)
 	    GaugeHeatIndex.CreateRange(90, 100, xui.Color_Red)))
 		' Dew Point	
 		' https://material.io/guidelines/style/color.html#
-		GaugeDewPoint.SetRanges(Array(GaugeDewPoint.CreateRange(0,64.4, xui.Color_RGB(100,221,23)), _ 
+		GaugeDewPoint.SetRanges(Array(GaugeDewPoint.CreateRange(0,60.8, xui.Color_RGB(100,221,23)), _
+		GaugeDewPoint.CreateRange(60.8,64.4, xui.Color_RGB(100,240,23)), _
 		GaugeDewPoint.CreateRange(64.4,78.8, xui.Color_Yellow), _
 	    GaugeDewPoint.CreateRange(78.8, 100, xui.Color_Red)))
 		' Dew Point
 		
 		GaugeAirQuality.SetRanges(Array(GaugeTemp.CreateRange(0, 100, xui.Color_RGB(100,221,23)), _
-		GaugeAirQuality.CreateRange(100, 400, xui.Color_Green), _
+		GaugeAirQuality.CreateRange(100, 400, xui.Color_RGB(100,240,23)), _
 	    GaugeAirQuality.CreateRange(400, 900, xui.Color_Yellow), _
 	    GaugeAirQuality.CreateRange(900, 1000, xui.Color_Red)))	
 		GaugeAirQuality.CurrentValue=0
