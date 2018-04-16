@@ -1301,8 +1301,8 @@ this.state = 6;
 parent.mostCurrent._webview1.LoadHtml(("<div>\n"+"			<table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n"+"			<tr><td align=\"middle\">\n"+"					Waiting for the kitchen camera feed...\n"+"			</td></tr>\n"+"			</table>\n"+"			</div>"));
  //BA.debugLineNum = 652;BA.debugLine="WebView2.LoadURL(\"http://cloyd.mynetgear.com:81";
 parent.mostCurrent._webview2.LoadUrl("http://cloyd.mynetgear.com:81/?&ql=1");
- //BA.debugLineNum = 653;BA.debugLine="Sleep(150)";
-anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,this,(int) (150));
+ //BA.debugLineNum = 653;BA.debugLine="Sleep(300)";
+anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,this,(int) (300));
 this.state = 7;
 return;
 case 7:
