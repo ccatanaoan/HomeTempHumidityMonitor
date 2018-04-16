@@ -156,7 +156,7 @@ void serverCapture() {
 
 void serverStream() {
   // Cloyd
-  //myCAM.OV5642_set_JPEG_size(1);
+  myCAM.OV5642_set_JPEG_size(1);
   
   WiFiClient client = server.client();
 
@@ -164,7 +164,7 @@ void serverStream() {
   response += "Content-Type: multipart/x-mixed-replace; boundary=frame\r\n\r\n";
   server.sendContent(response);
 
-  while (1) {
+  while (client.connected()) {
     start_capture();
     while (!myCAM.get_bit(ARDUCHIP_TRIG, CAP_DONE_MASK));
     size_t len = myCAM.read_fifo_length();
@@ -181,7 +181,7 @@ void serverStream() {
     myCAM.CS_LOW();
     myCAM.set_fifo_burst();
     if (!client.connected()) {
-      ESP.restart();
+      //ESP.restart();
       Serial.println("break"); break;
     }
     response = "--frame\r\n";
@@ -199,8 +199,8 @@ void serverStream() {
         //Write the remain bytes in the buffer
         myCAM.CS_HIGH();;
         if (!client.connected()) {
-             ESP.restart();
-             client.stop(); is_header = false; break;
+             //ESP.restart();
+             client.stop(); is_header = false; serverCapture(); break;
         }
         client.write(&buffer[0], i);
         is_header = false;
@@ -216,8 +216,8 @@ void serverStream() {
           //Write bufferSize bytes image data to file
           myCAM.CS_HIGH();
           if (!client.connected()) {
-                  ESP.restart();
-                  client.stop(); is_header = false; break;
+                  //ESP.restart();
+                   client.stop(); is_header = false; serverCapture(); break;
           }
           client.write(&buffer[0], bufferSize);
           i = 0;
@@ -234,8 +234,8 @@ void serverStream() {
       }
     }
     if (!client.connected()) {
-      ESP.restart();
-      client.stop(); is_header = false; break;
+      //ESP.restart();
+       client.stop(); is_header = false; serverCapture(); break;
     }
   }
 }

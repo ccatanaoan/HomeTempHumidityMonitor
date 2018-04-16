@@ -1300,7 +1300,7 @@ this.state = 6;
  //BA.debugLineNum = 644;BA.debugLine="WebView1.LoadHtml($\"<div> 			<table width=\"100%";
 parent.mostCurrent._webview1.LoadHtml(("<div>\n"+"			<table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n"+"			<tr><td align=\"middle\">\n"+"					Waiting for the kitchen camera feed...\n"+"			</td></tr>\n"+"			</table>\n"+"			</div>"));
  //BA.debugLineNum = 652;BA.debugLine="WebView2.LoadURL(\"http://cloyd.mynetgear.com:81";
-parent.mostCurrent._webview2.LoadUrl("http://cloyd.mynetgear.com:81/?&ql=1");
+parent.mostCurrent._webview2.LoadUrl("http://cloyd.mynetgear.com:81/capture");
  //BA.debugLineNum = 653;BA.debugLine="Sleep(300)";
 anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,this,(int) (300));
 this.state = 7;
@@ -1784,7 +1784,7 @@ _bd = new anywheresoftware.b4a.objects.drawable.BitmapDrawable();
  //BA.debugLineNum = 453;BA.debugLine="bd.Initialize(LoadBitmapResize(File.DirAssets, \"";
 _bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"cloyd.png",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
  //BA.debugLineNum = 454;BA.debugLine="Msgbox2(\"Smart Home Monitor v\" & GetVersionCode";
-anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Smart Home Monitor v"+_getversioncode()+anywheresoftware.b4a.keywords.Common.CRLF+anywheresoftware.b4a.keywords.Common.CRLF+"Developed by Cloyd Nino Catanaoan"+anywheresoftware.b4a.keywords.Common.CRLF+"April 15, 2018"),BA.ObjectToCharSequence("About"),"OK","","",_bd.getBitmap(),mostCurrent.activityBA);
+anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Smart Home Monitor v"+_getversioncode()+anywheresoftware.b4a.keywords.Common.CRLF+anywheresoftware.b4a.keywords.Common.CRLF+"Developed by Cloyd Nino Catanaoan"+anywheresoftware.b4a.keywords.Common.CRLF+"April 16, 2018"),BA.ObjectToCharSequence("About"),"OK","","",_bd.getBitmap(),mostCurrent.activityBA);
  } 
        catch (Exception e6) {
 			processBA.setLastException(e6); //BA.debugLineNum = 456;BA.debugLine="Log(LastException)";

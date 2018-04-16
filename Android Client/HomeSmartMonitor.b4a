@@ -48,8 +48,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 198
-	#VersionName: 1.9.8
+	#VersionCode: 1981
+	#VersionName: 1.9.8.1
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -499,7 +499,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 15, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 16, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -697,7 +697,7 @@ Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
 			</table>
 			</div>"$)
 			' Use WebView2 instead of WebView1 to avoid showing the web server response.
-			WebView2.LoadURL("http://cloyd.mynetgear.com:81/?&ql=1")
+			WebView2.LoadURL("http://cloyd.mynetgear.com:81/capture")
 			Sleep(300)
 			WebView1.LoadURL("http://cloyd.mynetgear.com:81/stream")
 	End Select
