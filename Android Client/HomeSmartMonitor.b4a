@@ -698,7 +698,7 @@ Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
 			</div>"$)
 			' Use WebView2 instead of WebView1 to avoid showing the web server response.
 			WebView2.LoadURL("http://cloyd.mynetgear.com:81/?&ql=1")
-			Sleep(150)
+			Sleep(300)
 			WebView1.LoadURL("http://cloyd.mynetgear.com:81/stream")
 	End Select
 End Sub
