@@ -184,7 +184,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		' Add Items to the BottomNavigationView
 		DSBottomNavigationView1.Menu.Add2(1, 1, "Main Door", xml.GetDrawable("ic_home_black_24dp")).Checked = True
 		DSBottomNavigationView1.Menu.Add2(2, 2, "Kitchen", xml.GetDrawable("ic_android_black_24dp"))
-		DSBottomNavigationView1.SetItemIconColors(Colors.LightGray, Colors.Blue, Colors.DarkGray)
+		DSBottomNavigationView1.SetItemIconColors(Colors.LightGray, Colors.RGB(0,152,253), Colors.DarkGray)
 
 		WebView1.Initialize("WebView1")
 		WebView2.Initialize("WebView2")
