@@ -489,7 +489,7 @@ mostCurrent._dsbottomnavigationview1.getMenu().Add2((int) (1),(int) (1),BA.Objec
  //BA.debugLineNum = 138;BA.debugLine="DSBottomNavigationView1.Menu.Add2(2, 2, \"Kitchen";
 mostCurrent._dsbottomnavigationview1.getMenu().Add2((int) (2),(int) (2),BA.ObjectToCharSequence("Kitchen"),mostCurrent._xml.GetDrawable("ic_android_black_24dp"));
  //BA.debugLineNum = 139;BA.debugLine="DSBottomNavigationView1.SetItemIconColors(Colors";
-mostCurrent._dsbottomnavigationview1.SetItemIconColors(anywheresoftware.b4a.keywords.Common.Colors.LightGray,anywheresoftware.b4a.keywords.Common.Colors.Blue,anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
+mostCurrent._dsbottomnavigationview1.SetItemIconColors(anywheresoftware.b4a.keywords.Common.Colors.LightGray,anywheresoftware.b4a.keywords.Common.Colors.RGB((int) (0),(int) (152),(int) (253)),anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
  //BA.debugLineNum = 141;BA.debugLine="WebView1.Initialize(\"WebView1\")";
 mostCurrent._webview1.Initialize(mostCurrent.activityBA,"WebView1");
  //BA.debugLineNum = 142;BA.debugLine="WebView2.Initialize(\"WebView2\")";
