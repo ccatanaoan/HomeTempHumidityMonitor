@@ -1234,95 +1234,34 @@ anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.
  //BA.debugLineNum = 625;BA.debugLine="End Sub";
 return "";
 }
-public static void  _dsbottomnavigationview1_navigationitemselected(de.amberhome.objects.appcompat.ACMenuItemWrapper _menuitem) throws Exception{
-ResumableSub_DSBottomNavigationView1_NavigationItemSelected rsub = new ResumableSub_DSBottomNavigationView1_NavigationItemSelected(null,_menuitem);
-rsub.resume(processBA, null);
-}
-public static class ResumableSub_DSBottomNavigationView1_NavigationItemSelected extends BA.ResumableSub {
-public ResumableSub_DSBottomNavigationView1_NavigationItemSelected(cloyd.smart.home.monitor.main parent,de.amberhome.objects.appcompat.ACMenuItemWrapper _menuitem) {
-this.parent = parent;
-this._menuitem = _menuitem;
-}
-cloyd.smart.home.monitor.main parent;
-de.amberhome.objects.appcompat.ACMenuItemWrapper _menuitem;
-
-@Override
-public void resume(BA ba, Object[] result) throws Exception{
-
-    while (true) {
-        switch (state) {
-            case -1:
-return;
-
-case 0:
-//C
-this.state = 1;
+public static String  _dsbottomnavigationview1_navigationitemselected(de.amberhome.objects.appcompat.ACMenuItemWrapper _menuitem) throws Exception{
+ //BA.debugLineNum = 627;BA.debugLine="Sub DSBottomNavigationView1_NavigationItemSelected";
  //BA.debugLineNum = 628;BA.debugLine="WebView1.StopLoading";
-parent.mostCurrent._webview1.StopLoading();
+mostCurrent._webview1.StopLoading();
  //BA.debugLineNum = 629;BA.debugLine="WebView1.RemoveView";
-parent.mostCurrent._webview1.RemoveView();
+mostCurrent._webview1.RemoveView();
  //BA.debugLineNum = 630;BA.debugLine="WebView1.JavaScriptEnabled = True";
-parent.mostCurrent._webview1.setJavaScriptEnabled(anywheresoftware.b4a.keywords.Common.True);
+mostCurrent._webview1.setJavaScriptEnabled(anywheresoftware.b4a.keywords.Common.True);
  //BA.debugLineNum = 631;BA.debugLine="Activity.addview(WebView1,0dip,108dip,100%x,Panel";
-parent.mostCurrent._activity.AddView((android.view.View)(parent.mostCurrent._webview1.getObject()),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (0)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (108)),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),parent.mostCurrent._panelwebview.getHeight());
+mostCurrent._activity.AddView((android.view.View)(mostCurrent._webview1.getObject()),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (0)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (108)),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),mostCurrent._panelwebview.getHeight());
  //BA.debugLineNum = 632;BA.debugLine="Select MenuItem.Id";
-if (true) break;
-
-case 1:
-//select
-this.state = 6;
 switch (BA.switchObjectToInt(_menuitem.getId(),(int) (1),(int) (2))) {
 case 0: {
-this.state = 3;
-if (true) break;
-}
-case 1: {
-this.state = 5;
-if (true) break;
-}
-}
-if (true) break;
-
-case 3:
-//C
-this.state = 6;
  //BA.debugLineNum = 634;BA.debugLine="WebView1.LoadHtml($\"<div> 			<table width=\"100%";
-parent.mostCurrent._webview1.LoadHtml(("<div>\n"+"			<table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n"+"			<tr><td align=\"middle\">\n"+"					Waiting for the main door camera feed...\n"+"			</td></tr>\n"+"			</table>\n"+"			</div>"));
- //BA.debugLineNum = 641;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com\")";
-parent.mostCurrent._webview1.LoadUrl("http://cloyd.mynetgear.com");
- //BA.debugLineNum = 642;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com/st";
-parent.mostCurrent._webview1.LoadUrl("http://cloyd.mynetgear.com/stream");
- if (true) break;
-
-case 5:
-//C
-this.state = 6;
+mostCurrent._webview1.LoadHtml(("<div>\n"+"			<table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n"+"			<tr><td align=\"middle\">\n"+"					Waiting for the main door camera feed...\n"+"			</td></tr>\n"+"			</table>\n"+"			</div>"));
+ //BA.debugLineNum = 642;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com:81";
+mostCurrent._webview1.LoadUrl("http://cloyd.mynetgear.com:81/stream");
+ break; }
+case 1: {
  //BA.debugLineNum = 644;BA.debugLine="WebView1.LoadHtml($\"<div> 			<table width=\"100%";
-parent.mostCurrent._webview1.LoadHtml(("<div>\n"+"			<table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n"+"			<tr><td align=\"middle\">\n"+"					Waiting for the kitchen camera feed...\n"+"			</td></tr>\n"+"			</table>\n"+"			</div>"));
- //BA.debugLineNum = 652;BA.debugLine="WebView2.LoadURL(\"http://cloyd.mynetgear.com:81";
-parent.mostCurrent._webview2.LoadUrl("http://cloyd.mynetgear.com:81/capture");
- //BA.debugLineNum = 653;BA.debugLine="Sleep(300)";
-anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,this,(int) (300));
-this.state = 7;
-return;
-case 7:
-//C
-this.state = 6;
-;
- //BA.debugLineNum = 654;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com:81";
-parent.mostCurrent._webview1.LoadUrl("http://cloyd.mynetgear.com:81/stream");
- if (true) break;
-
-case 6:
-//C
-this.state = -1;
+mostCurrent._webview1.LoadHtml(("<div>\n"+"			<table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n"+"			<tr><td align=\"middle\">\n"+"					Waiting for the kitchen camera feed...\n"+"			</td></tr>\n"+"			</table>\n"+"			</div>"));
+ //BA.debugLineNum = 654;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com/st";
+mostCurrent._webview1.LoadUrl("http://cloyd.mynetgear.com/stream");
+ break; }
+}
 ;
  //BA.debugLineNum = 656;BA.debugLine="End Sub";
-if (true) break;
-
-            }
-        }
-    }
+return "";
 }
 public static String  _getairquality(int _number) throws Exception{
  //BA.debugLineNum = 288;BA.debugLine="Sub GetAirQuality(number As Int) As String";

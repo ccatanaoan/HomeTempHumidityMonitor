@@ -686,8 +686,8 @@ Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
 			</td></tr>
 			</table>
 			</div>"$)			
-			WebView1.LoadURL("http://cloyd.mynetgear.com")
-			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
+			'WebView1.LoadURL("http://cloyd.mynetgear.com")
+			WebView1.LoadURL("http://cloyd.mynetgear.com:81/stream")
 		Case 2
 			WebView1.LoadHtml($"<div>
 			<table width="100%" height="100%" align="center" valign="center">
@@ -697,8 +697,8 @@ Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
 			</table>
 			</div>"$)
 			' Use WebView2 instead of WebView1 to avoid showing the web server response.
-			WebView2.LoadURL("http://cloyd.mynetgear.com:81/capture")
-			Sleep(300)
-			WebView1.LoadURL("http://cloyd.mynetgear.com:81/stream")
+'			WebView2.LoadURL("http://cloyd.mynetgear.com:81/capture")
+'			Sleep(300)
+			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
 	End Select
 End Sub

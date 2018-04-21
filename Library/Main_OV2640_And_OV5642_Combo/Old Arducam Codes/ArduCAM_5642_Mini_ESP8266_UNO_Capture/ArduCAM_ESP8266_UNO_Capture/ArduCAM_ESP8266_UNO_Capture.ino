@@ -1,18 +1,6 @@
-// ArduCAM Mini demo (C)2017 Lee
-// Web: http://www.ArduCAM.com
-// This program is a demo of how to use most of the functions
-// of the library with ArduCAM ESP8266 2MP/5MP camera.
-// This demo was made for ArduCAM ESP8266 2MP/5MP Camera.
-// It can take photo and send to the Web.
-// It can take photo continuously as video streaming and send to the Web.
-// The demo sketch will do the following tasks:
-// 1. Set the camera to JPEG output mode.
-// 2. if server.on("/capture", HTTP_GET, serverCapture),it can take photo and send to the Web.
-// 3.if server.on("/stream", HTTP_GET, serverStream),it can take photo continuously as video
-//streaming and send to the Web.
-
-// This program requires the ArduCAM V4.0.0 (or later) library and ArduCAM ESP8266 2MP/5MP camera
-// and use Arduino IDE 1.6.8 compiler or above
+// Change the appropriate camera in 
+// 1. C:\Users\Cloyd\AppData\Local\Arduino15\packages\ArduCAM_ESP8266_UNO\hardware\ArduCAM_ESP8266_UNO\2.2.3\libraries\ArduCAM\memorysaver.h
+// 2. Select the ArduCAM ESP8266 UNO board in the Tools/Board for OV5640
 
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
@@ -50,7 +38,6 @@ const char *AP_password = "";
 const char *ssid = "RiseAboveThisHome"; // Put your SSID here
 const char *password = "SteelReserve"; // Put your PASSWORD here
 
-static IPAddress ip(192, 168, 0, 89); // static IP used for browser access: http://IPaddress
 static IPAddress gateway(192, 168, 0, 1);
 static IPAddress subnet(255, 255, 255, 0);
 
@@ -60,13 +47,14 @@ uint8_t temp = 0, temp_last = 0;
 int i = 0;
 bool is_header = false;
 
-ESP8266WebServer server(81);
 #if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
 ArduCAM myCAM(OV2640, CS);
-#elif defined (OV5640_MINI_5MP_PLUS) || defined (OV5640_CAM)
-ArduCAM myCAM(OV5640, CS);
+  static IPAddress ip(192, 168, 0, 88); 
+  ESP8266WebServer server(80);
 #elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
-ArduCAM myCAM(OV5642, CS);
+  ArduCAM myCAM(OV5642, CS);
+  static IPAddress ip(192, 168, 0, 89); 
+  ESP8266WebServer server(81);
 #endif
 
 
@@ -155,88 +143,76 @@ void serverCapture() {
 }
 
 void serverStream() {
-  // Cloyd
-  myCAM.OV5642_set_JPEG_size(1);
-  
-  WiFiClient client = server.client();
+// Cloyd 4/10/2018
+// http://192.168.0.89/?&ql=1 <-- 1 is the resolution in integer. 
+//
+//#define OV2640_160x120    0 //160x120
+//#define OV2640_176x144    1 //176x144
+//#define OV2640_320x240    2 //320x240
+//#define OV2640_352x288    3 //352x288
+//#define OV2640_640x480    4 //640x480
+//#define OV2640_800x600    5 //800x600
+//#define OV2640_1024x768   6 //1024x768
+//#define OV2640_1280x1024  7 //1280x1024
+//#define OV2640_1600x1200  8 //1600x1200
+
+//#define OV5642_320x240    0 //320x240
+//#define OV5642_640x480    1 //640x480
+//#define OV5642_1024x768   2 //1024x768
+//#define OV5642_1280x960   3 //1280x960
+//#define OV5642_1600x1200  4 //1600x1200
+//#define OV5642_2048x1536  5 //2048x1536
+//#define OV5642_2592x1944  6 //2592x1944
+
+#if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
+    myCAM.OV2640_set_JPEG_size(4);
+#elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
+    myCAM.OV5642_set_JPEG_size(1);
+#endif
+ 
+ WiFiClient client = server.client();
 
   String response = "HTTP/1.1 200 OK\r\n";
   response += "Content-Type: multipart/x-mixed-replace; boundary=frame\r\n\r\n";
   server.sendContent(response);
 
   while (client.connected()) {
+
     start_capture();
+
     while (!myCAM.get_bit(ARDUCHIP_TRIG, CAP_DONE_MASK));
+
     size_t len = myCAM.read_fifo_length();
-    if (len >= MAX_FIFO_SIZE) //8M
-    {
-      Serial.println(F("Over size."));
+    if (len >= 0x07ffff) {
+      Serial.println("Over size.");
+      continue;
+    } else if (len == 0 ) {
+      Serial.println("Size is 0.");
       continue;
     }
-    if (len == 0 ) //0 kb
-    {
-      Serial.println(F("Size is 0."));
-      continue;
-    }
+
     myCAM.CS_LOW();
     myCAM.set_fifo_burst();
-    if (!client.connected()) {
-      //ESP.restart();
-      Serial.println("break"); break;
-    }
+#if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
+    SPI.transfer(0xFF);
+#endif
+    if (!client.connected()) break;
     response = "--frame\r\n";
     response += "Content-Type: image/jpeg\r\n\r\n";
     server.sendContent(response);
-    while ( len-- )
-    {
-      temp_last = temp;
-      temp =  SPI.transfer(0x00);
 
-      //Read JPEG data from FIFO
-      if ( (temp == 0xD9) && (temp_last == 0xFF) ) //If find the end ,break while,
-      {
-        buffer[i++] = temp;  //save the last  0XD9
-        //Write the remain bytes in the buffer
-        myCAM.CS_HIGH();;
-        if (!client.connected()) {
-             //ESP.restart();
-             client.stop(); is_header = false; serverCapture(); break;
-        }
-        client.write(&buffer[0], i);
-        is_header = false;
-        i = 0;
-      }
-      if (is_header == true)
-      {
-        //Write image data to buffer if not full
-        if (i < bufferSize)
-          buffer[i++] = temp;
-        else
-        {
-          //Write bufferSize bytes image data to file
-          myCAM.CS_HIGH();
-          if (!client.connected()) {
-                  //ESP.restart();
-                   client.stop(); is_header = false; serverCapture(); break;
-          }
-          client.write(&buffer[0], bufferSize);
-          i = 0;
-          buffer[i++] = temp;
-          myCAM.CS_LOW();
-          myCAM.set_fifo_burst();
-        }
-      }
-      else if ((temp == 0xD8) & (temp_last == 0xFF))
-      {
-        is_header = true;
-        buffer[i++] = temp_last;
-        buffer[i++] = temp;
-      }
+    static uint8_t buffer[bufferSize] = {0xFF};
+
+    while (len) {
+      size_t will_copy = (len < bufferSize) ? len : bufferSize;
+      SPI.transferBytes(&buffer[0], &buffer[0], will_copy);
+      if (!client.connected()) break;
+      client.write(&buffer[0], will_copy);
+      len -= will_copy;
     }
-    if (!client.connected()) {
-      //ESP.restart();
-       client.stop(); is_header = false; serverCapture(); break;
-    }
+    myCAM.CS_HIGH();
+
+    if (!client.connected()) break;
   }
 }
 
@@ -254,16 +230,25 @@ void handleNotFound() {
 // Cloyd 4/15/2018
 // http://192.168.0.89:81/?&ql=1 <-- 1 is the resolution in integer. 
 //
-//#define OV5642_320x240     0 //320x240
+//#define OV2640_160x120     0 //160x120
+//#define OV2640_176x144    1 //176x144
+//#define OV2640_320x240    2 //320x240
+//#define OV2640_352x288    3 //352x288
+//#define OV2640_640x480    4 //640x480
+//#define OV2640_800x600    5 //800x600
+//#define OV2640_1024x768   6 //1024x768
+//#define OV2640_1280x1024  7 //1280x1024
+//#define OV2640_1600x1200  8 //1600x1200
+
+//#define OV5642_320x240    0 //320x240
 //#define OV5642_640x480    1 //640x480
 //#define OV5642_1024x768   2 //1024x768
 //#define OV5642_1280x960   3 //1280x960
 //#define OV5642_1600x1200  4 //1600x1200
 //#define OV5642_2048x1536  5 //2048x1536
 //#define OV5642_2592x1944  6 //2592x1944
-//#define OV5642_1920x1080  7
 
-  if (server.hasArg("ql")) {
+if (server.hasArg("ql")) {
     int ql = server.arg("ql").toInt();
 #if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
     myCAM.OV2640_set_JPEG_size(ql);
@@ -284,6 +269,7 @@ void restartBoard()
 {
   ESP.restart();
 }
+
 void setup() {
   uint8_t vid, pid;
   uint8_t temp;
@@ -315,15 +301,6 @@ void setup() {
     Serial.println(F("Can't find OV2640 module!"));
   else
     Serial.println(F("OV2640 detected."));
-#elif defined (OV5640_MINI_5MP_PLUS) || defined (OV5640_CAM)
-  //Check if the camera module type is OV5640
-  myCAM.wrSensorReg16_8(0xff, 0x01);
-  myCAM.rdSensorReg16_8(OV5640_CHIPID_HIGH, &vid);
-  myCAM.rdSensorReg16_8(OV5640_CHIPID_LOW, &pid);
-  if ((vid != 0x56) || (pid != 0x40))
-    Serial.println(F("Can't find OV5640 module!"));
-  else
-    Serial.println(F("OV5640 detected."));
 #elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
   //Check if the camera module type is OV5642
   myCAM.wrSensorReg16_8(0xff, 0x01);
@@ -341,9 +318,6 @@ void setup() {
   myCAM.InitCAM();
 #if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
   myCAM.OV2640_set_JPEG_size(OV2640_320x240);
-#elif defined (OV5640_MINI_5MP_PLUS) || defined (OV5640_CAM)
-  myCAM.write_reg(ARDUCHIP_TIM, VSYNC_LEVEL_MASK);   //VSYNC is active HIGH
-  myCAM.OV5640_set_JPEG_size(OV5640_320x240);
 #elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
   myCAM.write_reg(ARDUCHIP_TIM, VSYNC_LEVEL_MASK);   //VSYNC is active HIGH
   myCAM.OV5640_set_JPEG_size(OV5642_320x240);
