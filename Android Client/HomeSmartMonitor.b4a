@@ -37,20 +37,19 @@ Library7=byteconverter
 Library8=xui
 Library9=stringutils
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)
-Module1=CustomListView
-Module2=Gauge
-Module3=SmartHomeMonitor
-Module4=NotificationService
-Module5=StateManager
+Module1=Gauge
+Module2=SmartHomeMonitor
+Module3=NotificationService
+Module4=StateManager
 NumberOfFiles=8
 NumberOfLibraries=19
-NumberOfModules=5
+NumberOfModules=4
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 1982
-	#VersionName: 1.9.8.2
+	#VersionCode: 1983
+	#VersionName: 1.9.8.3
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -78,7 +77,6 @@ End Sub
 Sub Globals
 	Private ACToolBarLight1 As ACToolBarLight
 	Private ToolbarHelper As ACActionBar
-	Private clv1 As CustomListView
 	Private gblACMenu As ACMenu
 	Private xui As XUI
 	Private GaugeHumidity As Gauge
@@ -100,7 +98,6 @@ Sub Globals
 	Private xml As XmlLayoutBuilder
 	Private DSBottomNavigationView1 As DSBottomNavigationView
 	Private PanelWebView As Panel
-	Private WebView2 As WebView 'ignore
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -113,15 +110,11 @@ Sub Activity_Create(FirstTime As Boolean)
 		Activity.LoadLayout("Main")
 
 		TabStrip1.LoadLayout("1ScrollView", "Temp & Humidity  " & Chr(0xF2C7))
-		'ScrollView1.Initialize(1000)
 		ScrollView1.Panel.LoadLayout("1")
 		Panel1.Height = Panel1.Height + 100dip
 		ScrollView1.Panel.Height = Panel1.Height 
 		TabStrip1.LoadLayout("2", "Air Quality (CO)  " & Chr(0xF289))
 		TabStrip1.LoadLayout("3", "Security Camera  " & Chr(0xF030))
-'		TabStrip1.LoadLayout("3", "Main Door" & CRLF & "Security Camera  " & Chr(0xF030))
-'		Dim lbl As Label = GetAllTabLabels(TabStrip1).Get(2) 'third tab
-'		lbl.SingleLine = False
 
 		For Each lbl As Label In GetAllTabLabels(TabStrip1)
 			' To add icon
@@ -188,7 +181,6 @@ Sub Activity_Create(FirstTime As Boolean)
 		DSBottomNavigationView1.SetItemIconColors(Colors.LightGray, Colors.RGB(0,152,253), Colors.DarkGray)
 
 		WebView1.Initialize("WebView1")
-		WebView2.Initialize("WebView2")
 		
 		If MQTT.IsInitialized And MQTT.Connected  Then
 			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
@@ -249,7 +241,7 @@ Sub MQTT_Connect
         ConnOpt.Initialize(MQTTUser, MQTTPassword)
         MQTT.Connect2(ConnOpt)
 	Catch
-		AddEvent("MQTT_Connect: " & LastException)
+		Log("MQTT_Connect: " & LastException)
 	End Try
 End Sub
 
@@ -259,12 +251,12 @@ Sub MQTT_Connected (Success As Boolean)
 	        Log(LastException)
 			MQTT_Connect
 	    Else
-			AddEvent("Connected to MQTT broker")
+			Log("Connected to MQTT broker")
 	        MQTT.Subscribe("TempHumid", 0)
 			MQTT.Subscribe("MQ7", 0)
 	    End If
 	Catch
-		AddEvent("MQTT_Connected: " & LastException)
+		Log("MQTT_Connected: " & LastException)
 	End Try
 End Sub
 
@@ -274,7 +266,7 @@ Private Sub MQTT_Disconnected
 		gblACMenu.Add(0, 0, "Enable Notification Listener",Null)
 		gblACMenu.Add(0, 0, "Restart board",Null)
 		gblACMenu.Add(0, 0, "About",Null)
-		AddEvent("Disconnected from MQTT broker")
+		Log("Disconnected from MQTT broker")
 		MQTT_Connect
 	Catch
 		Log(LastException)
@@ -289,7 +281,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		
 			Dim status As String
 			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
-			AddEvent(status)
 
 			Dim a() As String = Regex.Split("\|",status)
 			If a.Length = 9 Then
@@ -306,7 +297,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 
 					Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-					'********************
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 					Log("TempHumidity Time difference: " & p.Minutes & " minutes")
@@ -315,7 +305,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Else
 						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 					End If
-					'********************'
 				Else If a(8) = "00:00:00" Then
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdate.Text.Replace("Last update: ","")).PopAll
 				End If
@@ -335,7 +324,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 					Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-					'********************
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 					Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
@@ -344,7 +332,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Else
 						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 					End If
-					'********************'
 				Else If a(2) = "00:00:00" Then
 					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
 				End If
@@ -352,7 +339,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			CheckAirQualitySetting
 		End If
 	Catch
-		AddEvent("MQTT_MessageArrived: " & LastException)
+		Log(LastException)
 	End Try
 End Sub
 
@@ -432,17 +419,6 @@ Sub GetComfort(DHT11ComfortStatus As String) As String
 	Return localcomfortstatus
 End Sub
 
-Sub AddEvent(text As String)
-	Try
-		DateTime.DateFormat = "MMM d h:mm:ss a"
-		clv1.AddTextItem(DateTime.Date(DateTime.Now) & ": " & text, text)
-		Sleep(100)
-		clv1.ScrollToItem(clv1.Size-1)
-	Catch
-		Log(LastException)
-	End Try
-End Sub
-
 Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 	Try
 		If Item.Title = "About" Then
@@ -458,7 +434,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 				If TabStrip1.CurrentPage = 2 Then
 					If WebView1.Url.Contains("cloyd.mynetgear.com:81") Then
-						result = Msgbox2("Restart the kitchen CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+						result = Msgbox2("Restart the main door CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
 						If result = DialogResponse.POSITIVE Then
 							WebView1.StopLoading
 							WebView1.RemoveView
@@ -475,7 +451,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 							DSBottomNavigationView1.CheckedItem=2
 						End If
 					Else
-						result = Msgbox2("Restart the main door CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+						result = Msgbox2("Restart the kitchen CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
 						If result = DialogResponse.POSITIVE Then
 							WebView1.StopLoading
 							WebView1.RemoveView
@@ -510,7 +486,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 					End If
 				End If
 			Catch
-				AddEvent(LastException)
+				Log(LastException)
 			End Try
 		End If
 	Catch
@@ -526,7 +502,6 @@ Sub ShowAboutMenu
 	Catch
 		Log(LastException)
 	End Try
-	
 End Sub
 
 Sub GetVersionCode() As String
@@ -611,9 +586,18 @@ End Sub
 Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 	If KeyCode = KeyCodes.KEYCODE_BACK Then
 		If TabStrip1.CurrentPage = 2 Then
-			TabStrip1.ScrollTo(1,True)
-			TabStrip1_PageSelected(1)
-			Return True
+			If WebView1.Url.Contains("cloyd.mynetgear.com:81") Then
+				TabStrip1.ScrollTo(1,True)
+				TabStrip1_PageSelected(1)
+				Return True
+			Else
+				If WebView1.IsInitialized = False Then
+					WebView1.Initialize("WebView1")
+				End If
+				DSBottomNavigationView1.CheckedItem=1
+				Return True
+			End If
+
 		Else If TabStrip1.CurrentPage = 1 Then
 			TabStrip1.ScrollTo(0,True)
 			TabStrip1_PageSelected(0)
@@ -634,11 +618,7 @@ Sub WebView1_PageFinished (Url As String)
 		f = Obj1.RunMethod("getScale")
 
 		Obj1.Target = WebView1
-		If WebView1.Url.Contains("cloyd.mynetgear.com:81") Then
-			Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
-		Else
-			Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
-		End If
+		Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
 	Catch
 		Log(LastException)
 	End Try
@@ -657,7 +637,6 @@ Sub CheckAirQualitySetting
 					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 					Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-					'********************
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 					Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
@@ -666,7 +645,6 @@ Sub CheckAirQualitySetting
 					Else
 						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 					End If
-					'********************'
 				Else If a(2) = "00:00:00" Then
 					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
 				End If
@@ -696,7 +674,6 @@ Sub CheckTempHumiditySetting
 					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 					Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-					'********************
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 					Log("TempHumidity Time difference: " & p.Minutes & " minutes")
@@ -705,7 +682,6 @@ Sub CheckTempHumiditySetting
 					Else
 						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 					End If
-					'********************'
 				Else If a(8) = "00:00:00" Then
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdate.Text.Replace("Last update: ","")).PopAll
 				End If
@@ -730,7 +706,6 @@ Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
 			</td></tr>
 			</table>
 			</div>"$)			
-			'WebView1.LoadURL("http://cloyd.mynetgear.com")
 			WebView1.LoadURL("http://cloyd.mynetgear.com:81/stream")
 		Case 2
 			WebView1.LoadHtml($"<div>
@@ -740,9 +715,6 @@ Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
 			</td></tr>
 			</table>
 			</div>"$)
-			' Use WebView2 instead of WebView1 to avoid showing the web server response.
-'			WebView2.LoadURL("http://cloyd.mynetgear.com:81/capture")
-'			Sleep(300)
 			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
 	End Select
 End Sub

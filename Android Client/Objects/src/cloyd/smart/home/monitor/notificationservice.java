@@ -126,20 +126,6 @@ public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.statemanager _statemanager = null;
-public static String  _clearall() throws Exception{
- //BA.debugLineNum = 51;BA.debugLine="Sub ClearAll";
- //BA.debugLineNum = 52;BA.debugLine="listener.ClearAll";
-_listener.ClearAll();
- //BA.debugLineNum = 53;BA.debugLine="End Sub";
-return "";
-}
-public static String  _getactive() throws Exception{
- //BA.debugLineNum = 55;BA.debugLine="Sub GetActive";
- //BA.debugLineNum = 56;BA.debugLine="listener.GetActiveNotifications";
-_listener.GetActiveNotifications();
- //BA.debugLineNum = 57;BA.debugLine="End Sub";
-return "";
-}
 public static String  _listener_notificationposted(anywheresoftware.b4a.objects.NotificationListenerWrapper.StatusBarNotificationWrapper _sbn) throws Exception{
 anywheresoftware.b4a.phone.Phone _p = null;
 anywheresoftware.b4j.object.JavaObject _jno = null;
@@ -203,8 +189,8 @@ _listener.Initialize(processBA,"listener");
 return "";
 }
 public static String  _service_destroy() throws Exception{
- //BA.debugLineNum = 59;BA.debugLine="Sub Service_Destroy";
- //BA.debugLineNum = 61;BA.debugLine="End Sub";
+ //BA.debugLineNum = 51;BA.debugLine="Sub Service_Destroy";
+ //BA.debugLineNum = 53;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{

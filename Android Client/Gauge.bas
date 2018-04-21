@@ -32,7 +32,6 @@ Sub Class_Globals
 	Private IndicatorBaseWidth As Float 
 	Private mCurrentValue As Float = 50
 	Private PrefixText, SuffixText As String
-	Private DurationFromZeroTo100 As Int
 	Private HALF_CIRCLE = 1, FULL_CIRCLE = 2 As Int
 	Private GaugeType As Int
 	Private AngleRange As Int
@@ -58,7 +57,6 @@ Public Sub DesignerCreateView (Base As Object, Lbl As Label, Props As Map)
 	MaxValue = Props.Get("MaxValue")
 	PrefixText = Props.Get("PrefixText")
 	SuffixText = Props.Get("SuffixText")
-	DurationFromZeroTo100 = Props.Get("Duration")
 	mBase = Base
 	Dim NativeFont As Object
 #if B4J
@@ -232,27 +230,6 @@ Public Sub getCurrentValue As Float
 End Sub
 
 Private Sub AnimateValueTo(NewValue As Float)
-	Dim n As Long = DateTime.Now
-	Dim duration As Int = Abs(mCurrentValue - NewValue) / 100 * DurationFromZeroTo100 + 1000
-	Dim start As Float = mCurrentValue
 	mCurrentValue = NewValue
-	Dim tempValue As Float
-'	Do While DateTime.Now < n + duration
-'		tempValue = ValueFromTimeEaseInOut(DateTime.Now - n, start, NewValue - start, duration)
-'		DrawIndicator(tempValue)
-'		Sleep(10)
-'		If NewValue <> mCurrentValue Then Return 'will happen if another update has started
-'	Loop
 	DrawIndicator(mCurrentValue)
-End Sub
-
-'quartic easing in/out from http://gizma.com/easing/
-Private Sub ValueFromTimeEaseInOut(Time As Float, Start As Float, ChangeInValue As Float, Duration As Int) As Float
-	Time = Time / (Duration / 2)
-	If Time < 1 Then
-		Return ChangeInValue / 2 * Time * Time * Time * Time + Start
-	Else
-		Time = Time - 2
-		Return -ChangeInValue / 2 * (Time * Time * Time * Time - 2) + Start
-	End If
 End Sub

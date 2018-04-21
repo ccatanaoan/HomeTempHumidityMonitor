@@ -142,204 +142,204 @@ String _importance = "";
 String _channelvisiblename = "";
 anywheresoftware.b4j.object.JavaObject _jo = null;
 anywheresoftware.b4a.objects.NotificationWrapper _n = null;
- //BA.debugLineNum = 135;BA.debugLine="Private Sub CreateNotification(Title As String, Co";
- //BA.debugLineNum = 137;BA.debugLine="Dim p As Phone";
+ //BA.debugLineNum = 137;BA.debugLine="Private Sub CreateNotification(Title As String, Co";
+ //BA.debugLineNum = 139;BA.debugLine="Dim p As Phone";
 _p = new anywheresoftware.b4a.phone.Phone();
- //BA.debugLineNum = 138;BA.debugLine="If p.SdkVersion >= 21 Then";
+ //BA.debugLineNum = 140;BA.debugLine="If p.SdkVersion >= 21 Then";
 if (_p.getSdkVersion()>=21) { 
- //BA.debugLineNum = 139;BA.debugLine="Dim nb As NotificationBuilder";
+ //BA.debugLineNum = 141;BA.debugLine="Dim nb As NotificationBuilder";
 _nb = new barxdroid.NotificationBuilder.NotificationBuilder();
- //BA.debugLineNum = 140;BA.debugLine="nb.Initialize";
+ //BA.debugLineNum = 142;BA.debugLine="nb.Initialize";
 _nb.Initialize(processBA);
- //BA.debugLineNum = 141;BA.debugLine="nb.DefaultSound = Sound";
+ //BA.debugLineNum = 143;BA.debugLine="nb.DefaultSound = Sound";
 _nb.setDefaultSound(_sound);
- //BA.debugLineNum = 142;BA.debugLine="nb.DefaultVibrate = Vibrate";
+ //BA.debugLineNum = 144;BA.debugLine="nb.DefaultVibrate = Vibrate";
 _nb.setDefaultVibrate(_vibrate);
- //BA.debugLineNum = 143;BA.debugLine="nb.ContentTitle = Title";
+ //BA.debugLineNum = 145;BA.debugLine="nb.ContentTitle = Title";
 _nb.setContentTitle(_title);
- //BA.debugLineNum = 144;BA.debugLine="nb.ContentText = Content";
+ //BA.debugLineNum = 146;BA.debugLine="nb.ContentText = Content";
 _nb.setContentText(_content);
- //BA.debugLineNum = 145;BA.debugLine="nb.setActivity(TargetActivity)";
+ //BA.debugLineNum = 147;BA.debugLine="nb.setActivity(TargetActivity)";
 _nb.setActivity(processBA,_targetactivity);
- //BA.debugLineNum = 146;BA.debugLine="nb.OnlyAlertOnce = True";
+ //BA.debugLineNum = 148;BA.debugLine="nb.OnlyAlertOnce = True";
 _nb.setOnlyAlertOnce(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 147;BA.debugLine="nb.SmallIcon = Icon";
+ //BA.debugLineNum = 149;BA.debugLine="nb.SmallIcon = Icon";
 _nb.setSmallIcon(_icon);
- //BA.debugLineNum = 148;BA.debugLine="nb.Tag = ChannelName";
+ //BA.debugLineNum = 150;BA.debugLine="nb.Tag = ChannelName";
 _nb.setTag(_channelname);
- //BA.debugLineNum = 149;BA.debugLine="If p.SdkVersion >= 26 Then";
+ //BA.debugLineNum = 151;BA.debugLine="If p.SdkVersion >= 26 Then";
 if (_p.getSdkVersion()>=26) { 
- //BA.debugLineNum = 150;BA.debugLine="Dim ctxt As JavaObject";
+ //BA.debugLineNum = 152;BA.debugLine="Dim ctxt As JavaObject";
 _ctxt = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 151;BA.debugLine="ctxt.InitializeContext";
+ //BA.debugLineNum = 153;BA.debugLine="ctxt.InitializeContext";
 _ctxt.InitializeContext(processBA);
- //BA.debugLineNum = 152;BA.debugLine="Dim manager As JavaObject";
+ //BA.debugLineNum = 154;BA.debugLine="Dim manager As JavaObject";
 _manager = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 153;BA.debugLine="manager.InitializeStatic(\"android.app.Notificat";
+ //BA.debugLineNum = 155;BA.debugLine="manager.InitializeStatic(\"android.app.Notificat";
 _manager.InitializeStatic("android.app.NotificationManager");
- //BA.debugLineNum = 154;BA.debugLine="Dim Channel As JavaObject";
+ //BA.debugLineNum = 156;BA.debugLine="Dim Channel As JavaObject";
 _channel = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 155;BA.debugLine="Dim importance As String";
+ //BA.debugLineNum = 157;BA.debugLine="Dim importance As String";
 _importance = "";
- //BA.debugLineNum = 157;BA.debugLine="importance = \"IMPORTANCE_HIGH\"";
+ //BA.debugLineNum = 159;BA.debugLine="importance = \"IMPORTANCE_HIGH\"";
 _importance = "IMPORTANCE_HIGH";
- //BA.debugLineNum = 158;BA.debugLine="Dim ChannelVisibleName As String = ChannelName";
+ //BA.debugLineNum = 160;BA.debugLine="Dim ChannelVisibleName As String = ChannelName";
 _channelvisiblename = _channelname;
- //BA.debugLineNum = 159;BA.debugLine="Channel.InitializeNewInstance(\"android.app.Noti";
+ //BA.debugLineNum = 161;BA.debugLine="Channel.InitializeNewInstance(\"android.app.Noti";
 _channel.InitializeNewInstance("android.app.NotificationChannel",new Object[]{(Object)(_channelname),(Object)(_channelvisiblename),_manager.GetField(_importance)});
- //BA.debugLineNum = 163;BA.debugLine="Channel.RunMethod(\"setShowBadge\", Array(ShowBad";
+ //BA.debugLineNum = 165;BA.debugLine="Channel.RunMethod(\"setShowBadge\", Array(ShowBad";
 _channel.RunMethod("setShowBadge",new Object[]{(Object)(_showbadge)});
- //BA.debugLineNum = 164;BA.debugLine="manager = ctxt.RunMethod(\"getSystemService\", Ar";
+ //BA.debugLineNum = 166;BA.debugLine="manager = ctxt.RunMethod(\"getSystemService\", Ar";
 _manager.setObject((java.lang.Object)(_ctxt.RunMethod("getSystemService",new Object[]{(Object)("notification")})));
- //BA.debugLineNum = 165;BA.debugLine="manager.RunMethod(\"createNotificationChannel\",";
+ //BA.debugLineNum = 167;BA.debugLine="manager.RunMethod(\"createNotificationChannel\",";
 _manager.RunMethod("createNotificationChannel",new Object[]{(Object)(_channel.getObject())});
- //BA.debugLineNum = 166;BA.debugLine="Dim jo As JavaObject = nb";
+ //BA.debugLineNum = 168;BA.debugLine="Dim jo As JavaObject = nb";
 _jo = new anywheresoftware.b4j.object.JavaObject();
 _jo.setObject((java.lang.Object)(_nb.getObject()));
- //BA.debugLineNum = 167;BA.debugLine="jo.RunMethod(\"setChannelId\", Array(ChannelName)";
+ //BA.debugLineNum = 169;BA.debugLine="jo.RunMethod(\"setChannelId\", Array(ChannelName)";
 _jo.RunMethod("setChannelId",new Object[]{(Object)(_channelname)});
  };
- //BA.debugLineNum = 169;BA.debugLine="Return  nb.GetNotification";
+ //BA.debugLineNum = 171;BA.debugLine="Return  nb.GetNotification";
 if (true) return (anywheresoftware.b4a.objects.NotificationWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.NotificationWrapper(), (java.lang.Object)(_nb.GetNotification(processBA)));
  }else {
- //BA.debugLineNum = 171;BA.debugLine="Dim n As Notification";
+ //BA.debugLineNum = 173;BA.debugLine="Dim n As Notification";
 _n = new anywheresoftware.b4a.objects.NotificationWrapper();
- //BA.debugLineNum = 172;BA.debugLine="n.Initialize";
+ //BA.debugLineNum = 174;BA.debugLine="n.Initialize";
 _n.Initialize();
- //BA.debugLineNum = 173;BA.debugLine="n.Sound = Sound";
+ //BA.debugLineNum = 175;BA.debugLine="n.Sound = Sound";
 _n.setSound(_sound);
- //BA.debugLineNum = 174;BA.debugLine="n.Vibrate = Vibrate";
+ //BA.debugLineNum = 176;BA.debugLine="n.Vibrate = Vibrate";
 _n.setVibrate(_vibrate);
- //BA.debugLineNum = 175;BA.debugLine="n.Icon = Icon";
+ //BA.debugLineNum = 177;BA.debugLine="n.Icon = Icon";
 _n.setIcon(_icon);
- //BA.debugLineNum = 176;BA.debugLine="n.SetInfo(Title, Content, TargetActivity)";
+ //BA.debugLineNum = 178;BA.debugLine="n.SetInfo(Title, Content, TargetActivity)";
 _n.SetInfoNew(processBA,BA.ObjectToCharSequence(_title),BA.ObjectToCharSequence(_content),_targetactivity);
- //BA.debugLineNum = 177;BA.debugLine="Return n";
+ //BA.debugLineNum = 179;BA.debugLine="Return n";
 if (true) return _n;
  };
- //BA.debugLineNum = 179;BA.debugLine="End Sub";
+ //BA.debugLineNum = 181;BA.debugLine="End Sub";
 return null;
 }
 public static String  _getairquality(int _number) throws Exception{
- //BA.debugLineNum = 241;BA.debugLine="Sub GetAirQuality(number As Int) As String";
- //BA.debugLineNum = 244;BA.debugLine="If number <= 100 Then";
+ //BA.debugLineNum = 243;BA.debugLine="Sub GetAirQuality(number As Int) As String";
+ //BA.debugLineNum = 246;BA.debugLine="If number <= 100 Then";
 if (_number<=100) { 
- //BA.debugLineNum = 245;BA.debugLine="Return(\"Carbon monoxide level is perfect\")";
+ //BA.debugLineNum = 247;BA.debugLine="Return(\"Carbon monoxide level is perfect\")";
 if (true) return ("Carbon monoxide level is perfect");
  }else if(((_number>100) && (_number<400)) || _number==400) { 
- //BA.debugLineNum = 247;BA.debugLine="Return(\"Carbon monoxide level is normal\")";
+ //BA.debugLineNum = 249;BA.debugLine="Return(\"Carbon monoxide level is normal\")";
 if (true) return ("Carbon monoxide level is normal");
  }else if(((_number>400) && (_number<900)) || _number==900) { 
- //BA.debugLineNum = 249;BA.debugLine="Return(\"Carbon monoxide level is high\")";
+ //BA.debugLineNum = 251;BA.debugLine="Return(\"Carbon monoxide level is high\")";
 if (true) return ("Carbon monoxide level is high");
  }else if(_number>900) { 
- //BA.debugLineNum = 251;BA.debugLine="Return(\"ALARM Carbon monoxide level is very high";
+ //BA.debugLineNum = 253;BA.debugLine="Return(\"ALARM Carbon monoxide level is very high";
 if (true) return ("ALARM Carbon monoxide level is very high");
  }else {
- //BA.debugLineNum = 253;BA.debugLine="Return(\"MQ-7 - cant read any value - check the s";
+ //BA.debugLineNum = 255;BA.debugLine="Return(\"MQ-7 - cant read any value - check the s";
 if (true) return ("MQ-7 - cant read any value - check the sensor!");
  };
- //BA.debugLineNum = 255;BA.debugLine="End Sub";
+ //BA.debugLineNum = 257;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getcomfort(String _dht11comfortstatus) throws Exception{
 String _localcomfortstatus = "";
- //BA.debugLineNum = 214;BA.debugLine="Sub GetComfort(DHT11ComfortStatus As String) As St";
- //BA.debugLineNum = 215;BA.debugLine="Dim localcomfortstatus As String";
+ //BA.debugLineNum = 216;BA.debugLine="Sub GetComfort(DHT11ComfortStatus As String) As St";
+ //BA.debugLineNum = 217;BA.debugLine="Dim localcomfortstatus As String";
 _localcomfortstatus = "";
- //BA.debugLineNum = 216;BA.debugLine="Select Case DHT11ComfortStatus";
+ //BA.debugLineNum = 218;BA.debugLine="Select Case DHT11ComfortStatus";
 switch (BA.switchObjectToInt(_dht11comfortstatus,BA.NumberToString(0),BA.NumberToString(1),BA.NumberToString(2),BA.NumberToString(4),BA.NumberToString(5),BA.NumberToString(6),BA.NumberToString(8),BA.NumberToString(9),BA.NumberToString(10))) {
 case 0: {
- //BA.debugLineNum = 218;BA.debugLine="localcomfortstatus = \"OK\"";
+ //BA.debugLineNum = 220;BA.debugLine="localcomfortstatus = \"OK\"";
 _localcomfortstatus = "OK";
  break; }
 case 1: {
- //BA.debugLineNum = 220;BA.debugLine="localcomfortstatus = \"Too hot\"";
+ //BA.debugLineNum = 222;BA.debugLine="localcomfortstatus = \"Too hot\"";
 _localcomfortstatus = "Too hot";
  break; }
 case 2: {
- //BA.debugLineNum = 222;BA.debugLine="localcomfortstatus = \"Too cold\"";
+ //BA.debugLineNum = 224;BA.debugLine="localcomfortstatus = \"Too cold\"";
 _localcomfortstatus = "Too cold";
  break; }
 case 3: {
- //BA.debugLineNum = 224;BA.debugLine="localcomfortstatus = \"Too dry\"";
+ //BA.debugLineNum = 226;BA.debugLine="localcomfortstatus = \"Too dry\"";
 _localcomfortstatus = "Too dry";
  break; }
 case 4: {
- //BA.debugLineNum = 226;BA.debugLine="localcomfortstatus = \"Hot and dry\"";
+ //BA.debugLineNum = 228;BA.debugLine="localcomfortstatus = \"Hot and dry\"";
 _localcomfortstatus = "Hot and dry";
  break; }
 case 5: {
- //BA.debugLineNum = 228;BA.debugLine="localcomfortstatus = \"Cold and dry\"";
+ //BA.debugLineNum = 230;BA.debugLine="localcomfortstatus = \"Cold and dry\"";
 _localcomfortstatus = "Cold and dry";
  break; }
 case 6: {
- //BA.debugLineNum = 230;BA.debugLine="localcomfortstatus = \"Too humid\"";
+ //BA.debugLineNum = 232;BA.debugLine="localcomfortstatus = \"Too humid\"";
 _localcomfortstatus = "Too humid";
  break; }
 case 7: {
- //BA.debugLineNum = 232;BA.debugLine="localcomfortstatus = \"Hot and humid\"";
+ //BA.debugLineNum = 234;BA.debugLine="localcomfortstatus = \"Hot and humid\"";
 _localcomfortstatus = "Hot and humid";
  break; }
 case 8: {
- //BA.debugLineNum = 234;BA.debugLine="localcomfortstatus = \"Cold and humid\"";
+ //BA.debugLineNum = 236;BA.debugLine="localcomfortstatus = \"Cold and humid\"";
 _localcomfortstatus = "Cold and humid";
  break; }
 default: {
- //BA.debugLineNum = 236;BA.debugLine="localcomfortstatus = \"Unknown\"";
+ //BA.debugLineNum = 238;BA.debugLine="localcomfortstatus = \"Unknown\"";
 _localcomfortstatus = "Unknown";
  break; }
 }
 ;
- //BA.debugLineNum = 238;BA.debugLine="Return localcomfortstatus";
+ //BA.debugLineNum = 240;BA.debugLine="Return localcomfortstatus";
 if (true) return _localcomfortstatus;
- //BA.debugLineNum = 239;BA.debugLine="End Sub";
+ //BA.debugLineNum = 241;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getperception(String _dht11perception) throws Exception{
 String _localperception = "";
- //BA.debugLineNum = 181;BA.debugLine="Sub GetPerception(DHT11Perception As String) As St";
- //BA.debugLineNum = 192;BA.debugLine="Dim localperception As String";
+ //BA.debugLineNum = 183;BA.debugLine="Sub GetPerception(DHT11Perception As String) As St";
+ //BA.debugLineNum = 194;BA.debugLine="Dim localperception As String";
 _localperception = "";
- //BA.debugLineNum = 193;BA.debugLine="Select Case DHT11Perception";
+ //BA.debugLineNum = 195;BA.debugLine="Select Case DHT11Perception";
 switch (BA.switchObjectToInt(_dht11perception,BA.NumberToString(0),BA.NumberToString(1),BA.NumberToString(2),BA.NumberToString(3),BA.NumberToString(4),BA.NumberToString(5),BA.NumberToString(6),BA.NumberToString(7))) {
 case 0: {
- //BA.debugLineNum = 195;BA.debugLine="localperception = \"Home feels like the western";
+ //BA.debugLineNum = 197;BA.debugLine="localperception = \"Home feels like the western";
 _localperception = "Home feels like the western US, a bit dry to some";
  break; }
 case 1: {
- //BA.debugLineNum = 197;BA.debugLine="localperception = \"Home is very comfortable\"";
+ //BA.debugLineNum = 199;BA.debugLine="localperception = \"Home is very comfortable\"";
 _localperception = "Home is very comfortable";
  break; }
 case 2: {
- //BA.debugLineNum = 199;BA.debugLine="localperception = \"Home is comfortable\"";
+ //BA.debugLineNum = 201;BA.debugLine="localperception = \"Home is comfortable\"";
 _localperception = "Home is comfortable";
  break; }
 case 3: {
- //BA.debugLineNum = 201;BA.debugLine="localperception = \"Home is okay but the humidit";
+ //BA.debugLineNum = 203;BA.debugLine="localperception = \"Home is okay but the humidit";
 _localperception = "Home is okay but the humidity is at upper limit";
  break; }
 case 4: {
- //BA.debugLineNum = 203;BA.debugLine="localperception = \"Home is uncomfortable, and t";
+ //BA.debugLineNum = 205;BA.debugLine="localperception = \"Home is uncomfortable, and t";
 _localperception = "Home is uncomfortable, and the humidity is at upper limit";
  break; }
 case 5: {
- //BA.debugLineNum = 205;BA.debugLine="localperception = \"Home is very humid, and quit";
+ //BA.debugLineNum = 207;BA.debugLine="localperception = \"Home is very humid, and quit";
 _localperception = "Home is very humid, and quite uncomfortable";
  break; }
 case 6: {
- //BA.debugLineNum = 207;BA.debugLine="localperception = \"Home is extremely uncomforta";
+ //BA.debugLineNum = 209;BA.debugLine="localperception = \"Home is extremely uncomforta";
 _localperception = "Home is extremely uncomfortable, and oppressive";
  break; }
 case 7: {
- //BA.debugLineNum = 209;BA.debugLine="localperception = \"Home humidity is severely hi";
+ //BA.debugLineNum = 211;BA.debugLine="localperception = \"Home humidity is severely hi";
 _localperception = "Home humidity is severely high, and even deadly for asthma related illnesses";
  break; }
 }
 ;
- //BA.debugLineNum = 211;BA.debugLine="Return localperception";
+ //BA.debugLineNum = 213;BA.debugLine="Return localperception";
 if (true) return _localperception;
- //BA.debugLineNum = 212;BA.debugLine="End Sub";
+ //BA.debugLineNum = 214;BA.debugLine="End Sub";
 return "";
 }
 public static String  _mqtt_connect() throws Exception{
@@ -439,61 +439,64 @@ if (_istemphumiditynotificationongoing==anywheresoftware.b4a.keywords.Common.Fal
  //BA.debugLineNum = 97;BA.debugLine="CreateNotification(GetPerception(a(3)),Noti";
 _createnotification(_getperception(_a[(int) (3)]),_notificationtext,"temp",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Temperature").Notify((int) (725));
  };
+ }else if((double)(Double.parseDouble(_a[(int) (1)]))>=80) { 
+ //BA.debugLineNum = 100;BA.debugLine="CreateNotification(\"Warning! Home temperatur";
+_createnotification("Warning! Home temperature is very high at "+_a[(int) (1)]+" degrees fahrenheit.",_notificationtext,"temp",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Temperature").Notify((int) (725));
  }else {
- //BA.debugLineNum = 100;BA.debugLine="IsTempHumidityNotificationOnGoing = False";
+ //BA.debugLineNum = 102;BA.debugLine="IsTempHumidityNotificationOnGoing = False";
 _istemphumiditynotificationongoing = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 101;BA.debugLine="Notification1.Cancel(725)";
+ //BA.debugLineNum = 103;BA.debugLine="Notification1.Cancel(725)";
 _notification1.Cancel((int) (725));
  };
  };
  };
  }else if((_topic).equals("MQ7")) { 
- //BA.debugLineNum = 106;BA.debugLine="Dim status As String";
+ //BA.debugLineNum = 108;BA.debugLine="Dim status As String";
 _status = "";
- //BA.debugLineNum = 107;BA.debugLine="Dim cs As CSBuilder";
+ //BA.debugLineNum = 109;BA.debugLine="Dim cs As CSBuilder";
 _cs = new anywheresoftware.b4a.objects.CSBuilder();
- //BA.debugLineNum = 108;BA.debugLine="cs.Initialize";
+ //BA.debugLineNum = 110;BA.debugLine="cs.Initialize";
 _cs.Initialize();
- //BA.debugLineNum = 109;BA.debugLine="status = BytesToString(Payload, 0, Payload.Leng";
+ //BA.debugLineNum = 111;BA.debugLine="status = BytesToString(Payload, 0, Payload.Leng";
 _status = anywheresoftware.b4a.keywords.Common.BytesToString(_payload,(int) (0),_payload.length,"UTF8");
- //BA.debugLineNum = 110;BA.debugLine="Log(\"MQ7 status: \" & status)";
+ //BA.debugLineNum = 112;BA.debugLine="Log(\"MQ7 status: \" & status)";
 anywheresoftware.b4a.keywords.Common.Log("MQ7 status: "+_status);
- //BA.debugLineNum = 111;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
+ //BA.debugLineNum = 113;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
 _a = anywheresoftware.b4a.keywords.Common.Regex.Split("\\|",_status);
- //BA.debugLineNum = 112;BA.debugLine="If a.Length = 3 Then";
+ //BA.debugLineNum = 114;BA.debugLine="If a.Length = 3 Then";
 if (_a.length==3) { 
- //BA.debugLineNum = 113;BA.debugLine="If IsNumber(a(0)) And a(0) > 0 Then";
+ //BA.debugLineNum = 115;BA.debugLine="If IsNumber(a(0)) And a(0) > 0 Then";
 if (anywheresoftware.b4a.keywords.Common.IsNumber(_a[(int) (0)]) && (double)(Double.parseDouble(_a[(int) (0)]))>0) { 
- //BA.debugLineNum = 114;BA.debugLine="StateManager.SetSetting(\"AirQuality\",status)";
+ //BA.debugLineNum = 116;BA.debugLine="StateManager.SetSetting(\"AirQuality\",status)";
 mostCurrent._statemanager._setsetting(processBA,"AirQuality",_status);
- //BA.debugLineNum = 115;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 117;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(processBA);
- //BA.debugLineNum = 117;BA.debugLine="Dim NotificationText As String";
+ //BA.debugLineNum = 119;BA.debugLine="Dim NotificationText As String";
 _notificationtext = "";
- //BA.debugLineNum = 118;BA.debugLine="NotificationText = GetAirQuality(a(0)) & \", a";
+ //BA.debugLineNum = 120;BA.debugLine="NotificationText = GetAirQuality(a(0)) & \", a";
 _notificationtext = _getairquality((int)(Double.parseDouble(_a[(int) (0)])))+", at "+_a[(int) (0)]+" ppm";
- //BA.debugLineNum = 119;BA.debugLine="If a(0) > 400 Then";
+ //BA.debugLineNum = 121;BA.debugLine="If a(0) > 400 Then";
 if ((double)(Double.parseDouble(_a[(int) (0)]))>400) { 
- //BA.debugLineNum = 120;BA.debugLine="If IsAirQualityNotificationOnGoing = False T";
+ //BA.debugLineNum = 122;BA.debugLine="If IsAirQualityNotificationOnGoing = False T";
 if (_isairqualitynotificationongoing==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 121;BA.debugLine="CreateNotification(\"Air Quality\",Notificati";
+ //BA.debugLineNum = 123;BA.debugLine="CreateNotification(\"Air Quality\",Notificati";
 _createnotification("Air Quality",_notificationtext,"co",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Carbon Monoxide").Notify((int) (726));
  };
  }else {
- //BA.debugLineNum = 124;BA.debugLine="IsAirQualityNotificationOnGoing = False";
+ //BA.debugLineNum = 126;BA.debugLine="IsAirQualityNotificationOnGoing = False";
 _isairqualitynotificationongoing = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 125;BA.debugLine="Notification1.Cancel(726)";
+ //BA.debugLineNum = 127;BA.debugLine="Notification1.Cancel(726)";
 _notification1.Cancel((int) (726));
  };
  };
  };
  };
  } 
-       catch (Exception e49) {
-			processBA.setLastException(e49); //BA.debugLineNum = 131;BA.debugLine="Log(LastException)";
+       catch (Exception e51) {
+			processBA.setLastException(e51); //BA.debugLineNum = 133;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)));
  };
- //BA.debugLineNum = 133;BA.debugLine="End Sub";
+ //BA.debugLineNum = 135;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{

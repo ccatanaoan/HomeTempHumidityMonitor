@@ -54,14 +54,6 @@ Sub Listener_NotificationRemoved (SBN As StatusBarNotification)
 	End If
 End Sub
 
-Sub ClearAll
-	listener.ClearAll
-End Sub
-
-Sub GetActive
-	listener.GetActiveNotifications
-End Sub
-
 Sub Service_Destroy
 
 End Sub
