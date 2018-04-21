@@ -102,6 +102,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						If IsTempHumidityNotificationOnGoing = False Then
 							CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 						End If
+					Else If	a(1) > = 80 Then
+						CreateNotification("Warning! Home temperature is very high at " & a(1) & " degrees fahrenheit.",NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 					Else						
 						IsTempHumidityNotificationOnGoing = False
 						Notification1.Cancel(725)
