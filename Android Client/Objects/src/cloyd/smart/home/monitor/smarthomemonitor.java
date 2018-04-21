@@ -128,6 +128,7 @@ public static anywheresoftware.b4a.objects.NotificationWrapper _notification1 = 
 public static boolean _isairqualitynotificationongoing = false;
 public static boolean _istemphumiditynotificationongoing = false;
 public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
+public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.notificationservice _notificationservice = null;
 public cloyd.smart.home.monitor.statemanager _statemanager = null;

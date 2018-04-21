@@ -44,6 +44,7 @@ public int _mlastvisibleindex = 0;
 public boolean _monitorvisiblerange = false;
 public boolean _firescrollchanged = false;
 public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
+public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.notificationservice _notificationservice = null;

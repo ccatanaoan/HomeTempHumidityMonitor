@@ -27,6 +27,7 @@ Library15=notificationbuilder
 Library16=notificationlistener
 Library17=randomaccessfile
 Library18=designsupport
+Library19=dateutils
 Library2=appcompat
 Library3=javaobject
 Library4=xmllayoutbuilder
@@ -42,14 +43,14 @@ Module3=SmartHomeMonitor
 Module4=NotificationService
 Module5=StateManager
 NumberOfFiles=8
-NumberOfLibraries=18
+NumberOfLibraries=19
 NumberOfModules=5
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 1981
-	#VersionName: 1.9.8.1
+	#VersionCode: 1982
+	#VersionName: 1.9.8.2
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -305,7 +306,18 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 
 					Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
+					'********************
+					Dim lngTicks As Long = ticks
+					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+					Log("TempHumidity Time difference: " & p.Minutes & " minutes")
+					If p.Minutes > = 5 Then
+						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+					Else
+						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					End If
+					'********************'
+				Else If a(8) = "00:00:00" Then
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdate.Text.Replace("Last update: ","")).PopAll
 				End If
 			End If
 			CheckTempHumiditySetting
@@ -323,7 +335,18 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 					Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
+					'********************
+					Dim lngTicks As Long = ticks
+					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+					Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
+					If p.Minutes > = 5 Then
+						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+					Else
+						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					End If
+					'********************'
+				Else If a(2) = "00:00:00" Then
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
 				End If
 			End If
 			CheckAirQualitySetting
@@ -499,7 +522,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 16, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 21, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -634,7 +657,18 @@ Sub CheckAirQualitySetting
 					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 					Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
+					'********************
+					Dim lngTicks As Long = ticks
+					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+					Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
+					If p.Minutes > = 5 Then
+						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+					Else
+						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					End If
+					'********************'
+				Else If a(2) = "00:00:00" Then
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
 				End If
 			End If
 		End If
@@ -660,10 +694,20 @@ Sub CheckTempHumiditySetting
 					GaugeHeatIndex.CurrentValue = a(5)
 					GaugeDewPoint.CurrentValue = a(6)
 					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
-
 					Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(ticks)).PopAll
+					'********************
+					Dim lngTicks As Long = ticks
+					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+					Log("TempHumidity Time difference: " & p.Minutes & " minutes")
+					If p.Minutes > = 5 Then
+						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+					Else
+						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					End If
+					'********************'
+				Else If a(8) = "00:00:00" Then
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdate.Text.Replace("Last update: ","")).PopAll
 				End If
 			End If
 		End If
