@@ -49,6 +49,7 @@ Sub Listener_NotificationRemoved (SBN As StatusBarNotification)
 		If SBN.Id = 726 Then
 			SmartHomeMonitor.IsAirQualityNotificationOnGoing = False
 		else If SBN.Id = 725 Then
+			SmartHomeMonitor.lngTicks = 0
 			SmartHomeMonitor.IsTempHumidityNotificationOnGoing = False
 		End If
 	End If
