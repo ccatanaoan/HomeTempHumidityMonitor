@@ -1,4 +1,4 @@
-// Change the appropriate camera in: 
+// Change the appropriate camera in:
 // 1. C:\Users\Cloyd\AppData\Local\Arduino15\packages\ArduCAM_ESP8266_UNO\hardware\ArduCAM_ESP8266_UNO\2.2.3\libraries\ArduCAM\memorysaver.h
 // 2a. Select the ArduCAM ESP8266 UNO board in the Tools/Board for OV5640.
 // 2b. Select the NodeMCU 1.0 board in the Tools/Board for OV2640.
@@ -39,6 +39,9 @@ const char *AP_password = "";
 const char *ssid = "RiseAboveThisHome"; // Put your SSID here
 const char *password = "SteelReserve"; // Put your PASSWORD here
 
+const char* www_username = "admin";
+const char* www_password = "960124";
+
 static IPAddress gateway(192, 168, 0, 1);
 static IPAddress subnet(255, 255, 255, 0);
 
@@ -50,12 +53,12 @@ bool is_header = false;
 
 #if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
 ArduCAM myCAM(OV2640, CS);
-  static IPAddress ip(192, 168, 0, 89); // Door
-  ESP8266WebServer server(81);
+static IPAddress ip(192, 168, 0, 89); // Door
+ESP8266WebServer server(81);
 #elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
-  ArduCAM myCAM(OV5642, CS);
-  static IPAddress ip(192, 168, 0, 88); // Kitchen
-  ESP8266WebServer server(80);
+ArduCAM myCAM(OV5642, CS);
+static IPAddress ip(192, 168, 0, 88); // Kitchen
+ESP8266WebServer server(80);
 #endif
 
 void start_capture() {
@@ -122,6 +125,10 @@ void camCapture(ArduCAM myCAM) {
 }
 
 void serverCapture() {
+  if (!server.authenticate(www_username, www_password)) {
+    return server.requestAuthentication();
+  }
+
   myCAM.flush_fifo();
   myCAM.clear_fifo_flag();
   start_capture();
@@ -143,34 +150,38 @@ void serverCapture() {
 }
 
 void serverStream() {
-// Cloyd 4/10/2018
-// http://192.168.0.89/?&ql=1 <-- 1 is the resolution in integer. 
-//
-//#define OV2640_160x120    0 //160x120
-//#define OV2640_176x144    1 //176x144
-//#define OV2640_320x240    2 //320x240
-//#define OV2640_352x288    3 //352x288
-//#define OV2640_640x480    4 //640x480
-//#define OV2640_800x600    5 //800x600
-//#define OV2640_1024x768   6 //1024x768
-//#define OV2640_1280x1024  7 //1280x1024
-//#define OV2640_1600x1200  8 //1600x1200
+  // Cloyd 4/10/2018
+  // http://192.168.0.89/?&ql=1 <-- 1 is the resolution in integer.
+  //
+  //#define OV2640_160x120    0 //160x120
+  //#define OV2640_176x144    1 //176x144
+  //#define OV2640_320x240    2 //320x240
+  //#define OV2640_352x288    3 //352x288
+  //#define OV2640_640x480    4 //640x480
+  //#define OV2640_800x600    5 //800x600
+  //#define OV2640_1024x768   6 //1024x768
+  //#define OV2640_1280x1024  7 //1280x1024
+  //#define OV2640_1600x1200  8 //1600x1200
 
-//#define OV5642_320x240    0 //320x240
-//#define OV5642_640x480    1 //640x480
-//#define OV5642_1024x768   2 //1024x768
-//#define OV5642_1280x960   3 //1280x960
-//#define OV5642_1600x1200  4 //1600x1200
-//#define OV5642_2048x1536  5 //2048x1536
-//#define OV5642_2592x1944  6 //2592x1944
+  //#define OV5642_320x240    0 //320x240
+  //#define OV5642_640x480    1 //640x480
+  //#define OV5642_1024x768   2 //1024x768
+  //#define OV5642_1280x960   3 //1280x960
+  //#define OV5642_1600x1200  4 //1600x1200
+  //#define OV5642_2048x1536  5 //2048x1536
+  //#define OV5642_2592x1944  6 //2592x1944
+
+  if (!server.authenticate(www_username, www_password)) {
+    return server.requestAuthentication();
+  }
 
 #if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
-    myCAM.OV2640_set_JPEG_size(4);
+  myCAM.OV2640_set_JPEG_size(4);
 #elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
-    myCAM.OV5642_set_JPEG_size(1);
+  myCAM.OV5642_set_JPEG_size(1);
 #endif
- 
- WiFiClient client = server.client();
+
+  WiFiClient client = server.client();
 
   String response = "HTTP/1.1 200 OK\r\n";
   response += "Content-Type: multipart/x-mixed-replace; boundary=frame\r\n\r\n";
@@ -217,7 +228,16 @@ void serverStream() {
 }
 
 void handleNotFound() {
-  String message = "Server is running!\n\n";
+  if (!server.authenticate(www_username, www_password)) {
+    return server.requestAuthentication();
+  }
+
+#if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
+  String message = "Door camera web server is running!\n\n";
+#elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
+  String message = "Kitchen camera web server is running!\n\n";
+#endif
+
   message += "URI: ";
   message += server.uri();
   message += "\nMethod: ";
@@ -227,28 +247,28 @@ void handleNotFound() {
   message += "\n";
   server.send(200, "text/plain", message);
 
-// Cloyd 4/15/2018
-// http://192.168.0.89:81/?&ql=1 <-- 1 is the resolution in integer. 
-//
-//#define OV2640_160x120     0 //160x120
-//#define OV2640_176x144    1 //176x144
-//#define OV2640_320x240    2 //320x240
-//#define OV2640_352x288    3 //352x288
-//#define OV2640_640x480    4 //640x480
-//#define OV2640_800x600    5 //800x600
-//#define OV2640_1024x768   6 //1024x768
-//#define OV2640_1280x1024  7 //1280x1024
-//#define OV2640_1600x1200  8 //1600x1200
+  // Cloyd 4/15/2018
+  // http://192.168.0.89:81/?&ql=1 <-- 1 is the resolution in integer.
+  //
+  //#define OV2640_160x120     0 //160x120
+  //#define OV2640_176x144    1 //176x144
+  //#define OV2640_320x240    2 //320x240
+  //#define OV2640_352x288    3 //352x288
+  //#define OV2640_640x480    4 //640x480
+  //#define OV2640_800x600    5 //800x600
+  //#define OV2640_1024x768   6 //1024x768
+  //#define OV2640_1280x1024  7 //1280x1024
+  //#define OV2640_1600x1200  8 //1600x1200
 
-//#define OV5642_320x240    0 //320x240
-//#define OV5642_640x480    1 //640x480
-//#define OV5642_1024x768   2 //1024x768
-//#define OV5642_1280x960   3 //1280x960
-//#define OV5642_1600x1200  4 //1600x1200
-//#define OV5642_2048x1536  5 //2048x1536
-//#define OV5642_2592x1944  6 //2592x1944
+  //#define OV5642_320x240    0 //320x240
+  //#define OV5642_640x480    1 //640x480
+  //#define OV5642_1024x768   2 //1024x768
+  //#define OV5642_1280x960   3 //1280x960
+  //#define OV5642_1600x1200  4 //1600x1200
+  //#define OV5642_2048x1536  5 //2048x1536
+  //#define OV5642_2592x1944  6 //2592x1944
 
-if (server.hasArg("ql")) {
+  if (server.hasArg("ql")) {
     int ql = server.arg("ql").toInt();
 #if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
     myCAM.OV2640_set_JPEG_size(ql);
@@ -267,6 +287,10 @@ if (server.hasArg("ql")) {
 ///////////////////////////////////////////////////////
 void restartBoard()
 {
+  if (!server.authenticate(www_username, www_password)) {
+    return server.requestAuthentication();
+  }
+
   ESP.restart();
 }
 
@@ -347,7 +371,7 @@ void setup() {
     }
 
     WiFi.config(ip, gateway, subnet); // remove this line to use DHCP
-        
+
     Serial.println(F("WiFi connected"));
     Serial.println("");
     Serial.println(WiFi.localIP());

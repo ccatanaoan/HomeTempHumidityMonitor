@@ -48,8 +48,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 1983
-	#VersionName: 1.9.8.3
+	#VersionCode: 1984
+	#VersionName: 1.9.8.4
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -442,6 +442,8 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 							j.Initialize("", Me)
 							j.PostString("http://cloyd.mynetgear.com:81/restart","")
 							j.GetRequest.Timeout = 1500
+							j.Username = "admin"
+							j.Password = "960124"
 							Wait For (j) JobDone(j As HttpJob)
 							If j.Success Then
 								Log(j.GetString)
@@ -459,6 +461,8 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 							j.Initialize("", Me)
 							j.PostString("http://cloyd.mynetgear.com/restart","")
 							j.GetRequest.Timeout = 1500
+							j.Username = "admin"
+							j.Password = "960124"
 							Wait For (j) JobDone(j As HttpJob)
 							If j.Success Then
 								Log(j.GetString)
@@ -498,7 +502,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 21, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 22, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -717,4 +721,8 @@ Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
 			</div>"$)
 			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
 	End Select
+End Sub
+
+Sub WebView1_UserAndPasswordRequired (Host As String, Realm As String) As String()
+	Return Array As String("admin", "960124")
 End Sub
