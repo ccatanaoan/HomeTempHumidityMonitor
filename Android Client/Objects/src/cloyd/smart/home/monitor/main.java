@@ -532,7 +532,7 @@ if (_keycode==anywheresoftware.b4a.keywords.Common.KeyCodes.KEYCODE_BACK) {
  //BA.debugLineNum = 544;BA.debugLine="If TabStrip1.CurrentPage = 2 Then";
 if (mostCurrent._tabstrip1.getCurrentPage()==2) { 
  //BA.debugLineNum = 545;BA.debugLine="If WebView1.Url.Contains(\"cloyd.mynetgear.com:8";
-if (mostCurrent._webview1.getUrl().contains("cloyd.mynetgear.com:81")) { 
+if (mostCurrent._webview1.getUrl().contains("cloyd.mynetgear.com:82")) { 
  //BA.debugLineNum = 546;BA.debugLine="TabStrip1.ScrollTo(1,True)";
 mostCurrent._tabstrip1.ScrollTo((int) (1),anywheresoftware.b4a.keywords.Common.True);
  //BA.debugLineNum = 547;BA.debugLine="TabStrip1_PageSelected(1)";
@@ -751,7 +751,7 @@ if (true) break;
 case 17:
 //if
 this.state = 38;
-if (parent.mostCurrent._webview1.getUrl().contains("cloyd.mynetgear.com:81")) { 
+if (parent.mostCurrent._webview1.getUrl().contains("cloyd.mynetgear.com:82")) { 
 this.state = 19;
 }else {
 this.state = 29;
@@ -783,8 +783,8 @@ parent.mostCurrent._webview1.RemoveView();
 _j = new anywheresoftware.b4a.samples.httputils2.httpjob();
  //BA.debugLineNum = 394;BA.debugLine="j.Initialize(\"\", Me)";
 _j._initialize(processBA,"",main.getObject());
- //BA.debugLineNum = 395;BA.debugLine="j.PostString(\"http://cloyd.mynetgear.com:81";
-_j._poststring("http://cloyd.mynetgear.com:81/restart","");
+ //BA.debugLineNum = 395;BA.debugLine="j.PostString(\"http://cloyd.mynetgear.com:82";
+_j._poststring("http://cloyd.mynetgear.com:82/restart","");
  //BA.debugLineNum = 396;BA.debugLine="j.GetRequest.Timeout = 1500";
 _j._getrequest().setTimeout((int) (1500));
  //BA.debugLineNum = 397;BA.debugLine="j.Username = \"admin\"";
@@ -1218,8 +1218,8 @@ switch (BA.switchObjectToInt(_menuitem.getId(),(int) (1),(int) (2))) {
 case 0: {
  //BA.debugLineNum = 658;BA.debugLine="WebView1.LoadHtml($\"<div> 			<table width=\"100%";
 mostCurrent._webview1.LoadHtml(("<div>\n"+"			<table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n"+"			<tr><td align=\"middle\">\n"+"					Waiting for the main door camera feed...\n"+"			</td></tr>\n"+"			</table>\n"+"			</div>"));
- //BA.debugLineNum = 665;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com:81";
-mostCurrent._webview1.LoadUrl("http://cloyd.mynetgear.com:81/stream");
+ //BA.debugLineNum = 665;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com:82";
+mostCurrent._webview1.LoadUrl("http://cloyd.mynetgear.com:82/stream");
  break; }
 case 1: {
  //BA.debugLineNum = 667;BA.debugLine="WebView1.LoadHtml($\"<div> 			<table width=\"100%";

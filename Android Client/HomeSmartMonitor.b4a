@@ -433,14 +433,14 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 				If TabStrip1.CurrentPage = 2 Then
-					If WebView1.Url.Contains("cloyd.mynetgear.com:81") Then
+					If WebView1.Url.Contains("cloyd.mynetgear.com:82") Then
 						result = Msgbox2("Restart the main door CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
 						If result = DialogResponse.POSITIVE Then
 							WebView1.StopLoading
 							WebView1.RemoveView
 							Dim j As HttpJob
 							j.Initialize("", Me)
-							j.PostString("http://cloyd.mynetgear.com:81/restart","")
+							j.PostString("http://cloyd.mynetgear.com:82/restart","")
 							j.GetRequest.Timeout = 1500
 							j.Username = "admin"
 							j.Password = "960124"
@@ -590,7 +590,7 @@ End Sub
 Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 	If KeyCode = KeyCodes.KEYCODE_BACK Then
 		If TabStrip1.CurrentPage = 2 Then
-			If WebView1.Url.Contains("cloyd.mynetgear.com:81") Then
+			If WebView1.Url.Contains("cloyd.mynetgear.com:82") Then
 				TabStrip1.ScrollTo(1,True)
 				TabStrip1_PageSelected(1)
 				Return True
@@ -710,7 +710,7 @@ Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
 			</td></tr>
 			</table>
 			</div>"$)			
-			WebView1.LoadURL("http://cloyd.mynetgear.com:81/stream")
+			WebView1.LoadURL("http://cloyd.mynetgear.com:82/stream")
 		Case 2
 			WebView1.LoadHtml($"<div>
 			<table width="100%" height="100%" align="center" valign="center">
