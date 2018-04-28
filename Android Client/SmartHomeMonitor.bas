@@ -103,14 +103,14 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  Then
 						If IsTempHumidityNotificationOnGoing = False Then
 							Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumid,DateTime.now)
-							If lngTicksTempHumid = 0 Or p.Minutes > = 10 Then
+							If lngTicksTempHumid = 0 Or p.Minutes > = 1 Then
 								CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 								lngTicksTempHumid = DateTime.now
 							End If
 						End If
 					Else If	a(1) > = 80 Then
 						Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-						If lngTicks = 0 Or p.Minutes > = 10 Then
+						If lngTicks = 0 Or p.Minutes > = 1 Then
 							CreateNotification("Warning! Home temperature is very high at " & a(1) & " degrees fahrenheit.",NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 							lngTicks = DateTime.now
 						End If
