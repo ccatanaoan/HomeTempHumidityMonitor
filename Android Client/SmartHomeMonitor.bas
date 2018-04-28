@@ -20,6 +20,7 @@ Sub Process_Globals
 	Public IsAirQualityNotificationOnGoing As Boolean 
 	Public IsTempHumidityNotificationOnGoing As Boolean
 	Public lngTicks As Long
+	Public lngTicksTempHumid As Long
 End Sub
 
 Sub Service_Create
@@ -101,11 +102,14 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
 					If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  Then
 						If IsTempHumidityNotificationOnGoing = False Then
-							CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
+							Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumid,DateTime.now)
+							If lngTicksTempHumid = 0 Or p.Minutes > = 10 Then
+								CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
+								lngTicksTempHumid = DateTime.now
+							End If
 						End If
 					Else If	a(1) > = 80 Then
 						Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-						Log("lngTicks: " & lngTicks & " p.Minutes:" & p.Minutes)
 						If lngTicks = 0 Or p.Minutes > = 10 Then
 							CreateNotification("Warning! Home temperature is very high at " & a(1) & " degrees fahrenheit.",NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 							lngTicks = DateTime.now
