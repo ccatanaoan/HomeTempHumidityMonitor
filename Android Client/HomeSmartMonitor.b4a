@@ -48,8 +48,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 1985
-	#VersionName: 1.9.8.5
+	#VersionCode: 1986
+	#VersionName: 1.9.8.6
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -299,7 +299,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-					Log("TempHumidity Time difference: " & p.Minutes & " minutes")
 					If p.Minutes > = 5 Then
 						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 					Else
@@ -326,7 +325,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-					Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
+					Log("AirQuality timestamp: " & DateTime.Date(lngTicks))
 					If p.Minutes > = 5 Then
 						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 					Else
@@ -502,7 +501,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 27, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 29, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
