@@ -28,6 +28,10 @@
 		  </intent-filter>
 		</service>
 		<activity
+		  android:name="anywheresoftware.b4a.objects.preferenceactivity"
+		  android:theme="@android:style/Theme.Material.Light">
+		</activity>
+		<activity
 			android:windowSoftInputMode="stateHidden"
 			android:launchMode="singleTop"
 			android:name=".main"

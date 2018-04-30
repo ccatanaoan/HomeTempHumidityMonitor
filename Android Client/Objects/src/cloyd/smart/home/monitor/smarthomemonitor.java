@@ -441,8 +441,8 @@ if (((double)(Double.parseDouble(_a[(int) (3)]))>3) || ((_a[(int) (4)]).equals(B
 if (_istemphumiditynotificationongoing==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 99;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(l";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngtickstemphumid,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 100;BA.debugLine="If lngTicksTempHumid = 0 Or p.Minutes > = 1";
-if (_lngtickstemphumid==0 || _p.Minutes>=1) { 
+ //BA.debugLineNum = 100;BA.debugLine="If lngTicksTempHumid = 0 Or p.Minutes > = 2";
+if (_lngtickstemphumid==0 || _p.Minutes>=2) { 
  //BA.debugLineNum = 101;BA.debugLine="CreateNotification(GetPerception(a(3)),Not";
 _createnotification(_getperception(_a[(int) (3)]),_notificationtext,"temp",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Temperature").Notify((int) (725));
  //BA.debugLineNum = 102;BA.debugLine="lngTicksTempHumid = DateTime.now";
@@ -452,8 +452,8 @@ _lngtickstemphumid = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
  }else if((double)(Double.parseDouble(_a[(int) (1)]))>=80) { 
  //BA.debugLineNum = 106;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(ln";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 107;BA.debugLine="If lngTicks = 0 Or p.Minutes > = 1 Then";
-if (_lngticks==0 || _p.Minutes>=1) { 
+ //BA.debugLineNum = 107;BA.debugLine="If lngTicks = 0 Or p.Minutes > = 2 Then";
+if (_lngticks==0 || _p.Minutes>=2) { 
  //BA.debugLineNum = 108;BA.debugLine="CreateNotification(\"Warning! Home temperatu";
 _createnotification("Warning! Home temperature is very high at "+_a[(int) (1)]+" degrees fahrenheit.",_notificationtext,"temp",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Temperature").Notify((int) (725));
  //BA.debugLineNum = 109;BA.debugLine="lngTicks = DateTime.now";
