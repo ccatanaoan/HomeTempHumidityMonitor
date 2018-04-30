@@ -29,6 +29,7 @@ Library17=randomaccessfile
 Library18=designsupport
 Library19=dateutils
 Library2=appcompat
+Library20=preferenceactivity
 Library3=javaobject
 Library4=xmllayoutbuilder
 Library5=jmqtt
@@ -36,13 +37,13 @@ Library6=callsubutils
 Library7=byteconverter
 Library8=xui
 Library9=stringutils
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="anywheresoftware.b4a.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)
 Module1=Gauge
 Module2=SmartHomeMonitor
 Module3=NotificationService
 Module4=StateManager
 NumberOfFiles=8
-NumberOfLibraries=19
+NumberOfLibraries=20
 NumberOfModules=4
 Version=8
 @EndOfDesignText@
@@ -72,6 +73,8 @@ Sub Process_Globals
 	Private bc As ByteConverter
 	Private csu As CallSubUtils
 	Private OldIntent As Intent
+	Dim manager As PreferenceManager
+	Dim screen As PreferenceScreen
 End Sub
 
 Sub Globals
@@ -103,6 +106,9 @@ End Sub
 Sub Activity_Create(FirstTime As Boolean)
 	Try
 		If FirstTime Then
+			CreatePreferenceScreen
+			If manager.GetAll.Size = 0 Then SetDefaults
+			
 			StartService(SmartHomeMonitor)
 			csu.Initialize
 			MQTT_Connect
@@ -192,6 +198,7 @@ End Sub
 
 Sub Activity_Resume
 	Try
+		HandleSettings
 		Dim in As Intent = Activity.GetStartingIntent
 		Dim NotificationClicked As String
 		If in.IsInitialized And in <> OldIntent Then
@@ -264,6 +271,7 @@ Private Sub MQTT_Disconnected
 	Try
 		gblACMenu.Clear
 		gblACMenu.Add(0, 0, "Enable Notification Listener",Null)
+		gblACMenu.Add(0, 0, "Settings",Null)
 		gblACMenu.Add(0, 0, "Restart board",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		Log("Disconnected from MQTT broker")
@@ -281,7 +289,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		
 			Dim status As String
 			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
-
+			status = status.Replace("|24:","|00:")
 			Dim a() As String = Regex.Split("\|",status)
 			If a.Length = 9 Then
 				Dim cs As CSBuilder
@@ -299,7 +307,11 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-					If p.Minutes > = 5 Then
+					Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTime")
+					If managerTempHumidityCooldownTime = ""  Then
+						managerTempHumidityCooldownTime = 1
+					End If
+					If p.Minutes > = managerTempHumidityCooldownTime Then
 						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 					Else
 						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
@@ -314,6 +326,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim cs As CSBuilder
 			cs.Initialize
 			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
+			status = status.Replace("|24:","|00:")
 			Log("MQ7 status: " & status)
 			Dim a() As String = Regex.Split("\|",status)
 			If a.Length = 3 Then
@@ -325,8 +338,11 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-					Log("AirQuality timestamp: " & DateTime.Date(lngTicks))
-					If p.Minutes > = 5 Then
+					Dim managerAirQualityCooldownTime As String = StateManager.GetSetting("AirQualityCooldownTime")
+					If managerAirQualityCooldownTime = ""  Then
+						managerAirQualityCooldownTime = 1
+					End If
+					If p.Minutes > = managerAirQualityCooldownTime Then
 						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 					Else
 						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
@@ -426,6 +442,8 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 			Dim In As Intent
 			In.Initialize("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS", "")
 			StartActivity(In)
+		else if Item.Title = "Settings" Then
+			StartActivity(screen.CreateIntent)
 		else if Item.Title = "Restart board" Then
 			Try
 				Dim result As Int
@@ -525,6 +543,7 @@ Sub Activity_Createmenu(Menu As ACMenu)
 		Menu.Clear
 		gblACMenu = Menu
 		Menu.Add(0, 0, "Enable Notification Listener",Null)
+		Menu.Add(0, 0, "Settings",Null)
 		Menu.Add(0, 0, "Restart board",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
@@ -724,4 +743,41 @@ End Sub
 
 Sub WebView1_UserAndPasswordRequired (Host As String, Realm As String) As String()
 	Return Array As String("admin", "960124")
+End Sub
+
+Sub CreatePreferenceScreen
+	screen.Initialize("Settings", "Settings")
+	'create two categories
+	Dim cat1, cat2 As PreferenceCategory
+	cat1.Initialize("Temperature & Humidity")
+	cat1.AddEditText("TempHumidityCooldownTime", "Cooldown Time", "Minimum creation time between new notification", "5")
+	screen.AddPreferenceCategory(cat1)
+	StateManager.SetSetting("TempHumidityCooldownTime","5")
+	StateManager.SaveSettings
+	
+	cat2.Initialize("Air Quality")
+	cat2.AddEditText("AirQualityCooldownTime", "Cooldown Time", "Minimum creation time between new notification", "5")
+	screen.AddPreferenceCategory(cat2)
+	StateManager.SetSetting("AirQualityCooldownTime","5")
+	StateManager.SaveSettings
+End Sub
+
+
+Sub SetDefaults
+	'defaults are only set on the first run.
+	manager.SetString("TempHumidityCooldownTime", "5")
+	StateManager.SetSetting("TempHumidityCooldownTime","5")
+	StateManager.SaveSettings
+	
+	manager.SetString("AirQualityCooldownTime", "5")
+	StateManager.SetSetting("AirQualityCooldownTime","5")
+	StateManager.SaveSettings
+End Sub
+
+Sub HandleSettings
+	StateManager.SetSetting("TempHumidityCooldownTime",manager.GetString("TempHumidityCooldownTime"))
+	StateManager.SaveSettings
+	
+	StateManager.SetSetting("AirQualityCooldownTime",manager.GetString("AirQualityCooldownTime"))
+	StateManager.SaveSettings
 End Sub
