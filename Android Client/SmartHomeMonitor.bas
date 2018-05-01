@@ -103,7 +103,11 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  Then
 						If IsTempHumidityNotificationOnGoing = False Then
 							Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumid,DateTime.now)
-							If lngTicksTempHumid = 0 Or p.Minutes > = 2 Then
+							Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTime")
+							If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
+								managerTempHumidityCooldownTime = 1
+							End If
+							If lngTicksTempHumid = 0 Or p.Minutes > = managerTempHumidityCooldownTime Then
 								CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 								lngTicksTempHumid = DateTime.now
 							End If
