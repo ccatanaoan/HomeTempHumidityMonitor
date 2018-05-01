@@ -49,8 +49,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 1986
-	#VersionName: 1.9.8.6
+	#VersionCode: 1987
+	#VersionName: 1.9.8.7
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -307,11 +307,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-					Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTime")
-					If managerTempHumidityCooldownTime = ""  Then
-						managerTempHumidityCooldownTime = 1
-					End If
-					If p.Minutes > = managerTempHumidityCooldownTime Then
+					If p.Minutes > = 5 Then
 						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 					Else
 						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
@@ -338,11 +334,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 					Dim lngTicks As Long = ticks
 					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-					Dim managerAirQualityCooldownTime As String = StateManager.GetSetting("AirQualityCooldownTime")
-					If managerAirQualityCooldownTime = ""  Then
-						managerAirQualityCooldownTime = 1
-					End If
-					If p.Minutes > = managerAirQualityCooldownTime Then
+
+					If p.Minutes > = 5 Then
 						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 					Else
 						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
@@ -519,7 +512,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 29, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "April 30, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -748,18 +741,18 @@ End Sub
 Sub CreatePreferenceScreen
 	screen.Initialize("Settings", "Settings")
 	'create two categories
-	Dim cat1, cat2 As PreferenceCategory
+	Dim cat1 As PreferenceCategory
 	cat1.Initialize("Temperature & Humidity")
 	cat1.AddEditText("TempHumidityCooldownTime", "Cooldown Time", "Minimum creation time between new notification", "5")
 	screen.AddPreferenceCategory(cat1)
 	StateManager.SetSetting("TempHumidityCooldownTime","5")
 	StateManager.SaveSettings
 	
-	cat2.Initialize("Air Quality")
-	cat2.AddEditText("AirQualityCooldownTime", "Cooldown Time", "Minimum creation time between new notification", "5")
-	screen.AddPreferenceCategory(cat2)
-	StateManager.SetSetting("AirQualityCooldownTime","5")
-	StateManager.SaveSettings
+'	cat2.Initialize("Air Quality")
+'	cat2.AddEditText("AirQualityCooldownTime", "Cooldown Time", "Minimum creation time between new notification", "5")
+'	screen.AddPreferenceCategory(cat2)
+'	StateManager.SetSetting("AirQualityCooldownTime","5")
+'	StateManager.SaveSettings
 End Sub
 
 
@@ -769,15 +762,15 @@ Sub SetDefaults
 	StateManager.SetSetting("TempHumidityCooldownTime","5")
 	StateManager.SaveSettings
 	
-	manager.SetString("AirQualityCooldownTime", "5")
-	StateManager.SetSetting("AirQualityCooldownTime","5")
-	StateManager.SaveSettings
+'	manager.SetString("AirQualityCooldownTime", "5")
+'	StateManager.SetSetting("AirQualityCooldownTime","5")
+'	StateManager.SaveSettings
 End Sub
 
 Sub HandleSettings
 	StateManager.SetSetting("TempHumidityCooldownTime",manager.GetString("TempHumidityCooldownTime"))
 	StateManager.SaveSettings
-	
-	StateManager.SetSetting("AirQualityCooldownTime",manager.GetString("AirQualityCooldownTime"))
-	StateManager.SaveSettings
+'	
+'	StateManager.SetSetting("AirQualityCooldownTime",manager.GetString("AirQualityCooldownTime"))
+'	StateManager.SaveSettings
 End Sub
