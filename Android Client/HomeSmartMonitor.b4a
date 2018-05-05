@@ -507,7 +507,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "May 2, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "May 5, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -738,7 +738,7 @@ Sub CreatePreferenceScreen
 	Dim cat1,cat2 As AHPreferenceCategory
 	
 	cat1.Initialize("Temperature & Humidity")
-	cat1.AddEditText("TempHumidityCooldownTime", "Cooldown Time", "Minimum creation time between new notification", "5","")
+	cat1.AddEditText("TempHumidityCooldownTime", "Cooldown Time", "Minimum creation time interval between new notification", "5","")
 	
 	cat2.Initialize("Special Settings")
 	Dim In As Intent
