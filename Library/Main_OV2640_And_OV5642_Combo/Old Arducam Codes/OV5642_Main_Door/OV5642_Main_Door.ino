@@ -51,15 +51,9 @@ uint8_t temp = 0, temp_last = 0;
 int i = 0;
 bool is_header = false;
 
-#if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
-ArduCAM myCAM(OV2640, CS);
-static IPAddress ip(192, 168, 0, 89); // Unused
-ESP8266WebServer server(81); // Unused
-#elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
 ArduCAM myCAM(OV5642, CS);
 static IPAddress ip(192, 168, 0, 90); // Door
-ESP8266WebServer server(80); // Door
-#endif
+ESP8266WebServer server(82);
 
 void start_capture() {
   myCAM.clear_fifo_flag();
@@ -175,11 +169,7 @@ void serverStream() {
     return server.requestAuthentication();
   }
 
-#if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
-  myCAM.OV2640_set_JPEG_size(4);
-#elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
   myCAM.OV5642_set_JPEG_size(1);
-#endif
 
   WiFiClient client = server.client();
 
@@ -232,11 +222,7 @@ void handleNotFound() {
     return server.requestAuthentication();
   }
 
-#if defined (OV2640_MINI_2MP) || defined (OV2640_CAM)
   String message = "Door camera web server is running!\n\n";
-#elif defined (OV5642_MINI_5MP_PLUS) || defined (OV5642_MINI_5MP_BIT_ROTATION_FIXED) ||(defined (OV5642_CAM))
-  String message = "Kitchen camera web server is running!\n\n";
-#endif
 
   message += "URI: ";
   message += server.uri();
