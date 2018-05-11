@@ -1192,85 +1192,91 @@ _lngticks = _ticks;
 _p = mostCurrent._dateutils._periodbetween(mostCurrent.activityBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  //BA.debugLineNum = 643;BA.debugLine="If p.Minutes > = 5 Then";
 if (_p.Minutes>=5) { 
- //BA.debugLineNum = 644;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Appen";
-mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.DateTime.Date(_lngticks))).PopAll().getObject()));
+ //BA.debugLineNum = 644;BA.debugLine="If a(8).IndexOf(\"|00:\") > -1 And p.Minutes=59";
+if (_a[(int) (8)].indexOf("|00:")>-1 && _p.Minutes==59) { 
+ //BA.debugLineNum = 645;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Appe";
+mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.DateTime.Date(_lngticks))).PopAll().getObject()));
  }else {
- //BA.debugLineNum = 646;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Appen";
+ //BA.debugLineNum = 647;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Appe";
+mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.DateTime.Date(_lngticks))).PopAll().getObject()));
+ };
+ }else {
+ //BA.debugLineNum = 650;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Appen";
 mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.DateTime.Date(_lngticks))).PopAll().getObject()));
  };
  }else if((_a[(int) (8)]).equals("00:00:00")) { 
- //BA.debugLineNum = 649;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Append";
+ //BA.debugLineNum = 653;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Append";
 mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(mostCurrent._lbllastupdate.getText().replace("Last update: ",""))).PopAll().getObject()));
  };
  };
  } 
-       catch (Exception e33) {
-			processBA.setLastException(e33); //BA.debugLineNum = 653;BA.debugLine="Log(LastException)";
+       catch (Exception e37) {
+			processBA.setLastException(e37); //BA.debugLineNum = 657;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
  };
- //BA.debugLineNum = 655;BA.debugLine="End Sub";
+ //BA.debugLineNum = 659;BA.debugLine="End Sub";
 return "";
 }
 public static String  _createpreferencescreen() throws Exception{
 de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper _cat1 = null;
 de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper _cat2 = null;
 anywheresoftware.b4a.objects.IntentWrapper _in = null;
- //BA.debugLineNum = 688;BA.debugLine="Sub CreatePreferenceScreen";
- //BA.debugLineNum = 689;BA.debugLine="screen.Initialize(\"Settings\", \"\")";
+ //BA.debugLineNum = 692;BA.debugLine="Sub CreatePreferenceScreen";
+ //BA.debugLineNum = 693;BA.debugLine="screen.Initialize(\"Settings\", \"\")";
 _screen.Initialize("Settings","");
- //BA.debugLineNum = 691;BA.debugLine="Dim cat1,cat2 As AHPreferenceCategory";
+ //BA.debugLineNum = 695;BA.debugLine="Dim cat1,cat2 As AHPreferenceCategory";
 _cat1 = new de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper();
 _cat2 = new de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper();
- //BA.debugLineNum = 693;BA.debugLine="cat1.Initialize(\"Temperature & Humidity\")";
+ //BA.debugLineNum = 697;BA.debugLine="cat1.Initialize(\"Temperature & Humidity\")";
 _cat1.Initialize("Temperature & Humidity");
- //BA.debugLineNum = 694;BA.debugLine="cat1.AddEditText(\"TempHumidityCooldownTime\", \"Coo";
+ //BA.debugLineNum = 698;BA.debugLine="cat1.AddEditText(\"TempHumidityCooldownTime\", \"Coo";
 _cat1.AddEditText("TempHumidityCooldownTime","Cooldown Time","Minimum creation time interval between new notification","5","");
- //BA.debugLineNum = 696;BA.debugLine="cat2.Initialize(\"Special Settings\")";
+ //BA.debugLineNum = 700;BA.debugLine="cat2.Initialize(\"Special Settings\")";
 _cat2.Initialize("Special Settings");
- //BA.debugLineNum = 697;BA.debugLine="Dim In As Intent";
+ //BA.debugLineNum = 701;BA.debugLine="Dim In As Intent";
 _in = new anywheresoftware.b4a.objects.IntentWrapper();
- //BA.debugLineNum = 698;BA.debugLine="In.Initialize(\"android.settings.ACTION_NOTIFICATI";
+ //BA.debugLineNum = 702;BA.debugLine="In.Initialize(\"android.settings.ACTION_NOTIFICATI";
 _in.Initialize("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS","");
- //BA.debugLineNum = 699;BA.debugLine="cat2.AddIntent(\"Notification Access\", \"Enable or";
+ //BA.debugLineNum = 703;BA.debugLine="cat2.AddIntent(\"Notification Access\", \"Enable or";
 _cat2.AddIntent("Notification Access","Enable or disable listening to notifications",(android.content.Intent)(_in.getObject()),BA.ObjectToString(anywheresoftware.b4a.keywords.Common.Null));
- //BA.debugLineNum = 701;BA.debugLine="screen.AddPreferenceCategory(cat2)";
+ //BA.debugLineNum = 705;BA.debugLine="screen.AddPreferenceCategory(cat2)";
 _screen.AddPreferenceCategory(_cat2);
- //BA.debugLineNum = 702;BA.debugLine="screen.AddPreferenceCategory(cat1)";
+ //BA.debugLineNum = 706;BA.debugLine="screen.AddPreferenceCategory(cat1)";
 _screen.AddPreferenceCategory(_cat1);
- //BA.debugLineNum = 703;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 707;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime","5");
- //BA.debugLineNum = 704;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 708;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
- //BA.debugLineNum = 705;BA.debugLine="End Sub";
+ //BA.debugLineNum = 709;BA.debugLine="End Sub";
 return "";
 }
 public static String  _dsbottomnavigationview1_navigationitemselected(de.amberhome.objects.appcompat.ACMenuItemWrapper _menuitem) throws Exception{
- //BA.debugLineNum = 657;BA.debugLine="Sub DSBottomNavigationView1_NavigationItemSelected";
- //BA.debugLineNum = 658;BA.debugLine="WebView1.StopLoading";
+ //BA.debugLineNum = 661;BA.debugLine="Sub DSBottomNavigationView1_NavigationItemSelected";
+ //BA.debugLineNum = 662;BA.debugLine="WebView1.StopLoading";
 mostCurrent._webview1.StopLoading();
- //BA.debugLineNum = 659;BA.debugLine="WebView1.RemoveView";
+ //BA.debugLineNum = 663;BA.debugLine="WebView1.RemoveView";
 mostCurrent._webview1.RemoveView();
- //BA.debugLineNum = 660;BA.debugLine="WebView1.JavaScriptEnabled = True";
+ //BA.debugLineNum = 664;BA.debugLine="WebView1.JavaScriptEnabled = True";
 mostCurrent._webview1.setJavaScriptEnabled(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 661;BA.debugLine="Activity.addview(WebView1,0dip,108dip,100%x,Panel";
+ //BA.debugLineNum = 665;BA.debugLine="Activity.addview(WebView1,0dip,108dip,100%x,Panel";
 mostCurrent._activity.AddView((android.view.View)(mostCurrent._webview1.getObject()),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (0)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (108)),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),mostCurrent._panelwebview.getHeight());
- //BA.debugLineNum = 662;BA.debugLine="Select MenuItem.Id";
+ //BA.debugLineNum = 666;BA.debugLine="Select MenuItem.Id";
 switch (BA.switchObjectToInt(_menuitem.getId(),(int) (1),(int) (2))) {
 case 0: {
- //BA.debugLineNum = 664;BA.debugLine="WebView1.LoadHtml($\"<div> 			<table width=\"100%";
+ //BA.debugLineNum = 668;BA.debugLine="WebView1.LoadHtml($\"<div> 			<table width=\"100%";
 mostCurrent._webview1.LoadHtml(("<div>\n"+"			<table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n"+"			<tr><td align=\"middle\">\n"+"					Waiting for the main door camera feed...\n"+"			</td></tr>\n"+"			</table>\n"+"			</div>"));
- //BA.debugLineNum = 671;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com:82";
+ //BA.debugLineNum = 675;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com:82";
 mostCurrent._webview1.LoadUrl("http://cloyd.mynetgear.com:82/stream");
  break; }
 case 1: {
- //BA.debugLineNum = 673;BA.debugLine="WebView1.LoadHtml($\"<div> 			<table width=\"100%";
+ //BA.debugLineNum = 677;BA.debugLine="WebView1.LoadHtml($\"<div> 			<table width=\"100%";
 mostCurrent._webview1.LoadHtml(("<div>\n"+"			<table width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\">\n"+"			<tr><td align=\"middle\">\n"+"					Waiting for the kitchen camera feed...\n"+"			</td></tr>\n"+"			</table>\n"+"			</div>"));
- //BA.debugLineNum = 680;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com/st";
+ //BA.debugLineNum = 684;BA.debugLine="WebView1.LoadURL(\"http://cloyd.mynetgear.com/st";
 mostCurrent._webview1.LoadUrl("http://cloyd.mynetgear.com/stream");
  break; }
 }
 ;
- //BA.debugLineNum = 682;BA.debugLine="End Sub";
+ //BA.debugLineNum = 686;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getairquality(int _number) throws Exception{
@@ -1513,12 +1519,12 @@ mostCurrent._panelwebview = new anywheresoftware.b4a.objects.PanelWrapper();
 return "";
 }
 public static String  _handlesettings() throws Exception{
- //BA.debugLineNum = 715;BA.debugLine="Sub HandleSettings";
- //BA.debugLineNum = 716;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 719;BA.debugLine="Sub HandleSettings";
+ //BA.debugLineNum = 720;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime",_manager.GetString("TempHumidityCooldownTime"));
- //BA.debugLineNum = 717;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 721;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
- //BA.debugLineNum = 718;BA.debugLine="End Sub";
+ //BA.debugLineNum = 722;BA.debugLine="End Sub";
 return "";
 }
 public static String  _hideping() throws Exception{
@@ -1663,14 +1669,14 @@ _screen = new de.amberhome.objects.preferenceactivity.PreferenceScreenWrapper();
 return "";
 }
 public static String  _setdefaults() throws Exception{
- //BA.debugLineNum = 708;BA.debugLine="Sub SetDefaults";
- //BA.debugLineNum = 710;BA.debugLine="manager.SetString(\"TempHumidityCooldownTime\", \"5\"";
+ //BA.debugLineNum = 712;BA.debugLine="Sub SetDefaults";
+ //BA.debugLineNum = 714;BA.debugLine="manager.SetString(\"TempHumidityCooldownTime\", \"5\"";
 _manager.SetString("TempHumidityCooldownTime","5");
- //BA.debugLineNum = 711;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 715;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime","5");
- //BA.debugLineNum = 712;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 716;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
- //BA.debugLineNum = 713;BA.debugLine="End Sub";
+ //BA.debugLineNum = 717;BA.debugLine="End Sub";
 return "";
 }
 public static String  _showaboutmenu() throws Exception{
@@ -1763,10 +1769,10 @@ anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.
 return "";
 }
 public static String[]  _webview1_userandpasswordrequired(String _host,String _realm) throws Exception{
- //BA.debugLineNum = 684;BA.debugLine="Sub WebView1_UserAndPasswordRequired (Host As Stri";
- //BA.debugLineNum = 685;BA.debugLine="Return Array As String(\"admin\", \"960124\")";
+ //BA.debugLineNum = 688;BA.debugLine="Sub WebView1_UserAndPasswordRequired (Host As Stri";
+ //BA.debugLineNum = 689;BA.debugLine="Return Array As String(\"admin\", \"960124\")";
 if (true) return new String[]{"admin","960124"};
- //BA.debugLineNum = 686;BA.debugLine="End Sub";
+ //BA.debugLineNum = 690;BA.debugLine="End Sub";
 return null;
 }
 

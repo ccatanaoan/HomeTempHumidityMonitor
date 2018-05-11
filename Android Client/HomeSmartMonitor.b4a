@@ -688,9 +688,13 @@ Sub CheckTempHumiditySetting
 				DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 				Dim lngTicks As Long = ticks
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-				'Log("TempHumidity Time difference: " & p.Minutes & " minutes")
+				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
 				If p.Minutes > = 5 Then
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+					If a(8).IndexOf("|00:") > -1 And p.Minutes=59 Then
+						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					Else
+						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+					End If
 				Else
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
