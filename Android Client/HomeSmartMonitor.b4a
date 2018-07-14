@@ -49,8 +49,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 1989
-	#VersionName: 1.9.8.9
+	#VersionCode: 1990
+	#VersionName: 1.9.9.0
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -95,7 +95,7 @@ Sub Globals
 	Private GaugeAirQuality As Gauge
 	Private lblAirQuality As Label
 	Private lblAirQualityLastUpdate As Label
-	Private WebView1 As WebView 'ignore
+	'Private WebView1 As WebView 'ignore
 	Private ScrollView1 As ScrollView
 	Private Panel1 As Panel
 	Private xml As XmlLayoutBuilder
@@ -120,7 +120,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		Panel1.Height = Panel1.Height + 100dip
 		ScrollView1.Panel.Height = Panel1.Height 
 		TabStrip1.LoadLayout("2", "Air Quality (CO)  " & Chr(0xF289))
-		TabStrip1.LoadLayout("3", "Security Camera  " & Chr(0xF030))
+		TabStrip1.LoadLayout("3", "Basement  " & Chr(0xF030))
 
 		For Each lbl As Label In GetAllTabLabels(TabStrip1)
 			' To add icon
@@ -182,12 +182,10 @@ Sub Activity_Create(FirstTime As Boolean)
 		lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
 		
 		' Add Items to the BottomNavigationView
-		DSBottomNavigationView1.Menu.Add2(1, 1, "Main Door", xml.GetDrawable("ic_home_black_24dp")).Checked = True
-		DSBottomNavigationView1.Menu.Add2(2, 2, "Kitchen", xml.GetDrawable("ic_android_black_24dp"))
+		DSBottomNavigationView1.Menu.Add2(1, 1, "Air Quality", xml.GetDrawable("ic_home_black_24dp")).Checked = True
+		DSBottomNavigationView1.Menu.Add2(2, 2, "Temp & Humidity", xml.GetDrawable("ic_android_black_24dp"))
 		DSBottomNavigationView1.SetItemIconColors(Colors.LightGray, Colors.RGB(0,152,253), Colors.DarkGray)
 
-		WebView1.Initialize("WebView1")
-		
 		If MQTT.IsInitialized And MQTT.Connected  Then
 			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 		End If
@@ -232,10 +230,7 @@ Sub Activity_Resume
 End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
-	If UserClosed = False Then
-		WebView1.StopLoading
-		WebView1.RemoveView
-	End If
+
 End Sub
 
 'Connect to CloudMQTT broker
@@ -286,63 +281,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			lblPing.SetVisibleAnimated(500, True)
 			csu.CallSubPlus(Me, "HidePing", 700)
 		
-'			Dim status As String
-'			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
-'			status = status.Replace("|24:","|00:")
-'			Dim a() As String = Regex.Split("\|",status)
-'			If a.Length = 9 Then
-'				Dim cs As CSBuilder
-'				cs.Initialize
-'				If a(0) = "OK" And a(1) > 0 Then
-'					GaugeTemp.CurrentValue = a(1)
-'					GaugeHumidity.CurrentValue = a(2)
-'					lblPerception.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append(GetPerception(a(3))).PopAll
-'					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
-'					GaugeHeatIndex.CurrentValue = a(5)
-'					GaugeDewPoint.CurrentValue = a(6)
-'					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
-'
-'					Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
-'					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-'					Dim lngTicks As Long = ticks
-'					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-'					If p.Minutes > = 5 Then
-'						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
-'					Else
-'						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
-'					End If
-'				Else If a(8) = "00:00:00" Then
-'					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdate.Text.Replace("Last update: ","")).PopAll
-'				End If
-'			End If
 			CheckTempHumiditySetting
 		Else If Topic = "MQ7" Then
-'			Dim status As String
-'			Dim cs As CSBuilder
-'			cs.Initialize
-'			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
-'			status = status.Replace("|24:","|00:")
-'			Log("MQ7 status: " & status)
-'			Dim a() As String = Regex.Split("\|",status)
-'			If a.Length = 3 Then
-'				If IsNumber(a(0)) And a(0) > 0 Then
-'					GaugeAirQuality.CurrentValue = a(0)
-'					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
-'					DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
-'					Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
-'					DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-'					Dim lngTicks As Long = ticks
-'					Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-'
-'					If p.Minutes > = 5 Then
-'						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
-'					Else
-'						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
-'					End If
-'				Else If a(2) = "00:00:00" Then
-'					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
-'				End If
-'			End If
 			CheckAirQualitySetting
 		End If
 	Catch
@@ -438,30 +378,8 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 				If TabStrip1.CurrentPage = 2 Then
-					If WebView1.Url.Contains("cloyd.mynetgear.com:82") Then
-						result = Msgbox2("Restart the main door CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+						result = Msgbox2("Restart the BASEMENT controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
 						If result = DialogResponse.POSITIVE Then
-							WebView1.StopLoading
-							WebView1.RemoveView
-							Dim j As HttpJob
-							j.Initialize("", Me)
-							j.PostString("http://cloyd.mynetgear.com:82/restart","")
-							j.GetRequest.Timeout = 1500
-							j.Username = "admin"
-							j.Password = "960124"
-							Wait For (j) JobDone(j As HttpJob)
-							If j.Success Then
-								Log(j.GetString)
-							End If
-							j.Release
-							WebView1.Initialize("WebView1")
-							DSBottomNavigationView1.CheckedItem=2
-						End If
-					Else
-						result = Msgbox2("Restart the kitchen CAMERA controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
-						If result = DialogResponse.POSITIVE Then
-							WebView1.StopLoading
-							WebView1.RemoveView
 							Dim j As HttpJob
 							j.Initialize("", Me)
 							j.PostString("http://cloyd.mynetgear.com/restart","")
@@ -473,10 +391,8 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 								Log(j.GetString)
 							End If
 							j.Release
-							WebView1.Initialize("WebView1")
 							DSBottomNavigationView1.CheckedItem=1
 						End If
-					End If
 				else If TabStrip1.CurrentPage = 1 Then
 					result = Msgbox2("Restart the AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
 					If result = DialogResponse.POSITIVE Then
@@ -507,7 +423,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "May 10, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "July 14, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -559,8 +475,7 @@ Sub TabStrip1_PageSelected (Position As Int)
 		If Position = 2 Then
 			DSBottomNavigationView1.CheckedItem=1
 		Else
-			WebView1.StopLoading
-			WebView1.RemoveView
+
 		End If
 		If Position = 0 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
@@ -595,18 +510,9 @@ End Sub
 Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 	If KeyCode = KeyCodes.KEYCODE_BACK Then
 		If TabStrip1.CurrentPage = 2 Then
-			If WebView1.Url.Contains("cloyd.mynetgear.com:82") Then
-				TabStrip1.ScrollTo(1,True)
-				TabStrip1_PageSelected(1)
-				Return True
-			Else
-				If WebView1.IsInitialized = False Then
-					WebView1.Initialize("WebView1")
-				End If
-				DSBottomNavigationView1.CheckedItem=1
-				Return True
-			End If
-
+			TabStrip1.ScrollTo(1,True)
+			TabStrip1_PageSelected(1)
+			Return True
 		Else If TabStrip1.CurrentPage = 1 Then
 			TabStrip1.ScrollTo(0,True)
 			TabStrip1_PageSelected(0)
@@ -614,23 +520,6 @@ Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 		End If
 	End If
 	
-End Sub
-
-Sub WebView1_PageFinished (Url As String)
-	Try
-		Dim Obj1 As Reflector
-		Dim s As String 'ignore
-		Dim f As Float 'ignore
-
-		Obj1.Target = WebView1
-		s = Obj1.TypeName
-		f = Obj1.RunMethod("getScale")
-
-		Obj1.Target = WebView1
-		Obj1.RunMethod2("setInitialScale", "230", "java.lang.int")
-	Catch
-		Log(LastException)
-	End Try
 End Sub
 
 Sub CheckAirQualitySetting
@@ -708,34 +597,13 @@ Sub CheckTempHumiditySetting
 End Sub
 
 Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
-	WebView1.StopLoading
-	WebView1.RemoveView
-	WebView1.JavaScriptEnabled = True
-	Activity.addview(WebView1,0dip,108dip,100%x,PanelWebView.Height)
+
 	Select MenuItem.Id
 		Case 1
-			WebView1.LoadHtml($"<div>
-			<table width="100%" height="100%" align="center" valign="center">
-			<tr><td align="middle">
-					Waiting for the main door camera feed...
-			</td></tr>
-			</table>
-			</div>"$)			
-			WebView1.LoadURL("http://cloyd.mynetgear.com:82/stream")
-		Case 2
-			WebView1.LoadHtml($"<div>
-			<table width="100%" height="100%" align="center" valign="center">
-			<tr><td align="middle">
-					Waiting for the kitchen camera feed...
-			</td></tr>
-			</table>
-			</div>"$)
-			WebView1.LoadURL("http://cloyd.mynetgear.com/stream")
-	End Select
-End Sub
 
-Sub WebView1_UserAndPasswordRequired (Host As String, Realm As String) As String()
-	Return Array As String("admin", "960124")
+		Case 2
+
+	End Select
 End Sub
 
 Sub CreatePreferenceScreen
