@@ -100,7 +100,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					
 					Dim NotificationText As String
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
-					If (a(3) > 3) Or (a(4) <> 0 And a(4) <> 2)  Then
+					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
+					If (a(3) > 3) Or (a(4) <> 0)  Then
 						If IsTempHumidityNotificationOnGoing = False Then
 							Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumid,DateTime.now)
 							Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTime")
@@ -108,15 +109,13 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 								managerTempHumidityCooldownTime = 1
 							End If
 							If lngTicksTempHumid = 0 Or p.Minutes > = managerTempHumidityCooldownTime Then
-								CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
+								If a(4) <> 0 Then
+									CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
+								Else
+									CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
+								End If
 								lngTicksTempHumid = DateTime.now
 							End If
-						End If
-					Else If	a(1) > = 80 Then
-						Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-						If lngTicks = 0 Or p.Minutes > = 2 Then
-							CreateNotification("Warning! Home temperature is very high at " & a(1) & " degrees fahrenheit.",NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
-							lngTicks = DateTime.now
 						End If
 					Else
 						lngTicks = 0
@@ -238,23 +237,23 @@ Sub GetComfort(DHT11ComfortStatus As String) As String
 	Dim localcomfortstatus As String
 	Select Case DHT11ComfortStatus
 		Case 0
-			localcomfortstatus = "OK"
+			localcomfortstatus = "Home is OK"
 		Case 1
-			localcomfortstatus = "Too hot"
+			localcomfortstatus = "Home is too hot"
 		Case 2
-			localcomfortstatus = "Too cold"
+			localcomfortstatus = "Home is too cold"
 		Case 4
-			localcomfortstatus = "Too dry"
+			localcomfortstatus = "Home is too dry"
 		Case 5
-			localcomfortstatus = "Hot and dry"
+			localcomfortstatus = "Home is hot and dry"
 		Case 6
-			localcomfortstatus = "Cold and dry"
+			localcomfortstatus = "Home is cold and dry"
 		Case 8
-			localcomfortstatus = "Too humid"
+			localcomfortstatus = "Home is too humid"
 		Case 9
-			localcomfortstatus = "Hot and humid"
+			localcomfortstatus = "Home is hot and humid"
 		Case 10
-			localcomfortstatus = "Cold and humid"
+			localcomfortstatus = "Home is cold and humid"
 		Case Else
 			localcomfortstatus = "Unknown"
 	End Select
