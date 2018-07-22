@@ -52,7 +52,6 @@ public int _gaugetype = 0;
 public int _anglerange = 0;
 public int _angleoffset = 0;
 public int _backgroundcolor = 0;
-public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;

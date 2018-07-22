@@ -121,7 +121,6 @@ public class notificationservice extends  android.app.Service{
 		return null;
 	}public anywheresoftware.b4a.keywords.Common __c = null;
 public static anywheresoftware.b4a.objects.NotificationListenerWrapper.NotificationListener _listener = null;
-public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
