@@ -1,13 +1,16 @@
 ﻿Build1=Default,cloyd.smart.home.monitor
 File1=0.png
+File10=TempHumidityBasement.bal
 File2=1.bal
 File3=1ScrollView.bal
 File4=2.bal
-File5=3.bal
+File5=AirQualityBasement.bal
 File6=cloyd.png
 File7=crysta.ttf
 File8=Main.bal
+File9=ScrollViewBasement.bal
 FileGroup1=Default Group
+FileGroup10=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
@@ -15,35 +18,32 @@ FileGroup5=Default Group
 FileGroup6=Default Group
 FileGroup7=Default Group
 FileGroup8=Default Group
+FileGroup9=Default Group
 Group=Default Group
 IconFile=
 Library1=core
-Library10=phone
-Library11=tabstripviewpager
-Library12=reflection
-Library13=httputils2
-Library14=http
-Library15=notificationbuilder
-Library16=notificationlistener
-Library17=randomaccessfile
-Library18=designsupport
-Library19=dateutils
+Library10=tabstripviewpager
+Library11=reflection
+Library12=notificationbuilder
+Library13=notificationlistener
+Library14=randomaccessfile
+Library15=dateutils
+Library16=ahpreferenceactivity
 Library2=appcompat
-Library20=ahpreferenceactivity
 Library3=javaobject
 Library4=xmllayoutbuilder
 Library5=jmqtt
 Library6=callsubutils
 Library7=byteconverter
 Library8=xui
-Library9=stringutils
+Library9=phone
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)
 Module1=Gauge
 Module2=SmartHomeMonitor
 Module3=NotificationService
 Module4=StateManager
-NumberOfFiles=8
-NumberOfLibraries=20
+NumberOfFiles=10
+NumberOfLibraries=16
 NumberOfModules=4
 Version=8
 @EndOfDesignText@
@@ -95,12 +95,22 @@ Sub Globals
 	Private GaugeAirQuality As Gauge
 	Private lblAirQuality As Label
 	Private lblAirQualityLastUpdate As Label
-	'Private WebView1 As WebView 'ignore
 	Private ScrollView1 As ScrollView
 	Private Panel1 As Panel
-	Private xml As XmlLayoutBuilder
-	Private DSBottomNavigationView1 As DSBottomNavigationView
-	Private PanelWebView As Panel
+	Private GaugeAirQualityBasement As Gauge
+	Private lblAirQualityBasement As Label
+	Private lblAirQualityLastUpdateBasement As Label
+	Private PanelAirQualityBasement As Panel
+	Private GaugeDewPointBasement As Gauge
+	Private GaugeHeatIndexBasement As Gauge
+	Private GaugeHumidityBasement As Gauge
+	Private GaugeTempBasement As Gauge
+	Private lblComfortBasement As Label
+	Private lblLastUpdateBasement As Label
+	Private lblPerceptionBasement As Label
+	Private lblPingBasement As Label
+	Private ScrollViewBasement As ScrollView
+	Private PanelTempHumidityBasement As Panel
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -115,18 +125,25 @@ Sub Activity_Create(FirstTime As Boolean)
 		End If
 		Activity.LoadLayout("Main")
 
-		TabStrip1.LoadLayout("1ScrollView", "Temp & Humidity  " & Chr(0xF2C7))
+		TabStrip1.LoadLayout("1ScrollView", "LIVING ROOM" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
 		ScrollView1.Panel.LoadLayout("1")
 		Panel1.Height = Panel1.Height + 100dip
 		ScrollView1.Panel.Height = Panel1.Height 
-		TabStrip1.LoadLayout("2", "Air Quality (CO)  " & Chr(0xF289))
-		TabStrip1.LoadLayout("3", "Basement  " & Chr(0xF030))
-
+		TabStrip1.LoadLayout("2", "LIVING ROOM" & CRLF & "Air Quality (CO)  " & Chr(0xF289))
+		TabStrip1.LoadLayout("ScrollViewBasement", "BASEMENT" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
+		ScrollViewBasement.Panel.LoadLayout("TempHumidityBasement")
+		PanelTempHumidityBasement.Height = PanelTempHumidityBasement.Height + 100dip
+		ScrollViewBasement.Panel.Height = PanelTempHumidityBasement.Height
+		TabStrip1.LoadLayout("AirQualityBasement", "BASEMENT" & CRLF & "Air Quality (CO)  " & Chr(0xF289))
+		
 		For Each lbl As Label In GetAllTabLabels(TabStrip1)
+			' Two lines in a tab of TabStripViewPager
+			lbl.SingleLine = False
 			' To add icon
 			lbl.Typeface = Typeface.FONTAWESOME
 			' To add space around the label text
 			lbl.Padding = Array As Int(0, 0, 0, 0)
+			
 		Next
 		
 		For Each v As View In GetAllTabLabels(TabStrip1)
@@ -164,11 +181,34 @@ Sub Activity_Create(FirstTime As Boolean)
 	    GaugeDewPoint.CreateRange(78.8, 100, xui.Color_Red)))
 		' Dew Point
 		
-		GaugeAirQuality.SetRanges(Array(GaugeTemp.CreateRange(0, 100, xui.Color_RGB(100,221,23)), _
+		GaugeAirQuality.SetRanges(Array(GaugeAirQuality.CreateRange(0, 100, xui.Color_RGB(100,221,23)), _
 		GaugeAirQuality.CreateRange(100, 400, xui.Color_RGB(100,240,23)), _
 	    GaugeAirQuality.CreateRange(400, 900, xui.Color_Yellow), _
 	    GaugeAirQuality.CreateRange(900, 1000, xui.Color_Red)))	
 		GaugeAirQuality.CurrentValue=0
+		
+		GaugeHumidityBasement.SetRanges(Array(GaugeHumidityBasement.CreateRange(0, 70, xui.Color_RGB(100,221,23)), _
+		GaugeHumidityBasement.CreateRange(70, 80, xui.Color_Yellow), _
+		GaugeHumidityBasement.CreateRange(80, 100, xui.Color_Red)))
+		GaugeTempBasement.SetRanges(Array(GaugeTempBasement.CreateRange(0, 75, xui.Color_RGB(100,221,23)), _
+	    GaugeTempBasement.CreateRange(75, 90, xui.Color_Yellow), _
+	    GaugeTempBasement.CreateRange(90, 100, xui.Color_Red)))	
+		GaugeHeatIndexBasement.SetRanges(Array(GaugeHeatIndexBasement.CreateRange(0, 75, xui.Color_RGB(100,221,23)), _
+	    GaugeHeatIndexBasement.CreateRange(75, 90, xui.Color_Yellow), _
+	    GaugeHeatIndexBasement.CreateRange(90, 100, xui.Color_Red)))
+		' Dew Point
+		' https://material.io/guidelines/style/color.html#
+		GaugeDewPointBasement.SetRanges(Array(GaugeDewPointBasement.CreateRange(0,60.8, xui.Color_RGB(100,221,23)), _
+		GaugeDewPointBasement.CreateRange(60.8,64.4, xui.Color_RGB(100,240,23)), _
+		GaugeDewPointBasement.CreateRange(64.4,78.8, xui.Color_Yellow), _
+	    GaugeDewPointBasement.CreateRange(78.8, 100, xui.Color_Red)))
+		' Dew Point
+		
+		GaugeAirQualityBasement.SetRanges(Array(GaugeAirQualityBasement.CreateRange(0, 100, xui.Color_RGB(100,221,23)), _
+		GaugeAirQualityBasement.CreateRange(100, 400, xui.Color_RGB(100,240,23)), _
+	    GaugeAirQualityBasement.CreateRange(400, 900, xui.Color_Yellow), _
+	    GaugeAirQualityBasement.CreateRange(900, 1000, xui.Color_Red)))	
+		GaugeAirQualityBasement.CurrentValue=0
 		
 		Dim cs As CSBuilder
 		cs.Initialize
@@ -178,14 +218,18 @@ Sub Activity_Create(FirstTime As Boolean)
 		lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append("").PopAll
 		lblPing.Visible = False
 		GaugeAirQuality.CurrentValue = 0
+		GaugeAirQualityBasement.CurrentValue = 0
 		lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append("Waiting for data...").PopAll
 		lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
 		
-		' Add Items to the BottomNavigationView
-		DSBottomNavigationView1.Menu.Add2(1, 1, "Air Quality", xml.GetDrawable("ic_home_black_24dp")).Checked = True
-		DSBottomNavigationView1.Menu.Add2(2, 2, "Temp & Humidity", xml.GetDrawable("ic_android_black_24dp"))
-		DSBottomNavigationView1.SetItemIconColors(Colors.LightGray, Colors.RGB(0,152,253), Colors.DarkGray)
-
+		lblPerceptionBasement.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append("Waiting for data...").PopAll
+		lblComfortBasement.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append("Waiting for data...").PopAll
+		DateTime.DateFormat = "MMMM d, h:mm:ss a"
+		lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append("").PopAll
+		lblPingBasement.Visible = False
+		lblAirQualityBasement.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append("Waiting for data...").PopAll
+		lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
+		
 		If MQTT.IsInitialized And MQTT.Connected  Then
 			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 		End If
@@ -211,6 +255,12 @@ Sub Activity_Resume
 		Else If NotificationClicked = "Carbon Monoxide" Then
 			TabStrip1.ScrollTo(1,False)
 			TabStrip1_PageSelected(1)
+		else If NotificationClicked = "Basement Temperature" Then
+			TabStrip1.ScrollTo(2,False)
+			TabStrip1_PageSelected(2)
+		Else If NotificationClicked = "Basement Carbon Monoxide" Then
+			TabStrip1.ScrollTo(3,False)
+			TabStrip1_PageSelected(3)
 		Else
 			TabStrip1.ScrollTo(0,False)
 			TabStrip1_PageSelected(0)
@@ -256,6 +306,8 @@ Sub MQTT_Connected (Success As Boolean)
 			Log("Connected to MQTT broker")
 	        MQTT.Subscribe("TempHumid", 0)
 			MQTT.Subscribe("MQ7", 0)
+			MQTT.Subscribe("MQ7Basement", 0)
+			MQTT.Subscribe("TempHumidBasement", 0)
 	    End If
 	Catch
 		Log("MQTT_Connected: " & LastException)
@@ -284,6 +336,13 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			CheckTempHumiditySetting
 		Else If Topic = "MQ7" Then
 			CheckAirQualitySetting
+		Else If Topic = "MQ7Basement" Then
+			CheckAirQualitySettingBasement
+		Else If Topic = "TempHumidBasement" Then
+			lblPingBasement.SetVisibleAnimated(500, True)
+			csu.CallSubPlus(Me, "HidePingBasement", 700)
+		
+			CheckTempHumiditySettingBasement
 		End If
 	Catch
 		Log(LastException)
@@ -378,21 +437,13 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 				If TabStrip1.CurrentPage = 2 Then
-						result = Msgbox2("Restart the BASEMENT controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
-						If result = DialogResponse.POSITIVE Then
-							Dim j As HttpJob
-							j.Initialize("", Me)
-							j.PostString("http://cloyd.mynetgear.com/restart","")
-							j.GetRequest.Timeout = 1500
-							j.Username = "admin"
-							j.Password = "960124"
-							Wait For (j) JobDone(j As HttpJob)
-							If j.Success Then
-								Log(j.GetString)
-							End If
-							j.Release
-							DSBottomNavigationView1.CheckedItem=1
+					result = Msgbox2("Restart the BASEMENT controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+					If result = DialogResponse.POSITIVE Then
+						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
+							MQTT_Connect
 						End If
+						MQTT.Publish("TempHumidBasement", bc.StringToBytes("Restart controller", "utf8"))
+					End If
 				else If TabStrip1.CurrentPage = 1 Then
 					result = Msgbox2("Restart the AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
 					If result = DialogResponse.POSITIVE Then
@@ -400,6 +451,14 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 							MQTT_Connect
 						End If
 						MQTT.Publish("MQ7", bc.StringToBytes("Restart controller", "utf8"))
+					End If
+				else If TabStrip1.CurrentPage = 3 Then
+					result = Msgbox2("Restart the BASEMENT AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+					If result = DialogResponse.POSITIVE Then
+						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
+							MQTT_Connect
+						End If
+						MQTT.Publish("MQ7Basement", bc.StringToBytes("Restart controller", "utf8"))
 					End If
 				Else
 					result = Msgbox2("Restart the WEATHER controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
@@ -458,6 +517,11 @@ Private Sub HidePing
 	lblPing.SetVisibleAnimated(200, False)
 End Sub
 
+Private Sub HidePingBasement
+	lblPingBasement.SetVisibleAnimated(200, False)
+End Sub
+
+
 #If Java
 
 public boolean _onCreateOptionsMenu(android.view.Menu menu) {
@@ -472,11 +536,6 @@ public boolean _onCreateOptionsMenu(android.view.Menu menu) {
 
 Sub TabStrip1_PageSelected (Position As Int)
 	Try
-		If Position = 2 Then
-			DSBottomNavigationView1.CheckedItem=1
-		Else
-
-		End If
 		If Position = 0 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
@@ -488,6 +547,18 @@ Sub TabStrip1_PageSelected (Position As Int)
 				MQTT.Publish("MQ7", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySetting
+		End If
+		If Position = 2 Then
+			If MQTT.IsInitialized And MQTT.Connected  Then
+				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
+			End If
+			CheckTempHumiditySettingBasement
+		End If
+		If Position = 3 Then
+			If MQTT.IsInitialized And MQTT.Connected  Then
+				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
+			End If
+			CheckAirQualitySettingBasement
 		End If
 	Catch
 		Log(LastException)
@@ -554,6 +625,38 @@ Sub CheckAirQualitySetting
 	End Try
 End Sub
 
+Sub CheckAirQualitySettingBasement
+	Try
+		Dim cs As CSBuilder
+		cs.Initialize
+		Dim status As String
+		status = StateManager.GetSetting("AirQualityBasement")
+		status = status.Replace("|24:","|00:")
+		Dim a() As String = Regex.Split("\|",status)
+		If a.Length = 3 Then
+			If IsNumber(a(0)) And a(0) > 0 Then
+				GaugeAirQualityBasement.CurrentValue = a(0)
+				lblAirQualityBasement.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
+				DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+				Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
+				DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+				Dim lngTicks As Long = ticks
+				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+				'Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
+				If p.Minutes > = 5 Then
+					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+				Else
+					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+				End If
+			Else If a(2) = "00:00:00" Then
+				lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
+			End If
+		End If
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
 Sub CheckTempHumiditySetting
 	Try
 		Dim cs As CSBuilder
@@ -596,14 +699,46 @@ Sub CheckTempHumiditySetting
 	End Try
 End Sub
 
-Sub DSBottomNavigationView1_NavigationItemSelected(MenuItem As ACMenuItem)
-
-	Select MenuItem.Id
-		Case 1
-
-		Case 2
-
-	End Select
+Sub CheckTempHumiditySettingBasement
+	Try
+		Dim cs As CSBuilder
+		cs.Initialize
+		Dim status As String
+		status = StateManager.GetSetting("TempHumidityBasement")
+		status = status.Replace("|24:","|00:")
+		Dim a() As String = Regex.Split("\|",status)
+		If a.Length = 9 Then
+			Dim cs As CSBuilder
+			cs.Initialize
+			If a(0) = "OK" And a(1) > 0 Then
+				GaugeTempBasement.CurrentValue = a(1)
+				GaugeHumidityBasement.CurrentValue = a(2)
+				lblPerceptionBasement.Text = cs.Initialize.Bold.Append("Human Perception: ").Pop.Append(GetPerception(a(3))).PopAll
+				lblComfortBasement.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
+				GaugeHeatIndexBasement.CurrentValue = a(5)
+				GaugeDewPointBasement.CurrentValue = a(6)
+				DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+				Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
+				DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+				Dim lngTicks As Long = ticks
+				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
+				If p.Minutes > = 5 Then
+					If a(8).IndexOf("|00:") > -1 And p.Minutes=59 Then
+						lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					Else
+						lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+					End If
+				Else
+					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+				End If
+			Else If a(8) = "00:00:00" Then
+				lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
+			End If
+		End If
+	Catch
+		Log(LastException)
+	End Try
 End Sub
 
 Sub CreatePreferenceScreen

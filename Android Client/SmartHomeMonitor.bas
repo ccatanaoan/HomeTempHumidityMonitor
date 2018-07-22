@@ -28,6 +28,8 @@ Sub Service_Create
 	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
 	CreateNotification("Temperature","Temperature","temp",Main,False,False,True,"Temperature")
 	CreateNotification("Carbon Monoxide","Carbon Monoxide","co",Main,False,False,True,"Carbon Monoxide")
+	CreateNotification("Basement Temperature","Basement Temperature","temp",Main,False,False,True,"Basement Temperature")
+	CreateNotification("Basement Carbon Monoxide","Basement Carbon Monoxide","co",Main,False,False,True,"Basement Carbon Monoxide")
 
 	Notification1.Icon = "icon"
 	Notification1.Vibrate = False
@@ -68,6 +70,8 @@ Sub MQTT_Connected (Success As Boolean)
 		Else
 			MQTT.Subscribe("TempHumid", 0)
 			MQTT.Subscribe("MQ7", 0)
+			MQTT.Subscribe("MQ7Basement", 0)
+			MQTT.Subscribe("TempHumidBasement", 0)
 		End If
 	Catch
 		Log(LastException)
@@ -145,6 +149,69 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Else
 						IsAirQualityNotificationOnGoing = False
 						Notification1.Cancel(726)
+					End If
+				End If
+			End If
+		Else If Topic = "MQ7Basement" Then
+			Dim status As String
+			Dim cs As CSBuilder
+			cs.Initialize
+			status = BytesToString(Payload, 0, Payload.Length, "UTF8") ' MQ7 status: 334|18-04-14|00:20:54
+			Log("MQ7 basement status: " & status)
+			Dim a() As String = Regex.Split("\|",status)
+			If a.Length = 3 Then
+				If IsNumber(a(0)) And a(0) > 0 Then
+					StateManager.SetSetting("AirQualityBasement",status)
+					StateManager.SaveSettings
+					
+					Dim NotificationText As String
+					NotificationText = GetAirQuality(a(0)) & ", at " & a(0) & " ppm"
+					If a(0) > 400 Then
+						If IsAirQualityNotificationOnGoing = False Then
+							CreateNotification("Basement Air Quality",NotificationText,"co",Main,False,False,True,"Basement Carbon Monoxide").Notify(727)
+						End If
+					Else
+						IsAirQualityNotificationOnGoing = False
+						Notification1.Cancel(727)
+					End If
+				End If
+			End If
+		else If Topic = "TempHumidBasement" Then
+		
+			Dim status As String
+			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
+
+			Dim a() As String = Regex.Split("\|",status)
+			If a.Length = 9 Then
+				Dim cs As CSBuilder
+				cs.Initialize
+				If a(0) = "OK" And a(1) > 0 Then
+					StateManager.SetSetting("TempHumidityBasement",status)
+					StateManager.SaveSettings
+					
+					Dim NotificationText As String
+					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
+					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
+					If (a(3) > 3) Or (a(4) <> 0)  Then
+						If IsTempHumidityNotificationOnGoing = False Then
+							Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumid,DateTime.now)
+							Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTime")
+							If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
+								managerTempHumidityCooldownTime = 1
+							End If
+							If lngTicksTempHumid = 0 Or p.Minutes > = managerTempHumidityCooldownTime Then
+								If a(4) <> 0 Then
+									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement Temperature").Notify(728)
+								Else
+									CreateNotification(GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement Temperature").Notify(728)
+								End If
+								lngTicksTempHumid = DateTime.now
+							End If
+						End If
+					Else
+						lngTicks = 0
+						IsTempHumidityNotificationOnGoing = False
+						Notification1.Cancel(728)
 					End If
 				End If
 			End If
