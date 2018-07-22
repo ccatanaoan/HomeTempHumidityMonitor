@@ -125,7 +125,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							End If
 						End If
 					Else
-						lngTicksTempHumid = 0
+						lngTicksTempHumid = DateTime.now
+						'lngTicksTempHumid = 0
 						IsTempHumidityNotificationOnGoing = False
 						Notification1.Cancel(725)
 					End If
@@ -212,8 +213,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							End If
 						End If
 					Else
-						lngTicksTempHumidBasement = 0
-						IsTempHumidityNotificationOnGoing = False
+						lngTicksTempHumidBasement = DateTime.now
+						'lngTicksTempHumidBasement = 0
+						IsTempHumidityNotificationOnGoingBasement = False
 						Notification1.Cancel(728)
 					End If
 				End If
