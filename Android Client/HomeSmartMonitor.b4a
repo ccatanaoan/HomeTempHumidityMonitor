@@ -125,11 +125,11 @@ Sub Activity_Create(FirstTime As Boolean)
 		End If
 		Activity.LoadLayout("Main")
 
-		TabStrip1.LoadLayout("1ScrollView", "LIVING ROOM" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
+		TabStrip1.LoadLayout("1ScrollView", "LIVING AREA" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
 		ScrollView1.Panel.LoadLayout("1")
 		Panel1.Height = Panel1.Height + 100dip
 		ScrollView1.Panel.Height = Panel1.Height 
-		TabStrip1.LoadLayout("2", "LIVING ROOM" & CRLF & "Air Quality (CO)  " & Chr(0xF289))
+		TabStrip1.LoadLayout("2", "LIVING AREA" & CRLF & "Air Quality (CO)  " & Chr(0xF289))
 		TabStrip1.LoadLayout("ScrollViewBasement", "BASEMENT" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
 		ScrollViewBasement.Panel.LoadLayout("TempHumidityBasement")
 		PanelTempHumidityBasement.Height = PanelTempHumidityBasement.Height + 100dip
@@ -747,7 +747,8 @@ Sub CreatePreferenceScreen
 	Dim cat1,cat2 As AHPreferenceCategory
 	
 	cat1.Initialize("Temperature & Humidity")
-	cat1.AddEditText("TempHumidityCooldownTime", "Cooldown Time", "Minimum creation time interval between new notification", "5","")
+	cat1.AddEditText("TempHumidityCooldownTime", "Living Area Cooldown Time", "Minimum creation time interval between new notification", "5","")
+	cat1.AddEditText("TempHumidityCooldownTimeBasement", "Basement Cooldown Time", "Minimum creation time interval between new notification", "5","")
 	
 	cat2.Initialize("Special Settings")
 	Dim In As Intent
@@ -757,6 +758,7 @@ Sub CreatePreferenceScreen
 	screen.AddPreferenceCategory(cat2)
 	screen.AddPreferenceCategory(cat1)
 	StateManager.SetSetting("TempHumidityCooldownTime","5")
+	StateManager.SetSetting("TempHumidityCooldownTimeBasement","5")
 	StateManager.SaveSettings
 End Sub
 
@@ -764,11 +766,14 @@ End Sub
 Sub SetDefaults
 	'defaults are only set on the first run.
 	manager.SetString("TempHumidityCooldownTime", "5")
+	manager.SetString("TempHumidityCooldownTimeBasement", "5")
 	StateManager.SetSetting("TempHumidityCooldownTime","5")
+	StateManager.SetSetting("TempHumidityCooldownTimeBasement","5")
 	StateManager.SaveSettings
 End Sub
 
 Sub HandleSettings
 	StateManager.SetSetting("TempHumidityCooldownTime",manager.GetString("TempHumidityCooldownTime"))
+	StateManager.SetSetting("TempHumidityCooldownTimeBasement",manager.GetString("TempHumidityCooldownTimeBasement"))
 	StateManager.SaveSettings
 End Sub

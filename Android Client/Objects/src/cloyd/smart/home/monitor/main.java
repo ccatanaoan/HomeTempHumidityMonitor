@@ -402,16 +402,16 @@ _mqtt_connect();
  };
  //BA.debugLineNum = 77;BA.debugLine="Activity.LoadLayout(\"Main\")";
 mostCurrent._activity.LoadLayout("Main",mostCurrent.activityBA);
- //BA.debugLineNum = 79;BA.debugLine="TabStrip1.LoadLayout(\"1ScrollView\", \"LIVING ROOM";
-mostCurrent._tabstrip1.LoadLayout("1ScrollView",BA.ObjectToCharSequence("LIVING ROOM"+anywheresoftware.b4a.keywords.Common.CRLF+"Temp & Humidity  "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.Chr((int) (0xf2c7)))));
+ //BA.debugLineNum = 79;BA.debugLine="TabStrip1.LoadLayout(\"1ScrollView\", \"LIVING AREA";
+mostCurrent._tabstrip1.LoadLayout("1ScrollView",BA.ObjectToCharSequence("LIVING AREA"+anywheresoftware.b4a.keywords.Common.CRLF+"Temp & Humidity  "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.Chr((int) (0xf2c7)))));
  //BA.debugLineNum = 80;BA.debugLine="ScrollView1.Panel.LoadLayout(\"1\")";
 mostCurrent._scrollview1.getPanel().LoadLayout("1",mostCurrent.activityBA);
  //BA.debugLineNum = 81;BA.debugLine="Panel1.Height = Panel1.Height + 100dip";
 mostCurrent._panel1.setHeight((int) (mostCurrent._panel1.getHeight()+anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (100))));
  //BA.debugLineNum = 82;BA.debugLine="ScrollView1.Panel.Height = Panel1.Height";
 mostCurrent._scrollview1.getPanel().setHeight(mostCurrent._panel1.getHeight());
- //BA.debugLineNum = 83;BA.debugLine="TabStrip1.LoadLayout(\"2\", \"LIVING ROOM\" & CRLF &";
-mostCurrent._tabstrip1.LoadLayout("2",BA.ObjectToCharSequence("LIVING ROOM"+anywheresoftware.b4a.keywords.Common.CRLF+"Air Quality (CO)  "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.Chr((int) (0xf289)))));
+ //BA.debugLineNum = 83;BA.debugLine="TabStrip1.LoadLayout(\"2\", \"LIVING AREA\" & CRLF &";
+mostCurrent._tabstrip1.LoadLayout("2",BA.ObjectToCharSequence("LIVING AREA"+anywheresoftware.b4a.keywords.Common.CRLF+"Air Quality (CO)  "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.Chr((int) (0xf289)))));
  //BA.debugLineNum = 84;BA.debugLine="TabStrip1.LoadLayout(\"ScrollViewBasement\", \"BASE";
 mostCurrent._tabstrip1.LoadLayout("ScrollViewBasement",BA.ObjectToCharSequence("BASEMENT"+anywheresoftware.b4a.keywords.Common.CRLF+"Temp & Humidity  "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.Chr((int) (0xf2c7)))));
  //BA.debugLineNum = 85;BA.debugLine="ScrollViewBasement.Panel.LoadLayout(\"TempHumidit";
@@ -1044,25 +1044,29 @@ _cat1 = new de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper();
 _cat2 = new de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper();
  //BA.debugLineNum = 700;BA.debugLine="cat1.Initialize(\"Temperature & Humidity\")";
 _cat1.Initialize("Temperature & Humidity");
- //BA.debugLineNum = 701;BA.debugLine="cat1.AddEditText(\"TempHumidityCooldownTime\", \"Coo";
-_cat1.AddEditText("TempHumidityCooldownTime","Cooldown Time","Minimum creation time interval between new notification","5","");
- //BA.debugLineNum = 703;BA.debugLine="cat2.Initialize(\"Special Settings\")";
+ //BA.debugLineNum = 701;BA.debugLine="cat1.AddEditText(\"TempHumidityCooldownTime\", \"Liv";
+_cat1.AddEditText("TempHumidityCooldownTime","Living Area Cooldown Time","Minimum creation time interval between new notification","5","");
+ //BA.debugLineNum = 702;BA.debugLine="cat1.AddEditText(\"TempHumidityCooldownTimeBasemen";
+_cat1.AddEditText("TempHumidityCooldownTimeBasement","Basement Cooldown Time","Minimum creation time interval between new notification","5","");
+ //BA.debugLineNum = 704;BA.debugLine="cat2.Initialize(\"Special Settings\")";
 _cat2.Initialize("Special Settings");
- //BA.debugLineNum = 704;BA.debugLine="Dim In As Intent";
+ //BA.debugLineNum = 705;BA.debugLine="Dim In As Intent";
 _in = new anywheresoftware.b4a.objects.IntentWrapper();
- //BA.debugLineNum = 705;BA.debugLine="In.Initialize(\"android.settings.ACTION_NOTIFICATI";
+ //BA.debugLineNum = 706;BA.debugLine="In.Initialize(\"android.settings.ACTION_NOTIFICATI";
 _in.Initialize("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS","");
- //BA.debugLineNum = 706;BA.debugLine="cat2.AddIntent(\"Notification Access\", \"Enable or";
+ //BA.debugLineNum = 707;BA.debugLine="cat2.AddIntent(\"Notification Access\", \"Enable or";
 _cat2.AddIntent("Notification Access","Enable or disable listening to notifications",(android.content.Intent)(_in.getObject()),BA.ObjectToString(anywheresoftware.b4a.keywords.Common.Null));
- //BA.debugLineNum = 708;BA.debugLine="screen.AddPreferenceCategory(cat2)";
+ //BA.debugLineNum = 709;BA.debugLine="screen.AddPreferenceCategory(cat2)";
 _screen.AddPreferenceCategory(_cat2);
- //BA.debugLineNum = 709;BA.debugLine="screen.AddPreferenceCategory(cat1)";
+ //BA.debugLineNum = 710;BA.debugLine="screen.AddPreferenceCategory(cat1)";
 _screen.AddPreferenceCategory(_cat1);
- //BA.debugLineNum = 710;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 711;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime","5");
- //BA.debugLineNum = 711;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 712;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTimeBasement","5");
+ //BA.debugLineNum = 713;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
- //BA.debugLineNum = 712;BA.debugLine="End Sub";
+ //BA.debugLineNum = 714;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getairquality(int _number) throws Exception{
@@ -1325,12 +1329,14 @@ mostCurrent._paneltemphumiditybasement = new anywheresoftware.b4a.objects.PanelW
 return "";
 }
 public static String  _handlesettings() throws Exception{
- //BA.debugLineNum = 722;BA.debugLine="Sub HandleSettings";
- //BA.debugLineNum = 723;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 726;BA.debugLine="Sub HandleSettings";
+ //BA.debugLineNum = 727;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime",_manager.GetString("TempHumidityCooldownTime"));
- //BA.debugLineNum = 724;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 728;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTimeBasement",_manager.GetString("TempHumidityCooldownTimeBasement"));
+ //BA.debugLineNum = 729;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
- //BA.debugLineNum = 725;BA.debugLine="End Sub";
+ //BA.debugLineNum = 730;BA.debugLine="End Sub";
 return "";
 }
 public static String  _hideping() throws Exception{
@@ -1495,14 +1501,18 @@ _screen = new de.amberhome.objects.preferenceactivity.PreferenceScreenWrapper();
 return "";
 }
 public static String  _setdefaults() throws Exception{
- //BA.debugLineNum = 715;BA.debugLine="Sub SetDefaults";
- //BA.debugLineNum = 717;BA.debugLine="manager.SetString(\"TempHumidityCooldownTime\", \"5\"";
+ //BA.debugLineNum = 717;BA.debugLine="Sub SetDefaults";
+ //BA.debugLineNum = 719;BA.debugLine="manager.SetString(\"TempHumidityCooldownTime\", \"5\"";
 _manager.SetString("TempHumidityCooldownTime","5");
- //BA.debugLineNum = 718;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 720;BA.debugLine="manager.SetString(\"TempHumidityCooldownTimeBaseme";
+_manager.SetString("TempHumidityCooldownTimeBasement","5");
+ //BA.debugLineNum = 721;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime","5");
- //BA.debugLineNum = 719;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 722;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTimeBasement","5");
+ //BA.debugLineNum = 723;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
- //BA.debugLineNum = 720;BA.debugLine="End Sub";
+ //BA.debugLineNum = 724;BA.debugLine="End Sub";
 return "";
 }
 public static String  _showaboutmenu() throws Exception{
