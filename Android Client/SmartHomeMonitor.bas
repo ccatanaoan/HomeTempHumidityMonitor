@@ -19,8 +19,11 @@ Sub Process_Globals
 	Private Notification1 As Notification
 	Public IsAirQualityNotificationOnGoing As Boolean 
 	Public IsTempHumidityNotificationOnGoing As Boolean
+	Public IsAirQualityNotificationOnGoingBasement As Boolean
+	Public IsTempHumidityNotificationOnGoingBasement As Boolean
 	Public lngTicks As Long
 	Public lngTicksTempHumid As Long
+	Public lngTicksTempHumidBasement As Long
 End Sub
 
 Sub Service_Create
@@ -122,7 +125,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							End If
 						End If
 					Else
-						lngTicks = 0
+						lngTicksTempHumid = 0
 						IsTempHumidityNotificationOnGoing = False
 						Notification1.Cancel(725)
 					End If
@@ -144,7 +147,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					NotificationText = GetAirQuality(a(0)) & ", at " & a(0) & " ppm"
 					If a(0) > 400 Then
 						If IsAirQualityNotificationOnGoing = False Then
-							CreateNotification("Air Quality",NotificationText,"co",Main,False,False,True,"Carbon Monoxide").Notify(726)
+							CreateNotification("Living Area Air Quality",NotificationText,"co",Main,False,False,True,"Carbon Monoxide").Notify(726)
 						End If
 					Else
 						IsAirQualityNotificationOnGoing = False
@@ -167,11 +170,11 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					Dim NotificationText As String
 					NotificationText = GetAirQuality(a(0)) & ", at " & a(0) & " ppm"
 					If a(0) > 400 Then
-						If IsAirQualityNotificationOnGoing = False Then
+						If IsAirQualityNotificationOnGoingBasement = False Then
 							CreateNotification("Basement Air Quality",NotificationText,"co",Main,False,False,True,"Basement Carbon Monoxide").Notify(727)
 						End If
 					Else
-						IsAirQualityNotificationOnGoing = False
+						IsAirQualityNotificationOnGoingBasement = False
 						Notification1.Cancel(727)
 					End If
 				End If
@@ -193,23 +196,23 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 					If (a(3) > 3) Or (a(4) <> 0)  Then
-						If IsTempHumidityNotificationOnGoing = False Then
-							Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumid,DateTime.now)
-							Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTime")
+						If IsTempHumidityNotificationOnGoingBasement = False Then
+							Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumidBasement,DateTime.now)
+							Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTimeBasement")
 							If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
 								managerTempHumidityCooldownTime = 1
 							End If
-							If lngTicksTempHumid = 0 Or p.Minutes > = managerTempHumidityCooldownTime Then
+							If lngTicksTempHumidBasement = 0 Or p.Minutes > = managerTempHumidityCooldownTime Then
 								If a(4) <> 0 Then
 									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement Temperature").Notify(728)
 								Else
 									CreateNotification(GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement Temperature").Notify(728)
 								End If
-								lngTicksTempHumid = DateTime.now
+								lngTicksTempHumidBasement = DateTime.now
 							End If
 						End If
 					Else
-						lngTicks = 0
+						lngTicksTempHumidBasement = 0
 						IsTempHumidityNotificationOnGoing = False
 						Notification1.Cancel(728)
 					End If
