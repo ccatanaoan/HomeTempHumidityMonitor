@@ -49,8 +49,8 @@ Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 1991
-	#VersionName: 1.9.9.1
+	#VersionCode: 1992
+	#VersionName: 1.9.9.2
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -482,7 +482,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "July 21, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "July 24, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -587,6 +587,10 @@ Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 		Else If TabStrip1.CurrentPage = 1 Then
 			TabStrip1.ScrollTo(0,True)
 			TabStrip1_PageSelected(0)
+			Return True
+		Else If TabStrip1.CurrentPage = 3 Then
+			TabStrip1.ScrollTo(2,True)
+			TabStrip1_PageSelected(2)
 			Return True
 		End If
 	End If
