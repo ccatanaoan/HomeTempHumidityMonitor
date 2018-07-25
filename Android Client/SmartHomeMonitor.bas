@@ -105,6 +105,10 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					StateManager.SetSetting("TempHumidity",status)
 					StateManager.SaveSettings
 					
+					If DateTime.GetMinute(DateTime.Now) Mod 10 = 0 Or DateTime.GetMinute(DateTime.Now) = 59 Then
+						LogEvent(status)
+					End If
+					
 					Dim NotificationText As String
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
@@ -224,6 +228,37 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 	Catch
 		Log(LastException)
 	End Try
+End Sub
+
+Sub LogEvent(TextToLog As String)
+	Try
+		Dim FW1 As TextWriter
+		Dim FileName As String
+		Dim Now As Long
+		Dim Month As Int
+		Dim Day As Int
+		Dim Year As Int
+		Dim LogEntry As String
+
+		Now = DateTime.Now
+		Month = DateTime.GetMonth(Now)
+		Day = DateTime.GetDayOfMonth (Now)
+		Year = DateTime.GetYear(Now)
+
+		FileName = "LivingRoomTempHumid.txt_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+
+'		, DateTime.Date(DateTime.Now) & " " & DateTime.Time(DateTime.Now)
+		FW1.Initialize(File.OpenOutput (File.DirRootExternal, FileName, True))
+		LogEntry = NumberFormat(DateTime.GetHour(Now),2,0) & ":" & NumberFormat(DateTime.GetMinute(Now),2,0)& ":" & NumberFormat(DateTime.GetSecond (Now),2,0)
+		LogEntry =LogEntry & " " & TextToLog
+		FW1.WriteLine(LogEntry)
+
+		FW1.Close
+
+	Catch
+		Log("Error in Sub LogEvent")
+	End Try
+
 End Sub
 
 Private Sub CreateNotification(Title As String, Content As String, Icon As String, TargetActivity As Object, _
