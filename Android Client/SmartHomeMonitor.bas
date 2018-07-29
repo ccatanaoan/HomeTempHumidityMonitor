@@ -245,7 +245,7 @@ Sub LogEvent(TextToLog As String)
 		Day = DateTime.GetDayOfMonth (Now)
 		Year = DateTime.GetYear(Now)
 
-		FileName = "LivingRoomTempHumid.txt_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+		FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 
 '		, DateTime.Date(DateTime.Now) & " " & DateTime.Time(DateTime.Now)
 		FW1.Initialize(File.OpenOutput (File.DirRootExternal, FileName, True))
