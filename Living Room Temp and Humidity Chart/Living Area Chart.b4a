@@ -1,0 +1,442 @@
+﻿Build1=Default,com.cloyd.livingroomtemphumidgraph
+File1=main.bal
+FileGroup1=Default Group
+Group=Default Group
+IconFile=
+Library1=core
+Library2=androidplot_0_6_2
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=2
+NumberOfModules=1
+Version=8
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Living Area Chart
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: landscape
+	#CanInstallToExternalStorage: False
+	#BridgeLogger: true
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: true
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+
+	Private lc1 As LineChart
+	Private am12 As String
+	Private am1 As String
+	Private am2 As String
+	Private am3 As String
+	Private am4 As String
+	Private am5 As String
+	Private am6 As String
+	Private am7 As String
+	Private am8 As String
+	Private am9 As String
+	Private am10 As String
+	Private am11 As String
+	Private pm12 As String
+	Private pm1 As String
+	Private pm2 As String
+	Private pm3 As String
+	Private pm4 As String
+	Private pm5 As String
+	Private pm6 As String
+	Private pm7 As String
+	Private pm8 As String
+	Private pm9 As String
+	Private pm10 As String
+	Private pm11 As String
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Try
+		Activity.LoadLayout("main")
+		
+		lc1.GraphBackgroundColor = Colors.DarkGray
+		lc1.GraphFrameColor = Colors.Blue
+		lc1.GraphFrameWidth = 8.0
+		lc1.GraphPlotAreaBackgroundColor = Colors.ARGB(50, 0, 0, 255)
+		lc1.GraphTitleTextSize = 15
+		lc1.GraphTitleColor = Colors.White
+		lc1.GraphTitleSkewX = -0.25
+		lc1.GraphTitleUnderline = True
+		lc1.GraphTitleBold = True
+		lc1.GraphTitle = "HOME TEMPERATURE"	          'put this statement last	
+		
+		lc1.LegendBackgroundColor = Colors.White                          'it will be converted to an Alpha = 100
+		lc1.LegendTextColor = Colors.Black
+		lc1.LegendTextSize = 20.0
+
+		lc1.DomianLabel = "TIME OF THE DAY"	
+		lc1.DomainLabelColor = Colors.Green
+		lc1.DomainLabelTextSize = 18.0
+
+		lc1.XaxisGridLineColor = Colors.ARGB(100,255,255,255)
+		lc1.XaxisGridLineWidth = 2.0
+		lc1.XaxisLabelTicks = 1
+		lc1.XaxisLabelOrientation = 0
+		lc1.XaxisLabelTextColor = Colors.Red
+		lc1.XaxisLabelTextSize = 32.0
+		lc1.XAxisLabels = Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
+		
+		lc1.YaxisDivisions = 8
+		'lc1.YaxisRange(65, 85)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
+		lc1.YaxisValueFormat = lc1.ValueFormat_1                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
+		lc1.YaxisGridLineColor = Colors.Black
+		lc1.YaxisGridLineWidth = 2
+		lc1.YaxisLabelTicks = 1
+		lc1.YaxisLabelColor = Colors.Yellow
+		lc1.YaxisLabelOrientation = -30
+		lc1.YaxisLabelTextSize = 32.0
+		lc1.YaxisTitleColor = Colors.Green
+		lc1.YaxisTitleFakeBold = False
+		lc1.YaxisTitleTextSize = 20.0
+		lc1.YaxisTitleUnderline = True
+		lc1.YaxisTitleTextSkewness = 0
+		lc1.YaxisLabelAndTitleDistance = 60.0
+		lc1.YaxisTitle = "Temperature (Fahrenheit)"                 'put this statement last
+		
+		lc1.MaxNumberOfEntriesPerLineChart = 24                   'this value must be equal to the number of x-axis labels that you pass
+		
+		' ********************* Today *********************
+		
+			ReadTextReader("Today")
+			
+			DateTime.DateFormat = "MMM d, yyyy" 
+			lc1.Line_1_LegendText = "Today, " & DateTime.Date(DateTime.Now)
+			
+			If am12 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12)
+			End If
+			If am1 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1)
+			End If
+			If am2 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2)
+			End If
+			If am3 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3)
+			End If
+			If am4 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4)
+			End If
+			If am5 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5)
+			End If
+			If am6 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
+			End If
+			If am7 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
+			End If
+			If am8 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
+			End If
+			If am9 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
+			End If
+			If am10 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
+			End If
+			If am11 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
+			End If
+			If pm12 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
+			End If
+			If pm1 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
+			End If
+			If pm2 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
+			End If
+			If pm3 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
+			End If
+			If pm4 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
+			End If
+			If pm5 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
+			End If
+			If pm6 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
+			End If
+			If pm7 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
+			End If
+			If pm8 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
+			End If
+			If pm9 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
+			End If	
+			If pm10 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
+			End If
+			If pm11 <> "0" Then 
+				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
+			End If
+			
+			lc1.Line_1_PointLabelTextColor = Colors.Green
+			lc1.Line_1_PointLabelTextSize = 35.0	
+			lc1.Line_1_LineColor = Colors.Red
+			lc1.Line_1_LineWidth = 7.0
+			lc1.Line_1_PointColor = Colors.Black
+			lc1.Line_1_PointSize = 18.0
+			lc1.Line_1_PointShape = lc1.SHAPE_ROUND
+			lc1.Line_1_DrawDash = False
+			lc1.Line_1_DrawCubic = False
+
+		' ********************* Today *********************
+		
+		' ******************* Yesterday *******************	
+
+			ReadTextReader("Yesterday")
+			
+			Dim Yesterday As Long
+			Yesterday = DateTime.add(DateTime.Now, 0, 0, -1)
+
+			DateTime.DateFormat = "MMM d, yyyy"
+			lc1.Line_2_LegendText = "Yesterday, " & DateTime.Date(Yesterday)
+			
+			If am12 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12)
+			End If
+			If am1 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1)
+			End If
+			If am2 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2)
+			End If
+			If am3 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3)
+			End If
+			If am4 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4)
+			End If
+			If am5 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5)
+			End If
+			If am6 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
+			End If
+			If am7 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
+			End If
+			If am8 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
+			End If
+			If am9 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
+			End If
+			If am10 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
+			End If
+			If am11 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
+			End If
+			If pm12 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
+			End If
+			If pm1 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
+			End If
+			If pm2 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
+			End If
+			If pm3 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
+			End If
+			If pm4 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
+			End If
+			If pm5 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
+			End If
+			If pm6 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
+			End If
+			If pm7 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
+			End If
+			If pm8 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
+			End If
+			If pm9 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
+			End If	
+			If pm10 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
+			End If
+			If pm11 <> "0" Then 
+				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
+			End If
+			
+			lc1.Line_2_PointLabelTextColor = Colors.LightGray
+			lc1.Line_2_PointLabelTextSize = 35.0	
+			lc1.Line_2_LineColor = Colors.White
+			lc1.Line_2_LineWidth = 7.0
+			lc1.Line_2_PointColor = Colors.Cyan
+			lc1.Line_2_PointSize = 10.0
+			lc1.Line_2_PointShape = lc1.SHAPE_ROUND
+			lc1.Line_2_DrawDash = False
+			lc1.Line_2_DrawCubic = False
+		
+		' ******************* Yesterday *******************		
+		
+		lc1.NumberOfLineCharts = 2                              'set the number of graphs to draw from the 1 to 5 graph that has been set up above
+			 
+		lc1.DrawTheGraphs
+	Catch
+		Log(LastException)
+		ToastMessageShow (LastException,True)
+	End Try
+	
+End Sub
+
+Sub Activity_Resume
+	
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	
+End Sub
+
+Sub ReadTextReader(fileDay As String)
+	Try
+		Dim TextReader1 As TextReader
+		Dim Now As Long
+		Dim Month As Int
+		Dim Day As Int
+		Dim Year As Int
+		Dim FileName As String
+	
+		am12 = "0"
+		am1 = "0"
+		am2 = "0"
+		am3 = "0"
+		am4 = "0"
+		am5 = "0"
+		am6 = "0"
+		am7 = "0"
+		am8 = "0"
+		am9 = "0"
+		am10 = "0"
+		am11 = "0"
+		pm12 = "0"
+		pm1 = "0"
+		pm2 = "0"
+		pm3 = "0"
+		pm4 = "0"
+		pm5 = "0"
+		pm6 = "0"
+		pm7 = "0"
+		pm8 = "0"
+		pm9 = "0"
+		pm10 = "0"
+		pm11 = "0"
+		
+		Now = DateTime.Now
+		Month = DateTime.GetMonth(Now)
+		Day = DateTime.GetDayOfMonth (Now)
+		Year = DateTime.GetYear(Now)
+
+		if fileDay = "Today" then
+			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+		else
+			Now = DateTime.add(DateTime.Now, 0, 0, -1)
+			Month = DateTime.GetMonth(Now)
+			Day = DateTime.GetDayOfMonth (Now)
+			Year = DateTime.GetYear(Now)
+			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+		end if
+			
+		TextReader1.Initialize(File.OpenInput(File.DirRootExternal, FileName))
+		Dim line As String
+		line = TextReader1.ReadLine
+		Do While line <> Null
+			Log(line) 'write the line to LogCat
+			line = TextReader1.ReadLine
+			If line = Null Then 
+				Exit  
+			End If
+			Dim a() As String = Regex.Split("\|",line)
+			If a.Length = 9 Then
+				Dim timeStamp As String
+				timeStamp = a(0).SubString2(0,2)
+
+				Select timeStamp
+					Case "00"
+						if am12 = "0" or am12 = "" then am12 = a(1)
+					Case "01"
+						if am1 = "0" or am1 = "" then am1 = a(1)
+					Case "02"						
+						if am2 = "0" or am2 = "" then am2 = a(1)
+					Case "03"						
+						if am3 = "0" or am3 = "" then am3 = a(1)
+					Case "04"
+						if am4 = "0" or am4 = "" then am4 = a(1)
+					Case "05"
+						if am5 = "0" or am5 = "" then am5 = a(1)
+					Case "06"
+						if am6 = "0" or am6 = "" then am6 = a(1)
+					Case "07"
+						if am7 = "0" or am7 = "" then am7 = a(1)
+					Case "08"
+						if am8 = "0" or am8 = "" then am8 = a(1)
+					Case "09"
+						if am9 = "0" or am9 = "" then am9 = a(1)
+					Case "10"
+						if am10 = "0" or am10 = "" then am10 = a(1)
+					Case "11"
+						if am11 = "0" or am11 = "" then am11 = a(1)
+					Case "12"
+						if pm12 = "0" or pm12 = "" then pm12 = a(1)
+					Case "13"
+						if pm1 = "0" or pm1 = "" then pm1 = a(1)
+					Case "14"
+						if pm2 = "0" or pm2 = "" then pm2 = a(1)
+					Case "15"
+						if pm3 = "0" or pm3 = "" then pm3 = a(1)
+					Case "16"
+						if pm4 = "0" or pm4 = "" then pm4 = a(1)
+					Case "17"
+						if pm5 = "0" or pm5 = "" then pm5 = a(1)
+					Case "18"
+						if pm6 = "0" or pm6 = "" then pm6 = a(1)
+					Case "19"
+						if pm7 = "0" or pm7 = "" then pm7 = a(1)
+					Case "20"
+						if pm8 = "0" or pm8 = "" then pm8 = a(1)
+					Case "21"
+						if pm9 = "0" or pm9 = "" then pm9 = a(1)
+					Case "22"
+						if pm10 = "0" or pm10 = "" then pm10 = a(1)
+					Case "23"
+						if pm11 = "0" or pm11 = "" then pm11 = a(1)
+				End Select
+			End If
+		Loop
+
+		TextReader1.Close
+	Catch
+		Log(LastException)
+	End Try
+End Sub
