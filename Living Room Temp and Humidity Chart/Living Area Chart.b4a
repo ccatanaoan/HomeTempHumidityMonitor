@@ -5,10 +5,12 @@ Group=Default Group
 IconFile=
 Library1=core
 Library2=androidplot_0_6_2
+Library3=javaobject
+Library4=phone
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'End of default text.~\n~
 Module1=Starter
 NumberOfFiles=1
-NumberOfLibraries=2
+NumberOfLibraries=4
 NumberOfModules=1
 Version=8
 @EndOfDesignText@
@@ -24,7 +26,7 @@ Version=8
 
 #Region  Activity Attributes 
 	#FullScreen: true
-	#IncludeTitle: True
+	#IncludeTitle: False
 #End Region
 
 Sub Process_Globals
@@ -66,26 +68,36 @@ End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
 	Try
+		'  Immersive mode
+		Activity_WindowFocusChanged(True)
+		Dim lv As LayoutValues = GetRealSize
+		Dim jo As JavaObject = Activity
+		jo.RunMethod("setBottom", Array(lv.Height))
+		jo.RunMethod("setRight", Array(lv.Width))
+		Activity.Height = lv.Height
+		Activity.Width = lv.Width
+		'  Immersive mode
+		
 		Activity.LoadLayout("main")
 		
 		lc1.GraphBackgroundColor = Colors.DarkGray
 		lc1.GraphFrameColor = Colors.Blue
-		lc1.GraphFrameWidth = 8.0
+		lc1.GraphFrameWidth = 4.0
 		lc1.GraphPlotAreaBackgroundColor = Colors.ARGB(50, 0, 0, 255)
 		lc1.GraphTitleTextSize = 15
 		lc1.GraphTitleColor = Colors.White
 		lc1.GraphTitleSkewX = -0.25
 		lc1.GraphTitleUnderline = True
 		lc1.GraphTitleBold = True
-		lc1.GraphTitle = "HOME TEMPERATURE"	          'put this statement last	
+		lc1.GraphTitle = "CATANAOAN HOME TEMPERATURE ver 1.0"	          'put this statement last
 		
 		lc1.LegendBackgroundColor = Colors.White                          'it will be converted to an Alpha = 100
 		lc1.LegendTextColor = Colors.Black
-		lc1.LegendTextSize = 20.0
+		lc1.LegendTextSize = 18.0
 
-		lc1.DomianLabel = "TIME OF THE DAY"	
+		lc1.DomianLabel = "TIME OF THE DAY"
 		lc1.DomainLabelColor = Colors.Green
-		lc1.DomainLabelTextSize = 18.0
+		lc1.DomainLabelTextSize = 25.0
 
 		lc1.XaxisGridLineColor = Colors.ARGB(100,255,255,255)
 		lc1.XaxisGridLineWidth = 2.0
@@ -95,15 +107,15 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.XaxisLabelTextSize = 32.0
 		lc1.XAxisLabels = Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
 		
-		lc1.YaxisDivisions = 8
+		lc1.YaxisDivisions = 12
 		'lc1.YaxisRange(65, 85)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
-		lc1.YaxisValueFormat = lc1.ValueFormat_1                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
+		lc1.YaxisValueFormat = lc1.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
 		lc1.YaxisGridLineColor = Colors.Black
 		lc1.YaxisGridLineWidth = 2
 		lc1.YaxisLabelTicks = 1
 		lc1.YaxisLabelColor = Colors.Yellow
 		lc1.YaxisLabelOrientation = -30
-		lc1.YaxisLabelTextSize = 32.0
+		lc1.YaxisLabelTextSize = 25.0
 		lc1.YaxisTitleColor = Colors.Green
 		lc1.YaxisTitleFakeBold = False
 		lc1.YaxisTitleTextSize = 20.0
@@ -116,190 +128,190 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		' ********************* Today *********************
 		
-			ReadTextReader("Today")
+		ReadTextReader("Today")
 			
-			DateTime.DateFormat = "MMM d, yyyy" 
-			lc1.Line_1_LegendText = "Today, " & DateTime.Date(DateTime.Now)
+		DateTime.DateFormat = "MMM d, yyyy"
+		lc1.Line_1_LegendText = "Today, " & DateTime.Date(DateTime.Now)
 			
-			If am12 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12)
-			End If
-			If am1 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1)
-			End If
-			If am2 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2)
-			End If
-			If am3 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3)
-			End If
-			If am4 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4)
-			End If
-			If am5 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5)
-			End If
-			If am6 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
-			End If
-			If am7 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
-			End If
-			If am8 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
-			End If
-			If am9 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
-			End If
-			If am10 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
-			End If
-			If am11 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
-			End If
-			If pm12 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
-			End If
-			If pm1 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
-			End If
-			If pm2 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
-			End If
-			If pm3 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
-			End If
-			If pm4 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
-			End If
-			If pm5 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
-			End If
-			If pm6 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
-			End If
-			If pm7 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
-			End If
-			If pm8 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
-			End If
-			If pm9 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
-			End If	
-			If pm10 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
-			End If
-			If pm11 <> "0" Then 
-				lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
-			End If
+		If am12 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12)
+		End If
+		If am1 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1)
+		End If
+		If am2 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2)
+		End If
+		If am3 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3)
+		End If
+		If am4 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4)
+		End If
+		If am5 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5)
+		End If
+		If am6 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
+		End If
+		If am7 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
+		End If
+		If am8 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
+		End If
+		If am9 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
+		End If
+		If am10 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
+		End If
+		If am11 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
+		End If
+		If pm12 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
+		End If
+		If pm1 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
+		End If
+		If pm2 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
+		End If
+		If pm3 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
+		End If
+		If pm4 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
+		End If
+		If pm5 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
+		End If
+		If pm6 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
+		End If
+		If pm7 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
+		End If
+		If pm8 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
+		End If
+		If pm9 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
+		End If
+		If pm10 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
+		End If
+		If pm11 <> "0" Then
+			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
+		End If
 			
-			lc1.Line_1_PointLabelTextColor = Colors.Green
-			lc1.Line_1_PointLabelTextSize = 35.0	
-			lc1.Line_1_LineColor = Colors.Red
-			lc1.Line_1_LineWidth = 7.0
-			lc1.Line_1_PointColor = Colors.Black
-			lc1.Line_1_PointSize = 18.0
-			lc1.Line_1_PointShape = lc1.SHAPE_ROUND
-			lc1.Line_1_DrawDash = False
-			lc1.Line_1_DrawCubic = False
+		lc1.Line_1_PointLabelTextColor = Colors.Yellow
+		lc1.Line_1_PointLabelTextSize = 35.0
+		lc1.Line_1_LineColor = Colors.Red
+		lc1.Line_1_LineWidth = 7.0
+		lc1.Line_1_PointColor = Colors.Black
+		lc1.Line_1_PointSize = 20.0
+		lc1.Line_1_PointShape = lc1.SHAPE_ROUND
+		lc1.Line_1_DrawDash = False
+		lc1.Line_1_DrawCubic = False
 
 		' ********************* Today *********************
 		
-		' ******************* Yesterday *******************	
+		' ******************* Yesterday *******************
 
-			ReadTextReader("Yesterday")
+		ReadTextReader("Yesterday")
 			
-			Dim Yesterday As Long
-			Yesterday = DateTime.add(DateTime.Now, 0, 0, -1)
+		Dim Yesterday As Long
+		Yesterday = DateTime.add(DateTime.Now, 0, 0, -1)
 
-			DateTime.DateFormat = "MMM d, yyyy"
-			lc1.Line_2_LegendText = "Yesterday, " & DateTime.Date(Yesterday)
+		DateTime.DateFormat = "MMM d, yyyy"
+		lc1.Line_2_LegendText = "Yesterday, " & DateTime.Date(Yesterday)
 			
-			If am12 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12)
-			End If
-			If am1 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1)
-			End If
-			If am2 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2)
-			End If
-			If am3 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3)
-			End If
-			If am4 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4)
-			End If
-			If am5 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5)
-			End If
-			If am6 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
-			End If
-			If am7 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
-			End If
-			If am8 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
-			End If
-			If am9 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
-			End If
-			If am10 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
-			End If
-			If am11 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
-			End If
-			If pm12 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
-			End If
-			If pm1 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
-			End If
-			If pm2 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
-			End If
-			If pm3 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
-			End If
-			If pm4 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
-			End If
-			If pm5 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
-			End If
-			If pm6 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
-			End If
-			If pm7 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
-			End If
-			If pm8 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
-			End If
-			If pm9 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
-			End If	
-			If pm10 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
-			End If
-			If pm11 <> "0" Then 
-				lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
-			End If
+		If am12 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12)
+		End If
+		If am1 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1)
+		End If
+		If am2 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2)
+		End If
+		If am3 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3)
+		End If
+		If am4 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4)
+		End If
+		If am5 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5)
+		End If
+		If am6 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
+		End If
+		If am7 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
+		End If
+		If am8 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
+		End If
+		If am9 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
+		End If
+		If am10 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
+		End If
+		If am11 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
+		End If
+		If pm12 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
+		End If
+		If pm1 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
+		End If
+		If pm2 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
+		End If
+		If pm3 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
+		End If
+		If pm4 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
+		End If
+		If pm5 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
+		End If
+		If pm6 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
+		End If
+		If pm7 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
+		End If
+		If pm8 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
+		End If
+		If pm9 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
+		End If
+		If pm10 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
+		End If
+		If pm11 <> "0" Then
+			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
+		End If
 			
-			lc1.Line_2_PointLabelTextColor = Colors.LightGray
-			lc1.Line_2_PointLabelTextSize = 35.0	
-			lc1.Line_2_LineColor = Colors.White
-			lc1.Line_2_LineWidth = 7.0
-			lc1.Line_2_PointColor = Colors.Cyan
-			lc1.Line_2_PointSize = 10.0
-			lc1.Line_2_PointShape = lc1.SHAPE_ROUND
-			lc1.Line_2_DrawDash = False
-			lc1.Line_2_DrawCubic = False
+		lc1.Line_2_PointLabelTextColor = Colors.Cyan
+		lc1.Line_2_PointLabelTextSize = 35.0
+		lc1.Line_2_LineColor = Colors.White
+		lc1.Line_2_LineWidth = 7.0
+		lc1.Line_2_PointColor = Colors.Cyan
+		lc1.Line_2_PointSize = 10.0
+		lc1.Line_2_PointShape = lc1.SHAPE_ROUND
+		lc1.Line_2_DrawDash = False
+		lc1.Line_2_DrawCubic = False
 		
-		' ******************* Yesterday *******************		
+		' ******************* Yesterday *******************
 		
 		lc1.NumberOfLineCharts = 2                              'set the number of graphs to draw from the 1 to 5 graph that has been set up above
 			 
@@ -358,15 +370,15 @@ Sub ReadTextReader(fileDay As String)
 		Day = DateTime.GetDayOfMonth (Now)
 		Year = DateTime.GetYear(Now)
 
-		if fileDay = "Today" then
+		If fileDay = "Today" Then
 			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-		else
+		Else
 			Now = DateTime.add(DateTime.Now, 0, 0, -1)
 			Month = DateTime.GetMonth(Now)
 			Day = DateTime.GetDayOfMonth (Now)
 			Year = DateTime.GetYear(Now)
 			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-		end if
+		End If
 			
 		TextReader1.Initialize(File.OpenInput(File.DirRootExternal, FileName))
 		Dim line As String
@@ -384,53 +396,53 @@ Sub ReadTextReader(fileDay As String)
 
 				Select timeStamp
 					Case "00"
-						if am12 = "0" or am12 = "" then am12 = a(1)
+						If am12 = "0" Or am12 = "" Then am12 = a(1)
 					Case "01"
-						if am1 = "0" or am1 = "" then am1 = a(1)
+						If am1 = "0" Or am1 = "" Then am1 = a(1)
 					Case "02"						
-						if am2 = "0" or am2 = "" then am2 = a(1)
+						If am2 = "0" Or am2 = "" Then am2 = a(1)
 					Case "03"						
-						if am3 = "0" or am3 = "" then am3 = a(1)
+						If am3 = "0" Or am3 = "" Then am3 = a(1)
 					Case "04"
-						if am4 = "0" or am4 = "" then am4 = a(1)
+						If am4 = "0" Or am4 = "" Then am4 = a(1)
 					Case "05"
-						if am5 = "0" or am5 = "" then am5 = a(1)
+						If am5 = "0" Or am5 = "" Then am5 = a(1)
 					Case "06"
-						if am6 = "0" or am6 = "" then am6 = a(1)
+						If am6 = "0" Or am6 = "" Then am6 = a(1)
 					Case "07"
-						if am7 = "0" or am7 = "" then am7 = a(1)
+						If am7 = "0" Or am7 = "" Then am7 = a(1)
 					Case "08"
-						if am8 = "0" or am8 = "" then am8 = a(1)
+						If am8 = "0" Or am8 = "" Then am8 = a(1)
 					Case "09"
-						if am9 = "0" or am9 = "" then am9 = a(1)
+						If am9 = "0" Or am9 = "" Then am9 = a(1)
 					Case "10"
-						if am10 = "0" or am10 = "" then am10 = a(1)
+						If am10 = "0" Or am10 = "" Then am10 = a(1)
 					Case "11"
-						if am11 = "0" or am11 = "" then am11 = a(1)
+						If am11 = "0" Or am11 = "" Then am11 = a(1)
 					Case "12"
-						if pm12 = "0" or pm12 = "" then pm12 = a(1)
+						If pm12 = "0" Or pm12 = "" Then pm12 = a(1)
 					Case "13"
-						if pm1 = "0" or pm1 = "" then pm1 = a(1)
+						If pm1 = "0" Or pm1 = "" Then pm1 = a(1)
 					Case "14"
-						if pm2 = "0" or pm2 = "" then pm2 = a(1)
+						If pm2 = "0" Or pm2 = "" Then pm2 = a(1)
 					Case "15"
-						if pm3 = "0" or pm3 = "" then pm3 = a(1)
+						If pm3 = "0" Or pm3 = "" Then pm3 = a(1)
 					Case "16"
-						if pm4 = "0" or pm4 = "" then pm4 = a(1)
+						If pm4 = "0" Or pm4 = "" Then pm4 = a(1)
 					Case "17"
-						if pm5 = "0" or pm5 = "" then pm5 = a(1)
+						If pm5 = "0" Or pm5 = "" Then pm5 = a(1)
 					Case "18"
-						if pm6 = "0" or pm6 = "" then pm6 = a(1)
+						If pm6 = "0" Or pm6 = "" Then pm6 = a(1)
 					Case "19"
-						if pm7 = "0" or pm7 = "" then pm7 = a(1)
+						If pm7 = "0" Or pm7 = "" Then pm7 = a(1)
 					Case "20"
-						if pm8 = "0" or pm8 = "" then pm8 = a(1)
+						If pm8 = "0" Or pm8 = "" Then pm8 = a(1)
 					Case "21"
-						if pm9 = "0" or pm9 = "" then pm9 = a(1)
+						If pm9 = "0" Or pm9 = "" Then pm9 = a(1)
 					Case "22"
-						if pm10 = "0" or pm10 = "" then pm10 = a(1)
+						If pm10 = "0" Or pm10 = "" Then pm10 = a(1)
 					Case "23"
-						if pm11 = "0" or pm11 = "" then pm11 = a(1)
+						If pm11 = "0" Or pm11 = "" Then pm11 = a(1)
 				End Select
 			End If
 		Loop
@@ -439,4 +451,37 @@ Sub ReadTextReader(fileDay As String)
 	Catch
 		Log(LastException)
 	End Try
+End Sub
+
+Sub GetRealSize As LayoutValues
+	Dim lv As LayoutValues
+	Dim p As Phone
+	If p.SdkVersion >= 17 Then
+		Dim ctxt As JavaObject
+		ctxt.InitializeContext
+		Dim display As JavaObject = ctxt.RunMethodJO("getSystemService", Array("window")).RunMethod("getDefaultDisplay", Null)
+		Dim point As JavaObject
+		point.InitializeNewInstance("android.graphics.Point", Null)
+		display.RunMethod("getRealSize", Array(point))
+		lv.Width = point.GetField("x")
+		lv.Height = point.GetField("y")
+	Else
+		lv.Width = 100%x
+		lv.Height = 100%y
+	End If
+	lv.Scale = 100dip / 100
+	Return lv
+End Sub
+
+Sub Activity_WindowFocusChanged(HasFocus As Boolean)
+	If HasFocus Then
+		Try
+			Dim jo As JavaObject = Activity
+			Sleep(300)
+			jo.RunMethod("setSystemUiVisibility", Array As Object(5894)) '3846 - non-sticky
+		Catch
+			'Log(LastException) 'This can cause another error
+		End Try 'ignore
+		
+	End If
 End Sub
