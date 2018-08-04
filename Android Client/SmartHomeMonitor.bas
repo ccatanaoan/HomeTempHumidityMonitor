@@ -184,6 +184,44 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					End If
 				End If
 			End If
+			
+			' Delete log files older than 2 days
+			Dim FileNameToday As String
+			Dim FileNameYesterday As String
+			Dim Now As Long
+			Dim Month As Int
+			Dim Day As Int
+			Dim Year As Int
+			Dim Yesterday As Long
+			Dim MonthYesterday As Int
+			Dim DayYesterday As Int
+			Dim YearYesterday As Int
+
+			Now = DateTime.Now
+			Month = DateTime.GetMonth(Now)
+			Day = DateTime.GetDayOfMonth (Now)
+			Year = DateTime.GetYear(Now)
+			
+			Yesterday = DateTime.add(DateTime.Now, 0, 0, -1)
+			MonthYesterday = DateTime.GetMonth(Yesterday)
+			DayYesterday = DateTime.GetDayOfMonth (Yesterday)
+			YearYesterday = DateTime.GetYear(Yesterday)
+
+			FileNameToday = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileNameYesterday = "LivingRoomTempHumid_" & YearYesterday & "-" & NumberFormat(MonthYesterday,2,0) & "-" & NumberFormat(DayYesterday,2,0) & ".log"
+			
+			Dim flist As List = WildCardFilesList2(File.DirRootExternal,"LivingRoomTempHumid_*.log",True, True)
+			
+			For i = 0 To flist.Size -1
+				Dim FileName As String = flist.Get(i)
+				Log(FileName)
+				If FileName <> FileNameToday Then
+					If FileName <> FileNameYesterday Then
+						File.Delete(File.DirRootExternal,FileName)
+					End If
+				End If
+			Next
+			
 		else If Topic = "TempHumidBasement" Then
 		
 			Dim status As String
@@ -380,5 +418,29 @@ Sub GetAirQuality(number As Int) As String
 		Return("ALARM Carbon monoxide level is very high")
 	Else
 		Return("MQ-7 - cant read any value - check the sensor!")
+	End If
+End Sub
+
+Sub WildCardFilesList2(FilesPath As String, WildCards As String, Sorted As Boolean, Ascending As Boolean) As List 'ignore
+	If File.IsDirectory("", FilesPath) Then
+		Dim FilesFound As List = File.ListFiles(FilesPath)
+		Dim GetCards() As String = Regex.Split(",", WildCards)
+		Dim FilteredFiles As List : FilteredFiles.Initialize
+		For i = 0 To FilesFound.Size -1
+			For l = 0 To GetCards.Length -1
+				Dim TestItem As String = FilesFound.Get(i)
+				Dim mask As String = GetCards(l).Trim
+				Dim pattern As String = "^"&mask.Replace(".","\.").Replace("*",".+").Replace("?",".")&"$"
+				If Regex.IsMatch(pattern,TestItem) = True Then
+					FilteredFiles.Add(TestItem.Trim)
+				End If
+			Next
+		Next
+		If Sorted Then
+			FilteredFiles.SortCaseInsensitive(Ascending)
+		End If
+		Return FilteredFiles
+	Else
+		Msgbox("You must pass a valid Directory.", "NOTICE")
 	End If
 End Sub
