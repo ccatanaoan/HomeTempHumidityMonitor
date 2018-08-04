@@ -441,6 +441,6 @@ Sub WildCardFilesList2(FilesPath As String, WildCards As String, Sorted As Boole
 		End If
 		Return FilteredFiles
 	Else
-		Msgbox("You must pass a valid Directory.", "NOTICE")
+		ToastMessageShow("You must pass a valid Directory.",False)
 	End If
 End Sub

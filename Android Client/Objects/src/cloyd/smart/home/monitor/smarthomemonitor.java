@@ -887,8 +887,8 @@ _filteredfiles.SortCaseInsensitive(_ascending);
  //BA.debugLineNum = 436;BA.debugLine="Return FilteredFiles";
 if (true) return _filteredfiles;
  }else {
- //BA.debugLineNum = 438;BA.debugLine="Msgbox(\"You must pass a valid Directory.\", \"NOTI";
-anywheresoftware.b4a.keywords.Common.Msgbox(BA.ObjectToCharSequence("You must pass a valid Directory."),BA.ObjectToCharSequence("NOTICE"),processBA);
+ //BA.debugLineNum = 438;BA.debugLine="ToastMessageShow(\"You must pass a valid Director";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("You must pass a valid Directory."),anywheresoftware.b4a.keywords.Common.False);
  };
  //BA.debugLineNum = 440;BA.debugLine="End Sub";
 return null;
