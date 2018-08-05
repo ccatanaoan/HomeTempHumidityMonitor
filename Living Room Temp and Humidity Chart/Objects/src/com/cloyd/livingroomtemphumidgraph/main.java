@@ -590,8 +590,8 @@ mostCurrent._lc1.setLine_1_PointLabelTextColor(anywheresoftware.b4a.keywords.Com
 mostCurrent._lc1.setLine_1_PointLabelTextSize((float) (35.0));
  //BA.debugLineNum = 195;BA.debugLine="lc1.Line_1_LineColor = Colors.Red";
 mostCurrent._lc1.setLine_1_LineColor(anywheresoftware.b4a.keywords.Common.Colors.Red);
- //BA.debugLineNum = 196;BA.debugLine="lc1.Line_1_LineWidth = 7.0";
-mostCurrent._lc1.setLine_1_LineWidth((float) (7.0));
+ //BA.debugLineNum = 196;BA.debugLine="lc1.Line_1_LineWidth = 11.0";
+mostCurrent._lc1.setLine_1_LineWidth((float) (11.0));
  //BA.debugLineNum = 197;BA.debugLine="lc1.Line_1_PointColor = Colors.Black";
 mostCurrent._lc1.setLine_1_PointColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
  //BA.debugLineNum = 198;BA.debugLine="lc1.Line_1_PointSize = 20.0";

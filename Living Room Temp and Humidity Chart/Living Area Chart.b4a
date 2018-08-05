@@ -209,7 +209,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.Line_1_PointLabelTextColor = Colors.Yellow
 		lc1.Line_1_PointLabelTextSize = 35.0
 		lc1.Line_1_LineColor = Colors.Red
-		lc1.Line_1_LineWidth = 7.0
+		lc1.Line_1_LineWidth = 11.0
 		lc1.Line_1_PointColor = Colors.Black
 		lc1.Line_1_PointSize = 20.0
 		lc1.Line_1_PointShape = lc1.SHAPE_ROUND
