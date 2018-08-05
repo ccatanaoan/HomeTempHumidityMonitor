@@ -172,18 +172,18 @@ if (_sbn.getId()==726) {
  //BA.debugLineNum = 48;BA.debugLine="SmartHomeMonitor.IsAirQualityNotificationOnGoin";
 mostCurrent._smarthomemonitor._isairqualitynotificationongoing = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==725) { 
- //BA.debugLineNum = 50;BA.debugLine="SmartHomeMonitor.lngTicks = 0";
-mostCurrent._smarthomemonitor._lngticks = (long) (0);
- //BA.debugLineNum = 51;BA.debugLine="SmartHomeMonitor.lngTicksTempHumid = 0";
-mostCurrent._smarthomemonitor._lngtickstemphumid = (long) (0);
+ //BA.debugLineNum = 50;BA.debugLine="SmartHomeMonitor.lngTicks = DateTime.now";
+mostCurrent._smarthomemonitor._lngticks = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
+ //BA.debugLineNum = 51;BA.debugLine="SmartHomeMonitor.lngTicksTempHumid = DateTime.n";
+mostCurrent._smarthomemonitor._lngtickstemphumid = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
  //BA.debugLineNum = 52;BA.debugLine="SmartHomeMonitor.IsTempHumidityNotificationOnGo";
 mostCurrent._smarthomemonitor._istemphumiditynotificationongoing = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==727) { 
  //BA.debugLineNum = 54;BA.debugLine="SmartHomeMonitor.IsAirQualityNotificationOnGoin";
 mostCurrent._smarthomemonitor._isairqualitynotificationongoingbasement = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==728) { 
- //BA.debugLineNum = 56;BA.debugLine="SmartHomeMonitor.lngTicksTempHumidBasement = 0";
-mostCurrent._smarthomemonitor._lngtickstemphumidbasement = (long) (0);
+ //BA.debugLineNum = 56;BA.debugLine="SmartHomeMonitor.lngTicksTempHumidBasement = Da";
+mostCurrent._smarthomemonitor._lngtickstemphumidbasement = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
  //BA.debugLineNum = 57;BA.debugLine="SmartHomeMonitor.IsTempHumidityNotificationOnGo";
 mostCurrent._smarthomemonitor._istemphumiditynotificationongoingbasement = anywheresoftware.b4a.keywords.Common.False;
  };

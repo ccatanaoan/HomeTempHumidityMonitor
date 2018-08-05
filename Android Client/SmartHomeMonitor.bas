@@ -119,7 +119,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
 								managerTempHumidityCooldownTime = 1
 							End If
-							If lngTicksTempHumid = 0 Or p.Minutes > = managerTempHumidityCooldownTime Then
+							If p.Minutes > = managerTempHumidityCooldownTime Then
 								If a(4) <> 0 Then
 									CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 								Else
@@ -130,7 +130,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						End If
 					Else
 						lngTicksTempHumid = DateTime.now
-						'lngTicksTempHumid = 0
 						IsTempHumidityNotificationOnGoing = False
 						Notification1.Cancel(725)
 					End If
@@ -245,7 +244,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
 								managerTempHumidityCooldownTime = 1
 							End If
-							If lngTicksTempHumidBasement = 0 Or p.Minutes > = managerTempHumidityCooldownTime Then
+							If p.Minutes > = managerTempHumidityCooldownTime Then
 								If a(4) <> 0 Then
 									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement Temperature").Notify(728)
 								Else
@@ -256,7 +255,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						End If
 					Else
 						lngTicksTempHumidBasement = DateTime.now
-						'lngTicksTempHumidBasement = 0
 						IsTempHumidityNotificationOnGoingBasement = False
 						Notification1.Cancel(728)
 					End If
