@@ -64,6 +64,7 @@ Sub Globals
 	Private pm9 As String
 	Private pm10 As String
 	Private pm11 As String
+	Private tempRightNow As String
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -313,7 +314,23 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		' ******************* Yesterday *******************
 		
-		lc1.NumberOfLineCharts = 2                              'set the number of graphs to draw from the 1 to 5 graph that has been set up above
+		' ******************* Last 10 minutes *******************
+		
+		lc1.Line_3_LegendText = "Last 2 minutes"
+		lc1.Line_3_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
+		lc1.Line_3_PointLabelTextColor = Colors.Green
+		lc1.Line_3_PointLabelTextSize = 27.0
+		lc1.Line_3_LineColor = Colors.Green
+		lc1.Line_3_LineWidth = 5.0
+		lc1.Line_3_PointColor = Colors.Green
+		lc1.Line_3_PointSize = 8.0
+		lc1.Line_3_PointShape = lc1.SHAPE_ROUND
+		lc1.Line_3_DrawDash = False
+		lc1.Line_3_DrawCubic = False
+		
+		' ******************* Last 10 minutes *******************
+		
+		lc1.NumberOfLineCharts = 3                              'set the number of graphs to draw from the 1 to 5 graph that has been set up above
 			 
 		lc1.DrawTheGraphs
 	Catch
@@ -444,6 +461,9 @@ Sub ReadTextReader(fileDay As String)
 					Case "23"
 						If pm11 = "0" Or pm11 = "" Then pm11 = a(1)
 				End Select
+				If fileDay = "Today" Then
+					tempRightNow = a(1)
+				End If
 			End If
 		Loop
 
