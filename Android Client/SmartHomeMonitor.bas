@@ -105,7 +105,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					StateManager.SetSetting("TempHumidity",status)
 					StateManager.SaveSettings
 					
-					If DateTime.GetMinute(DateTime.Now) Mod 10 = 0 Or DateTime.GetMinute(DateTime.Now) = 59 Then
+					If DateTime.GetMinute(DateTime.Now) Mod 2 = 0 Then
 						LogEvent(status)
 					End If
 					
@@ -120,7 +120,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 								managerTempHumidityCooldownTime = 1
 							End If
 							If p.Minutes > = managerTempHumidityCooldownTime Then
-								If a(4) <> 0 Then
+								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+									CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Temperature").Notify(725)
+								else If a(4) <> 0 Then
 									CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
 								Else
 									CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
@@ -245,7 +247,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 								managerTempHumidityCooldownTime = 1
 							End If
 							If p.Minutes > = managerTempHumidityCooldownTime Then
-								If a(4) <> 0 Then
+								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement Temperature").Notify(728)
+								else If a(4) <> 0 Then
 									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement Temperature").Notify(728)
 								Else
 									CreateNotification(GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement Temperature").Notify(728)
