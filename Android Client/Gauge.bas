@@ -195,7 +195,8 @@ Private Sub DrawIndicator (Value As Float)
 	End If
 	cvsIndicator.DrawCircle(x, y, CircleRadius, CenterColor, True, 0)
 	cvsIndicator.Invalidate
-	mlbl.Text = s & NumberFormat2(Value, 2, 1, 1, True) & SuffixText
+	'mlbl.Text = s & NumberFormat2(Value, 2, 1, 1, True) & SuffixText
+	mlbl.Text = s & NumberFormat2(Value, 1, 2, 0, True) & SuffixText
 End Sub
 
 Private Sub ValueToAngle (Value As Float) As Float

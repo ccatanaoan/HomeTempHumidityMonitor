@@ -73,12 +73,12 @@ Color = 0;
 			return BA.TypeToString(this, false);
 		}}
 public String  _animatevalueto(float _newvalue) throws Exception{
- //BA.debugLineNum = 226;BA.debugLine="Private Sub AnimateValueTo(NewValue As Float)";
- //BA.debugLineNum = 227;BA.debugLine="mCurrentValue = NewValue";
+ //BA.debugLineNum = 227;BA.debugLine="Private Sub AnimateValueTo(NewValue As Float)";
+ //BA.debugLineNum = 228;BA.debugLine="mCurrentValue = NewValue";
 _mcurrentvalue = _newvalue;
- //BA.debugLineNum = 228;BA.debugLine="DrawIndicator(mCurrentValue)";
+ //BA.debugLineNum = 229;BA.debugLine="DrawIndicator(mCurrentValue)";
 _drawindicator(_mcurrentvalue);
- //BA.debugLineNum = 229;BA.debugLine="End Sub";
+ //BA.debugLineNum = 230;BA.debugLine="End Sub";
 return "";
 }
 public String  _base_resize(double _width,double _height) throws Exception{
@@ -191,20 +191,20 @@ return "";
 }
 public cloyd.smart.home.monitor.gauge._gaugerange  _createrange(float _lowvalue,float _highvalue,int _color) throws Exception{
 cloyd.smart.home.monitor.gauge._gaugerange _r = null;
- //BA.debugLineNum = 208;BA.debugLine="Public Sub CreateRange(LowValue As Float, HighValu";
- //BA.debugLineNum = 209;BA.debugLine="Dim r As GaugeRange";
+ //BA.debugLineNum = 209;BA.debugLine="Public Sub CreateRange(LowValue As Float, HighValu";
+ //BA.debugLineNum = 210;BA.debugLine="Dim r As GaugeRange";
 _r = new cloyd.smart.home.monitor.gauge._gaugerange();
- //BA.debugLineNum = 210;BA.debugLine="r.Initialize";
+ //BA.debugLineNum = 211;BA.debugLine="r.Initialize";
 _r.Initialize();
- //BA.debugLineNum = 211;BA.debugLine="r.LowValue = LowValue";
+ //BA.debugLineNum = 212;BA.debugLine="r.LowValue = LowValue";
 _r.LowValue = _lowvalue;
- //BA.debugLineNum = 212;BA.debugLine="r.HighValue = HighValue";
+ //BA.debugLineNum = 213;BA.debugLine="r.HighValue = HighValue";
 _r.HighValue = _highvalue;
- //BA.debugLineNum = 213;BA.debugLine="r.Color = Color";
+ //BA.debugLineNum = 214;BA.debugLine="r.Color = Color";
 _r.Color = _color;
- //BA.debugLineNum = 214;BA.debugLine="Return r";
+ //BA.debugLineNum = 215;BA.debugLine="Return r";
 if (true) return _r;
- //BA.debugLineNum = 215;BA.debugLine="End Sub";
+ //BA.debugLineNum = 216;BA.debugLine="End Sub";
 return null;
 }
 public String  _designercreateview(Object _base,anywheresoftware.b4a.objects.LabelWrapper _lbl,anywheresoftware.b4a.objects.collections.Map _props) throws Exception{
@@ -379,9 +379,9 @@ _circleradius = _indicatorbasewidth;
 _cvsindicator.DrawCircle(_x,_y,_circleradius,_centercolor,__c.True,(float) (0));
  //BA.debugLineNum = 191;BA.debugLine="cvsIndicator.Invalidate";
 _cvsindicator.Invalidate();
- //BA.debugLineNum = 192;BA.debugLine="mlbl.Text = s & NumberFormat2(Value, 2, 1, 1, Tru";
-_mlbl.setText(BA.ObjectToCharSequence(_s+__c.NumberFormat2(_value,(int) (2),(int) (1),(int) (1),__c.True)+_suffixtext));
- //BA.debugLineNum = 193;BA.debugLine="End Sub";
+ //BA.debugLineNum = 193;BA.debugLine="mlbl.Text = s & NumberFormat2(Value, 1, 2, 0, Tru";
+_mlbl.setText(BA.ObjectToCharSequence(_s+__c.NumberFormat2(_value,(int) (1),(int) (2),(int) (0),__c.True)+_suffixtext));
+ //BA.debugLineNum = 194;BA.debugLine="End Sub";
 return "";
 }
 public String  _drawticks() throws Exception{
@@ -443,10 +443,10 @@ _cvsgauge.DrawLine((float) (_x+_r*__c.CosD(_angle)),(float) (_y+_r*__c.SinD(_ang
 return "";
 }
 public float  _getcurrentvalue() throws Exception{
- //BA.debugLineNum = 222;BA.debugLine="Public Sub getCurrentValue As Float";
- //BA.debugLineNum = 223;BA.debugLine="Return mCurrentValue";
+ //BA.debugLineNum = 223;BA.debugLine="Public Sub getCurrentValue As Float";
+ //BA.debugLineNum = 224;BA.debugLine="Return mCurrentValue";
 if (true) return _mcurrentvalue;
- //BA.debugLineNum = 224;BA.debugLine="End Sub";
+ //BA.debugLineNum = 225;BA.debugLine="End Sub";
 return 0f;
 }
 public String  _initialize(anywheresoftware.b4a.BA _ba,Object _callback,String _eventname) throws Exception{
@@ -463,12 +463,12 @@ return "";
 }
 public String  _setcurrentvalue(float _v) throws Exception{
 float _newvalue = 0f;
- //BA.debugLineNum = 217;BA.debugLine="Public Sub setCurrentValue (v As Float)";
- //BA.debugLineNum = 218;BA.debugLine="Dim NewValue As Float = Min(MaxValue, Max(MinValu";
+ //BA.debugLineNum = 218;BA.debugLine="Public Sub setCurrentValue (v As Float)";
+ //BA.debugLineNum = 219;BA.debugLine="Dim NewValue As Float = Min(MaxValue, Max(MinValu";
 _newvalue = (float) (__c.Min(_maxvalue,__c.Max(_minvalue,_v)));
- //BA.debugLineNum = 219;BA.debugLine="AnimateValueTo(NewValue)";
+ //BA.debugLineNum = 220;BA.debugLine="AnimateValueTo(NewValue)";
 _animatevalueto(_newvalue);
- //BA.debugLineNum = 220;BA.debugLine="End Sub";
+ //BA.debugLineNum = 221;BA.debugLine="End Sub";
 return "";
 }
 public String  _setminandmax(float _newminvalue,float _newmaxvalue) throws Exception{
@@ -484,10 +484,10 @@ return "";
 }
 public String  _setranges(anywheresoftware.b4a.objects.collections.List _ranges) throws Exception{
 cloyd.smart.home.monitor.gauge._gaugerange _r = null;
- //BA.debugLineNum = 199;BA.debugLine="Public Sub SetRanges(Ranges As List)";
- //BA.debugLineNum = 200;BA.debugLine="mRanges = Ranges";
+ //BA.debugLineNum = 200;BA.debugLine="Public Sub SetRanges(Ranges As List)";
+ //BA.debugLineNum = 201;BA.debugLine="mRanges = Ranges";
 _mranges = _ranges;
- //BA.debugLineNum = 201;BA.debugLine="For Each r As GaugeRange In Ranges";
+ //BA.debugLineNum = 202;BA.debugLine="For Each r As GaugeRange In Ranges";
 {
 final anywheresoftware.b4a.BA.IterableList group2 = _ranges;
 final int groupLen2 = group2.getSize()
@@ -495,22 +495,22 @@ final int groupLen2 = group2.getSize()
 ;
 for (; index2 < groupLen2;index2++){
 _r = (cloyd.smart.home.monitor.gauge._gaugerange)(group2.Get(index2));
- //BA.debugLineNum = 202;BA.debugLine="r.Color = Bit.And(0x00ffffff, r.Color)";
+ //BA.debugLineNum = 203;BA.debugLine="r.Color = Bit.And(0x00ffffff, r.Color)";
 _r.Color = __c.Bit.And((int) (0x00ffffff),_r.Color);
- //BA.debugLineNum = 203;BA.debugLine="r.Color = Bit.Or(0x88000000, r.Color)";
+ //BA.debugLineNum = 204;BA.debugLine="r.Color = Bit.Or(0x88000000, r.Color)";
 _r.Color = __c.Bit.Or((int) (0x88000000),_r.Color);
  }
 };
- //BA.debugLineNum = 205;BA.debugLine="DrawBackground";
+ //BA.debugLineNum = 206;BA.debugLine="DrawBackground";
 _drawbackground();
- //BA.debugLineNum = 206;BA.debugLine="End Sub";
+ //BA.debugLineNum = 207;BA.debugLine="End Sub";
 return "";
 }
 public float  _valuetoangle(float _value) throws Exception{
- //BA.debugLineNum = 195;BA.debugLine="Private Sub ValueToAngle (Value As Float) As Float";
- //BA.debugLineNum = 196;BA.debugLine="Return (Value - MinValue) / (MaxValue - MinValue)";
+ //BA.debugLineNum = 196;BA.debugLine="Private Sub ValueToAngle (Value As Float) As Float";
+ //BA.debugLineNum = 197;BA.debugLine="Return (Value - MinValue) / (MaxValue - MinValue)";
 if (true) return (float) ((_value-_minvalue)/(double)(_maxvalue-_minvalue)*_anglerange+_angleoffset);
- //BA.debugLineNum = 197;BA.debugLine="End Sub";
+ //BA.debugLineNum = 198;BA.debugLine="End Sub";
 return 0f;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {
