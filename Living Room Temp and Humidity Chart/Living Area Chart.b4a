@@ -90,13 +90,14 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.GraphTitleSkewX = -0.25
 		lc1.GraphTitleUnderline = True
 		lc1.GraphTitleBold = True
-		lc1.GraphTitle = "CATANAOAN HOME TEMPERATURE ver 1.0"	          'put this statement last
+		lc1.GraphTitle = "CATANAOAN HOME TEMPERATURE v1.0"	          'put this statement last
 		
 		lc1.LegendBackgroundColor = Colors.White                          'it will be converted to an Alpha = 100
 		lc1.LegendTextColor = Colors.Black
 		lc1.LegendTextSize = 18.0
 
-		lc1.DomianLabel = "TIME OF THE DAY"
+		DateTime.TimeFormat = "h:mm a"
+		lc1.DomianLabel = "The time now is: " & DateTime.Time(DateTime.Now) '"TIME OF THE DAY"
 		lc1.DomainLabelColor = Colors.Green
 		lc1.DomainLabelTextSize = 25.0
 
@@ -108,8 +109,8 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.XaxisLabelTextSize = 32.0
 		lc1.XAxisLabels = Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
 		
-		lc1.YaxisDivisions = 20
-		lc1.YaxisRange(69, 85)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
+		lc1.YaxisDivisions = 10
+		lc1.YaxisRange(65, 85)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
 		lc1.YaxisValueFormat = lc1.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
 		lc1.YaxisGridLineColor = Colors.Black
 		lc1.YaxisGridLineWidth = 2
