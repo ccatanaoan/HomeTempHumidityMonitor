@@ -32,7 +32,7 @@ Version=8
 Sub Process_Globals
 	'These global variables will be declared once when the application starts.
 	'These variables can be accessed from all modules.
-	
+	Dim Timer1 As Timer
 End Sub
 
 Sub Globals
@@ -81,10 +81,10 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		Activity.LoadLayout("main")
 		
-		lc1.GraphBackgroundColor = Colors.DarkGray
+		lc1.GraphBackgroundColor = Colors.Transparent 'Colors.DarkGray
 		lc1.GraphFrameColor = Colors.Blue
 		lc1.GraphFrameWidth = 4.0
-		lc1.GraphPlotAreaBackgroundColor = Colors.ARGB(50, 0, 0, 255)
+		lc1.GraphPlotAreaBackgroundColor = Colors.DarkGray 'Colors.ARGB(50, 0, 0, 255)
 		lc1.GraphTitleTextSize = 15
 		lc1.GraphTitleColor = Colors.White
 		lc1.GraphTitleSkewX = -0.25
@@ -108,8 +108,8 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.XaxisLabelTextSize = 32.0
 		lc1.XAxisLabels = Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
 		
-		lc1.YaxisDivisions = 12
-		'lc1.YaxisRange(65, 85)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
+		lc1.YaxisDivisions = 20
+		lc1.YaxisRange(69, 85)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
 		lc1.YaxisValueFormat = lc1.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
 		lc1.YaxisGridLineColor = Colors.Black
 		lc1.YaxisGridLineWidth = 2
@@ -319,7 +319,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.Line_3_LegendText = "Last 2 minutes"
 		lc1.Line_3_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
 		lc1.Line_3_PointLabelTextColor = Colors.Green
-		lc1.Line_3_PointLabelTextSize = 27.0
+		lc1.Line_3_PointLabelTextSize = 30.0
 		lc1.Line_3_LineColor = Colors.Green
 		lc1.Line_3_LineWidth = 5.0
 		lc1.Line_3_PointColor = Colors.Green
@@ -333,6 +333,9 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.NumberOfLineCharts = 3                              'set the number of graphs to draw from the 1 to 5 graph that has been set up above
 			 
 		lc1.DrawTheGraphs
+		
+		Timer1.Initialize("Timer1",1000 * 60) 'check each minute
+		Timer1.Enabled = True 'start timer
 	Catch
 		Log(LastException)
 		ToastMessageShow (LastException,True)
@@ -345,7 +348,7 @@ Sub Activity_Resume
 End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
-	
+
 End Sub
 
 Sub ReadTextReader(fileDay As String)
@@ -504,4 +507,10 @@ Sub Activity_WindowFocusChanged(HasFocus As Boolean)
 		End Try 'ignore
 		
 	End If
+End Sub
+
+Sub Timer1_Tick
+	Log("Timer tick")
+	lc1.RemoveView
+	Activity_Create(False)
 End Sub
