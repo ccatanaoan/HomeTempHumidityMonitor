@@ -400,408 +400,410 @@ mostCurrent._lc1.setGraphTitleSkewX((float) (-0.25));
 mostCurrent._lc1.setGraphTitleUnderline(anywheresoftware.b4a.keywords.Common.True);
  //BA.debugLineNum = 76;BA.debugLine="lc1.GraphTitleBold = True";
 mostCurrent._lc1.setGraphTitleBold(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 77;BA.debugLine="lc1.GraphTitle = \"CATANAOAN HOME TEMPERATURE ver";
-mostCurrent._lc1.setGraphTitle("CATANAOAN HOME TEMPERATURE ver 1.0");
+ //BA.debugLineNum = 77;BA.debugLine="lc1.GraphTitle = \"CATANAOAN HOME TEMPERATURE v1.";
+mostCurrent._lc1.setGraphTitle("CATANAOAN HOME TEMPERATURE v1.0");
  //BA.debugLineNum = 79;BA.debugLine="lc1.LegendBackgroundColor = Colors.White";
 mostCurrent._lc1.setLegendBackgroundColor(anywheresoftware.b4a.keywords.Common.Colors.White);
  //BA.debugLineNum = 80;BA.debugLine="lc1.LegendTextColor = Colors.Black";
 mostCurrent._lc1.setLegendTextColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
  //BA.debugLineNum = 81;BA.debugLine="lc1.LegendTextSize = 18.0";
 mostCurrent._lc1.setLegendTextSize((float) (18.0));
- //BA.debugLineNum = 83;BA.debugLine="lc1.DomianLabel = \"TIME OF THE DAY\"";
-mostCurrent._lc1.setDomianLabel("TIME OF THE DAY");
- //BA.debugLineNum = 84;BA.debugLine="lc1.DomainLabelColor = Colors.Green";
+ //BA.debugLineNum = 83;BA.debugLine="DateTime.TimeFormat = \"h:mm a\"";
+anywheresoftware.b4a.keywords.Common.DateTime.setTimeFormat("h:mm a");
+ //BA.debugLineNum = 84;BA.debugLine="lc1.DomianLabel = \"The time now is: \" & DateTime";
+mostCurrent._lc1.setDomianLabel("The time now is: "+anywheresoftware.b4a.keywords.Common.DateTime.Time(anywheresoftware.b4a.keywords.Common.DateTime.getNow()));
+ //BA.debugLineNum = 85;BA.debugLine="lc1.DomainLabelColor = Colors.Green";
 mostCurrent._lc1.setDomainLabelColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
- //BA.debugLineNum = 85;BA.debugLine="lc1.DomainLabelTextSize = 25.0";
+ //BA.debugLineNum = 86;BA.debugLine="lc1.DomainLabelTextSize = 25.0";
 mostCurrent._lc1.setDomainLabelTextSize((float) (25.0));
- //BA.debugLineNum = 87;BA.debugLine="lc1.XaxisGridLineColor = Colors.ARGB(100,255,255";
+ //BA.debugLineNum = 88;BA.debugLine="lc1.XaxisGridLineColor = Colors.ARGB(100,255,255";
 mostCurrent._lc1.setXaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.ARGB((int) (100),(int) (255),(int) (255),(int) (255)));
- //BA.debugLineNum = 88;BA.debugLine="lc1.XaxisGridLineWidth = 2.0";
+ //BA.debugLineNum = 89;BA.debugLine="lc1.XaxisGridLineWidth = 2.0";
 mostCurrent._lc1.setXaxisGridLineWidth((float) (2.0));
- //BA.debugLineNum = 89;BA.debugLine="lc1.XaxisLabelTicks = 1";
+ //BA.debugLineNum = 90;BA.debugLine="lc1.XaxisLabelTicks = 1";
 mostCurrent._lc1.setXaxisLabelTicks((int) (1));
- //BA.debugLineNum = 90;BA.debugLine="lc1.XaxisLabelOrientation = 0";
+ //BA.debugLineNum = 91;BA.debugLine="lc1.XaxisLabelOrientation = 0";
 mostCurrent._lc1.setXaxisLabelOrientation((float) (0));
- //BA.debugLineNum = 91;BA.debugLine="lc1.XaxisLabelTextColor = Colors.Red";
+ //BA.debugLineNum = 92;BA.debugLine="lc1.XaxisLabelTextColor = Colors.Red";
 mostCurrent._lc1.setXaxisLabelTextColor(anywheresoftware.b4a.keywords.Common.Colors.Red);
- //BA.debugLineNum = 92;BA.debugLine="lc1.XaxisLabelTextSize = 32.0";
+ //BA.debugLineNum = 93;BA.debugLine="lc1.XaxisLabelTextSize = 32.0";
 mostCurrent._lc1.setXaxisLabelTextSize((float) (32.0));
- //BA.debugLineNum = 93;BA.debugLine="lc1.XAxisLabels = Array As String(\"12 am\",\"1 am\"";
+ //BA.debugLineNum = 94;BA.debugLine="lc1.XAxisLabels = Array As String(\"12 am\",\"1 am\"";
 mostCurrent._lc1.setXAxisLabels(new String[]{"12 am","1 am","2 am","3 am","4 am","5 am","6 am","7 am","8 am","9 am","10 am","11 am","12 pm","1 pm","2 pm","3 pm","4 pm","5 pm","6 pm","7 pm","8 pm","9 pm","10 pm","11 pm"});
- //BA.debugLineNum = 95;BA.debugLine="lc1.YaxisDivisions = 20";
-mostCurrent._lc1.setYaxisDivisions((int) (20));
- //BA.debugLineNum = 96;BA.debugLine="lc1.YaxisRange(69, 85)";
-mostCurrent._lc1.YaxisRange((float) (69),(float) (85));
- //BA.debugLineNum = 97;BA.debugLine="lc1.YaxisValueFormat = lc1.ValueFormat_2";
+ //BA.debugLineNum = 96;BA.debugLine="lc1.YaxisDivisions = 10";
+mostCurrent._lc1.setYaxisDivisions((int) (10));
+ //BA.debugLineNum = 97;BA.debugLine="lc1.YaxisRange(65, 85)";
+mostCurrent._lc1.YaxisRange((float) (65),(float) (85));
+ //BA.debugLineNum = 98;BA.debugLine="lc1.YaxisValueFormat = lc1.ValueFormat_2";
 mostCurrent._lc1.setYaxisValueFormat(mostCurrent._lc1.ValueFormat_2);
- //BA.debugLineNum = 98;BA.debugLine="lc1.YaxisGridLineColor = Colors.Black";
+ //BA.debugLineNum = 99;BA.debugLine="lc1.YaxisGridLineColor = Colors.Black";
 mostCurrent._lc1.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
- //BA.debugLineNum = 99;BA.debugLine="lc1.YaxisGridLineWidth = 2";
+ //BA.debugLineNum = 100;BA.debugLine="lc1.YaxisGridLineWidth = 2";
 mostCurrent._lc1.setYaxisGridLineWidth((float) (2));
- //BA.debugLineNum = 100;BA.debugLine="lc1.YaxisLabelTicks = 1";
+ //BA.debugLineNum = 101;BA.debugLine="lc1.YaxisLabelTicks = 1";
 mostCurrent._lc1.setYaxisLabelTicks((int) (1));
- //BA.debugLineNum = 101;BA.debugLine="lc1.YaxisLabelColor = Colors.Yellow";
+ //BA.debugLineNum = 102;BA.debugLine="lc1.YaxisLabelColor = Colors.Yellow";
 mostCurrent._lc1.setYaxisLabelColor(anywheresoftware.b4a.keywords.Common.Colors.Yellow);
- //BA.debugLineNum = 102;BA.debugLine="lc1.YaxisLabelOrientation = -30";
+ //BA.debugLineNum = 103;BA.debugLine="lc1.YaxisLabelOrientation = -30";
 mostCurrent._lc1.setYaxisLabelOrientation((float) (-30));
- //BA.debugLineNum = 103;BA.debugLine="lc1.YaxisLabelTextSize = 25.0";
+ //BA.debugLineNum = 104;BA.debugLine="lc1.YaxisLabelTextSize = 25.0";
 mostCurrent._lc1.setYaxisLabelTextSize((float) (25.0));
- //BA.debugLineNum = 104;BA.debugLine="lc1.YaxisTitleColor = Colors.Green";
+ //BA.debugLineNum = 105;BA.debugLine="lc1.YaxisTitleColor = Colors.Green";
 mostCurrent._lc1.setYaxisTitleColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
- //BA.debugLineNum = 105;BA.debugLine="lc1.YaxisTitleFakeBold = False";
+ //BA.debugLineNum = 106;BA.debugLine="lc1.YaxisTitleFakeBold = False";
 mostCurrent._lc1.setYaxisTitleFakeBold(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 106;BA.debugLine="lc1.YaxisTitleTextSize = 20.0";
+ //BA.debugLineNum = 107;BA.debugLine="lc1.YaxisTitleTextSize = 20.0";
 mostCurrent._lc1.setYaxisTitleTextSize((float) (20.0));
- //BA.debugLineNum = 107;BA.debugLine="lc1.YaxisTitleUnderline = True";
+ //BA.debugLineNum = 108;BA.debugLine="lc1.YaxisTitleUnderline = True";
 mostCurrent._lc1.setYaxisTitleUnderline(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 108;BA.debugLine="lc1.YaxisTitleTextSkewness = 0";
+ //BA.debugLineNum = 109;BA.debugLine="lc1.YaxisTitleTextSkewness = 0";
 mostCurrent._lc1.setYaxisTitleTextSkewness((float) (0));
- //BA.debugLineNum = 109;BA.debugLine="lc1.YaxisLabelAndTitleDistance = 60.0";
+ //BA.debugLineNum = 110;BA.debugLine="lc1.YaxisLabelAndTitleDistance = 60.0";
 mostCurrent._lc1.setYaxisLabelAndTitleDistance((float) (60.0));
- //BA.debugLineNum = 110;BA.debugLine="lc1.YaxisTitle = \"Temperature (Fahrenheit)\"";
+ //BA.debugLineNum = 111;BA.debugLine="lc1.YaxisTitle = \"Temperature (Fahrenheit)\"";
 mostCurrent._lc1.setYaxisTitle("Temperature (Fahrenheit)");
- //BA.debugLineNum = 112;BA.debugLine="lc1.MaxNumberOfEntriesPerLineChart = 24";
+ //BA.debugLineNum = 113;BA.debugLine="lc1.MaxNumberOfEntriesPerLineChart = 24";
 mostCurrent._lc1.setMaxNumberOfEntriesPerLineChart((int) (24));
- //BA.debugLineNum = 116;BA.debugLine="ReadTextReader(\"Today\")";
+ //BA.debugLineNum = 117;BA.debugLine="ReadTextReader(\"Today\")";
 _readtextreader("Today");
- //BA.debugLineNum = 118;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy\"";
+ //BA.debugLineNum = 119;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy");
- //BA.debugLineNum = 119;BA.debugLine="lc1.Line_1_LegendText = \"Today, \" & DateTime.Dat";
+ //BA.debugLineNum = 120;BA.debugLine="lc1.Line_1_LegendText = \"Today, \" & DateTime.Dat";
 mostCurrent._lc1.setLine_1_LegendText("Today, "+anywheresoftware.b4a.keywords.Common.DateTime.Date(anywheresoftware.b4a.keywords.Common.DateTime.getNow()));
- //BA.debugLineNum = 121;BA.debugLine="If am12 <> \"0\" Then";
+ //BA.debugLineNum = 122;BA.debugLine="If am12 <> \"0\" Then";
 if ((mostCurrent._am12).equals("0") == false) { 
- //BA.debugLineNum = 122;BA.debugLine="lc1.Line_1_Data = Array As Float (am12)";
+ //BA.debugLineNum = 123;BA.debugLine="lc1.Line_1_Data = Array As Float (am12)";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12))});
  };
- //BA.debugLineNum = 124;BA.debugLine="If am1 <> \"0\" Then";
+ //BA.debugLineNum = 125;BA.debugLine="If am1 <> \"0\" Then";
 if ((mostCurrent._am1).equals("0") == false) { 
- //BA.debugLineNum = 125;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1)";
+ //BA.debugLineNum = 126;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1)";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1))});
  };
- //BA.debugLineNum = 127;BA.debugLine="If am2 <> \"0\" Then";
+ //BA.debugLineNum = 128;BA.debugLine="If am2 <> \"0\" Then";
 if ((mostCurrent._am2).equals("0") == false) { 
- //BA.debugLineNum = 128;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 129;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2))});
  };
- //BA.debugLineNum = 130;BA.debugLine="If am3 <> \"0\" Then";
+ //BA.debugLineNum = 131;BA.debugLine="If am3 <> \"0\" Then";
 if ((mostCurrent._am3).equals("0") == false) { 
- //BA.debugLineNum = 131;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 132;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3))});
  };
- //BA.debugLineNum = 133;BA.debugLine="If am4 <> \"0\" Then";
+ //BA.debugLineNum = 134;BA.debugLine="If am4 <> \"0\" Then";
 if ((mostCurrent._am4).equals("0") == false) { 
- //BA.debugLineNum = 134;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 135;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4))});
  };
- //BA.debugLineNum = 136;BA.debugLine="If am5 <> \"0\" Then";
+ //BA.debugLineNum = 137;BA.debugLine="If am5 <> \"0\" Then";
 if ((mostCurrent._am5).equals("0") == false) { 
- //BA.debugLineNum = 137;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 138;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5))});
  };
- //BA.debugLineNum = 139;BA.debugLine="If am6 <> \"0\" Then";
+ //BA.debugLineNum = 140;BA.debugLine="If am6 <> \"0\" Then";
 if ((mostCurrent._am6).equals("0") == false) { 
- //BA.debugLineNum = 140;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 141;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6))});
  };
- //BA.debugLineNum = 142;BA.debugLine="If am7 <> \"0\" Then";
+ //BA.debugLineNum = 143;BA.debugLine="If am7 <> \"0\" Then";
 if ((mostCurrent._am7).equals("0") == false) { 
- //BA.debugLineNum = 143;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 144;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7))});
  };
- //BA.debugLineNum = 145;BA.debugLine="If am8 <> \"0\" Then";
+ //BA.debugLineNum = 146;BA.debugLine="If am8 <> \"0\" Then";
 if ((mostCurrent._am8).equals("0") == false) { 
- //BA.debugLineNum = 146;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 147;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8))});
  };
- //BA.debugLineNum = 148;BA.debugLine="If am9 <> \"0\" Then";
+ //BA.debugLineNum = 149;BA.debugLine="If am9 <> \"0\" Then";
 if ((mostCurrent._am9).equals("0") == false) { 
- //BA.debugLineNum = 149;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 150;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9))});
  };
- //BA.debugLineNum = 151;BA.debugLine="If am10 <> \"0\" Then";
+ //BA.debugLineNum = 152;BA.debugLine="If am10 <> \"0\" Then";
 if ((mostCurrent._am10).equals("0") == false) { 
- //BA.debugLineNum = 152;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 153;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10))});
  };
- //BA.debugLineNum = 154;BA.debugLine="If am11 <> \"0\" Then";
+ //BA.debugLineNum = 155;BA.debugLine="If am11 <> \"0\" Then";
 if ((mostCurrent._am11).equals("0") == false) { 
- //BA.debugLineNum = 155;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 156;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11))});
  };
- //BA.debugLineNum = 157;BA.debugLine="If pm12 <> \"0\" Then";
+ //BA.debugLineNum = 158;BA.debugLine="If pm12 <> \"0\" Then";
 if ((mostCurrent._pm12).equals("0") == false) { 
- //BA.debugLineNum = 158;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 159;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12))});
  };
- //BA.debugLineNum = 160;BA.debugLine="If pm1 <> \"0\" Then";
+ //BA.debugLineNum = 161;BA.debugLine="If pm1 <> \"0\" Then";
 if ((mostCurrent._pm1).equals("0") == false) { 
- //BA.debugLineNum = 161;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 162;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1))});
  };
- //BA.debugLineNum = 163;BA.debugLine="If pm2 <> \"0\" Then";
+ //BA.debugLineNum = 164;BA.debugLine="If pm2 <> \"0\" Then";
 if ((mostCurrent._pm2).equals("0") == false) { 
- //BA.debugLineNum = 164;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 165;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2))});
  };
- //BA.debugLineNum = 166;BA.debugLine="If pm3 <> \"0\" Then";
+ //BA.debugLineNum = 167;BA.debugLine="If pm3 <> \"0\" Then";
 if ((mostCurrent._pm3).equals("0") == false) { 
- //BA.debugLineNum = 167;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 168;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3))});
  };
- //BA.debugLineNum = 169;BA.debugLine="If pm4 <> \"0\" Then";
+ //BA.debugLineNum = 170;BA.debugLine="If pm4 <> \"0\" Then";
 if ((mostCurrent._pm4).equals("0") == false) { 
- //BA.debugLineNum = 170;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 171;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4))});
  };
- //BA.debugLineNum = 172;BA.debugLine="If pm5 <> \"0\" Then";
+ //BA.debugLineNum = 173;BA.debugLine="If pm5 <> \"0\" Then";
 if ((mostCurrent._pm5).equals("0") == false) { 
- //BA.debugLineNum = 173;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 174;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5))});
  };
- //BA.debugLineNum = 175;BA.debugLine="If pm6 <> \"0\" Then";
+ //BA.debugLineNum = 176;BA.debugLine="If pm6 <> \"0\" Then";
 if ((mostCurrent._pm6).equals("0") == false) { 
- //BA.debugLineNum = 176;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 177;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6))});
  };
- //BA.debugLineNum = 178;BA.debugLine="If pm7 <> \"0\" Then";
+ //BA.debugLineNum = 179;BA.debugLine="If pm7 <> \"0\" Then";
 if ((mostCurrent._pm7).equals("0") == false) { 
- //BA.debugLineNum = 179;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 180;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7))});
  };
- //BA.debugLineNum = 181;BA.debugLine="If pm8 <> \"0\" Then";
+ //BA.debugLineNum = 182;BA.debugLine="If pm8 <> \"0\" Then";
 if ((mostCurrent._pm8).equals("0") == false) { 
- //BA.debugLineNum = 182;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 183;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8))});
  };
- //BA.debugLineNum = 184;BA.debugLine="If pm9 <> \"0\" Then";
+ //BA.debugLineNum = 185;BA.debugLine="If pm9 <> \"0\" Then";
 if ((mostCurrent._pm9).equals("0") == false) { 
- //BA.debugLineNum = 185;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 186;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8)),(float)(Double.parseDouble(mostCurrent._pm9))});
  };
- //BA.debugLineNum = 187;BA.debugLine="If pm10 <> \"0\" Then";
+ //BA.debugLineNum = 188;BA.debugLine="If pm10 <> \"0\" Then";
 if ((mostCurrent._pm10).equals("0") == false) { 
- //BA.debugLineNum = 188;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 189;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8)),(float)(Double.parseDouble(mostCurrent._pm9)),(float)(Double.parseDouble(mostCurrent._pm10))});
  };
- //BA.debugLineNum = 190;BA.debugLine="If pm11 <> \"0\" Then";
+ //BA.debugLineNum = 191;BA.debugLine="If pm11 <> \"0\" Then";
 if ((mostCurrent._pm11).equals("0") == false) { 
- //BA.debugLineNum = 191;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 192;BA.debugLine="lc1.Line_1_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_1_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8)),(float)(Double.parseDouble(mostCurrent._pm9)),(float)(Double.parseDouble(mostCurrent._pm10)),(float)(Double.parseDouble(mostCurrent._pm11))});
  };
- //BA.debugLineNum = 194;BA.debugLine="lc1.Line_1_PointLabelTextColor = Colors.Yellow";
+ //BA.debugLineNum = 195;BA.debugLine="lc1.Line_1_PointLabelTextColor = Colors.Yellow";
 mostCurrent._lc1.setLine_1_PointLabelTextColor(anywheresoftware.b4a.keywords.Common.Colors.Yellow);
- //BA.debugLineNum = 195;BA.debugLine="lc1.Line_1_PointLabelTextSize = 35.0";
+ //BA.debugLineNum = 196;BA.debugLine="lc1.Line_1_PointLabelTextSize = 35.0";
 mostCurrent._lc1.setLine_1_PointLabelTextSize((float) (35.0));
- //BA.debugLineNum = 196;BA.debugLine="lc1.Line_1_LineColor = Colors.Red";
+ //BA.debugLineNum = 197;BA.debugLine="lc1.Line_1_LineColor = Colors.Red";
 mostCurrent._lc1.setLine_1_LineColor(anywheresoftware.b4a.keywords.Common.Colors.Red);
- //BA.debugLineNum = 197;BA.debugLine="lc1.Line_1_LineWidth = 11.0";
+ //BA.debugLineNum = 198;BA.debugLine="lc1.Line_1_LineWidth = 11.0";
 mostCurrent._lc1.setLine_1_LineWidth((float) (11.0));
- //BA.debugLineNum = 198;BA.debugLine="lc1.Line_1_PointColor = Colors.Black";
+ //BA.debugLineNum = 199;BA.debugLine="lc1.Line_1_PointColor = Colors.Black";
 mostCurrent._lc1.setLine_1_PointColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
- //BA.debugLineNum = 199;BA.debugLine="lc1.Line_1_PointSize = 20.0";
+ //BA.debugLineNum = 200;BA.debugLine="lc1.Line_1_PointSize = 20.0";
 mostCurrent._lc1.setLine_1_PointSize((float) (20.0));
- //BA.debugLineNum = 200;BA.debugLine="lc1.Line_1_PointShape = lc1.SHAPE_ROUND";
+ //BA.debugLineNum = 201;BA.debugLine="lc1.Line_1_PointShape = lc1.SHAPE_ROUND";
 mostCurrent._lc1.setLine_1_PointShape(mostCurrent._lc1.SHAPE_ROUND);
- //BA.debugLineNum = 201;BA.debugLine="lc1.Line_1_DrawDash = False";
+ //BA.debugLineNum = 202;BA.debugLine="lc1.Line_1_DrawDash = False";
 mostCurrent._lc1.setLine_1_DrawDash(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 202;BA.debugLine="lc1.Line_1_DrawCubic = False";
+ //BA.debugLineNum = 203;BA.debugLine="lc1.Line_1_DrawCubic = False";
 mostCurrent._lc1.setLine_1_DrawCubic(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 208;BA.debugLine="ReadTextReader(\"Yesterday\")";
+ //BA.debugLineNum = 209;BA.debugLine="ReadTextReader(\"Yesterday\")";
 _readtextreader("Yesterday");
- //BA.debugLineNum = 210;BA.debugLine="Dim Yesterday As Long";
+ //BA.debugLineNum = 211;BA.debugLine="Dim Yesterday As Long";
 _yesterday = 0L;
- //BA.debugLineNum = 211;BA.debugLine="Yesterday = DateTime.add(DateTime.Now, 0, 0, -1)";
+ //BA.debugLineNum = 212;BA.debugLine="Yesterday = DateTime.add(DateTime.Now, 0, 0, -1)";
 _yesterday = anywheresoftware.b4a.keywords.Common.DateTime.Add(anywheresoftware.b4a.keywords.Common.DateTime.getNow(),(int) (0),(int) (0),(int) (-1));
- //BA.debugLineNum = 213;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy\"";
+ //BA.debugLineNum = 214;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy");
- //BA.debugLineNum = 214;BA.debugLine="lc1.Line_2_LegendText = \"Yesterday, \" & DateTime";
+ //BA.debugLineNum = 215;BA.debugLine="lc1.Line_2_LegendText = \"Yesterday, \" & DateTime";
 mostCurrent._lc1.setLine_2_LegendText("Yesterday, "+anywheresoftware.b4a.keywords.Common.DateTime.Date(_yesterday));
- //BA.debugLineNum = 216;BA.debugLine="If am12 <> \"0\" Then";
+ //BA.debugLineNum = 217;BA.debugLine="If am12 <> \"0\" Then";
 if ((mostCurrent._am12).equals("0") == false) { 
- //BA.debugLineNum = 217;BA.debugLine="lc1.Line_2_Data = Array As Float (am12)";
+ //BA.debugLineNum = 218;BA.debugLine="lc1.Line_2_Data = Array As Float (am12)";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12))});
  };
- //BA.debugLineNum = 219;BA.debugLine="If am1 <> \"0\" Then";
+ //BA.debugLineNum = 220;BA.debugLine="If am1 <> \"0\" Then";
 if ((mostCurrent._am1).equals("0") == false) { 
- //BA.debugLineNum = 220;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1)";
+ //BA.debugLineNum = 221;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1)";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1))});
  };
- //BA.debugLineNum = 222;BA.debugLine="If am2 <> \"0\" Then";
+ //BA.debugLineNum = 223;BA.debugLine="If am2 <> \"0\" Then";
 if ((mostCurrent._am2).equals("0") == false) { 
- //BA.debugLineNum = 223;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 224;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2))});
  };
- //BA.debugLineNum = 225;BA.debugLine="If am3 <> \"0\" Then";
+ //BA.debugLineNum = 226;BA.debugLine="If am3 <> \"0\" Then";
 if ((mostCurrent._am3).equals("0") == false) { 
- //BA.debugLineNum = 226;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 227;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3))});
  };
- //BA.debugLineNum = 228;BA.debugLine="If am4 <> \"0\" Then";
+ //BA.debugLineNum = 229;BA.debugLine="If am4 <> \"0\" Then";
 if ((mostCurrent._am4).equals("0") == false) { 
- //BA.debugLineNum = 229;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 230;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4))});
  };
- //BA.debugLineNum = 231;BA.debugLine="If am5 <> \"0\" Then";
+ //BA.debugLineNum = 232;BA.debugLine="If am5 <> \"0\" Then";
 if ((mostCurrent._am5).equals("0") == false) { 
- //BA.debugLineNum = 232;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 233;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5))});
  };
- //BA.debugLineNum = 234;BA.debugLine="If am6 <> \"0\" Then";
+ //BA.debugLineNum = 235;BA.debugLine="If am6 <> \"0\" Then";
 if ((mostCurrent._am6).equals("0") == false) { 
- //BA.debugLineNum = 235;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 236;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6))});
  };
- //BA.debugLineNum = 237;BA.debugLine="If am7 <> \"0\" Then";
+ //BA.debugLineNum = 238;BA.debugLine="If am7 <> \"0\" Then";
 if ((mostCurrent._am7).equals("0") == false) { 
- //BA.debugLineNum = 238;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 239;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7))});
  };
- //BA.debugLineNum = 240;BA.debugLine="If am8 <> \"0\" Then";
+ //BA.debugLineNum = 241;BA.debugLine="If am8 <> \"0\" Then";
 if ((mostCurrent._am8).equals("0") == false) { 
- //BA.debugLineNum = 241;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 242;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8))});
  };
- //BA.debugLineNum = 243;BA.debugLine="If am9 <> \"0\" Then";
+ //BA.debugLineNum = 244;BA.debugLine="If am9 <> \"0\" Then";
 if ((mostCurrent._am9).equals("0") == false) { 
- //BA.debugLineNum = 244;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 245;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9))});
  };
- //BA.debugLineNum = 246;BA.debugLine="If am10 <> \"0\" Then";
+ //BA.debugLineNum = 247;BA.debugLine="If am10 <> \"0\" Then";
 if ((mostCurrent._am10).equals("0") == false) { 
- //BA.debugLineNum = 247;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 248;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10))});
  };
- //BA.debugLineNum = 249;BA.debugLine="If am11 <> \"0\" Then";
+ //BA.debugLineNum = 250;BA.debugLine="If am11 <> \"0\" Then";
 if ((mostCurrent._am11).equals("0") == false) { 
- //BA.debugLineNum = 250;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 251;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11))});
  };
- //BA.debugLineNum = 252;BA.debugLine="If pm12 <> \"0\" Then";
+ //BA.debugLineNum = 253;BA.debugLine="If pm12 <> \"0\" Then";
 if ((mostCurrent._pm12).equals("0") == false) { 
- //BA.debugLineNum = 253;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 254;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12))});
  };
- //BA.debugLineNum = 255;BA.debugLine="If pm1 <> \"0\" Then";
+ //BA.debugLineNum = 256;BA.debugLine="If pm1 <> \"0\" Then";
 if ((mostCurrent._pm1).equals("0") == false) { 
- //BA.debugLineNum = 256;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 257;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1))});
  };
- //BA.debugLineNum = 258;BA.debugLine="If pm2 <> \"0\" Then";
+ //BA.debugLineNum = 259;BA.debugLine="If pm2 <> \"0\" Then";
 if ((mostCurrent._pm2).equals("0") == false) { 
- //BA.debugLineNum = 259;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 260;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2))});
  };
- //BA.debugLineNum = 261;BA.debugLine="If pm3 <> \"0\" Then";
+ //BA.debugLineNum = 262;BA.debugLine="If pm3 <> \"0\" Then";
 if ((mostCurrent._pm3).equals("0") == false) { 
- //BA.debugLineNum = 262;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 263;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3))});
  };
- //BA.debugLineNum = 264;BA.debugLine="If pm4 <> \"0\" Then";
+ //BA.debugLineNum = 265;BA.debugLine="If pm4 <> \"0\" Then";
 if ((mostCurrent._pm4).equals("0") == false) { 
- //BA.debugLineNum = 265;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 266;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4))});
  };
- //BA.debugLineNum = 267;BA.debugLine="If pm5 <> \"0\" Then";
+ //BA.debugLineNum = 268;BA.debugLine="If pm5 <> \"0\" Then";
 if ((mostCurrent._pm5).equals("0") == false) { 
- //BA.debugLineNum = 268;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 269;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5))});
  };
- //BA.debugLineNum = 270;BA.debugLine="If pm6 <> \"0\" Then";
+ //BA.debugLineNum = 271;BA.debugLine="If pm6 <> \"0\" Then";
 if ((mostCurrent._pm6).equals("0") == false) { 
- //BA.debugLineNum = 271;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 272;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6))});
  };
- //BA.debugLineNum = 273;BA.debugLine="If pm7 <> \"0\" Then";
+ //BA.debugLineNum = 274;BA.debugLine="If pm7 <> \"0\" Then";
 if ((mostCurrent._pm7).equals("0") == false) { 
- //BA.debugLineNum = 274;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 275;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7))});
  };
- //BA.debugLineNum = 276;BA.debugLine="If pm8 <> \"0\" Then";
+ //BA.debugLineNum = 277;BA.debugLine="If pm8 <> \"0\" Then";
 if ((mostCurrent._pm8).equals("0") == false) { 
- //BA.debugLineNum = 277;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 278;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8))});
  };
- //BA.debugLineNum = 279;BA.debugLine="If pm9 <> \"0\" Then";
+ //BA.debugLineNum = 280;BA.debugLine="If pm9 <> \"0\" Then";
 if ((mostCurrent._pm9).equals("0") == false) { 
- //BA.debugLineNum = 280;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 281;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8)),(float)(Double.parseDouble(mostCurrent._pm9))});
  };
- //BA.debugLineNum = 282;BA.debugLine="If pm10 <> \"0\" Then";
+ //BA.debugLineNum = 283;BA.debugLine="If pm10 <> \"0\" Then";
 if ((mostCurrent._pm10).equals("0") == false) { 
- //BA.debugLineNum = 283;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 284;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8)),(float)(Double.parseDouble(mostCurrent._pm9)),(float)(Double.parseDouble(mostCurrent._pm10))});
  };
- //BA.debugLineNum = 285;BA.debugLine="If pm11 <> \"0\" Then";
+ //BA.debugLineNum = 286;BA.debugLine="If pm11 <> \"0\" Then";
 if ((mostCurrent._pm11).equals("0") == false) { 
- //BA.debugLineNum = 286;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
+ //BA.debugLineNum = 287;BA.debugLine="lc1.Line_2_Data = Array As Float (am12, am1, am";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8)),(float)(Double.parseDouble(mostCurrent._pm9)),(float)(Double.parseDouble(mostCurrent._pm10)),(float)(Double.parseDouble(mostCurrent._pm11))});
  };
- //BA.debugLineNum = 289;BA.debugLine="lc1.Line_2_PointLabelTextColor = Colors.Cyan";
+ //BA.debugLineNum = 290;BA.debugLine="lc1.Line_2_PointLabelTextColor = Colors.Cyan";
 mostCurrent._lc1.setLine_2_PointLabelTextColor(anywheresoftware.b4a.keywords.Common.Colors.Cyan);
- //BA.debugLineNum = 290;BA.debugLine="lc1.Line_2_PointLabelTextSize = 35.0";
+ //BA.debugLineNum = 291;BA.debugLine="lc1.Line_2_PointLabelTextSize = 35.0";
 mostCurrent._lc1.setLine_2_PointLabelTextSize((float) (35.0));
- //BA.debugLineNum = 291;BA.debugLine="lc1.Line_2_LineColor = Colors.White";
+ //BA.debugLineNum = 292;BA.debugLine="lc1.Line_2_LineColor = Colors.White";
 mostCurrent._lc1.setLine_2_LineColor(anywheresoftware.b4a.keywords.Common.Colors.White);
- //BA.debugLineNum = 292;BA.debugLine="lc1.Line_2_LineWidth = 7.0";
+ //BA.debugLineNum = 293;BA.debugLine="lc1.Line_2_LineWidth = 7.0";
 mostCurrent._lc1.setLine_2_LineWidth((float) (7.0));
- //BA.debugLineNum = 293;BA.debugLine="lc1.Line_2_PointColor = Colors.Cyan";
+ //BA.debugLineNum = 294;BA.debugLine="lc1.Line_2_PointColor = Colors.Cyan";
 mostCurrent._lc1.setLine_2_PointColor(anywheresoftware.b4a.keywords.Common.Colors.Cyan);
- //BA.debugLineNum = 294;BA.debugLine="lc1.Line_2_PointSize = 10.0";
+ //BA.debugLineNum = 295;BA.debugLine="lc1.Line_2_PointSize = 10.0";
 mostCurrent._lc1.setLine_2_PointSize((float) (10.0));
- //BA.debugLineNum = 295;BA.debugLine="lc1.Line_2_PointShape = lc1.SHAPE_ROUND";
+ //BA.debugLineNum = 296;BA.debugLine="lc1.Line_2_PointShape = lc1.SHAPE_ROUND";
 mostCurrent._lc1.setLine_2_PointShape(mostCurrent._lc1.SHAPE_ROUND);
- //BA.debugLineNum = 296;BA.debugLine="lc1.Line_2_DrawDash = False";
+ //BA.debugLineNum = 297;BA.debugLine="lc1.Line_2_DrawDash = False";
 mostCurrent._lc1.setLine_2_DrawDash(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 297;BA.debugLine="lc1.Line_2_DrawCubic = False";
+ //BA.debugLineNum = 298;BA.debugLine="lc1.Line_2_DrawCubic = False";
 mostCurrent._lc1.setLine_2_DrawCubic(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 303;BA.debugLine="lc1.Line_3_LegendText = \"Last 2 minutes\"";
+ //BA.debugLineNum = 304;BA.debugLine="lc1.Line_3_LegendText = \"Last 2 minutes\"";
 mostCurrent._lc1.setLine_3_LegendText("Last 2 minutes");
- //BA.debugLineNum = 304;BA.debugLine="lc1.Line_3_Data = Array As Float (tempRightNow,";
+ //BA.debugLineNum = 305;BA.debugLine="lc1.Line_3_Data = Array As Float (tempRightNow,";
 mostCurrent._lc1.setLine_3_Data(new float[]{(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow))});
- //BA.debugLineNum = 305;BA.debugLine="lc1.Line_3_PointLabelTextColor = Colors.Green";
+ //BA.debugLineNum = 306;BA.debugLine="lc1.Line_3_PointLabelTextColor = Colors.Green";
 mostCurrent._lc1.setLine_3_PointLabelTextColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
- //BA.debugLineNum = 306;BA.debugLine="lc1.Line_3_PointLabelTextSize = 30.0";
+ //BA.debugLineNum = 307;BA.debugLine="lc1.Line_3_PointLabelTextSize = 30.0";
 mostCurrent._lc1.setLine_3_PointLabelTextSize((float) (30.0));
- //BA.debugLineNum = 307;BA.debugLine="lc1.Line_3_LineColor = Colors.Green";
+ //BA.debugLineNum = 308;BA.debugLine="lc1.Line_3_LineColor = Colors.Green";
 mostCurrent._lc1.setLine_3_LineColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
- //BA.debugLineNum = 308;BA.debugLine="lc1.Line_3_LineWidth = 5.0";
+ //BA.debugLineNum = 309;BA.debugLine="lc1.Line_3_LineWidth = 5.0";
 mostCurrent._lc1.setLine_3_LineWidth((float) (5.0));
- //BA.debugLineNum = 309;BA.debugLine="lc1.Line_3_PointColor = Colors.Green";
+ //BA.debugLineNum = 310;BA.debugLine="lc1.Line_3_PointColor = Colors.Green";
 mostCurrent._lc1.setLine_3_PointColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
- //BA.debugLineNum = 310;BA.debugLine="lc1.Line_3_PointSize = 8.0";
+ //BA.debugLineNum = 311;BA.debugLine="lc1.Line_3_PointSize = 8.0";
 mostCurrent._lc1.setLine_3_PointSize((float) (8.0));
- //BA.debugLineNum = 311;BA.debugLine="lc1.Line_3_PointShape = lc1.SHAPE_ROUND";
+ //BA.debugLineNum = 312;BA.debugLine="lc1.Line_3_PointShape = lc1.SHAPE_ROUND";
 mostCurrent._lc1.setLine_3_PointShape(mostCurrent._lc1.SHAPE_ROUND);
- //BA.debugLineNum = 312;BA.debugLine="lc1.Line_3_DrawDash = False";
+ //BA.debugLineNum = 313;BA.debugLine="lc1.Line_3_DrawDash = False";
 mostCurrent._lc1.setLine_3_DrawDash(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 313;BA.debugLine="lc1.Line_3_DrawCubic = False";
+ //BA.debugLineNum = 314;BA.debugLine="lc1.Line_3_DrawCubic = False";
 mostCurrent._lc1.setLine_3_DrawCubic(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 317;BA.debugLine="lc1.NumberOfLineCharts = 3";
+ //BA.debugLineNum = 318;BA.debugLine="lc1.NumberOfLineCharts = 3";
 mostCurrent._lc1.setNumberOfLineCharts((int) (3));
- //BA.debugLineNum = 319;BA.debugLine="lc1.DrawTheGraphs";
+ //BA.debugLineNum = 320;BA.debugLine="lc1.DrawTheGraphs";
 mostCurrent._lc1.DrawTheGraphs();
- //BA.debugLineNum = 321;BA.debugLine="Timer1.Initialize(\"Timer1\",1000 * 60) 'check eac";
+ //BA.debugLineNum = 322;BA.debugLine="Timer1.Initialize(\"Timer1\",1000 * 60) 'check eac";
 _timer1.Initialize(processBA,"Timer1",(long) (1000*60));
- //BA.debugLineNum = 322;BA.debugLine="Timer1.Enabled = True 'start timer";
+ //BA.debugLineNum = 323;BA.debugLine="Timer1.Enabled = True 'start timer";
 _timer1.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  } 
-       catch (Exception e236) {
-			processBA.setLastException(e236); //BA.debugLineNum = 324;BA.debugLine="Log(LastException)";
+       catch (Exception e237) {
+			processBA.setLastException(e237); //BA.debugLineNum = 325;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
- //BA.debugLineNum = 325;BA.debugLine="ToastMessageShow (LastException,True)";
+ //BA.debugLineNum = 326;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
- //BA.debugLineNum = 328;BA.debugLine="End Sub";
+ //BA.debugLineNum = 329;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 334;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 336;BA.debugLine="End Sub";
+ //BA.debugLineNum = 335;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 337;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 330;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 332;BA.debugLine="End Sub";
+ //BA.debugLineNum = 331;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 333;BA.debugLine="End Sub";
 return "";
 }
 public static void  _activity_windowfocuschanged(boolean _hasfocus) throws Exception{
@@ -830,7 +832,7 @@ return;
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 484;BA.debugLine="If HasFocus Then";
+ //BA.debugLineNum = 485;BA.debugLine="If HasFocus Then";
 if (true) break;
 
 case 1:
@@ -843,7 +845,7 @@ this.state = 3;
 case 3:
 //C
 this.state = 4;
- //BA.debugLineNum = 485;BA.debugLine="Try";
+ //BA.debugLineNum = 486;BA.debugLine="Try";
 if (true) break;
 
 case 4:
@@ -857,10 +859,10 @@ case 6:
 //C
 this.state = 9;
 this.catchState = 8;
- //BA.debugLineNum = 486;BA.debugLine="Dim jo As JavaObject = Activity";
+ //BA.debugLineNum = 487;BA.debugLine="Dim jo As JavaObject = Activity";
 _jo = new anywheresoftware.b4j.object.JavaObject();
 _jo.setObject((java.lang.Object)(parent.mostCurrent._activity.getObject()));
- //BA.debugLineNum = 487;BA.debugLine="Sleep(300)";
+ //BA.debugLineNum = 488;BA.debugLine="Sleep(300)";
 anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,this,(int) (300));
 this.state = 11;
 return;
@@ -868,7 +870,7 @@ case 11:
 //C
 this.state = 9;
 ;
- //BA.debugLineNum = 488;BA.debugLine="jo.RunMethod(\"setSystemUiVisibility\", Array As";
+ //BA.debugLineNum = 489;BA.debugLine="jo.RunMethod(\"setSystemUiVisibility\", Array As";
 _jo.RunMethod("setSystemUiVisibility",new Object[]{(Object)(5894)});
  if (true) break;
 
@@ -890,7 +892,7 @@ case 10:
 //C
 this.state = -1;
 ;
- //BA.debugLineNum = 494;BA.debugLine="End Sub";
+ //BA.debugLineNum = 495;BA.debugLine="End Sub";
 if (true) break;
 }} 
        catch (Exception e0) {
@@ -910,41 +912,41 @@ anywheresoftware.b4a.phone.Phone _p = null;
 anywheresoftware.b4j.object.JavaObject _ctxt = null;
 anywheresoftware.b4j.object.JavaObject _display = null;
 anywheresoftware.b4j.object.JavaObject _point = null;
- //BA.debugLineNum = 463;BA.debugLine="Sub GetRealSize As LayoutValues";
- //BA.debugLineNum = 464;BA.debugLine="Dim lv As LayoutValues";
+ //BA.debugLineNum = 464;BA.debugLine="Sub GetRealSize As LayoutValues";
+ //BA.debugLineNum = 465;BA.debugLine="Dim lv As LayoutValues";
 _lv = new anywheresoftware.b4a.keywords.LayoutValues();
- //BA.debugLineNum = 465;BA.debugLine="Dim p As Phone";
+ //BA.debugLineNum = 466;BA.debugLine="Dim p As Phone";
 _p = new anywheresoftware.b4a.phone.Phone();
- //BA.debugLineNum = 466;BA.debugLine="If p.SdkVersion >= 17 Then";
+ //BA.debugLineNum = 467;BA.debugLine="If p.SdkVersion >= 17 Then";
 if (_p.getSdkVersion()>=17) { 
- //BA.debugLineNum = 467;BA.debugLine="Dim ctxt As JavaObject";
+ //BA.debugLineNum = 468;BA.debugLine="Dim ctxt As JavaObject";
 _ctxt = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 468;BA.debugLine="ctxt.InitializeContext";
+ //BA.debugLineNum = 469;BA.debugLine="ctxt.InitializeContext";
 _ctxt.InitializeContext(processBA);
- //BA.debugLineNum = 469;BA.debugLine="Dim display As JavaObject = ctxt.RunMethodJO(\"ge";
+ //BA.debugLineNum = 470;BA.debugLine="Dim display As JavaObject = ctxt.RunMethodJO(\"ge";
 _display = new anywheresoftware.b4j.object.JavaObject();
 _display.setObject((java.lang.Object)(_ctxt.RunMethodJO("getSystemService",new Object[]{(Object)("window")}).RunMethod("getDefaultDisplay",(Object[])(anywheresoftware.b4a.keywords.Common.Null))));
- //BA.debugLineNum = 470;BA.debugLine="Dim point As JavaObject";
+ //BA.debugLineNum = 471;BA.debugLine="Dim point As JavaObject";
 _point = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 471;BA.debugLine="point.InitializeNewInstance(\"android.graphics.Po";
+ //BA.debugLineNum = 472;BA.debugLine="point.InitializeNewInstance(\"android.graphics.Po";
 _point.InitializeNewInstance("android.graphics.Point",(Object[])(anywheresoftware.b4a.keywords.Common.Null));
- //BA.debugLineNum = 472;BA.debugLine="display.RunMethod(\"getRealSize\", Array(point))";
+ //BA.debugLineNum = 473;BA.debugLine="display.RunMethod(\"getRealSize\", Array(point))";
 _display.RunMethod("getRealSize",new Object[]{(Object)(_point.getObject())});
- //BA.debugLineNum = 473;BA.debugLine="lv.Width = point.GetField(\"x\")";
+ //BA.debugLineNum = 474;BA.debugLine="lv.Width = point.GetField(\"x\")";
 _lv.Width = (int)(BA.ObjectToNumber(_point.GetField("x")));
- //BA.debugLineNum = 474;BA.debugLine="lv.Height = point.GetField(\"y\")";
+ //BA.debugLineNum = 475;BA.debugLine="lv.Height = point.GetField(\"y\")";
 _lv.Height = (int)(BA.ObjectToNumber(_point.GetField("y")));
  }else {
- //BA.debugLineNum = 476;BA.debugLine="lv.Width = 100%x";
+ //BA.debugLineNum = 477;BA.debugLine="lv.Width = 100%x";
 _lv.Width = anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA);
- //BA.debugLineNum = 477;BA.debugLine="lv.Height = 100%y";
+ //BA.debugLineNum = 478;BA.debugLine="lv.Height = 100%y";
 _lv.Height = anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA);
  };
- //BA.debugLineNum = 479;BA.debugLine="lv.Scale = 100dip / 100";
+ //BA.debugLineNum = 480;BA.debugLine="lv.Scale = 100dip / 100";
 _lv.Scale = (float) (anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (100))/(double)100);
- //BA.debugLineNum = 480;BA.debugLine="Return lv";
+ //BA.debugLineNum = 481;BA.debugLine="Return lv";
 if (true) return _lv;
- //BA.debugLineNum = 481;BA.debugLine="End Sub";
+ //BA.debugLineNum = 482;BA.debugLine="End Sub";
 return null;
 }
 public static String  _globals() throws Exception{
@@ -1034,268 +1036,268 @@ String _filename = "";
 String _line = "";
 String[] _a = null;
 String _timestamp = "";
- //BA.debugLineNum = 338;BA.debugLine="Sub ReadTextReader(fileDay As String)";
- //BA.debugLineNum = 339;BA.debugLine="Try";
-try { //BA.debugLineNum = 340;BA.debugLine="Dim TextReader1 As TextReader";
+ //BA.debugLineNum = 339;BA.debugLine="Sub ReadTextReader(fileDay As String)";
+ //BA.debugLineNum = 340;BA.debugLine="Try";
+try { //BA.debugLineNum = 341;BA.debugLine="Dim TextReader1 As TextReader";
 _textreader1 = new anywheresoftware.b4a.objects.streams.File.TextReaderWrapper();
- //BA.debugLineNum = 341;BA.debugLine="Dim Now As Long";
+ //BA.debugLineNum = 342;BA.debugLine="Dim Now As Long";
 _now = 0L;
- //BA.debugLineNum = 342;BA.debugLine="Dim Month As Int";
+ //BA.debugLineNum = 343;BA.debugLine="Dim Month As Int";
 _month = 0;
- //BA.debugLineNum = 343;BA.debugLine="Dim Day As Int";
+ //BA.debugLineNum = 344;BA.debugLine="Dim Day As Int";
 _day = 0;
- //BA.debugLineNum = 344;BA.debugLine="Dim Year As Int";
+ //BA.debugLineNum = 345;BA.debugLine="Dim Year As Int";
 _year = 0;
- //BA.debugLineNum = 345;BA.debugLine="Dim FileName As String";
+ //BA.debugLineNum = 346;BA.debugLine="Dim FileName As String";
 _filename = "";
- //BA.debugLineNum = 347;BA.debugLine="am12 = \"0\"";
+ //BA.debugLineNum = 348;BA.debugLine="am12 = \"0\"";
 mostCurrent._am12 = "0";
- //BA.debugLineNum = 348;BA.debugLine="am1 = \"0\"";
+ //BA.debugLineNum = 349;BA.debugLine="am1 = \"0\"";
 mostCurrent._am1 = "0";
- //BA.debugLineNum = 349;BA.debugLine="am2 = \"0\"";
+ //BA.debugLineNum = 350;BA.debugLine="am2 = \"0\"";
 mostCurrent._am2 = "0";
- //BA.debugLineNum = 350;BA.debugLine="am3 = \"0\"";
+ //BA.debugLineNum = 351;BA.debugLine="am3 = \"0\"";
 mostCurrent._am3 = "0";
- //BA.debugLineNum = 351;BA.debugLine="am4 = \"0\"";
+ //BA.debugLineNum = 352;BA.debugLine="am4 = \"0\"";
 mostCurrent._am4 = "0";
- //BA.debugLineNum = 352;BA.debugLine="am5 = \"0\"";
+ //BA.debugLineNum = 353;BA.debugLine="am5 = \"0\"";
 mostCurrent._am5 = "0";
- //BA.debugLineNum = 353;BA.debugLine="am6 = \"0\"";
+ //BA.debugLineNum = 354;BA.debugLine="am6 = \"0\"";
 mostCurrent._am6 = "0";
- //BA.debugLineNum = 354;BA.debugLine="am7 = \"0\"";
+ //BA.debugLineNum = 355;BA.debugLine="am7 = \"0\"";
 mostCurrent._am7 = "0";
- //BA.debugLineNum = 355;BA.debugLine="am8 = \"0\"";
+ //BA.debugLineNum = 356;BA.debugLine="am8 = \"0\"";
 mostCurrent._am8 = "0";
- //BA.debugLineNum = 356;BA.debugLine="am9 = \"0\"";
+ //BA.debugLineNum = 357;BA.debugLine="am9 = \"0\"";
 mostCurrent._am9 = "0";
- //BA.debugLineNum = 357;BA.debugLine="am10 = \"0\"";
+ //BA.debugLineNum = 358;BA.debugLine="am10 = \"0\"";
 mostCurrent._am10 = "0";
- //BA.debugLineNum = 358;BA.debugLine="am11 = \"0\"";
+ //BA.debugLineNum = 359;BA.debugLine="am11 = \"0\"";
 mostCurrent._am11 = "0";
- //BA.debugLineNum = 359;BA.debugLine="pm12 = \"0\"";
+ //BA.debugLineNum = 360;BA.debugLine="pm12 = \"0\"";
 mostCurrent._pm12 = "0";
- //BA.debugLineNum = 360;BA.debugLine="pm1 = \"0\"";
+ //BA.debugLineNum = 361;BA.debugLine="pm1 = \"0\"";
 mostCurrent._pm1 = "0";
- //BA.debugLineNum = 361;BA.debugLine="pm2 = \"0\"";
+ //BA.debugLineNum = 362;BA.debugLine="pm2 = \"0\"";
 mostCurrent._pm2 = "0";
- //BA.debugLineNum = 362;BA.debugLine="pm3 = \"0\"";
+ //BA.debugLineNum = 363;BA.debugLine="pm3 = \"0\"";
 mostCurrent._pm3 = "0";
- //BA.debugLineNum = 363;BA.debugLine="pm4 = \"0\"";
+ //BA.debugLineNum = 364;BA.debugLine="pm4 = \"0\"";
 mostCurrent._pm4 = "0";
- //BA.debugLineNum = 364;BA.debugLine="pm5 = \"0\"";
+ //BA.debugLineNum = 365;BA.debugLine="pm5 = \"0\"";
 mostCurrent._pm5 = "0";
- //BA.debugLineNum = 365;BA.debugLine="pm6 = \"0\"";
+ //BA.debugLineNum = 366;BA.debugLine="pm6 = \"0\"";
 mostCurrent._pm6 = "0";
- //BA.debugLineNum = 366;BA.debugLine="pm7 = \"0\"";
+ //BA.debugLineNum = 367;BA.debugLine="pm7 = \"0\"";
 mostCurrent._pm7 = "0";
- //BA.debugLineNum = 367;BA.debugLine="pm8 = \"0\"";
+ //BA.debugLineNum = 368;BA.debugLine="pm8 = \"0\"";
 mostCurrent._pm8 = "0";
- //BA.debugLineNum = 368;BA.debugLine="pm9 = \"0\"";
+ //BA.debugLineNum = 369;BA.debugLine="pm9 = \"0\"";
 mostCurrent._pm9 = "0";
- //BA.debugLineNum = 369;BA.debugLine="pm10 = \"0\"";
+ //BA.debugLineNum = 370;BA.debugLine="pm10 = \"0\"";
 mostCurrent._pm10 = "0";
- //BA.debugLineNum = 370;BA.debugLine="pm11 = \"0\"";
+ //BA.debugLineNum = 371;BA.debugLine="pm11 = \"0\"";
 mostCurrent._pm11 = "0";
- //BA.debugLineNum = 372;BA.debugLine="Now = DateTime.Now";
+ //BA.debugLineNum = 373;BA.debugLine="Now = DateTime.Now";
 _now = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
- //BA.debugLineNum = 373;BA.debugLine="Month = DateTime.GetMonth(Now)";
+ //BA.debugLineNum = 374;BA.debugLine="Month = DateTime.GetMonth(Now)";
 _month = anywheresoftware.b4a.keywords.Common.DateTime.GetMonth(_now);
- //BA.debugLineNum = 374;BA.debugLine="Day = DateTime.GetDayOfMonth (Now)";
+ //BA.debugLineNum = 375;BA.debugLine="Day = DateTime.GetDayOfMonth (Now)";
 _day = anywheresoftware.b4a.keywords.Common.DateTime.GetDayOfMonth(_now);
- //BA.debugLineNum = 375;BA.debugLine="Year = DateTime.GetYear(Now)";
+ //BA.debugLineNum = 376;BA.debugLine="Year = DateTime.GetYear(Now)";
 _year = anywheresoftware.b4a.keywords.Common.DateTime.GetYear(_now);
- //BA.debugLineNum = 377;BA.debugLine="If fileDay = \"Today\" Then";
+ //BA.debugLineNum = 378;BA.debugLine="If fileDay = \"Today\" Then";
 if ((_fileday).equals("Today")) { 
- //BA.debugLineNum = 378;BA.debugLine="FileName = \"LivingRoomTempHumid_\" & Year & \"-\"";
+ //BA.debugLineNum = 379;BA.debugLine="FileName = \"LivingRoomTempHumid_\" & Year & \"-\"";
 _filename = "LivingRoomTempHumid_"+BA.NumberToString(_year)+"-"+anywheresoftware.b4a.keywords.Common.NumberFormat(_month,(int) (2),(int) (0))+"-"+anywheresoftware.b4a.keywords.Common.NumberFormat(_day,(int) (2),(int) (0))+".log";
  }else {
- //BA.debugLineNum = 380;BA.debugLine="Now = DateTime.add(DateTime.Now, 0, 0, -1)";
+ //BA.debugLineNum = 381;BA.debugLine="Now = DateTime.add(DateTime.Now, 0, 0, -1)";
 _now = anywheresoftware.b4a.keywords.Common.DateTime.Add(anywheresoftware.b4a.keywords.Common.DateTime.getNow(),(int) (0),(int) (0),(int) (-1));
- //BA.debugLineNum = 381;BA.debugLine="Month = DateTime.GetMonth(Now)";
+ //BA.debugLineNum = 382;BA.debugLine="Month = DateTime.GetMonth(Now)";
 _month = anywheresoftware.b4a.keywords.Common.DateTime.GetMonth(_now);
- //BA.debugLineNum = 382;BA.debugLine="Day = DateTime.GetDayOfMonth (Now)";
+ //BA.debugLineNum = 383;BA.debugLine="Day = DateTime.GetDayOfMonth (Now)";
 _day = anywheresoftware.b4a.keywords.Common.DateTime.GetDayOfMonth(_now);
- //BA.debugLineNum = 383;BA.debugLine="Year = DateTime.GetYear(Now)";
+ //BA.debugLineNum = 384;BA.debugLine="Year = DateTime.GetYear(Now)";
 _year = anywheresoftware.b4a.keywords.Common.DateTime.GetYear(_now);
- //BA.debugLineNum = 384;BA.debugLine="FileName = \"LivingRoomTempHumid_\" & Year & \"-\"";
+ //BA.debugLineNum = 385;BA.debugLine="FileName = \"LivingRoomTempHumid_\" & Year & \"-\"";
 _filename = "LivingRoomTempHumid_"+BA.NumberToString(_year)+"-"+anywheresoftware.b4a.keywords.Common.NumberFormat(_month,(int) (2),(int) (0))+"-"+anywheresoftware.b4a.keywords.Common.NumberFormat(_day,(int) (2),(int) (0))+".log";
  };
- //BA.debugLineNum = 387;BA.debugLine="TextReader1.Initialize(File.OpenInput(File.DirRo";
+ //BA.debugLineNum = 388;BA.debugLine="TextReader1.Initialize(File.OpenInput(File.DirRo";
 _textreader1.Initialize((java.io.InputStream)(anywheresoftware.b4a.keywords.Common.File.OpenInput(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),_filename).getObject()));
- //BA.debugLineNum = 388;BA.debugLine="Dim line As String";
+ //BA.debugLineNum = 389;BA.debugLine="Dim line As String";
 _line = "";
- //BA.debugLineNum = 389;BA.debugLine="line = TextReader1.ReadLine";
+ //BA.debugLineNum = 390;BA.debugLine="line = TextReader1.ReadLine";
 _line = _textreader1.ReadLine();
- //BA.debugLineNum = 390;BA.debugLine="Do While line <> Null";
+ //BA.debugLineNum = 391;BA.debugLine="Do While line <> Null";
 while (_line!= null) {
- //BA.debugLineNum = 391;BA.debugLine="Log(line) 'write the line to LogCat";
+ //BA.debugLineNum = 392;BA.debugLine="Log(line) 'write the line to LogCat";
 anywheresoftware.b4a.keywords.Common.Log(_line);
- //BA.debugLineNum = 392;BA.debugLine="line = TextReader1.ReadLine";
+ //BA.debugLineNum = 393;BA.debugLine="line = TextReader1.ReadLine";
 _line = _textreader1.ReadLine();
- //BA.debugLineNum = 393;BA.debugLine="If line = Null Then";
+ //BA.debugLineNum = 394;BA.debugLine="If line = Null Then";
 if (_line== null) { 
- //BA.debugLineNum = 394;BA.debugLine="Exit";
+ //BA.debugLineNum = 395;BA.debugLine="Exit";
 if (true) break;
  };
- //BA.debugLineNum = 396;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",line)";
+ //BA.debugLineNum = 397;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",line)";
 _a = anywheresoftware.b4a.keywords.Common.Regex.Split("\\|",_line);
- //BA.debugLineNum = 397;BA.debugLine="If a.Length = 9 Then";
+ //BA.debugLineNum = 398;BA.debugLine="If a.Length = 9 Then";
 if (_a.length==9) { 
- //BA.debugLineNum = 398;BA.debugLine="Dim timeStamp As String";
+ //BA.debugLineNum = 399;BA.debugLine="Dim timeStamp As String";
 _timestamp = "";
- //BA.debugLineNum = 399;BA.debugLine="timeStamp = a(0).SubString2(0,2)";
+ //BA.debugLineNum = 400;BA.debugLine="timeStamp = a(0).SubString2(0,2)";
 _timestamp = _a[(int) (0)].substring((int) (0),(int) (2));
- //BA.debugLineNum = 401;BA.debugLine="Select timeStamp";
+ //BA.debugLineNum = 402;BA.debugLine="Select timeStamp";
 switch (BA.switchObjectToInt(_timestamp,"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23")) {
 case 0: {
- //BA.debugLineNum = 403;BA.debugLine="If am12 = \"0\" Or am12 = \"\" Then am12 = a(1)";
+ //BA.debugLineNum = 404;BA.debugLine="If am12 = \"0\" Or am12 = \"\" Then am12 = a(1)";
 if ((mostCurrent._am12).equals("0") || (mostCurrent._am12).equals("")) { 
 mostCurrent._am12 = _a[(int) (1)];};
  break; }
 case 1: {
- //BA.debugLineNum = 405;BA.debugLine="If am1 = \"0\" Or am1 = \"\" Then am1 = a(1)";
+ //BA.debugLineNum = 406;BA.debugLine="If am1 = \"0\" Or am1 = \"\" Then am1 = a(1)";
 if ((mostCurrent._am1).equals("0") || (mostCurrent._am1).equals("")) { 
 mostCurrent._am1 = _a[(int) (1)];};
  break; }
 case 2: {
- //BA.debugLineNum = 407;BA.debugLine="If am2 = \"0\" Or am2 = \"\" Then am2 = a(1)";
+ //BA.debugLineNum = 408;BA.debugLine="If am2 = \"0\" Or am2 = \"\" Then am2 = a(1)";
 if ((mostCurrent._am2).equals("0") || (mostCurrent._am2).equals("")) { 
 mostCurrent._am2 = _a[(int) (1)];};
  break; }
 case 3: {
- //BA.debugLineNum = 409;BA.debugLine="If am3 = \"0\" Or am3 = \"\" Then am3 = a(1)";
+ //BA.debugLineNum = 410;BA.debugLine="If am3 = \"0\" Or am3 = \"\" Then am3 = a(1)";
 if ((mostCurrent._am3).equals("0") || (mostCurrent._am3).equals("")) { 
 mostCurrent._am3 = _a[(int) (1)];};
  break; }
 case 4: {
- //BA.debugLineNum = 411;BA.debugLine="If am4 = \"0\" Or am4 = \"\" Then am4 = a(1)";
+ //BA.debugLineNum = 412;BA.debugLine="If am4 = \"0\" Or am4 = \"\" Then am4 = a(1)";
 if ((mostCurrent._am4).equals("0") || (mostCurrent._am4).equals("")) { 
 mostCurrent._am4 = _a[(int) (1)];};
  break; }
 case 5: {
- //BA.debugLineNum = 413;BA.debugLine="If am5 = \"0\" Or am5 = \"\" Then am5 = a(1)";
+ //BA.debugLineNum = 414;BA.debugLine="If am5 = \"0\" Or am5 = \"\" Then am5 = a(1)";
 if ((mostCurrent._am5).equals("0") || (mostCurrent._am5).equals("")) { 
 mostCurrent._am5 = _a[(int) (1)];};
  break; }
 case 6: {
- //BA.debugLineNum = 415;BA.debugLine="If am6 = \"0\" Or am6 = \"\" Then am6 = a(1)";
+ //BA.debugLineNum = 416;BA.debugLine="If am6 = \"0\" Or am6 = \"\" Then am6 = a(1)";
 if ((mostCurrent._am6).equals("0") || (mostCurrent._am6).equals("")) { 
 mostCurrent._am6 = _a[(int) (1)];};
  break; }
 case 7: {
- //BA.debugLineNum = 417;BA.debugLine="If am7 = \"0\" Or am7 = \"\" Then am7 = a(1)";
+ //BA.debugLineNum = 418;BA.debugLine="If am7 = \"0\" Or am7 = \"\" Then am7 = a(1)";
 if ((mostCurrent._am7).equals("0") || (mostCurrent._am7).equals("")) { 
 mostCurrent._am7 = _a[(int) (1)];};
  break; }
 case 8: {
- //BA.debugLineNum = 419;BA.debugLine="If am8 = \"0\" Or am8 = \"\" Then am8 = a(1)";
+ //BA.debugLineNum = 420;BA.debugLine="If am8 = \"0\" Or am8 = \"\" Then am8 = a(1)";
 if ((mostCurrent._am8).equals("0") || (mostCurrent._am8).equals("")) { 
 mostCurrent._am8 = _a[(int) (1)];};
  break; }
 case 9: {
- //BA.debugLineNum = 421;BA.debugLine="If am9 = \"0\" Or am9 = \"\" Then am9 = a(1)";
+ //BA.debugLineNum = 422;BA.debugLine="If am9 = \"0\" Or am9 = \"\" Then am9 = a(1)";
 if ((mostCurrent._am9).equals("0") || (mostCurrent._am9).equals("")) { 
 mostCurrent._am9 = _a[(int) (1)];};
  break; }
 case 10: {
- //BA.debugLineNum = 423;BA.debugLine="If am10 = \"0\" Or am10 = \"\" Then am10 = a(1)";
+ //BA.debugLineNum = 424;BA.debugLine="If am10 = \"0\" Or am10 = \"\" Then am10 = a(1)";
 if ((mostCurrent._am10).equals("0") || (mostCurrent._am10).equals("")) { 
 mostCurrent._am10 = _a[(int) (1)];};
  break; }
 case 11: {
- //BA.debugLineNum = 425;BA.debugLine="If am11 = \"0\" Or am11 = \"\" Then am11 = a(1)";
+ //BA.debugLineNum = 426;BA.debugLine="If am11 = \"0\" Or am11 = \"\" Then am11 = a(1)";
 if ((mostCurrent._am11).equals("0") || (mostCurrent._am11).equals("")) { 
 mostCurrent._am11 = _a[(int) (1)];};
  break; }
 case 12: {
- //BA.debugLineNum = 427;BA.debugLine="If pm12 = \"0\" Or pm12 = \"\" Then pm12 = a(1)";
+ //BA.debugLineNum = 428;BA.debugLine="If pm12 = \"0\" Or pm12 = \"\" Then pm12 = a(1)";
 if ((mostCurrent._pm12).equals("0") || (mostCurrent._pm12).equals("")) { 
 mostCurrent._pm12 = _a[(int) (1)];};
  break; }
 case 13: {
- //BA.debugLineNum = 429;BA.debugLine="If pm1 = \"0\" Or pm1 = \"\" Then pm1 = a(1)";
+ //BA.debugLineNum = 430;BA.debugLine="If pm1 = \"0\" Or pm1 = \"\" Then pm1 = a(1)";
 if ((mostCurrent._pm1).equals("0") || (mostCurrent._pm1).equals("")) { 
 mostCurrent._pm1 = _a[(int) (1)];};
  break; }
 case 14: {
- //BA.debugLineNum = 431;BA.debugLine="If pm2 = \"0\" Or pm2 = \"\" Then pm2 = a(1)";
+ //BA.debugLineNum = 432;BA.debugLine="If pm2 = \"0\" Or pm2 = \"\" Then pm2 = a(1)";
 if ((mostCurrent._pm2).equals("0") || (mostCurrent._pm2).equals("")) { 
 mostCurrent._pm2 = _a[(int) (1)];};
  break; }
 case 15: {
- //BA.debugLineNum = 433;BA.debugLine="If pm3 = \"0\" Or pm3 = \"\" Then pm3 = a(1)";
+ //BA.debugLineNum = 434;BA.debugLine="If pm3 = \"0\" Or pm3 = \"\" Then pm3 = a(1)";
 if ((mostCurrent._pm3).equals("0") || (mostCurrent._pm3).equals("")) { 
 mostCurrent._pm3 = _a[(int) (1)];};
  break; }
 case 16: {
- //BA.debugLineNum = 435;BA.debugLine="If pm4 = \"0\" Or pm4 = \"\" Then pm4 = a(1)";
+ //BA.debugLineNum = 436;BA.debugLine="If pm4 = \"0\" Or pm4 = \"\" Then pm4 = a(1)";
 if ((mostCurrent._pm4).equals("0") || (mostCurrent._pm4).equals("")) { 
 mostCurrent._pm4 = _a[(int) (1)];};
  break; }
 case 17: {
- //BA.debugLineNum = 437;BA.debugLine="If pm5 = \"0\" Or pm5 = \"\" Then pm5 = a(1)";
+ //BA.debugLineNum = 438;BA.debugLine="If pm5 = \"0\" Or pm5 = \"\" Then pm5 = a(1)";
 if ((mostCurrent._pm5).equals("0") || (mostCurrent._pm5).equals("")) { 
 mostCurrent._pm5 = _a[(int) (1)];};
  break; }
 case 18: {
- //BA.debugLineNum = 439;BA.debugLine="If pm6 = \"0\" Or pm6 = \"\" Then pm6 = a(1)";
+ //BA.debugLineNum = 440;BA.debugLine="If pm6 = \"0\" Or pm6 = \"\" Then pm6 = a(1)";
 if ((mostCurrent._pm6).equals("0") || (mostCurrent._pm6).equals("")) { 
 mostCurrent._pm6 = _a[(int) (1)];};
  break; }
 case 19: {
- //BA.debugLineNum = 441;BA.debugLine="If pm7 = \"0\" Or pm7 = \"\" Then pm7 = a(1)";
+ //BA.debugLineNum = 442;BA.debugLine="If pm7 = \"0\" Or pm7 = \"\" Then pm7 = a(1)";
 if ((mostCurrent._pm7).equals("0") || (mostCurrent._pm7).equals("")) { 
 mostCurrent._pm7 = _a[(int) (1)];};
  break; }
 case 20: {
- //BA.debugLineNum = 443;BA.debugLine="If pm8 = \"0\" Or pm8 = \"\" Then pm8 = a(1)";
+ //BA.debugLineNum = 444;BA.debugLine="If pm8 = \"0\" Or pm8 = \"\" Then pm8 = a(1)";
 if ((mostCurrent._pm8).equals("0") || (mostCurrent._pm8).equals("")) { 
 mostCurrent._pm8 = _a[(int) (1)];};
  break; }
 case 21: {
- //BA.debugLineNum = 445;BA.debugLine="If pm9 = \"0\" Or pm9 = \"\" Then pm9 = a(1)";
+ //BA.debugLineNum = 446;BA.debugLine="If pm9 = \"0\" Or pm9 = \"\" Then pm9 = a(1)";
 if ((mostCurrent._pm9).equals("0") || (mostCurrent._pm9).equals("")) { 
 mostCurrent._pm9 = _a[(int) (1)];};
  break; }
 case 22: {
- //BA.debugLineNum = 447;BA.debugLine="If pm10 = \"0\" Or pm10 = \"\" Then pm10 = a(1)";
+ //BA.debugLineNum = 448;BA.debugLine="If pm10 = \"0\" Or pm10 = \"\" Then pm10 = a(1)";
 if ((mostCurrent._pm10).equals("0") || (mostCurrent._pm10).equals("")) { 
 mostCurrent._pm10 = _a[(int) (1)];};
  break; }
 case 23: {
- //BA.debugLineNum = 449;BA.debugLine="If pm11 = \"0\" Or pm11 = \"\" Then pm11 = a(1)";
+ //BA.debugLineNum = 450;BA.debugLine="If pm11 = \"0\" Or pm11 = \"\" Then pm11 = a(1)";
 if ((mostCurrent._pm11).equals("0") || (mostCurrent._pm11).equals("")) { 
 mostCurrent._pm11 = _a[(int) (1)];};
  break; }
 }
 ;
- //BA.debugLineNum = 451;BA.debugLine="If fileDay = \"Today\" Then";
+ //BA.debugLineNum = 452;BA.debugLine="If fileDay = \"Today\" Then";
 if ((_fileday).equals("Today")) { 
- //BA.debugLineNum = 452;BA.debugLine="tempRightNow = a(1)";
+ //BA.debugLineNum = 453;BA.debugLine="tempRightNow = a(1)";
 mostCurrent._temprightnow = _a[(int) (1)];
  };
  };
  }
 ;
- //BA.debugLineNum = 457;BA.debugLine="TextReader1.Close";
+ //BA.debugLineNum = 458;BA.debugLine="TextReader1.Close";
 _textreader1.Close();
  } 
        catch (Exception e115) {
-			processBA.setLastException(e115); //BA.debugLineNum = 459;BA.debugLine="Log(LastException)";
+			processBA.setLastException(e115); //BA.debugLineNum = 460;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
  };
- //BA.debugLineNum = 461;BA.debugLine="End Sub";
+ //BA.debugLineNum = 462;BA.debugLine="End Sub";
 return "";
 }
 public static String  _timer1_tick() throws Exception{
- //BA.debugLineNum = 496;BA.debugLine="Sub Timer1_Tick";
- //BA.debugLineNum = 497;BA.debugLine="Log(\"Timer tick\")";
+ //BA.debugLineNum = 497;BA.debugLine="Sub Timer1_Tick";
+ //BA.debugLineNum = 498;BA.debugLine="Log(\"Timer tick\")";
 anywheresoftware.b4a.keywords.Common.Log("Timer tick");
- //BA.debugLineNum = 498;BA.debugLine="lc1.RemoveView";
+ //BA.debugLineNum = 499;BA.debugLine="lc1.RemoveView";
 mostCurrent._lc1.RemoveView();
- //BA.debugLineNum = 499;BA.debugLine="Activity_Create(False)";
+ //BA.debugLineNum = 500;BA.debugLine="Activity_Create(False)";
 _activity_create(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 500;BA.debugLine="End Sub";
+ //BA.debugLineNum = 501;BA.debugLine="End Sub";
 return "";
 }
 }
