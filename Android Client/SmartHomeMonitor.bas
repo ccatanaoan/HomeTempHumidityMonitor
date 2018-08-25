@@ -17,7 +17,7 @@ Sub Process_Globals
 	Private MQTTPassword As String = "KHSV1Q1qSUUY"
 	Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:11816"
 	Private Notification1 As Notification
-	Public IsAirQualityNotificationOnGoing As Boolean 
+	Public IsAirQualityNotificationOnGoing As Boolean
 	Public IsTempHumidityNotificationOnGoing As Boolean
 	Public IsAirQualityNotificationOnGoingBasement As Boolean
 	Public IsTempHumidityNotificationOnGoingBasement As Boolean
