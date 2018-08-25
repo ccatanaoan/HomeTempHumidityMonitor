@@ -127,12 +127,12 @@ Sub Activity_Create(FirstTime As Boolean)
 
 		TabStrip1.LoadLayout("1ScrollView", "LIVING AREA" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
 		ScrollView1.Panel.LoadLayout("1")
-		Panel1.Height = Panel1.Height + 100dip
+		Panel1.Height = ScrollView1.Height 'Panel1.Height + 100dip
 		ScrollView1.Panel.Height = Panel1.Height 
 		TabStrip1.LoadLayout("2", "LIVING AREA" & CRLF & "Air Quality (CO)  " & Chr(0xF289))
 		TabStrip1.LoadLayout("ScrollViewBasement", "BASEMENT" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
 		ScrollViewBasement.Panel.LoadLayout("TempHumidityBasement")
-		PanelTempHumidityBasement.Height = PanelTempHumidityBasement.Height + 100dip
+		PanelTempHumidityBasement.Height = ScrollViewBasement.Height 'PanelTempHumidityBasement.Height + 100dip
 		ScrollViewBasement.Panel.Height = PanelTempHumidityBasement.Height
 		TabStrip1.LoadLayout("AirQualityBasement", "BASEMENT" & CRLF & "Air Quality (CO)  " & Chr(0xF289))
 		
