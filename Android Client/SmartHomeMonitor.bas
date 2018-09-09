@@ -28,6 +28,7 @@ Sub Process_Globals
 	Public lngTicks As Long
 	Public lngTicksTempHumid As Long
 	Public lngTicksTempHumidBasement As Long
+	Private bc As ByteConverter
 End Sub
 
 Sub Service_Create
@@ -271,10 +272,17 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			End If
 		End If
 		
+		Dim managerSensorNotRespondingTime As String = StateManager.GetSetting("SensorNotRespondingTime")
+		If managerSensorNotRespondingTime = "" Or IsNumber(managerSensorNotRespondingTime) = False Or managerSensorNotRespondingTime ="0" Then
+			managerSensorNotRespondingTime = 1
+		End If
+		
 		Dim status As String
 		status = StateManager.GetSetting("TempHumidityBasement")
 		status = status.Replace("|24:","|00:")
 		Dim a() As String = Regex.Split("\|",status)
+		
+		Dim n As Notification 'ignore
 						
 		If a.Length = 9 Then
 			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
@@ -282,14 +290,15 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 			Dim lngTicks As Long = ticks
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			Dim n As Notification
-			If p.Minutes > = 5 Then
+			If p.Minutes > = managerSensorNotRespondingTime Then
 				If IsOldTempHumidityNotificationOnGoingBasement = False Then
 					CreateNotification("Basement DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old","sensor",Main,False,False,True,"Basement DHT22 sensor issue").Notify(730)
+					MQTT.Publish("TempHumidBasement", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
 				IsOldTempHumidityNotificationOnGoingBasement = False
 				n.Cancel(730)
+				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Sensor is working", "utf8"))
 			End If
 		End If
 		
@@ -304,14 +313,15 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 			Dim lngTicks As Long = ticks
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			Dim n As Notification
-			If p.Minutes > = 5 Then
+			If p.Minutes > = managerSensorNotRespondingTime Then
 				If IsOldTempHumidityNotificationOnGoing = False Then
 					CreateNotification("Living area DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old","sensor",Main,False,False,True,"Living area DHT22 sensor issue").Notify(729)
+					MQTT.Publish("TempHumid", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
 				IsOldTempHumidityNotificationOnGoing = False
 				n.Cancel(729)
+				MQTT.Publish("TempHumid", bc.StringToBytes("Sensor is working", "utf8"))
 			End If
 		End If
 		
@@ -326,13 +336,15 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 			Dim lngTicks As Long = ticks
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			If p.Minutes > = 5 Then
+			If p.Minutes > = managerSensorNotRespondingTime Then
 				If IsOldAirQualityNotificationOnGoing = False Then
 					CreateNotification("Living area carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old","sensor",Main,False,False,True,"Living area CO sensor issue").Notify(731)
+					MQTT.Publish("MQ7", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
 				IsOldAirQualityNotificationOnGoing = False
 				n.Cancel(731)
+				MQTT.Publish("MQ7", bc.StringToBytes("Sensor is working", "utf8"))
 			End If
 		End If
 		
@@ -347,13 +359,15 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 			Dim lngTicks As Long = ticks
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			If p.Minutes > = 5 Then
+			If p.Minutes > = managerSensorNotRespondingTime Then
 				If IsOldAirQualityNotificationOnGoingBasement = False Then
 					CreateNotification("Basement carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old","sensor",Main,False,False,True,"Basement CO sensor issue").Notify(732)
+					MQTT.Publish("MQ7Basement", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
 				IsOldAirQualityNotificationOnGoingBasement = False
 				n.Cancel(732)
+				MQTT.Publish("MQ7Basement", bc.StringToBytes("Sensor is working", "utf8"))
 			End If
 		End If
 		
@@ -388,7 +402,7 @@ Sub LogEvent(TextToLog As String)
 		FW1.Close
 
 	Catch
-		Log("Error in Sub LogEvent")
+		Log("Error in Sub LogEvent: " & LastException.Message)
 	End Try
 
 End Sub
