@@ -782,8 +782,8 @@ mostCurrent._lc1.setLine_3_DrawCubic(anywheresoftware.b4a.keywords.Common.False)
 mostCurrent._lc1.setNumberOfLineCharts((int) (3));
  //BA.debugLineNum = 320;BA.debugLine="lc1.DrawTheGraphs";
 mostCurrent._lc1.DrawTheGraphs();
- //BA.debugLineNum = 322;BA.debugLine="Timer1.Initialize(\"Timer1\",1000 * 60) 'check eac";
-_timer1.Initialize(processBA,"Timer1",(long) (1000*60));
+ //BA.debugLineNum = 322;BA.debugLine="Timer1.Initialize(\"Timer1\",1000) 'check each min";
+_timer1.Initialize(processBA,"Timer1",(long) (1000));
  //BA.debugLineNum = 323;BA.debugLine="Timer1.Enabled = True 'start timer";
 _timer1.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  } 

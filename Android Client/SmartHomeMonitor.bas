@@ -21,6 +21,10 @@ Sub Process_Globals
 	Public IsTempHumidityNotificationOnGoing As Boolean
 	Public IsAirQualityNotificationOnGoingBasement As Boolean
 	Public IsTempHumidityNotificationOnGoingBasement As Boolean
+	Public IsOldTempHumidityNotificationOnGoingBasement As Boolean
+	Public IsOldTempHumidityNotificationOnGoing As Boolean
+	Public IsOldAirQualityNotificationOnGoing As Boolean
+	Public IsOldAirQualityNotificationOnGoingBasement As Boolean
 	Public lngTicks As Long
 	Public lngTicksTempHumid As Long
 	Public lngTicksTempHumidBasement As Long
@@ -29,11 +33,15 @@ End Sub
 Sub Service_Create
 	Notification1.Initialize2(Notification1.IMPORTANCE_DEFAULT)
 	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
-	CreateNotification("Temperature","Temperature","temp",Main,False,False,True,"Temperature")
-	CreateNotification("Carbon Monoxide","Carbon Monoxide","co",Main,False,False,True,"Carbon Monoxide")
-	CreateNotification("Basement Temperature","Basement Temperature","temp",Main,False,False,True,"Basement Temperature")
-	CreateNotification("Basement Carbon Monoxide","Basement Carbon Monoxide","co",Main,False,False,True,"Basement Carbon Monoxide")
-
+	CreateNotification("Living area temperature","Living area temperature","temp",Main,False,False,True,"Living area temperature")
+	CreateNotification("Living area carbon monoxide","Living area carbon monoxide","co",Main,False,False,True,"Living area carbon monoxide")
+	CreateNotification("Basement temperature","Basement temperature","temp",Main,False,False,True,"Basement temperature")
+	CreateNotification("Basement carbon monoxide","Basement carbon monoxide","co",Main,False,False,True,"Basement carbon monoxide")
+	CreateNotification("Basement DHT22 sensor issue","Basement DHT22 sensor issue","sensor",Main,False,False,True,"Basement DHT22 sensor issue")
+	CreateNotification("Living area DHT22 sensor issue","Living area DHT22 sensor issue","sensor",Main,False,False,True,"Living area DHT22 sensor issue")
+	CreateNotification("Living area CO sensor issue","Living area CO sensor issue","sensor",Main,False,False,True,"Living area CO sensor issue")
+	CreateNotification("Basement CO sensor issue","Basement CO sensor issue","sensor",Main,False,False,True,"Basement CO sensor issue")
+	
 	Notification1.Icon = "icon"
 	Notification1.Vibrate = False
 	Notification1.AutoCancel = False
@@ -105,12 +113,12 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					StateManager.SetSetting("TempHumidity",status)
 					StateManager.SaveSettings
 					
-					If DateTime.GetMinute(DateTime.Now) Mod 2 = 0 Then
+					'If DateTime.GetSecond(DateTime.Now) Mod 20 = 0 Then
 						LogEvent(status)
-					End If
+					'End If
 					
 					Dim NotificationText As String
-					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
+					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "%"
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 					If (a(3) > 3) Or (a(4) <> 0)  Then
 						If IsTempHumidityNotificationOnGoing = False Then
@@ -121,11 +129,11 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							End If
 							If p.Minutes > = managerTempHumidityCooldownTime Then
 								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-									CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Temperature").Notify(725)
+									CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
 								else If a(4) <> 0 Then
-									CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
+									CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
 								Else
-									CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Temperature").Notify(725)
+									CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
 								End If
 								lngTicksTempHumid = DateTime.now
 							End If
@@ -142,7 +150,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim cs As CSBuilder
 			cs.Initialize
 			status = BytesToString(Payload, 0, Payload.Length, "UTF8") ' MQ7 status: 334|18-04-14|00:20:54
-			Log("MQ7 status: " & status)
 			Dim a() As String = Regex.Split("\|",status)
 			If a.Length = 3 Then
 				If IsNumber(a(0)) And a(0) > 0 Then
@@ -153,7 +160,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					NotificationText = GetAirQuality(a(0)) & ", at " & a(0) & " ppm"
 					If a(0) > 400 Then
 						If IsAirQualityNotificationOnGoing = False Then
-							CreateNotification("Living Area Air Quality",NotificationText,"co",Main,False,False,True,"Carbon Monoxide").Notify(726)
+							CreateNotification("Living Area Air Quality",NotificationText,"co",Main,False,False,True,"Living area carbon monoxide").Notify(726)
 						End If
 					Else
 						IsAirQualityNotificationOnGoing = False
@@ -166,7 +173,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim cs As CSBuilder
 			cs.Initialize
 			status = BytesToString(Payload, 0, Payload.Length, "UTF8") ' MQ7 status: 334|18-04-14|00:20:54
-			Log("MQ7 basement status: " & status)
 			Dim a() As String = Regex.Split("\|",status)
 			If a.Length = 3 Then
 				If IsNumber(a(0)) And a(0) > 0 Then
@@ -177,7 +183,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					NotificationText = GetAirQuality(a(0)) & ", at " & a(0) & " ppm"
 					If a(0) > 400 Then
 						If IsAirQualityNotificationOnGoingBasement = False Then
-							CreateNotification("Basement Air Quality",NotificationText,"co",Main,False,False,True,"Basement Carbon Monoxide").Notify(727)
+							CreateNotification("Basement Air Quality",NotificationText,"co",Main,False,False,True,"Basement carbon monoxide").Notify(727)
 						End If
 					Else
 						IsAirQualityNotificationOnGoingBasement = False
@@ -215,7 +221,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			
 			For i = 0 To flist.Size -1
 				Dim FileName As String = flist.Get(i)
-				Log(FileName)
 				If FileName <> FileNameToday Then
 					If FileName <> FileNameYesterday Then
 						File.Delete(File.DirRootExternal,FileName)
@@ -237,7 +242,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					StateManager.SaveSettings
 					
 					Dim NotificationText As String
-					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "% | Comfort: " & GetComfort(a(4))
+					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "%"
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 					If (a(3) > 3) Or (a(4) <> 0)  Then
 						If IsTempHumidityNotificationOnGoingBasement = False Then
@@ -248,11 +253,11 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							End If
 							If p.Minutes > = managerTempHumidityCooldownTime Then
 								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement Temperature").Notify(728)
+									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
 								else If a(4) <> 0 Then
-									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement Temperature").Notify(728)
+									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
 								Else
-									CreateNotification(GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement Temperature").Notify(728)
+									CreateNotification(GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
 								End If
 								lngTicksTempHumidBasement = DateTime.now
 							End If
@@ -265,6 +270,93 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 				End If
 			End If
 		End If
+		
+		Dim status As String
+		status = StateManager.GetSetting("TempHumidityBasement")
+		status = status.Replace("|24:","|00:")
+		Dim a() As String = Regex.Split("\|",status)
+						
+		If a.Length = 9 Then
+			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+			Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
+			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+			Dim lngTicks As Long = ticks
+			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+			Dim n As Notification
+			If p.Minutes > = 5 Then
+				If IsOldTempHumidityNotificationOnGoingBasement = False Then
+					CreateNotification("Basement DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old.","sensor",Main,False,False,True,"Basement DHT22 sensor issue").Notify(730)
+				End If
+			Else
+				IsOldTempHumidityNotificationOnGoingBasement = False
+				n.Cancel(730)
+			End If
+		End If
+		
+		Dim status As String
+		status = StateManager.GetSetting("TempHumidity")
+		status = status.Replace("|24:","|00:")
+		Dim a() As String = Regex.Split("\|",status)
+						
+		If a.Length = 9 Then
+			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+			Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
+			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+			Dim lngTicks As Long = ticks
+			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+			Dim n As Notification
+			If p.Minutes > = 5 Then
+				If IsOldTempHumidityNotificationOnGoing = False Then
+					CreateNotification("Living area DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old","sensor",Main,False,False,True,"Living area DHT22 sensor issue").Notify(729)
+				End If
+			Else
+				IsOldTempHumidityNotificationOnGoing = False
+				n.Cancel(729)
+			End If
+		End If
+		
+		Dim status As String
+		status = StateManager.GetSetting("AirQuality")
+		status = status.Replace("|24:","|00:")
+		Dim a() As String = Regex.Split("\|",status)
+						
+		If a.Length = 3 Then
+			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+			Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
+			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+			Dim lngTicks As Long = ticks
+			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+			If p.Minutes > = 5 Then
+				If IsOldAirQualityNotificationOnGoing = False Then
+					CreateNotification("Living area carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old.","sensor",Main,False,False,True,"Living area CO sensor issue").Notify(731)
+				End If
+			Else
+				IsOldAirQualityNotificationOnGoing = False
+				n.Cancel(731)
+			End If
+		End If
+		
+		Dim status As String
+		status = StateManager.GetSetting("AirQualityBasement")
+		status = status.Replace("|24:","|00:")
+		Dim a() As String = Regex.Split("\|",status)
+						
+		If a.Length = 3 Then
+			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+			Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
+			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
+			Dim lngTicks As Long = ticks
+			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+			If p.Minutes > = 5 Then
+				If IsOldAirQualityNotificationOnGoingBasement = False Then
+					CreateNotification("Basement carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old.","sensor",Main,False,False,True,"Basement CO sensor issue").Notify(732)
+				End If
+			Else
+				IsOldAirQualityNotificationOnGoingBasement = False
+				n.Cancel(732)
+			End If
+		End If
+		
 	Catch
 		Log(LastException)
 	End Try
@@ -323,7 +415,13 @@ Private Sub CreateNotification(Title As String, Content As String, Icon As Strin
 			Dim Channel As JavaObject
 			Dim importance As String
 			'If Sound Then importance = "IMPORTANCE_HIGH" Else importance = "IMPORTANCE_LOW"
-			importance = "IMPORTANCE_HIGH"
+'			IMPORTANCE_MAX: unused
+'			IMPORTANCE_HIGH: shows everywhere, makes noise And peeks
+'			IMPORTANCE_DEFAULT: shows everywhere, makes noise, but does Not visually intrude
+'			IMPORTANCE_LOW: shows everywhere, but Is Not intrusive
+'			IMPORTANCE_MIN: only shows in the shade, below the fold
+'			IMPORTANCE_NONE: a notification with no importance; does Not show in the shade
+			importance = "IMPORTANCE_LOW"
 			Dim ChannelVisibleName As String = ChannelName 'Application.LabelName
 			Channel.InitializeNewInstance("android.app.NotificationChannel", _
                    Array(ChannelName, ChannelVisibleName, manager.GetField(importance)))
