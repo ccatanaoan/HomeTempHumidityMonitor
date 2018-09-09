@@ -559,13 +559,11 @@ _menu.Clear();
 mostCurrent._gblacmenu = _menu;
  //BA.debugLineNum = 471;BA.debugLine="Menu.Add(0, 0, \"Settings\",Null)";
 _menu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("Settings"),(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null));
- //BA.debugLineNum = 472;BA.debugLine="Menu.Add(0, 0, \"Restart board\",Null)";
-_menu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("Restart board"),(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null));
  //BA.debugLineNum = 473;BA.debugLine="Menu.Add(0, 0, \"About\",Null)";
 _menu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("About"),(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null));
  } 
-       catch (Exception e8) {
-			processBA.setLastException(e8); //BA.debugLineNum = 475;BA.debugLine="Log(LastException)";
+       catch (Exception e7) {
+			processBA.setLastException(e7); //BA.debugLineNum = 475;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
  };
  //BA.debugLineNum = 477;BA.debugLine="End Sub";
@@ -1098,13 +1096,15 @@ return "";
 public static String  _createpreferencescreen() throws Exception{
 de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper _cat1 = null;
 de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper _cat2 = null;
+de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper _cat3 = null;
 anywheresoftware.b4a.objects.IntentWrapper _in = null;
  //BA.debugLineNum = 736;BA.debugLine="Sub CreatePreferenceScreen";
  //BA.debugLineNum = 737;BA.debugLine="screen.Initialize(\"Settings\", \"\")";
 _screen.Initialize("Settings","");
- //BA.debugLineNum = 739;BA.debugLine="Dim cat1,cat2 As AHPreferenceCategory";
+ //BA.debugLineNum = 739;BA.debugLine="Dim cat1,cat2,cat3 As AHPreferenceCategory";
 _cat1 = new de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper();
 _cat2 = new de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper();
+_cat3 = new de.amberhome.objects.preferenceactivity.PreferenceCategoryWrapper();
  //BA.debugLineNum = 741;BA.debugLine="cat1.Initialize(\"Temperature & Humidity\")";
 _cat1.Initialize("Temperature & Humidity");
  //BA.debugLineNum = 742;BA.debugLine="cat1.AddEditText(\"TempHumidityCooldownTime\", \"Liv";
@@ -1119,17 +1119,25 @@ _in = new anywheresoftware.b4a.objects.IntentWrapper();
 _in.Initialize("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS","");
  //BA.debugLineNum = 748;BA.debugLine="cat2.AddIntent(\"Notification Access\", \"Enable or";
 _cat2.AddIntent("Notification Access","Enable or disable listening to notifications",(android.content.Intent)(_in.getObject()),BA.ObjectToString(anywheresoftware.b4a.keywords.Common.Null));
- //BA.debugLineNum = 750;BA.debugLine="screen.AddPreferenceCategory(cat2)";
+ //BA.debugLineNum = 750;BA.debugLine="cat3.Initialize(\"Sensors\")";
+_cat3.Initialize("Sensors");
+ //BA.debugLineNum = 751;BA.debugLine="cat3.AddEditText(\"SensorNotRespondingTime\", \"Sens";
+_cat3.AddEditText("SensorNotRespondingTime","Sensor Not Responding","Minimum data age to notify","5","");
+ //BA.debugLineNum = 753;BA.debugLine="screen.AddPreferenceCategory(cat2)";
 _screen.AddPreferenceCategory(_cat2);
- //BA.debugLineNum = 751;BA.debugLine="screen.AddPreferenceCategory(cat1)";
+ //BA.debugLineNum = 754;BA.debugLine="screen.AddPreferenceCategory(cat1)";
 _screen.AddPreferenceCategory(_cat1);
- //BA.debugLineNum = 752;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 755;BA.debugLine="screen.AddPreferenceCategory(cat3)";
+_screen.AddPreferenceCategory(_cat3);
+ //BA.debugLineNum = 756;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime","5");
- //BA.debugLineNum = 753;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 757;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTimeBasement","5");
- //BA.debugLineNum = 754;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 758;BA.debugLine="StateManager.SetSetting(\"SensorNotRespondingTime\"";
+mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"SensorNotRespondingTime","5");
+ //BA.debugLineNum = 759;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
- //BA.debugLineNum = 755;BA.debugLine="End Sub";
+ //BA.debugLineNum = 760;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getairquality(int _number) throws Exception{
@@ -1392,14 +1400,16 @@ mostCurrent._paneltemphumiditybasement = new anywheresoftware.b4a.objects.PanelW
 return "";
 }
 public static String  _handlesettings() throws Exception{
- //BA.debugLineNum = 767;BA.debugLine="Sub HandleSettings";
- //BA.debugLineNum = 768;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 774;BA.debugLine="Sub HandleSettings";
+ //BA.debugLineNum = 775;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime",_manager.GetString("TempHumidityCooldownTime"));
- //BA.debugLineNum = 769;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 776;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTimeBasement",_manager.GetString("TempHumidityCooldownTimeBasement"));
- //BA.debugLineNum = 770;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 777;BA.debugLine="StateManager.SetSetting(\"SensorNotRespondingTime\"";
+mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"SensorNotRespondingTime",_manager.GetString("SensorNotRespondingTime"));
+ //BA.debugLineNum = 778;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
- //BA.debugLineNum = 771;BA.debugLine="End Sub";
+ //BA.debugLineNum = 779;BA.debugLine="End Sub";
 return "";
 }
 public static String  _hideping() throws Exception{
@@ -1475,8 +1485,6 @@ try { //BA.debugLineNum = 282;BA.debugLine="gblACMenu.Clear";
 mostCurrent._gblacmenu.Clear();
  //BA.debugLineNum = 283;BA.debugLine="gblACMenu.Add(0, 0, \"Settings\",Null)";
 mostCurrent._gblacmenu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("Settings"),(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null));
- //BA.debugLineNum = 284;BA.debugLine="gblACMenu.Add(0, 0, \"Restart board\",Null)";
-mostCurrent._gblacmenu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("Restart board"),(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null));
  //BA.debugLineNum = 285;BA.debugLine="gblACMenu.Add(0, 0, \"About\",Null)";
 mostCurrent._gblacmenu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("About"),(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null));
  //BA.debugLineNum = 286;BA.debugLine="Log(\"Disconnected from MQTT broker\")";
@@ -1484,8 +1492,8 @@ anywheresoftware.b4a.keywords.Common.Log("Disconnected from MQTT broker");
  //BA.debugLineNum = 287;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  } 
-       catch (Exception e9) {
-			processBA.setLastException(e9); //BA.debugLineNum = 289;BA.debugLine="Log(LastException)";
+       catch (Exception e8) {
+			processBA.setLastException(e8); //BA.debugLineNum = 289;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
  };
  //BA.debugLineNum = 291;BA.debugLine="End Sub";
@@ -1564,18 +1572,22 @@ _screen = new de.amberhome.objects.preferenceactivity.PreferenceScreenWrapper();
 return "";
 }
 public static String  _setdefaults() throws Exception{
- //BA.debugLineNum = 758;BA.debugLine="Sub SetDefaults";
- //BA.debugLineNum = 760;BA.debugLine="manager.SetString(\"TempHumidityCooldownTime\", \"5\"";
+ //BA.debugLineNum = 763;BA.debugLine="Sub SetDefaults";
+ //BA.debugLineNum = 765;BA.debugLine="manager.SetString(\"TempHumidityCooldownTime\", \"5\"";
 _manager.SetString("TempHumidityCooldownTime","5");
- //BA.debugLineNum = 761;BA.debugLine="manager.SetString(\"TempHumidityCooldownTimeBaseme";
+ //BA.debugLineNum = 766;BA.debugLine="manager.SetString(\"TempHumidityCooldownTimeBaseme";
 _manager.SetString("TempHumidityCooldownTimeBasement","5");
- //BA.debugLineNum = 762;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 767;BA.debugLine="manager.SetString(\"SensorNotRespondingTime\", \"5\")";
+_manager.SetString("SensorNotRespondingTime","5");
+ //BA.debugLineNum = 768;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime","5");
- //BA.debugLineNum = 763;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
+ //BA.debugLineNum = 769;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
 mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTimeBasement","5");
- //BA.debugLineNum = 764;BA.debugLine="StateManager.SaveSettings";
+ //BA.debugLineNum = 770;BA.debugLine="StateManager.SetSetting(\"SensorNotRespondingTime\"";
+mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"SensorNotRespondingTime","5");
+ //BA.debugLineNum = 771;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
- //BA.debugLineNum = 765;BA.debugLine="End Sub";
+ //BA.debugLineNum = 772;BA.debugLine="End Sub";
 return "";
 }
 public static String  _showaboutmenu() throws Exception{
@@ -1587,7 +1599,7 @@ _bd = new anywheresoftware.b4a.objects.drawable.BitmapDrawable();
  //BA.debugLineNum = 447;BA.debugLine="bd.Initialize(LoadBitmapResize(File.DirAssets, \"";
 _bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"cloyd.png",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
  //BA.debugLineNum = 448;BA.debugLine="Msgbox2(\"Smart Home Monitor v\" & GetVersionCode";
-anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Smart Home Monitor v"+_getversioncode()+anywheresoftware.b4a.keywords.Common.CRLF+anywheresoftware.b4a.keywords.Common.CRLF+"Developed by Cloyd Nino Catanaoan"+anywheresoftware.b4a.keywords.Common.CRLF+"September 8, 2018"),BA.ObjectToCharSequence("About"),"OK","","",_bd.getBitmap(),mostCurrent.activityBA);
+anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Smart Home Monitor v"+_getversioncode()+anywheresoftware.b4a.keywords.Common.CRLF+anywheresoftware.b4a.keywords.Common.CRLF+"Developed by Cloyd Nino Catanaoan"+anywheresoftware.b4a.keywords.Common.CRLF+"September 9, 2018"),BA.ObjectToCharSequence("About"),"OK","","",_bd.getBitmap(),mostCurrent.activityBA);
  } 
        catch (Exception e6) {
 			processBA.setLastException(e6); //BA.debugLineNum = 450;BA.debugLine="Log(LastException)";

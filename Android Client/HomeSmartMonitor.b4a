@@ -330,7 +330,7 @@ Private Sub MQTT_Disconnected
 	Try
 		gblACMenu.Clear
 		gblACMenu.Add(0, 0, "Settings",Null)
-		gblACMenu.Add(0, 0, "Restart board",Null)
+		'gblACMenu.Add(0, 0, "Restart board",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		Log("Disconnected from MQTT broker")
 		MQTT_Connect
@@ -494,7 +494,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 8, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 9, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -518,7 +518,7 @@ Sub Activity_Createmenu(Menu As ACMenu)
 		Menu.Clear
 		gblACMenu = Menu
 		Menu.Add(0, 0, "Settings",Null)
-		Menu.Add(0, 0, "Restart board",Null)
+		'Menu.Add(0, 0, "Restart board",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
 		Log(LastException)
@@ -785,7 +785,7 @@ End Sub
 Sub CreatePreferenceScreen
 	screen.Initialize("Settings", "")
 	'create two categories
-	Dim cat1,cat2 As AHPreferenceCategory
+	Dim cat1,cat2,cat3 As AHPreferenceCategory
 	
 	cat1.Initialize("Temperature & Humidity")
 	cat1.AddEditText("TempHumidityCooldownTime", "Living Area Cooldown Time", "Minimum creation time interval between new notification", "5","")
@@ -796,10 +796,15 @@ Sub CreatePreferenceScreen
 	In.Initialize("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS", "")
 	cat2.AddIntent("Notification Access", "Enable or disable listening to notifications", In, Null)
 	
+	cat3.Initialize("Sensors")
+	cat3.AddEditText("SensorNotRespondingTime", "Sensor Not Responding", "Minimum data age to notify", "5","")
+	
 	screen.AddPreferenceCategory(cat2)
 	screen.AddPreferenceCategory(cat1)
+	screen.AddPreferenceCategory(cat3)
 	StateManager.SetSetting("TempHumidityCooldownTime","5")
 	StateManager.SetSetting("TempHumidityCooldownTimeBasement","5")
+	StateManager.SetSetting("SensorNotRespondingTime","5")
 	StateManager.SaveSettings
 End Sub
 
@@ -808,13 +813,17 @@ Sub SetDefaults
 	'defaults are only set on the first run.
 	manager.SetString("TempHumidityCooldownTime", "5")
 	manager.SetString("TempHumidityCooldownTimeBasement", "5")
+	manager.SetString("SensorNotRespondingTime", "5")
 	StateManager.SetSetting("TempHumidityCooldownTime","5")
 	StateManager.SetSetting("TempHumidityCooldownTimeBasement","5")
+	StateManager.SetSetting("SensorNotRespondingTime","5")
 	StateManager.SaveSettings
 End Sub
 
 Sub HandleSettings
 	StateManager.SetSetting("TempHumidityCooldownTime",manager.GetString("TempHumidityCooldownTime"))
 	StateManager.SetSetting("TempHumidityCooldownTimeBasement",manager.GetString("TempHumidityCooldownTimeBasement"))
+	StateManager.SetSetting("SensorNotRespondingTime",manager.GetString("SensorNotRespondingTime"))
 	StateManager.SaveSettings
 End Sub
+
