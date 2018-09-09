@@ -29,9 +29,6 @@ Sub Listener_NotificationPosted (SBN As StatusBarNotification)
 		Dim jno As JavaObject = SBN.Notification
 		Dim extras As JavaObject = jno.GetField("extras")
 		extras.RunMethod("size", Null)
-		'Log(extras)
-		'Dim title As String = extras.RunMethod("getString", Array As Object("android.title"))
-		'LogColor("Title = " & title, Colors.Blue)
 		If SBN.PackageName = "cloyd.smart.home.monitor" Then
 			If SBN.Id = 726 Then
 				SmartHomeMonitor.IsAirQualityNotificationOnGoing = True
@@ -41,6 +38,14 @@ Sub Listener_NotificationPosted (SBN As StatusBarNotification)
 				SmartHomeMonitor.IsAirQualityNotificationOnGoingBasement = True
 			else If SBN.Id = 728 Then
 				SmartHomeMonitor.IsTempHumidityNotificationOnGoingbasement = True
+			else if SBN.Id = 730 Then
+				SmartHomeMonitor.IsOldTempHumidityNotificationOnGoingBasement = True
+			else if SBN.Id = 729 Then
+				SmartHomeMonitor.IsOldTempHumidityNotificationOnGoing = True
+			else if SBN.Id = 731 Then
+				SmartHomeMonitor.IsOldAirQualityNotificationOnGoing = True
+			else if SBN.Id = 732 Then
+				SmartHomeMonitor.IsOldAirQualityNotificationOnGoingBasement = True
 			End If
 		End If
 	End If
@@ -61,6 +66,14 @@ Sub Listener_NotificationRemoved (SBN As StatusBarNotification)
 		else If SBN.Id = 728 Then
 			SmartHomeMonitor.lngTicksTempHumidBasement = DateTime.now
 			SmartHomeMonitor.IsTempHumidityNotificationOnGoingBasement = False
+		else If SBN.Id = 730 Then
+			SmartHomeMonitor.IsOldTempHumidityNotificationOnGoingBasement = False
+		else If SBN.Id = 729 Then
+			SmartHomeMonitor.IsOldTempHumidityNotificationOnGoing = False
+		else If SBN.Id = 731 Then
+			SmartHomeMonitor.IsOldAirQualityNotificationOnGoing = False
+		else If SBN.Id = 732 Then
+			SmartHomeMonitor.IsOldAirQualityNotificationOnGoingBasement = False
 		End If
 	End If
 End Sub
