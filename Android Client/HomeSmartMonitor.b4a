@@ -494,7 +494,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 9, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 10, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
