@@ -298,7 +298,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Else
 				IsOldTempHumidityNotificationOnGoingBasement = False
 				n.Cancel(730)
-				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Sensor is working", "utf8"))
 			End If
 		End If
 		
@@ -321,7 +320,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Else
 				IsOldTempHumidityNotificationOnGoing = False
 				n.Cancel(729)
-				MQTT.Publish("TempHumid", bc.StringToBytes("Sensor is working", "utf8"))
 			End If
 		End If
 		
@@ -344,7 +342,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Else
 				IsOldAirQualityNotificationOnGoing = False
 				n.Cancel(731)
-				MQTT.Publish("MQ7", bc.StringToBytes("Sensor is working", "utf8"))
 			End If
 		End If
 		
@@ -367,7 +364,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Else
 				IsOldAirQualityNotificationOnGoingBasement = False
 				n.Cancel(732)
-				MQTT.Publish("MQ7Basement", bc.StringToBytes("Sensor is working", "utf8"))
 			End If
 		End If
 		
