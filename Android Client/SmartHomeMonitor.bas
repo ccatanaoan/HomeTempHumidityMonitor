@@ -272,6 +272,12 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			End If
 		End If
 		
+		'********
+		If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
+			Return
+		End If
+		'********
+		
 		Dim managerSensorNotRespondingTime As String = StateManager.GetSetting("SensorNotRespondingTime")
 		If managerSensorNotRespondingTime = "" Or IsNumber(managerSensorNotRespondingTime) = False Or managerSensorNotRespondingTime ="0" Then
 			managerSensorNotRespondingTime = 1

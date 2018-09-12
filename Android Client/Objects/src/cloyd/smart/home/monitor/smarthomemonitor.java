@@ -151,204 +151,204 @@ String _importance = "";
 String _channelvisiblename = "";
 anywheresoftware.b4j.object.JavaObject _jo = null;
 anywheresoftware.b4a.objects.NotificationWrapper _n = null;
- //BA.debugLineNum = 400;BA.debugLine="Private Sub CreateNotification(Title As String, Co";
- //BA.debugLineNum = 402;BA.debugLine="Dim p As Phone";
+ //BA.debugLineNum = 406;BA.debugLine="Private Sub CreateNotification(Title As String, Co";
+ //BA.debugLineNum = 408;BA.debugLine="Dim p As Phone";
 _p = new anywheresoftware.b4a.phone.Phone();
- //BA.debugLineNum = 403;BA.debugLine="If p.SdkVersion >= 21 Then";
+ //BA.debugLineNum = 409;BA.debugLine="If p.SdkVersion >= 21 Then";
 if (_p.getSdkVersion()>=21) { 
- //BA.debugLineNum = 404;BA.debugLine="Dim nb As NotificationBuilder";
+ //BA.debugLineNum = 410;BA.debugLine="Dim nb As NotificationBuilder";
 _nb = new barxdroid.NotificationBuilder.NotificationBuilder();
- //BA.debugLineNum = 405;BA.debugLine="nb.Initialize";
+ //BA.debugLineNum = 411;BA.debugLine="nb.Initialize";
 _nb.Initialize(processBA);
- //BA.debugLineNum = 406;BA.debugLine="nb.DefaultSound = Sound";
+ //BA.debugLineNum = 412;BA.debugLine="nb.DefaultSound = Sound";
 _nb.setDefaultSound(_sound);
- //BA.debugLineNum = 407;BA.debugLine="nb.DefaultVibrate = Vibrate";
+ //BA.debugLineNum = 413;BA.debugLine="nb.DefaultVibrate = Vibrate";
 _nb.setDefaultVibrate(_vibrate);
- //BA.debugLineNum = 408;BA.debugLine="nb.ContentTitle = Title";
+ //BA.debugLineNum = 414;BA.debugLine="nb.ContentTitle = Title";
 _nb.setContentTitle(_title);
- //BA.debugLineNum = 409;BA.debugLine="nb.ContentText = Content";
+ //BA.debugLineNum = 415;BA.debugLine="nb.ContentText = Content";
 _nb.setContentText(_content);
- //BA.debugLineNum = 410;BA.debugLine="nb.setActivity(TargetActivity)";
+ //BA.debugLineNum = 416;BA.debugLine="nb.setActivity(TargetActivity)";
 _nb.setActivity(processBA,_targetactivity);
- //BA.debugLineNum = 411;BA.debugLine="nb.OnlyAlertOnce = True";
+ //BA.debugLineNum = 417;BA.debugLine="nb.OnlyAlertOnce = True";
 _nb.setOnlyAlertOnce(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 412;BA.debugLine="nb.SmallIcon = Icon";
+ //BA.debugLineNum = 418;BA.debugLine="nb.SmallIcon = Icon";
 _nb.setSmallIcon(_icon);
- //BA.debugLineNum = 413;BA.debugLine="nb.Tag = ChannelName";
+ //BA.debugLineNum = 419;BA.debugLine="nb.Tag = ChannelName";
 _nb.setTag(_channelname);
- //BA.debugLineNum = 414;BA.debugLine="If p.SdkVersion >= 26 Then";
+ //BA.debugLineNum = 420;BA.debugLine="If p.SdkVersion >= 26 Then";
 if (_p.getSdkVersion()>=26) { 
- //BA.debugLineNum = 415;BA.debugLine="Dim ctxt As JavaObject";
+ //BA.debugLineNum = 421;BA.debugLine="Dim ctxt As JavaObject";
 _ctxt = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 416;BA.debugLine="ctxt.InitializeContext";
+ //BA.debugLineNum = 422;BA.debugLine="ctxt.InitializeContext";
 _ctxt.InitializeContext(processBA);
- //BA.debugLineNum = 417;BA.debugLine="Dim manager As JavaObject";
+ //BA.debugLineNum = 423;BA.debugLine="Dim manager As JavaObject";
 _manager = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 418;BA.debugLine="manager.InitializeStatic(\"android.app.Notificat";
+ //BA.debugLineNum = 424;BA.debugLine="manager.InitializeStatic(\"android.app.Notificat";
 _manager.InitializeStatic("android.app.NotificationManager");
- //BA.debugLineNum = 419;BA.debugLine="Dim Channel As JavaObject";
+ //BA.debugLineNum = 425;BA.debugLine="Dim Channel As JavaObject";
 _channel = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 420;BA.debugLine="Dim importance As String";
+ //BA.debugLineNum = 426;BA.debugLine="Dim importance As String";
 _importance = "";
- //BA.debugLineNum = 428;BA.debugLine="importance = \"IMPORTANCE_LOW\"";
+ //BA.debugLineNum = 434;BA.debugLine="importance = \"IMPORTANCE_LOW\"";
 _importance = "IMPORTANCE_LOW";
- //BA.debugLineNum = 429;BA.debugLine="Dim ChannelVisibleName As String = ChannelName";
+ //BA.debugLineNum = 435;BA.debugLine="Dim ChannelVisibleName As String = ChannelName";
 _channelvisiblename = _channelname;
- //BA.debugLineNum = 430;BA.debugLine="Channel.InitializeNewInstance(\"android.app.Noti";
+ //BA.debugLineNum = 436;BA.debugLine="Channel.InitializeNewInstance(\"android.app.Noti";
 _channel.InitializeNewInstance("android.app.NotificationChannel",new Object[]{(Object)(_channelname),(Object)(_channelvisiblename),_manager.GetField(_importance)});
- //BA.debugLineNum = 434;BA.debugLine="Channel.RunMethod(\"setShowBadge\", Array(ShowBad";
+ //BA.debugLineNum = 440;BA.debugLine="Channel.RunMethod(\"setShowBadge\", Array(ShowBad";
 _channel.RunMethod("setShowBadge",new Object[]{(Object)(_showbadge)});
- //BA.debugLineNum = 435;BA.debugLine="manager = ctxt.RunMethod(\"getSystemService\", Ar";
+ //BA.debugLineNum = 441;BA.debugLine="manager = ctxt.RunMethod(\"getSystemService\", Ar";
 _manager.setObject((java.lang.Object)(_ctxt.RunMethod("getSystemService",new Object[]{(Object)("notification")})));
- //BA.debugLineNum = 436;BA.debugLine="manager.RunMethod(\"createNotificationChannel\",";
+ //BA.debugLineNum = 442;BA.debugLine="manager.RunMethod(\"createNotificationChannel\",";
 _manager.RunMethod("createNotificationChannel",new Object[]{(Object)(_channel.getObject())});
- //BA.debugLineNum = 437;BA.debugLine="Dim jo As JavaObject = nb";
+ //BA.debugLineNum = 443;BA.debugLine="Dim jo As JavaObject = nb";
 _jo = new anywheresoftware.b4j.object.JavaObject();
 _jo.setObject((java.lang.Object)(_nb.getObject()));
- //BA.debugLineNum = 438;BA.debugLine="jo.RunMethod(\"setChannelId\", Array(ChannelName)";
+ //BA.debugLineNum = 444;BA.debugLine="jo.RunMethod(\"setChannelId\", Array(ChannelName)";
 _jo.RunMethod("setChannelId",new Object[]{(Object)(_channelname)});
  };
- //BA.debugLineNum = 440;BA.debugLine="Return  nb.GetNotification";
+ //BA.debugLineNum = 446;BA.debugLine="Return  nb.GetNotification";
 if (true) return (anywheresoftware.b4a.objects.NotificationWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.NotificationWrapper(), (java.lang.Object)(_nb.GetNotification(processBA)));
  }else {
- //BA.debugLineNum = 442;BA.debugLine="Dim n As Notification";
+ //BA.debugLineNum = 448;BA.debugLine="Dim n As Notification";
 _n = new anywheresoftware.b4a.objects.NotificationWrapper();
- //BA.debugLineNum = 443;BA.debugLine="n.Initialize";
+ //BA.debugLineNum = 449;BA.debugLine="n.Initialize";
 _n.Initialize();
- //BA.debugLineNum = 444;BA.debugLine="n.Sound = Sound";
+ //BA.debugLineNum = 450;BA.debugLine="n.Sound = Sound";
 _n.setSound(_sound);
- //BA.debugLineNum = 445;BA.debugLine="n.Vibrate = Vibrate";
+ //BA.debugLineNum = 451;BA.debugLine="n.Vibrate = Vibrate";
 _n.setVibrate(_vibrate);
- //BA.debugLineNum = 446;BA.debugLine="n.Icon = Icon";
+ //BA.debugLineNum = 452;BA.debugLine="n.Icon = Icon";
 _n.setIcon(_icon);
- //BA.debugLineNum = 447;BA.debugLine="n.SetInfo(Title, Content, TargetActivity)";
+ //BA.debugLineNum = 453;BA.debugLine="n.SetInfo(Title, Content, TargetActivity)";
 _n.SetInfoNew(processBA,BA.ObjectToCharSequence(_title),BA.ObjectToCharSequence(_content),_targetactivity);
- //BA.debugLineNum = 448;BA.debugLine="Return n";
+ //BA.debugLineNum = 454;BA.debugLine="Return n";
 if (true) return _n;
  };
- //BA.debugLineNum = 450;BA.debugLine="End Sub";
+ //BA.debugLineNum = 456;BA.debugLine="End Sub";
 return null;
 }
 public static String  _getairquality(int _number) throws Exception{
- //BA.debugLineNum = 512;BA.debugLine="Sub GetAirQuality(number As Int) As String";
- //BA.debugLineNum = 515;BA.debugLine="If number <= 100 Then";
+ //BA.debugLineNum = 518;BA.debugLine="Sub GetAirQuality(number As Int) As String";
+ //BA.debugLineNum = 521;BA.debugLine="If number <= 100 Then";
 if (_number<=100) { 
- //BA.debugLineNum = 516;BA.debugLine="Return(\"Carbon monoxide level is perfect\")";
+ //BA.debugLineNum = 522;BA.debugLine="Return(\"Carbon monoxide level is perfect\")";
 if (true) return ("Carbon monoxide level is perfect");
  }else if(((_number>100) && (_number<400)) || _number==400) { 
- //BA.debugLineNum = 518;BA.debugLine="Return(\"Carbon monoxide level is normal\")";
+ //BA.debugLineNum = 524;BA.debugLine="Return(\"Carbon monoxide level is normal\")";
 if (true) return ("Carbon monoxide level is normal");
  }else if(((_number>400) && (_number<900)) || _number==900) { 
- //BA.debugLineNum = 520;BA.debugLine="Return(\"Carbon monoxide level is high\")";
+ //BA.debugLineNum = 526;BA.debugLine="Return(\"Carbon monoxide level is high\")";
 if (true) return ("Carbon monoxide level is high");
  }else if(_number>900) { 
- //BA.debugLineNum = 522;BA.debugLine="Return(\"ALARM Carbon monoxide level is very high";
+ //BA.debugLineNum = 528;BA.debugLine="Return(\"ALARM Carbon monoxide level is very high";
 if (true) return ("ALARM Carbon monoxide level is very high");
  }else {
- //BA.debugLineNum = 524;BA.debugLine="Return(\"MQ-7 - cant read any value - check the s";
+ //BA.debugLineNum = 530;BA.debugLine="Return(\"MQ-7 - cant read any value - check the s";
 if (true) return ("MQ-7 - cant read any value - check the sensor!");
  };
- //BA.debugLineNum = 526;BA.debugLine="End Sub";
+ //BA.debugLineNum = 532;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getcomfort(String _dht11comfortstatus) throws Exception{
 String _localcomfortstatus = "";
- //BA.debugLineNum = 485;BA.debugLine="Sub GetComfort(DHT11ComfortStatus As String) As St";
- //BA.debugLineNum = 486;BA.debugLine="Dim localcomfortstatus As String";
+ //BA.debugLineNum = 491;BA.debugLine="Sub GetComfort(DHT11ComfortStatus As String) As St";
+ //BA.debugLineNum = 492;BA.debugLine="Dim localcomfortstatus As String";
 _localcomfortstatus = "";
- //BA.debugLineNum = 487;BA.debugLine="Select Case DHT11ComfortStatus";
+ //BA.debugLineNum = 493;BA.debugLine="Select Case DHT11ComfortStatus";
 switch (BA.switchObjectToInt(_dht11comfortstatus,BA.NumberToString(0),BA.NumberToString(1),BA.NumberToString(2),BA.NumberToString(4),BA.NumberToString(5),BA.NumberToString(6),BA.NumberToString(8),BA.NumberToString(9),BA.NumberToString(10))) {
 case 0: {
- //BA.debugLineNum = 489;BA.debugLine="localcomfortstatus = \"Home is OK\"";
+ //BA.debugLineNum = 495;BA.debugLine="localcomfortstatus = \"Home is OK\"";
 _localcomfortstatus = "Home is OK";
  break; }
 case 1: {
- //BA.debugLineNum = 491;BA.debugLine="localcomfortstatus = \"Home is too hot\"";
+ //BA.debugLineNum = 497;BA.debugLine="localcomfortstatus = \"Home is too hot\"";
 _localcomfortstatus = "Home is too hot";
  break; }
 case 2: {
- //BA.debugLineNum = 493;BA.debugLine="localcomfortstatus = \"Home is too cold\"";
+ //BA.debugLineNum = 499;BA.debugLine="localcomfortstatus = \"Home is too cold\"";
 _localcomfortstatus = "Home is too cold";
  break; }
 case 3: {
- //BA.debugLineNum = 495;BA.debugLine="localcomfortstatus = \"Home is too dry\"";
+ //BA.debugLineNum = 501;BA.debugLine="localcomfortstatus = \"Home is too dry\"";
 _localcomfortstatus = "Home is too dry";
  break; }
 case 4: {
- //BA.debugLineNum = 497;BA.debugLine="localcomfortstatus = \"Home is hot and dry\"";
+ //BA.debugLineNum = 503;BA.debugLine="localcomfortstatus = \"Home is hot and dry\"";
 _localcomfortstatus = "Home is hot and dry";
  break; }
 case 5: {
- //BA.debugLineNum = 499;BA.debugLine="localcomfortstatus = \"Home is cold and dry\"";
+ //BA.debugLineNum = 505;BA.debugLine="localcomfortstatus = \"Home is cold and dry\"";
 _localcomfortstatus = "Home is cold and dry";
  break; }
 case 6: {
- //BA.debugLineNum = 501;BA.debugLine="localcomfortstatus = \"Home is too humid\"";
+ //BA.debugLineNum = 507;BA.debugLine="localcomfortstatus = \"Home is too humid\"";
 _localcomfortstatus = "Home is too humid";
  break; }
 case 7: {
- //BA.debugLineNum = 503;BA.debugLine="localcomfortstatus = \"Home is hot and humid\"";
+ //BA.debugLineNum = 509;BA.debugLine="localcomfortstatus = \"Home is hot and humid\"";
 _localcomfortstatus = "Home is hot and humid";
  break; }
 case 8: {
- //BA.debugLineNum = 505;BA.debugLine="localcomfortstatus = \"Home is cold and humid\"";
+ //BA.debugLineNum = 511;BA.debugLine="localcomfortstatus = \"Home is cold and humid\"";
 _localcomfortstatus = "Home is cold and humid";
  break; }
 default: {
- //BA.debugLineNum = 507;BA.debugLine="localcomfortstatus = \"Unknown\"";
+ //BA.debugLineNum = 513;BA.debugLine="localcomfortstatus = \"Unknown\"";
 _localcomfortstatus = "Unknown";
  break; }
 }
 ;
- //BA.debugLineNum = 509;BA.debugLine="Return localcomfortstatus";
+ //BA.debugLineNum = 515;BA.debugLine="Return localcomfortstatus";
 if (true) return _localcomfortstatus;
- //BA.debugLineNum = 510;BA.debugLine="End Sub";
+ //BA.debugLineNum = 516;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getperception(String _dht11perception) throws Exception{
 String _localperception = "";
- //BA.debugLineNum = 452;BA.debugLine="Sub GetPerception(DHT11Perception As String) As St";
- //BA.debugLineNum = 463;BA.debugLine="Dim localperception As String";
+ //BA.debugLineNum = 458;BA.debugLine="Sub GetPerception(DHT11Perception As String) As St";
+ //BA.debugLineNum = 469;BA.debugLine="Dim localperception As String";
 _localperception = "";
- //BA.debugLineNum = 464;BA.debugLine="Select Case DHT11Perception";
+ //BA.debugLineNum = 470;BA.debugLine="Select Case DHT11Perception";
 switch (BA.switchObjectToInt(_dht11perception,BA.NumberToString(0),BA.NumberToString(1),BA.NumberToString(2),BA.NumberToString(3),BA.NumberToString(4),BA.NumberToString(5),BA.NumberToString(6),BA.NumberToString(7))) {
 case 0: {
- //BA.debugLineNum = 466;BA.debugLine="localperception = \"Home feels like the western";
+ //BA.debugLineNum = 472;BA.debugLine="localperception = \"Home feels like the western";
 _localperception = "Home feels like the western US, a bit dry to some";
  break; }
 case 1: {
- //BA.debugLineNum = 468;BA.debugLine="localperception = \"Home is very comfortable\"";
+ //BA.debugLineNum = 474;BA.debugLine="localperception = \"Home is very comfortable\"";
 _localperception = "Home is very comfortable";
  break; }
 case 2: {
- //BA.debugLineNum = 470;BA.debugLine="localperception = \"Home is comfortable\"";
+ //BA.debugLineNum = 476;BA.debugLine="localperception = \"Home is comfortable\"";
 _localperception = "Home is comfortable";
  break; }
 case 3: {
- //BA.debugLineNum = 472;BA.debugLine="localperception = \"Home is okay but the humidit";
+ //BA.debugLineNum = 478;BA.debugLine="localperception = \"Home is okay but the humidit";
 _localperception = "Home is okay but the humidity is at upper limit";
  break; }
 case 4: {
- //BA.debugLineNum = 474;BA.debugLine="localperception = \"Home is uncomfortable, and t";
+ //BA.debugLineNum = 480;BA.debugLine="localperception = \"Home is uncomfortable, and t";
 _localperception = "Home is uncomfortable, and the humidity is at upper limit";
  break; }
 case 5: {
- //BA.debugLineNum = 476;BA.debugLine="localperception = \"Home is very humid, and quit";
+ //BA.debugLineNum = 482;BA.debugLine="localperception = \"Home is very humid, and quit";
 _localperception = "Home is very humid, and quite uncomfortable";
  break; }
 case 6: {
- //BA.debugLineNum = 478;BA.debugLine="localperception = \"Home is extremely uncomforta";
+ //BA.debugLineNum = 484;BA.debugLine="localperception = \"Home is extremely uncomforta";
 _localperception = "Home is extremely uncomfortable, and oppressive";
  break; }
 case 7: {
- //BA.debugLineNum = 480;BA.debugLine="localperception = \"Home humidity is severely hi";
+ //BA.debugLineNum = 486;BA.debugLine="localperception = \"Home humidity is severely hi";
 _localperception = "Home humidity is severely high, and even deadly for asthma related illnesses";
  break; }
 }
 ;
- //BA.debugLineNum = 482;BA.debugLine="Return localperception";
+ //BA.debugLineNum = 488;BA.debugLine="Return localperception";
 if (true) return _localperception;
- //BA.debugLineNum = 483;BA.debugLine="End Sub";
+ //BA.debugLineNum = 489;BA.debugLine="End Sub";
 return "";
 }
 public static String  _logevent(String _texttolog) throws Exception{
@@ -359,48 +359,48 @@ int _month = 0;
 int _day = 0;
 int _year = 0;
 String _logentry = "";
- //BA.debugLineNum = 369;BA.debugLine="Sub LogEvent(TextToLog As String)";
- //BA.debugLineNum = 370;BA.debugLine="Try";
-try { //BA.debugLineNum = 371;BA.debugLine="Dim FW1 As TextWriter";
+ //BA.debugLineNum = 375;BA.debugLine="Sub LogEvent(TextToLog As String)";
+ //BA.debugLineNum = 376;BA.debugLine="Try";
+try { //BA.debugLineNum = 377;BA.debugLine="Dim FW1 As TextWriter";
 _fw1 = new anywheresoftware.b4a.objects.streams.File.TextWriterWrapper();
- //BA.debugLineNum = 372;BA.debugLine="Dim FileName As String";
+ //BA.debugLineNum = 378;BA.debugLine="Dim FileName As String";
 _filename = "";
- //BA.debugLineNum = 373;BA.debugLine="Dim Now As Long";
+ //BA.debugLineNum = 379;BA.debugLine="Dim Now As Long";
 _now = 0L;
- //BA.debugLineNum = 374;BA.debugLine="Dim Month As Int";
+ //BA.debugLineNum = 380;BA.debugLine="Dim Month As Int";
 _month = 0;
- //BA.debugLineNum = 375;BA.debugLine="Dim Day As Int";
+ //BA.debugLineNum = 381;BA.debugLine="Dim Day As Int";
 _day = 0;
- //BA.debugLineNum = 376;BA.debugLine="Dim Year As Int";
+ //BA.debugLineNum = 382;BA.debugLine="Dim Year As Int";
 _year = 0;
- //BA.debugLineNum = 377;BA.debugLine="Dim LogEntry As String";
+ //BA.debugLineNum = 383;BA.debugLine="Dim LogEntry As String";
 _logentry = "";
- //BA.debugLineNum = 379;BA.debugLine="Now = DateTime.Now";
+ //BA.debugLineNum = 385;BA.debugLine="Now = DateTime.Now";
 _now = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
- //BA.debugLineNum = 380;BA.debugLine="Month = DateTime.GetMonth(Now)";
+ //BA.debugLineNum = 386;BA.debugLine="Month = DateTime.GetMonth(Now)";
 _month = anywheresoftware.b4a.keywords.Common.DateTime.GetMonth(_now);
- //BA.debugLineNum = 381;BA.debugLine="Day = DateTime.GetDayOfMonth (Now)";
+ //BA.debugLineNum = 387;BA.debugLine="Day = DateTime.GetDayOfMonth (Now)";
 _day = anywheresoftware.b4a.keywords.Common.DateTime.GetDayOfMonth(_now);
- //BA.debugLineNum = 382;BA.debugLine="Year = DateTime.GetYear(Now)";
+ //BA.debugLineNum = 388;BA.debugLine="Year = DateTime.GetYear(Now)";
 _year = anywheresoftware.b4a.keywords.Common.DateTime.GetYear(_now);
- //BA.debugLineNum = 384;BA.debugLine="FileName = \"LivingRoomTempHumid_\" & Year & \"-\" &";
+ //BA.debugLineNum = 390;BA.debugLine="FileName = \"LivingRoomTempHumid_\" & Year & \"-\" &";
 _filename = "LivingRoomTempHumid_"+BA.NumberToString(_year)+"-"+anywheresoftware.b4a.keywords.Common.NumberFormat(_month,(int) (2),(int) (0))+"-"+anywheresoftware.b4a.keywords.Common.NumberFormat(_day,(int) (2),(int) (0))+".log";
- //BA.debugLineNum = 387;BA.debugLine="FW1.Initialize(File.OpenOutput (File.DirRootExte";
+ //BA.debugLineNum = 393;BA.debugLine="FW1.Initialize(File.OpenOutput (File.DirRootExte";
 _fw1.Initialize((java.io.OutputStream)(anywheresoftware.b4a.keywords.Common.File.OpenOutput(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),_filename,anywheresoftware.b4a.keywords.Common.True).getObject()));
- //BA.debugLineNum = 388;BA.debugLine="LogEntry = NumberFormat(DateTime.GetHour(Now),2,";
+ //BA.debugLineNum = 394;BA.debugLine="LogEntry = NumberFormat(DateTime.GetHour(Now),2,";
 _logentry = anywheresoftware.b4a.keywords.Common.NumberFormat(anywheresoftware.b4a.keywords.Common.DateTime.GetHour(_now),(int) (2),(int) (0))+":"+anywheresoftware.b4a.keywords.Common.NumberFormat(anywheresoftware.b4a.keywords.Common.DateTime.GetMinute(_now),(int) (2),(int) (0))+":"+anywheresoftware.b4a.keywords.Common.NumberFormat(anywheresoftware.b4a.keywords.Common.DateTime.GetSecond(_now),(int) (2),(int) (0));
- //BA.debugLineNum = 389;BA.debugLine="LogEntry =LogEntry & \" \" & TextToLog";
+ //BA.debugLineNum = 395;BA.debugLine="LogEntry =LogEntry & \" \" & TextToLog";
 _logentry = _logentry+" "+_texttolog;
- //BA.debugLineNum = 390;BA.debugLine="FW1.WriteLine(LogEntry)";
+ //BA.debugLineNum = 396;BA.debugLine="FW1.WriteLine(LogEntry)";
 _fw1.WriteLine(_logentry);
- //BA.debugLineNum = 392;BA.debugLine="FW1.Close";
+ //BA.debugLineNum = 398;BA.debugLine="FW1.Close";
 _fw1.Close();
  } 
        catch (Exception e20) {
-			processBA.setLastException(e20); //BA.debugLineNum = 395;BA.debugLine="Log(\"Error in Sub LogEvent: \" & LastException.Me";
+			processBA.setLastException(e20); //BA.debugLineNum = 401;BA.debugLine="Log(\"Error in Sub LogEvent: \" & LastException.Me";
 anywheresoftware.b4a.keywords.Common.Log("Error in Sub LogEvent: "+anywheresoftware.b4a.keywords.Common.LastException(processBA).getMessage());
  };
- //BA.debugLineNum = 398;BA.debugLine="End Sub";
+ //BA.debugLineNum = 404;BA.debugLine="End Sub";
 return "";
 }
 public static String  _mqtt_connect() throws Exception{
@@ -758,165 +758,170 @@ _notification1.Cancel((int) (728));
  };
  };
  };
- //BA.debugLineNum = 269;BA.debugLine="Dim managerSensorNotRespondingTime As String = S";
+ //BA.debugLineNum = 270;BA.debugLine="If DateTime.Now >= DateTime.Timeparse(\"19:00:00\"";
+if (anywheresoftware.b4a.keywords.Common.DateTime.getNow()>=anywheresoftware.b4a.keywords.Common.DateTime.TimeParse("19:00:00") && anywheresoftware.b4a.keywords.Common.DateTime.getNow()<=anywheresoftware.b4a.keywords.Common.DateTime.TimeParse("19:15:00")) { 
+ //BA.debugLineNum = 271;BA.debugLine="Return";
+if (true) return "";
+ };
+ //BA.debugLineNum = 275;BA.debugLine="Dim managerSensorNotRespondingTime As String = S";
 _managersensornotrespondingtime = mostCurrent._statemanager._getsetting(processBA,"SensorNotRespondingTime");
- //BA.debugLineNum = 270;BA.debugLine="If managerSensorNotRespondingTime = \"\" Or IsNumb";
+ //BA.debugLineNum = 276;BA.debugLine="If managerSensorNotRespondingTime = \"\" Or IsNumb";
 if ((_managersensornotrespondingtime).equals("") || anywheresoftware.b4a.keywords.Common.IsNumber(_managersensornotrespondingtime)==anywheresoftware.b4a.keywords.Common.False || (_managersensornotrespondingtime).equals("0")) { 
- //BA.debugLineNum = 271;BA.debugLine="managerSensorNotRespondingTime = 1";
+ //BA.debugLineNum = 277;BA.debugLine="managerSensorNotRespondingTime = 1";
 _managersensornotrespondingtime = BA.NumberToString(1);
  };
- //BA.debugLineNum = 274;BA.debugLine="Dim status As String";
+ //BA.debugLineNum = 280;BA.debugLine="Dim status As String";
 _status = "";
- //BA.debugLineNum = 275;BA.debugLine="status = StateManager.GetSetting(\"TempHumidityBa";
+ //BA.debugLineNum = 281;BA.debugLine="status = StateManager.GetSetting(\"TempHumidityBa";
 _status = mostCurrent._statemanager._getsetting(processBA,"TempHumidityBasement");
- //BA.debugLineNum = 276;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
+ //BA.debugLineNum = 282;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
 _status = _status.replace("|24:","|00:");
- //BA.debugLineNum = 277;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
+ //BA.debugLineNum = 283;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
 _a = anywheresoftware.b4a.keywords.Common.Regex.Split("\\|",_status);
- //BA.debugLineNum = 279;BA.debugLine="Dim n As Notification 'ignore";
+ //BA.debugLineNum = 285;BA.debugLine="Dim n As Notification 'ignore";
 _n = new anywheresoftware.b4a.objects.NotificationWrapper();
- //BA.debugLineNum = 281;BA.debugLine="If a.Length = 9 Then";
+ //BA.debugLineNum = 287;BA.debugLine="If a.Length = 9 Then";
 if (_a.length==9) { 
- //BA.debugLineNum = 282;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
+ //BA.debugLineNum = 288;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yy-MM-dd HH:mm:ss z");
- //BA.debugLineNum = 283;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(7) & \"";
+ //BA.debugLineNum = 289;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(7) & \"";
 _ticks = anywheresoftware.b4a.keywords.Common.DateTime.DateParse(_a[(int) (7)]+" "+_a[(int) (8)]+" GMT");
- //BA.debugLineNum = 284;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy h:mm:ss a z\"";
+ //BA.debugLineNum = 290;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy h:mm:ss a z\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy h:mm:ss a z");
- //BA.debugLineNum = 285;BA.debugLine="Dim lngTicks As Long = ticks";
+ //BA.debugLineNum = 291;BA.debugLine="Dim lngTicks As Long = ticks";
 _lngticks = _ticks;
- //BA.debugLineNum = 286;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
+ //BA.debugLineNum = 292;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 287;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
+ //BA.debugLineNum = 293;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
 if (_p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
- //BA.debugLineNum = 288;BA.debugLine="If IsOldTempHumidityNotificationOnGoingBasemen";
+ //BA.debugLineNum = 294;BA.debugLine="If IsOldTempHumidityNotificationOnGoingBasemen";
 if (_isoldtemphumiditynotificationongoingbasement==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 289;BA.debugLine="CreateNotification(\"Basement DHT22 sensor is";
+ //BA.debugLineNum = 295;BA.debugLine="CreateNotification(\"Basement DHT22 sensor is";
 _createnotification("Basement DHT22 sensor is not responding","Temperature and humidity data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensor",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Basement DHT22 sensor issue").Notify((int) (730));
- //BA.debugLineNum = 290;BA.debugLine="MQTT.Publish(\"TempHumidBasement\", bc.StringTo";
+ //BA.debugLineNum = 296;BA.debugLine="MQTT.Publish(\"TempHumidBasement\", bc.StringTo";
 _mqtt.Publish("TempHumidBasement",_bc.StringToBytes("Sensor is not working","utf8"));
  };
  }else {
- //BA.debugLineNum = 293;BA.debugLine="IsOldTempHumidityNotificationOnGoingBasement =";
+ //BA.debugLineNum = 299;BA.debugLine="IsOldTempHumidityNotificationOnGoingBasement =";
 _isoldtemphumiditynotificationongoingbasement = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 294;BA.debugLine="n.Cancel(730)";
+ //BA.debugLineNum = 300;BA.debugLine="n.Cancel(730)";
 _n.Cancel((int) (730));
  };
  };
- //BA.debugLineNum = 298;BA.debugLine="Dim status As String";
+ //BA.debugLineNum = 304;BA.debugLine="Dim status As String";
 _status = "";
- //BA.debugLineNum = 299;BA.debugLine="status = StateManager.GetSetting(\"TempHumidity\")";
+ //BA.debugLineNum = 305;BA.debugLine="status = StateManager.GetSetting(\"TempHumidity\")";
 _status = mostCurrent._statemanager._getsetting(processBA,"TempHumidity");
- //BA.debugLineNum = 300;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
+ //BA.debugLineNum = 306;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
 _status = _status.replace("|24:","|00:");
- //BA.debugLineNum = 301;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
+ //BA.debugLineNum = 307;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
 _a = anywheresoftware.b4a.keywords.Common.Regex.Split("\\|",_status);
- //BA.debugLineNum = 303;BA.debugLine="If a.Length = 9 Then";
+ //BA.debugLineNum = 309;BA.debugLine="If a.Length = 9 Then";
 if (_a.length==9) { 
- //BA.debugLineNum = 304;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
+ //BA.debugLineNum = 310;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yy-MM-dd HH:mm:ss z");
- //BA.debugLineNum = 305;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(7) & \"";
+ //BA.debugLineNum = 311;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(7) & \"";
 _ticks = anywheresoftware.b4a.keywords.Common.DateTime.DateParse(_a[(int) (7)]+" "+_a[(int) (8)]+" GMT");
- //BA.debugLineNum = 306;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy h:mm:ss a z\"";
+ //BA.debugLineNum = 312;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy h:mm:ss a z\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy h:mm:ss a z");
- //BA.debugLineNum = 307;BA.debugLine="Dim lngTicks As Long = ticks";
+ //BA.debugLineNum = 313;BA.debugLine="Dim lngTicks As Long = ticks";
 _lngticks = _ticks;
- //BA.debugLineNum = 308;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
+ //BA.debugLineNum = 314;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 309;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
+ //BA.debugLineNum = 315;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
 if (_p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
- //BA.debugLineNum = 310;BA.debugLine="If IsOldTempHumidityNotificationOnGoing = Fals";
+ //BA.debugLineNum = 316;BA.debugLine="If IsOldTempHumidityNotificationOnGoing = Fals";
 if (_isoldtemphumiditynotificationongoing==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 311;BA.debugLine="CreateNotification(\"Living area DHT22 sensor";
+ //BA.debugLineNum = 317;BA.debugLine="CreateNotification(\"Living area DHT22 sensor";
 _createnotification("Living area DHT22 sensor is not responding","Temperature and humidity data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensor",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Living area DHT22 sensor issue").Notify((int) (729));
- //BA.debugLineNum = 312;BA.debugLine="MQTT.Publish(\"TempHumid\", bc.StringToBytes(\"S";
+ //BA.debugLineNum = 318;BA.debugLine="MQTT.Publish(\"TempHumid\", bc.StringToBytes(\"S";
 _mqtt.Publish("TempHumid",_bc.StringToBytes("Sensor is not working","utf8"));
  };
  }else {
- //BA.debugLineNum = 315;BA.debugLine="IsOldTempHumidityNotificationOnGoing = False";
+ //BA.debugLineNum = 321;BA.debugLine="IsOldTempHumidityNotificationOnGoing = False";
 _isoldtemphumiditynotificationongoing = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 316;BA.debugLine="n.Cancel(729)";
+ //BA.debugLineNum = 322;BA.debugLine="n.Cancel(729)";
 _n.Cancel((int) (729));
  };
  };
- //BA.debugLineNum = 320;BA.debugLine="Dim status As String";
+ //BA.debugLineNum = 326;BA.debugLine="Dim status As String";
 _status = "";
- //BA.debugLineNum = 321;BA.debugLine="status = StateManager.GetSetting(\"AirQuality\")";
+ //BA.debugLineNum = 327;BA.debugLine="status = StateManager.GetSetting(\"AirQuality\")";
 _status = mostCurrent._statemanager._getsetting(processBA,"AirQuality");
- //BA.debugLineNum = 322;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
+ //BA.debugLineNum = 328;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
 _status = _status.replace("|24:","|00:");
- //BA.debugLineNum = 323;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
+ //BA.debugLineNum = 329;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
 _a = anywheresoftware.b4a.keywords.Common.Regex.Split("\\|",_status);
- //BA.debugLineNum = 325;BA.debugLine="If a.Length = 3 Then";
+ //BA.debugLineNum = 331;BA.debugLine="If a.Length = 3 Then";
 if (_a.length==3) { 
- //BA.debugLineNum = 326;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
+ //BA.debugLineNum = 332;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yy-MM-dd HH:mm:ss z");
- //BA.debugLineNum = 327;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(1) & \"";
+ //BA.debugLineNum = 333;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(1) & \"";
 _ticks = anywheresoftware.b4a.keywords.Common.DateTime.DateParse(_a[(int) (1)]+" "+_a[(int) (2)]+" GMT");
- //BA.debugLineNum = 328;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy h:mm:ss a z\"";
+ //BA.debugLineNum = 334;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy h:mm:ss a z\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy h:mm:ss a z");
- //BA.debugLineNum = 329;BA.debugLine="Dim lngTicks As Long = ticks";
+ //BA.debugLineNum = 335;BA.debugLine="Dim lngTicks As Long = ticks";
 _lngticks = _ticks;
- //BA.debugLineNum = 330;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
+ //BA.debugLineNum = 336;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 331;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
+ //BA.debugLineNum = 337;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
 if (_p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
- //BA.debugLineNum = 332;BA.debugLine="If IsOldAirQualityNotificationOnGoing = False";
+ //BA.debugLineNum = 338;BA.debugLine="If IsOldAirQualityNotificationOnGoing = False";
 if (_isoldairqualitynotificationongoing==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 333;BA.debugLine="CreateNotification(\"Living area carbon monoxi";
+ //BA.debugLineNum = 339;BA.debugLine="CreateNotification(\"Living area carbon monoxi";
 _createnotification("Living area carbon monoxide sensor is not responding","Air quality data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensor",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Living area CO sensor issue").Notify((int) (731));
- //BA.debugLineNum = 334;BA.debugLine="MQTT.Publish(\"MQ7\", bc.StringToBytes(\"Sensor";
+ //BA.debugLineNum = 340;BA.debugLine="MQTT.Publish(\"MQ7\", bc.StringToBytes(\"Sensor";
 _mqtt.Publish("MQ7",_bc.StringToBytes("Sensor is not working","utf8"));
  };
  }else {
- //BA.debugLineNum = 337;BA.debugLine="IsOldAirQualityNotificationOnGoing = False";
+ //BA.debugLineNum = 343;BA.debugLine="IsOldAirQualityNotificationOnGoing = False";
 _isoldairqualitynotificationongoing = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 338;BA.debugLine="n.Cancel(731)";
+ //BA.debugLineNum = 344;BA.debugLine="n.Cancel(731)";
 _n.Cancel((int) (731));
  };
  };
- //BA.debugLineNum = 342;BA.debugLine="Dim status As String";
+ //BA.debugLineNum = 348;BA.debugLine="Dim status As String";
 _status = "";
- //BA.debugLineNum = 343;BA.debugLine="status = StateManager.GetSetting(\"AirQualityBase";
+ //BA.debugLineNum = 349;BA.debugLine="status = StateManager.GetSetting(\"AirQualityBase";
 _status = mostCurrent._statemanager._getsetting(processBA,"AirQualityBasement");
- //BA.debugLineNum = 344;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
+ //BA.debugLineNum = 350;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
 _status = _status.replace("|24:","|00:");
- //BA.debugLineNum = 345;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
+ //BA.debugLineNum = 351;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
 _a = anywheresoftware.b4a.keywords.Common.Regex.Split("\\|",_status);
- //BA.debugLineNum = 347;BA.debugLine="If a.Length = 3 Then";
+ //BA.debugLineNum = 353;BA.debugLine="If a.Length = 3 Then";
 if (_a.length==3) { 
- //BA.debugLineNum = 348;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
+ //BA.debugLineNum = 354;BA.debugLine="DateTime.DateFormat = \"yy-MM-dd HH:mm:ss z\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yy-MM-dd HH:mm:ss z");
- //BA.debugLineNum = 349;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(1) & \"";
+ //BA.debugLineNum = 355;BA.debugLine="Dim ticks As Long = DateTime.DateParse(a(1) & \"";
 _ticks = anywheresoftware.b4a.keywords.Common.DateTime.DateParse(_a[(int) (1)]+" "+_a[(int) (2)]+" GMT");
- //BA.debugLineNum = 350;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy h:mm:ss a z\"";
+ //BA.debugLineNum = 356;BA.debugLine="DateTime.DateFormat = \"MMM d, yyyy h:mm:ss a z\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy h:mm:ss a z");
- //BA.debugLineNum = 351;BA.debugLine="Dim lngTicks As Long = ticks";
+ //BA.debugLineNum = 357;BA.debugLine="Dim lngTicks As Long = ticks";
 _lngticks = _ticks;
- //BA.debugLineNum = 352;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
+ //BA.debugLineNum = 358;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 353;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
+ //BA.debugLineNum = 359;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
 if (_p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
- //BA.debugLineNum = 354;BA.debugLine="If IsOldAirQualityNotificationOnGoingBasement";
+ //BA.debugLineNum = 360;BA.debugLine="If IsOldAirQualityNotificationOnGoingBasement";
 if (_isoldairqualitynotificationongoingbasement==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 355;BA.debugLine="CreateNotification(\"Basement carbon monoxide";
+ //BA.debugLineNum = 361;BA.debugLine="CreateNotification(\"Basement carbon monoxide";
 _createnotification("Basement carbon monoxide sensor is not responding","Air quality data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensor",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Basement CO sensor issue").Notify((int) (732));
- //BA.debugLineNum = 356;BA.debugLine="MQTT.Publish(\"MQ7Basement\", bc.StringToBytes(";
+ //BA.debugLineNum = 362;BA.debugLine="MQTT.Publish(\"MQ7Basement\", bc.StringToBytes(";
 _mqtt.Publish("MQ7Basement",_bc.StringToBytes("Sensor is not working","utf8"));
  };
  }else {
- //BA.debugLineNum = 359;BA.debugLine="IsOldAirQualityNotificationOnGoingBasement = F";
+ //BA.debugLineNum = 365;BA.debugLine="IsOldAirQualityNotificationOnGoingBasement = F";
 _isoldairqualitynotificationongoingbasement = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 360;BA.debugLine="n.Cancel(732)";
+ //BA.debugLineNum = 366;BA.debugLine="n.Cancel(732)";
 _n.Cancel((int) (732));
  };
  };
  } 
-       catch (Exception e237) {
-			processBA.setLastException(e237); //BA.debugLineNum = 365;BA.debugLine="Log(LastException)";
+       catch (Exception e240) {
+			processBA.setLastException(e240); //BA.debugLineNum = 371;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)));
  };
- //BA.debugLineNum = 367;BA.debugLine="End Sub";
+ //BA.debugLineNum = 373;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
@@ -1016,57 +1021,57 @@ int _l = 0;
 String _testitem = "";
 String _mask = "";
 String _pattern = "";
- //BA.debugLineNum = 528;BA.debugLine="Sub WildCardFilesList2(FilesPath As String, WildCa";
- //BA.debugLineNum = 529;BA.debugLine="If File.IsDirectory(\"\", FilesPath) Then";
+ //BA.debugLineNum = 534;BA.debugLine="Sub WildCardFilesList2(FilesPath As String, WildCa";
+ //BA.debugLineNum = 535;BA.debugLine="If File.IsDirectory(\"\", FilesPath) Then";
 if (anywheresoftware.b4a.keywords.Common.File.IsDirectory("",_filespath)) { 
- //BA.debugLineNum = 530;BA.debugLine="Dim FilesFound As List = File.ListFiles(FilesPat";
+ //BA.debugLineNum = 536;BA.debugLine="Dim FilesFound As List = File.ListFiles(FilesPat";
 _filesfound = new anywheresoftware.b4a.objects.collections.List();
 _filesfound = anywheresoftware.b4a.keywords.Common.File.ListFiles(_filespath);
- //BA.debugLineNum = 531;BA.debugLine="Dim GetCards() As String = Regex.Split(\",\", Wild";
+ //BA.debugLineNum = 537;BA.debugLine="Dim GetCards() As String = Regex.Split(\",\", Wild";
 _getcards = anywheresoftware.b4a.keywords.Common.Regex.Split(",",_wildcards);
- //BA.debugLineNum = 532;BA.debugLine="Dim FilteredFiles As List : FilteredFiles.Initia";
+ //BA.debugLineNum = 538;BA.debugLine="Dim FilteredFiles As List : FilteredFiles.Initia";
 _filteredfiles = new anywheresoftware.b4a.objects.collections.List();
- //BA.debugLineNum = 532;BA.debugLine="Dim FilteredFiles As List : FilteredFiles.Initia";
+ //BA.debugLineNum = 538;BA.debugLine="Dim FilteredFiles As List : FilteredFiles.Initia";
 _filteredfiles.Initialize();
- //BA.debugLineNum = 533;BA.debugLine="For i = 0 To FilesFound.Size -1";
+ //BA.debugLineNum = 539;BA.debugLine="For i = 0 To FilesFound.Size -1";
 {
 final int step6 = 1;
 final int limit6 = (int) (_filesfound.getSize()-1);
 _i = (int) (0) ;
 for (;(step6 > 0 && _i <= limit6) || (step6 < 0 && _i >= limit6) ;_i = ((int)(0 + _i + step6))  ) {
- //BA.debugLineNum = 534;BA.debugLine="For l = 0 To GetCards.Length -1";
+ //BA.debugLineNum = 540;BA.debugLine="For l = 0 To GetCards.Length -1";
 {
 final int step7 = 1;
 final int limit7 = (int) (_getcards.length-1);
 _l = (int) (0) ;
 for (;(step7 > 0 && _l <= limit7) || (step7 < 0 && _l >= limit7) ;_l = ((int)(0 + _l + step7))  ) {
- //BA.debugLineNum = 535;BA.debugLine="Dim TestItem As String = FilesFound.Get(i)";
+ //BA.debugLineNum = 541;BA.debugLine="Dim TestItem As String = FilesFound.Get(i)";
 _testitem = BA.ObjectToString(_filesfound.Get(_i));
- //BA.debugLineNum = 536;BA.debugLine="Dim mask As String = GetCards(l).Trim";
+ //BA.debugLineNum = 542;BA.debugLine="Dim mask As String = GetCards(l).Trim";
 _mask = _getcards[_l].trim();
- //BA.debugLineNum = 537;BA.debugLine="Dim pattern As String = \"^\"&mask.Replace(\".\",\"";
+ //BA.debugLineNum = 543;BA.debugLine="Dim pattern As String = \"^\"&mask.Replace(\".\",\"";
 _pattern = "^"+_mask.replace(".","\\.").replace("*",".+").replace("?",".")+"$";
- //BA.debugLineNum = 538;BA.debugLine="If Regex.IsMatch(pattern,TestItem) = True Then";
+ //BA.debugLineNum = 544;BA.debugLine="If Regex.IsMatch(pattern,TestItem) = True Then";
 if (anywheresoftware.b4a.keywords.Common.Regex.IsMatch(_pattern,_testitem)==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 539;BA.debugLine="FilteredFiles.Add(TestItem.Trim)";
+ //BA.debugLineNum = 545;BA.debugLine="FilteredFiles.Add(TestItem.Trim)";
 _filteredfiles.Add((Object)(_testitem.trim()));
  };
  }
 };
  }
 };
- //BA.debugLineNum = 543;BA.debugLine="If Sorted Then";
+ //BA.debugLineNum = 549;BA.debugLine="If Sorted Then";
 if (_sorted) { 
- //BA.debugLineNum = 544;BA.debugLine="FilteredFiles.SortCaseInsensitive(Ascending)";
+ //BA.debugLineNum = 550;BA.debugLine="FilteredFiles.SortCaseInsensitive(Ascending)";
 _filteredfiles.SortCaseInsensitive(_ascending);
  };
- //BA.debugLineNum = 546;BA.debugLine="Return FilteredFiles";
+ //BA.debugLineNum = 552;BA.debugLine="Return FilteredFiles";
 if (true) return _filteredfiles;
  }else {
- //BA.debugLineNum = 548;BA.debugLine="ToastMessageShow(\"You must pass a valid Director";
+ //BA.debugLineNum = 554;BA.debugLine="ToastMessageShow(\"You must pass a valid Director";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("You must pass a valid Directory."),anywheresoftware.b4a.keywords.Common.False);
  };
- //BA.debugLineNum = 550;BA.debugLine="End Sub";
+ //BA.debugLineNum = 556;BA.debugLine="End Sub";
 return null;
 }
 }
