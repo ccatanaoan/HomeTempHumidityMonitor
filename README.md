@@ -40,7 +40,7 @@ MQ7 (Carbon monoxide) and DHT22 (Temp & humidity) sensors | ![Image 3](Images/3.
 
 ### Android application images:
 
-Description | Image
+Android Screenshots | Android Screenshots
 --------|------
 ![Image 4](Images/4.jpg) | ![Image 5](Images/5.jpg) 
 ![Image 6](Images/6.jpg) | ![Image 7](Images/7.jpg) 
