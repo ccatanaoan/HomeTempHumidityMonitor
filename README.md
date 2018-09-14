@@ -27,8 +27,17 @@ The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated
 * ~~DHT11 Temperature & Humidity Sensor Module~~
 * Upgraded to DHT22 (AM2302) Temperature & Humidity Sensor Module
 * MQ-7 Carbon Monoxide Sensor
-* Arduino Mini Camera 2 MP
+* ~~Arduino Mini Camera 2 MP~~
+* Wyze Cam V2 and Pan PTZ
 
 ### Mobile application and protocols used for Internet of Things (IoT):
 - Custom-made Android mobile application
 - Cloud MQTT
+
+### Images:
+
+![Image 1](Images/1.jpg)
+
+![Image 2](Images/2.jpg)
+
+![Image 3](Images/3.jpg)
