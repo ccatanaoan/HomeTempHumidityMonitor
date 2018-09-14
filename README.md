@@ -33,8 +33,11 @@ The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated
 - Cloud MQTT
 
 ### Hardware images:
-
-![Image 1](Images/1.jpg) ![Image 2](Images/2.jpg) ![Image 3](Images/3.jpg)
+Image 1 | Image
+--------|------
+Image 1 | ![Image 1](Images/1.jpg) 
+Image 2 | ![Image 2](Images/2.jpg) 
+Image 3 | ![Image 3](Images/3.jpg)
 
 ### Android application images:
 
