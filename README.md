@@ -1,7 +1,7 @@
 # Cloyd Smart Home Monitor System
-I wrote and developed these ESP8266 programs and Android mobile application client for our home automation. The mobile application can remotely control and monitor the live stream camera and sensors via cloud MQTT anywhere in the world. 
+I wrote and developed these ESP8266 programs and Android mobile application client for our home automation. The mobile application can remotely control and monitor the sensors via cloud MQTT anywhere in the world. 
 
-I used one ESP8266 microcontroller for the Arduino camera video streaming as it is process-intensive. And another one to power and read the DHT22 and MQ-7 sensors. The Android app and the two microcontrollers subscribe to their own topics and publish payloads (MQTT) to communicate and sync up with each other.
+I used one two pairs of ESP8266 microcontroller to power, control, and read the DHT22 and the MQ-7 sensors. The Android app and the two microcontrollers subscribe to their own topics and publish payloads (MQTT) to communicate and sync up with each other.
 
 This project has started as a simple home weather station but turned in to a full-blown smart home monitoring system. :+1:
 
@@ -10,7 +10,6 @@ The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated
 ### Data sent from the sensors at home to the Android mobile app via cloud MQTT
 - Carbon monoxide level in parts per million (ppm)
 - Air quality based on ppm level
-- Live security camera video stream
 - Temperature
 - Relative humidity
 - Heat index
@@ -40,7 +39,7 @@ MQ7 (Carbon monoxide) and DHT22 (Temp & humidity) sensors | ![Image 3](Images/3.
 
 ### Android application images:
 
-Android Screenshots | Android Screenshots
+Samsung Galaxy Note 9 Screenshots | Samsung Galaxy Note 9 Screenshots
 --------|------
 ![Image 4](Images/4.jpg) | ![Image 5](Images/5.jpg) 
 ![Image 6](Images/6.jpg) | ![Image 7](Images/7.jpg) 
