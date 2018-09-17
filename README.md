@@ -34,7 +34,7 @@ The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated
 ### Hardware images:
 Description | Image
 --------|------
-Breadboard | ![Image 2](Images/2.jpg) 
+Powerful ESP8266 | ![Image 2](Images/2.jpg) 
 MQ7 (Carbon monoxide) and DHT22 (Temp & humidity) sensors | ![Image 3](Images/3.jpg)
 
 ### Android application images:
