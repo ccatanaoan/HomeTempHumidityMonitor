@@ -1,13 +1,13 @@
 # Cloyd Smart Home Monitor System
-I wrote and developed these ESP8266 programs and Android mobile application client for our home automation. The mobile application can remotely control and monitor the sensors via cloud MQTT anywhere in the world. 
+I wrote and developed these ESP8266 programs and Android mobile application client for our home automation. The mobile application can remotely control and monitor the sensors via the Cloud MQTT anywhere in the world. [Click this link for the Smart Home Monitor Java desktop client](https://github.com/ccatanaoan/THAQMonitor).
 
-I used one two pairs of ESP8266 microcontroller to power, control, and read the DHT22 and the MQ-7 sensors. The Android app and the two microcontrollers subscribe to their own topics and publish payloads (MQTT) to communicate and sync up with each other.
+I used two pairs of ESP8266 microcontroller to power, control, and read the DHT22 and the MQ-7 sensors. The Android application, desktop client, and the four microcontrollers subscribe to their own topics and publish payloads (MQTT) to communicate and sync up with each other.
 
 This project has started as a simple home weather station but turned in to a full-blown smart home monitoring system. :+1:
 
 The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated TCP/IP protocol stack that can give any microcontroller access to the WiFi network.
 
-### Data sent from the sensors at home to the Android mobile app via cloud MQTT
+### Data sent from the sensors at home to the Android mobile app via the Cloud MQTT
 - Carbon monoxide level in parts per million (ppm)
 - Air quality based on ppm level
 - Temperature
@@ -30,6 +30,7 @@ The ESP8266 WiFi Module is a self contained system on chip (SoC) with integrated
 ### Mobile application and protocols used for Internet of Things (IoT):
 - Custom-made Android mobile application
 - Cloud MQTT
+- [Click this link for the Smart Home Monitor Java desktop client](https://github.com/ccatanaoan/THAQMonitor)
 
 ### Hardware images:
 Description | Image
