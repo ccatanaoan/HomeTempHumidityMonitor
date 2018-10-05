@@ -12,7 +12,7 @@ Module1=Starter
 NumberOfFiles=1
 NumberOfLibraries=4
 NumberOfModules=1
-Version=8
+Version=8.5
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Living Area Chart
@@ -317,7 +317,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		' ******************* Last 10 minutes *******************
 		
-		lc1.Line_3_LegendText = "Last 2 minutes"
+		lc1.Line_3_LegendText = "Real time"
 		lc1.Line_3_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
 		lc1.Line_3_PointLabelTextColor = Colors.Green
 		lc1.Line_3_PointLabelTextSize = 30.0
@@ -335,7 +335,7 @@ Sub Activity_Create(FirstTime As Boolean)
 			 
 		lc1.DrawTheGraphs
 		
-		Timer1.Initialize("Timer1",1000) 'check each minute
+		Timer1.Initialize("Timer1",1000) 'check every second
 		Timer1.Enabled = True 'start timer
 	Catch
 		Log(LastException)
@@ -405,7 +405,7 @@ Sub ReadTextReader(fileDay As String)
 		Dim line As String
 		line = TextReader1.ReadLine
 		Do While line <> Null
-			Log(line) 'write the line to LogCat
+			'Log(line) 'write the line to LogCat
 			line = TextReader1.ReadLine
 			If line = Null Then 
 				Exit  
@@ -511,7 +511,7 @@ Sub Activity_WindowFocusChanged(HasFocus As Boolean)
 End Sub
 
 Sub Timer1_Tick
-	Log("Timer tick")
+	'Log("Timer tick")
 	lc1.RemoveView
 	Activity_Create(False)
 End Sub

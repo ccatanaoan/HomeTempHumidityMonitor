@@ -300,11 +300,14 @@ public class main extends Activity implements B4AActivity{
     		this.activity = new WeakReference<Activity>(activity);
     	}
 		public void run() {
-			if (mostCurrent == null || mostCurrent != activity.get())
+            main mc = mostCurrent;
+			if (mc == null || mc != activity.get())
 				return;
 			processBA.setActivityPaused(false);
             BA.LogInfo("** Activity (main) Resume **");
-		    processBA.raiseEvent(mostCurrent._activity, "activity_resume", (Object[])null);
+            if (mc != mostCurrent)
+                return;
+		    processBA.raiseEvent(mc._activity, "activity_resume", (Object[])null);
 		}
     }
 	@Override
@@ -756,8 +759,8 @@ mostCurrent._lc1.setLine_2_PointShape(mostCurrent._lc1.SHAPE_ROUND);
 mostCurrent._lc1.setLine_2_DrawDash(anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 298;BA.debugLine="lc1.Line_2_DrawCubic = False";
 mostCurrent._lc1.setLine_2_DrawCubic(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 304;BA.debugLine="lc1.Line_3_LegendText = \"Last 2 minutes\"";
-mostCurrent._lc1.setLine_3_LegendText("Last 2 minutes");
+ //BA.debugLineNum = 304;BA.debugLine="lc1.Line_3_LegendText = \"Real time\"";
+mostCurrent._lc1.setLine_3_LegendText("Real time");
  //BA.debugLineNum = 305;BA.debugLine="lc1.Line_3_Data = Array As Float (tempRightNow,";
 mostCurrent._lc1.setLine_3_Data(new float[]{(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow))});
  //BA.debugLineNum = 306;BA.debugLine="lc1.Line_3_PointLabelTextColor = Colors.Green";
@@ -782,7 +785,7 @@ mostCurrent._lc1.setLine_3_DrawCubic(anywheresoftware.b4a.keywords.Common.False)
 mostCurrent._lc1.setNumberOfLineCharts((int) (3));
  //BA.debugLineNum = 320;BA.debugLine="lc1.DrawTheGraphs";
 mostCurrent._lc1.DrawTheGraphs();
- //BA.debugLineNum = 322;BA.debugLine="Timer1.Initialize(\"Timer1\",1000) 'check each min";
+ //BA.debugLineNum = 322;BA.debugLine="Timer1.Initialize(\"Timer1\",1000) 'check every se";
 _timer1.Initialize(processBA,"Timer1",(long) (1000));
  //BA.debugLineNum = 323;BA.debugLine="Timer1.Enabled = True 'start timer";
 _timer1.setEnabled(anywheresoftware.b4a.keywords.Common.True);
@@ -1130,8 +1133,6 @@ _line = "";
 _line = _textreader1.ReadLine();
  //BA.debugLineNum = 391;BA.debugLine="Do While line <> Null";
 while (_line!= null) {
- //BA.debugLineNum = 392;BA.debugLine="Log(line) 'write the line to LogCat";
-anywheresoftware.b4a.keywords.Common.Log(_line);
  //BA.debugLineNum = 393;BA.debugLine="line = TextReader1.ReadLine";
 _line = _textreader1.ReadLine();
  //BA.debugLineNum = 394;BA.debugLine="If line = Null Then";
@@ -1282,8 +1283,8 @@ mostCurrent._temprightnow = _a[(int) (1)];
  //BA.debugLineNum = 458;BA.debugLine="TextReader1.Close";
 _textreader1.Close();
  } 
-       catch (Exception e115) {
-			processBA.setLastException(e115); //BA.debugLineNum = 460;BA.debugLine="Log(LastException)";
+       catch (Exception e114) {
+			processBA.setLastException(e114); //BA.debugLineNum = 460;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
  };
  //BA.debugLineNum = 462;BA.debugLine="End Sub";
@@ -1291,8 +1292,6 @@ return "";
 }
 public static String  _timer1_tick() throws Exception{
  //BA.debugLineNum = 497;BA.debugLine="Sub Timer1_Tick";
- //BA.debugLineNum = 498;BA.debugLine="Log(\"Timer tick\")";
-anywheresoftware.b4a.keywords.Common.Log("Timer tick");
  //BA.debugLineNum = 499;BA.debugLine="lc1.RemoveView";
 mostCurrent._lc1.RemoveView();
  //BA.debugLineNum = 500;BA.debugLine="Activity_Create(False)";
