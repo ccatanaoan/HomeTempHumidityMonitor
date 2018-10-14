@@ -115,19 +115,19 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					StateManager.SaveSettings
 					
 					'If DateTime.GetSecond(DateTime.Now) Mod 20 = 0 Then
-						LogEvent(status)
+					LogEvent(status)
 					'End If
 					
 					Dim NotificationText As String
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "%"
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 					If (a(3) > 3) Or (a(4) <> 0)  Then
+						Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumid,DateTime.now)
+						Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTime")
+						If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
+							managerTempHumidityCooldownTime = 1
+						End If
 						If IsTempHumidityNotificationOnGoing = False Then
-							Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumid,DateTime.now)
-							Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTime")
-							If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
-								managerTempHumidityCooldownTime = 1
-							End If
 							If p.Minutes > = managerTempHumidityCooldownTime Then
 								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
 									CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
@@ -138,7 +138,28 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 								End If
 								lngTicksTempHumid = DateTime.now
 							End If
+						Else
+							Dim TempHumidityPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityPrevious"))
+							If a(4) <> TempHumidityPrevious(4) Or a(3) <> TempHumidityPrevious(3) Then
+								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+									CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
+								else If a(4) <> 0 Then
+									CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
+								Else
+									CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
+								End If
+							Else
+								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+									CreateNotification("* " & GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
+								else If a(4) <> 0 Then
+									CreateNotification("* " & GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
+								Else
+									CreateNotification("* " & GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
+								End If
+							End If
 						End If
+						StateManager.SetSetting("TempHumidityPrevious",status)
+						StateManager.SaveSettings
 					Else
 						lngTicksTempHumid = DateTime.now
 						IsTempHumidityNotificationOnGoing = False
@@ -162,6 +183,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					If a(0) > 400 Then
 						If IsAirQualityNotificationOnGoing = False Then
 							CreateNotification("Living Area Air Quality",NotificationText,"co",Main,False,False,True,"Living area carbon monoxide").Notify(726)
+						Else 
+							CreateNotification("* Living Area Air Quality",NotificationText,"co",Main,False,False,True,"Living area carbon monoxide").Notify(726)
 						End If
 					Else
 						IsAirQualityNotificationOnGoing = False
@@ -185,6 +208,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					If a(0) > 400 Then
 						If IsAirQualityNotificationOnGoingBasement = False Then
 							CreateNotification("Basement Air Quality",NotificationText,"co",Main,False,False,True,"Basement carbon monoxide").Notify(727)
+						Else 
+							CreateNotification("* Basement Air Quality",NotificationText,"co",Main,False,False,True,"Basement carbon monoxide").Notify(727)
 						End If
 					Else
 						IsAirQualityNotificationOnGoingBasement = False
@@ -246,12 +271,12 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					NotificationText = "Temperature: " & a(1) & "°F | Humidity: " & a(2) & "%"
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 					If (a(3) > 3) Or (a(4) <> 0)  Then
+						Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumidBasement,DateTime.now)
+						Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTimeBasement")
+						If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
+							managerTempHumidityCooldownTime = 1
+						End If
 						If IsTempHumidityNotificationOnGoingBasement = False Then
-							Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumidBasement,DateTime.now)
-							Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTimeBasement")
-							If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
-								managerTempHumidityCooldownTime = 1
-							End If
 							If p.Minutes > = managerTempHumidityCooldownTime Then
 								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
 									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
@@ -262,7 +287,28 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 								End If
 								lngTicksTempHumidBasement = DateTime.now
 							End If
+						Else
+							Dim TempHumidityBasementPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityBasementPrevious"))
+							If a(4) <> TempHumidityBasementPrevious(4) Or a(3) <> TempHumidityBasementPrevious(3) Then
+								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
+								else If a(4) <> 0 Then
+									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+								Else
+									CreateNotification(GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+								End If
+							Else
+								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+									CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
+								else If a(4) <> 0 Then
+									CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+								Else
+									CreateNotification("* " & GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+								End If
+							End If
 						End If
+						StateManager.SetSetting("TempHumidityBasementPrevious",status)
+						StateManager.SaveSettings
 					Else
 						lngTicksTempHumidBasement = DateTime.now
 						IsTempHumidityNotificationOnGoingBasement = False

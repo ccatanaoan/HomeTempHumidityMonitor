@@ -413,7 +413,7 @@ _numberofticks = (int) (20);};
 final int step6 = 1;
 final int limit6 = _numberofticks;
 _i = (int) (0) ;
-for (;(step6 > 0 && _i <= limit6) || (step6 < 0 && _i >= limit6) ;_i = ((int)(0 + _i + step6))  ) {
+for (;_i <= limit6 ;_i = _i + step6 ) {
  //BA.debugLineNum = 153;BA.debugLine="Dim thickness, r As Int";
 _thickness = 0;
 _r = 0;

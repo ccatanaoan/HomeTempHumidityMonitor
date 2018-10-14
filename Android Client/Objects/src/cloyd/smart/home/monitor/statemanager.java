@@ -152,7 +152,7 @@ _data = _getnextitem(_ba,_list1);
 final int step37 = 1;
 final int limit37 = (int) (_th.getTabCount()-1);
 _i = (int) (0) ;
-for (;(step37 > 0 && _i <= limit37) || (step37 < 0 && _i >= limit37) ;_i = ((int)(0 + _i + step37))  ) {
+for (;_i <= limit37 ;_i = _i + step37 ) {
  //BA.debugLineNum = 176;BA.debugLine="th.CurrentTab = i";
 _th.setCurrentTab(_i);
  }
@@ -172,7 +172,7 @@ _tabparentpanel.setObject((android.view.ViewGroup)(_r.RunMethod("getTabContentVi
 final int step45 = 1;
 final int limit45 = (int) (_tabparentpanel.getNumberOfViews()-1);
 _i = (int) (0) ;
-for (;(step45 > 0 && _i <= limit45) || (step45 < 0 && _i >= limit45) ;_i = ((int)(0 + _i + step45))  ) {
+for (;_i <= limit45 ;_i = _i + step45 ) {
  //BA.debugLineNum = 184;BA.debugLine="innerRestoreState(tabParentPanel.GetView(i), li";
 _innerrestorestate(_ba,_tabparentpanel.GetView(_i),_list1);
  }
@@ -198,7 +198,7 @@ _panel1.setObject((android.view.ViewGroup)(_v.getObject()));
 final int step57 = 1;
 final int limit57 = (int) (_panel1.getNumberOfViews()-1);
 _i = (int) (0) ;
-for (;(step57 > 0 && _i <= limit57) || (step57 < 0 && _i >= limit57) ;_i = ((int)(0 + _i + step57))  ) {
+for (;_i <= limit57 ;_i = _i + step57 ) {
  //BA.debugLineNum = 196;BA.debugLine="innerRestoreState(panel1.GetView(i), list1)";
 _innerrestorestate(_ba,_panel1.GetView(_i),_list1);
  }
@@ -286,7 +286,7 @@ _data = new Object[]{(Object)(_th.getCurrentTab())};
 final int step30 = 1;
 final int limit30 = (int) (_th.getTabCount()-1);
 _i = (int) (0) ;
-for (;(step30 > 0 && _i <= limit30) || (step30 < 0 && _i >= limit30) ;_i = ((int)(0 + _i + step30))  ) {
+for (;_i <= limit30 ;_i = _i + step30 ) {
  //BA.debugLineNum = 110;BA.debugLine="th.CurrentTab = i";
 _th.setCurrentTab(_i);
  }
@@ -315,7 +315,7 @@ _tabparentpanel.setObject((android.view.ViewGroup)(_r.RunMethod("getTabContentVi
 final int step39 = 1;
 final int limit39 = (int) (_tabparentpanel.getNumberOfViews()-1);
 _i = (int) (0) ;
-for (;(step39 > 0 && _i <= limit39) || (step39 < 0 && _i >= limit39) ;_i = ((int)(0 + _i + step39))  ) {
+for (;_i <= limit39 ;_i = _i + step39 ) {
  //BA.debugLineNum = 119;BA.debugLine="innerSaveState(tabParentPanel.GetView(i), list1";
 _innersavestate(_ba,_tabparentpanel.GetView(_i),_list1);
  }
@@ -350,7 +350,7 @@ _panel1.setObject((android.view.ViewGroup)(_v.getObject()));
 final int step52 = 1;
 final int limit52 = (int) (_panel1.getNumberOfViews()-1);
 _i = (int) (0) ;
-for (;(step52 > 0 && _i <= limit52) || (step52 < 0 && _i >= limit52) ;_i = ((int)(0 + _i + step52))  ) {
+for (;_i <= limit52 ;_i = _i + step52 ) {
  //BA.debugLineNum = 132;BA.debugLine="innerSaveState(panel1.GetView(i), list1)";
 _innersavestate(_ba,_panel1.GetView(_i),_list1);
  }
@@ -450,7 +450,7 @@ _listposition = (int) (0);
 final int step15 = 1;
 final int limit15 = (int) (_activity.getNumberOfViews()-1);
 _i = (int) (0) ;
-for (;(step15 > 0 && _i <= limit15) || (step15 < 0 && _i >= limit15) ;_i = ((int)(0 + _i + step15))  ) {
+for (;_i <= limit15 ;_i = _i + step15 ) {
  //BA.debugLineNum = 225;BA.debugLine="innerRestoreState(Activity.GetView(i), list1)";
 _innerrestorestate(_ba,_activity.GetView(_i),_list1);
  }
@@ -497,7 +497,7 @@ _list1.Add((Object)(anywheresoftware.b4a.keywords.Common.DateTime.getNow()));
 final int step5 = 1;
 final int limit5 = (int) (_activity.getNumberOfViews()-1);
 _i = (int) (0) ;
-for (;(step5 > 0 && _i <= limit5) || (step5 < 0 && _i >= limit5) ;_i = ((int)(0 + _i + step5))  ) {
+for (;_i <= limit5 ;_i = _i + step5 ) {
  //BA.debugLineNum = 66;BA.debugLine="innerSaveState(Activity.GetView(i), list1)";
 _innersavestate(_ba,_activity.GetView(_i),_list1);
  }

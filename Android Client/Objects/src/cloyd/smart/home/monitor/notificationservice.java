@@ -108,12 +108,17 @@ public class notificationservice extends  android.app.Service{
 	@Override
 	public void onDestroy() {
         super.onDestroy();
-        BA.LogInfo("** Service (notificationservice) Destroy **");
-		processBA.raiseEvent(null, "service_destroy");
-        processBA.service = null;
-		mostCurrent = null;
-		processBA.setActivityPaused(true);
-        processBA.runHook("ondestroy", this, null);
+        if (false) {
+            BA.LogInfo("** Service (notificationservice) Destroy (ignored)**");
+        }
+        else {
+            BA.LogInfo("** Service (notificationservice) Destroy **");
+		    processBA.raiseEvent(null, "service_destroy");
+            processBA.service = null;
+		    mostCurrent = null;
+		    processBA.setActivityPaused(true);
+            processBA.runHook("ondestroy", this, null);
+        }
 	}
 
 @Override
