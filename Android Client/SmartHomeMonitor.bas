@@ -140,7 +140,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							End If
 						Else
 							Dim TempHumidityPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityPrevious"))
-							If a(4) <> TempHumidityPrevious(4) Or a(3) <> TempHumidityPrevious(3) Then
+							If a(4) <> TempHumidityPrevious(4) Then
 								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
 									CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
 								else If a(4) <> 0 Then
@@ -148,14 +148,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 								Else
 									CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
 								End If
-							Else
-								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-									CreateNotification("* " & GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
-								else If a(4) <> 0 Then
-									CreateNotification("* " & GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
-								Else
-									CreateNotification("* " & GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
-								End If
+							else if a(3) <> TempHumidityPrevious(3) Then
+								CreateNotification(GetPerception(a(3)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
 							End If
 						End If
 						StateManager.SetSetting("TempHumidityPrevious",status)
@@ -289,22 +283,16 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							End If
 						Else
 							Dim TempHumidityBasementPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityBasementPrevious"))
-							If a(4) <> TempHumidityBasementPrevious(4) Or a(3) <> TempHumidityBasementPrevious(3) Then
+							If a(4) <> TempHumidityBasementPrevious(4) Then
 								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
 									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
 								else If a(4) <> 0 Then
 									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
-								Else
+								Else 
 									CreateNotification(GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
 								End If
-							Else
-								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-									CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
-								else If a(4) <> 0 Then
-									CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
-								Else
-									CreateNotification("* " & GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
-								End If
+							else if a(3) <> TempHumidityBasementPrevious(3) Then
+								CreateNotification(GetPerception(a(3)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
 							End If
 						End If
 						StateManager.SetSetting("TempHumidityBasementPrevious",status)
