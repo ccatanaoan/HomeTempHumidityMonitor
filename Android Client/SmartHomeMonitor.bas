@@ -141,16 +141,22 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						Else
 							Dim TempHumidityPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityPrevious"))
 							If a(4) <> TempHumidityPrevious(4) Then
-								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-									CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
-								Else
-									CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
+								If p.Minutes > = managerTempHumidityCooldownTime Then
+									If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+										CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
+									Else
+										CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
+									End If
+									lngTicksTempHumid = DateTime.now
 								End If
 							else if a(3) <> TempHumidityPrevious(3) Then
-								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-									CreateNotification("* " & GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
-								Else
-									CreateNotification("* " & GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
+								If p.Minutes > = managerTempHumidityCooldownTime Then
+									If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+										CreateNotification("* " & GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
+									Else
+										CreateNotification("* " & GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
+									End If
+									lngTicksTempHumid = DateTime.now
 								End If
 							End If
 						End If
@@ -285,16 +291,22 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						Else
 							Dim TempHumidityBasementPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityBasementPrevious"))
 							If a(4) <> TempHumidityBasementPrevious(4) Then
-								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
-								Else
-									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+								If p.Minutes > = managerTempHumidityCooldownTime Then
+									If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
+									Else
+										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+									End If
+									lngTicksTempHumidBasement = DateTime.now
 								End If
 							else if a(3) <> TempHumidityBasementPrevious(3) Then
-								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-									CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
-								Else
-									CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+								If p.Minutes > = managerTempHumidityCooldownTime Then
+									If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
+									Else
+										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+									End If
+									lngTicksTempHumidBasement = DateTime.now
 								End If
 							End If
 						End If
