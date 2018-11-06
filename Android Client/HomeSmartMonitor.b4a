@@ -49,8 +49,8 @@ Version=8.5
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 2001
-	#VersionName: 2.0.0.2
+	#VersionCode: 2003
+	#VersionName: 2.0.0.3
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -494,7 +494,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "November 2, 2018", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "November 5, 2018", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -625,6 +625,19 @@ Sub CheckAirQualitySetting
 				Else
 					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
 				End If
+				If a(1) = "" Then
+					Dim Tomorrow As Long
+					Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+					DateTime.DateFormat = "yy-MM-dd"
+					a(1) = DateTime.Date(Tomorrow)
+				End If
+				If a(2).Contains("|24:") Then
+					a(2) = a(2).Replace("|24:","|00:")
+					Dim Tomorrow As Long
+					Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+					DateTime.DateFormat = "yy-MM-dd"
+					a(2) = DateTime.Date(Tomorrow)
+				End If
 				DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 				Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
 				DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
@@ -637,13 +650,7 @@ Sub CheckAirQualitySetting
 					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
 			Else If a(2) = "00:00:00" Then
-				'********
-				If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
-				Else
 					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
-				End If
-				'********
 			End If
 		End If
 	Catch
@@ -667,6 +674,20 @@ Sub CheckAirQualitySettingBasement
 				Else
 					lblAirQualityBasement.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
 				End If
+				If a(1) = "" Then
+					Dim Tomorrow As Long
+					Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+					DateTime.DateFormat = "yy-MM-dd"
+					a(1) = DateTime.Date(Tomorrow)
+				End If
+				If a(2).Contains("|24:") Then
+					a(2) = a(2).Replace("|24:","|00:")
+					Dim Tomorrow As Long
+					Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+					DateTime.DateFormat = "yy-MM-dd"
+					a(2) = DateTime.Date(Tomorrow)
+				End If
+				
 				DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 				Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
 				DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
@@ -679,13 +700,7 @@ Sub CheckAirQualitySettingBasement
 					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
 			Else If a(2) = "00:00:00" Then
-				'********
-				If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
-					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(lblAirQualityLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
-				Else
 					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
-				End If
-				'********
 			End If
 		End If
 	Catch
@@ -713,17 +728,24 @@ Sub CheckTempHumiditySetting
 				else If a(4) = 0 Then
 					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
 				Else
-					'********
-					If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
-						lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
-					Else
-						lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(GetComfort(a(4))).PopAll
-					End If
-					'********
+					lblComfort.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(GetComfort(a(4))).PopAll
 				End If
 				
 				GaugeHeatIndex.CurrentValue = a(5)
 				GaugeDewPoint.CurrentValue = a(6)
+				If a(7) = "" Then
+					Dim Tomorrow As Long
+					Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+					DateTime.DateFormat = "yy-MM-dd"
+					a(7) = DateTime.Date(Tomorrow)
+				End If
+				If a(8).Contains("|24:") Then
+					a(8) = a(8).Replace("|24:","|00:")
+					Dim Tomorrow As Long
+					Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+					DateTime.DateFormat = "yy-MM-dd"
+					a(7) = DateTime.Date(Tomorrow)
+				End If
 				DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 				Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
 				DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
@@ -731,30 +753,12 @@ Sub CheckTempHumiditySetting
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
 				If p.Minutes > = 5 Then
-					If a(8).IndexOf("|00:") > -1 And p.Minutes=59 Then
-						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
-					Else If a(8).IndexOf("|00:0") > -1 Then
-						lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
-					Else
-						'********
-						If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
-							lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
-						Else
-							lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
-						End If
-						'********
-					End If
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 				Else
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
 			Else If a(8) = "00:00:00" Then
-				'********
-				If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(lblLastUpdate.Text.Replace("Last update: ","")).PopAll
-				Else
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdate.Text.Replace("Last update: ","")).PopAll
-				End If
-				'********
+				lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdate.Text.Replace("Last update: ","")).PopAll
 			End If
 		End If
 	Catch
@@ -782,16 +786,23 @@ Sub CheckTempHumiditySettingBasement
 				else If a(4) = 0 Then
 					lblComfortBasement.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
 				Else
-					'********
-					If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
-						lblComfortBasement.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Append(GetComfort(a(4))).PopAll
-					Else
-						lblComfortBasement.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(GetComfort(a(4))).PopAll
-					End If
-					'********
+					lblComfortBasement.Text = cs.Initialize.Bold.Append("Thermal Comfort: ").Pop.Color(Colors.Red).Append(GetComfort(a(4))).PopAll
 				End If
 				GaugeHeatIndexBasement.CurrentValue = a(5)
 				GaugeDewPointBasement.CurrentValue = a(6)
+				If a(7) = "" Then
+					Dim Tomorrow As Long
+					Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+					DateTime.DateFormat = "yy-MM-dd"
+					a(7) = DateTime.Date(Tomorrow)
+				End If
+				If a(8).Contains("|24:") Then
+					a(8) = a(8).Replace("|24:","|00:")
+					Dim Tomorrow As Long
+					Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+					DateTime.DateFormat = "yy-MM-dd"
+					a(7) = DateTime.Date(Tomorrow)
+				End If
 				DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 				Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
 				DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
@@ -799,30 +810,12 @@ Sub CheckTempHumiditySettingBasement
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
 				If p.Minutes > = 5 Then
-					If a(8).IndexOf("|00:") > -1 And p.Minutes=59 Then
-						lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
-					Else If a(8).IndexOf("|00:0") > -1 Then
-						lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
-					Else
-						'********
-						If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
-							lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
-						Else
-							lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
-						End If
-						'********
-					End If
+					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 				Else
 					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
 			Else If a(8) = "00:00:00" Then
-				'********
-				If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
-					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(lblLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
-				Else
-					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
-				End If
-				'********
+				lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
 			End If
 		End If
 	Catch

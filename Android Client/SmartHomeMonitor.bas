@@ -321,12 +321,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			End If
 		End If
 		
-		'********
-		If DateTime.Now >= DateTime.Timeparse("19:00:00") And DateTime.Now <=  DateTime.Timeparse("19:15:00") Then
-			Return
-		End If
-		'********
-		
 		Dim managerSensorNotRespondingTime As String = StateManager.GetSetting("SensorNotRespondingTime")
 		If managerSensorNotRespondingTime = "" Or IsNumber(managerSensorNotRespondingTime) = False Or managerSensorNotRespondingTime ="0" Then
 			managerSensorNotRespondingTime = 1
@@ -340,6 +334,20 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		Dim n As Notification 'ignore
 						
 		If a.Length = 9 Then
+			If a(7) = "" Then
+				Dim Tomorrow As Long
+				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+				DateTime.DateFormat = "yy-MM-dd"
+				a(7) = DateTime.Date(Tomorrow)
+			End If
+			If a(8).Contains("|24:") Then
+				a(8) = a(8).Replace("|24:","|00:")
+				Dim Tomorrow As Long
+				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+				DateTime.DateFormat = "yy-MM-dd"
+				a(7) = DateTime.Date(Tomorrow)
+			End If
+			
 			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 			Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
@@ -362,7 +370,22 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		Dim a() As String = Regex.Split("\|",status)
 						
 		If a.Length = 9 Then
+			If a(7) = "" Then
+				Dim Tomorrow As Long
+				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+				DateTime.DateFormat = "yy-MM-dd"
+				a(7) = DateTime.Date(Tomorrow)
+			End If
+			If a(8).Contains("|24:") Then
+				a(8) = a(8).Replace("|24:","|00:")
+				Dim Tomorrow As Long
+				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+				DateTime.DateFormat = "yy-MM-dd"
+				a(7) = DateTime.Date(Tomorrow)
+			End If
+			
 			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+
 			Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 			Dim lngTicks As Long = ticks
@@ -384,6 +407,20 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		Dim a() As String = Regex.Split("\|",status)
 						
 		If a.Length = 3 Then
+			If a(1) = "" Then
+				Dim Tomorrow As Long
+				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+				DateTime.DateFormat = "yy-MM-dd"
+				a(1) = DateTime.Date(Tomorrow)
+			End If
+			If a(2).Contains("|24:") Then
+				a(2) = a(2).Replace("|24:","|00:")
+				Dim Tomorrow As Long
+				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+				DateTime.DateFormat = "yy-MM-dd"
+				a(2) = DateTime.Date(Tomorrow)
+			End If
+			
 			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 			Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
@@ -406,6 +443,20 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		Dim a() As String = Regex.Split("\|",status)
 						
 		If a.Length = 3 Then
+			If a(1) = "" Then
+				Dim Tomorrow As Long
+				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+				DateTime.DateFormat = "yy-MM-dd"
+				a(1) = DateTime.Date(Tomorrow)
+			End If
+			If a(2).Contains("|24:") Then
+				a(2) = a(2).Replace("|24:","|00:")
+				Dim Tomorrow As Long
+				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+				DateTime.DateFormat = "yy-MM-dd"
+				a(2) = DateTime.Date(Tomorrow)
+			End If
+			
 			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
 			Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
