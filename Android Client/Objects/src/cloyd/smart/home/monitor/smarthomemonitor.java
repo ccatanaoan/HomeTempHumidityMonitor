@@ -893,8 +893,8 @@ anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy h:mm:ss
 _lngticks = _ticks;
  //BA.debugLineNum = 349;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 350;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
-if (_p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
+ //BA.debugLineNum = 350;BA.debugLine="If p.Minutes <> 59 And p.Minutes > = managerSen";
+if (_p.Minutes!=59 && _p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
  //BA.debugLineNum = 351;BA.debugLine="If IsOldTempHumidityNotificationOnGoingBasemen";
 if (_isoldtemphumiditynotificationongoingbasement==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 352;BA.debugLine="CreateNotification(\"Basement DHT22 sensor is";
@@ -953,8 +953,8 @@ anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy h:mm:ss
 _lngticks = _ticks;
  //BA.debugLineNum = 386;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 387;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
-if (_p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
+ //BA.debugLineNum = 387;BA.debugLine="If p.Minutes <> 59 And p.Minutes > = managerSen";
+if (_p.Minutes!=59 && _p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
  //BA.debugLineNum = 388;BA.debugLine="If IsOldTempHumidityNotificationOnGoing = Fals";
 if (_isoldtemphumiditynotificationongoing==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 389;BA.debugLine="CreateNotification(\"Living area DHT22 sensor";
@@ -1013,8 +1013,8 @@ anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy h:mm:ss
 _lngticks = _ticks;
  //BA.debugLineNum = 422;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 423;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
-if (_p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
+ //BA.debugLineNum = 423;BA.debugLine="If p.Minutes <> 59 And p.Minutes > = managerSen";
+if (_p.Minutes!=59 && _p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
  //BA.debugLineNum = 424;BA.debugLine="If IsOldAirQualityNotificationOnGoing = False";
 if (_isoldairqualitynotificationongoing==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 425;BA.debugLine="CreateNotification(\"Living area carbon monoxi";
@@ -1073,8 +1073,8 @@ anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("MMM d, yyyy h:mm:ss
 _lngticks = _ticks;
  //BA.debugLineNum = 458;BA.debugLine="Dim p As Period = DateUtils.PeriodBetween(lngTi";
 _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
- //BA.debugLineNum = 459;BA.debugLine="If p.Minutes > = managerSensorNotRespondingTime";
-if (_p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
+ //BA.debugLineNum = 459;BA.debugLine="If p.Minutes <> 59 And p.Minutes > = managerSen";
+if (_p.Minutes!=59 && _p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime))) { 
  //BA.debugLineNum = 460;BA.debugLine="If IsOldAirQualityNotificationOnGoingBasement";
 if (_isoldairqualitynotificationongoingbasement==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 461;BA.debugLine="CreateNotification(\"Basement carbon monoxide";
