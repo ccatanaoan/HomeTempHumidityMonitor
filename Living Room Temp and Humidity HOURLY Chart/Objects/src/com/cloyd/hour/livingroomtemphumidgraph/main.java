@@ -461,8 +461,8 @@ _p.Seconds = (int) (0);
 _nexttime = 0L;
  //BA.debugLineNum = 111;BA.debugLine="NextTime = DateUtils.AddPeriod(timeRightNow, p)";
 _nexttime = mostCurrent._dateutils._addperiod(mostCurrent.activityBA,_timerightnow,_p);
- //BA.debugLineNum = 112;BA.debugLine="DateTime.TimeFormat = \"H:mm\"";
-anywheresoftware.b4a.keywords.Common.DateTime.setTimeFormat("H:mm");
+ //BA.debugLineNum = 112;BA.debugLine="DateTime.TimeFormat = \"HH:mm\"";
+anywheresoftware.b4a.keywords.Common.DateTime.setTimeFormat("HH:mm");
  //BA.debugLineNum = 114;BA.debugLine="timeArray(23-i) = DateTime.Time(NextTime) 'Date";
 mostCurrent._timearray[(int) (23-_i)] = anywheresoftware.b4a.keywords.Common.DateTime.Time(_nexttime);
  }
@@ -703,8 +703,8 @@ mostCurrent._lc1.setLine_1_PointShape(mostCurrent._lc1.SHAPE_ROUND);
 mostCurrent._lc1.setLine_1_DrawDash(anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 262;BA.debugLine="lc1.Line_1_DrawCubic = False";
 mostCurrent._lc1.setLine_1_DrawCubic(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 363;BA.debugLine="lc1.Line_2_LegendText = lastUpdateTime '\"Real ti";
-mostCurrent._lc1.setLine_2_LegendText(mostCurrent._lastupdatetime);
+ //BA.debugLineNum = 363;BA.debugLine="lc1.Line_2_LegendText = \"Compiled: Apr 15, 2019";
+mostCurrent._lc1.setLine_2_LegendText("Compiled: Apr 15, 2019 5:49 pm");
  //BA.debugLineNum = 364;BA.debugLine="lc1.Line_2_Data = Array As Float (tempRightNow,";
 mostCurrent._lc1.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow))});
  //BA.debugLineNum = 365;BA.debugLine="lc1.Line_2_PointLabelTextColor = Colors.Green";
@@ -779,7 +779,7 @@ return;
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 673;BA.debugLine="If HasFocus Then";
+ //BA.debugLineNum = 672;BA.debugLine="If HasFocus Then";
 if (true) break;
 
 case 1:
@@ -792,7 +792,7 @@ this.state = 3;
 case 3:
 //C
 this.state = 4;
- //BA.debugLineNum = 674;BA.debugLine="Try";
+ //BA.debugLineNum = 673;BA.debugLine="Try";
 if (true) break;
 
 case 4:
@@ -806,10 +806,10 @@ case 6:
 //C
 this.state = 9;
 this.catchState = 8;
- //BA.debugLineNum = 675;BA.debugLine="Dim jo As JavaObject = Activity";
+ //BA.debugLineNum = 674;BA.debugLine="Dim jo As JavaObject = Activity";
 _jo = new anywheresoftware.b4j.object.JavaObject();
 _jo.setObject((java.lang.Object)(parent.mostCurrent._activity.getObject()));
- //BA.debugLineNum = 676;BA.debugLine="Sleep(300)";
+ //BA.debugLineNum = 675;BA.debugLine="Sleep(300)";
 anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,this,(int) (300));
 this.state = 11;
 return;
@@ -817,7 +817,7 @@ case 11:
 //C
 this.state = 9;
 ;
- //BA.debugLineNum = 677;BA.debugLine="jo.RunMethod(\"setSystemUiVisibility\", Array As";
+ //BA.debugLineNum = 676;BA.debugLine="jo.RunMethod(\"setSystemUiVisibility\", Array As";
 _jo.RunMethod("setSystemUiVisibility",new Object[]{(Object)(5894)});
  if (true) break;
 
@@ -839,7 +839,7 @@ case 10:
 //C
 this.state = -1;
 ;
- //BA.debugLineNum = 683;BA.debugLine="End Sub";
+ //BA.debugLineNum = 682;BA.debugLine="End Sub";
 if (true) break;
 }} 
        catch (Exception e0) {
@@ -859,41 +859,41 @@ anywheresoftware.b4a.phone.Phone _p = null;
 anywheresoftware.b4j.object.JavaObject _ctxt = null;
 anywheresoftware.b4j.object.JavaObject _display = null;
 anywheresoftware.b4j.object.JavaObject _point = null;
- //BA.debugLineNum = 652;BA.debugLine="Sub GetRealSize As LayoutValues";
- //BA.debugLineNum = 653;BA.debugLine="Dim lv As LayoutValues";
+ //BA.debugLineNum = 651;BA.debugLine="Sub GetRealSize As LayoutValues";
+ //BA.debugLineNum = 652;BA.debugLine="Dim lv As LayoutValues";
 _lv = new anywheresoftware.b4a.keywords.LayoutValues();
- //BA.debugLineNum = 654;BA.debugLine="Dim p As Phone";
+ //BA.debugLineNum = 653;BA.debugLine="Dim p As Phone";
 _p = new anywheresoftware.b4a.phone.Phone();
- //BA.debugLineNum = 655;BA.debugLine="If p.SdkVersion >= 17 Then";
+ //BA.debugLineNum = 654;BA.debugLine="If p.SdkVersion >= 17 Then";
 if (_p.getSdkVersion()>=17) { 
- //BA.debugLineNum = 656;BA.debugLine="Dim ctxt As JavaObject";
+ //BA.debugLineNum = 655;BA.debugLine="Dim ctxt As JavaObject";
 _ctxt = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 657;BA.debugLine="ctxt.InitializeContext";
+ //BA.debugLineNum = 656;BA.debugLine="ctxt.InitializeContext";
 _ctxt.InitializeContext(processBA);
- //BA.debugLineNum = 658;BA.debugLine="Dim display As JavaObject = ctxt.RunMethodJO(\"ge";
+ //BA.debugLineNum = 657;BA.debugLine="Dim display As JavaObject = ctxt.RunMethodJO(\"ge";
 _display = new anywheresoftware.b4j.object.JavaObject();
 _display.setObject((java.lang.Object)(_ctxt.RunMethodJO("getSystemService",new Object[]{(Object)("window")}).RunMethod("getDefaultDisplay",(Object[])(anywheresoftware.b4a.keywords.Common.Null))));
- //BA.debugLineNum = 659;BA.debugLine="Dim point As JavaObject";
+ //BA.debugLineNum = 658;BA.debugLine="Dim point As JavaObject";
 _point = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 660;BA.debugLine="point.InitializeNewInstance(\"android.graphics.Po";
+ //BA.debugLineNum = 659;BA.debugLine="point.InitializeNewInstance(\"android.graphics.Po";
 _point.InitializeNewInstance("android.graphics.Point",(Object[])(anywheresoftware.b4a.keywords.Common.Null));
- //BA.debugLineNum = 661;BA.debugLine="display.RunMethod(\"getRealSize\", Array(point))";
+ //BA.debugLineNum = 660;BA.debugLine="display.RunMethod(\"getRealSize\", Array(point))";
 _display.RunMethod("getRealSize",new Object[]{(Object)(_point.getObject())});
- //BA.debugLineNum = 662;BA.debugLine="lv.Width = point.GetField(\"x\")";
+ //BA.debugLineNum = 661;BA.debugLine="lv.Width = point.GetField(\"x\")";
 _lv.Width = (int)(BA.ObjectToNumber(_point.GetField("x")));
- //BA.debugLineNum = 663;BA.debugLine="lv.Height = point.GetField(\"y\")";
+ //BA.debugLineNum = 662;BA.debugLine="lv.Height = point.GetField(\"y\")";
 _lv.Height = (int)(BA.ObjectToNumber(_point.GetField("y")));
  }else {
- //BA.debugLineNum = 665;BA.debugLine="lv.Width = 100%x";
+ //BA.debugLineNum = 664;BA.debugLine="lv.Width = 100%x";
 _lv.Width = anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA);
- //BA.debugLineNum = 666;BA.debugLine="lv.Height = 100%y";
+ //BA.debugLineNum = 665;BA.debugLine="lv.Height = 100%y";
 _lv.Height = anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA);
  };
- //BA.debugLineNum = 668;BA.debugLine="lv.Scale = 100dip / 100";
+ //BA.debugLineNum = 667;BA.debugLine="lv.Scale = 100dip / 100";
 _lv.Scale = (float) (anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (100))/(double)100);
- //BA.debugLineNum = 669;BA.debugLine="Return lv";
+ //BA.debugLineNum = 668;BA.debugLine="Return lv";
 if (true) return _lv;
- //BA.debugLineNum = 670;BA.debugLine="End Sub";
+ //BA.debugLineNum = 669;BA.debugLine="End Sub";
 return null;
 }
 public static String  _globals() throws Exception{
@@ -1243,31 +1243,29 @@ if ((_fileday).equals("Today")) {
 mostCurrent._temprightnow = _a[(int) (1)];
  //BA.debugLineNum = 518;BA.debugLine="DateTime.TimeFormat = \"h:mm a\"";
 anywheresoftware.b4a.keywords.Common.DateTime.setTimeFormat("h:mm a");
- //BA.debugLineNum = 519;BA.debugLine="lastUpdateTime = \"Last update: \" & DateTime.";
-mostCurrent._lastupdatetime = "Last update: "+anywheresoftware.b4a.keywords.Common.DateTime.Time(anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  };
  };
  }
 ;
- //BA.debugLineNum = 524;BA.debugLine="TextReader1.Close";
+ //BA.debugLineNum = 523;BA.debugLine="TextReader1.Close";
 _textreader1.Close();
  }
 };
  } 
-       catch (Exception e118) {
-			processBA.setLastException(e118); //BA.debugLineNum = 648;BA.debugLine="Log(LastException)";
+       catch (Exception e117) {
+			processBA.setLastException(e117); //BA.debugLineNum = 647;BA.debugLine="Log(LastException)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
  };
- //BA.debugLineNum = 650;BA.debugLine="End Sub";
+ //BA.debugLineNum = 649;BA.debugLine="End Sub";
 return "";
 }
 public static String  _timer1_tick() throws Exception{
- //BA.debugLineNum = 685;BA.debugLine="Sub Timer1_Tick";
- //BA.debugLineNum = 687;BA.debugLine="lc1.RemoveView";
+ //BA.debugLineNum = 684;BA.debugLine="Sub Timer1_Tick";
+ //BA.debugLineNum = 686;BA.debugLine="lc1.RemoveView";
 mostCurrent._lc1.RemoveView();
- //BA.debugLineNum = 688;BA.debugLine="Activity_Create(False)";
+ //BA.debugLineNum = 687;BA.debugLine="Activity_Create(False)";
 _activity_create(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 689;BA.debugLine="End Sub";
+ //BA.debugLineNum = 688;BA.debugLine="End Sub";
 return "";
 }
 }

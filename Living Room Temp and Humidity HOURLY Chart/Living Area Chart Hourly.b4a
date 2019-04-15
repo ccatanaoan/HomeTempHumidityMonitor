@@ -126,7 +126,7 @@ Sub Activity_Create(FirstTime As Boolean)
 			p.Seconds = 0
 			Dim NextTime As Long
 			NextTime = DateUtils.AddPeriod(timeRightNow, p)
-			DateTime.TimeFormat = "H:mm"
+			DateTime.TimeFormat = "HH:mm"
 			'Log(DateTime.Time(NextTime)) 'DateUtils.TicksToString(NextTime))
 			timeArray(23-i) = DateTime.Time(NextTime) 'DateUtils.TicksToString(NextTime)
 		Next 
@@ -377,7 +377,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		' ******************* Last 10 minutes *******************
 		
-		lc1.Line_2_LegendText = lastUpdateTime '"Real time"
+		lc1.Line_2_LegendText = "Compiled: Apr 15, 2019 5:49 pm" '& DateTime.Time(DateTime.Now)
 		lc1.Line_2_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
 		lc1.Line_2_PointLabelTextColor = Colors.Green
 		lc1.Line_2_PointLabelTextSize = 30.0
@@ -533,7 +533,6 @@ Sub ReadTextReader(fileDay As String)
 					If fileDay = "Today" Then
 						tempRightNow = a(1)
 						DateTime.TimeFormat = "h:mm a"
-						lastUpdateTime = "Last update: " & DateTime.Time(DateTime.Now)
 					End If
 				End If
 			Loop
