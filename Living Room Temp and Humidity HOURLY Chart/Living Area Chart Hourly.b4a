@@ -68,7 +68,6 @@ Sub Globals
 	Private tempRightNow As String
 	Private timeRightNow As Long
 	Private timeArray(24) As String
-	Private lastUpdateTime As String
 	Private minimumRange As Float
 	Private maximumRange As Float
 	Private zeroRange As Float
@@ -377,7 +376,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		' ******************* Last 10 minutes *******************
 		
-		lc1.Line_2_LegendText = "Compiled: Apr 15, 2019 5:49 pm" '& DateTime.Time(DateTime.Now)
+		lc1.Line_2_LegendText = "Compiled: Apr 15, 2019 6:29 pm" '& DateTime.Time(DateTime.Now)
 		lc1.Line_2_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
 		lc1.Line_2_PointLabelTextColor = Colors.Green
 		lc1.Line_2_PointLabelTextSize = 30.0
