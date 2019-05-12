@@ -270,7 +270,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					StateManager.SaveSettings
 					
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
-					If (a(3) > 3) Or (a(4) <> 0)  Then
+					' Added "Or (a(4) <> 2)" as Too Cold is normal in the basement.
+					If (a(3) > 3) Or (a(4) <> 0) Or (a(4) <> 2) Then
 						Dim NotificationText As String
 						NotificationText = GetPerception(a(3))
 					
