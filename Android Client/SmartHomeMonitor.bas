@@ -87,6 +87,7 @@ Sub MQTT_Connected (Success As Boolean)
 		End If
 	Catch
 		Log(LastException)
+		ToastMessageShow(LastException,False)
 	End Try
     
 End Sub
@@ -96,6 +97,7 @@ Private Sub MQTT_Disconnected
 		MQTT_Connect
 	Catch
 		Log(LastException)
+		ToastMessageShow(LastException,False)
 	End Try
 End Sub
 
@@ -477,6 +479,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		
 	Catch
 		Log(LastException)
+		ToastMessageShow(LastException,False)
 	End Try
 End Sub
 
@@ -507,6 +510,7 @@ Sub LogEvent(TextToLog As String)
 
 	Catch
 		Log("Error in Sub LogEvent: " & LastException.Message)
+		ToastMessageShow(LastException,False)
 	End Try
 
 End Sub
