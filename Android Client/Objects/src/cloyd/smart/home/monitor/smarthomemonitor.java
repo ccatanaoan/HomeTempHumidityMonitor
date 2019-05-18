@@ -761,8 +761,8 @@ if ((_a[(int) (0)]).equals("OK") && (double)(Double.parseDouble(_a[(int) (1)]))>
 mostCurrent._statemanager._setsetting(processBA,"TempHumidityBasement",_status);
  //BA.debugLineNum = 264;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings(processBA);
- //BA.debugLineNum = 269;BA.debugLine="If (a(3) > 3) Or (a(4) <> 0) Or (a(4) <> 2) O";
-if (((double)(Double.parseDouble(_a[(int) (3)]))>3) || ((_a[(int) (4)]).equals(BA.NumberToString(0)) == false) || ((_a[(int) (4)]).equals(BA.NumberToString(2)) == false) || ((_a[(int) (4)]).equals(BA.NumberToString(10)) == false)) { 
+ //BA.debugLineNum = 269;BA.debugLine="If (a(3) > 3) Or ((a(4) <> 0) And (a(4) <> 2)";
+if (((double)(Double.parseDouble(_a[(int) (3)]))>3) || (((_a[(int) (4)]).equals(BA.NumberToString(0)) == false) && ((_a[(int) (4)]).equals(BA.NumberToString(2)) == false) && ((_a[(int) (4)]).equals(BA.NumberToString(10)) == false))) { 
  //BA.debugLineNum = 270;BA.debugLine="Dim NotificationText As String";
 _notificationtext = "";
  //BA.debugLineNum = 271;BA.debugLine="NotificationText = GetPerception(a(3))";
