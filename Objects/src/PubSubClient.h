@@ -28,7 +28,7 @@
 
 // MQTT_KEEPALIVE : keepAlive interval in Seconds
 #ifndef MQTT_KEEPALIVE
-#define MQTT_KEEPALIVE 15
+#define MQTT_KEEPALIVE 300
 #endif
 
 // MQTT_SOCKET_TIMEOUT: socket timeout interval in Seconds

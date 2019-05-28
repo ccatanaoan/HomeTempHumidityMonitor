@@ -1,14 +1,15 @@
-﻿Version=2.2
-NumberOfModules=1
-Module1=TimeNIST
-Build1=Default,B4RDev
-NumberOfFiles=0
-NumberOfLibraries=5
+﻿Build1=Default,B4RDev
+Group=Default Group
 Library1=rcore
 Library2=resp8266
 Library3=resp8266wifi
 Library4=rmqtt
 Library5=rrandomaccessfile
+Module1=TimeNIST
+NumberOfFiles=0
+NumberOfLibraries=5
+NumberOfModules=1
+Version=2.6
 @EndOfDesignText@
 ' Home Weather Station Using DHT22 (AM2302)
 '
@@ -119,7 +120,6 @@ Sub MQTT_Connect(Unused As Byte)
 		pin16.DigitalWrite(False)
 		Log("Connected to broker")
 		MQTT.Subscribe("TempHumid", 0)
-		MQTT.Subscribe("MQ7", 0)
 	End If
 End Sub
 
@@ -146,7 +146,9 @@ End Sub
 
 Sub ConnectToWifi
 	Log("Connecting to WiFi")
-	WiFi.Connect2(WiFiSSID, WiFiPassword)
+	If WiFi.Connect2(WiFiSSID, WiFiPassword) = False Then
+		ConnectToWifi
+	End If
 
 	If WiFi.IsConnected Then
 		Log("Connected to ",WiFiSSID," network, Local IP ", WiFi.LocalIp)
@@ -154,6 +156,7 @@ Sub ConnectToWifi
 		TimeNIST.Start
 	Else
 		Log("Not Connected to WiFi")
+		ConnectToWifi
 	End If
 End Sub
 
@@ -214,9 +217,9 @@ void setup(B4R::Object* o){
 
 void ReadDHT22(B4R::Object* o) {
 	 b4r_main::_dht22state = dht22.getStatus();
-	 // Add 12 percent based on home hygrometer.
- 	 float humidity = dht22.getHumidity() + 13.5;
- 	 float temperature = dht22.toFahrenheit(dht22.getTemperature()) + 0.5;
+	 // Add 8 percent to relative humidity based on home hygrometer.
+ 	 float humidity = dht22.getHumidity() + 8;
+ 	 float temperature = dht22.toFahrenheit(dht22.getTemperature());
      b4r_main::_dht22hum  = humidity; 
      b4r_main::_dht22temp = temperature; 
 	 b4r_main::_dht22heatindex = dht22.computeHeatIndex(temperature, humidity, true);

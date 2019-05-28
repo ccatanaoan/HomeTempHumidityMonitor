@@ -8,25 +8,35 @@
 #endif
 #include <WiFiUdp.h>
 
-//~version: 1.30
+//~version: 1.33
 namespace B4R {
 	//~shortname: ESP8266WiFi
 	class B4RESPWiFi {
 		public:
 			//~hide
 			static B4RString* StringToB4R(String* s);
-			//Scans for wireless networks. Returns the number of networks found.
+			//Scans for wireless networks. Returns the number of networks found. 
 			Byte Scan(); 
 			//Returns the SSID of the network. Make sure to call Scan before calling this method.
 			//Index - The index of the network in the internal list.
 			B4RString* ScannedSSID(Byte Index);
+			//Returns the BSSID (MAC address) of the network. Make sure to call Scan before calling this method.
+			//Index - The index of the network in the internal list
+			ArrayByte* ScannedBSSID(Byte Index);
 			//Returns the RSSI of the network. Make sure to call Scan before calling this method.
 			//Index - The index of the network in the internal list.
 			Long ScannedRSSI(Byte Index);
+			
 			//Tries to connect to the open network. Return True if successful.
 			bool Connect(B4RString* SSID);
 			//Tries to connect to the secured network. Returns True if successful.
 			bool Connect2(B4RString* SSID, B4RString* Password);
+			//Tries to connect to the network. Returns True if successful.
+			//SSID - Network ssid.
+			//Password - Network password. Pass an empty string if not needed.
+			//Channel - Network ap channel. Pass 0 if not needed.
+			//BSSID - Network bssid (Mac address). Pass Null if not needed.
+			bool Connect3(B4RString* SSID, B4RString* Password, Long Channel, ArrayByte* BSSID);
 			//Returns the local ip address as a string.
 			B4RString* getLocalIp();
 			//Returns the board ip when the board acts as an access point.

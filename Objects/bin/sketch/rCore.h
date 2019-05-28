@@ -14,10 +14,10 @@ typedef float Double;
 typedef int B4R_VAARGS_INT;
 typedef unsigned int B4R_VAARGS_UINT;
 #endif
-#if !defined(_NEW)
+#if !defined(_NEW) && !defined(SKIP_B4RNEW)
 extern void *operator new( size_t size, void *ptr );
 #endif
-//~version: 2.00
+//~version: 2.01
 namespace B4R {
 	//numeric types < 20
 	#define BR_BYTE 1

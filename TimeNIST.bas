@@ -1,7 +1,8 @@
-﻿Type=StaticCode
-Version=2.2
+﻿B4R=true
+Group=Default Group
 ModulesStructureVersion=1
-B4R=true
+Type=StaticCode
+Version=2.2
 @EndOfDesignText@
 
 

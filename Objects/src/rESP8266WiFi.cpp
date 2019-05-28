@@ -14,6 +14,13 @@ namespace B4R {
 		String s = WiFi.SSID(Index);
 		return StringToB4R(&s);
 	}
+	ArrayByte* B4RESPWiFi::ScannedBSSID(Byte Index) {
+		uint8_t* t = WiFi.BSSID(Index);
+		ArrayByte* a = CreateStackMemoryObject(ArrayByte);
+		a->length = 6;
+		a->data = t;
+		return a;
+	}
 	Long B4RESPWiFi::ScannedRSSI(Byte Index) {
 		return (Long)WiFi.RSSI(Index);
 	}
@@ -21,8 +28,12 @@ namespace B4R {
 		return Connect2(SSID, NULL);
 	}
 	bool B4RESPWiFi::Connect2(B4RString* SSID, B4RString* Password) {
+		return Connect3(SSID, Password, 0, NULL);
+	}
+	bool B4RESPWiFi::Connect3(B4RString* SSID, B4RString* Password, Long Channel, ArrayByte* bssid) {
 		ULong start = millis();
-		WiFi.begin(SSID->data, Password != NULL ? Password->data : NULL);
+		WiFi.begin(SSID->data, (Password != NULL && Password->getLength() > 0)? Password->data : NULL, Channel,
+			bssid != NULL ? (uint8_t*)bssid->data : NULL, true);
 		while (WiFi.status() != WL_CONNECTED && millis() - start < 15000){
 			delay(500);
 		}

@@ -10,92 +10,92 @@
     "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\variants\\nodemcu"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\src.ino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\src.ino.cpp",
     "Include": "ESP8266WiFi.h",
     "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\src.ino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\src.ino.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\AsyncStreams.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\AsyncStreams.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RArduino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\B4RArduino.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RCore.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\B4RCore.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RSerializator.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\B4RSerializator.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\B4RStream.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\B4RStream.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\BufferedWiFiClient.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\BufferedWiFiClient.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\ByteConverter.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\ByteConverter.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\PubSubClient.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\PubSubClient.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\RandomAccessFile.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\RandomAccessFile.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\Scheduler.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\Scheduler.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_main.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\b4r_main.cpp",
     "Include": "DHTesp.h",
     "Includepath": "C:\\Program Files (x86)\\Arduino\\libraries\\DHT"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_main.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\b4r_main.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\b4r_timenist.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\b4r_timenist.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rESP8266.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\rESP8266.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rESP8266WiFi.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\rESP8266WiFi.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMETE~1\\Objects\\bin\\sketch\\rMQTT.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\rMQTT.cpp",
     "Include": "",
     "Includepath": ""
   },

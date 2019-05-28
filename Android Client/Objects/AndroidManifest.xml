@@ -2,8 +2,8 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="cloyd.smart.home.monitor"
-	android:versionCode="2006"
-	android:versionName="2.0.0.6"
+	android:versionCode="2008"
+	android:versionName="2.0.0.8"
 	android:installLocation="internalOnly">
 	
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>
@@ -19,6 +19,7 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 	<application
 		android:icon="@drawable/icon"
 		android:label="Smart Home Monitor"

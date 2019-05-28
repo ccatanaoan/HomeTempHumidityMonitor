@@ -50,7 +50,11 @@ namespace B4R {
 		return obj;
 	}
 	void ByteConverter::ObjectCopy(Object* Src, Object* Dest, UInt ObjectSize) {
-		memcpy(Dest->data.PointerField, Src->data.PointerField, ObjectSize);
+		memmove(Dest->data.PointerField, Src->data.PointerField, ObjectSize);
+	}
+	void ByteConverter::ObjectSet(Object* Src, Object* Dest) {
+		memmove(Dest, Src, sizeof(Object));
+		Dest->type = Src->type;
 	}
 	
 	Int ByteConverter::ArrayCompare(ArrayByte* Arr1, ArrayByte* Arr2) {

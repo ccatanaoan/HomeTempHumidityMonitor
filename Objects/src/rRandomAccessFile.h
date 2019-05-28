@@ -1,7 +1,7 @@
 #pragma once
 #include "B4RDefines.h"
 
-//~version: 1.80
+//~version: 1.90
 namespace B4R {
 	class SplitIterator;
 	/**
@@ -96,6 +96,7 @@ namespace B4R {
 		*Copies the source object to the destination object. This method makes a shallow copy of the source object's memory.
 		*The destination object must be a variable of the same type.
 		*You can use this method to copy local objects to global variables.
+		*If the Dest variable is an Object variable then you should use ObjectSet instead.
 		*Src - The source object.
 		*Dest - Destination variable.
 		*ObjectSize - The object size as computed with SizeOf.
@@ -103,6 +104,12 @@ namespace B4R {
 		*bc.ObjectCopy(LocalType, GlobalType, SizeOf(LocalType))</code>
 		*/
 		void ObjectCopy(Object* Src, Object* Dest, UInt ObjectSize);
+		/**
+		*Sets the value of an existing Object instance. This method can be used to set the values of an
+		*array of objects. When setting a global object you should make sure that the referenced value is not a 
+		*pointer to a stack value as it will not be valid after the sub completes.
+		*/
+		void ObjectSet(Object* Src, Object* Dest);
 		/**
 		*Copies the Src array to the Dest array. The destination array length will be set
 		*to the length of the source array. Bounds are not checked.

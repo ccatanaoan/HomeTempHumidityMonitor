@@ -12,6 +12,7 @@ PubSubClient::PubSubClient() {
     this->_client = NULL;
     this->stream = NULL;
     setCallback(NULL);
+	
 }
 
 PubSubClient::PubSubClient(Client& client) {

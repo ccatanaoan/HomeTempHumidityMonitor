@@ -61,7 +61,7 @@ public class main extends android.support.v7.app.AppCompatActivity implements B4
 		setContentView(layout);
 		afterFirstLayout = false;
         WaitForLayout wl = new WaitForLayout();
-        if (anywheresoftware.b4a.objects.ServiceHelper.StarterHelper.startFromActivity(processBA, wl, true))
+        if (anywheresoftware.b4a.objects.ServiceHelper.StarterHelper.startFromActivity(this, processBA, wl, true))
 		    BA.handler.postDelayed(wl, 5);
 
 	}
@@ -481,29 +481,29 @@ _xl = new anywheresoftware.b4a.object.XmlLayoutBuilder();
  //BA.debugLineNum = 116;BA.debugLine="jo.RunMethod(\"setPopupTheme\", Array(xl.GetResour";
 _jo.RunMethod("setPopupTheme",new Object[]{(Object)(_xl.GetResourceId("style","ToolbarMenu"))});
  //BA.debugLineNum = 118;BA.debugLine="GaugeHumidity.SetRanges(Array(GaugeHumidity.Crea";
-mostCurrent._gaugehumidity._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugehumidity._createrange((float) (0),(float) (70),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugehumidity._createrange((float) (70),(float) (80),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugehumidity._createrange((float) (80),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugehumidity._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugehumidity._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (70),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugehumidity._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (70),(float) (80),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugehumidity._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (80),(float) (100),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 121;BA.debugLine="GaugeTemp.SetRanges(Array(GaugeTemp.CreateRange(";
-mostCurrent._gaugetemp._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugetemp._createrange((float) (0),(float) (75),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugetemp._createrange((float) (75),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugetemp._createrange((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugetemp._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugetemp._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (75),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugetemp._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (75),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugetemp._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 124;BA.debugLine="GaugeHeatIndex.SetRanges(Array(GaugeHeatIndex.Cr";
-mostCurrent._gaugeheatindex._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugeheatindex._createrange((float) (0),(float) (75),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugeheatindex._createrange((float) (75),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugeheatindex._createrange((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugeheatindex._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugeheatindex._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (75),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugeheatindex._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (75),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugeheatindex._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 129;BA.debugLine="GaugeDewPoint.SetRanges(Array(GaugeDewPoint.Crea";
-mostCurrent._gaugedewpoint._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugedewpoint._createrange((float) (0),(float) (60.8),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugedewpoint._createrange((float) (60.8),(float) (64.4),mostCurrent._xui.Color_RGB((int) (100),(int) (240),(int) (23)))),(Object)(mostCurrent._gaugedewpoint._createrange((float) (64.4),(float) (78.8),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugedewpoint._createrange((float) (78.8),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugedewpoint._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugedewpoint._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (60.8),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugedewpoint._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (60.8),(float) (64.4),mostCurrent._xui.Color_RGB((int) (100),(int) (240),(int) (23)))),(Object)(mostCurrent._gaugedewpoint._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (64.4),(float) (78.8),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugedewpoint._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (78.8),(float) (100),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 135;BA.debugLine="GaugeAirQuality.SetRanges(Array(GaugeAirQuality.";
-mostCurrent._gaugeairquality._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugeairquality._createrange((float) (0),(float) (100),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugeairquality._createrange((float) (100),(float) (400),mostCurrent._xui.Color_RGB((int) (100),(int) (240),(int) (23)))),(Object)(mostCurrent._gaugeairquality._createrange((float) (400),(float) (900),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugeairquality._createrange((float) (900),(float) (1000),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugeairquality._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugeairquality._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (100),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugeairquality._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (100),(float) (400),mostCurrent._xui.Color_RGB((int) (100),(int) (240),(int) (23)))),(Object)(mostCurrent._gaugeairquality._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (400),(float) (900),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugeairquality._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (900),(float) (1000),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 139;BA.debugLine="GaugeAirQuality.CurrentValue=0";
-mostCurrent._gaugeairquality._setcurrentvalue((float) (0));
+mostCurrent._gaugeairquality._setcurrentvalue /*float*/ ((float) (0));
  //BA.debugLineNum = 141;BA.debugLine="GaugeHumidityBasement.SetRanges(Array(GaugeHumid";
-mostCurrent._gaugehumiditybasement._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugehumiditybasement._createrange((float) (0),(float) (70),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugehumiditybasement._createrange((float) (70),(float) (80),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugehumiditybasement._createrange((float) (80),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugehumiditybasement._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugehumiditybasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (70),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugehumiditybasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (70),(float) (80),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugehumiditybasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (80),(float) (100),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 144;BA.debugLine="GaugeTempBasement.SetRanges(Array(GaugeTempBasem";
-mostCurrent._gaugetempbasement._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugetempbasement._createrange((float) (0),(float) (75),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugetempbasement._createrange((float) (75),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugetempbasement._createrange((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugetempbasement._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugetempbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (75),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugetempbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (75),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugetempbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 147;BA.debugLine="GaugeHeatIndexBasement.SetRanges(Array(GaugeHeat";
-mostCurrent._gaugeheatindexbasement._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugeheatindexbasement._createrange((float) (0),(float) (75),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugeheatindexbasement._createrange((float) (75),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugeheatindexbasement._createrange((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugeheatindexbasement._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugeheatindexbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (75),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugeheatindexbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (75),(float) (90),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugeheatindexbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (90),(float) (100),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 152;BA.debugLine="GaugeDewPointBasement.SetRanges(Array(GaugeDewPo";
-mostCurrent._gaugedewpointbasement._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugedewpointbasement._createrange((float) (0),(float) (60.8),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugedewpointbasement._createrange((float) (60.8),(float) (64.4),mostCurrent._xui.Color_RGB((int) (100),(int) (240),(int) (23)))),(Object)(mostCurrent._gaugedewpointbasement._createrange((float) (64.4),(float) (78.8),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugedewpointbasement._createrange((float) (78.8),(float) (100),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugedewpointbasement._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugedewpointbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (60.8),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugedewpointbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (60.8),(float) (64.4),mostCurrent._xui.Color_RGB((int) (100),(int) (240),(int) (23)))),(Object)(mostCurrent._gaugedewpointbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (64.4),(float) (78.8),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugedewpointbasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (78.8),(float) (100),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 158;BA.debugLine="GaugeAirQualityBasement.SetRanges(Array(GaugeAir";
-mostCurrent._gaugeairqualitybasement._setranges(anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugeairqualitybasement._createrange((float) (0),(float) (100),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugeairqualitybasement._createrange((float) (100),(float) (400),mostCurrent._xui.Color_RGB((int) (100),(int) (240),(int) (23)))),(Object)(mostCurrent._gaugeairqualitybasement._createrange((float) (400),(float) (900),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugeairqualitybasement._createrange((float) (900),(float) (1000),mostCurrent._xui.Color_Red))}));
+mostCurrent._gaugeairqualitybasement._setranges /*String*/ (anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._gaugeairqualitybasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (0),(float) (100),mostCurrent._xui.Color_RGB((int) (100),(int) (221),(int) (23)))),(Object)(mostCurrent._gaugeairqualitybasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (100),(float) (400),mostCurrent._xui.Color_RGB((int) (100),(int) (240),(int) (23)))),(Object)(mostCurrent._gaugeairqualitybasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (400),(float) (900),mostCurrent._xui.Color_Yellow)),(Object)(mostCurrent._gaugeairqualitybasement._createrange /*cloyd.smart.home.monitor.gauge._gaugerange*/ ((float) (900),(float) (1000),mostCurrent._xui.Color_Red))}));
  //BA.debugLineNum = 162;BA.debugLine="GaugeAirQualityBasement.CurrentValue=0";
-mostCurrent._gaugeairqualitybasement._setcurrentvalue((float) (0));
+mostCurrent._gaugeairqualitybasement._setcurrentvalue /*float*/ ((float) (0));
  //BA.debugLineNum = 164;BA.debugLine="Dim cs As CSBuilder";
 _cs = new anywheresoftware.b4a.objects.CSBuilder();
  //BA.debugLineNum = 165;BA.debugLine="cs.Initialize";
@@ -519,9 +519,9 @@ mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold
  //BA.debugLineNum = 170;BA.debugLine="lblPing.Visible = False";
 mostCurrent._lblping.setVisible(anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 171;BA.debugLine="GaugeAirQuality.CurrentValue = 0";
-mostCurrent._gaugeairquality._setcurrentvalue((float) (0));
+mostCurrent._gaugeairquality._setcurrentvalue /*float*/ ((float) (0));
  //BA.debugLineNum = 172;BA.debugLine="GaugeAirQualityBasement.CurrentValue = 0";
-mostCurrent._gaugeairqualitybasement._setcurrentvalue((float) (0));
+mostCurrent._gaugeairqualitybasement._setcurrentvalue /*float*/ ((float) (0));
  //BA.debugLineNum = 173;BA.debugLine="lblAirQuality.Text = cs.Initialize.Bold.Append(\"";
 mostCurrent._lblairquality.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Air Quality: ")).Pop().Append(BA.ObjectToCharSequence("Waiting for data...")).PopAll().getObject()));
  //BA.debugLineNum = 174;BA.debugLine="lblAirQualityLastUpdate.Text = cs.Initialize.Bol";
@@ -567,7 +567,7 @@ _menu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("About"),(android.graphics
  } 
        catch (Exception e7) {
 			processBA.setLastException(e7); //BA.debugLineNum = 475;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51376264",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 477;BA.debugLine="End Sub";
 return "";
@@ -680,7 +680,7 @@ _tabstrip1_pageselected((int) (0));
  } 
        catch (Exception e40) {
 			processBA.setLastException(e40); //BA.debugLineNum = 233;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("5196649",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 236;BA.debugLine="Try";
 try { //BA.debugLineNum = 237;BA.debugLine="If MQTT.IsInitialized = False Or MQTT.Connected";
@@ -691,7 +691,7 @@ _mqtt_connect();
  } 
        catch (Exception e47) {
 			processBA.setLastException(e47); //BA.debugLineNum = 241;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("5196657",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 243;BA.debugLine="End Sub";
 return "";
@@ -773,13 +773,13 @@ _mqtt.Publish("TempHumid",_bc.StringToBytes("Restart controller","utf8"));
  } 
        catch (Exception e45) {
 			processBA.setLastException(e45); //BA.debugLineNum = 436;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51179693",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  };
  } 
        catch (Exception e49) {
 			processBA.setLastException(e49); //BA.debugLineNum = 440;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51179697",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 442;BA.debugLine="End Sub";
 return "";
@@ -801,7 +801,7 @@ _cs.Initialize();
  //BA.debugLineNum = 567;BA.debugLine="Dim status As String";
 _status = "";
  //BA.debugLineNum = 568;BA.debugLine="status = StateManager.GetSetting(\"AirQuality\")";
-_status = mostCurrent._statemanager._getsetting(mostCurrent.activityBA,"AirQuality");
+_status = mostCurrent._statemanager._getsetting /*String*/ (mostCurrent.activityBA,"AirQuality");
  //BA.debugLineNum = 569;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
 _status = _status.replace("|24:","|00:");
  //BA.debugLineNum = 570;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
@@ -811,7 +811,7 @@ if (_a.length==3) {
  //BA.debugLineNum = 572;BA.debugLine="If IsNumber(a(0)) And a(0) > 0 Then";
 if (anywheresoftware.b4a.keywords.Common.IsNumber(_a[(int) (0)]) && (double)(Double.parseDouble(_a[(int) (0)]))>0) { 
  //BA.debugLineNum = 573;BA.debugLine="GaugeAirQuality.CurrentValue = a(0)";
-mostCurrent._gaugeairquality._setcurrentvalue((float)(Double.parseDouble(_a[(int) (0)])));
+mostCurrent._gaugeairquality._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (0)])));
  //BA.debugLineNum = 574;BA.debugLine="If a(0) > 400 Then";
 if ((double)(Double.parseDouble(_a[(int) (0)]))>400) { 
  //BA.debugLineNum = 575;BA.debugLine="lblAirQuality.Text = cs.Initialize.Bold.Appen";
@@ -870,7 +870,7 @@ mostCurrent._lblairqualitylastupdate.setText(BA.ObjectToCharSequence(_cs.Initial
  } 
        catch (Exception e44) {
 			processBA.setLastException(e44); //BA.debugLineNum = 608;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51769517",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 610;BA.debugLine="End Sub";
 return "";
@@ -892,7 +892,7 @@ _cs.Initialize();
  //BA.debugLineNum = 616;BA.debugLine="Dim status As String";
 _status = "";
  //BA.debugLineNum = 617;BA.debugLine="status = StateManager.GetSetting(\"AirQualityBase";
-_status = mostCurrent._statemanager._getsetting(mostCurrent.activityBA,"AirQualityBasement");
+_status = mostCurrent._statemanager._getsetting /*String*/ (mostCurrent.activityBA,"AirQualityBasement");
  //BA.debugLineNum = 618;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
 _status = _status.replace("|24:","|00:");
  //BA.debugLineNum = 619;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
@@ -902,7 +902,7 @@ if (_a.length==3) {
  //BA.debugLineNum = 621;BA.debugLine="If IsNumber(a(0)) And a(0) > 0 Then";
 if (anywheresoftware.b4a.keywords.Common.IsNumber(_a[(int) (0)]) && (double)(Double.parseDouble(_a[(int) (0)]))>0) { 
  //BA.debugLineNum = 622;BA.debugLine="GaugeAirQualityBasement.CurrentValue = a(0)";
-mostCurrent._gaugeairqualitybasement._setcurrentvalue((float)(Double.parseDouble(_a[(int) (0)])));
+mostCurrent._gaugeairqualitybasement._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (0)])));
  //BA.debugLineNum = 623;BA.debugLine="If a(0) > 400 Then";
 if ((double)(Double.parseDouble(_a[(int) (0)]))>400) { 
  //BA.debugLineNum = 624;BA.debugLine="lblAirQualityBasement.Text = cs.Initialize.Bo";
@@ -961,7 +961,7 @@ mostCurrent._lblairqualitylastupdatebasement.setText(BA.ObjectToCharSequence(_cs
  } 
        catch (Exception e44) {
 			processBA.setLastException(e44); //BA.debugLineNum = 658;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51835054",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 660;BA.debugLine="End Sub";
 return "";
@@ -983,7 +983,7 @@ _cs.Initialize();
  //BA.debugLineNum = 666;BA.debugLine="Dim status As String";
 _status = "";
  //BA.debugLineNum = 667;BA.debugLine="status = StateManager.GetSetting(\"TempHumidity\")";
-_status = mostCurrent._statemanager._getsetting(mostCurrent.activityBA,"TempHumidity");
+_status = mostCurrent._statemanager._getsetting /*String*/ (mostCurrent.activityBA,"TempHumidity");
  //BA.debugLineNum = 668;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
 _status = _status.replace("|24:","|00:");
  //BA.debugLineNum = 669;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
@@ -997,9 +997,9 @@ _cs.Initialize();
  //BA.debugLineNum = 673;BA.debugLine="If a(0) = \"OK\" And a(1) > 0 Then";
 if ((_a[(int) (0)]).equals("OK") && (double)(Double.parseDouble(_a[(int) (1)]))>0) { 
  //BA.debugLineNum = 674;BA.debugLine="GaugeTemp.CurrentValue = a(1)";
-mostCurrent._gaugetemp._setcurrentvalue((float)(Double.parseDouble(_a[(int) (1)])));
+mostCurrent._gaugetemp._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (1)])));
  //BA.debugLineNum = 675;BA.debugLine="GaugeHumidity.CurrentValue = a(2)";
-mostCurrent._gaugehumidity._setcurrentvalue((float)(Double.parseDouble(_a[(int) (2)])));
+mostCurrent._gaugehumidity._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (2)])));
  //BA.debugLineNum = 676;BA.debugLine="lblPerception.Text = cs.Initialize.Bold.Append";
 mostCurrent._lblperception.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Human Perception: ")).Pop().Append(BA.ObjectToCharSequence(_getperception(_a[(int) (3)]))).PopAll().getObject()));
  //BA.debugLineNum = 677;BA.debugLine="If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then";
@@ -1014,9 +1014,9 @@ mostCurrent._lblcomfort.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().
 mostCurrent._lblcomfort.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Thermal Comfort: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(_getcomfort(_a[(int) (4)]))).PopAll().getObject()));
  };
  //BA.debugLineNum = 685;BA.debugLine="GaugeHeatIndex.CurrentValue = a(5)";
-mostCurrent._gaugeheatindex._setcurrentvalue((float)(Double.parseDouble(_a[(int) (5)])));
+mostCurrent._gaugeheatindex._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (5)])));
  //BA.debugLineNum = 686;BA.debugLine="GaugeDewPoint.CurrentValue = a(6)";
-mostCurrent._gaugedewpoint._setcurrentvalue((float)(Double.parseDouble(_a[(int) (6)])));
+mostCurrent._gaugedewpoint._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (6)])));
  //BA.debugLineNum = 687;BA.debugLine="If a(7) = \"\" Then";
 if ((_a[(int) (7)]).equals("")) { 
  //BA.debugLineNum = 688;BA.debugLine="Dim Tomorrow As Long";
@@ -1067,7 +1067,7 @@ mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold
  } 
        catch (Exception e52) {
 			processBA.setLastException(e52); //BA.debugLineNum = 716;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51900598",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 718;BA.debugLine="End Sub";
 return "";
@@ -1089,7 +1089,7 @@ _cs.Initialize();
  //BA.debugLineNum = 724;BA.debugLine="Dim status As String";
 _status = "";
  //BA.debugLineNum = 725;BA.debugLine="status = StateManager.GetSetting(\"TempHumidityBa";
-_status = mostCurrent._statemanager._getsetting(mostCurrent.activityBA,"TempHumidityBasement");
+_status = mostCurrent._statemanager._getsetting /*String*/ (mostCurrent.activityBA,"TempHumidityBasement");
  //BA.debugLineNum = 726;BA.debugLine="status = status.Replace(\"|24:\",\"|00:\")";
 _status = _status.replace("|24:","|00:");
  //BA.debugLineNum = 727;BA.debugLine="Dim a() As String = Regex.Split(\"\\|\",status)";
@@ -1103,9 +1103,9 @@ _cs.Initialize();
  //BA.debugLineNum = 731;BA.debugLine="If a(0) = \"OK\" And a(1) > 0 Then";
 if ((_a[(int) (0)]).equals("OK") && (double)(Double.parseDouble(_a[(int) (1)]))>0) { 
  //BA.debugLineNum = 732;BA.debugLine="GaugeTempBasement.CurrentValue = a(1)";
-mostCurrent._gaugetempbasement._setcurrentvalue((float)(Double.parseDouble(_a[(int) (1)])));
+mostCurrent._gaugetempbasement._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (1)])));
  //BA.debugLineNum = 733;BA.debugLine="GaugeHumidityBasement.CurrentValue = a(2)";
-mostCurrent._gaugehumiditybasement._setcurrentvalue((float)(Double.parseDouble(_a[(int) (2)])));
+mostCurrent._gaugehumiditybasement._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (2)])));
  //BA.debugLineNum = 734;BA.debugLine="lblPerceptionBasement.Text = cs.Initialize.Bol";
 mostCurrent._lblperceptionbasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Human Perception: ")).Pop().Append(BA.ObjectToCharSequence(_getperception(_a[(int) (3)]))).PopAll().getObject()));
  //BA.debugLineNum = 735;BA.debugLine="If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then";
@@ -1120,9 +1120,9 @@ mostCurrent._lblcomfortbasement.setText(BA.ObjectToCharSequence(_cs.Initialize()
 mostCurrent._lblcomfortbasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Thermal Comfort: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(_getcomfort(_a[(int) (4)]))).PopAll().getObject()));
  };
  //BA.debugLineNum = 742;BA.debugLine="GaugeHeatIndexBasement.CurrentValue = a(5)";
-mostCurrent._gaugeheatindexbasement._setcurrentvalue((float)(Double.parseDouble(_a[(int) (5)])));
+mostCurrent._gaugeheatindexbasement._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (5)])));
  //BA.debugLineNum = 743;BA.debugLine="GaugeDewPointBasement.CurrentValue = a(6)";
-mostCurrent._gaugedewpointbasement._setcurrentvalue((float)(Double.parseDouble(_a[(int) (6)])));
+mostCurrent._gaugedewpointbasement._setcurrentvalue /*float*/ ((float)(Double.parseDouble(_a[(int) (6)])));
  //BA.debugLineNum = 744;BA.debugLine="If a(7) = \"\" Then";
 if ((_a[(int) (7)]).equals("")) { 
  //BA.debugLineNum = 745;BA.debugLine="Dim Tomorrow As Long";
@@ -1173,7 +1173,7 @@ mostCurrent._lbllastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initializ
  } 
        catch (Exception e52) {
 			processBA.setLastException(e52); //BA.debugLineNum = 773;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51966133",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 775;BA.debugLine="End Sub";
 return "";
@@ -1215,13 +1215,13 @@ _screen.AddPreferenceCategory(_cat1);
  //BA.debugLineNum = 796;BA.debugLine="screen.AddPreferenceCategory(cat3)";
 _screen.AddPreferenceCategory(_cat3);
  //BA.debugLineNum = 797;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
-mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime","5");
+mostCurrent._statemanager._setsetting /*String*/ (mostCurrent.activityBA,"TempHumidityCooldownTime","5");
  //BA.debugLineNum = 798;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
-mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTimeBasement","5");
+mostCurrent._statemanager._setsetting /*String*/ (mostCurrent.activityBA,"TempHumidityCooldownTimeBasement","5");
  //BA.debugLineNum = 799;BA.debugLine="StateManager.SetSetting(\"SensorNotRespondingTime\"";
-mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"SensorNotRespondingTime","5");
+mostCurrent._statemanager._setsetting /*String*/ (mostCurrent.activityBA,"SensorNotRespondingTime","5");
  //BA.debugLineNum = 800;BA.debugLine="StateManager.SaveSettings";
-mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
+mostCurrent._statemanager._savesettings /*String*/ (mostCurrent.activityBA);
  //BA.debugLineNum = 801;BA.debugLine="End Sub";
 return "";
 }
@@ -1406,7 +1406,7 @@ _appversion = _pm.GetVersionName(_packagename);
  } 
        catch (Exception e8) {
 			processBA.setLastException(e8); //BA.debugLineNum = 462;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51310728",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 464;BA.debugLine="Return AppVersion";
 if (true) return _appversion;
@@ -1487,13 +1487,13 @@ return "";
 public static String  _handlesettings() throws Exception{
  //BA.debugLineNum = 815;BA.debugLine="Sub HandleSettings";
  //BA.debugLineNum = 816;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
-mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime",_manager.GetString("TempHumidityCooldownTime"));
+mostCurrent._statemanager._setsetting /*String*/ (mostCurrent.activityBA,"TempHumidityCooldownTime",_manager.GetString("TempHumidityCooldownTime"));
  //BA.debugLineNum = 817;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
-mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTimeBasement",_manager.GetString("TempHumidityCooldownTimeBasement"));
+mostCurrent._statemanager._setsetting /*String*/ (mostCurrent.activityBA,"TempHumidityCooldownTimeBasement",_manager.GetString("TempHumidityCooldownTimeBasement"));
  //BA.debugLineNum = 818;BA.debugLine="StateManager.SetSetting(\"SensorNotRespondingTime\"";
-mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"SensorNotRespondingTime",_manager.GetString("SensorNotRespondingTime"));
+mostCurrent._statemanager._setsetting /*String*/ (mostCurrent.activityBA,"SensorNotRespondingTime",_manager.GetString("SensorNotRespondingTime"));
  //BA.debugLineNum = 819;BA.debugLine="StateManager.SaveSettings";
-mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
+mostCurrent._statemanager._savesettings /*String*/ (mostCurrent.activityBA);
  //BA.debugLineNum = 820;BA.debugLine="End Sub";
 return "";
 }
@@ -1529,7 +1529,7 @@ _mqtt.Connect2((org.eclipse.paho.client.mqttv3.MqttConnectOptions)(_connopt.getO
  } 
        catch (Exception e8) {
 			processBA.setLastException(e8); //BA.debugLineNum = 259;BA.debugLine="Log(\"MQTT_Connect: \" & LastException)";
-anywheresoftware.b4a.keywords.Common.Log("MQTT_Connect: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("5720905","MQTT_Connect: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 261;BA.debugLine="End Sub";
 return "";
@@ -1540,12 +1540,12 @@ public static String  _mqtt_connected(boolean _success) throws Exception{
 try { //BA.debugLineNum = 265;BA.debugLine="If Success = False Then";
 if (_success==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 266;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("5786435",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 267;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  }else {
  //BA.debugLineNum = 269;BA.debugLine="Log(\"Connected to MQTT broker\")";
-anywheresoftware.b4a.keywords.Common.Log("Connected to MQTT broker");
+anywheresoftware.b4a.keywords.Common.LogImpl("5786438","Connected to MQTT broker",0);
  //BA.debugLineNum = 270;BA.debugLine="MQTT.Subscribe(\"TempHumid\", 0)";
 _mqtt.Subscribe("TempHumid",(int) (0));
  //BA.debugLineNum = 271;BA.debugLine="MQTT.Subscribe(\"MQ7\", 0)";
@@ -1558,7 +1558,7 @@ _mqtt.Subscribe("TempHumidBasement",(int) (0));
  } 
        catch (Exception e13) {
 			processBA.setLastException(e13); //BA.debugLineNum = 276;BA.debugLine="Log(\"MQTT_Connected: \" & LastException)";
-anywheresoftware.b4a.keywords.Common.Log("MQTT_Connected: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("5786445","MQTT_Connected: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 278;BA.debugLine="End Sub";
 return "";
@@ -1573,13 +1573,13 @@ mostCurrent._gblacmenu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("Settings
  //BA.debugLineNum = 285;BA.debugLine="gblACMenu.Add(0, 0, \"About\",Null)";
 mostCurrent._gblacmenu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("About"),(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null));
  //BA.debugLineNum = 286;BA.debugLine="Log(\"Disconnected from MQTT broker\")";
-anywheresoftware.b4a.keywords.Common.Log("Disconnected from MQTT broker");
+anywheresoftware.b4a.keywords.Common.LogImpl("5851974","Disconnected from MQTT broker",0);
  //BA.debugLineNum = 287;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  } 
        catch (Exception e8) {
 			processBA.setLastException(e8); //BA.debugLineNum = 289;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("5851977",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 291;BA.debugLine="End Sub";
 return "";
@@ -1612,7 +1612,7 @@ _checktemphumiditysettingbasement();
  } 
        catch (Exception e16) {
 			processBA.setLastException(e16); //BA.debugLineNum = 311;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("5917522",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 313;BA.debugLine="End Sub";
 return "";
@@ -1665,13 +1665,13 @@ _manager.SetString("TempHumidityCooldownTimeBasement","5");
  //BA.debugLineNum = 808;BA.debugLine="manager.SetString(\"SensorNotRespondingTime\", \"5\")";
 _manager.SetString("SensorNotRespondingTime","5");
  //BA.debugLineNum = 809;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
-mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTime","5");
+mostCurrent._statemanager._setsetting /*String*/ (mostCurrent.activityBA,"TempHumidityCooldownTime","5");
  //BA.debugLineNum = 810;BA.debugLine="StateManager.SetSetting(\"TempHumidityCooldownTime";
-mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"TempHumidityCooldownTimeBasement","5");
+mostCurrent._statemanager._setsetting /*String*/ (mostCurrent.activityBA,"TempHumidityCooldownTimeBasement","5");
  //BA.debugLineNum = 811;BA.debugLine="StateManager.SetSetting(\"SensorNotRespondingTime\"";
-mostCurrent._statemanager._setsetting(mostCurrent.activityBA,"SensorNotRespondingTime","5");
+mostCurrent._statemanager._setsetting /*String*/ (mostCurrent.activityBA,"SensorNotRespondingTime","5");
  //BA.debugLineNum = 812;BA.debugLine="StateManager.SaveSettings";
-mostCurrent._statemanager._savesettings(mostCurrent.activityBA);
+mostCurrent._statemanager._savesettings /*String*/ (mostCurrent.activityBA);
  //BA.debugLineNum = 813;BA.debugLine="End Sub";
 return "";
 }
@@ -1684,11 +1684,11 @@ _bd = new anywheresoftware.b4a.objects.drawable.BitmapDrawable();
  //BA.debugLineNum = 447;BA.debugLine="bd.Initialize(LoadBitmapResize(File.DirAssets, \"";
 _bd.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmapResize(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"cloyd.png",anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32)),anywheresoftware.b4a.keywords.Common.True).getObject()));
  //BA.debugLineNum = 448;BA.debugLine="Msgbox2(\"Smart Home Monitor v\" & GetVersionCode";
-anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Smart Home Monitor v"+_getversioncode()+anywheresoftware.b4a.keywords.Common.CRLF+anywheresoftware.b4a.keywords.Common.CRLF+"Developed by Cloyd Nino Catanaoan"+anywheresoftware.b4a.keywords.Common.CRLF+"May 18, 2019"),BA.ObjectToCharSequence("About"),"OK","","",_bd.getBitmap(),mostCurrent.activityBA);
+anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Smart Home Monitor v"+_getversioncode()+anywheresoftware.b4a.keywords.Common.CRLF+anywheresoftware.b4a.keywords.Common.CRLF+"Developed by Cloyd Nino Catanaoan"+anywheresoftware.b4a.keywords.Common.CRLF+"May 28, 2019"),BA.ObjectToCharSequence("About"),"OK","","",_bd.getBitmap(),mostCurrent.activityBA);
  } 
        catch (Exception e6) {
 			processBA.setLastException(e6); //BA.debugLineNum = 450;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51245190",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 452;BA.debugLine="End Sub";
 return "";
@@ -1739,7 +1739,7 @@ _checkairqualitysettingbasement();
  } 
        catch (Exception e27) {
 			processBA.setLastException(e27); //BA.debugLineNum = 527;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("51572891",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 529;BA.debugLine="End Sub";
 return "";

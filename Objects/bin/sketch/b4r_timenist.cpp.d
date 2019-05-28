@@ -1,6 +1,6 @@
-C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\b4r_timenist.cpp.o: \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\b4r_timenist.cpp \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\B4RDefines.h \
+C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\b4r_timenist.cpp.o: \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\b4r_timenist.cpp \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\B4RDefines.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266/Arduino.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1/tools/sdk/libc/xtensa-lx106-elf/include/stdlib.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1/tools/sdk/libc/xtensa-lx106-elf/include/machine/ieeefp.h \
@@ -63,9 +63,9 @@ C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\b4r_timenist.cpp.o: \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266/Client.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266/IPAddress.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266/Printable.h \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\rCore.h \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\rESP8266.h \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\rESP8266WiFi.h \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\rCore.h \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\rESP8266.h \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\rESP8266WiFi.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\libraries\ESP8266WiFi\src/ESP8266WiFi.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\libraries\ESP8266WiFi\src/include/wl_definitions.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266/IPAddress.h \
@@ -85,8 +85,8 @@ C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\b4r_timenist.cpp.o: \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\libraries\ESP8266WiFi\src/WiFiUdp.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\cores\esp8266/Udp.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.4.1\libraries\ESP8266WiFi\src/include/slist.h \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\rMQTT.h \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\PubSubClient.h \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\rRandomAccessFile.h \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\b4r_main.h \
- C:\Users\Cloyd\Desktop\HOMETE~1\Objects\bin\sketch\b4r_timenist.h
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\rMQTT.h \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\PubSubClient.h \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\rRandomAccessFile.h \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\b4r_main.h \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\b4r_timenist.h

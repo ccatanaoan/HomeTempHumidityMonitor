@@ -45,12 +45,12 @@ Module4=StateManager
 NumberOfFiles=10
 NumberOfLibraries=16
 NumberOfModules=4
-Version=8.5
+Version=9.01
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 2006
-	#VersionName: 2.0.0.6
+	#VersionCode: 2008
+	#VersionName: 2.0.0.8
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -494,7 +494,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "May 18, 2019", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "May 28, 2019", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try

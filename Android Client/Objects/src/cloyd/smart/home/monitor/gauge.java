@@ -197,11 +197,11 @@ _r = new cloyd.smart.home.monitor.gauge._gaugerange();
  //BA.debugLineNum = 211;BA.debugLine="r.Initialize";
 _r.Initialize();
  //BA.debugLineNum = 212;BA.debugLine="r.LowValue = LowValue";
-_r.LowValue = _lowvalue;
+_r.LowValue /*float*/  = _lowvalue;
  //BA.debugLineNum = 213;BA.debugLine="r.HighValue = HighValue";
-_r.HighValue = _highvalue;
+_r.HighValue /*float*/  = _highvalue;
  //BA.debugLineNum = 214;BA.debugLine="r.Color = Color";
-_r.Color = _color;
+_r.Color /*int*/  = _color;
  //BA.debugLineNum = 215;BA.debugLine="Return r";
 if (true) return _r;
  //BA.debugLineNum = 216;BA.debugLine="End Sub";
@@ -305,13 +305,13 @@ _gr = (cloyd.smart.home.monitor.gauge._gaugerange)(group9.Get(index9));
  //BA.debugLineNum = 108;BA.debugLine="Dim p As B4XPath";
 _p = new anywheresoftware.b4a.objects.B4XCanvas.B4XPath();
  //BA.debugLineNum = 109;BA.debugLine="Dim StartAngle As Float = ValueToAngle(gr.LowVal";
-_startangle = _valuetoangle(_gr.LowValue);
+_startangle = _valuetoangle(_gr.LowValue /*float*/ );
  //BA.debugLineNum = 110;BA.debugLine="p.InitializeArc(x, y, Radius, StartAngle, ValueT";
-_p.InitializeArc(_x,_y,_radius,_startangle,(float) (_valuetoangle(_gr.HighValue)-_startangle));
+_p.InitializeArc(_x,_y,_radius,_startangle,(float) (_valuetoangle(_gr.HighValue /*float*/ )-_startangle));
  //BA.debugLineNum = 111;BA.debugLine="cvsGauge.ClipPath(p)";
 _cvsgauge.ClipPath(_p);
  //BA.debugLineNum = 112;BA.debugLine="cvsGauge.DrawCircle(x, y, Radius, gr.Color, True";
-_cvsgauge.DrawCircle(_x,_y,_radius,_gr.Color,__c.True,(float) (0));
+_cvsgauge.DrawCircle(_x,_y,_radius,_gr.Color /*int*/ ,__c.True,(float) (0));
  //BA.debugLineNum = 113;BA.debugLine="cvsGauge.RemoveClip";
 _cvsgauge.RemoveClip();
  }
@@ -496,9 +496,9 @@ final int groupLen2 = group2.getSize()
 for (; index2 < groupLen2;index2++){
 _r = (cloyd.smart.home.monitor.gauge._gaugerange)(group2.Get(index2));
  //BA.debugLineNum = 203;BA.debugLine="r.Color = Bit.And(0x00ffffff, r.Color)";
-_r.Color = __c.Bit.And((int) (0x00ffffff),_r.Color);
+_r.Color /*int*/  = __c.Bit.And((int) (0x00ffffff),_r.Color /*int*/ );
  //BA.debugLineNum = 204;BA.debugLine="r.Color = Bit.Or(0x88000000, r.Color)";
-_r.Color = __c.Bit.Or((int) (0x88000000),_r.Color);
+_r.Color /*int*/  = __c.Bit.Or((int) (0x88000000),_r.Color /*int*/ );
  }
 };
  //BA.debugLineNum = 206;BA.debugLine="DrawBackground";
