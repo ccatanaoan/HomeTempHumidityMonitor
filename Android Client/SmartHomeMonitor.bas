@@ -133,8 +133,10 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						End If
 						If IsTempHumidityNotificationOnGoing = False Then
 							If p.Minutes > = managerTempHumidityCooldownTime Then
-								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+								If a(4) = 2 Or a(4) = 6 Then
 									CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
+								else If a(4) = 10 Then
+									CreateNotification(GetComfort(a(4)),NotificationText,"tempcoldhumid",Main,False,False,True,"Living area temperature").Notify(725)
 								Else
 									CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
 								End If
@@ -144,8 +146,10 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							Dim TempHumidityPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityPrevious"))
 							If a(4) <> TempHumidityPrevious(4) Then
 								If p.Minutes > = managerTempHumidityCooldownTime Then
-									If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+									If a(4) = 2 Or a(4) = 6 Then
 										CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
+									else If a(4) = 10 Then
+										CreateNotification(GetComfort(a(4)),NotificationText,"tempcoldhumid",Main,False,False,True,"Living area temperature").Notify(725)
 									Else
 										CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
 									End If
@@ -153,8 +157,10 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 								End If
 							else if a(3) <> TempHumidityPrevious(3) Then
 								If p.Minutes > = managerTempHumidityCooldownTime Then
-									If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+									If a(4) = 2 Or a(4) = 6 Then
 										CreateNotification("* " & GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,True,"Living area temperature").Notify(725)
+									else If a(4) = 10 Then
+										CreateNotification("* " & GetComfort(a(4)),NotificationText,"tempcoldhumid",Main,False,False,True,"Living area temperature").Notify(725)
 									Else
 										CreateNotification("* " & GetComfort(a(4)),NotificationText,"temp",Main,False,False,True,"Living area temperature").Notify(725)
 									End If
@@ -285,10 +291,12 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						End If
 						If IsTempHumidityNotificationOnGoingBasement = False Then
 							If p.Minutes > = managerTempHumidityCooldownTime Then
-								If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
+								If a(4) = 2 Or a(4) = 6 Then
+									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldbasement",Main,False,False,True,"Basement temperature").Notify(728)
+								else If a(4) = 10 Then
+									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldhumidbasement",Main,False,False,True,"Basement temperature").Notify(728)
 								Else
-									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempbasement",Main,False,False,True,"Basement temperature").Notify(728)
 								End If
 								lngTicksTempHumidBasement = DateTime.now
 							End If
@@ -297,18 +305,22 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							If a(4) <> TempHumidityBasementPrevious(4) Then
 								If p.Minutes > = managerTempHumidityCooldownTime Then
 									If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
+										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldbasement",Main,False,False,True,"Basement temperature").Notify(728)
+									else If a(4) = 10 Then
+										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldhumidbasement",Main,False,False,True,"Basement temperature").Notify(728)
 									Else
-										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempbasement",Main,False,False,True,"Basement temperature").Notify(728)
 									End If
 									lngTicksTempHumidBasement = DateTime.now
 								End If
 							else if a(3) <> TempHumidityBasementPrevious(3) Then
 								If p.Minutes > = managerTempHumidityCooldownTime Then
-									If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
-										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcold",Main,False,False,True,"Basement temperature").Notify(728)
+									If a(4) = 2 Or a(4) = 6 Then
+										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldbasement",Main,False,False,True,"Basement temperature").Notify(728)
+									else If a(4) = 10 Then
+										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldhumidbasement",Main,False,False,True,"Basement temperature").Notify(728)
 									Else
-										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"temp",Main,False,False,True,"Basement temperature").Notify(728)
+										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempbasement",Main,False,False,True,"Basement temperature").Notify(728)
 									End If
 									lngTicksTempHumidBasement = DateTime.now
 								End If
@@ -359,7 +371,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime Then
 				If IsOldTempHumidityNotificationOnGoingBasement = False Then
-					CreateNotification("Basement DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old","sensor",Main,False,False,True,"Basement DHT22 sensor issue").Notify(730)
+					CreateNotification("Basement DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old","sensorbasement",Main,False,False,True,"Basement DHT22 sensor issue").Notify(730)
 					MQTT.Publish("TempHumidBasement", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
