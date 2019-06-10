@@ -480,7 +480,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime Then
 				If IsOldAirQualityNotificationOnGoingBasement = False Then
-					CreateNotification("Basement carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old","sensor",Main,False,False,True,"Basement CO sensor issue").Notify(732)
+					CreateNotification("Basement carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old","sensorbasement",Main,False,False,True,"Basement CO sensor issue").Notify(732)
 					MQTT.Publish("MQ7Basement", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
