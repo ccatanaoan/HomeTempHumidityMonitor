@@ -81,6 +81,7 @@ Sub Process_Globals
 	Public DHT22Perception As Int
 	Public DHT22ComfortStatus As Int
 	Private bc As ByteConverter
+	Public DHT22HumidityAddValue As Double
 End Sub
 
 Private Sub AppStart
@@ -120,6 +121,7 @@ Sub MQTT_Connect(Unused As Byte)
 		pin16.DigitalWrite(False)
 		Log("Connected to broker")
 		MQTT.Subscribe("TempHumid", 0)
+		MQTT.Subscribe("HumidityAddValue", 0)
 	End If
 End Sub
 
@@ -133,6 +135,11 @@ Sub mqtt_MessageArrived (Topic As String, Payload() As Byte)
 			ESP.Restart
 		else If Payload = "Read weather" Then
 			ReadWeather(1)
+		End If
+	else If Topic = "HumidityAddValue" Then
+		DHT22HumidityAddValue = bc.StringFromBytes(Payload)
+		If IsNumber(DHT22HumidityAddValue) = False Then
+			DHT22HumidityAddValue = 0
 		End If
 	End If
 End Sub
@@ -218,7 +225,7 @@ void setup(B4R::Object* o){
 void ReadDHT22(B4R::Object* o) {
 	 b4r_main::_dht22state = dht22.getStatus();
 	 // Add 8 percent to relative humidity based on home hygrometer.
- 	 float humidity = dht22.getHumidity() + 8;
+ 	 float humidity = dht22.getHumidity() + b4r_main::_dht22humidityaddvalue;
  	 float temperature = dht22.toFahrenheit(dht22.getTemperature());
      b4r_main::_dht22hum  = humidity; 
      b4r_main::_dht22temp = temperature; 
