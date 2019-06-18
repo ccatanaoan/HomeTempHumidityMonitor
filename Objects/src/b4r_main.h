@@ -38,6 +38,7 @@ static Double _dht22dewpoint;
 static Int _dht22perception;
 static Int _dht22comfortstatus;
 static B4R::ByteConverter* _bc;
+static Double _dht22humidityaddvalue;
 static b4r_timenist* _timenist;
 static void _readweather(Byte _tag);
 static void _timeisavailable();

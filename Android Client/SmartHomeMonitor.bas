@@ -84,6 +84,7 @@ Sub MQTT_Connected (Success As Boolean)
 			MQTT.Subscribe("MQ7", 0)
 			MQTT.Subscribe("MQ7Basement", 0)
 			MQTT.Subscribe("TempHumidBasement", 0)
+			MQTT.Subscribe("HumidityAddValue", 0)
 		End If
 	Catch
 		Log(LastException)
@@ -103,6 +104,7 @@ End Sub
 
 Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 	Try
+		Dim strHumidityAddValue As String = StateManager.GetSetting("HumidityAddValue")
 		If Topic = "TempHumid" Then
 		
 			Dim status As String
@@ -176,7 +178,12 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						Notification1.Cancel(725)
 					End If
 				End If
+			End If	
+			
+			If strHumidityAddValue = "" Then
+				strHumidityAddValue = "0"
 			End If
+			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
 		Else If Topic = "MQ7" Then
 			Dim status As String
 			Dim cs As CSBuilder
@@ -335,6 +342,10 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					End If
 				End If
 			End If
+			If strHumidityAddValue = "" Then
+				strHumidityAddValue = "0"
+			End If
+			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
 		End If
 		
 		Dim managerSensorNotRespondingTime As String = StateManager.GetSetting("SensorNotRespondingTime")
