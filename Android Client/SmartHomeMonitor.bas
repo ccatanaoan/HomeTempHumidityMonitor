@@ -109,6 +109,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		
 			Dim status As String
 			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
+			'If DateTime.GetSecond(DateTime.Now) Mod 20 = 0 Then
+			LogEvent(status)
+			'End If
 
 			Dim a() As String = Regex.Split("\|",status)
 			If a.Length = 9 Then
@@ -117,11 +120,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 				If a(0) = "OK" And a(1) > 0 Then
 					StateManager.SetSetting("TempHumidity",status)
 					StateManager.SaveSettings
-					
-					'If DateTime.GetSecond(DateTime.Now) Mod 20 = 0 Then
-					LogEvent(status)
-					'End If
-					
+									
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 					If (a(3) > 3) Or (a(4) <> 0)  Then
 						Dim NotificationText As String
