@@ -501,7 +501,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "June 24, 2019", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "June 25, 2019", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -617,9 +617,9 @@ Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 End Sub
 
 Sub CheckAirQualitySetting
+	Dim cs As CSBuilder
+	cs.Initialize
 	Try
-		Dim cs As CSBuilder
-		cs.Initialize
 		Dim status As String
 		status = StateManager.GetSetting("AirQuality")
 		status = status.Replace("|24:","|00:")
@@ -662,13 +662,14 @@ Sub CheckAirQualitySetting
 		End If
 	Catch
 		Log(LastException)
+		lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Exception: ").Pop.Color(Colors.Red).Append(LastException).PopAll
 	End Try
 End Sub
 
 Sub CheckAirQualitySettingBasement
+	Dim cs As CSBuilder
+	cs.Initialize
 	Try
-		Dim cs As CSBuilder
-		cs.Initialize
 		Dim status As String
 		status = StateManager.GetSetting("AirQualityBasement")
 		status = status.Replace("|24:","|00:")
@@ -712,13 +713,14 @@ Sub CheckAirQualitySettingBasement
 		End If
 	Catch
 		Log(LastException)
+		lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Exception: ").Pop.Color(Colors.Red).Append(LastException).PopAll
 	End Try
 End Sub
 
 Sub CheckTempHumiditySetting
+	Dim cs As CSBuilder
+	cs.Initialize
 	Try
-		Dim cs As CSBuilder
-		cs.Initialize
 		Dim status As String
 		status = StateManager.GetSetting("TempHumidity")
 		status = status.Replace("|24:","|00:")
@@ -770,13 +772,14 @@ Sub CheckTempHumiditySetting
 		End If
 	Catch
 		Log(LastException)
+		lblLastUpdate.Text = cs.Initialize.Bold.Append("Exception: ").Pop.Color(Colors.Red).Append(LastException).PopAll
 	End Try
 End Sub
 
 Sub CheckTempHumiditySettingBasement
+	Dim cs As CSBuilder
+	cs.Initialize
 	Try
-		Dim cs As CSBuilder
-		cs.Initialize
 		Dim status As String
 		status = StateManager.GetSetting("TempHumidityBasement")
 		status = status.Replace("|24:","|00:")
@@ -827,6 +830,7 @@ Sub CheckTempHumiditySettingBasement
 		End If
 	Catch
 		Log(LastException)
+		lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Exception: ").Pop.Color(Colors.Red).Append(LastException).PopAll
 	End Try
 End Sub
 
