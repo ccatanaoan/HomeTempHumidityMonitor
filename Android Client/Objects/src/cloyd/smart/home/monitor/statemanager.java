@@ -460,9 +460,9 @@ if (true) return anywheresoftware.b4a.keywords.Common.True;
  } 
        catch (Exception e20) {
 			(_ba.processBA == null ? _ba : _ba.processBA).setLastException(e20); //BA.debugLineNum = 229;BA.debugLine="Log(\"Error loading state.\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("45308436","Error loading state.",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("24915220","Error loading state.",0);
  //BA.debugLineNum = 230;BA.debugLine="Log(LastException.Message)";
-anywheresoftware.b4a.keywords.Common.LogImpl("45308437",anywheresoftware.b4a.keywords.Common.LastException(_ba).getMessage(),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("24915221",anywheresoftware.b4a.keywords.Common.LastException(_ba).getMessage(),0);
  //BA.debugLineNum = 231;BA.debugLine="Return False";
 if (true) return anywheresoftware.b4a.keywords.Common.False;
  };
