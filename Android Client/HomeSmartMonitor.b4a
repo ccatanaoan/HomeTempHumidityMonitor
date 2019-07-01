@@ -128,7 +128,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		TabStrip1.LoadLayout("1ScrollView", "LIVING AREA" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
 		ScrollView1.Panel.LoadLayout("1")
 		Panel1.Height = ScrollView1.Height 'Panel1.Height + 100dip
-		ScrollView1.Panel.Height = Panel1.Height 
+		ScrollView1.Panel.Height = Panel1.Height
 		TabStrip1.LoadLayout("2", "LIVING AREA" & CRLF & "Air Quality (CO)  " & Chr(0xF289))
 		TabStrip1.LoadLayout("ScrollViewBasement", "BASEMENT" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
 		ScrollViewBasement.Panel.LoadLayout("TempHumidityBasement")
@@ -162,7 +162,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		ACToolBarLight1.InitMenuListener
 		Dim jo As JavaObject = ACToolBarLight1
 		Dim xl As XmlLayoutBuilder
-		jo.RunMethod("setPopupTheme", Array(xl.GetResourceId("style", "ToolbarMenu")))	
+		jo.RunMethod("setPopupTheme", Array(xl.GetResourceId("style", "ToolbarMenu")))
 		
 		GaugeHumidity.SetRanges(Array(GaugeHumidity.CreateRange(0, 70, xui.Color_RGB(100,221,23)), _
 		GaugeHumidity.CreateRange(70, 80, xui.Color_Yellow), _
@@ -173,7 +173,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		GaugeHeatIndex.SetRanges(Array(GaugeHeatIndex.CreateRange(0, 75, xui.Color_RGB(100,221,23)), _
 	    GaugeHeatIndex.CreateRange(75, 90, xui.Color_Yellow), _
 	    GaugeHeatIndex.CreateRange(90, 100, xui.Color_Red)))
-		' Dew Point	
+		' Dew Point
 		' https://material.io/guidelines/style/color.html#
 		GaugeDewPoint.SetRanges(Array(GaugeDewPoint.CreateRange(0,60.8, xui.Color_RGB(100,221,23)), _
 		GaugeDewPoint.CreateRange(60.8,64.4, xui.Color_RGB(100,240,23)), _
@@ -305,29 +305,29 @@ End Sub
 Sub MQTT_Connect
 	Try
 		Dim ClientId As String = Rnd(0, 999999999) 'create a unique id
-        MQTT.Initialize("MQTT", MQTTServerURI, ClientId)
+		MQTT.Initialize("MQTT", MQTTServerURI, ClientId)
 
-        Dim ConnOpt As MqttConnectOptions
-        ConnOpt.Initialize(MQTTUser, MQTTPassword)
-        MQTT.Connect2(ConnOpt)
+		Dim ConnOpt As MqttConnectOptions
+		ConnOpt.Initialize(MQTTUser, MQTTPassword)
+		MQTT.Connect2(ConnOpt)
 	Catch
 		Log("MQTT_Connect: " & LastException)
 	End Try
 End Sub
 
 Sub MQTT_Connected (Success As Boolean)
-	Try	
+	Try
 		If Success = False Then
-	        Log(LastException)
+			Log(LastException)
 			MQTT_Connect
-	    Else
+		Else
 			Log("Connected to MQTT broker")
-	        MQTT.Subscribe("TempHumid", 0)
+			MQTT.Subscribe("TempHumid", 0)
 			MQTT.Subscribe("MQ7", 0)
 			MQTT.Subscribe("MQ7Basement", 0)
 			MQTT.Subscribe("TempHumidBasement", 0)
 			MQTT.Subscribe("HumidityAddValue", 0)
-	    End If
+		End If
 	Catch
 		Log("MQTT_Connected: " & LastException)
 	End Try
@@ -501,7 +501,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "June 26, 2019", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "July 1, 2019", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -511,9 +511,9 @@ Sub GetVersionCode() As String
 	Dim AppVersion As String
 	Try
 		Dim pm As PackageManager
-	    Dim packageName As String
-	    packageName =  Application.PackageName
-	    AppVersion = pm.GetVersionName(packageName)
+		Dim packageName As String
+		packageName =  Application.PackageName
+		AppVersion = pm.GetVersionName(packageName)
 	Catch
 		Log(LastException)
 	End Try
@@ -657,7 +657,7 @@ Sub CheckAirQualitySetting
 					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
 			Else If a(2) = "00:00:00" Then
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
+				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
 			End If
 		End If
 	Catch
@@ -708,7 +708,7 @@ Sub CheckAirQualitySettingBasement
 					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
 			Else If a(2) = "00:00:00" Then
-					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
+				lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
 			End If
 		End If
 	Catch

@@ -177,7 +177,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						Notification1.Cancel(725)
 					End If
 				End If
-			End If	
+			End If
 			
 			If strHumidityAddValue = "" Then
 				strHumidityAddValue = "0"
@@ -285,7 +285,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 					' Added "(a(4) <> 2)" as Too Cold is normal in the basement.
-					' <-- removed 5/28/2019 --> Added "(a(4) <> 10)" as Cold and humid is normal in the basement. 
+					' <-- removed 5/28/2019 --> Added "(a(4) <> 10)" as Cold and humid is normal in the basement.
 					If (a(3) > 3) Or ((a(4) <> 0) And (a(4) <> 2)) Then
 						Dim NotificationText As String
 						NotificationText = GetPerception(a(3))
@@ -353,6 +353,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		End If
 		
 		Dim status As String
+		Dim sensorInTrouble As String
+		sensorInTrouble = "TempHumidityBasement"
 		status = StateManager.GetSetting("TempHumidityBasement")
 		status = status.Replace("|24:","|00:")
 		Dim a() As String = Regex.Split("\|",status)
@@ -391,6 +393,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		End If
 		
 		Dim status As String
+		sensorInTrouble = "TempHumidity"
 		status = StateManager.GetSetting("TempHumidity")
 		status = status.Replace("|24:","|00:")
 		Dim a() As String = Regex.Split("\|",status)
@@ -428,6 +431,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		End If
 		
 		Dim status As String
+		sensorInTrouble = "AirQuality"
 		status = StateManager.GetSetting("AirQuality")
 		status = status.Replace("|24:","|00:")
 		Dim a() As String = Regex.Split("\|",status)
@@ -464,6 +468,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		End If
 		
 		Dim status As String
+		sensorInTrouble = "AirQualityBasement"
 		status = StateManager.GetSetting("AirQualityBasement")
 		status = status.Replace("|24:","|00:")
 		Dim a() As String = Regex.Split("\|",status)
@@ -501,7 +506,30 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		
 	Catch
 		Log(LastException)
-		ToastMessageShow(LastException,False)
+		'If LastException.Message.Contains("Unparseable date") Then
+		Select sensorInTrouble
+			Case "TempHumidityBasement"
+				If IsOldTempHumidityNotificationOnGoingBasement = False Then
+					CreateNotification("Basement DHT22 sensor exception",LastException.Message,"sensorbasement",Main,False,False,True,"Basement DHT22 sensor issue").Notify(730)
+					MQTT.Publish("TempHumidBasement", bc.StringToBytes("TempHumidityBasement Exception: " & LastException.Message, "utf8"))
+				End If
+			Case "TempHumidity"
+				If IsOldTempHumidityNotificationOnGoing = False Then
+					CreateNotification("Living area DHT22 sensor exception", LastException.Message,"sensor",Main,False,False,True,"Living area DHT22 sensor issue").Notify(729)
+					MQTT.Publish("TempHumid", bc.StringToBytes("TempHumidity Exception: " & LastException.Message, "utf8"))
+				End If
+			Case "AirQuality"
+				If IsOldAirQualityNotificationOnGoing = False Then
+					CreateNotification("Living area carbon monoxide sensor exception", LastException.Message,"sensor",Main,False,False,True,"Living area CO sensor issue").Notify(731)
+					MQTT.Publish("MQ7", bc.StringToBytes("AirQuality Exception: " & LastException.Message, "utf8"))
+				End If
+			Case "AirQualityBasement"
+				If IsOldAirQualityNotificationOnGoingBasement = False Then
+					CreateNotification("Basement carbon monoxide sensor exception", LastException.Message,"sensorbasement",Main,False,False,True,"Basement CO sensor issue").Notify(732)
+					MQTT.Publish("MQ7Basement", bc.StringToBytes("AirQualityBasement Exception: " & LastException.Message, "utf8"))
+				End If
+		End Select
+		'End If
 	End Try
 End Sub
 
@@ -688,4 +716,5 @@ Sub WildCardFilesList2(FilesPath As String, WildCards As String, Sorted As Boole
 		ToastMessageShow("You must pass a valid Directory.",False)
 	End If
 End Sub
+
 
