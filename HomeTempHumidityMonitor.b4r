@@ -5,9 +5,10 @@ Library2=resp8266
 Library3=resp8266wifi
 Library4=rmqtt
 Library5=rrandomaccessfile
+Library6=resp8266timetools
 Module1=TimeNIST
 NumberOfFiles=0
-NumberOfLibraries=5
+NumberOfLibraries=6
 NumberOfModules=1
 Version=2.6
 @EndOfDesignText@
@@ -82,6 +83,8 @@ Sub Process_Globals
 	Public DHT22ComfortStatus As Int
 	Private bc As ByteConverter
 	Public DHT22HumidityAddValue As Double
+	Public timelib As ESPTimetools
+	Public timestamp As ULong
 End Sub
 
 Private Sub AppStart
@@ -160,7 +163,8 @@ Sub ConnectToWifi
 	If WiFi.IsConnected Then
 		Log("Connected to ",WiFiSSID," network, Local IP ", WiFi.LocalIp)
 		' Get time from NIST server
-		TimeNIST.Start
+		'TimeNIST.Start
+		TimeIsAvailable
 	Else
 		Log("Not Connected to WiFi")
 		ConnectToWifi
@@ -185,13 +189,19 @@ Sub ReadWeather(tag As Byte)
 
 	If WiFi.IsConnected Then
 		If localstate = "OK" And IsNumber(DHT22Temp) Then
-			Dim s As String
-			s = JoinStrings(Array As String(localstate,"|",DHT22Temp, "|",DHT22Hum , "|",DHT22Perception, "|", _
-			DHT22ComfortStatus, "|", DHT22HeatIndex,"|", DHT22DewPoint,"|",bc.StringFromBytes(TimeNIST.GetDate),"|", _
-			NumberFormat(TimeNIST.GetHours, 2, 0),":",NumberFormat(TimeNIST.GetMinutes, 2, 0),":", _
-			NumberFormat(TimeNIST.GetSeconds, 2, 0)))
-			Log("TempHumid to MQTT: ",s)
-			MQTT.Publish("TempHumid",s)
+			' Get the time
+			timelib.initialize("pool.ntp.org",0)
+			timestamp = timelib.timestamp
+			If timestamp <> 0 Then
+				Dim s As String
+				s = JoinStrings(Array As String(localstate,"|",DHT22Temp, "|",DHT22Hum , "|",DHT22Perception, "|", _
+				DHT22ComfortStatus, "|", DHT22HeatIndex,"|", DHT22DewPoint,"|",NumberFormat(timelib.getyear(timestamp),2,0),"-",NumberFormat(timelib.getmonth(timestamp),2,0),"-",NumberFormat(timelib.getday(timestamp),2,0),"|", _
+				NumberFormat(timelib.gethour(timestamp),2,0),":",NumberFormat(timelib.getminute(timestamp),2,0),":", _
+				NumberFormat(timelib.getseconds(timestamp),2,0)))
+				Log("TempHumid to MQTT: ",s)
+				MQTT.Publish("TempHumid",s)
+			End If
+			' Get the time
 		End If
 	End If
 	

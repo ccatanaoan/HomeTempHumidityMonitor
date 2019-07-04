@@ -88,6 +88,9 @@ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\b4r_main.cpp.o: \
  C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\rMQTT.h \
  C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\PubSubClient.h \
  C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\rRandomAccessFile.h \
+ C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\rESP8266TimeTools.h \
+ C:\Users\Cloyd\Documents\Arduino\libraries\TimeLib/TimeLib.h \
+ C:\Users\Cloyd\Documents\Arduino\libraries\TimeLib/EasyNTPClient.h \
  C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\b4r_main.h \
  C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\sketch\b4r_timenist.h \
  C:\Program\ Files\ (x86)\Arduino\libraries\DHT/DHTesp.h

@@ -26,6 +26,7 @@
 #include "rESP8266WiFi.h"
 #include "rMQTT.h"
 #include "rRandomAccessFile.h"
+#include "rESP8266TimeTools.h"
 
 
 #include "b4r_main.h"
