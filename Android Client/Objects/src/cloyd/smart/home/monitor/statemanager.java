@@ -20,6 +20,7 @@ public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.notificationservice _notificationservice = null;
+public cloyd.smart.home.monitor.httputils2service _httputils2service = null;
 public static Object[]  _getnextitem(anywheresoftware.b4a.BA _ba,anywheresoftware.b4a.objects.collections.List _list1) throws Exception{
  //BA.debugLineNum = 201;BA.debugLine="Private Sub getNextItem(list1 As List) As Object()";
  //BA.debugLineNum = 202;BA.debugLine="listPosition = listPosition + 1";
@@ -460,9 +461,9 @@ if (true) return anywheresoftware.b4a.keywords.Common.True;
  } 
        catch (Exception e20) {
 			(_ba.processBA == null ? _ba : _ba.processBA).setLastException(e20); //BA.debugLineNum = 229;BA.debugLine="Log(\"Error loading state.\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("65308436","Error loading state.",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("76553620","Error loading state.",0);
  //BA.debugLineNum = 230;BA.debugLine="Log(LastException.Message)";
-anywheresoftware.b4a.keywords.Common.LogImpl("65308437",anywheresoftware.b4a.keywords.Common.LastException(_ba).getMessage(),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("76553621",anywheresoftware.b4a.keywords.Common.LastException(_ba).getMessage(),0);
  //BA.debugLineNum = 231;BA.debugLine="Return False";
 if (true) return anywheresoftware.b4a.keywords.Common.False;
  };

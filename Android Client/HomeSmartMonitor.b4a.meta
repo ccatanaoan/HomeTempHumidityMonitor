@@ -13,5 +13,6 @@ ModuleClosedNodes1=
 ModuleClosedNodes2=
 ModuleClosedNodes3=
 ModuleClosedNodes4=
+NavigationStack=Main,Globals,45,0,Main,GetRESTError,1314,6,Main,GetCommandStatus,1303,0,Main,GetCommandID,1290,0,Main,Activity_Create,244,0,Visual Designer,blink.bal,-100,1,Main,RefreshCameras,947,0,Main,RequestAuthToken,901,1,Main,btnDriveway_Click,1584,0,Main,TabStrip1_PageSelected,584,2,Main,GetSyncModuleInfo,1502,0
 SelectedBuild=0
 VisibleModules=1,2,3,4

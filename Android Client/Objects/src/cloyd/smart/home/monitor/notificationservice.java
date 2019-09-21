@@ -130,6 +130,7 @@ public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.statemanager _statemanager = null;
+public cloyd.smart.home.monitor.httputils2service _httputils2service = null;
 public static String  _listener_notificationposted(anywheresoftware.b4a.objects.NotificationListenerWrapper.StatusBarNotificationWrapper _sbn) throws Exception{
 anywheresoftware.b4a.phone.Phone _p = null;
 anywheresoftware.b4j.object.JavaObject _jno = null;
