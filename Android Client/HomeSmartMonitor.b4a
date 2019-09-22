@@ -1,20 +1,22 @@
 ﻿Build1=Default,cloyd.smart.home.monitor
 File1=0.png
-File10=Main.bal
-File11=ScrollViewBasement.bal
-File12=TempHumidityBasement.bal
+File10=crysta.ttf
+File11=Main.bal
+File12=ScrollViewBasement.bal
+File13=TempHumidityBasement.bal
 File2=1.bal
 File3=1ScrollView.bal
 File4=2.bal
 File5=AirQualityBasement.bal
 File6=blink.bal
 File7=blinkscrollview.bal
-File8=cloyd.png
-File9=crysta.ttf
+File8=camera-icon.png
+File9=cloyd.png
 FileGroup1=Default Group
 FileGroup10=Default Group
 FileGroup11=Default Group
 FileGroup12=Default Group
+FileGroup13=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
@@ -52,7 +54,7 @@ Module1=Gauge
 Module2=SmartHomeMonitor
 Module3=NotificationService
 Module4=StateManager
-NumberOfFiles=12
+NumberOfFiles=13
 NumberOfLibraries=22
 NumberOfModules=4
 Version=9.5
@@ -96,8 +98,6 @@ Sub Process_Globals
 	Private commandComplete As Boolean
 	Private cameraThumbnail As String
 	Private response As String
-	
-	
 End Sub
 
 Sub Globals
@@ -300,6 +300,10 @@ Sub Activity_Create(FirstTime As Boolean)
 		SetTextShadow(lblSideYardBatt)
 		SetTextShadow(lblSideYardTimestamp)
 		SetTextShadow(lblSideYardWiFi)
+		
+		'Dim bmp As Bitmap = LoadBitmap(File.DirAssets, "camera-icon.png")
+		'Dim bmp As Bitmap = LoadBitmapResize(File.DirAssets, "camera-icon.png", 64dip, 64dip, True)
+		'btnDriveway.SetBackgroundImage(bmp).Gravity = Gravity.CENTER
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -562,7 +566,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 21, 2019", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 22, 2019", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -641,6 +645,7 @@ Sub TabStrip1_PageSelected (Position As Int)
 			CheckAirQualitySettingBasement
 		End If
 		If Position = 4 Then
+			btnDriveway.Enabled = False
 			ScrollViewBlink.ScrollToNow(0)
 			BlurIV("Driveway.jpg",ivDriveway)
 			BlurIV("FrontDoor.jpg",ivFrontDoor)
@@ -978,8 +983,6 @@ Sub RequestAuthToken
 			RESTGet("https://rest-" & userRegion & ".immedia-semi.com/user")
 			Sleep(1000)
 			If response.StartsWith("ERROR: ") Then
-				Log(response)
-				lblStatus.Text = response
 				Return
 			Else
 				lblStatus.Text = "AuthToken acquired..."
@@ -989,8 +992,6 @@ Sub RequestAuthToken
 			RESTGet("https://rest-" & userRegion &".immedia-semi.com/api/v1/camera/usage")
 			Sleep(1000)
 			If response.StartsWith("ERROR: ") Then
-				Log(response)
-				lblStatus.Text = response
 				Return
 			Else
 				GetAllCameras(response)
@@ -1040,20 +1041,30 @@ Sub RefreshCameras(FirstRun As Boolean)
 		
 		For Each link As String In links
 			camera = link
-			If camera = "347574" Then
-				lblStatus.Text = "Capturing a new thumbnail for the Driveway..."
-				iv = ivDriveway
-'				clv = clvDriveway
-			Else If camera = "236967" Then
-				lblStatus.Text = "Capturing a new thumbnail for the Front Door..."
-				iv = ivFrontDoor
-'				clv = clvFrontDoor
-			Else If camera = "226821" Then
-				lblStatus.Text = "Capturing a new thumbnail for the Side Yard..."
-				iv = ivSideYard
-'				clv = clvSideYard
+			If FirstRun Then
+				If camera = "347574" Then
+					lblStatus.Text = "Retrieving Driveway thumbnail..."
+					iv = ivDriveway
+				Else If camera = "236967" Then
+					lblStatus.Text = "Retrieving Front Door thumbnail..."
+					iv = ivFrontDoor
+				Else If camera = "226821" Then
+					lblStatus.Text = "Retrieving Side Yard thumbnail..."
+					iv = ivSideYard
+				End If
+			Else
+				If camera = "347574" Then
+					lblStatus.Text = "Capturing a new Driveway thumbnail..."
+					iv = ivDriveway
+				Else If camera = "236967" Then
+					lblStatus.Text = "Capturing a new Front Door thumbnail..."
+					iv = ivFrontDoor
+				Else If camera = "226821" Then
+					lblStatus.Text = "Capturing a new Side Yard thumbnail..."
+					iv = ivSideYard
+				End If
 			End If
-			
+
 			If FirstRun Then
 				'iv.SetImage(Null)
 				RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
@@ -1064,16 +1075,14 @@ Sub RefreshCameras(FirstRun As Boolean)
 				RESTPost("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera & "/thumbnail")
 				Sleep(1000)
 				If response.StartsWith("ERROR: ") Then
-					Log(response)
-					lblStatus.Text = response
+					btnDriveway.Enabled = True
 					Return
 				Else
 					GetCommandID(response)
 					RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
 					Sleep(1000)
 					If response.StartsWith("ERROR: ") Then
-						Log(response)
-						lblStatus.Text = response
+						btnDriveway.Enabled = True
 						Return
 					Else
 						For i = 1 To 30
@@ -1129,6 +1138,7 @@ Sub RefreshCameras(FirstRun As Boolean)
 		Log("RefreshCamera LastException: " & LastException)
 		ToastMessageShow("RefreshCamera: " & LastException,False)
 	End Try
+	btnDriveway.Enabled = True
 End Sub
 
 Sub RESTGet(url As String) As ResumableSub
@@ -1182,7 +1192,7 @@ Sub RESTPost(url As String) As ResumableSub
 	Return(response)
 End Sub
 
-Sub DownloadImage (Link As String, iv As ImageView, camera As String)
+Sub DownloadImage (Link As String, iv As ImageView, camera As String) 'ignore
 	Try
 		Dim j As HttpJob
 		response = ""
@@ -1444,53 +1454,6 @@ Sub GetCameraInfo(json As String, clv As CustomListView)
 		Dim error_codes As Int = camera_status.Get("error_codes")
 		Dim fw_version As String = camera_status.Get("fw_version")
 		Dim ac_power As String = camera_status.Get("ac_power")
-	
-'		clv.Clear
-'		clv.AddTextItem("Battery voltage: " & NumberFormat((battery_voltage / 100),0,2) & "V - " & CheckBattLife(battery_voltage), "battery_voltage")
-'		clv.AddTextItem("Camera to WiFi strength: " & wifi_strength & " - " & CheckLFRLevel(wifi_strength), "wifi_strength")
-'		clv.AddTextItem("Camera to Sync Module strength (LFR): " & lfr_strength & " - " & CheckLFRLevel(lfr_strength), "lfr_strength")
-'		clv.AddTextItem("Temperature: " & temperature & "ºF", "temperature")
-'		clv.AddTextItem("Firmware version: " & fw_version, "fw_version")
-'		clv.AddTextItem("Firmware Git Hash: " & fw_git_hash, "fw_git_hash")
-'		clv.AddTextItem("Battery alert status: " & battery_alert_status, "battery_alert_status")
-'		clv.AddTextItem("Temperature alert status: " & temp_alert_status, "temp_alert_status")
-'		clv.AddTextItem("Updated at: " & ConvertDateTime(updated_at), "updated_at")
-'		clv.AddTextItem("Created at: " & ConvertDateTime(created_at), "created_at")
-'		clv.AddTextItem("IP address: " & ip_address, "ip_address")
-'		clv.AddTextItem("MAC address: " & mac, "mac")
-'		clv.AddTextItem("Camera ID: " & camera_id, "camera_id")
-'		clv.AddTextItem("Serial: " & serial, "serial")
-'		clv.AddTextItem("Network ID: " & network_id, "network_id")
-'		clv.AddTextItem("Account ID: " & account_id, "account_id")
-'		clv.AddTextItem("ID: " & id, "id")
-'		clv.AddTextItem("Sync Module ID: " & sync_module_id, "sync_module_id")
-'		clv.AddTextItem("Light sensor data valid: " & light_sensor_data_valid, "light_sensor_data_valid")
-'		clv.AddTextItem("DHCP failure count: " & dhcp_failure_count, "dhcp_failure_count")
-'		clv.AddTextItem("LFR tb wakeups: " & lfr_tb_wakeups, "lfr_tb_wakeups")
-'		clv.AddTextItem("Socket failure count: " & socket_failure_count, "socket_failure_count")
-'		clv.AddTextItem("Camera thumbnail: " & cameraThumbnail, "thumbnail")
-'		clv.AddTextItem("WiFi connect failure count: " & wifi_connect_failure_count, "wifi_connect_failure_count")
-'		clv.AddTextItem("Error codes: " & error_codes, "error_codes")
-'		clv.AddTextItem("AC power: " & ac_power, "ac_power")
-'		clv.AddTextItem("Total 108 wakeups: " & total_108_wakeups, "total_108_wakeups")
-'		clv.AddTextItem("Total Tb wakeups: " & total_tb_wakeups, "total_tb_wakeups")
-'		clv.AddTextItem("Light sensor ch0: " & light_sensor_ch0, "light_sensor_ch0")
-'		clv.AddTextItem("Unit number: " & unit_number, "unit_number")
-'		clv.AddTextItem("Light sensor ch1: " & light_sensor_ch1, "light_sensor_ch1")
-'		clv.AddTextItem("Time dhcp lease: " & time_dhcp_lease, "time_dhcp_lease")
-'		clv.AddTextItem("Time first video: " & time_first_video, "time_first_video")
-'		clv.AddTextItem("Time dns resolve: " & time_dns_resolve, "time_dns_resolve")
-'		clv.AddTextItem("Time 108 boot: " & time_108_boot, "time_108_boot")
-'		clv.AddTextItem("LFR 108 wakeups: " & lfr_108_wakeups, "lfr_108_wakeups")
-'		clv.AddTextItem("lifetime duration: " & lifetime_duration, "lifetime_duration")
-'		clv.AddTextItem("lpv: " & ipv, "ipv")
-'		clv.AddTextItem("light sensor data new: " & light_sensor_data_new, "light_sensor_data_new")
-'		clv.AddTextItem("Dev_1: " & dev_1, "dev_1")
-'		clv.AddTextItem("Dev_2: " & dev_2, "dev_2")
-'		clv.AddTextItem("Dev_3: " & dev_3, "dev_3")
-'		clv.AddTextItem("Time wlan connect: " & time_wlan_connect, "time_wlan_connect")
-'		clv.AddTextItem("PIR rejections: " & pir_rejections, "pir_rejections")
-'		clv.AddTextItem("Lifetime count: " & lifetime_count, "lifetime_count")
 
 '		Dim strTimestamp As String
 '		strTimestamp = ConvertDateTime(updated_at)
@@ -1641,6 +1604,7 @@ Sub btnDriveway_Click
 	bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 	If Msgbox2("Refresh all cameras?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then
 		ScrollViewBlink.ScrollToNow(0)
+		btnDriveway.Enabled = False
 		BlurIV("Driveway.jpg",ivDriveway)
 		BlurIV("FrontDoor.jpg",ivFrontDoor)
 		BlurIV("SideYard.jpg",ivSideYard)
