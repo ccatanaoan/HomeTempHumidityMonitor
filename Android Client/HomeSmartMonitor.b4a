@@ -54,9 +54,10 @@ Module1=Gauge
 Module2=SmartHomeMonitor
 Module3=NotificationService
 Module4=StateManager
+Module5=B4XPageIndicator
 NumberOfFiles=13
 NumberOfLibraries=22
-NumberOfModules=4
+NumberOfModules=5
 Version=9.5
 @EndOfDesignText@
 #Region  Project Attributes 
@@ -154,6 +155,7 @@ Sub Globals
 	Private lblSideYardTimestamp As Label
 	Private lblSideYardWiFi As Label
 	Private lblSyncModule As Label
+	Private B4XPageIndicator1 As B4XPageIndicator
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -300,6 +302,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		SetTextShadow(lblSideYardBatt)
 		SetTextShadow(lblSideYardTimestamp)
 		SetTextShadow(lblSideYardWiFi)
+		SetTextShadow(lblSyncModule)
 		
 		'Dim bmp As Bitmap = LoadBitmap(File.DirAssets, "camera-icon.png")
 		'Dim bmp As Bitmap = LoadBitmapResize(File.DirAssets, "camera-icon.png", 64dip, 64dip, True)
@@ -566,7 +569,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 22, 2019", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 23, 2019", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -620,6 +623,7 @@ public boolean _onCreateOptionsMenu(android.view.Menu menu) {
 
 Sub TabStrip1_PageSelected (Position As Int)
 	Try
+		B4XPageIndicator1.CurrentPage = Position
 		If Position = 0 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
@@ -1380,7 +1384,7 @@ Sub GetRESTError(json As String) As String
 		'RequestAuthToken LastException: (FileNotFoundException) java.io.FileNotFoundException: /data/user/0/cloyd.smart.home.monitor/cache/1 (No such file or directory)
 		'ResponseError. Reason: , Response: <h1>Not Found</h1>
 		If json.Contains("<h1>Not Found</h1>") Then
-			Return "REST endpoint not found. Try again."
+			Return "REST endpoint URL not found. Try again."
 		Else
 			If json.IndexOf("{") <> -1 Then
 				json = json.SubString(json.IndexOf("{"))
@@ -1679,7 +1683,6 @@ Sub SetTextShadow(lbl As Label)
 	Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
 	jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
 End Sub
-
 
 Sub ivSideYard_Click
 	lblDrivewayBatt.Visible = Not(lblDrivewayBatt.Visible)
