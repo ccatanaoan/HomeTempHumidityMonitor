@@ -986,7 +986,8 @@ Sub RequestAuthToken
 
 			RESTGet("https://rest-" & userRegion & ".immedia-semi.com/user")
 			Sleep(1000)
-			If response.StartsWith("ERROR: ") Then
+			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
+				btnDriveway.Enabled = True
 				Return
 			Else
 				lblStatus.Text = "AuthToken acquired..."
@@ -995,7 +996,8 @@ Sub RequestAuthToken
 			
 			RESTGet("https://rest-" & userRegion &".immedia-semi.com/api/v1/camera/usage")
 			Sleep(1000)
-			If response.StartsWith("ERROR: ") Then
+			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
+				btnDriveway.Enabled = True
 				Return
 			Else
 				GetAllCameras(response)
@@ -1078,14 +1080,14 @@ Sub RefreshCameras(FirstRun As Boolean)
 			Else
 				RESTPost("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera & "/thumbnail")
 				Sleep(1000)
-				If response.StartsWith("ERROR: ") Then
+				If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 					btnDriveway.Enabled = True
 					Return
 				Else
 					GetCommandID(response)
 					RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
 					Sleep(1000)
-					If response.StartsWith("ERROR: ") Then
+					If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 						btnDriveway.Enabled = True
 						Return
 					Else
@@ -1108,6 +1110,10 @@ Sub RefreshCameras(FirstRun As Boolean)
 							End If
 							RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
 							Sleep(1000)
+							If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
+								btnDriveway.Enabled = True
+								Return
+							End If
 						Next
 						If commandComplete = False Then
 							If camera = "347574" Then
@@ -1121,17 +1127,7 @@ Sub RefreshCameras(FirstRun As Boolean)
 								'ivSideYard.SetImage(Null)
 							End If
 						Else
-'							Dim strTimestamp As String
-'							DateTime.DateFormat = "h:mm:ss a"
-'							strTimestamp = DateTime.Date(DateTime.Now)
-'							lblStatus.Text = "Last updated: " & strTimestamp
-'							If camera = "347574" Then
-'								lblDriveway.Text = "Driveway " & strTimestamp
-'							Else If camera = "236967" Then
-'								lblFrontDoor.Text = "Front Door " & strTimestamp
-'							Else If camera = "226821" Then
-'								lblSideYard.Text = "Side Yard " & strTimestamp
-'							End If
+							' Completed
 						End If
 					End If
 				End If
@@ -1159,6 +1155,9 @@ Sub RESTGet(url As String) As ResumableSub
 			response = "ERROR: " & j.ErrorMessage
 			lblStatus.Text = GetRESTError(j.ErrorMessage)
 		End If
+		If response.Contains("System is busy, please wait") Then
+			lblStatus.Text = "System is busy, please wait"
+		End If
 		j.Release
 	Catch
 		response = "ERROR: " & LastException
@@ -1184,6 +1183,9 @@ Sub RESTPost(url As String) As ResumableSub
 		Else
 			response = "ERROR: " & j.ErrorMessage
 			lblStatus.Text = GetRESTError(j.ErrorMessage)
+		End If
+		If response.Contains("System is busy, please wait") Then
+			lblStatus.Text = "System is busy, please wait"
 		End If
 		j.Release
 	Catch
