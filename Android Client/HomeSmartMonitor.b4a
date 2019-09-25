@@ -1512,17 +1512,17 @@ Sub GetCameraInfo(json As String, clv As CustomListView)
 '		lblStatus.Text = "Last updated: " & strTimestamp
 
 		If camera_id = "347574" Then
-			lblDrivewayBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V - " & CheckBattLife(battery_voltage)
+			lblDrivewayBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V - " & CheckBattLife(battery_voltage, lblDrivewayBatt)
 			lblDrivewayTimestamp.Text = ConvertDateTime(updated_at)
 			lblDriveway.Text = "Driveway v" & fw_version
 			lblDrivewayWifi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
 		Else If camera_id = "236967" Then
-			lblFrontDoorBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V - " & CheckBattLife(battery_voltage)
+			lblFrontDoorBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V - " & CheckBattLife(battery_voltage, lblFrontDoorBatt)
 			lblFrontDoorTimestamp.Text = ConvertDateTime(updated_at)
 			lblFrontDoor.Text = "Front Door v" & fw_version
 			lblFrontDoorWiFi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
 		Else If camera_id = "226821" Then
-			lblSideYardBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V - " & CheckBattLife(battery_voltage)
+			lblSideYardBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V - " & CheckBattLife(battery_voltage,lblSideYardBatt)
 			lblSideYardTimestamp.Text = ConvertDateTime(updated_at)
 			lblSideYard.Text = "Side Yard v" & fw_version
 			lblSideYardWiFi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
@@ -1571,16 +1571,22 @@ Sub GetSyncModuleInfo(json As String)
 	End Try
 End Sub
 
-Sub CheckBattLife(battlevel As Int) As String
+Sub CheckBattLife(battlevel As Int, lbl As Label) As String
 	Try
 		' https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.batteryuniversity.com%2F_img%2Fcontent%2Fbu-106-table-4.jpg&imgrefurl=https%3A%2F%2Fbatteryuniversity.com%2Flearn%2Farticle%2Fprimary_batteries&docid=iRglhUshphFArM&tbnid=lTA22wm3cFfbCM%3A&vet=10ahUKEwjCo66R0NrkAhWVrZ4KHVq8BmcQMwi4AShFMEU..i&w=570&h=265&bih=947&biw=1680&q=AAA%20battery%20level&ved=0ahUKEwjCo66R0NrkAhWVrZ4KHVq8BmcQMwi4AShFMEU&iact=mrc&uact=8
+		Dim jo As JavaObject = lbl
+		Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
 		If battlevel <= 136 Then
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.red))
 			Return "Replace battery now!"
 		else If battlevel >= 160 Then
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
 			Return "Very high"
 		else If battlevel > 136 And battlevel < 138 Then
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Yellow))
 			Return "Very low"
 		Else
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
 			Return "High"
 		End If
 	Catch
@@ -2020,3 +2026,14 @@ End Sub
 Sub wvMedia_PageFinished (Url As String)
 	
 End Sub
+
+Sub lblSyncModule_Click
+	btnDriveway.Enabled = False
+	ScrollViewBlink.ScrollToNow(0)
+	BlurIV("Driveway.jpg",ivDriveway)
+	BlurIV("FrontDoor.jpg",ivFrontDoor)
+	BlurIV("SideYard.jpg",ivSideYard)
+	RefreshCameras(True)
+	btnDriveway.Enabled = True
+End Sub
+
