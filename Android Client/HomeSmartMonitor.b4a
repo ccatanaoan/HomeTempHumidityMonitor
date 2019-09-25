@@ -1,22 +1,26 @@
 ﻿Build1=Default,cloyd.smart.home.monitor
 File1=0.png
-File10=crysta.ttf
-File11=Main.bal
-File12=ScrollViewBasement.bal
-File13=TempHumidityBasement.bal
+File10=camera-icon.png
+File11=cloyd.png
+File12=crysta.ttf
+File13=Main.bal
+File14=ScrollViewBasement.bal
+File15=TempHumidityBasement.bal
 File2=1.bal
 File3=1ScrollView.bal
 File4=2.bal
 File5=AirQualityBasement.bal
 File6=blink.bal
-File7=blinkscrollview.bal
-File8=camera-icon.png
-File9=cloyd.png
+File7=blinkactivity.bal
+File8=blinkcellitem.bal
+File9=blinkscrollview.bal
 FileGroup1=Default Group
 FileGroup10=Default Group
 FileGroup11=Default Group
 FileGroup12=Default Group
 FileGroup13=Default Group
+FileGroup14=Default Group
+FileGroup15=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
@@ -42,6 +46,7 @@ Library2=appcompat
 Library20=bitmapcreator
 Library21=xui views
 Library22=runtimepermissions
+Library23=webviewsettings
 Library3=javaobject
 Library4=xmllayoutbuilder
 Library5=jmqtt
@@ -55,8 +60,8 @@ Module2=SmartHomeMonitor
 Module3=NotificationService
 Module4=StateManager
 Module5=B4XPageIndicator
-NumberOfFiles=13
-NumberOfLibraries=22
+NumberOfFiles=15
+NumberOfLibraries=23
 NumberOfModules=5
 Version=9.5
 @EndOfDesignText@
@@ -156,6 +161,13 @@ Sub Globals
 	Private lblSideYardWiFi As Label
 	Private lblSyncModule As Label
 	Private B4XPageIndicator1 As B4XPageIndicator
+	Private ivScreenshot As ImageView
+	Private lblDate As B4XView
+	Private lblDeviceInfo As B4XView
+	Private lblFileInfo As B4XView
+	Private clvActivity As CustomListView
+	Private wvMedia As WebView
+	Private WebViewSettings1 As WebViewSettings
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -185,7 +197,8 @@ Sub Activity_Create(FirstTime As Boolean)
 		'https://www.b4x.com/android/forum/threads/how-to-create-a-scrollable-screen.102755/#post-644462
 		ScrollViewBlink.panel.height = 910dip
 		panelBlink.Height = 910dip
-		
+		TabStrip1.LoadLayout("blinkactivity", "ACTIVITY" & CRLF & "Security Camera  " & Chr(0xF030))
+
 		For Each lbl As Label In GetAllTabLabels(TabStrip1)
 			' Two lines in a tab of TabStripViewPager
 			lbl.SingleLine = False
@@ -290,6 +303,16 @@ Sub Activity_Create(FirstTime As Boolean)
 			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
 		End If
 		
+				
+		If FirstTime Or ivDriveway.Bitmap = Null Then
+			btnDriveway.Enabled = False
+			ScrollViewBlink.ScrollToNow(0)
+			BlurIV("Driveway.jpg",ivDriveway)
+			BlurIV("FrontDoor.jpg",ivFrontDoor)
+			BlurIV("SideYard.jpg",ivSideYard)
+			RequestAuthToken
+		End If
+		
 		SetTextShadow(lblDriveway)
 		SetTextShadow(lblDrivewayBatt)
 		SetTextShadow(lblDrivewayTimestamp)
@@ -303,10 +326,6 @@ Sub Activity_Create(FirstTime As Boolean)
 		SetTextShadow(lblSideYardTimestamp)
 		SetTextShadow(lblSideYardWiFi)
 		SetTextShadow(lblSyncModule)
-		
-		'Dim bmp As Bitmap = LoadBitmap(File.DirAssets, "camera-icon.png")
-		'Dim bmp As Bitmap = LoadBitmapResize(File.DirAssets, "camera-icon.png", 64dip, 64dip, True)
-		'btnDriveway.SetBackgroundImage(bmp).Gravity = Gravity.CENTER
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -366,7 +385,7 @@ Sub Activity_Resume
 End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
-
+	wvMedia.LoadUrl("")
 End Sub
 
 'Connect to CloudMQTT broker
@@ -419,7 +438,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		If Topic = "TempHumid" Then
 			lblPing.SetVisibleAnimated(500, True)
 			csu.CallSubPlus(Me, "HidePing", 700)
-		
 			CheckTempHumiditySetting
 		Else If Topic = "MQ7" Then
 			CheckAirQualitySetting
@@ -569,7 +587,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 23, 2019", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 24, 2019", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -649,12 +667,18 @@ Sub TabStrip1_PageSelected (Position As Int)
 			CheckAirQualitySettingBasement
 		End If
 		If Position = 4 Then
-			btnDriveway.Enabled = False
-			ScrollViewBlink.ScrollToNow(0)
-			BlurIV("Driveway.jpg",ivDriveway)
-			BlurIV("FrontDoor.jpg",ivFrontDoor)
-			BlurIV("SideYard.jpg",ivSideYard)
-			RequestAuthToken
+			wvMedia.LoadUrl("")
+		End If
+		If Position = 5 Then
+			If userRegion <> "" Then
+				RESTGet("https://rest-" & userRegion &".immedia-semi.com/api/v1/accounts/88438/media/changed?since=-999999999-01-01T00:00:00+18:00&page=1")
+				Sleep(1000)
+				clvActivity.Clear
+				GetVideos(response)
+			Else
+				ToastMessageShow("Still connecting to Blink servers...",False)
+			End If
+
 		End If
 	Catch
 		Log(LastException)
@@ -691,6 +715,10 @@ Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 		Else If TabStrip1.CurrentPage = 4 Then
 			TabStrip1.ScrollTo(3,True)
 			TabStrip1_PageSelected(3)
+			Return True
+		Else If TabStrip1.CurrentPage = 5 Then
+			TabStrip1.ScrollTo(4,True)
+			TabStrip1_PageSelected(4)
 			Return True
 		End If
 	End If
@@ -1010,7 +1038,7 @@ Sub RequestAuthToken
 		jobLogin.Release
 		RefreshCameras(True)
 	Catch
-		ToastMessageShow("RequestAuthToken: " & LastException,False)
+		'ToastMessageShow("RequestAuthToken: " & LastException,False)
 		Log("RequestAuthToken LastException: " & LastException)
 	End Try
 End Sub
@@ -1026,6 +1054,7 @@ Sub RefreshCameras(FirstRun As Boolean)
 		Dim iv As ImageView
 		Dim clv As CustomListView
 		Dim links As List
+		Dim attempts As Int
 		links = Array("347574", "236967", "226821")
 		
 		RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/syncmodules")
@@ -1062,17 +1091,19 @@ Sub RefreshCameras(FirstRun As Boolean)
 				If camera = "347574" Then
 					lblStatus.Text = "Capturing a new Driveway thumbnail..."
 					iv = ivDriveway
+					attempts = 10
 				Else If camera = "236967" Then
 					lblStatus.Text = "Capturing a new Front Door thumbnail..."
 					iv = ivFrontDoor
+					attempts = 15
 				Else If camera = "226821" Then
 					lblStatus.Text = "Capturing a new Side Yard thumbnail..."
 					iv = ivSideYard
+					attempts = 15
 				End If
 			End If
 
 			If FirstRun Then
-				'iv.SetImage(Null)
 				RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
 				Sleep(1000)
 				GetCameraInfo(response,clv)
@@ -1091,7 +1122,7 @@ Sub RefreshCameras(FirstRun As Boolean)
 						btnDriveway.Enabled = True
 						Return
 					Else
-						For i = 1 To 30
+						For i = 1 To attempts
 							GetCommandStatus(response)
 							If commandComplete Then
 								RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
@@ -1101,11 +1132,11 @@ Sub RefreshCameras(FirstRun As Boolean)
 								Exit
 							Else
 								If camera = "347574" Then
-									lblStatus.Text = "Awaiting for the Driveway thumbnail... " & i & "/30"
+									lblStatus.Text = "Awaiting for the Driveway thumbnail... " & i & "/" & attempts
 								Else If camera = "236967" Then
-									lblStatus.Text = "Awaiting for the Front Door thumbnail...  " & i & "/30"
+									lblStatus.Text = "Awaiting for the Front Door thumbnail...  " & i & "/" & attempts
 								Else If camera = "226821" Then
-									lblStatus.Text = "Awaiting for the Side Yard thumbnail... " & i & "/30"
+									lblStatus.Text = "Awaiting for the Side Yard thumbnail... " & i & "/" & attempts
 								End If
 							End If
 							RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
@@ -1133,10 +1164,11 @@ Sub RefreshCameras(FirstRun As Boolean)
 				End If
 			End If
 		Next
+		
 		lblStatus.Text = "Ready"
 	Catch
 		Log("RefreshCamera LastException: " & LastException)
-		ToastMessageShow("RefreshCamera: " & LastException,False)
+		'ToastMessageShow("RefreshCamera: " & LastException,False)
 	End Try
 	btnDriveway.Enabled = True
 End Sub
@@ -1162,7 +1194,7 @@ Sub RESTGet(url As String) As ResumableSub
 	Catch
 		response = "ERROR: " & LastException
 		Log("RESTDownload LastException: " & LastException)
-		ToastMessageShow("RESTGet: " & LastException,False)
+		'ToastMessageShow("RESTGet: " & LastException,False)
 	End Try
 	Log("URL: " & url)
 	Log("Response: " & response)
@@ -1191,7 +1223,7 @@ Sub RESTPost(url As String) As ResumableSub
 	Catch
 		response = "ERROR: " & LastException
 		Log("RESTPost LastException: " & LastException)
-		ToastMessageShow("RESTPost: " & LastException,False)
+		'ToastMessageShow("RESTPost: " & LastException,False)
 	End Try
 	Log("URL: " & url)
 	Log("Response: " & response)
@@ -1227,7 +1259,7 @@ Sub DownloadImage (Link As String, iv As ImageView, camera As String) 'ignore
 		End If
 		j.Release
 	Catch
-		ToastMessageShow("DownloadImage: " & LastException,False)
+		'ToastMessageShow("DownloadImage: " & LastException,False)
 		Log(LastException)
 	End Try
 End Sub
@@ -1257,7 +1289,7 @@ Sub GetAuthInfo(json As String)
 '	Dim id As Int = account.Get("id")
 	Catch
 		Log(LastException)
-		ToastMessageShow("GetAuthInfo: " & LastException,False)
+		'ToastMessageShow("GetAuthInfo: " & LastException,False)
 	End Try
 
 End Sub
@@ -1287,7 +1319,7 @@ Sub GetUserInfo(json As String)
 		'   Dim email As String = root.Get("email")
 	Catch
 		Log(LastException)
-		ToastMessageShow("GetUserInfo: " & LastException,False)
+		'ToastMessageShow("GetUserInfo: " & LastException,False)
 	End Try
 End Sub
 
@@ -1316,7 +1348,7 @@ Sub GetAllCameras(json As String)
 		Next
 	Catch
 		Log(LastException)
-		ToastMessageShow("GetAllCameras: " & LastException,False)
+		'ToastMessageShow("GetAllCameras: " & LastException,False)
 	End Try
 End Sub
 
@@ -1363,7 +1395,7 @@ Sub GetCommandID(json As String)
 '	Dim transaction As String = root.Get("transaction")
 	Catch
 		Log(LastException)
-		ToastMessageShow("GetCommandID: " & LastException, False)
+		'ToastMessageShow("GetCommandID: " & LastException, False)
 	End Try
 End Sub
 
@@ -1376,7 +1408,7 @@ Sub GetCommandStatus(json As String)
 		Log("commandComplete: " & commandComplete)
 	Catch
 		Log(LastException)
-		ToastMessageShow("GetCommandStatus: " & LastException,False)
+		'ToastMessageShow("GetCommandStatus: " & LastException,False)
 	End Try
 End Sub
 
@@ -1403,7 +1435,7 @@ Sub GetRESTError(json As String) As String
 		End If
 	Catch
 		Log(LastException)
-		ToastMessageShow("GetRESTError: " & LastException,False)
+		'ToastMessageShow("GetRESTError: " & LastException,False)
 		Return json
 	End Try
 End Sub
@@ -1482,19 +1514,9 @@ Sub GetCameraInfo(json As String, clv As CustomListView)
 			lblSideYardWiFi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
 		End If
 		
-		
-'		For i = 0 To clv.Size-1
-'			Dim item As String
-'			item = clv.GetValue(i)
-'			If item.Contains("thumbnail") Then
-'				clv.ResizeItem(i,80dip)
-'			Else
-'				clv.ResizeItem(i,35dip)
-'			End If
-'		Next
 	Catch
 		Log(LastException)
-		ToastMessageShow("GetCameraInfo: " & LastException, False)
+		'ToastMessageShow("GetCameraInfo: " & LastException, False)
 	End Try
 End Sub
 
@@ -1531,7 +1553,7 @@ Sub GetSyncModuleInfo(json As String)
 		lblSyncModule.Text = "Sync Module is " & status & CRLF & CRLF & "Wifi Strength: " & wifi_strength & " bars" & CRLF & "Firmware version: " & fw_version & CRLF & "OS version: " & os_version
 	Catch
 		Log(LastException)
-		ToastMessageShow("GetSyncModuleInfo: " & LastException, False)
+		'ToastMessageShow("GetSyncModuleInfo: " & LastException, False)
 	End Try
 End Sub
 
@@ -1549,7 +1571,7 @@ Sub CheckBattLife(battlevel As Int) As String
 		End If
 	Catch
 		Log(LastException)
-		ToastMessageShow("CheckBattLife: " & LastException,False)
+		'ToastMessageShow("CheckBattLife: " & LastException,False)
 		Return ""
 	End Try
 End Sub
@@ -1624,7 +1646,7 @@ Sub BlurIV (image As String,iv As ImageView)
 		iv.Bitmap = (Blur(bmp))
 	Catch
 		Log(LastException)
-		ToastMessageShow("BlurIV: " & LastException,False)
+		'ToastMessageShow("BlurIV: " & LastException,False)
 	End Try
 End Sub
 
@@ -1729,4 +1751,204 @@ Sub ivDriveway_Click
 	lblSideYardTimestamp.Visible = Not(lblSideYardTimestamp.Visible)
 	lblSideYardWiFi.Visible = Not(lblSideYardWiFi.Visible)
 	lblSideYard.Visible = Not(lblSideYard.Visible)
+End Sub
+
+Sub GetVideos(json As String)
+	Try
+		Dim parser As JSONParser
+		parser.Initialize(json)
+		Dim root As Map = parser.NextObject
+'		Dim purge_id As Int = root.Get("purge_id")
+'		Dim limit As Int = root.Get("limit")
+		
+		Dim media As List = root.Get("media")
+		For Each colmedia As Map In media
+			Dim thumbnail As String = colmedia.Get("thumbnail")
+'			Dim device_id As Int = colmedia.Get("device_id")
+'			Dim network_name As String = colmedia.Get("network_name")
+			Dim created_at As String = colmedia.Get("created_at")
+'			Dim source As String = colmedia.Get("source")
+'			Dim medianame As String = colmedia.Get("media")
+'			Dim Type As String = colmedia.Get("type")
+'			Dim time_zone As String = colmedia.Get("time_zone")
+			Dim device_name As String = colmedia.Get("device_name")
+'			Dim network_id As Int = colmedia.Get("network_id")
+'			Dim watched As String = colmedia.Get("watched")
+'			Dim deleted As String = colmedia.Get("deleted")
+'			Dim updated_at As String = colmedia.Get("updated_at")
+'			Dim id As Int = colmedia.Get("id")
+'			Dim additional_devices As List = colmedia.Get("additional_devices")
+'			Dim device As String = colmedia.Get("device")
+'			Dim partial As String = colmedia.Get("partial")
+
+			Dim medianame As String = colmedia.Get("media")
+			Dim j As HttpJob
+			j.Initialize("", Me)
+			j.Download("https://rest-" & userRegion &".immedia-semi.com" & thumbnail & ".jpg")
+			j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
+			Wait For (j) JobDone(j As HttpJob)
+			If j.Success Then
+				' Save to a JPG file
+
+				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "screenshot.jpg", False)
+				File.Copy2(j.GetInputStream, out)
+				out.Close '<------ very important
+				
+				' Display in ImageView
+				'a = j.GetBitmap
+				Dim p As B4XView = CreateListItem(j.GetBitmap,created_at, device_name)
+				clvActivity.Add(p,"https://rest-" & userRegion &".immedia-semi.com" & medianame & "|" & device_name & " " & ConvertFullDateTime(created_at))
+				If clvActivity.Size = 1 Then
+					ShowVideo("https://rest-" & userRegion &".immedia-semi.com" & medianame)
+				End If
+			Else
+
+			End If
+			j.Release
+		Next
+		'Dim refresh_count As Int = root.Get("refresh_count")
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
+Sub CreateListItem(screenshot As B4XBitmap, fileinfo As String, devicename As String) As B4XView
+	Try
+		'https://www.b4x.com/android/forum/threads/customlistview.103498/#post-648747
+		'https://www.b4x.com/android/forum/threads/customlistview-b4a-to-b4j.85047/#post-539068
+		'https://www.b4x.com/android/forum/threads/b4x-xui-xcustomlistview.90789/#post-573958
+		Dim p As B4XView = xui.CreatePanel("")
+		'Dim height As Int = 280dip
+		'If GetDeviceLayoutValues.ApproximateScreenSize < 4.5 Then height = 310dip
+		p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width,100dip)
+		p.LoadLayout("blinkcellitem")
+		ivScreenshot.Bitmap = screenshot
+		lblDate.Text = "   " & ConvertFullDateTime(fileinfo)
+		lblFileInfo.Text = "   " & ConvertDateTimePeriod(fileinfo)
+		lblDeviceInfo.Text = "   " & devicename
+		Return p
+	Catch
+		Log(LastException)
+		Return Null
+	End Try
+End Sub
+
+Sub clvActivity_ItemClick (Index As Int, Value As Object)
+	Try
+		wvMedia.LoadUrl("")
+		Dim video As String
+		video = clvActivity.GetValue(Index)
+		Dim videoURL As String = Regex.Split("\|",video)(0)
+		ShowVideo(videoURL)
+	Catch
+		Log(LastException)
+	End Try
+
+End Sub
+
+Sub ConvertDateTimePeriod(inputTime As String) As String
+	' https://www.b4x.com/android/forum/threads/convert-utc-to-ticks-and-vice-versa.36592/#content
+	Dim ticks As Long = ParseUTCstring(inputTime.Replace("+00:00","+0000"))
+	DateTime.DateFormat = "MMM d, yyyy h:mm:ss a"
+	Dim lngTicks As Long = ticks
+	Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
+	'Log("Time difference: " & p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s")
+	If lblDate.Text.Contains("Today") Then
+		If p.Days = 0 Then
+			If p.Hours = 0 Then
+				If p.Minutes = 0 Then
+					Return p.Seconds & "s ago"
+				Else
+					Return p.Minutes & "m " & p.Seconds & "s ago"
+				End If
+			Else
+				Return p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
+			End If
+		else If p.Hours = 0 Then
+			If p.Minutes = 0 Then
+				Return p.Seconds & "s ago"
+			Else
+				Return p.Minutes & "m " & p.Seconds & "s ago"
+			End If
+		else If p.Minutes = 0 Then
+			Return p.Seconds & "s ago"
+		Else
+			Return p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
+		End If
+	else if lblDate.Text.Contains("Yesterday") Then
+		If p.Days = 0 Then
+			If p.Hours = 0 Then
+				If p.Minutes = 0 Then
+					Return p.Seconds & "s ago"
+				Else
+					Return p.Minutes & "m " & p.Seconds & "s ago"
+				End If
+			Else
+				Return p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
+			End If
+		Else
+			Return p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
+		End If
+	Else
+		Return p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
+	End If
+
+End Sub
+
+Sub ConvertFullDateTime(inputTime As String) As String
+	' https://www.b4x.com/android/forum/threads/convert-utc-to-ticks-and-vice-versa.36592/#content
+	Dim ticks As Long = ParseUTCstring(inputTime.Replace("+00:00","+0000"))
+	DateTime.DateFormat = "MMM d, yyyy h:mm:ss a"
+	Dim lngTicks As Long = ticks
+
+	Dim Yesterday As Long
+	Dim timestamp As Long
+	DateTime.DateFormat = "yyyyMMdd"
+	Yesterday = DateTime.Date(DateTime.add(DateTime.Now, 0, 0, -1))
+	timestamp = DateTime.Date(lngTicks)
+
+	DateTime.DateFormat = "h:mm:ss a"
+	If DateUtils.IsSameDay(lngTicks,DateTime.now) Then
+		Return "Today " & DateTime.Date(lngTicks)
+	Else If Yesterday = timestamp Then
+		Return "Yesterday " & DateTime.Date(lngTicks)
+	Else 
+		Return DateUtils.GetDayOfWeekName(lngTicks) & " " & DateTime.Date(lngTicks)
+	End If
+End Sub
+
+Sub ShowVideo (Link As String)
+	Try
+		Dim j As HttpJob
+		j.Initialize("", Me)
+		j.Download(Link)
+		j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
+		Wait For (j) JobDone(j As HttpJob)
+		If j.Success Then
+			' Save to a JPG file
+			Dim out As OutputStream = File.OpenOutput(File.DirInternal, "media.mp4", False)
+			File.Copy2(j.GetInputStream, out)
+			out.Close '<------ very important
+		
+			Dim sb As StringBuilder
+			sb.Initialize
+			sb.Append("<video width='100%' height='100%' controls autoplay>")
+			sb.Append("<source src='" & File.Combine(File.DirInternal, "\media.mp4") & "' Type='video/mp4'/>")
+			sb.Append("</video>")
+			Dim WebViewSettings1 As WebViewSettings
+			WebViewSettings1.setMediaPlaybackRequiresUserGesture(wvMedia,False)
+			wvMedia.LoadHtml(sb.ToString)
+			
+			Dim r As Reflector
+			r.Target = wvMedia
+			r.Target = r.RunMethod("getSettings")
+			r.RunMethod2("setBuiltInZoomControls", True, "java.lang.boolean")
+			r.RunMethod2("setDisplayZoomControls", False, "java.lang.boolean")
+		Else
+
+		End If
+		j.Release
+	Catch
+		Log(LastException)
+	End Try
 End Sub

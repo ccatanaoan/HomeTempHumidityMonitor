@@ -16,6 +16,6 @@ ModuleClosedNodes2=
 ModuleClosedNodes3=
 ModuleClosedNodes4=
 ModuleClosedNodes5=
-NavigationStack=Main,SetTextShadow,1621,0,Main,Globals,96,0,Visual Designer,Main.bal,-100,6,Main,TabStrip1_PageSelected,574,0,Main,GetRESTError,1329,2,Main,RequestAuthToken,936,6,Main,RESTPost,1121,0,Main,GetCommandStatus,1303,0,Main,RESTGet,1077,5,Main,RefreshCameras,1052,4
+NavigationStack=Main,GetUserInfo,1255,0,Main,GetAuthInfo,1225,0,Main,DownloadImage,1195,0,Main,RESTPost,1159,0,Main,RESTGet,1130,0,Main,RequestAuthToken,942,0,Main,CreatePreferenceScreen,905,0,Main,HandleSettings,928,0,Main,btnDriveway_Click,1572,0,Main,RefreshCameras,1091,0
 SelectedBuild=0
 VisibleModules=1,2,3,4,5
