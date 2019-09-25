@@ -104,6 +104,7 @@ Sub Process_Globals
 	Private commandComplete As Boolean
 	Private cameraThumbnail As String
 	Private response As String
+	Private previousSelectedIndex As Int
 End Sub
 
 Sub Globals
@@ -168,6 +169,7 @@ Sub Globals
 	Private clvActivity As CustomListView
 	Private wvMedia As WebView
 	Private WebViewSettings1 As WebViewSettings
+	Private B4XLoadingIndicator4 As B4XLoadingIndicator
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -302,17 +304,7 @@ Sub Activity_Create(FirstTime As Boolean)
 			End If
 			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
 		End If
-		
 				
-		If FirstTime Or ivDriveway.Bitmap = Null Then
-			btnDriveway.Enabled = False
-			ScrollViewBlink.ScrollToNow(0)
-			BlurIV("Driveway.jpg",ivDriveway)
-			BlurIV("FrontDoor.jpg",ivFrontDoor)
-			BlurIV("SideYard.jpg",ivSideYard)
-			RequestAuthToken
-		End If
-		
 		SetTextShadow(lblDriveway)
 		SetTextShadow(lblDrivewayBatt)
 		SetTextShadow(lblDrivewayTimestamp)
@@ -333,6 +325,16 @@ End Sub
 
 Sub Activity_Resume
 	Try
+		If ivDriveway.Bitmap = Null Or lblStatus.Text.Contains("REST endpoint URL not found") Then
+			btnDriveway.Enabled = False
+			ScrollViewBlink.ScrollToNow(0)
+			BlurIV("Driveway.jpg",ivDriveway)
+			BlurIV("FrontDoor.jpg",ivFrontDoor)
+			BlurIV("SideYard.jpg",ivSideYard)
+			RequestAuthToken
+		End If
+		previousSelectedIndex = 0
+			
 		HandleSettings
 		Dim in As Intent = Activity.GetStartingIntent
 		Dim NotificationClicked As String
@@ -587,7 +589,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 24, 2019", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 25, 2019", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -647,27 +649,40 @@ Sub TabStrip1_PageSelected (Position As Int)
 				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 			End If
 			CheckTempHumiditySetting
+			previousSelectedIndex = 0
 		End If
 		If Position = 1 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("MQ7", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySetting
+			previousSelectedIndex = 0
 		End If
 		If Position = 2 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
 			End If
 			CheckTempHumiditySettingBasement
+			previousSelectedIndex = 0
 		End If
 		If Position = 3 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySettingBasement
+			previousSelectedIndex = 0
 		End If
 		If Position = 4 Then
 			wvMedia.LoadUrl("")
+			previousSelectedIndex = 0
+			If ivDriveway.Bitmap = Null Or lblStatus.Text.Contains("REST endpoint URL not found") Then
+				btnDriveway.Enabled = False
+				ScrollViewBlink.ScrollToNow(0)
+				BlurIV("Driveway.jpg",ivDriveway)
+				BlurIV("FrontDoor.jpg",ivFrontDoor)
+				BlurIV("SideYard.jpg",ivSideYard)
+				RequestAuthToken
+			End If
 		End If
 		If Position = 5 Then
 			If userRegion <> "" Then
@@ -676,9 +691,8 @@ Sub TabStrip1_PageSelected (Position As Int)
 				clvActivity.Clear
 				GetVideos(response)
 			Else
-				ToastMessageShow("Still connecting to Blink servers...",False)
+				ToastMessageShow("Still connecting to Blink servers...",True)
 			End If
-
 		End If
 	Catch
 		Log(LastException)
@@ -1799,7 +1813,10 @@ Sub GetVideos(json As String)
 				Dim p As B4XView = CreateListItem(j.GetBitmap,created_at, device_name)
 				clvActivity.Add(p,"https://rest-" & userRegion &".immedia-semi.com" & medianame & "|" & device_name & " " & ConvertFullDateTime(created_at))
 				If clvActivity.Size = 1 Then
+					'ProgressDialogShow("Loading...")
+					B4XLoadingIndicator4.Show
 					ShowVideo("https://rest-" & userRegion &".immedia-semi.com" & medianame)
+					UpdateItemColor(clvActivity.FirstVisibleIndex, xui.Color_Blue)
 				End If
 			Else
 
@@ -1808,6 +1825,7 @@ Sub GetVideos(json As String)
 		Next
 		'Dim refresh_count As Int = root.Get("refresh_count")
 	Catch
+		B4XLoadingIndicator4.hide
 		Log(LastException)
 	End Try
 End Sub
@@ -1835,15 +1853,59 @@ End Sub
 
 Sub clvActivity_ItemClick (Index As Int, Value As Object)
 	Try
+		UpdateItemColor(Index, xui.Color_Blue)
 		wvMedia.LoadUrl("")
 		Dim video As String
 		video = clvActivity.GetValue(Index)
 		Dim videoURL As String = Regex.Split("\|",video)(0)
+		
+		'ProgressDialogShow("Loading...")
+		B4XLoadingIndicator4.Show
 		ShowVideo(videoURL)
+		
 	Catch
+		B4XLoadingIndicator4.Hide
 		Log(LastException)
 	End Try
 
+End Sub
+
+Sub UpdateItemColor (Index As Int, Color As Int)
+	Try
+		If previousSelectedIndex <> Index Then
+			Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
+			If p.NumberOfViews > 0 Then
+				'get the content label view (it is inside an additional panel)
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(0)
+				ContentLabel.TextColor = -1979711488 'xui.Color_Black
+		
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(1)
+				ContentLabel.TextColor = -1979711488 'xui.Color_Black
+		
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(2)
+				ContentLabel.TextColor = -1979711488' xui.Color_Black
+			End If
+		End If
+	
+		Dim p As B4XView = clvActivity.GetPanel(Index)
+'	Dim test As Panel = clvActivity.GetPanel(Index)
+'	test.Color = xui.Color_LightGray
+		If p.NumberOfViews > 0 Then
+			'get the content label view (it is inside an additional panel)
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(0)
+			ContentLabel.TextColor = Color
+		
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(1)
+			ContentLabel.TextColor = Color
+		
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(2)
+			ContentLabel.TextColor = Color
+		End If
+	
+		previousSelectedIndex = Index
+	Catch
+		Log(LastException)
+	End Try
 End Sub
 
 Sub ConvertDateTimePeriod(inputTime As String) As String
@@ -1924,6 +1986,8 @@ Sub ShowVideo (Link As String)
 		j.Download(Link)
 		j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
 		Wait For (j) JobDone(j As HttpJob)
+		'ProgressDialogHide
+		B4XLoadingIndicator4.hide
 		If j.Success Then
 			' Save to a JPG file
 			Dim out As OutputStream = File.OpenOutput(File.DirInternal, "media.mp4", False)
@@ -1951,4 +2015,8 @@ Sub ShowVideo (Link As String)
 	Catch
 		Log(LastException)
 	End Try
+End Sub
+
+Sub wvMedia_PageFinished (Url As String)
+	
 End Sub
