@@ -16,6 +16,6 @@ ModuleClosedNodes2=
 ModuleClosedNodes3=
 ModuleClosedNodes4=
 ModuleClosedNodes5=
-NavigationStack=Main,RequestAuthToken,985,0,Main,Activity_Resume,261,0,Visual Designer,blink.bal,-100,3,Main,wvMedia_PageFinished,1959,0,Main,Activity_Create,251,0,Visual Designer,blinkscrollview.bal,-100,2,Main,Process_Globals,41,0,Main,Globals,59,0,Main,lblSyncModule_Click,1972,4
+NavigationStack=Main,lblSyncModule_Click,1889,0,Main,GetSyncModuleInfo,1428,0,Main,GetCameraInfo,1427,0,Main,RequestAuthToken,970,0,Main,Activity_Resume,302,0,Main,RESTGet,1177,0,Main,RESTPost,1205,0,Main,RefreshCameras,1101,4,Main,TabStrip1_PageSelected,623,6,Main,ShowAboutMenu,524,0
 SelectedBuild=0
 VisibleModules=1,2,3,4,5

@@ -97,9 +97,9 @@ Sub Process_Globals
 	Private emailAddress As String = "[redacted]"
 	Private password As String = "[redacted]"
 	Private authToken As String
-	Private userRegion As String
-	Private accountID As String
-	Private networkID As String
+	Private userRegion As String = "u006"
+	Private accountID As String = "88438"
+	Private networkID As String = "94896"
 	Private commandID As String
 	Private commandComplete As Boolean
 	Private cameraThumbnail As String
@@ -368,9 +368,9 @@ Sub Activity_Resume
 		Else If NotificationClicked = "Basement CO sensor issue" Then
 			TabStrip1.ScrollTo(3,False)
 			TabStrip1_PageSelected(3)
-		Else
-			TabStrip1.ScrollTo(0,False)
-			TabStrip1_PageSelected(0)
+'		Else
+'			TabStrip1.ScrollTo(0,False)
+'			TabStrip1_PageSelected(0)
 		End If
 
 	Catch
@@ -589,7 +589,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 25, 2019", "About", "OK", "", "", bd.Bitmap)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by Cloyd Nino Catanaoan" & CRLF & "September 26, 2019", "About", "OK", "", "", bd.Bitmap)
 	Catch
 		Log(LastException)
 	End Try
@@ -685,14 +685,21 @@ Sub TabStrip1_PageSelected (Position As Int)
 			End If
 		End If
 		If Position = 5 Then
-			If userRegion <> "" Then
-				RESTGet("https://rest-" & userRegion &".immedia-semi.com/api/v1/accounts/88438/media/changed?since=-999999999-01-01T00:00:00+18:00&page=1")
-				Sleep(1000)
-				clvActivity.Clear
-				GetVideos(response)
-			Else
-				ToastMessageShow("Still connecting to Blink servers...",True)
+			RESTGet("https://rest-" & userRegion &".immedia-semi.com/api/v1/accounts/88438/media/changed?since=-999999999-01-01T00:00:00+18:00&page=1")
+			For i = 1 To 20
+				If response = "" Then
+					Sleep(50)
+				Else
+					Exit
+				End If
+			Next
+			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
+				ToastMessageShow(lblStatus.Text,False)
+				btnDriveway.Enabled = True
+				Return
 			End If
+			clvActivity.Clear
+			GetVideos(response)
 		End If
 	Catch
 		Log(LastException)
@@ -1026,33 +1033,22 @@ Sub RequestAuthToken
 			
 			GetAuthInfo(jobLogin.GetString)
 
-			RESTGet("https://rest-" & userRegion & ".immedia-semi.com/user")
-			Sleep(1000)
 			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 				btnDriveway.Enabled = True
+				jobLogin.Release
 				Return
 			Else
 				lblStatus.Text = "AuthToken acquired..."
-				GetUserInfo(response)
-			End If
-			
-			RESTGet("https://rest-" & userRegion &".immedia-semi.com/api/v1/camera/usage")
-			Sleep(1000)
-			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-				btnDriveway.Enabled = True
-				Return
-			Else
-				GetAllCameras(response)
 			End If
 		Else
-			lblStatus.Text = GetRESTError(jobLogin.ErrorMessage) ' "RequestAuthToken error: " & jobLogin.GetString
+			lblStatus.Text = GetRESTError(jobLogin.ErrorMessage) 
 			Log("RequestAuthToken error: " & jobLogin.ErrorMessage)
+			jobLogin.Release
 			Return
 		End If
 		jobLogin.Release
 		RefreshCameras(True)
 	Catch
-		'ToastMessageShow("RequestAuthToken: " & LastException,False)
 		Log("RequestAuthToken LastException: " & LastException)
 	End Try
 End Sub
@@ -1072,7 +1068,17 @@ Sub RefreshCameras(FirstRun As Boolean)
 		links = Array("347574", "236967", "226821")
 		
 		RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/syncmodules")
-		Sleep(1000)
+		For i = 1 To 20
+			If response = "" Then
+				Sleep(50)
+			Else
+				Exit
+			End If
+		Next
+		If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
+			btnDriveway.Enabled = True
+			Return
+		End If
 		GetSyncModuleInfo(response)
 		
 		lblDrivewayBatt.Visible = True
@@ -1119,19 +1125,37 @@ Sub RefreshCameras(FirstRun As Boolean)
 
 			If FirstRun Then
 				RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
-				Sleep(1000)
+				For i = 1 To 20
+					If response = "" Then
+						Sleep(50)
+					Else
+						Exit
+					End If
+				Next
 				GetCameraInfo(response,clv)
 				DownloadImage("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg",iv, camera)
 			Else
 				RESTPost("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera & "/thumbnail")
-				Sleep(1000)
+				For i = 1 To 20
+					If response = "" Then
+						Sleep(50)
+					Else
+						Exit
+					End If
+				Next
 				If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 					btnDriveway.Enabled = True
 					Return
 				Else
 					GetCommandID(response)
 					RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-					Sleep(1000)
+					For i = 1 To 20
+						If response = "" Then
+							Sleep(50)
+						Else
+							Exit
+						End If
+					Next
 					If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 						btnDriveway.Enabled = True
 						Return
@@ -1140,7 +1164,13 @@ Sub RefreshCameras(FirstRun As Boolean)
 							GetCommandStatus(response)
 							If commandComplete Then
 								RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
-								Sleep(1000)
+								For i = 1 To 20
+									If response = "" Then
+										Sleep(50)
+									Else
+										Exit
+									End If
+								Next
 								GetCameraInfo(response,clv)
 								DownloadImage("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg",iv,camera)
 								Exit
@@ -1182,7 +1212,6 @@ Sub RefreshCameras(FirstRun As Boolean)
 		lblStatus.Text = "Ready"
 	Catch
 		Log("RefreshCamera LastException: " & LastException)
-		'ToastMessageShow("RefreshCamera: " & LastException,False)
 	End Try
 	btnDriveway.Enabled = True
 End Sub
@@ -1208,7 +1237,6 @@ Sub RESTGet(url As String) As ResumableSub
 	Catch
 		response = "ERROR: " & LastException
 		Log("RESTDownload LastException: " & LastException)
-		'ToastMessageShow("RESTGet: " & LastException,False)
 	End Try
 	Log("URL: " & url)
 	Log("Response: " & response)
@@ -1237,7 +1265,6 @@ Sub RESTPost(url As String) As ResumableSub
 	Catch
 		response = "ERROR: " & LastException
 		Log("RESTPost LastException: " & LastException)
-		'ToastMessageShow("RESTPost: " & LastException,False)
 	End Try
 	Log("URL: " & url)
 	Log("Response: " & response)
@@ -1273,11 +1300,9 @@ Sub DownloadImage (Link As String, iv As ImageView, camera As String) 'ignore
 		End If
 		j.Release
 	Catch
-		'ToastMessageShow("DownloadImage: " & LastException,False)
 		Log(LastException)
 	End Try
 End Sub
-
 
 Sub GetAuthInfo(json As String)
 	Try
@@ -1288,83 +1313,23 @@ Sub GetAuthInfo(json As String)
 		Dim authtokenmap As Map = root.Get("authtoken")
 		authToken = authtokenmap.Get("authtoken")
 		Log("authToken: " &  authToken)
-'	Dim message As String = authtoken.Get("message")
-'	Dim client As Map = root.Get("client")
-'	Dim id As Int = client.Get("id")
-'	Dim networks As Map = root.Get("networks")
-'	Dim 94896 As Map = networks.Get("94896")
-'	Dim onboarded As String = 94896.Get("onboarded")
-'	Dim name As String = 94896.Get("name")
+		Dim networks As Map = root.Get("networks")
+		Log("networkID: " & networks.GetKeyAt(0))
+		networkID = networks.GetKeyAt(0)
 		Dim region As Map = root.Get("region")
 		userRegion = region.GetKeyAt(0)
 		Log("userRegion: " &  userRegion)
-'	Dim u006 As String = region.Get("u006")
-'	Dim account As Map = root.Get("account")
-'	Dim id As Int = account.Get("id")
+
+		Dim account As Map = root.Get("account")
+		Dim id As Int = account.Get("id")
+		Log("accountID: " & id)
+		accountID = id
 	Catch
 		Log(LastException)
-		'ToastMessageShow("GetAuthInfo: " & LastException,False)
 	End Try
 
 End Sub
 
-Sub GetUserInfo(json As String)
-	Try
-		lblStatus.Text = "Getting user information..."
-		Dim parser As JSONParser
-		parser.Initialize(json)
-		Dim root As Map = parser.NextObject
-'	Dim owner As String = root.Get("owner")
-'	Dim temp_units As String = root.Get("temp_units")
-'	Dim verified As String = root.Get("verified")
-'	Dim pin_created_at As String = root.Get("pin_created_at")
-'	Dim created_at As String = root.Get("created_at")
-'	Dim time_zone As String = root.Get("time_zone")
-'	Dim Type As String = root.Get("type")
-'	Dim pin_failures As Int = root.Get("pin_failures")
-'	Dim updated_at As String = root.Get("updated_at")
-'	Dim reset_expiration As String = root.Get("reset_expiration")
-'	Dim pin As String = root.Get("pin")
-'	Dim name As String = root.Get("name")
-'	Dim user_access As String = root.Get("user_access")
-		'accountID = root.Get("id") '88428 <-- OLD INCORRECT
-		accountID = root.Get("account_id") '88438
-		Log("accountID: " &  accountID)
-		'   Dim email As String = root.Get("email")
-	Catch
-		Log(LastException)
-		'ToastMessageShow("GetUserInfo: " & LastException,False)
-	End Try
-End Sub
-
-Sub GetAllCameras(json As String)
-	Try
-		lblStatus.Text = "Getting all cameras information..."
-		Dim parser As JSONParser
-		parser.Initialize(json)
-		Dim root As Map = parser.NextObject
-'	Dim reference As Map = root.Get("reference")
-'	Dim usage As Int = reference.Get("usage")
-'	Dim range_days As Int = root.Get("range_days")
-		Dim networks As List = root.Get("networks")
-		For Each colnetworks As Map In networks
-'		Dim cameras As List = colnetworks.Get("cameras")
-'		For Each colcameras As Map In cameras
-'			Dim usage As Int = colcameras.Get("usage")
-'			Dim name As String = colcameras.Get("name")
-'			Dim lv_seconds As Int = colcameras.Get("lv_seconds")
-'			Dim id As Int = colcameras.Get("id")
-'			Dim clip_seconds As Int = colcameras.Get("clip_seconds")
-'		Next
-			networkID = colnetworks.Get("network_id")
-			Log("networkID: " &  networkID)
-			'Dim name As String = colnetworks.Get("name")
-		Next
-	Catch
-		Log(LastException)
-		'ToastMessageShow("GetAllCameras: " & LastException,False)
-	End Try
-End Sub
 
 Sub GetCommandID(json As String)
 	Try
@@ -1530,7 +1495,6 @@ Sub GetCameraInfo(json As String, clv As CustomListView)
 		
 	Catch
 		Log(LastException)
-		'ToastMessageShow("GetCameraInfo: " & LastException, False)
 	End Try
 End Sub
 
@@ -1819,7 +1783,6 @@ Sub GetVideos(json As String)
 				Dim p As B4XView = CreateListItem(j.GetBitmap,created_at, device_name)
 				clvActivity.Add(p,"https://rest-" & userRegion &".immedia-semi.com" & medianame & "|" & device_name & " " & ConvertFullDateTime(created_at))
 				If clvActivity.Size = 1 Then
-					'ProgressDialogShow("Loading...")
 					B4XLoadingIndicator4.Show
 					ShowVideo("https://rest-" & userRegion &".immedia-semi.com" & medianame)
 					UpdateItemColor(clvActivity.FirstVisibleIndex, xui.Color_Blue)
@@ -1865,7 +1828,6 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 		video = clvActivity.GetValue(Index)
 		Dim videoURL As String = Regex.Split("\|",video)(0)
 		
-		'ProgressDialogShow("Loading...")
 		B4XLoadingIndicator4.Show
 		ShowVideo(videoURL)
 		
@@ -1992,7 +1954,6 @@ Sub ShowVideo (Link As String)
 		j.Download(Link)
 		j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
 		Wait For (j) JobDone(j As HttpJob)
-		'ProgressDialogHide
 		B4XLoadingIndicator4.hide
 		If j.Success Then
 			' Save to a JPG file
