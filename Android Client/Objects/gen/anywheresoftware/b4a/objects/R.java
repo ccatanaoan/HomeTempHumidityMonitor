@@ -245,6 +245,25 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int activityChooserViewStyle=0x7f01008f;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int ad_marker_color=0x7f01011f;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int ad_marker_width=0x7f010120;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -385,6 +404,14 @@ containing a value of this type.
 </table>
          */
         public static final int autoSizeTextType=0x7f010045;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int auto_show=0x7f01013b;
         /**  Specifies a background drawable for the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -446,11 +473,30 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int barLength=0x7f0100db;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bar_height=0x7f010121;
         /**  Style for buttons without an explicit border, often used in groups. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int borderlessButtonStyle=0x7f01008c;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int buffered_color=0x7f010122;
         /**  Style for buttons within button bars 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -787,6 +833,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
+        public static final int controller_layout_id=0x7f010123;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
         public static final int coordinatorLayoutStyle=0x7f010000;
         /**  Specifies a layout for custom navigation. Overrides navigationMode. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -803,6 +853,10 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int defaultQueryHint=0x7f0100f3;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int default_artwork=0x7f010137;
         /**  Preferred corner radius of dialogs. 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -999,6 +1053,14 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int expandActivityOverflowButtonDrawable=0x7f010035;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int fastforward_increment=0x7f010124;
         /**  Distance from the top of the TextView to the first text baseline. If set, this
              overrides the value set for paddingTop. 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
@@ -1188,6 +1250,22 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int hideOnContentScroll=0x7f01002a;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int hide_during_ads=0x7f01013a;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int hide_on_touch=0x7f010139;
         /**  Specifies a drawable to use for the 'home as up' indicator. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -1283,6 +1361,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int itemPadding=0x7f010029;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int keep_content_on_player_reset=0x7f01013d;
         /**  A reference to an array of integers representing the
              locations of horizontal keylines in dp from the starting edge.
              Child views can refer to these keylines for alignment using
@@ -1693,6 +1779,28 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int panelMenuListWidth=0x7f0100a8;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int played_ad_marker_color=0x7f010125;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int played_color=0x7f010126;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int player_layout_id=0x7f01013e;
         /**  Default PopupMenu style. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -1768,6 +1876,83 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int ratingBarStyleSmall=0x7f0100c6;
+        /** <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>one</code></td><td>1</td><td></td></tr>
+<tr><td><code>all</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int repeat_toggle_modes=0x7f010127;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>fit</code></td><td>0</td><td></td></tr>
+<tr><td><code>fixed_width</code></td><td>1</td><td></td></tr>
+<tr><td><code>fixed_height</code></td><td>2</td><td></td></tr>
+<tr><td><code>fill</code></td><td>3</td><td></td></tr>
+<tr><td><code>zoom</code></td><td>4</td><td></td></tr>
+</table>
+         */
+        public static final int resize_mode=0x7f010128;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rewind_increment=0x7f010129;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int scrubber_color=0x7f01012a;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int scrubber_disabled_size=0x7f01012b;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int scrubber_dragged_size=0x7f01012c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int scrubber_drawable=0x7f01012d;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int scrubber_enabled_size=0x7f01012e;
         /**  Search icon displayed as a text field hint 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -1855,6 +2040,43 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int showTitle=0x7f01003b;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>never</code></td><td>0</td><td></td></tr>
+<tr><td><code>when_playing</code></td><td>1</td><td></td></tr>
+<tr><td><code>always</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int show_buffering=0x7f01013c;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int show_shuffle_button=0x7f01012f;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int show_timeout=0x7f010130;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int shutter_background_color=0x7f010136;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -1952,6 +2174,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int suggestionRowLayout=0x7f0100fa;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>surface_view</code></td><td>1</td><td></td></tr>
+<tr><td><code>texture_view</code></td><td>2</td><td></td></tr>
+<tr><td><code>spherical_view</code></td><td>3</td><td></td></tr>
+</table>
+         */
+        public static final int surface_type=0x7f010131;
         /**  Minimum width for the switch component 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -2151,6 +2386,14 @@ containing a value of this type.
 </table>
          */
         public static final int tickMarkTintMode=0x7f010042;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int time_bar_min_update_interval=0x7f010132;
         /**  Tint to apply to the image source. 
          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
@@ -2316,6 +2559,16 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int tooltipText=0x7f0100e7;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int touch_target_height=0x7f010133;
         /**  Drawable to use as the "track" that the switch thumb slides within. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -2362,6 +2615,31 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int ttcIndex=0x7f010014;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int unplayed_color=0x7f010134;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int use_artwork=0x7f010135;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int use_controller=0x7f010138;
         /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -2520,33 +2798,33 @@ containing a value of this type.
         public static final int abc_config_actionMenuItemAllCaps=0x7f0c0002;
     }
     public static final class color {
-        public static final int abc_background_cache_hint_selector_material_dark=0x7f070043;
-        public static final int abc_background_cache_hint_selector_material_light=0x7f070044;
-        public static final int abc_btn_colored_borderless_text_material=0x7f070045;
-        public static final int abc_btn_colored_text_material=0x7f070046;
-        public static final int abc_color_highlight_material=0x7f070047;
-        public static final int abc_hint_foreground_material_dark=0x7f070048;
-        public static final int abc_hint_foreground_material_light=0x7f070049;
+        public static final int abc_background_cache_hint_selector_material_dark=0x7f070045;
+        public static final int abc_background_cache_hint_selector_material_light=0x7f070046;
+        public static final int abc_btn_colored_borderless_text_material=0x7f070047;
+        public static final int abc_btn_colored_text_material=0x7f070048;
+        public static final int abc_color_highlight_material=0x7f070049;
+        public static final int abc_hint_foreground_material_dark=0x7f07004a;
+        public static final int abc_hint_foreground_material_light=0x7f07004b;
         public static final int abc_input_method_navigation_guard=0x7f070007;
-        public static final int abc_primary_text_disable_only_material_dark=0x7f07004a;
-        public static final int abc_primary_text_disable_only_material_light=0x7f07004b;
-        public static final int abc_primary_text_material_dark=0x7f07004c;
-        public static final int abc_primary_text_material_light=0x7f07004d;
-        public static final int abc_search_url_text=0x7f07004e;
+        public static final int abc_primary_text_disable_only_material_dark=0x7f07004c;
+        public static final int abc_primary_text_disable_only_material_light=0x7f07004d;
+        public static final int abc_primary_text_material_dark=0x7f07004e;
+        public static final int abc_primary_text_material_light=0x7f07004f;
+        public static final int abc_search_url_text=0x7f070050;
         public static final int abc_search_url_text_normal=0x7f070008;
         public static final int abc_search_url_text_pressed=0x7f070009;
         public static final int abc_search_url_text_selected=0x7f07000a;
-        public static final int abc_secondary_text_material_dark=0x7f07004f;
-        public static final int abc_secondary_text_material_light=0x7f070050;
-        public static final int abc_tint_btn_checkable=0x7f070051;
-        public static final int abc_tint_default=0x7f070052;
-        public static final int abc_tint_edittext=0x7f070053;
-        public static final int abc_tint_seek_thumb=0x7f070054;
-        public static final int abc_tint_spinner=0x7f070055;
-        public static final int abc_tint_switch_track=0x7f070056;
+        public static final int abc_secondary_text_material_dark=0x7f070051;
+        public static final int abc_secondary_text_material_light=0x7f070052;
+        public static final int abc_tint_btn_checkable=0x7f070053;
+        public static final int abc_tint_default=0x7f070054;
+        public static final int abc_tint_edittext=0x7f070055;
+        public static final int abc_tint_seek_thumb=0x7f070056;
+        public static final int abc_tint_spinner=0x7f070057;
+        public static final int abc_tint_switch_track=0x7f070058;
         public static final int accent_material_dark=0x7f07000b;
         public static final int accent_material_light=0x7f07000c;
-        public static final int actionbar=0x7f07003f;
+        public static final int actionbar=0x7f070041;
         public static final int background_floating_material_dark=0x7f07000d;
         public static final int background_floating_material_light=0x7f07000e;
         public static final int background_material_dark=0x7f07000f;
@@ -2565,6 +2843,8 @@ containing a value of this type.
         public static final int dim_foreground_material_light=0x7f07001c;
         public static final int error_color_material_dark=0x7f07001d;
         public static final int error_color_material_light=0x7f07001e;
+        public static final int exo_edit_mode_background_color=0x7f07003f;
+        public static final int exo_error_message_background_color=0x7f070040;
         public static final int foreground_material_dark=0x7f07001f;
         public static final int foreground_material_light=0x7f070020;
         public static final int highlighted_text_material_dark=0x7f070021;
@@ -2581,7 +2861,7 @@ containing a value of this type.
         public static final int material_grey_800=0x7f07002c;
         public static final int material_grey_850=0x7f07002d;
         public static final int material_grey_900=0x7f07002e;
-        public static final int navigationBar=0x7f070042;
+        public static final int navigationBar=0x7f070044;
         public static final int notification_action_color_filter=0x7f070003;
         public static final int notification_icon_bg_color=0x7f070004;
         public static final int notification_material_background_media_default_color=0x7f070000;
@@ -2599,14 +2879,14 @@ containing a value of this type.
         public static final int secondary_text_default_material_light=0x7f070006;
         public static final int secondary_text_disabled_material_dark=0x7f070037;
         public static final int secondary_text_disabled_material_light=0x7f070038;
-        public static final int statusbar=0x7f070040;
+        public static final int statusbar=0x7f070042;
         public static final int switch_thumb_disabled_material_dark=0x7f070039;
         public static final int switch_thumb_disabled_material_light=0x7f07003a;
-        public static final int switch_thumb_material_dark=0x7f070057;
-        public static final int switch_thumb_material_light=0x7f070058;
+        public static final int switch_thumb_material_dark=0x7f070059;
+        public static final int switch_thumb_material_light=0x7f07005a;
         public static final int switch_thumb_normal_material_dark=0x7f07003b;
         public static final int switch_thumb_normal_material_light=0x7f07003c;
-        public static final int textColorPrimary=0x7f070041;
+        public static final int textColorPrimary=0x7f070043;
         public static final int tooltip_background_dark=0x7f07003d;
         public static final int tooltip_background_light=0x7f07003e;
     }
@@ -2698,6 +2978,8 @@ containing a value of this type.
         public static final int compat_notification_large_icon_max_width=0x7f08000e;
         public static final int disabled_alpha_material_dark=0x7f080068;
         public static final int disabled_alpha_material_light=0x7f080069;
+        public static final int exo_media_button_height=0x7f080079;
+        public static final int exo_media_button_width=0x7f08007a;
         public static final int highlight_alpha_material_colored=0x7f08006a;
         public static final int highlight_alpha_material_dark=0x7f08006b;
         public static final int highlight_alpha_material_light=0x7f08006c;
@@ -2830,44 +3112,73 @@ containing a value of this type.
         public static final int btn_radio_on_to_off_mtrl_animation=0x7f02005d;
         public static final int co=0x7f02005e;
         public static final int cobasement=0x7f02005f;
-        public static final int ic_android_black_24dp=0x7f020060;
-        public static final int ic_bookmark_black_24dp=0x7f020061;
-        public static final int ic_feedback_black_24dp=0x7f020062;
-        public static final int ic_help_black_24dp=0x7f020063;
-        public static final int ic_home_black_24dp=0x7f020064;
-        public static final int ic_settings_black_24dp=0x7f020065;
-        public static final int icon=0x7f020066;
-        public static final int notification_action_background=0x7f020067;
-        public static final int notification_bg=0x7f020068;
-        public static final int notification_bg_low=0x7f020069;
-        public static final int notification_bg_low_normal=0x7f02006a;
-        public static final int notification_bg_low_pressed=0x7f02006b;
-        public static final int notification_bg_normal=0x7f02006c;
-        public static final int notification_bg_normal_pressed=0x7f02006d;
-        public static final int notification_icon_background=0x7f02006e;
-        public static final int notification_template_icon_bg=0x7f02007c;
-        public static final int notification_template_icon_low_bg=0x7f02007d;
-        public static final int notification_tile_bg=0x7f02006f;
-        public static final int notify_panel_notification_icon_bg=0x7f020070;
-        public static final int sensor=0x7f020071;
-        public static final int sensorbasement=0x7f020072;
-        public static final int temp=0x7f020073;
-        public static final int tempbasement=0x7f020074;
-        public static final int tempcold=0x7f020075;
-        public static final int tempcoldbasement=0x7f020076;
-        public static final int tempcoldhumid=0x7f020077;
-        public static final int tempcoldhumidbasement=0x7f020078;
-        public static final int tempold=0x7f020079;
-        public static final int tooltip_frame_dark=0x7f02007a;
-        public static final int tooltip_frame_light=0x7f02007b;
+        public static final int exo_controls_fastforward=0x7f02008e;
+        public static final int exo_controls_fullscreen_enter=0x7f020060;
+        public static final int exo_controls_fullscreen_exit=0x7f020061;
+        public static final int exo_controls_next=0x7f02008f;
+        public static final int exo_controls_pause=0x7f020090;
+        public static final int exo_controls_play=0x7f020091;
+        public static final int exo_controls_previous=0x7f020092;
+        public static final int exo_controls_repeat_all=0x7f020062;
+        public static final int exo_controls_repeat_off=0x7f020063;
+        public static final int exo_controls_repeat_one=0x7f020064;
+        public static final int exo_controls_rewind=0x7f020093;
+        public static final int exo_controls_shuffle=0x7f020065;
+        public static final int exo_edit_mode_logo=0x7f020066;
+        public static final int exo_icon_fastforward=0x7f020067;
+        public static final int exo_icon_next=0x7f020068;
+        public static final int exo_icon_pause=0x7f020069;
+        public static final int exo_icon_play=0x7f02006a;
+        public static final int exo_icon_previous=0x7f02006b;
+        public static final int exo_icon_rewind=0x7f02006c;
+        public static final int exo_icon_stop=0x7f02006d;
+        public static final int exo_icon_vr=0x7f02006e;
+        public static final int exo_notification_fastforward=0x7f020094;
+        public static final int exo_notification_next=0x7f020095;
+        public static final int exo_notification_pause=0x7f020096;
+        public static final int exo_notification_play=0x7f020097;
+        public static final int exo_notification_previous=0x7f020098;
+        public static final int exo_notification_rewind=0x7f020099;
+        public static final int exo_notification_small_icon=0x7f02006f;
+        public static final int exo_notification_stop=0x7f02009a;
+        public static final int ic_android_black_24dp=0x7f020070;
+        public static final int ic_bookmark_black_24dp=0x7f020071;
+        public static final int ic_feedback_black_24dp=0x7f020072;
+        public static final int ic_help_black_24dp=0x7f020073;
+        public static final int ic_home_black_24dp=0x7f020074;
+        public static final int ic_settings_black_24dp=0x7f020075;
+        public static final int icon=0x7f020076;
+        public static final int notification_action_background=0x7f020077;
+        public static final int notification_bg=0x7f020078;
+        public static final int notification_bg_low=0x7f020079;
+        public static final int notification_bg_low_normal=0x7f02007a;
+        public static final int notification_bg_low_pressed=0x7f02007b;
+        public static final int notification_bg_normal=0x7f02007c;
+        public static final int notification_bg_normal_pressed=0x7f02007d;
+        public static final int notification_icon_background=0x7f02007e;
+        public static final int notification_template_icon_bg=0x7f02008c;
+        public static final int notification_template_icon_low_bg=0x7f02008d;
+        public static final int notification_tile_bg=0x7f02007f;
+        public static final int notify_panel_notification_icon_bg=0x7f020080;
+        public static final int sensor=0x7f020081;
+        public static final int sensorbasement=0x7f020082;
+        public static final int temp=0x7f020083;
+        public static final int tempbasement=0x7f020084;
+        public static final int tempcold=0x7f020085;
+        public static final int tempcoldbasement=0x7f020086;
+        public static final int tempcoldhumid=0x7f020087;
+        public static final int tempcoldhumidbasement=0x7f020088;
+        public static final int tempold=0x7f020089;
+        public static final int tooltip_frame_dark=0x7f02008a;
+        public static final int tooltip_frame_light=0x7f02008b;
     }
     public static final class id {
-        public static final int ALT=0x7f0b005e;
-        public static final int CTRL=0x7f0b005f;
-        public static final int FUNCTION=0x7f0b0060;
-        public static final int META=0x7f0b0061;
-        public static final int SHIFT=0x7f0b0062;
-        public static final int SYM=0x7f0b0063;
+        public static final int ALT=0x7f0b0075;
+        public static final int CTRL=0x7f0b0076;
+        public static final int FUNCTION=0x7f0b0077;
+        public static final int META=0x7f0b0078;
+        public static final int SHIFT=0x7f0b0079;
+        public static final int SYM=0x7f0b007a;
         public static final int accessibility_action_clickable_span=0x7f0b0000;
         public static final int accessibility_custom_action_0=0x7f0b0001;
         public static final int accessibility_custom_action_1=0x7f0b0002;
@@ -2901,124 +3212,154 @@ containing a value of this type.
         public static final int accessibility_custom_action_7=0x7f0b001e;
         public static final int accessibility_custom_action_8=0x7f0b001f;
         public static final int accessibility_custom_action_9=0x7f0b0020;
-        public static final int action0=0x7f0b00a1;
-        public static final int action_bar=0x7f0b008d;
+        public static final int action0=0x7f0b00c2;
+        public static final int action_bar=0x7f0b00ad;
         public static final int action_bar_activity_content=0x7f0b002e;
-        public static final int action_bar_container=0x7f0b008c;
-        public static final int action_bar_root=0x7f0b0088;
+        public static final int action_bar_container=0x7f0b00ac;
+        public static final int action_bar_root=0x7f0b00a8;
         public static final int action_bar_spinner=0x7f0b002f;
-        public static final int action_bar_subtitle=0x7f0b006a;
-        public static final int action_bar_title=0x7f0b0069;
-        public static final int action_container=0x7f0b009e;
-        public static final int action_context_bar=0x7f0b008e;
-        public static final int action_divider=0x7f0b00a5;
-        public static final int action_image=0x7f0b009f;
+        public static final int action_bar_subtitle=0x7f0b008a;
+        public static final int action_bar_title=0x7f0b0089;
+        public static final int action_container=0x7f0b00bf;
+        public static final int action_context_bar=0x7f0b00ae;
+        public static final int action_divider=0x7f0b00c6;
+        public static final int action_image=0x7f0b00c0;
         public static final int action_menu_divider=0x7f0b0030;
         public static final int action_menu_presenter=0x7f0b0031;
-        public static final int action_mode_bar=0x7f0b008a;
-        public static final int action_mode_bar_stub=0x7f0b0089;
-        public static final int action_mode_close_button=0x7f0b006b;
-        public static final int action_text=0x7f0b00a0;
-        public static final int actions=0x7f0b00ae;
-        public static final int activity_chooser_view_content=0x7f0b006c;
-        public static final int add=0x7f0b0054;
-        public static final int alertTitle=0x7f0b007f;
-        public static final int all=0x7f0b0046;
-        public static final int always=0x7f0b0064;
-        public static final int async=0x7f0b0047;
-        public static final int beginning=0x7f0b005c;
-        public static final int blocking=0x7f0b0048;
-        public static final int bottom=0x7f0b0037;
-        public static final int buttonPanel=0x7f0b0072;
-        public static final int cancel_action=0x7f0b00a2;
-        public static final int center=0x7f0b0038;
-        public static final int center_horizontal=0x7f0b0039;
-        public static final int center_vertical=0x7f0b003a;
-        public static final int checkbox=0x7f0b0086;
-        public static final int checked=0x7f0b00b1;
-        public static final int chronometer=0x7f0b00aa;
-        public static final int clip_horizontal=0x7f0b003b;
-        public static final int clip_vertical=0x7f0b003c;
-        public static final int collapseActionView=0x7f0b0065;
-        public static final int content=0x7f0b0082;
-        public static final int contentPanel=0x7f0b0075;
-        public static final int custom=0x7f0b007c;
-        public static final int customPanel=0x7f0b007b;
-        public static final int decor_content_parent=0x7f0b008b;
-        public static final int default_activity_button=0x7f0b006f;
-        public static final int dialog_button=0x7f0b009d;
-        public static final int disableHome=0x7f0b004e;
-        public static final int edit_query=0x7f0b008f;
-        public static final int end=0x7f0b003d;
-        public static final int end_padder=0x7f0b00b0;
-        public static final int expand_activities_button=0x7f0b006d;
-        public static final int expanded_menu=0x7f0b0085;
-        public static final int fill=0x7f0b003e;
-        public static final int fill_horizontal=0x7f0b003f;
-        public static final int fill_vertical=0x7f0b0040;
-        public static final int forever=0x7f0b0049;
-        public static final int group_divider=0x7f0b0081;
+        public static final int action_mode_bar=0x7f0b00aa;
+        public static final int action_mode_bar_stub=0x7f0b00a9;
+        public static final int action_mode_close_button=0x7f0b008b;
+        public static final int action_text=0x7f0b00c1;
+        public static final int actions=0x7f0b00cf;
+        public static final int activity_chooser_view_content=0x7f0b008c;
+        public static final int add=0x7f0b006b;
+        public static final int alertTitle=0x7f0b009f;
+        public static final int all=0x7f0b005d;
+        public static final int always=0x7f0b007b;
+        public static final int async=0x7f0b005e;
+        public static final int beginning=0x7f0b0073;
+        public static final int blocking=0x7f0b005f;
+        public static final int bottom=0x7f0b004e;
+        public static final int buttonPanel=0x7f0b0092;
+        public static final int cancel_action=0x7f0b00c3;
+        public static final int center=0x7f0b004f;
+        public static final int center_horizontal=0x7f0b0050;
+        public static final int center_vertical=0x7f0b0051;
+        public static final int checkbox=0x7f0b00a6;
+        public static final int checked=0x7f0b00d2;
+        public static final int chronometer=0x7f0b00cb;
+        public static final int clip_horizontal=0x7f0b0052;
+        public static final int clip_vertical=0x7f0b0053;
+        public static final int collapseActionView=0x7f0b007c;
+        public static final int content=0x7f0b00a2;
+        public static final int contentPanel=0x7f0b0095;
+        public static final int custom=0x7f0b009c;
+        public static final int customPanel=0x7f0b009b;
+        public static final int decor_content_parent=0x7f0b00ab;
+        public static final int default_activity_button=0x7f0b008f;
+        public static final int dialog_button=0x7f0b00bd;
+        public static final int disableHome=0x7f0b0065;
+        public static final int edit_query=0x7f0b00af;
+        public static final int end=0x7f0b0054;
+        public static final int end_padder=0x7f0b00d1;
+        public static final int exo_ad_overlay=0x7f0b0037;
+        public static final int exo_artwork=0x7f0b0038;
+        public static final int exo_buffering=0x7f0b0039;
+        public static final int exo_content_frame=0x7f0b003a;
+        public static final int exo_controller=0x7f0b003b;
+        public static final int exo_controller_placeholder=0x7f0b003c;
+        public static final int exo_duration=0x7f0b003d;
+        public static final int exo_error_message=0x7f0b003e;
+        public static final int exo_ffwd=0x7f0b003f;
+        public static final int exo_next=0x7f0b0040;
+        public static final int exo_overlay=0x7f0b0041;
+        public static final int exo_pause=0x7f0b0042;
+        public static final int exo_play=0x7f0b0043;
+        public static final int exo_position=0x7f0b0044;
+        public static final int exo_prev=0x7f0b0045;
+        public static final int exo_progress=0x7f0b0046;
+        public static final int exo_progress_placeholder=0x7f0b0047;
+        public static final int exo_repeat_toggle=0x7f0b0048;
+        public static final int exo_rew=0x7f0b0049;
+        public static final int exo_shuffle=0x7f0b004a;
+        public static final int exo_shutter=0x7f0b004b;
+        public static final int exo_subtitles=0x7f0b004c;
+        public static final int exo_track_selection_view=0x7f0b00be;
+        public static final int exo_vr=0x7f0b004d;
+        public static final int expand_activities_button=0x7f0b008d;
+        public static final int expanded_menu=0x7f0b00a5;
+        public static final int fill=0x7f0b0055;
+        public static final int fill_horizontal=0x7f0b0056;
+        public static final int fill_vertical=0x7f0b0057;
+        public static final int fit=0x7f0b0081;
+        public static final int fixed_height=0x7f0b0082;
+        public static final int fixed_width=0x7f0b0083;
+        public static final int forever=0x7f0b0060;
+        public static final int group_divider=0x7f0b00a1;
         public static final int home=0x7f0b0032;
-        public static final int homeAsUp=0x7f0b004f;
-        public static final int icon=0x7f0b0071;
-        public static final int icon_group=0x7f0b00af;
-        public static final int ifRoom=0x7f0b0066;
-        public static final int image=0x7f0b006e;
-        public static final int info=0x7f0b00ab;
-        public static final int italic=0x7f0b004a;
-        public static final int left=0x7f0b0041;
+        public static final int homeAsUp=0x7f0b0066;
+        public static final int icon=0x7f0b0091;
+        public static final int icon_group=0x7f0b00d0;
+        public static final int ifRoom=0x7f0b007d;
+        public static final int image=0x7f0b008e;
+        public static final int info=0x7f0b00cc;
+        public static final int italic=0x7f0b0061;
+        public static final int left=0x7f0b0058;
         public static final int line1=0x7f0b0021;
         public static final int line3=0x7f0b0022;
-        public static final int listMode=0x7f0b004c;
-        public static final int list_item=0x7f0b0070;
-        public static final int media_actions=0x7f0b00a4;
-        public static final int message=0x7f0b009c;
-        public static final int middle=0x7f0b005d;
-        public static final int multiply=0x7f0b0055;
-        public static final int never=0x7f0b0067;
-        public static final int none=0x7f0b0045;
-        public static final int normal=0x7f0b004b;
-        public static final int notification_background=0x7f0b00ad;
-        public static final int notification_main_column=0x7f0b00a7;
-        public static final int notification_main_column_container=0x7f0b00a6;
-        public static final int off=0x7f0b00b4;
-        public static final int on=0x7f0b00b3;
-        public static final int parentPanel=0x7f0b0074;
+        public static final int listMode=0x7f0b0063;
+        public static final int list_item=0x7f0b0090;
+        public static final int media_actions=0x7f0b00c5;
+        public static final int message=0x7f0b00bc;
+        public static final int middle=0x7f0b0074;
+        public static final int multiply=0x7f0b006c;
+        public static final int never=0x7f0b007e;
+        public static final int none=0x7f0b005c;
+        public static final int normal=0x7f0b0062;
+        public static final int notification_background=0x7f0b00ce;
+        public static final int notification_main_column=0x7f0b00c8;
+        public static final int notification_main_column_container=0x7f0b00c7;
+        public static final int off=0x7f0b00d5;
+        public static final int on=0x7f0b00d4;
+        public static final int one=0x7f0b0080;
+        public static final int parentPanel=0x7f0b0094;
         public static final int progress_circular=0x7f0b0033;
         public static final int progress_horizontal=0x7f0b0034;
-        public static final int radio=0x7f0b0087;
-        public static final int right=0x7f0b0042;
-        public static final int right_icon=0x7f0b00ac;
-        public static final int right_side=0x7f0b00a8;
-        public static final int screen=0x7f0b0056;
-        public static final int scrollIndicatorDown=0x7f0b007a;
-        public static final int scrollIndicatorUp=0x7f0b0076;
-        public static final int scrollView=0x7f0b0077;
-        public static final int search_badge=0x7f0b0091;
-        public static final int search_bar=0x7f0b0090;
-        public static final int search_button=0x7f0b0092;
-        public static final int search_close_btn=0x7f0b0097;
-        public static final int search_edit_frame=0x7f0b0093;
-        public static final int search_go_btn=0x7f0b0099;
-        public static final int search_mag_icon=0x7f0b0094;
-        public static final int search_plate=0x7f0b0095;
-        public static final int search_src_text=0x7f0b0096;
-        public static final int search_voice_btn=0x7f0b009a;
-        public static final int select_dialog_listview=0x7f0b009b;
-        public static final int shortcut=0x7f0b0083;
-        public static final int showCustom=0x7f0b0050;
-        public static final int showHome=0x7f0b0051;
-        public static final int showTitle=0x7f0b0052;
-        public static final int spacer=0x7f0b0073;
+        public static final int radio=0x7f0b00a7;
+        public static final int right=0x7f0b0059;
+        public static final int right_icon=0x7f0b00cd;
+        public static final int right_side=0x7f0b00c9;
+        public static final int screen=0x7f0b006d;
+        public static final int scrollIndicatorDown=0x7f0b009a;
+        public static final int scrollIndicatorUp=0x7f0b0096;
+        public static final int scrollView=0x7f0b0097;
+        public static final int search_badge=0x7f0b00b1;
+        public static final int search_bar=0x7f0b00b0;
+        public static final int search_button=0x7f0b00b2;
+        public static final int search_close_btn=0x7f0b00b7;
+        public static final int search_edit_frame=0x7f0b00b3;
+        public static final int search_go_btn=0x7f0b00b9;
+        public static final int search_mag_icon=0x7f0b00b4;
+        public static final int search_plate=0x7f0b00b5;
+        public static final int search_src_text=0x7f0b00b6;
+        public static final int search_voice_btn=0x7f0b00ba;
+        public static final int select_dialog_listview=0x7f0b00bb;
+        public static final int shortcut=0x7f0b00a3;
+        public static final int showCustom=0x7f0b0067;
+        public static final int showHome=0x7f0b0068;
+        public static final int showTitle=0x7f0b0069;
+        public static final int spacer=0x7f0b0093;
+        public static final int spherical_view=0x7f0b0085;
         public static final int split_action_bar=0x7f0b0035;
-        public static final int src_atop=0x7f0b0057;
-        public static final int src_in=0x7f0b0058;
-        public static final int src_over=0x7f0b0059;
-        public static final int start=0x7f0b0043;
-        public static final int status_bar_latest_event_content=0x7f0b00a3;
-        public static final int submenuarrow=0x7f0b0084;
-        public static final int submit_area=0x7f0b0098;
-        public static final int tabMode=0x7f0b004d;
+        public static final int src_atop=0x7f0b006e;
+        public static final int src_in=0x7f0b006f;
+        public static final int src_over=0x7f0b0070;
+        public static final int start=0x7f0b005a;
+        public static final int status_bar_latest_event_content=0x7f0b00c4;
+        public static final int submenuarrow=0x7f0b00a4;
+        public static final int submit_area=0x7f0b00b8;
+        public static final int surface_view=0x7f0b0086;
+        public static final int tabMode=0x7f0b0064;
         public static final int tag_accessibility_actions=0x7f0b0023;
         public static final int tag_accessibility_clickable_spans=0x7f0b0024;
         public static final int tag_accessibility_heading=0x7f0b0025;
@@ -3029,20 +3370,23 @@ containing a value of this type.
         public static final int tag_unhandled_key_listeners=0x7f0b002a;
         public static final int text=0x7f0b002b;
         public static final int text2=0x7f0b002c;
-        public static final int textSpacerNoButtons=0x7f0b0079;
-        public static final int textSpacerNoTitle=0x7f0b0078;
-        public static final int time=0x7f0b00a9;
+        public static final int textSpacerNoButtons=0x7f0b0099;
+        public static final int textSpacerNoTitle=0x7f0b0098;
+        public static final int texture_view=0x7f0b0087;
+        public static final int time=0x7f0b00ca;
         public static final int title=0x7f0b002d;
-        public static final int titleDividerNoCustom=0x7f0b0080;
-        public static final int title_template=0x7f0b007e;
-        public static final int top=0x7f0b0044;
-        public static final int topPanel=0x7f0b007d;
-        public static final int unchecked=0x7f0b00b2;
-        public static final int uniform=0x7f0b005a;
+        public static final int titleDividerNoCustom=0x7f0b00a0;
+        public static final int title_template=0x7f0b009e;
+        public static final int top=0x7f0b005b;
+        public static final int topPanel=0x7f0b009d;
+        public static final int unchecked=0x7f0b00d3;
+        public static final int uniform=0x7f0b0071;
         public static final int up=0x7f0b0036;
-        public static final int useLogo=0x7f0b0053;
-        public static final int withText=0x7f0b0068;
-        public static final int wrap_content=0x7f0b005b;
+        public static final int useLogo=0x7f0b006a;
+        public static final int when_playing=0x7f0b0088;
+        public static final int withText=0x7f0b007f;
+        public static final int wrap_content=0x7f0b0072;
+        public static final int zoom=0x7f0b0084;
     }
     public static final class integer {
         public static final int abc_config_activityDefaultDur=0x7f090002;
@@ -3091,25 +3435,31 @@ containing a value of this type.
         public static final int abc_tooltip=0x7f03001b;
         public static final int ac_spinner_row_layout=0x7f03001c;
         public static final int custom_dialog=0x7f03001d;
-        public static final int notification_action=0x7f03001e;
-        public static final int notification_action_tombstone=0x7f03001f;
-        public static final int notification_media_action=0x7f030020;
-        public static final int notification_media_cancel_action=0x7f030021;
-        public static final int notification_template_big_media=0x7f030022;
-        public static final int notification_template_big_media_custom=0x7f030023;
-        public static final int notification_template_big_media_narrow=0x7f030024;
-        public static final int notification_template_big_media_narrow_custom=0x7f030025;
-        public static final int notification_template_custom_big=0x7f030026;
-        public static final int notification_template_icon_group=0x7f030027;
-        public static final int notification_template_lines_media=0x7f030028;
-        public static final int notification_template_media=0x7f030029;
-        public static final int notification_template_media_custom=0x7f03002a;
-        public static final int notification_template_part_chronometer=0x7f03002b;
-        public static final int notification_template_part_time=0x7f03002c;
-        public static final int select_dialog_item_material=0x7f03002d;
-        public static final int select_dialog_multichoice_material=0x7f03002e;
-        public static final int select_dialog_singlechoice_material=0x7f03002f;
-        public static final int support_simple_spinner_dropdown_item=0x7f030030;
+        public static final int exo_list_divider=0x7f03001e;
+        public static final int exo_playback_control_view=0x7f03001f;
+        public static final int exo_player_control_view=0x7f030020;
+        public static final int exo_player_view=0x7f030021;
+        public static final int exo_simple_player_view=0x7f030022;
+        public static final int exo_track_selection_dialog=0x7f030023;
+        public static final int notification_action=0x7f030024;
+        public static final int notification_action_tombstone=0x7f030025;
+        public static final int notification_media_action=0x7f030026;
+        public static final int notification_media_cancel_action=0x7f030027;
+        public static final int notification_template_big_media=0x7f030028;
+        public static final int notification_template_big_media_custom=0x7f030029;
+        public static final int notification_template_big_media_narrow=0x7f03002a;
+        public static final int notification_template_big_media_narrow_custom=0x7f03002b;
+        public static final int notification_template_custom_big=0x7f03002c;
+        public static final int notification_template_icon_group=0x7f03002d;
+        public static final int notification_template_lines_media=0x7f03002e;
+        public static final int notification_template_media=0x7f03002f;
+        public static final int notification_template_media_custom=0x7f030030;
+        public static final int notification_template_part_chronometer=0x7f030031;
+        public static final int notification_template_part_time=0x7f030032;
+        public static final int select_dialog_item_material=0x7f030033;
+        public static final int select_dialog_multichoice_material=0x7f030034;
+        public static final int select_dialog_singlechoice_material=0x7f030035;
+        public static final int support_simple_spinner_dropdown_item=0x7f030036;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f0a0001;
@@ -3139,6 +3489,43 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f0a0019;
         public static final int abc_shareactionprovider_share_with_application=0x7f0a001a;
         public static final int abc_toolbar_collapse_description=0x7f0a001b;
+        public static final int exo_controls_fastforward_description=0x7f0a001d;
+        public static final int exo_controls_fullscreen_description=0x7f0a001e;
+        public static final int exo_controls_next_description=0x7f0a001f;
+        public static final int exo_controls_pause_description=0x7f0a0020;
+        public static final int exo_controls_play_description=0x7f0a0021;
+        public static final int exo_controls_previous_description=0x7f0a0022;
+        public static final int exo_controls_repeat_all_description=0x7f0a0023;
+        public static final int exo_controls_repeat_off_description=0x7f0a0024;
+        public static final int exo_controls_repeat_one_description=0x7f0a0025;
+        public static final int exo_controls_rewind_description=0x7f0a0026;
+        public static final int exo_controls_shuffle_description=0x7f0a0027;
+        public static final int exo_controls_stop_description=0x7f0a0028;
+        public static final int exo_controls_vr_description=0x7f0a0029;
+        public static final int exo_download_completed=0x7f0a002a;
+        public static final int exo_download_description=0x7f0a002b;
+        public static final int exo_download_downloading=0x7f0a002c;
+        public static final int exo_download_failed=0x7f0a002d;
+        public static final int exo_download_notification_channel_name=0x7f0a002e;
+        public static final int exo_download_removing=0x7f0a002f;
+        public static final int exo_item_list=0x7f0a0030;
+        public static final int exo_track_bitrate=0x7f0a0031;
+        public static final int exo_track_mono=0x7f0a0032;
+        public static final int exo_track_resolution=0x7f0a0033;
+        public static final int exo_track_role_alternate=0x7f0a0034;
+        public static final int exo_track_role_closed_captions=0x7f0a0035;
+        public static final int exo_track_role_commentary=0x7f0a0036;
+        public static final int exo_track_role_supplementary=0x7f0a0037;
+        public static final int exo_track_selection_auto=0x7f0a0038;
+        public static final int exo_track_selection_none=0x7f0a0039;
+        public static final int exo_track_selection_title_audio=0x7f0a003a;
+        public static final int exo_track_selection_title_text=0x7f0a003b;
+        public static final int exo_track_selection_title_video=0x7f0a003c;
+        public static final int exo_track_stereo=0x7f0a003d;
+        public static final int exo_track_surround=0x7f0a003e;
+        public static final int exo_track_surround_5_point_1=0x7f0a003f;
+        public static final int exo_track_surround_7_point_1=0x7f0a0040;
+        public static final int exo_track_unknown=0x7f0a0041;
         public static final int search_menu_title=0x7f0a001c;
         public static final int status_bar_notification_info_overflow=0x7f0a0000;
     }
@@ -3304,7 +3691,16 @@ containing a value of this type.
         public static final int Base_Widget_AppCompat_TextView_SpinnerItem=0x7f06007c;
         public static final int Base_Widget_AppCompat_Toolbar=0x7f060095;
         public static final int Base_Widget_AppCompat_Toolbar_Button_Navigation=0x7f06007d;
-        public static final int MyAppTheme=0x7f060163;
+        public static final int ExoMediaButton=0x7f060163;
+        public static final int ExoMediaButton_FastForward=0x7f060164;
+        public static final int ExoMediaButton_Next=0x7f060165;
+        public static final int ExoMediaButton_Pause=0x7f060166;
+        public static final int ExoMediaButton_Play=0x7f060167;
+        public static final int ExoMediaButton_Previous=0x7f060168;
+        public static final int ExoMediaButton_Rewind=0x7f060169;
+        public static final int ExoMediaButton_Shuffle=0x7f06016a;
+        public static final int ExoMediaButton_VR=0x7f06016b;
+        public static final int MyAppTheme=0x7f06016c;
         public static final int Platform_AppCompat=0x7f06007e;
         public static final int Platform_AppCompat_Light=0x7f06007f;
         public static final int Platform_ThemeOverlay_AppCompat=0x7f060080;
@@ -3423,7 +3819,7 @@ containing a value of this type.
         public static final int ThemeOverlay_AppCompat_Dialog=0x7f060117;
         public static final int ThemeOverlay_AppCompat_Dialog_Alert=0x7f060118;
         public static final int ThemeOverlay_AppCompat_Light=0x7f060119;
-        public static final int ToolbarMenu=0x7f060164;
+        public static final int ToolbarMenu=0x7f06016d;
         public static final int Widget_AppCompat_ActionBar=0x7f06011a;
         public static final int Widget_AppCompat_ActionBar_Solid=0x7f06011b;
         public static final int Widget_AppCompat_ActionBar_TabBar=0x7f06011c;
@@ -7185,6 +7581,39 @@ containing a value of this type.
           @attr name cloyd.smart.home.monitor:windowNoTitle
         */
         public static final int AppCompatTheme_windowNoTitle = 3;
+        /** Attributes that can be used with a AspectRatioFrameLayout.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #AspectRatioFrameLayout_resize_mode cloyd.smart.home.monitor:resize_mode}</code></td><td></td></tr>
+           </table>
+           @see #AspectRatioFrameLayout_resize_mode
+         */
+        public static final int[] AspectRatioFrameLayout = {
+            0x7f010128
+        };
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#resize_mode}
+          attribute's value can be found in the {@link #AspectRatioFrameLayout} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>fit</code></td><td>0</td><td></td></tr>
+<tr><td><code>fixed_width</code></td><td>1</td><td></td></tr>
+<tr><td><code>fixed_height</code></td><td>2</td><td></td></tr>
+<tr><td><code>fill</code></td><td>3</td><td></td></tr>
+<tr><td><code>zoom</code></td><td>4</td><td></td></tr>
+</table>
+          @attr name cloyd.smart.home.monitor:resize_mode
+        */
+        public static final int AspectRatioFrameLayout_resize_mode = 0;
         /** Attributes that can be used with a ButtonBarLayout.
            <p>Includes the following attributes:</p>
            <table>
@@ -7562,6 +7991,242 @@ containing a value of this type.
           @attr name cloyd.smart.home.monitor:layout_keyline
         */
         public static final int CoordinatorLayout_Layout_layout_keyline = 3;
+        /** Attributes that can be used with a DefaultTimeBar.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #DefaultTimeBar_ad_marker_color cloyd.smart.home.monitor:ad_marker_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_ad_marker_width cloyd.smart.home.monitor:ad_marker_width}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_bar_height cloyd.smart.home.monitor:bar_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_buffered_color cloyd.smart.home.monitor:buffered_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_played_ad_marker_color cloyd.smart.home.monitor:played_ad_marker_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_played_color cloyd.smart.home.monitor:played_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_scrubber_color cloyd.smart.home.monitor:scrubber_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_scrubber_disabled_size cloyd.smart.home.monitor:scrubber_disabled_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_scrubber_dragged_size cloyd.smart.home.monitor:scrubber_dragged_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_scrubber_drawable cloyd.smart.home.monitor:scrubber_drawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_scrubber_enabled_size cloyd.smart.home.monitor:scrubber_enabled_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_touch_target_height cloyd.smart.home.monitor:touch_target_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #DefaultTimeBar_unplayed_color cloyd.smart.home.monitor:unplayed_color}</code></td><td></td></tr>
+           </table>
+           @see #DefaultTimeBar_ad_marker_color
+           @see #DefaultTimeBar_ad_marker_width
+           @see #DefaultTimeBar_bar_height
+           @see #DefaultTimeBar_buffered_color
+           @see #DefaultTimeBar_played_ad_marker_color
+           @see #DefaultTimeBar_played_color
+           @see #DefaultTimeBar_scrubber_color
+           @see #DefaultTimeBar_scrubber_disabled_size
+           @see #DefaultTimeBar_scrubber_dragged_size
+           @see #DefaultTimeBar_scrubber_drawable
+           @see #DefaultTimeBar_scrubber_enabled_size
+           @see #DefaultTimeBar_touch_target_height
+           @see #DefaultTimeBar_unplayed_color
+         */
+        public static final int[] DefaultTimeBar = {
+            0x7f01011f, 0x7f010120, 0x7f010121, 0x7f010122,
+            0x7f010125, 0x7f010126, 0x7f01012a, 0x7f01012b,
+            0x7f01012c, 0x7f01012d, 0x7f01012e, 0x7f010133,
+            0x7f010134
+        };
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#ad_marker_color}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:ad_marker_color
+        */
+        public static final int DefaultTimeBar_ad_marker_color = 0;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#ad_marker_width}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:ad_marker_width
+        */
+        public static final int DefaultTimeBar_ad_marker_width = 1;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#bar_height}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:bar_height
+        */
+        public static final int DefaultTimeBar_bar_height = 2;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#buffered_color}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:buffered_color
+        */
+        public static final int DefaultTimeBar_buffered_color = 3;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#played_ad_marker_color}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:played_ad_marker_color
+        */
+        public static final int DefaultTimeBar_played_ad_marker_color = 4;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#played_color}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:played_color
+        */
+        public static final int DefaultTimeBar_played_color = 5;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_color}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_color
+        */
+        public static final int DefaultTimeBar_scrubber_color = 6;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_disabled_size}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_disabled_size
+        */
+        public static final int DefaultTimeBar_scrubber_disabled_size = 7;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_dragged_size}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_dragged_size
+        */
+        public static final int DefaultTimeBar_scrubber_dragged_size = 8;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_drawable}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name cloyd.smart.home.monitor:scrubber_drawable
+        */
+        public static final int DefaultTimeBar_scrubber_drawable = 9;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_enabled_size}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_enabled_size
+        */
+        public static final int DefaultTimeBar_scrubber_enabled_size = 10;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#touch_target_height}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:touch_target_height
+        */
+        public static final int DefaultTimeBar_touch_target_height = 11;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#unplayed_color}
+          attribute's value can be found in the {@link #DefaultTimeBar} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:unplayed_color
+        */
+        public static final int DefaultTimeBar_unplayed_color = 12;
         /** Attributes that can be used with a DrawerArrowToggle.
            <p>Includes the following attributes:</p>
            <table>
@@ -9062,6 +9727,915 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           @attr name cloyd.smart.home.monitor:subMenuArrow
         */
         public static final int MenuView_subMenuArrow = 8;
+        /** Attributes that can be used with a PlayerControlView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PlayerControlView_ad_marker_color cloyd.smart.home.monitor:ad_marker_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_ad_marker_width cloyd.smart.home.monitor:ad_marker_width}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_bar_height cloyd.smart.home.monitor:bar_height}</code></td><td> DefaultTimeBar attributes </td></tr>
+           <tr><td><code>{@link #PlayerControlView_buffered_color cloyd.smart.home.monitor:buffered_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_controller_layout_id cloyd.smart.home.monitor:controller_layout_id}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_fastforward_increment cloyd.smart.home.monitor:fastforward_increment}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_played_ad_marker_color cloyd.smart.home.monitor:played_ad_marker_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_played_color cloyd.smart.home.monitor:played_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_repeat_toggle_modes cloyd.smart.home.monitor:repeat_toggle_modes}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_rewind_increment cloyd.smart.home.monitor:rewind_increment}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_scrubber_color cloyd.smart.home.monitor:scrubber_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_scrubber_disabled_size cloyd.smart.home.monitor:scrubber_disabled_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_scrubber_dragged_size cloyd.smart.home.monitor:scrubber_dragged_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_scrubber_drawable cloyd.smart.home.monitor:scrubber_drawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_scrubber_enabled_size cloyd.smart.home.monitor:scrubber_enabled_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_show_shuffle_button cloyd.smart.home.monitor:show_shuffle_button}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_show_timeout cloyd.smart.home.monitor:show_timeout}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_time_bar_min_update_interval cloyd.smart.home.monitor:time_bar_min_update_interval}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_touch_target_height cloyd.smart.home.monitor:touch_target_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerControlView_unplayed_color cloyd.smart.home.monitor:unplayed_color}</code></td><td></td></tr>
+           </table>
+           @see #PlayerControlView_ad_marker_color
+           @see #PlayerControlView_ad_marker_width
+           @see #PlayerControlView_bar_height
+           @see #PlayerControlView_buffered_color
+           @see #PlayerControlView_controller_layout_id
+           @see #PlayerControlView_fastforward_increment
+           @see #PlayerControlView_played_ad_marker_color
+           @see #PlayerControlView_played_color
+           @see #PlayerControlView_repeat_toggle_modes
+           @see #PlayerControlView_rewind_increment
+           @see #PlayerControlView_scrubber_color
+           @see #PlayerControlView_scrubber_disabled_size
+           @see #PlayerControlView_scrubber_dragged_size
+           @see #PlayerControlView_scrubber_drawable
+           @see #PlayerControlView_scrubber_enabled_size
+           @see #PlayerControlView_show_shuffle_button
+           @see #PlayerControlView_show_timeout
+           @see #PlayerControlView_time_bar_min_update_interval
+           @see #PlayerControlView_touch_target_height
+           @see #PlayerControlView_unplayed_color
+         */
+        public static final int[] PlayerControlView = {
+            0x7f01011f, 0x7f010120, 0x7f010121, 0x7f010122,
+            0x7f010123, 0x7f010124, 0x7f010125, 0x7f010126,
+            0x7f010127, 0x7f010129, 0x7f01012a, 0x7f01012b,
+            0x7f01012c, 0x7f01012d, 0x7f01012e, 0x7f01012f,
+            0x7f010130, 0x7f010132, 0x7f010133, 0x7f010134
+        };
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#ad_marker_color}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:ad_marker_color
+        */
+        public static final int PlayerControlView_ad_marker_color = 0;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#ad_marker_width}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:ad_marker_width
+        */
+        public static final int PlayerControlView_ad_marker_width = 1;
+        /**
+          <p>
+          @attr description
+           DefaultTimeBar attributes 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name cloyd.smart.home.monitor:bar_height
+        */
+        public static final int PlayerControlView_bar_height = 2;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#buffered_color}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:buffered_color
+        */
+        public static final int PlayerControlView_buffered_color = 3;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#controller_layout_id}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name cloyd.smart.home.monitor:controller_layout_id
+        */
+        public static final int PlayerControlView_controller_layout_id = 4;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#fastforward_increment}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:fastforward_increment
+        */
+        public static final int PlayerControlView_fastforward_increment = 5;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#played_ad_marker_color}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:played_ad_marker_color
+        */
+        public static final int PlayerControlView_played_ad_marker_color = 6;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#played_color}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:played_color
+        */
+        public static final int PlayerControlView_played_color = 7;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#repeat_toggle_modes}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>one</code></td><td>1</td><td></td></tr>
+<tr><td><code>all</code></td><td>2</td><td></td></tr>
+</table>
+          @attr name cloyd.smart.home.monitor:repeat_toggle_modes
+        */
+        public static final int PlayerControlView_repeat_toggle_modes = 8;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#rewind_increment}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:rewind_increment
+        */
+        public static final int PlayerControlView_rewind_increment = 9;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_color}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_color
+        */
+        public static final int PlayerControlView_scrubber_color = 10;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_disabled_size}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_disabled_size
+        */
+        public static final int PlayerControlView_scrubber_disabled_size = 11;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_dragged_size}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_dragged_size
+        */
+        public static final int PlayerControlView_scrubber_dragged_size = 12;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_drawable}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name cloyd.smart.home.monitor:scrubber_drawable
+        */
+        public static final int PlayerControlView_scrubber_drawable = 13;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_enabled_size}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_enabled_size
+        */
+        public static final int PlayerControlView_scrubber_enabled_size = 14;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#show_shuffle_button}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:show_shuffle_button
+        */
+        public static final int PlayerControlView_show_shuffle_button = 15;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#show_timeout}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:show_timeout
+        */
+        public static final int PlayerControlView_show_timeout = 16;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#time_bar_min_update_interval}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:time_bar_min_update_interval
+        */
+        public static final int PlayerControlView_time_bar_min_update_interval = 17;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#touch_target_height}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:touch_target_height
+        */
+        public static final int PlayerControlView_touch_target_height = 18;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#unplayed_color}
+          attribute's value can be found in the {@link #PlayerControlView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:unplayed_color
+        */
+        public static final int PlayerControlView_unplayed_color = 19;
+        /** Attributes that can be used with a PlayerView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PlayerView_ad_marker_color cloyd.smart.home.monitor:ad_marker_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_ad_marker_width cloyd.smart.home.monitor:ad_marker_width}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_auto_show cloyd.smart.home.monitor:auto_show}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_bar_height cloyd.smart.home.monitor:bar_height}</code></td><td> DefaultTimeBar attributes </td></tr>
+           <tr><td><code>{@link #PlayerView_buffered_color cloyd.smart.home.monitor:buffered_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_controller_layout_id cloyd.smart.home.monitor:controller_layout_id}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_default_artwork cloyd.smart.home.monitor:default_artwork}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_fastforward_increment cloyd.smart.home.monitor:fastforward_increment}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_hide_during_ads cloyd.smart.home.monitor:hide_during_ads}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_hide_on_touch cloyd.smart.home.monitor:hide_on_touch}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_keep_content_on_player_reset cloyd.smart.home.monitor:keep_content_on_player_reset}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_played_ad_marker_color cloyd.smart.home.monitor:played_ad_marker_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_played_color cloyd.smart.home.monitor:played_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_player_layout_id cloyd.smart.home.monitor:player_layout_id}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_repeat_toggle_modes cloyd.smart.home.monitor:repeat_toggle_modes}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_resize_mode cloyd.smart.home.monitor:resize_mode}</code></td><td> AspectRatioFrameLayout attributes </td></tr>
+           <tr><td><code>{@link #PlayerView_rewind_increment cloyd.smart.home.monitor:rewind_increment}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_scrubber_color cloyd.smart.home.monitor:scrubber_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_scrubber_disabled_size cloyd.smart.home.monitor:scrubber_disabled_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_scrubber_dragged_size cloyd.smart.home.monitor:scrubber_dragged_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_scrubber_drawable cloyd.smart.home.monitor:scrubber_drawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_scrubber_enabled_size cloyd.smart.home.monitor:scrubber_enabled_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_show_buffering cloyd.smart.home.monitor:show_buffering}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_show_shuffle_button cloyd.smart.home.monitor:show_shuffle_button}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_show_timeout cloyd.smart.home.monitor:show_timeout}</code></td><td> PlayerControlView attributes </td></tr>
+           <tr><td><code>{@link #PlayerView_shutter_background_color cloyd.smart.home.monitor:shutter_background_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_surface_type cloyd.smart.home.monitor:surface_type}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_time_bar_min_update_interval cloyd.smart.home.monitor:time_bar_min_update_interval}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_touch_target_height cloyd.smart.home.monitor:touch_target_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_unplayed_color cloyd.smart.home.monitor:unplayed_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_use_artwork cloyd.smart.home.monitor:use_artwork}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlayerView_use_controller cloyd.smart.home.monitor:use_controller}</code></td><td></td></tr>
+           </table>
+           @see #PlayerView_ad_marker_color
+           @see #PlayerView_ad_marker_width
+           @see #PlayerView_auto_show
+           @see #PlayerView_bar_height
+           @see #PlayerView_buffered_color
+           @see #PlayerView_controller_layout_id
+           @see #PlayerView_default_artwork
+           @see #PlayerView_fastforward_increment
+           @see #PlayerView_hide_during_ads
+           @see #PlayerView_hide_on_touch
+           @see #PlayerView_keep_content_on_player_reset
+           @see #PlayerView_played_ad_marker_color
+           @see #PlayerView_played_color
+           @see #PlayerView_player_layout_id
+           @see #PlayerView_repeat_toggle_modes
+           @see #PlayerView_resize_mode
+           @see #PlayerView_rewind_increment
+           @see #PlayerView_scrubber_color
+           @see #PlayerView_scrubber_disabled_size
+           @see #PlayerView_scrubber_dragged_size
+           @see #PlayerView_scrubber_drawable
+           @see #PlayerView_scrubber_enabled_size
+           @see #PlayerView_show_buffering
+           @see #PlayerView_show_shuffle_button
+           @see #PlayerView_show_timeout
+           @see #PlayerView_shutter_background_color
+           @see #PlayerView_surface_type
+           @see #PlayerView_time_bar_min_update_interval
+           @see #PlayerView_touch_target_height
+           @see #PlayerView_unplayed_color
+           @see #PlayerView_use_artwork
+           @see #PlayerView_use_controller
+         */
+        public static final int[] PlayerView = {
+            0x7f01011f, 0x7f010120, 0x7f010121, 0x7f010122,
+            0x7f010123, 0x7f010124, 0x7f010125, 0x7f010126,
+            0x7f010127, 0x7f010128, 0x7f010129, 0x7f01012a,
+            0x7f01012b, 0x7f01012c, 0x7f01012d, 0x7f01012e,
+            0x7f01012f, 0x7f010130, 0x7f010131, 0x7f010132,
+            0x7f010133, 0x7f010134, 0x7f010135, 0x7f010136,
+            0x7f010137, 0x7f010138, 0x7f010139, 0x7f01013a,
+            0x7f01013b, 0x7f01013c, 0x7f01013d, 0x7f01013e
+        };
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#ad_marker_color}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:ad_marker_color
+        */
+        public static final int PlayerView_ad_marker_color = 0;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#ad_marker_width}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:ad_marker_width
+        */
+        public static final int PlayerView_ad_marker_width = 1;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#auto_show}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:auto_show
+        */
+        public static final int PlayerView_auto_show = 28;
+        /**
+          <p>
+          @attr description
+           DefaultTimeBar attributes 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name cloyd.smart.home.monitor:bar_height
+        */
+        public static final int PlayerView_bar_height = 2;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#buffered_color}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:buffered_color
+        */
+        public static final int PlayerView_buffered_color = 3;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#controller_layout_id}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name cloyd.smart.home.monitor:controller_layout_id
+        */
+        public static final int PlayerView_controller_layout_id = 4;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#default_artwork}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name cloyd.smart.home.monitor:default_artwork
+        */
+        public static final int PlayerView_default_artwork = 24;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#fastforward_increment}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:fastforward_increment
+        */
+        public static final int PlayerView_fastforward_increment = 5;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#hide_during_ads}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:hide_during_ads
+        */
+        public static final int PlayerView_hide_during_ads = 27;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#hide_on_touch}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:hide_on_touch
+        */
+        public static final int PlayerView_hide_on_touch = 26;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#keep_content_on_player_reset}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:keep_content_on_player_reset
+        */
+        public static final int PlayerView_keep_content_on_player_reset = 30;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#played_ad_marker_color}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:played_ad_marker_color
+        */
+        public static final int PlayerView_played_ad_marker_color = 6;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#played_color}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:played_color
+        */
+        public static final int PlayerView_played_color = 7;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#player_layout_id}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name cloyd.smart.home.monitor:player_layout_id
+        */
+        public static final int PlayerView_player_layout_id = 31;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#repeat_toggle_modes}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>one</code></td><td>1</td><td></td></tr>
+<tr><td><code>all</code></td><td>2</td><td></td></tr>
+</table>
+          @attr name cloyd.smart.home.monitor:repeat_toggle_modes
+        */
+        public static final int PlayerView_repeat_toggle_modes = 8;
+        /**
+          <p>
+          @attr description
+           AspectRatioFrameLayout attributes 
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>fit</code></td><td>0</td><td></td></tr>
+<tr><td><code>fixed_width</code></td><td>1</td><td></td></tr>
+<tr><td><code>fixed_height</code></td><td>2</td><td></td></tr>
+<tr><td><code>fill</code></td><td>3</td><td></td></tr>
+<tr><td><code>zoom</code></td><td>4</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name cloyd.smart.home.monitor:resize_mode
+        */
+        public static final int PlayerView_resize_mode = 9;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#rewind_increment}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:rewind_increment
+        */
+        public static final int PlayerView_rewind_increment = 10;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_color}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_color
+        */
+        public static final int PlayerView_scrubber_color = 11;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_disabled_size}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_disabled_size
+        */
+        public static final int PlayerView_scrubber_disabled_size = 12;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_dragged_size}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_dragged_size
+        */
+        public static final int PlayerView_scrubber_dragged_size = 13;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_drawable}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name cloyd.smart.home.monitor:scrubber_drawable
+        */
+        public static final int PlayerView_scrubber_drawable = 14;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#scrubber_enabled_size}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:scrubber_enabled_size
+        */
+        public static final int PlayerView_scrubber_enabled_size = 15;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#show_buffering}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>never</code></td><td>0</td><td></td></tr>
+<tr><td><code>when_playing</code></td><td>1</td><td></td></tr>
+<tr><td><code>always</code></td><td>2</td><td></td></tr>
+</table>
+          @attr name cloyd.smart.home.monitor:show_buffering
+        */
+        public static final int PlayerView_show_buffering = 29;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#show_shuffle_button}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:show_shuffle_button
+        */
+        public static final int PlayerView_show_shuffle_button = 16;
+        /**
+          <p>
+          @attr description
+           PlayerControlView attributes 
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name cloyd.smart.home.monitor:show_timeout
+        */
+        public static final int PlayerView_show_timeout = 17;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#shutter_background_color}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:shutter_background_color
+        */
+        public static final int PlayerView_shutter_background_color = 23;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#surface_type}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>surface_view</code></td><td>1</td><td></td></tr>
+<tr><td><code>texture_view</code></td><td>2</td><td></td></tr>
+<tr><td><code>spherical_view</code></td><td>3</td><td></td></tr>
+</table>
+          @attr name cloyd.smart.home.monitor:surface_type
+        */
+        public static final int PlayerView_surface_type = 18;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#time_bar_min_update_interval}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:time_bar_min_update_interval
+        */
+        public static final int PlayerView_time_bar_min_update_interval = 19;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#touch_target_height}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:touch_target_height
+        */
+        public static final int PlayerView_touch_target_height = 20;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#unplayed_color}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:unplayed_color
+        */
+        public static final int PlayerView_unplayed_color = 21;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#use_artwork}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:use_artwork
+        */
+        public static final int PlayerView_use_artwork = 22;
+        /**
+          <p>This symbol is the offset where the {@link cloyd.smart.home.monitor.R.attr#use_controller}
+          attribute's value can be found in the {@link #PlayerView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name cloyd.smart.home.monitor:use_controller
+        */
+        public static final int PlayerView_use_controller = 25;
         /** Attributes that can be used with a PopupWindow.
            <p>Includes the following attributes:</p>
            <table>
