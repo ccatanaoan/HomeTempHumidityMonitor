@@ -19,6 +19,6 @@ ModuleClosedNodes3=
 ModuleClosedNodes4=
 ModuleClosedNodes5=
 ModuleClosedNodes6=
-NavigationStack=Main,Globals,107,0,Main,Activity_Create,255,0,Main,Activity_Pause,356,0,Main,TabStrip1_PageSelected,642,0,Main,clvActivity_ItemClick,1821,0,Main,GetVideos,1759,2,Main,Activity_Resume,336,0,Visual Designer,blink.bal,-100,1,Visual Designer,blinkactivity.bal,-100,6,Main,ShowVideo,1956,6
+NavigationStack=Main,Activity_Create,251,0,Main,GetSyncModuleInfo,1523,3,Main,SetTextShadow,1756,0,Main,CheckBattLife,1632,1,Main,RefreshCameras,1117,1,Main,Process_Globals,44,4,Main,Globals,46,0,Main,GetCameraInfo,1466,5,Visual Designer,blink.bal,-100,3,Main,GetHomescreen,1536,6
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6

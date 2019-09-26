@@ -108,6 +108,9 @@ Sub Process_Globals
 	Private response As String
 	Private previousSelectedIndex As Int
 	Private mediaMetaData As cMediaData
+	Private drivewayArmedStatus As String
+	Private frontdoorArmedStatus As String
+	Private sideyardArmedStatus As String
 End Sub
 
 Sub Globals
@@ -309,15 +312,12 @@ Sub Activity_Create(FirstTime As Boolean)
 			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
 		End If
 				
-		SetTextShadow(lblDriveway)
 		SetTextShadow(lblDrivewayBatt)
 		SetTextShadow(lblDrivewayTimestamp)
 		SetTextShadow(lblDrivewayWifi)
-		SetTextShadow(lblFrontDoor)
 		SetTextShadow(lblFrontDoorBatt)
 		SetTextShadow(lblFrontDoorTimestamp)
 		SetTextShadow(lblFrontDoorWiFi)
-		SetTextShadow(lblSideYard)
 		SetTextShadow(lblSideYardBatt)
 		SetTextShadow(lblSideYardTimestamp)
 		SetTextShadow(lblSideYardWiFi)
@@ -1116,6 +1116,22 @@ Sub RefreshCameras(FirstRun As Boolean)
 		End If
 		GetSyncModuleInfo(response)
 		
+		
+		RESTGet("https://rest-" & userRegion &".immedia-semi.com/homescreen")
+		For i = 1 To 20
+			If response = "" Then
+				Sleep(50)
+			Else
+				Exit
+			End If
+		Next
+		If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
+			btnDriveway.Enabled = True
+			Return
+		End If
+		GetHomescreen(response)
+		
+		
 		lblDrivewayBatt.Visible = True
 		lblDrivewayTimestamp.Visible = True
 		lblDrivewayWifi.Visible = True
@@ -1514,17 +1530,17 @@ Sub GetCameraInfo(json As String, clv As CustomListView)
 		If camera_id = "347574" Then
 			lblDrivewayBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V - " & CheckBattLife(battery_voltage, lblDrivewayBatt)
 			lblDrivewayTimestamp.Text = ConvertDateTime(updated_at)
-			lblDriveway.Text = "Driveway v" & fw_version
+			lblDriveway.Text = "Driveway v" & fw_version & " " & drivewayArmedStatus
 			lblDrivewayWifi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
 		Else If camera_id = "236967" Then
 			lblFrontDoorBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V - " & CheckBattLife(battery_voltage, lblFrontDoorBatt)
 			lblFrontDoorTimestamp.Text = ConvertDateTime(updated_at)
-			lblFrontDoor.Text = "Front Door v" & fw_version
+			lblFrontDoor.Text = "Front Door v" & fw_version  & " " & frontdoorArmedStatus
 			lblFrontDoorWiFi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
 		Else If camera_id = "226821" Then
 			lblSideYardBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V - " & CheckBattLife(battery_voltage,lblSideYardBatt)
 			lblSideYardTimestamp.Text = ConvertDateTime(updated_at)
-			lblSideYard.Text = "Side Yard v" & fw_version
+			lblSideYard.Text = "Side Yard v" & fw_version  & " " & sideyardArmedStatus
 			lblSideYardWiFi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
 		End If
 		
@@ -1574,9 +1590,110 @@ Sub GetSyncModuleInfo(json As String)
 		lblSyncModule.Text = "Sync Module is " & status & CRLF & CRLF & "Wifi Strength: " & wifi_strength & " bars" & CRLF & "Firmware version: " & fw_version & CRLF & "OS version: " & os_version
 	Catch
 		Log(LastException)
-		'ToastMessageShow("GetSyncModuleInfo: " & LastException, False)
 	End Try
 End Sub
+
+Sub GetHomescreen(json As String)
+	Try
+		Dim parser As JSONParser
+		parser.Initialize(json)
+		Dim root As Map = parser.NextObject
+		Dim devices As List = root.Get("devices")
+		For Each coldevices As Map In devices
+'			Dim battery_state As String = coldevices.Get("battery_state")
+'			Dim thumbnail As String = coldevices.Get("thumbnail")
+'			'Dim temp As Int = coldevices.Get("temp")
+'			Dim error_msg As String = coldevices.Get("error_msg")
+			Dim device_id As Int = coldevices.Get("device_id")
+'			Dim wifi_strength As Int = coldevices.Get("wifi_strength")
+'			Dim lfr_strength As Int = coldevices.Get("lfr_strength")
+			Dim active As String = coldevices.Get("active")
+'			Dim device_type As String = coldevices.Get("device_type")
+'			Dim Type As String = coldevices.Get("type")
+'			Dim battery As Int = coldevices.Get("battery")
+'			Dim enabled As String = coldevices.Get("enabled")
+'			Dim updated_at As String = coldevices.Get("updated_at")
+'			Dim usage_rate As String = coldevices.Get("usage_rate")
+'			Dim armed As String = coldevices.Get("armed")
+'			Dim name As String = coldevices.Get("name")
+'			Dim warning As Int = coldevices.Get("warning")
+'			Dim notifications As Int = coldevices.Get("notifications")
+'			Dim errors As Int = coldevices.Get("errors")
+'			Dim status As String = coldevices.Get("status")
+			
+		
+			If device_id = "347574" Then
+				If active = "armed" Then
+					drivewayArmedStatus = ""
+					Dim jo As JavaObject = lblDriveway
+					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
+					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
+				Else
+					drivewayArmedStatus = "NOT ARMED!"
+					Dim jo As JavaObject = lblDriveway
+					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+				End If
+			Else If device_id = "236967" Then
+				If active = "armed" Then
+					frontdoorArmedStatus = ""
+					Dim jo As JavaObject = lblFrontDoor
+					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
+					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
+				Else
+					frontdoorArmedStatus = "NOT ARMED!"
+					Dim jo As JavaObject = lblFrontDoor
+					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+				End If
+			Else If device_id = "226821" Then
+				If active = "armed" Then
+					sideyardArmedStatus = ""
+					Dim jo As JavaObject = lblSideYard
+					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
+					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
+				Else
+					sideyardArmedStatus = "NOT ARMED!"
+					Dim jo As JavaObject = lblSideYard
+					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+				End If
+			End If
+		Next
+		
+'		Dim account As Map = root.Get("account")
+'		Dim notifications As Int = account.Get("notifications")
+		Dim network As Map = root.Get("network")
+'		Dim enable_temp_alerts As String = network.Get("enable_temp_alerts")
+'		Dim error_msg As String = network.Get("error_msg")
+'		Dim wifi_strength As Int = network.Get("wifi_strength")
+		Dim armedNetwork As String = network.Get("armed")
+'		Dim name As String = network.Get("name")
+'		Dim warning As Int = network.Get("warning")
+'		Dim notifications As Int = network.Get("notifications")
+'		Dim status As String = network.Get("status")
+		
+		If armedNetwork <> "true" Then
+			drivewayArmedStatus = "NETWORK NOT ARMED!"
+			Dim jo As JavaObject = lblDriveway
+			Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+			
+			frontdoorArmedStatus = "NETWORK NOT ARMED!"
+			Dim jo As JavaObject = lblFrontDoor
+			Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+			
+			sideyardArmedStatus = "NETWORK NOT ARMED!"
+			Dim jo As JavaObject = lblSideYard
+			Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+		End If
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
 
 Sub CheckBattLife(battlevel As Int, lbl As Label) As String
 	Try
