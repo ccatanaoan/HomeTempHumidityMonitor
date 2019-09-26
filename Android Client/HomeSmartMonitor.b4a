@@ -47,6 +47,7 @@ Library20=bitmapcreator
 Library21=xui views
 Library22=runtimepermissions
 Library23=webviewsettings
+Library24=exoplayer
 Library3=javaobject
 Library4=xmllayoutbuilder
 Library5=jmqtt
@@ -60,9 +61,10 @@ Module2=SmartHomeMonitor
 Module3=NotificationService
 Module4=StateManager
 Module5=B4XPageIndicator
+Module6=cMediaData
 NumberOfFiles=15
-NumberOfLibraries=23
-NumberOfModules=5
+NumberOfLibraries=24
+NumberOfModules=6
 Version=9.5
 @EndOfDesignText@
 #Region  Project Attributes 
@@ -98,13 +100,14 @@ Sub Process_Globals
 	Private password As String = "[redacted]"
 	Private authToken As String
 	Private userRegion As String = "u006"
-	Private accountID As String = "88438"
+	Private accountID As String = "88438" 'ignore
 	Private networkID As String = "94896"
 	Private commandID As String
 	Private commandComplete As Boolean
 	Private cameraThumbnail As String
 	Private response As String
 	Private previousSelectedIndex As Int
+	Private mediaMetaData As cMediaData
 End Sub
 
 Sub Globals
@@ -170,6 +173,7 @@ Sub Globals
 	Private wvMedia As WebView
 	Private WebViewSettings1 As WebViewSettings
 	Private B4XLoadingIndicator4 As B4XLoadingIndicator
+	Private lblDuration As Label
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -317,7 +321,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		SetTextShadow(lblSideYardBatt)
 		SetTextShadow(lblSideYardTimestamp)
 		SetTextShadow(lblSideYardWiFi)
-		SetTextShadow(lblSyncModule)
+		SetTextShadow(lblDuration)
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -333,6 +337,7 @@ Sub Activity_Resume
 			BlurIV("SideYard.jpg",ivSideYard)
 			RequestAuthToken
 		End If
+				
 		previousSelectedIndex = 0
 			
 		HandleSettings
@@ -372,7 +377,37 @@ Sub Activity_Resume
 '			TabStrip1.ScrollTo(0,False)
 '			TabStrip1_PageSelected(0)
 		End If
-
+		
+		If TabStrip1.CurrentPage = 5 Then
+			If clvActivity.Size > 0 Then
+				Dim selectThisItem As Int = 0
+				For i = 0 To clvActivity.Size-1
+					selectThisItem = i
+					Dim p As B4XView = clvActivity.GetPanel(i)
+					If p.NumberOfViews > 0 Then
+						'get the content label view (it is inside an additional panel)
+						Dim ContentLabel As B4XView = p.GetView(0).GetView(0)
+						If ContentLabel.TextColor = xui.Color_Blue Then
+							selectThisItem = i
+							Exit
+						End If
+					End If
+				Next
+				clvActivity.JumpToItem(selectThisItem)
+				Sleep(100)
+				
+				If File.Exists(File.DirInternal,"media.mp4") Then
+					Dim sb As StringBuilder
+					sb.Initialize
+					sb.Append("<video width='100%' height='100%' controls autoplay>")
+					sb.Append("<source src='" & File.Combine(File.DirInternal, "\media.mp4") & "' Type='video/mp4'/>")
+					sb.Append("</video>")
+					Dim WebViewSettings1 As WebViewSettings
+					WebViewSettings1.setMediaPlaybackRequiresUserGesture(wvMedia,True)
+					wvMedia.LoadHtml(sb.ToString)
+				End If
+			End If
+		End If
 	Catch
 		Log(LastException)
 	End Try
@@ -1041,7 +1076,7 @@ Sub RequestAuthToken
 				lblStatus.Text = "AuthToken acquired..."
 			End If
 		Else
-			lblStatus.Text = GetRESTError(jobLogin.ErrorMessage) 
+			lblStatus.Text = GetRESTError(jobLogin.ErrorMessage)
 			Log("RequestAuthToken error: " & jobLogin.ErrorMessage)
 			jobLogin.Release
 			Return
@@ -1528,6 +1563,14 @@ Sub GetSyncModuleInfo(json As String)
 		Dim fw_version As String = syncmodule.Get("fw_version")
 '	Dim last_offline_alert As String = syncmodule.Get("last_offline_alert")
 		Dim status As String = syncmodule.Get("status")
+		Dim jo As JavaObject = lblSyncModule
+		Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
+		
+		If status = "online" Then
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
+		Else
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+		End If
 		lblSyncModule.Text = "Sync Module is " & status & CRLF & CRLF & "Wifi Strength: " & wifi_strength & " bars" & CRLF & "Firmware version: " & fw_version & CRLF & "OS version: " & os_version
 	Catch
 		Log(LastException)
@@ -1778,8 +1821,7 @@ Sub GetVideos(json As String)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
 				
-				' Display in ImageView
-				'a = j.GetBitmap
+				' Display in Webview
 				Dim p As B4XView = CreateListItem(j.GetBitmap,created_at, device_name)
 				clvActivity.Add(p,"https://rest-" & userRegion &".immedia-semi.com" & medianame & "|" & device_name & " " & ConvertFullDateTime(created_at))
 				If clvActivity.Size = 1 Then
@@ -1822,6 +1864,21 @@ End Sub
 
 Sub clvActivity_ItemClick (Index As Int, Value As Object)
 	Try
+		For i = 0 To clvActivity.Size-1
+			Dim p As B4XView = clvActivity.GetPanel(i)
+			If p.NumberOfViews > 0 Then
+				'get the content label view (it is inside an additional panel)
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
+				ContentLabel.TextColor = -1979711488 
+		
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
+				ContentLabel.TextColor = -1979711488 
+		
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
+				ContentLabel.TextColor = -1979711488
+			End If
+		Next
+		
 		UpdateItemColor(Index, xui.Color_Blue)
 		wvMedia.LoadUrl("")
 		Dim video As String
@@ -1830,7 +1887,6 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 		
 		B4XLoadingIndicator4.Show
 		ShowVideo(videoURL)
-		
 	Catch
 		B4XLoadingIndicator4.Hide
 		Log(LastException)
@@ -1844,14 +1900,14 @@ Sub UpdateItemColor (Index As Int, Color As Int)
 			Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 			If p.NumberOfViews > 0 Then
 				'get the content label view (it is inside an additional panel)
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(0)
-				ContentLabel.TextColor = -1979711488 'xui.Color_Black
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
+				ContentLabel.TextColor = -1979711488 
 		
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(1)
-				ContentLabel.TextColor = -1979711488 'xui.Color_Black
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
+				ContentLabel.TextColor = -1979711488 
 		
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(2)
-				ContentLabel.TextColor = -1979711488' xui.Color_Black
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
+				ContentLabel.TextColor = -1979711488
 			End If
 		End If
 	
@@ -1860,13 +1916,13 @@ Sub UpdateItemColor (Index As Int, Color As Int)
 '	test.Color = xui.Color_LightGray
 		If p.NumberOfViews > 0 Then
 			'get the content label view (it is inside an additional panel)
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(0)
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
 			ContentLabel.TextColor = Color
 		
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(1)
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
 			ContentLabel.TextColor = Color
 		
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(2)
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
 			ContentLabel.TextColor = Color
 		End If
 	
@@ -1975,6 +2031,20 @@ Sub ShowVideo (Link As String)
 			r.Target = r.RunMethod("getSettings")
 			r.RunMethod2("setBuiltInZoomControls", True, "java.lang.boolean")
 			r.RunMethod2("setDisplayZoomControls", False, "java.lang.boolean")
+				
+			mediaMetaData.Initialize
+			mediaMetaData.ProcessMediaFile(File.DirInternal,"media.mp4")
+			Dim ticks As Long = (mediaMetaData.GetDuration/1000) * DateTime.TicksPerSecond
+			lblDuration.Text = ConvertTicksToTimeString(ticks)
+			
+'			Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
+'			If p.NumberOfViews > 0 Then
+'				Dim ContentLabel As B4XView = p.GetView(0).GetView(2)
+'				If ContentLabel.Text.Contains("[") = False Then
+'					ContentLabel.Text = ContentLabel.Text & " [" & lblDuration.Text & "]" ' 1st label e.g. Front Door
+'				End If
+'			End If
+'			
 		Else
 
 		End If
@@ -1982,6 +2052,19 @@ Sub ShowVideo (Link As String)
 	Catch
 		Log(LastException)
 	End Try
+End Sub
+
+Sub Player_Ready
+	'Log("Ready")
+End Sub
+
+Sub Player_Error (Message As String)
+	'Log("Error: " & Message)
+	ToastMessageShow("Exoplayer error: " & Message,True)
+End Sub
+
+Sub Player_Complete
+	'Log("complete")
 End Sub
 
 Sub wvMedia_PageFinished (Url As String)
@@ -1998,3 +2081,10 @@ Sub lblSyncModule_Click
 	btnDriveway.Enabled = True
 End Sub
 
+Sub ConvertTicksToTimeString(t As Long) As String
+	Dim  hours, minutes, seconds As Int
+	hours = t / DateTime.TicksPerHour
+	minutes = (t Mod DateTime.TicksPerHour) / DateTime.TicksPerMinute
+	seconds = (t Mod DateTime.TicksPerMinute) / DateTime.TicksPerSecond
+	Return NumberFormat(minutes, 1, 0) & ":" & NumberFormat(seconds, 2, 0)
+End Sub
