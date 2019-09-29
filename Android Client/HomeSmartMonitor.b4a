@@ -118,6 +118,7 @@ Sub Process_Globals
 	Private sideyardArmedStatus As String
 	Private tabStripCurrentPage As Boolean = False
 	Private prevvideo As String
+	Type CardData (screenshot As B4XBitmap,filedate As String, deviceinfo As String, iswatchedvisible As Boolean, mediaURL As String)
 End Sub
 
 Sub Globals
@@ -190,6 +191,7 @@ Sub Globals
 	Private btnSideYardNewClip As ImageView
 	Private btnRefresh As SwiftButton
 	Private btnDriveway As SwiftButton
+	Private lblMediaURL As B4XView
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -355,6 +357,10 @@ Sub Activity_Create(FirstTime As Boolean)
 			lblBadge.RemoveViewFromParent
 			p.AddView(lblBadge, 0, 0, Width, Height)
 		Next
+		
+		If FirstTime Then
+			RequestAuthToken
+		End If
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -363,7 +369,7 @@ End Sub
 Sub Activity_Resume
 	Try
 		
-		previousSelectedIndex = 0
+		'previousSelectedIndex = 0
 			
 		HandleSettings
 		Dim in As Intent = Activity.GetStartingIntent
@@ -375,64 +381,30 @@ Sub Activity_Resume
 			End If
 		End If
 		
-		Dim isNotification As Boolean = False
 		If NotificationClicked = "Living area temperature" Then
 			TabStrip1.ScrollTo(0,False)
 			TabStrip1_PageSelected(0)
-			isNotification = True
 		Else If NotificationClicked = "Living area carbon monoxide" Then
 			TabStrip1.ScrollTo(1,False)
 			TabStrip1_PageSelected(1)
-			isNotification = True
 		else If NotificationClicked = "Basement temperature" Then
 			TabStrip1.ScrollTo(2,False)
 			TabStrip1_PageSelected(2)
-			isNotification = True
 		Else If NotificationClicked = "Basement carbon monoxide" Then
 			TabStrip1.ScrollTo(3,False)
 			TabStrip1_PageSelected(3)
-			isNotification = True
 		Else If NotificationClicked = "Basement DHT22 sensor issue" Then
 			TabStrip1.ScrollTo(2,False)
 			TabStrip1_PageSelected(2)
-			isNotification = True
 		Else If NotificationClicked = "Living area DHT22 sensor issue" Then
 			TabStrip1.ScrollTo(0,False)
 			TabStrip1_PageSelected(0)
-			isNotification = True
 		Else If NotificationClicked = "Living area CO sensor issue" Then
 			TabStrip1.ScrollTo(1,False)
 			TabStrip1_PageSelected(1)
-			isNotification = True
 		Else If NotificationClicked = "Basement CO sensor issue" Then
 			TabStrip1.ScrollTo(3,False)
 			TabStrip1_PageSelected(3)
-			isNotification = True
-		End If
-		
-		If isNotification = True Then
-			Try
-				If MQTT.IsInitialized = False Or MQTT.Connected = False Then
-					MQTT_Connect
-				End If
-			Catch
-				Log(LastException)
-			End Try
-			Return
-		End If
-		
-		If ivDriveway.Bitmap = Null Or lblStatus.Text.Contains("REST endpoint URL not found") Then
-			ProgressDialogShow2("Connecting to Blink servers...",False)
-			btnDriveway.Enabled = False
-			btnRefresh.Enabled = False
-			ScrollViewBlink.ScrollToNow(0)
-			BlurIV("Driveway.jpg",ivDriveway)
-			BlurIV("FrontDoor.jpg",ivFrontDoor)
-			BlurIV("SideYard.jpg",ivSideYard)
-			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-			Dim rs As ResumableSub = RequestAuthToken
-			wait for (rs) complete (Result As Object)
-			ProgressDialogHide
 		End If
 		
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
@@ -461,32 +433,25 @@ Sub Activity_Resume
 		
 		If tabStripCurrentPage = False And TabStrip1.CurrentPage = 5 Then
 			If clvActivity.Size > 0 Then
-				Dim selectThisItem As Int = 0
-				For i = 0 To clvActivity.Size-1
-					selectThisItem = i
-					Dim p As B4XView = clvActivity.GetPanel(i)
-					If p.NumberOfViews > 0 Then
-						'get the content label view (it is inside an additional panel)
-						Dim ContentLabel As B4XView = p.GetView(0).GetView(0)
-						If ContentLabel.TextColor = xui.Color_Blue Then
-							selectThisItem = i
-							Exit
-						End If
-					End If
-				Next
-				clvActivity.JumpToItem(selectThisItem)
+				clvActivity.JumpToItem(previousSelectedIndex)
 				Sleep(100)
-				
-				If File.Exists(File.DirInternal,"media.mp4") Then
-					Dim sb As StringBuilder
-					sb.Initialize
-					sb.Append("<video width='100%' height='100%' controls autoplay muted>")
-					sb.Append("<source src='" & File.Combine(File.DirInternal, "\media.mp4") & "' Type='video/mp4'/>")
-					sb.Append("</video>")
-					Dim WebViewSettings1 As WebViewSettings
-					WebViewSettings1.setMediaPlaybackRequiresUserGesture(wvMedia,True)
-					wvMedia.LoadHtml(sb.ToString)
+				Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
+				If p.NumberOfViews > 0 Then
+					'get the content label view (it is inside an additional panel)
+					Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
+					ContentLabel.TextColor = xui.Color_Blue
+		
+					Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
+					ContentLabel.TextColor = xui.Color_Blue
+		
+					Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
+					ContentLabel.TextColor = xui.Color_Blue
 				End If
+				B4XLoadingIndicator4.Show
+				Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
+				Dim firstvideo As String
+				firstvideo = cd.mediaURL
+				ShowVideo(firstvideo)
 			End If
 		End If
 	Catch
@@ -765,41 +730,45 @@ Sub TabStrip1_PageSelected (Position As Int)
 				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 			End If
 			CheckTempHumiditySetting
-			previousSelectedIndex = 0
+			'previousSelectedIndex = 0
 		End If
 		If Position = 1 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("MQ7", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySetting
-			previousSelectedIndex = 0
+			'previousSelectedIndex = 0
 		End If
 		If Position = 2 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
 			End If
 			CheckTempHumiditySettingBasement
-			previousSelectedIndex = 0
+			'previousSelectedIndex = 0
 		End If
 		If Position = 3 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySettingBasement
-			previousSelectedIndex = 0
+			'previousSelectedIndex = 0
 		End If
 		If Position = 4 Then
 			wvMedia.LoadUrl("")
-			previousSelectedIndex = 0
+			'previousSelectedIndex = 0
 			If ivDriveway.Bitmap = Null Or lblStatus.Text.Contains("REST endpoint URL not found") Then
-				ProgressDialogShow2("Connecting to Blink servers...",False)
+				ProgressDialogShow2("Getting new camera information...",False)
 				btnDriveway.Enabled = False
 				btnRefresh.Enabled = False
+				btnDrivewayNewClip.Enabled = False
+				btnFrontDoorNewClip.Enabled = False
+				btnSideYardNewClip.Enabled = False
 				ScrollViewBlink.ScrollToNow(0)
 				BlurIV("Driveway.jpg",ivDriveway)
 				BlurIV("FrontDoor.jpg",ivFrontDoor)
 				BlurIV("SideYard.jpg",ivSideYard)
-				RequestAuthToken
+				Dim rs As ResumableSub = RefreshCameras(True)
+				wait for (rs) complete (Result As Object)
 				ProgressDialogHide
 			End If
 			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
@@ -830,32 +799,25 @@ Sub TabStrip1_PageSelected (Position As Int)
 				End If
 				
 				If clvActivity.Size > 0 Then
-					Dim selectThisItem As Int = 0
-					For i = 0 To clvActivity.Size-1
-						selectThisItem = i
-						Dim p As B4XView = clvActivity.GetPanel(i)
-						If p.NumberOfViews > 0 Then
-							'get the content label view (it is inside an additional panel)
-							Dim ContentLabel As B4XView = p.GetView(0).GetView(0)
-							If ContentLabel.TextColor = xui.Color_Blue Then
-								selectThisItem = i
-								Exit
-							End If
-						End If
-					Next
-					clvActivity.JumpToItem(selectThisItem)
+					clvActivity.JumpToItem(previousSelectedIndex)
 					Sleep(100)
-				
-					If File.Exists(File.DirInternal,"media.mp4") Then
-						Dim sb As StringBuilder
-						sb.Initialize
-						sb.Append("<video width='100%' height='100%' controls autoplay muted>")
-						sb.Append("<source src='" & File.Combine(File.DirInternal, "\media.mp4") & "' Type='video/mp4'/>")
-						sb.Append("</video>")
-						Dim WebViewSettings1 As WebViewSettings
-						WebViewSettings1.setMediaPlaybackRequiresUserGesture(wvMedia,True)
-						wvMedia.LoadHtml(sb.ToString)
+					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
+					If p.NumberOfViews > 0 Then
+						'get the content label view (it is inside an additional panel)
+						Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
+						ContentLabel.TextColor = xui.Color_Blue
+		
+						Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
+						ContentLabel.TextColor = xui.Color_Blue
+		
+						Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
+						ContentLabel.TextColor = xui.Color_Blue
 					End If
+					B4XLoadingIndicator4.Show
+					Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
+					Dim firstvideo As String
+					firstvideo = cd.mediaURL
+					ShowVideo(firstvideo)
 				End If
 			End If
 			tabStripCurrentPage = False
@@ -1204,12 +1166,15 @@ Sub RequestAuthToken As ResumableSub
 		Wait For (jobLogin) JobDone(jobLogin As HttpJob)
 		If jobLogin.Success Then
 			lblStatus.Text = "Successfully logged in to the Blink server..."
-			
+			' {"account":{"id":88438},"client":{"id":343747},"authtoken":{"authtoken":"93dThwIjJVPFNsksddH2cA","message":"auth"},"networks":{"94896":{"name":"Home","onboarded":true}},"region":{"u006":"United States"}}
 			GetAuthInfo(jobLogin.GetString)
 
 			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 				btnDriveway.Enabled = True
 				btnRefresh.Enabled = True
+				btnDrivewayNewClip.Enabled = True
+				btnFrontDoorNewClip.Enabled = True
+				btnSideYardNewClip.Enabled = True
 				jobLogin.Release
 				Return Null
 			Else
@@ -1222,8 +1187,6 @@ Sub RequestAuthToken As ResumableSub
 			Return Null
 		End If
 		jobLogin.Release
-		Dim rs As ResumableSub = RefreshCameras(True)
-		wait for (rs) complete (Result As Object)
 	Catch
 		Log("RequestAuthToken LastException: " & LastException)
 	End Try
@@ -1256,6 +1219,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 		If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 			btnDriveway.Enabled = True
 			btnRefresh.Enabled = True
+			btnDrivewayNewClip.Enabled = True
+			btnFrontDoorNewClip.Enabled = True
+			btnSideYardNewClip.Enabled = True
 			Return Null
 		End If
 		GetSyncModuleInfo(response)
@@ -1272,6 +1238,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 		If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 			btnDriveway.Enabled = True
 			btnRefresh.Enabled = True
+			btnDrivewayNewClip.Enabled = True
+			btnFrontDoorNewClip.Enabled = True
+			btnSideYardNewClip.Enabled = True
 			Return Null
 		End If
 		GetHomescreen(response)
@@ -1345,6 +1314,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 				If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 					btnDriveway.Enabled = True
 					btnRefresh.Enabled = True
+					btnDrivewayNewClip.Enabled = True
+					btnFrontDoorNewClip.Enabled = True
+					btnSideYardNewClip.Enabled = True
 					Return Null
 				Else
 					GetCommandID(response)
@@ -1359,6 +1331,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 					If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 						btnDriveway.Enabled = True
 						btnRefresh.Enabled = True
+						btnDrivewayNewClip.Enabled = True
+						btnFrontDoorNewClip.Enabled = True
+						btnSideYardNewClip.Enabled = True
 						Return Null
 					Else
 						For i = 1 To attempts
@@ -1389,19 +1364,19 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 							If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 								btnDriveway.Enabled = True
 								btnRefresh.Enabled = True
+								btnDrivewayNewClip.Enabled = True
+								btnFrontDoorNewClip.Enabled = True
+								btnSideYardNewClip.Enabled = True
 								Return Null
 							End If
 						Next
 						If commandComplete = False Then
 							If camera = "347574" Then
 								lblStatus.Text = "Failed to retrieve Driveway thumbnail..."
-								'ivDriveway.SetImage(Null)
 							Else If camera = "236967" Then
 								lblStatus.Text = "Failed to retrieve Front Door thumbnail..."
-								'ivFrontDoor.SetImage(Null)
 							Else If camera = "226821" Then
 								lblStatus.Text = "Failed to retrieve Side Yard thumbnail..."
-								'ivSideYard.SetImage(Null)
 							End If
 						Else
 							' Completed
@@ -1417,6 +1392,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 	End Try
 	btnDriveway.Enabled = True
 	btnRefresh.Enabled = True
+	btnDrivewayNewClip.Enabled = True
+	btnFrontDoorNewClip.Enabled = True
+	btnSideYardNewClip.Enabled = True
 	Return Null
 End Sub
 
@@ -1932,7 +1910,10 @@ Sub btnDriveway_Click
 	If Msgbox2("Capture new camera thumbnails?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then
 		ScrollViewBlink.ScrollToNow(0)
 		btnDriveway.Enabled = False
-		btnRefresh.Enabled = False		
+		btnRefresh.Enabled = False	
+		btnDrivewayNewClip.Enabled = False
+		btnFrontDoorNewClip.Enabled = False
+		btnSideYardNewClip.Enabled = False
 		BlurIV("Driveway.jpg",ivDriveway)
 		BlurIV("FrontDoor.jpg",ivFrontDoor)
 		BlurIV("SideYard.jpg",ivSideYard)
@@ -2098,16 +2079,28 @@ Sub GetVideos(json As String) As ResumableSub
 					out.Close '<------ very important
 				
 					' Display in Webview
-					Dim p As B4XView = CreateListItem(j.GetBitmap,created_at, device_name, Not(watched))
-					clvActivity.Add(p,"https://rest-" & userRegion &".immedia-semi.com" & medianame & "|" & device_name & " " & ConvertDayName(created_at))
-					If watched <> "true" Then
-						ivWatched.Visible = True
-					Else
-						ivWatched.Visible = False
-					End If
+'					Dim p As B4XView = CreateListItem(j.GetBitmap,created_at, device_name, Not(watched))
+'					clvActivity.Add(p,"https://rest-" & userRegion &".immedia-semi.com" & medianame & "|" & device_name & " " & ConvertDayName(created_at))
+'					If watched <> "true" Then
+'						ivWatched.Visible = True
+'					Else
+'						ivWatched.Visible = False
+'					End If
+					Dim cd As CardData
+					cd.Initialize
+					cd.screenshot = j.GetBitmap
+					cd.filedate = created_at
+					cd.deviceinfo = device_name
+					cd.iswatchedvisible = Not(watched)
+					cd.mediaURL = "https://rest-" & userRegion &".immedia-semi.com" & medianame
+					Dim p As B4XView = xui.CreatePanel("")
+					p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width, 100dip)
+					clvActivity.Add(p, cd)
+					
 					If clvActivity.Size = 1 Then
 						firstvideo = ("https://rest-" & userRegion &".immedia-semi.com" & medianame)
 					End If
+					' Type CardData (screenshot As B4XBitmap,filedate As String, fileinfo As String, deviceinfo As String, iswatchedvisible as Boolean)
 				End If
 				prevvideo = "https://rest-" & userRegion &".immedia-semi.com" & medianame
 			Else
@@ -2128,31 +2121,81 @@ Sub GetVideos(json As String) As ResumableSub
 	Return Null
 End Sub
 
-Sub CreateListItem(screenshot As B4XBitmap, fileinfo As String, devicename As String, isWatchedVisible As Boolean) As B4XView
-	Try
-		'https://www.b4x.com/android/forum/threads/customlistview.103498/#post-648747
-		'https://www.b4x.com/android/forum/threads/customlistview-b4a-to-b4j.85047/#post-539068
-		'https://www.b4x.com/android/forum/threads/b4x-xui-xcustomlistview.90789/#post-573958
-		Dim p As B4XView = xui.CreatePanel("")
-		'Dim height As Int = 280dip
-		'If GetDeviceLayoutValues.ApproximateScreenSize < 4.5 Then height = 310dip
-		p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width,100dip)
-		p.LoadLayout("blinkcellitem")
-		ivScreenshot.Bitmap = screenshot
-		If isWatchedVisible Then
-			lblDate.Text = "   " & ConvertDayName(fileinfo)
-			'lblDate.Text = lblDate.Text & " " & ConvertDateTimePeriod(fileinfo)
+Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
+	Dim ExtraSize As Int = 1
+	For i = 0 To clvActivity.Size - 1
+		Dim p As B4XView = clvActivity.GetPanel(i)
+		If i > FirstIndex - ExtraSize And i < LastIndex + ExtraSize Then
+			'visible+
+			If p.NumberOfViews = 0 Then
+				Dim cd As CardData = clvActivity.GetValue(i)
+				p.LoadLayout("blinkcellitem")
+				ivScreenshot.Bitmap = cd.screenshot
+				ivWatched.Visible = cd.iswatchedvisible
+								
+				Dim dayname As String 
+				dayname = ConvertDayName(cd.filedate)
+				If cd.iswatchedvisible Then
+					ivWatched.Visible = True
+					lblDate.Text = "   " & dayname & " " & ConvertDateTimePeriod(cd.filedate,dayname)
+				Else
+					ivWatched.Visible = False
+					lblDate.Text = "   " & dayname
+				End If
+				lblFileInfo.Text = "   " & ConvertFullDateTime(cd.filedate)
+				lblDeviceInfo.Text = "   " & cd.deviceinfo
+				lblMediaURL.Text = cd.mediaURL
+				
+				If previousSelectedIndex = i Then
+					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
+					If p.NumberOfViews > 0 Then
+						'get the content label view (it is inside an additional panel)
+						Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
+						ContentLabel.TextColor = xui.Color_Blue
+		
+						Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
+						ContentLabel.TextColor = xui.Color_Blue
+		
+						Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
+						ContentLabel.TextColor = xui.Color_Blue
+					End If
+				End If
+			End If
 		Else
-			lblDate.Text = "   " & ConvertDayName(fileinfo)
+			'not visible
+			If p.NumberOfViews > 0 Then
+				p.RemoveAllViews
+			End If
 		End If
-		lblFileInfo.Text = "   " & ConvertFullDateTime(fileinfo)
-		lblDeviceInfo.Text = "   " & devicename
-		Return p
-	Catch
-		Log(LastException)
-		Return Null
-	End Try
+	Next
 End Sub
+'
+'Sub CreateListItem(screenshot As B4XBitmap, fileinfo As String, devicename As String, isWatchedVisible As Boolean) As B4XView
+'	Try
+'		'https://www.b4x.com/android/forum/threads/customlistview.103498/#post-648747
+'		'https://www.b4x.com/android/forum/threads/customlistview-b4a-to-b4j.85047/#post-539068
+'		'https://www.b4x.com/android/forum/threads/b4x-xui-xcustomlistview.90789/#post-573958
+'		Dim p As B4XView = xui.CreatePanel("")
+'		'Dim height As Int = 280dip
+'		'If GetDeviceLayoutValues.ApproximateScreenSize < 4.5 Then height = 310dip
+'		p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width,100dip)
+'		p.LoadLayout("blinkcellitem")
+'		ivScreenshot.Bitmap = screenshot
+'		If isWatchedVisible Then
+'			lblDate.Text = "   " & ConvertDayName(fileinfo)
+'			lblDate.Text = lblDate.Text & " " & ConvertDateTimePeriod(fileinfo,ConvertDayName(fileinfo))
+'		Else
+'			lblDate.Text = "   " & ConvertDayName(fileinfo)
+'		End If
+'		lblFileInfo.Text = "   " & ConvertFullDateTime(fileinfo)
+'		lblDeviceInfo.Text = "   " & devicename
+'		Return p
+'		
+'	Catch
+'		Log(LastException)
+'		Return Null
+'	End Try
+'End Sub
 
 Sub clvActivity_ItemClick (Index As Int, Value As Object)
 	Try
@@ -2173,16 +2216,14 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 		
 		UpdateItemColor(Index, xui.Color_Blue)
 		wvMedia.LoadUrl("")
-		Dim video As String
-		video = clvActivity.GetValue(Index)
-		Dim videoURL As String = Regex.Split("\|",video)(0)
+		
+		Dim cd As CardData = clvActivity.GetValue(Index)
+		Dim videoURL As String = cd.mediaURL
 		
 		B4XLoadingIndicator4.Show
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 		Dim rs As ResumableSub = ShowVideo(videoURL)
 		wait for (rs) complete (Result As Object)
-	
-		
 	Catch
 		B4XLoadingIndicator4.Hide
 		Log(LastException)
@@ -2208,8 +2249,6 @@ Sub UpdateItemColor (Index As Int, Color As Int)
 		End If
 	
 		Dim p As B4XView = clvActivity.GetPanel(Index)
-'	Dim test As Panel = clvActivity.GetPanel(Index)
-'	test.Color = xui.Color_LightGray
 		If p.NumberOfViews > 0 Then
 			'get the content label view (it is inside an additional panel)
 			Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
@@ -2228,14 +2267,14 @@ Sub UpdateItemColor (Index As Int, Color As Int)
 	End Try
 End Sub
 
-Sub ConvertDateTimePeriod(inputTime As String) As String
+Sub ConvertDateTimePeriod(inputTime As String, dayname As String) As String
 	' https://www.b4x.com/android/forum/threads/convert-utc-to-ticks-and-vice-versa.36592/#content
 	Dim ticks As Long = ParseUTCstring(inputTime.Replace("+00:00","+0000"))
 	DateTime.DateFormat = "MMM d, yyyy h:mm:ss a"
 	Dim lngTicks As Long = ticks
 	Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 	'Log("Time difference: " & p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s")
-	If lblDate.Text.Contains("Today") Then
+	If dayname.Contains("Today") Then
 		If p.Days = 0 Then
 			If p.Hours = 0 Then
 				If p.Minutes = 0 Then
@@ -2257,7 +2296,7 @@ Sub ConvertDateTimePeriod(inputTime As String) As String
 		Else
 			Return p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
 		End If
-	else if lblDate.Text.Contains("Yesterday") Then
+	else if dayname.Contains("Yesterday") Then
 		If p.Days = 0 Then
 			If p.Hours = 0 Then
 				If p.Minutes = 0 Then
@@ -2293,7 +2332,7 @@ Sub ConvertDayName(inputTime As String) As String
 	If DateUtils.IsSameDay(lngTicks,DateTime.now) Then
 		Return "Today " '& DateTime.Date(lngTicks)
 	Else If Yesterday = timestamp Then
-		Return "Yesterday '" & DateTime.Date(lngTicks)
+		Return "Yesterday " '& DateTime.Date(lngTicks)
 	Else 
 		Return DateUtils.GetDayOfWeekName(lngTicks) '& " " & DateTime.Date(lngTicks)
 	End If
@@ -2373,6 +2412,12 @@ Sub ShowVideo (Link As String) As ResumableSub
 			'get the content label view (it is inside an additional panel)
 			Dim ContentLabel As ImageView = p.GetView(0).GetView(4) ' imageview for unwatched videos
 			ContentLabel.Visible = False
+			
+			Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
+			cd.iswatchedvisible = False
+			
+			Dim ContentLabel1 As Label = p.GetView(0).GetView(0)
+			ContentLabel1.Text = "   " & ConvertDayName(cd.filedate)
 		End If
 		
 		GetUnwatchedVideos
@@ -2413,7 +2458,7 @@ Sub GetUnwatchedVideos() As ResumableSub
 				Exit
 			End If
 		Next
-
+		
 		Dim j As Int = StringCount(response,"""watched"":false",True)
 		badger1.SetBadge(lbl, j)
 		StateManager.SetSetting("UnwatchedVideoClips",j)
@@ -2442,6 +2487,8 @@ Sub btnDrivewayNewClip_Click
 			btnDriveway.Enabled = False
 			btnRefresh.Enabled = False
 			btnDrivewayNewClip.Enabled = False
+			btnFrontDoorNewClip.Enabled = False
+			btnSideYardNewClip.Enabled = False
 			lblStatus.Text = "Capturing a new Driveway video clip..."
 			RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/347574/clip")
 			For i = 1 To 20
@@ -2455,6 +2502,8 @@ Sub btnDrivewayNewClip_Click
 				btnDriveway.Enabled = True
 				btnRefresh.Enabled = True
 				btnDrivewayNewClip.Enabled = True
+				btnFrontDoorNewClip.Enabled = True
+				btnSideYardNewClip.Enabled = True
 				lblStatus.Text = "Ready"
 				Return
 			End If
@@ -2488,6 +2537,9 @@ Sub btnDrivewayNewClip_Click
 		End Try
 		btnDriveway.Enabled = True
 		btnRefresh.Enabled = True
+		btnDrivewayNewClip.Enabled = True
+		btnFrontDoorNewClip.Enabled = True
+		btnSideYardNewClip.Enabled = True
 		btnDrivewayNewClip.Enabled = True
 		lblStatus.Text = "Ready"
 	End If
@@ -2622,7 +2674,6 @@ Sub btnSideYardNewClip_Click
 		btnFrontDoorNewClip.Enabled = True
 		btnSideYardNewClip.Enabled = True
 		lblStatus.Text = "Ready"
-
 	End If
 End Sub
 
