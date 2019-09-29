@@ -407,6 +407,9 @@ Sub Activity_Resume
 			TabStrip1_PageSelected(3)
 		End If
 		
+		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
+		Sleep(100)
+		
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 		Dim rs As ResumableSub = GetUnwatchedVideos
 		wait for (rs) complete (Result As Object)
@@ -1577,6 +1580,8 @@ End Sub
 
 Sub GetRESTError(json As String) As String
 	Try
+		'ResponseError. Reason: , Response: {"message":"Unauthorized Access","code":101}
+		'Code: 101 Message: Unauthorized Access
 		'ResponseError. Reason: , Response: {"message":"Invalid credentials","code":200}
 		'RequestAuthToken LastException: (FileNotFoundException) java.io.FileNotFoundException: /data/user/0/cloyd.smart.home.monitor/cache/1 (No such file or directory)
 		'ResponseError. Reason: , Response: <h1>Not Found</h1>

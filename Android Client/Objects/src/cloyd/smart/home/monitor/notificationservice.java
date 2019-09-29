@@ -190,7 +190,7 @@ mostCurrent._statemanager._savesettings /*String*/ (processBA);
  } 
        catch (Exception e33) {
 			processBA.setLastException(e33); //BA.debugLineNum = 52;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("426476578",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("17143458",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 55;BA.debugLine="End Sub";
 return "";
@@ -236,7 +236,7 @@ mostCurrent._smarthomemonitor._isoldairqualitynotificationongoingbasement /*bool
  } 
        catch (Exception e25) {
 			processBA.setLastException(e25); //BA.debugLineNum = 85;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("426542108",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("17208988",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 88;BA.debugLine="End Sub";
 return "";
