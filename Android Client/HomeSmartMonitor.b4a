@@ -360,6 +360,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		'If FirstTime Then
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+		'Log("************* RequestAuthToken *************")
 		Dim rs As ResumableSub = RequestAuthToken
 		wait for (rs) complete (Result As Object)
 		'End If
