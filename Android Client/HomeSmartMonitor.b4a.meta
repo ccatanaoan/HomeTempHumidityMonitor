@@ -22,6 +22,6 @@ ModuleClosedNodes4=
 ModuleClosedNodes5=
 ModuleClosedNodes6=
 ModuleClosedNodes7=
-NavigationStack=Main,ShowVideo,2390,3,Main,clvActivity_ItemClick,2227,1,Main,Activity_Create,292,6,Main,UpdateItemColor,2198,2,Main,clvActivity_VisibleRangeChanged,2102,5,Main,TabStrip1_PageSelected,763,6,Main,Activity_Pause,398,0,Main,MQTT_Connect,411,0,Visual Designer,blinkcellitem.bal,-100,1,Main,Activity_Resume,357,6
+NavigationStack=Visual Designer,blinkcellitem.bal,-100,1,Main,Process_Globals,20,0,Main,TabStrip1_PageSelected,748,6,cMediaData,Class_Globals,31,0,cMediaData,GetEmbeddedPicture,121,0,Main,CheckAirQualitySettingBasement,895,0,Main,Activity_Resume,337,6,Main,RESTGet,1352,0,Main,GetRESTError,1508,0,NotificationService,Listener_NotificationPosted,30,4
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7
