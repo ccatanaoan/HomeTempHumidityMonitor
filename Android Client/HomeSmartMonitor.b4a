@@ -4,10 +4,11 @@ File10=blinkscrollview.bal
 File11=camera-icon.png
 File12=cloyd.png
 File13=crysta.ttf
-File14=liveviewbuttontranparent.png
-File15=Main.bal
-File16=ScrollViewBasement.bal
-File17=TempHumidityBasement.bal
+File14=exo_controls_fullscreen_enter.png
+File15=liveviewbuttontranparent.png
+File16=Main.bal
+File17=ScrollViewBasement.bal
+File18=TempHumidityBasement.bal
 File2=1.bal
 File3=1ScrollView.bal
 File4=2.bal
@@ -25,6 +26,7 @@ FileGroup14=Default Group
 FileGroup15=Default Group
 FileGroup16=Default Group
 FileGroup17=Default Group
+FileGroup18=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
@@ -59,7 +61,7 @@ Library6=callsubutils
 Library7=byteconverter
 Library8=xui
 Library9=phone
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddPermission(com.sec.android.provider.badge.permission.READ)~\n~AddPermission(com.sec.android.provider.badge.permission.WRITE)
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddManifestText(<uses-permission~\n~   android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~   android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)
 Module1=Gauge
 Module2=SmartHomeMonitor
 Module3=NotificationService
@@ -67,9 +69,11 @@ Module4=StateManager
 Module5=B4XPageIndicator
 Module6=cMediaData
 Module7=Badger
-NumberOfFiles=17
+Module8=FileProvider
+Module9=Starter
+NumberOfFiles=18
 NumberOfLibraries=24
-NumberOfModules=7
+NumberOfModules=9
 Version=9.5
 @EndOfDesignText@
 #Region  Project Attributes 
@@ -192,6 +196,9 @@ Sub Globals
 	Private btnRefresh As SwiftButton
 	Private btnDriveway As SwiftButton
 	Private lblMediaURL As B4XView
+	Private btnDrivewayFullScreenshot As ImageView
+	Private btnFrontDoorFullScreenshot As ImageView
+	Private btnSideYardFullScreenshot As ImageView
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -769,6 +776,9 @@ Sub TabStrip1_PageSelected (Position As Int)
 				btnDrivewayNewClip.Enabled = False
 				btnFrontDoorNewClip.Enabled = False
 				btnSideYardNewClip.Enabled = False
+				btnDrivewayFullScreenshot.Enabled = False
+				btnFrontDoorFullScreenshot.Enabled = False
+				btnSideYardFullScreenshot.Enabled = False
 				ScrollViewBlink.ScrollToNow(0)
 				BlurIV("Driveway.jpg",ivDriveway)
 				BlurIV("FrontDoor.jpg",ivFrontDoor)
@@ -1181,6 +1191,9 @@ Sub RequestAuthToken As ResumableSub
 				btnDrivewayNewClip.Enabled = True
 				btnFrontDoorNewClip.Enabled = True
 				btnSideYardNewClip.Enabled = True
+				btnDrivewayFullScreenshot.Enabled = True
+				btnFrontDoorFullScreenshot.Enabled = True
+				btnSideYardFullScreenshot.Enabled = True
 				jobLogin.Release
 				Return Null
 			Else
@@ -1228,6 +1241,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 			btnDrivewayNewClip.Enabled = True
 			btnFrontDoorNewClip.Enabled = True
 			btnSideYardNewClip.Enabled = True
+			btnDrivewayFullScreenshot.Enabled = True
+			btnFrontDoorFullScreenshot.Enabled = True
+			btnSideYardFullScreenshot.Enabled = True
 			Return Null
 		End If
 		GetSyncModuleInfo(response)
@@ -1247,6 +1263,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 			btnDrivewayNewClip.Enabled = True
 			btnFrontDoorNewClip.Enabled = True
 			btnSideYardNewClip.Enabled = True
+			btnDrivewayFullScreenshot.Enabled = True
+			btnFrontDoorFullScreenshot.Enabled = True
+			btnSideYardFullScreenshot.Enabled = True
 			Return Null
 		End If
 		GetHomescreen(response)
@@ -1306,7 +1325,7 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 						Exit
 					End If
 				Next
-				GetCameraInfo(response,clv)
+				GetCameraInfo(response)
 				DownloadImage("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg",iv, camera)
 			Else
 				RESTPost("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera & "/thumbnail")
@@ -1323,6 +1342,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 					btnDrivewayNewClip.Enabled = True
 					btnFrontDoorNewClip.Enabled = True
 					btnSideYardNewClip.Enabled = True
+					btnDrivewayFullScreenshot.Enabled = True
+					btnFrontDoorFullScreenshot.Enabled = True
+					btnSideYardFullScreenshot.Enabled = True
 					Return Null
 				Else
 					GetCommandID(response)
@@ -1340,6 +1362,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 						btnDrivewayNewClip.Enabled = True
 						btnFrontDoorNewClip.Enabled = True
 						btnSideYardNewClip.Enabled = True
+						btnDrivewayFullScreenshot.Enabled = True
+						btnFrontDoorFullScreenshot.Enabled = True
+						btnSideYardFullScreenshot.Enabled = True
 						Return Null
 					Else
 						For i = 1 To attempts
@@ -1353,7 +1378,7 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 										Exit
 									End If
 								Next
-								GetCameraInfo(response,clv)
+								GetCameraInfo(response)
 								DownloadImage("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg",iv,camera)
 								Exit
 							Else
@@ -1373,6 +1398,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 								btnDrivewayNewClip.Enabled = True
 								btnFrontDoorNewClip.Enabled = True
 								btnSideYardNewClip.Enabled = True
+								btnDrivewayFullScreenshot.Enabled = True
+								btnFrontDoorFullScreenshot.Enabled = True
+								btnSideYardFullScreenshot.Enabled = True
 								Return Null
 							End If
 						Next
@@ -1401,6 +1429,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 	btnDrivewayNewClip.Enabled = True
 	btnFrontDoorNewClip.Enabled = True
 	btnSideYardNewClip.Enabled = True
+	btnDrivewayFullScreenshot.Enabled = True
+	btnFrontDoorFullScreenshot.Enabled = True
+	btnSideYardFullScreenshot.Enabled = True
 	Return Null
 End Sub
 
@@ -1611,7 +1642,7 @@ Sub GetRESTError(json As String) As String
 	End Try
 End Sub
 
-Sub GetCameraInfo(json As String, clv As CustomListView)
+Sub GetCameraInfo(json As String)
 	Try
 		Dim parser As JSONParser
 		parser.Initialize(json)
@@ -1922,6 +1953,9 @@ Sub btnDriveway_Click
 		btnDrivewayNewClip.Enabled = False
 		btnFrontDoorNewClip.Enabled = False
 		btnSideYardNewClip.Enabled = False
+		btnDrivewayFullScreenshot.Enabled = False
+		btnFrontDoorFullScreenshot.Enabled = False
+		btnSideYardFullScreenshot.Enabled = False
 		BlurIV("Driveway.jpg",ivDriveway)
 		BlurIV("FrontDoor.jpg",ivFrontDoor)
 		BlurIV("SideYard.jpg",ivSideYard)
@@ -2013,6 +2047,9 @@ Sub ivSideYard_Click
 	btnDrivewayNewClip.Visible = Not(btnDrivewayNewClip.Visible)
 	btnFrontDoorNewClip.Visible = Not(btnFrontDoorNewClip.Visible)
 	btnSideYardNewClip.Visible = Not(btnSideYardNewClip.Visible)
+	btnDrivewayFullScreenshot.Visible = Not(btnDrivewayFullScreenshot.Visible)
+	btnFrontDoorFullScreenshot.Visible = Not(btnFrontDoorFullScreenshot.Visible)
+	btnSideYardFullScreenshot.Visible = Not(btnSideYardFullScreenshot.Visible)
 End Sub
 
 Sub ivFrontDoor_Click
@@ -2031,6 +2068,9 @@ Sub ivFrontDoor_Click
 	btnDrivewayNewClip.Visible = Not(btnDrivewayNewClip.Visible)
 	btnFrontDoorNewClip.Visible = Not(btnFrontDoorNewClip.Visible)
 	btnSideYardNewClip.Visible = Not(btnSideYardNewClip.Visible)
+	btnDrivewayFullScreenshot.Visible = Not(btnDrivewayFullScreenshot.Visible)
+	btnFrontDoorFullScreenshot.Visible = Not(btnFrontDoorFullScreenshot.Visible)
+	btnSideYardFullScreenshot.Visible = Not(btnSideYardFullScreenshot.Visible)
 End Sub
 
 Sub ivDriveway_Click
@@ -2049,6 +2089,9 @@ Sub ivDriveway_Click
 	btnDrivewayNewClip.Visible = Not(btnDrivewayNewClip.Visible)
 	btnFrontDoorNewClip.Visible = Not(btnFrontDoorNewClip.Visible)
 	btnSideYardNewClip.Visible = Not(btnSideYardNewClip.Visible)
+	btnDrivewayFullScreenshot.Visible = Not(btnDrivewayFullScreenshot.Visible)
+	btnFrontDoorFullScreenshot.Visible = Not(btnFrontDoorFullScreenshot.Visible)
+	btnSideYardFullScreenshot.Visible = Not(btnSideYardFullScreenshot.Visible)
 End Sub
 
 Sub GetVideos(json As String) As ResumableSub
@@ -2497,6 +2540,9 @@ Sub btnDrivewayNewClip_Click
 			btnDrivewayNewClip.Enabled = False
 			btnFrontDoorNewClip.Enabled = False
 			btnSideYardNewClip.Enabled = False
+			btnDrivewayFullScreenshot.Enabled = False
+			btnFrontDoorFullScreenshot.Enabled = False
+			btnSideYardFullScreenshot.Enabled = False
 			lblStatus.Text = "Capturing a new Driveway video clip..."
 			RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/347574/clip")
 			For i = 1 To 20
@@ -2512,6 +2558,9 @@ Sub btnDrivewayNewClip_Click
 				btnDrivewayNewClip.Enabled = True
 				btnFrontDoorNewClip.Enabled = True
 				btnSideYardNewClip.Enabled = True
+				btnDrivewayFullScreenshot.Enabled = True
+				btnFrontDoorFullScreenshot.Enabled = True
+				btnSideYardFullScreenshot.Enabled = True
 				lblStatus.Text = "Ready"
 				Return
 			End If
@@ -2548,7 +2597,9 @@ Sub btnDrivewayNewClip_Click
 		btnDrivewayNewClip.Enabled = True
 		btnFrontDoorNewClip.Enabled = True
 		btnSideYardNewClip.Enabled = True
-		btnDrivewayNewClip.Enabled = True
+		btnDrivewayFullScreenshot.Enabled = True
+		btnFrontDoorFullScreenshot.Enabled = True
+		btnSideYardFullScreenshot.Enabled = True
 		lblStatus.Text = "Ready"
 	End If
 End Sub
@@ -2564,6 +2615,9 @@ Sub btnFrontDoorNewClip_Click
 			btnDrivewayNewClip.Enabled = False
 			btnFrontDoorNewClip.Enabled = False
 			btnSideYardNewClip.Enabled = False
+			btnDrivewayFullScreenshot.Enabled = False
+			btnFrontDoorFullScreenshot.Enabled = False
+			btnSideYardFullScreenshot.Enabled = False
 			lblStatus.Text = "Capturing a new Front Door video clip..."
 			RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/236967/clip")
 			For i = 1 To 20
@@ -2579,6 +2633,9 @@ Sub btnFrontDoorNewClip_Click
 				btnDrivewayNewClip.Enabled = True
 				btnFrontDoorNewClip.Enabled = True
 				btnSideYardNewClip.Enabled = True
+				btnDrivewayFullScreenshot.Enabled = True
+				btnFrontDoorFullScreenshot.Enabled = True
+				btnSideYardFullScreenshot.Enabled = True
 				lblStatus.Text = "Ready"
 				Return
 			End If
@@ -2615,6 +2672,9 @@ Sub btnFrontDoorNewClip_Click
 		btnDrivewayNewClip.Enabled = True
 		btnFrontDoorNewClip.Enabled = True
 		btnSideYardNewClip.Enabled = True
+		btnDrivewayFullScreenshot.Enabled = True
+		btnFrontDoorFullScreenshot.Enabled = True
+		btnSideYardFullScreenshot.Enabled = True
 		lblStatus.Text = "Ready"
 	End If
 End Sub
@@ -2630,6 +2690,9 @@ Sub btnSideYardNewClip_Click
 			btnDrivewayNewClip.Enabled = False
 			btnFrontDoorNewClip.Enabled = False
 			btnSideYardNewClip.Enabled = False
+			btnDrivewayFullScreenshot.Enabled = False
+			btnFrontDoorFullScreenshot.Enabled = False
+			btnSideYardFullScreenshot.Enabled = False
 			lblStatus.Text = "Capturing a new Side Yard video clip..."
 			RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/226821/clip")
 			For i = 1 To 20
@@ -2645,6 +2708,9 @@ Sub btnSideYardNewClip_Click
 				btnDrivewayNewClip.Enabled = True
 				btnFrontDoorNewClip.Enabled = True
 				btnSideYardNewClip.Enabled = True
+				btnDrivewayFullScreenshot.Enabled = True
+				btnFrontDoorFullScreenshot.Enabled = True
+				btnSideYardFullScreenshot.Enabled = True
 				lblStatus.Text = "Ready"
 				Return
 			End If
@@ -2681,10 +2747,12 @@ Sub btnSideYardNewClip_Click
 		btnDrivewayNewClip.Enabled = True
 		btnFrontDoorNewClip.Enabled = True
 		btnSideYardNewClip.Enabled = True
+		btnDrivewayFullScreenshot.Enabled = True
+		btnFrontDoorFullScreenshot.Enabled = True
+		btnSideYardFullScreenshot.Enabled = True
 		lblStatus.Text = "Ready"
 	End If
 End Sub
-
 
 Sub btnRefresh_Click
 	btnDriveway.Enabled = False
@@ -2696,4 +2764,75 @@ Sub btnRefresh_Click
 	RefreshCameras(True)
 	btnDriveway.Enabled = True
 	btnRefresh.Enabled = True
+End Sub
+
+Sub DownloadImageFullscreen (Link As String, camera As String) 'ignore
+	Try
+		Dim j As HttpJob
+		response = ""
+		j.Initialize("", Me)
+		j.Download(Link)
+		j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
+		Wait For (j) JobDone(j As HttpJob)
+		If j.Success Then
+			
+			Dim out As OutputStream = File.OpenOutput(File.DirInternal, "screenshot.jpg", False)
+			File.Copy2(j.GetInputStream, out)
+			out.Close '<------ very important
+			
+			Dim FileName As String = "screenshot.jpg"
+			File.Copy(File.DirInternal, FileName, Starter.Provider.SharedFolder, FileName)
+			Dim in As Intent
+			in.Initialize(in.ACTION_VIEW, "")
+			Starter.Provider.SetFileUriAsIntentData(in, FileName)
+			'Type must be set after calling SetFileUriAsIntentData
+			in.SetType("image/*")
+			StartActivity(in)
+		Else
+			response = "ERROR: " & j.ErrorMessage
+			lblStatus.Text = GetRESTError(j.ErrorMessage)
+		End If
+		j.Release
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
+Sub btnDrivewayFullScreenshot_Click
+	RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/347574")
+	For i = 1 To 20
+		If response = "" Then
+			Sleep(50)
+		Else
+			Exit
+		End If
+	Next
+	GetCameraInfo(response)
+	DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "347574")
+End Sub
+
+Sub btnFrontDoorFullScreenshot_Click
+	RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/236967")
+	For i = 1 To 20
+		If response = "" Then
+			Sleep(50)
+		Else
+			Exit
+		End If
+	Next
+	GetCameraInfo(response)
+	DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "236967")
+End Sub
+
+Sub btnSideYardFullScreenshot_Click
+	RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/226821")
+	For i = 1 To 20
+		If response = "" Then
+			Sleep(50)
+		Else
+			Exit
+		End If
+	Next
+	GetCameraInfo(response)
+	DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "226821")
 End Sub

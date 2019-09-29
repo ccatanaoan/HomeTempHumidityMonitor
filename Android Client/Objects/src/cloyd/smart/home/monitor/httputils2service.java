@@ -47,7 +47,7 @@ public class httputils2service extends  android.app.Service{
         if (BA.isShellModeRuntimeCheck(processBA)) {
 			processBA.raiseEvent2(null, true, "CREATE", true, "cloyd.smart.home.monitor.httputils2service", processBA, _service, anywheresoftware.b4a.keywords.Common.Density);
 		}
-        if (!false && ServiceHelper.StarterHelper.startFromServiceCreate(processBA, true) == false) {
+        if (!false && ServiceHelper.StarterHelper.startFromServiceCreate(processBA, false) == false) {
 				
 		}
 		else {
@@ -134,6 +134,7 @@ public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.notificationservice _notificationservice = null;
 public cloyd.smart.home.monitor.statemanager _statemanager = null;
+public cloyd.smart.home.monitor.starter _starter = null;
 public static String  _completejob(int _taskid,boolean _success,String _errormessage) throws Exception{
 cloyd.smart.home.monitor.httpjob _job = null;
  //BA.debugLineNum = 93;BA.debugLine="Sub CompleteJob(TaskId As Int, success As Boolean,";
@@ -154,7 +155,7 @@ public static String  _hc_responseerror(anywheresoftware.b4h.okhttp.OkHttpClient
 cloyd.smart.home.monitor.httpjob _job = null;
  //BA.debugLineNum = 70;BA.debugLine="Sub hc_ResponseError (Response As OkHttpResponse,";
  //BA.debugLineNum = 71;BA.debugLine="Log($\"ResponseError. Reason: ${Reason}, Response:";
-anywheresoftware.b4a.keywords.Common.LogImpl("79895937",("ResponseError. Reason: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_reason))+", Response: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_response.getErrorResponse()))+""),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("310027009",("ResponseError. Reason: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_reason))+", Response: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_response.getErrorResponse()))+""),0);
  //BA.debugLineNum = 72;BA.debugLine="Response.Release";
 _response.Release();
  //BA.debugLineNum = 73;BA.debugLine="Dim job As HttpJob = TaskIdToJob.Get(TaskId)";
@@ -222,9 +223,9 @@ anywheresoftware.b4a.keywords.Common.File.Delete(_tempfolder,"~test.test");
  } 
        catch (Exception e6) {
 			processBA.setLastException(e6); //BA.debugLineNum = 21;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("79502728",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("39633800",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 22;BA.debugLine="Log(\"Switching to File.DirInternal\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("79502729","Switching to File.DirInternal",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("39633801","Switching to File.DirInternal",0);
  //BA.debugLineNum = 23;BA.debugLine="TempFolder = File.DirInternal";
 _tempfolder = anywheresoftware.b4a.keywords.Common.File.getDirInternal();
  };

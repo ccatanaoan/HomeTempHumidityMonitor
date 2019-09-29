@@ -39,6 +39,7 @@ public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.notificationservice _notificationservice = null;
 public cloyd.smart.home.monitor.statemanager _statemanager = null;
+public cloyd.smart.home.monitor.starter _starter = null;
 public cloyd.smart.home.monitor.httputils2service _httputils2service = null;
 public static class _multipartfiledata{
 public boolean IsInitialized;
@@ -302,7 +303,7 @@ _length = 0;
  //BA.debugLineNum = 145;BA.debugLine="If Dir = File.DirAssets Then";
 if ((_dir).equals(__c.File.getDirAssets())) { 
  //BA.debugLineNum = 146;BA.debugLine="Log(\"Cannot send files from the assets folder.\")";
-__c.LogImpl("910747911","Cannot send files from the assets folder.",0);
+__c.LogImpl("910878983","Cannot send files from the assets folder.",0);
  //BA.debugLineNum = 147;BA.debugLine="Return";
 if (true) return "";
  };

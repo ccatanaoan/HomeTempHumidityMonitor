@@ -45,6 +45,7 @@ public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.notificationservice _notificationservice = null;
 public cloyd.smart.home.monitor.statemanager _statemanager = null;
+public cloyd.smart.home.monitor.starter _starter = null;
 public cloyd.smart.home.monitor.httputils2service _httputils2service = null;
 public String  _additemstolist(anywheresoftware.b4a.objects.collections.List _li,String _full) throws Exception{
 int _i = 0;
@@ -364,7 +365,7 @@ _count = (int) (_count+1);
  }
 };
  //BA.debugLineNum = 217;BA.debugLine="Log(\"Index time: \" & (DateTime.Now - startTime) &";
-__c.LogImpl("924444961","Index time: "+BA.NumberToString((__c.DateTime.getNow()-_starttime))+" ms ("+BA.NumberToString(_items.getSize())+" Items)",0);
+__c.LogImpl("924576033","Index time: "+BA.NumberToString((__c.DateTime.getNow()-_starttime))+" ms ("+BA.NumberToString(_items.getSize())+" Items)",0);
  //BA.debugLineNum = 218;BA.debugLine="AllItems = Items";
 _allitems = _items;
  //BA.debugLineNum = 219;BA.debugLine="Return Array(prefixList, substringList, AllItems)";

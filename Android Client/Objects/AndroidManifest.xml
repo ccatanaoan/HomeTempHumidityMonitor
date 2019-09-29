@@ -14,14 +14,15 @@
 	<uses-permission
 	  android:name="android.permission.WRITE_EXTERNAL_STORAGE"
 	  android:maxSdkVersion="18" />
+	<uses-permission
+	   android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+	   android:maxSdkVersion="18" />
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.VIBRATE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-	<uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
-	<uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
 	<application
 		android:icon="@drawable/icon"
 		android:label="Smart Home Monitor"
@@ -38,6 +39,15 @@
 		  android:name="de.amberhome.objects.preferenceactivity"
 		  android:theme="@android:style/Theme.Material.Light">
 		</activity>
+		<provider
+		  android:name="androidx.core.content.FileProvider"
+		  android:authorities="cloyd.smart.home.monitor.provider"
+		  android:exported="false"
+		  android:grantUriPermissions="true">
+		  <meta-data
+		  android:name="android.support.FILE_PROVIDER_PATHS"
+		  android:resource="@xml/provider_paths"/>
+		  </provider>
 		<activity
 			android:windowSoftInputMode="stateHidden"
 			android:launchMode="singleTop"
@@ -60,6 +70,10 @@
 		<service android:name=".notificationservice">
 		</service>
 		<receiver android:name=".notificationservice$notificationservice_BR">
+		</receiver>
+		<service android:name=".starter">
+		</service>
+		<receiver android:name=".starter$starter_BR">
 		</receiver>
 		<service android:name=".httputils2service">
 		</service>
