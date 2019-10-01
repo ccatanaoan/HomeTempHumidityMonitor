@@ -528,6 +528,7 @@ Private Sub MQTT_Disconnected
 		gblACMenu.Clear
 		gblACMenu.Add(0, 0, "Settings",Null)
 		'gblACMenu.Add(0, 0, "Restart board",Null)
+		gblACMenu.Add(0, 0, "Remove all KeyValueStore records",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		Log("Disconnected from MQTT broker")
 		MQTT_Connect
@@ -639,38 +640,56 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 			ShowAboutMenu
 		else if Item.Title = "Settings" Then
 			StartActivity(screen.CreateIntent)
+		else if Item.Title = "Remove all KeyValueStore records" Then
+			Dim bd As BitmapDrawable
+			bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
+			If  Msgbox2("Remove all KeyValueStore records?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then
+				Starter.kvs.DeleteAll
+				'Msgbox2("Please restart the application", "Smart Home Monitor", "OK", "", "", bd.Bitmap)
+				'ExitApplication
+				clvActivity.Clear
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetUnwatchedVideos
+				wait for (rs) complete (Results As Object)
+				
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetVideos(response)
+				wait for (rs) complete (Results As Object)
+						
+				tabStripCurrentPage = False
+			End If
 		else if Item.Title = "Restart board" Then
 			Try
-				Dim result As Int
+				Dim Result As Int
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 				If TabStrip1.CurrentPage = 2 Then
-					result = Msgbox2("Restart the BASEMENT controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
-					If result = DialogResponse.POSITIVE Then
+					Result = Msgbox2("Restart the BASEMENT controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+					If Result = DialogResponse.POSITIVE Then
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
 						End If
 						MQTT.Publish("TempHumidBasement", bc.StringToBytes("Restart controller", "utf8"))
 					End If
 				else If TabStrip1.CurrentPage = 1 Then
-					result = Msgbox2("Restart the AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
-					If result = DialogResponse.POSITIVE Then
+					Result = Msgbox2("Restart the AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+					If Result = DialogResponse.POSITIVE Then
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
 						End If
 						MQTT.Publish("MQ7", bc.StringToBytes("Restart controller", "utf8"))
 					End If
 				else If TabStrip1.CurrentPage = 3 Then
-					result = Msgbox2("Restart the BASEMENT AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
-					If result = DialogResponse.POSITIVE Then
+					Result = Msgbox2("Restart the BASEMENT AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+					If Result = DialogResponse.POSITIVE Then
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
 						End If
 						MQTT.Publish("MQ7Basement", bc.StringToBytes("Restart controller", "utf8"))
 					End If
 				Else
-					result = Msgbox2("Restart the WEATHER controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
-					If result = DialogResponse.POSITIVE Then
+					Result = Msgbox2("Restart the WEATHER controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap)
+					If Result = DialogResponse.POSITIVE Then
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
 						End If
@@ -714,7 +733,7 @@ Sub Activity_Createmenu(Menu As ACMenu)
 		Menu.Clear
 		gblACMenu = Menu
 		Menu.Add(0, 0, "Settings",Null)
-		'Menu.Add(0, 0, "Restart board",Null)
+		Menu.Add(0, 0, "Remove all KeyValueStore records",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
 		Log(LastException)
@@ -2493,8 +2512,17 @@ Sub ShowVideo (Link As String) As ResumableSub
 
 		End If
 		If j.ErrorMessage.Contains("Media not found") Then
-			ToastMessageShow("Media not found. Removing from the list.",True)
 			clvActivity.RemoveAt(previousSelectedIndex)
+			Dim list1 As List = Starter.kvs.ListKeys
+			For i =  0 To list1.Size-1
+				Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
+				Dim videos = mytypes As VideoInfo
+				If Link.Contains(videos.VideoID) Then
+					Starter.kvs.Remove(list1.Get(i))
+					Exit
+				End If
+			Next
+			ToastMessageShow("Media not found. Removed from the list.",True)
 		End If
 		j.Release
 	Catch
