@@ -179,67 +179,66 @@ mostCurrent._smarthomemonitor._isoldairqualitynotificationongoing /*boolean*/  =
 mostCurrent._smarthomemonitor._isoldairqualitynotificationongoingbasement /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
  };
  }else if((_sbn.getPackageName()).equals("com.immediasemi.android.blink")) { 
- //BA.debugLineNum = 45;BA.debugLine="If SBN.Id = \"347574\" Or SBN.Id = \"236967\" Or S";
-if (_sbn.getId()==(double)(Double.parseDouble("347574")) || _sbn.getId()==(double)(Double.parseDouble("236967")) || _sbn.getId()==(double)(Double.parseDouble("226821"))) { 
  //BA.debugLineNum = 46;BA.debugLine="StateManager.SetSetting(\"UnwatchedVideoClips\"";
-mostCurrent._statemanager._setsetting /*String*/ (processBA,"UnwatchedVideoClips",BA.NumberToString(_sbn.getId()));
+mostCurrent._statemanager._setsetting /*String*/ (processBA,"UnwatchedVideoClips","1");
  //BA.debugLineNum = 47;BA.debugLine="StateManager.SaveSettings";
 mostCurrent._statemanager._savesettings /*String*/ (processBA);
- };
+ //BA.debugLineNum = 48;BA.debugLine="Main.isThereUnwatchedVideo = True";
+mostCurrent._main._isthereunwatchedvideo /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
  };
  };
  } 
-       catch (Exception e33) {
-			processBA.setLastException(e33); //BA.debugLineNum = 52;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("36881314",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+       catch (Exception e32) {
+			processBA.setLastException(e32); //BA.debugLineNum = 54;BA.debugLine="Log(LastException)";
+anywheresoftware.b4a.keywords.Common.LogImpl("37405604",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
- //BA.debugLineNum = 55;BA.debugLine="End Sub";
+ //BA.debugLineNum = 57;BA.debugLine="End Sub";
 return "";
 }
 public static String  _listener_notificationremoved(anywheresoftware.b4a.objects.NotificationListenerWrapper.StatusBarNotificationWrapper _sbn) throws Exception{
- //BA.debugLineNum = 57;BA.debugLine="Sub Listener_NotificationRemoved (SBN As StatusBar";
- //BA.debugLineNum = 58;BA.debugLine="Try";
-try { //BA.debugLineNum = 60;BA.debugLine="If SBN.PackageName = \"cloyd.smart.home.monitor\"";
+ //BA.debugLineNum = 59;BA.debugLine="Sub Listener_NotificationRemoved (SBN As StatusBar";
+ //BA.debugLineNum = 60;BA.debugLine="Try";
+try { //BA.debugLineNum = 62;BA.debugLine="If SBN.PackageName = \"cloyd.smart.home.monitor\"";
 if ((_sbn.getPackageName()).equals("cloyd.smart.home.monitor")) { 
- //BA.debugLineNum = 61;BA.debugLine="If SBN.Id = 726 Then";
+ //BA.debugLineNum = 63;BA.debugLine="If SBN.Id = 726 Then";
 if (_sbn.getId()==726) { 
- //BA.debugLineNum = 62;BA.debugLine="SmartHomeMonitor.IsAirQualityNotificationOnGoi";
+ //BA.debugLineNum = 64;BA.debugLine="SmartHomeMonitor.IsAirQualityNotificationOnGoi";
 mostCurrent._smarthomemonitor._isairqualitynotificationongoing /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==725) { 
- //BA.debugLineNum = 64;BA.debugLine="SmartHomeMonitor.lngTicks = DateTime.now";
+ //BA.debugLineNum = 66;BA.debugLine="SmartHomeMonitor.lngTicks = DateTime.now";
 mostCurrent._smarthomemonitor._lngticks /*long*/  = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
- //BA.debugLineNum = 65;BA.debugLine="SmartHomeMonitor.lngTicksTempHumid = DateTime.";
+ //BA.debugLineNum = 67;BA.debugLine="SmartHomeMonitor.lngTicksTempHumid = DateTime.";
 mostCurrent._smarthomemonitor._lngtickstemphumid /*long*/  = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
- //BA.debugLineNum = 66;BA.debugLine="SmartHomeMonitor.IsTempHumidityNotificationOnG";
+ //BA.debugLineNum = 68;BA.debugLine="SmartHomeMonitor.IsTempHumidityNotificationOnG";
 mostCurrent._smarthomemonitor._istemphumiditynotificationongoing /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==727) { 
- //BA.debugLineNum = 68;BA.debugLine="SmartHomeMonitor.IsAirQualityNotificationOnGoi";
+ //BA.debugLineNum = 70;BA.debugLine="SmartHomeMonitor.IsAirQualityNotificationOnGoi";
 mostCurrent._smarthomemonitor._isairqualitynotificationongoingbasement /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==728) { 
- //BA.debugLineNum = 70;BA.debugLine="SmartHomeMonitor.lngTicksTempHumidBasement = D";
+ //BA.debugLineNum = 72;BA.debugLine="SmartHomeMonitor.lngTicksTempHumidBasement = D";
 mostCurrent._smarthomemonitor._lngtickstemphumidbasement /*long*/  = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
- //BA.debugLineNum = 71;BA.debugLine="SmartHomeMonitor.IsTempHumidityNotificationOnG";
+ //BA.debugLineNum = 73;BA.debugLine="SmartHomeMonitor.IsTempHumidityNotificationOnG";
 mostCurrent._smarthomemonitor._istemphumiditynotificationongoingbasement /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==730) { 
- //BA.debugLineNum = 73;BA.debugLine="SmartHomeMonitor.IsOldTempHumidityNotification";
+ //BA.debugLineNum = 75;BA.debugLine="SmartHomeMonitor.IsOldTempHumidityNotification";
 mostCurrent._smarthomemonitor._isoldtemphumiditynotificationongoingbasement /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==729) { 
- //BA.debugLineNum = 75;BA.debugLine="SmartHomeMonitor.IsOldTempHumidityNotification";
+ //BA.debugLineNum = 77;BA.debugLine="SmartHomeMonitor.IsOldTempHumidityNotification";
 mostCurrent._smarthomemonitor._isoldtemphumiditynotificationongoing /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==731) { 
- //BA.debugLineNum = 77;BA.debugLine="SmartHomeMonitor.IsOldAirQualityNotificationOn";
+ //BA.debugLineNum = 79;BA.debugLine="SmartHomeMonitor.IsOldAirQualityNotificationOn";
 mostCurrent._smarthomemonitor._isoldairqualitynotificationongoing /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  }else if(_sbn.getId()==732) { 
- //BA.debugLineNum = 79;BA.debugLine="SmartHomeMonitor.IsOldAirQualityNotificationOn";
+ //BA.debugLineNum = 81;BA.debugLine="SmartHomeMonitor.IsOldAirQualityNotificationOn";
 mostCurrent._smarthomemonitor._isoldairqualitynotificationongoingbasement /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  };
  };
  } 
        catch (Exception e25) {
-			processBA.setLastException(e25); //BA.debugLineNum = 85;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("36946844",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+			processBA.setLastException(e25); //BA.debugLineNum = 87;BA.debugLine="Log(LastException)";
+anywheresoftware.b4a.keywords.Common.LogImpl("37471132",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
- //BA.debugLineNum = 88;BA.debugLine="End Sub";
+ //BA.debugLineNum = 90;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
@@ -257,8 +256,8 @@ _listener.Initialize(processBA,"listener");
 return "";
 }
 public static String  _service_destroy() throws Exception{
- //BA.debugLineNum = 90;BA.debugLine="Sub Service_Destroy";
- //BA.debugLineNum = 92;BA.debugLine="End Sub";
+ //BA.debugLineNum = 92;BA.debugLine="Sub Service_Destroy";
+ //BA.debugLineNum = 94;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{

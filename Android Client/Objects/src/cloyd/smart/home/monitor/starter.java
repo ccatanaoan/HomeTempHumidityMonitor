@@ -126,6 +126,7 @@ public class starter extends  android.app.Service{
 		return null;
 	}public anywheresoftware.b4a.keywords.Common __c = null;
 public static cloyd.smart.home.monitor.fileprovider _provider = null;
+public static cloyd.smart.home.monitor.keyvaluestore _kvs = null;
 public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
@@ -133,39 +134,43 @@ public cloyd.smart.home.monitor.notificationservice _notificationservice = null;
 public cloyd.smart.home.monitor.statemanager _statemanager = null;
 public cloyd.smart.home.monitor.httputils2service _httputils2service = null;
 public static boolean  _application_error(anywheresoftware.b4a.objects.B4AException _error,String _stacktrace) throws Exception{
- //BA.debugLineNum = 23;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
- //BA.debugLineNum = 24;BA.debugLine="Return True";
+ //BA.debugLineNum = 25;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
+ //BA.debugLineNum = 26;BA.debugLine="Return True";
 if (true) return anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 25;BA.debugLine="End Sub";
+ //BA.debugLineNum = 27;BA.debugLine="End Sub";
 return false;
 }
 public static String  _process_globals() throws Exception{
  //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
  //BA.debugLineNum = 7;BA.debugLine="Public Provider As FileProvider";
 _provider = new cloyd.smart.home.monitor.fileprovider();
- //BA.debugLineNum = 8;BA.debugLine="End Sub";
+ //BA.debugLineNum = 8;BA.debugLine="Public kvs As KeyValueStore";
+_kvs = new cloyd.smart.home.monitor.keyvaluestore();
+ //BA.debugLineNum = 9;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_create() throws Exception{
- //BA.debugLineNum = 10;BA.debugLine="Sub Service_Create";
- //BA.debugLineNum = 11;BA.debugLine="Provider.Initialize";
+ //BA.debugLineNum = 11;BA.debugLine="Sub Service_Create";
+ //BA.debugLineNum = 12;BA.debugLine="Provider.Initialize";
 _provider._initialize /*String*/ (processBA);
- //BA.debugLineNum = 12;BA.debugLine="End Sub";
+ //BA.debugLineNum = 13;BA.debugLine="kvs.Initialize(File.DirInternal, \"datastore\")";
+_kvs._initialize /*String*/ (processBA,anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"datastore");
+ //BA.debugLineNum = 14;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_destroy() throws Exception{
- //BA.debugLineNum = 27;BA.debugLine="Sub Service_Destroy";
- //BA.debugLineNum = 29;BA.debugLine="End Sub";
+ //BA.debugLineNum = 29;BA.debugLine="Sub Service_Destroy";
+ //BA.debugLineNum = 31;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{
- //BA.debugLineNum = 14;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
- //BA.debugLineNum = 16;BA.debugLine="End Sub";
+ //BA.debugLineNum = 16;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
+ //BA.debugLineNum = 18;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_taskremoved() throws Exception{
- //BA.debugLineNum = 18;BA.debugLine="Sub Service_TaskRemoved";
- //BA.debugLineNum = 20;BA.debugLine="End Sub";
+ //BA.debugLineNum = 20;BA.debugLine="Sub Service_TaskRemoved";
+ //BA.debugLineNum = 22;BA.debugLine="End Sub";
 return "";
 }
 }

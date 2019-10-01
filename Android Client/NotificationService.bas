@@ -48,10 +48,12 @@ Sub Listener_NotificationPosted (SBN As StatusBarNotification)
 					SmartHomeMonitor.IsOldAirQualityNotificationOnGoingBasement = True
 				End If
 			Else If SBN.PackageName = "com.immediasemi.android.blink" Then
-				If SBN.Id = "347574" Or SBN.Id = "236967" Or SBN.Id = "226821" Then
-					StateManager.SetSetting("UnwatchedVideoClips",SBN.Id)
+				'If SBN.Id = "347574" Or SBN.Id = "236967" Or SBN.Id = "226821" Then
+					StateManager.SetSetting("UnwatchedVideoClips","1")
 					StateManager.SaveSettings
-				End If
+					Main.isThereUnwatchedVideo = True
+
+				'End If
 			End If
 		End If
 	Catch
