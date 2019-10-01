@@ -54,6 +54,8 @@ Library21=xui views
 Library22=runtimepermissions
 Library23=webviewsettings
 Library24=exoplayer
+Library25=sql
+Library26=b4xencryption
 Library3=javaobject
 Library4=xmllayoutbuilder
 Library5=jmqtt
@@ -63,6 +65,7 @@ Library8=xui
 Library9=phone
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddManifestText(<uses-permission~\n~   android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~   android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)
 Module1=Gauge
+Module10=KeyValueStore
 Module2=SmartHomeMonitor
 Module3=NotificationService
 Module4=StateManager
@@ -72,8 +75,8 @@ Module7=Badger
 Module8=FileProvider
 Module9=Starter
 NumberOfFiles=18
-NumberOfLibraries=24
-NumberOfModules=9
+NumberOfLibraries=26
+NumberOfModules=10
 Version=9.5
 @EndOfDesignText@
 #Region  Project Attributes 
@@ -121,8 +124,9 @@ Sub Process_Globals
 	Private frontdoorArmedStatus As String
 	Private sideyardArmedStatus As String
 	Private tabStripCurrentPage As Boolean = False
-	Private prevvideo As String
 	Type CardData (screenshot As B4XBitmap,filedate As String, deviceinfo As String, iswatchedvisible As Boolean, mediaURL As String)
+	Type VideoInfo (ThumbnailPath As String, DateCreated As String, Watched As String, DeviceName As String, VideoID As String, ThumbnailBLOB() As Byte)
+	Public isThereUnwatchedVideo As Boolean
 End Sub
 
 Sub Globals
@@ -423,14 +427,15 @@ Sub Activity_Resume
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 		Dim rs As ResumableSub = GetUnwatchedVideos
 		wait for (rs) complete (Result As Object)
-		
+					
 		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-		If IsNumber(UnwatchedVideoClips) Then
+		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo = True Then
 			If UnwatchedVideoClips > 0 Then
-				tabStripCurrentPage = True
-				TabStrip1.ScrollTo(5,False)
 				tabStripCurrentPage = False
 				TabStrip1_PageSelected(5)
+				tabStripCurrentPage = True
+				TabStrip1.ScrollTo(5,False)
+				Sleep(100)
 				
 				Try
 					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
@@ -439,10 +444,12 @@ Sub Activity_Resume
 				Catch
 					Log(LastException)
 				End Try
-				
+				isThereUnwatchedVideo = False
 				Return
 			End If
 		End If
+		
+		isThereUnwatchedVideo = False
 		
 		If tabStripCurrentPage = False And TabStrip1.CurrentPage = 5 Then
 			If clvActivity.Size > 0 Then
@@ -794,6 +801,8 @@ Sub TabStrip1_PageSelected (Position As Int)
 		If Position = 5 Then
 			If tabStripCurrentPage = False Then
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				
+				
 				Dim rs As ResumableSub = GetUnwatchedVideos
 				wait for (rs) complete (Result As Object)
 
@@ -808,7 +817,6 @@ Sub TabStrip1_PageSelected (Position As Int)
 						' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 						Dim rs As ResumableSub = GetUnwatchedVideos
 						wait for (rs) complete (Result As Object)
-						
 						tabStripCurrentPage = False
 						Return
 					End If
@@ -2097,7 +2105,6 @@ End Sub
 Sub GetVideos(json As String) As ResumableSub
 	Try
 		Dim parser As JSONParser
-		Dim firstvideo As String
 		parser.Initialize(json)
 		Dim root As Map = parser.NextObject
 		Dim media As List = root.Get("media")
@@ -2106,6 +2113,8 @@ Sub GetVideos(json As String) As ResumableSub
 		Dim lbl As B4XView = GetAllTabLabelsForBadge(TabStrip1).Get(5)
 		'badger1.SetBadge(lbl, 0)
 
+		clvActivity.Clear
+		
 		Dim k As Int = StringCount(response,"""watched"":false",True)
 		badger1.SetBadge(lbl,k)
 		StateManager.SetSetting("UnwatchedVideoClips",k)
@@ -2117,53 +2126,66 @@ Sub GetVideos(json As String) As ResumableSub
 			Dim device_name As String = colmedia.Get("device_name")
 			Dim watched As String = colmedia.Get("watched")
 			Dim medianame As String = colmedia.Get("media")
-			Dim j As HttpJob
-			j.Initialize("", Me)
-			j.Download("https://rest-" & userRegion &".immedia-semi.com" & thumbnail & ".jpg")
-			j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
-			Wait For (j) JobDone(j As HttpJob)
-			If j.Success Then
-				' Save to a JPG file
-				If prevvideo <> "https://rest-" & userRegion &".immedia-semi.com" & medianame Then
-					Dim out As OutputStream = File.OpenOutput(File.DirInternal, "screenshot.jpg", False)
-					File.Copy2(j.GetInputStream, out)
-					out.Close '<------ very important
+			Dim VideoID As String = colmedia.Get("id")
 				
-					' Display in Webview
-'					Dim p As B4XView = CreateListItem(j.GetBitmap,created_at, device_name, Not(watched))
-'					clvActivity.Add(p,"https://rest-" & userRegion &".immedia-semi.com" & medianame & "|" & device_name & " " & ConvertDayName(created_at))
-'					If watched <> "true" Then
-'						ivWatched.Visible = True
-'					Else
-'						ivWatched.Visible = False
-'					End If
-					Dim cd As CardData
-					cd.Initialize
-					cd.screenshot = j.GetBitmap
-					cd.filedate = created_at
-					cd.deviceinfo = device_name
-					cd.iswatchedvisible = Not(watched)
-					cd.mediaURL = "https://rest-" & userRegion &".immedia-semi.com" & medianame
-					Dim p As B4XView = xui.CreatePanel("")
-					p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width, 100dip)
-					clvActivity.Add(p, cd)
-					
-					If clvActivity.Size = 1 Then
-						firstvideo = ("https://rest-" & userRegion &".immedia-semi.com" & medianame)
-					End If
-					' Type CardData (screenshot As B4XBitmap,filedate As String, fileinfo As String, deviceinfo As String, iswatchedvisible as Boolean)
+			' https://www.b4x.com/android/forum/threads/b4x-xui-image-to-jpeg-byte-array-with-resize-quality-options.91774/#content
+			' https://www.b4x.com/android/forum/threads/b4x-bytes-to-file.70111/#post-445167
+			If Starter.kvs.ContainsKey(VideoID) = False Then
+				Dim j As HttpJob
+				j.Initialize("", Me)
+				j.Download("https://rest-" & userRegion &".immedia-semi.com" & thumbnail & ".jpg")
+				j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
+				Wait For (j) JobDone(j As HttpJob)
+				If j.Success Then
+					Dim image As B4XBitmap = j.GetBitmap
+					'Convert image to JPEG byte array
+					Dim out As OutputStream
+					out.InitializeToBytesArray(0)
+					image.WriteToStream(out, 100, "JPEG")
+					Starter.kvs.Put(VideoID, CreateCustomType(medianame,created_at,watched,device_name,VideoID,out.ToBytesArray))
+					out.Close
 				End If
-				prevvideo = "https://rest-" & userRegion &".immedia-semi.com" & medianame
-			Else
-
+				j.Release
 			End If
-			j.Release
 		Next
+			
+		clvActivity.Clear
+		Dim list1 As List = Starter.kvs.ListKeys
+		For i =  0 To list1.Size-1  ' (list1.Size-1) To 0 Step -1
+			
+			Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
+			Dim videos = mytypes As VideoInfo
+			
+			'Log("kvs.ListKeys " & i & " | " & videos.VideoID & " | " & videos.Watched)
+			
+			Dim In As InputStream
+			In.InitializeFromBytesArray(videos.ThumbnailBLOB, 0, videos.ThumbnailBLOB.Length)
+			Dim bmp As Bitmap
+			bmp.Initialize2(In)
+			
+			Dim cd As CardData
+			cd.Initialize
+			cd.screenshot = bmp
+			cd.filedate = videos.DateCreated
+			cd.deviceinfo = videos.DeviceName
+			cd.iswatchedvisible = Not(videos.Watched)
+			cd.mediaURL = "https://rest-" & userRegion &".immedia-semi.com" & videos.ThumbnailPath
+			Dim p As B4XView = xui.CreatePanel("")
+			p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width, 100dip)
+			clvActivity.Add(p, cd)
+			
+			If i > 24 Then
+				Log(Starter.kvs.Remove(list1.Get(i)))
+			End If
+		Next
+		Log(clvActivity.Size)
 		ProgressDialogHide
-		If clvActivity.Size > 0 Then
-			B4XLoadingIndicator4.Show
-			ShowVideo(firstvideo)
-			UpdateItemColor(clvActivity.FirstVisibleIndex, xui.Color_Blue)
+
+		If list1.Size > 0 Then
+			clvActivity.JumpToItem(0)
+			Sleep(100)
+			clvActivity_ItemClick(0,"") '"https://rest-" & userRegion &".immedia-semi.com" & videos.ThumbnailPath & "|" & videos.DeviceName & " " & ConvertFullDateTime(videos.DateCreated))
+			Sleep(100)
 		End If
 	Catch
 		B4XLoadingIndicator4.hide
@@ -2171,6 +2193,19 @@ Sub GetVideos(json As String) As ResumableSub
 	End Try
 	Return Null
 End Sub
+
+Private Sub CreateCustomType(ThumbnailPath As String, DateCreated As String, Watched As String, DeviceName As String, VideoID As String, ThumbnailBLOB() As Byte) As VideoInfo
+	Dim ct As VideoInfo
+	ct.Initialize
+	ct.ThumbnailPath = ThumbnailPath
+	ct.DateCreated = DateCreated
+	ct.Watched = Watched
+	ct.DeviceName = DeviceName
+	ct.ThumbnailBLOB = ThumbnailBLOB
+	ct.VideoID = VideoID
+	Return ct
+End Sub
+
 
 Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
 	Dim ExtraSize As Int = 1
@@ -2272,6 +2307,16 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 		Dim videoURL As String = cd.mediaURL
 		
 		B4XLoadingIndicator4.Show
+		
+		Dim list1 As List = Starter.kvs.ListKeys
+		For i =  0 To list1.Size-1
+			Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
+			Dim videos = mytypes As VideoInfo
+			If videoURL.Contains(videos.VideoID) Then
+				' kvs.Put(VideoID, CreateCustomType(medianame,created_at,watched,device_name,VideoID,out.ToBytesArray))
+				Starter.kvs.Put(videos.VideoID,CreateCustomType(videos.ThumbnailPath,videos.DateCreated,"true",videos.DeviceName,videos.VideoID,videos.ThumbnailBLOB))
+			End If
+		Next
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 		Dim rs As ResumableSub = ShowVideo(videoURL)
 		wait for (rs) complete (Result As Object)
@@ -2757,6 +2802,12 @@ End Sub
 Sub btnRefresh_Click
 	btnDriveway.Enabled = False
 	btnRefresh.Enabled = False
+	btnDrivewayNewClip.Enabled = False
+	btnFrontDoorNewClip.Enabled = False
+	btnSideYardNewClip.Enabled = False
+	btnDrivewayFullScreenshot.Enabled = False
+	btnFrontDoorFullScreenshot.Enabled = False
+	btnSideYardFullScreenshot.Enabled = False
 	ScrollViewBlink.ScrollToNow(0)
 	BlurIV("Driveway.jpg",ivDriveway)
 	BlurIV("FrontDoor.jpg",ivFrontDoor)
@@ -2764,6 +2815,12 @@ Sub btnRefresh_Click
 	RefreshCameras(True)
 	btnDriveway.Enabled = True
 	btnRefresh.Enabled = True
+	btnDrivewayNewClip.Enabled = True
+	btnFrontDoorNewClip.Enabled = True
+	btnSideYardNewClip.Enabled = True
+	btnDrivewayFullScreenshot.Enabled = True
+	btnFrontDoorFullScreenshot.Enabled = True
+	btnSideYardFullScreenshot.Enabled = True
 End Sub
 
 Sub DownloadImageFullscreen (Link As String, camera As String) 'ignore
@@ -2809,6 +2866,9 @@ Sub btnDrivewayFullScreenshot_Click
 	Next
 	GetCameraInfo(response)
 	DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "347574")
+	If response.StartsWith("ERROR: ") = False Then
+		lblStatus.Text = "Ready"
+	End If
 End Sub
 
 Sub btnFrontDoorFullScreenshot_Click
@@ -2822,6 +2882,9 @@ Sub btnFrontDoorFullScreenshot_Click
 	Next
 	GetCameraInfo(response)
 	DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "236967")
+	If response.StartsWith("ERROR: ") = False Then
+		lblStatus.Text = "Ready"
+	End If
 End Sub
 
 Sub btnSideYardFullScreenshot_Click
@@ -2835,4 +2898,7 @@ Sub btnSideYardFullScreenshot_Click
 	Next
 	GetCameraInfo(response)
 	DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "226821")
+	If response.StartsWith("ERROR: ") = False Then
+		lblStatus.Text = "Ready"
+	End If
 End Sub

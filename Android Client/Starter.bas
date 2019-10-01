@@ -11,10 +11,12 @@ Version=6.31
 
 Sub Process_Globals
 	Public Provider As FileProvider	
+	Public kvs As KeyValueStore
 End Sub
 
 Sub Service_Create
 	Provider.Initialize
+	kvs.Initialize(File.DirInternal, "datastore")
 End Sub
 
 Sub Service_Start (StartingIntent As Intent)
