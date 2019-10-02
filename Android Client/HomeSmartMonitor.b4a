@@ -2270,7 +2270,6 @@ Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
 				Dim cd As CardData = clvActivity.GetValue(i)
 				p.LoadLayout("blinkcellitem")
 				ivScreenshot.Bitmap = cd.screenshot
-				ivWatched.Visible = cd.iswatchedvisible
 								
 				Dim dayname As String 
 				dayname = ConvertDayName(cd.filedate)
@@ -2284,8 +2283,8 @@ Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
 				lblFileInfo.Text = "   " & ConvertFullDateTime(cd.filedate)
 				lblDeviceInfo.Text = "   " & cd.deviceinfo
 				lblMediaURL.Text = cd.mediaURL
-				
-				If previousSelectedIndex = i Then
+						
+				If previousSelectedIndex = i Then						
 					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 					If p.NumberOfViews > 0 Then
 						Dim backPane As B4XView = p.getview(0)
@@ -2304,6 +2303,7 @@ Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
 		End If
 	Next
 End Sub
+
 '
 'Sub CreateListItem(screenshot As B4XBitmap, fileinfo As String, devicename As String, isWatchedVisible As Boolean) As B4XView
 '	Try
@@ -2337,6 +2337,9 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 		Dim p As B4XView = clvActivity.GetPanel(Index)
 		If p.NumberOfViews > 0 Then			
 			Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
+			ContentLabel.Visible = False
+			
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(4)
 			ContentLabel.Visible = False
 		End If
 		
@@ -2495,9 +2498,9 @@ Sub ConvertDayName(inputTime As String) As String
 
 	DateTime.DateFormat = "h:mm:ss a"
 	If DateUtils.IsSameDay(lngTicks,DateTime.now) Then
-		Return "Today " '& DateTime.Date(lngTicks)
+		Return "Today" '& DateTime.Date(lngTicks)
 	Else If Yesterday = timestamp Then
-		Return "Yesterday " '& DateTime.Date(lngTicks)
+		Return "Yesterday" '& DateTime.Date(lngTicks)
 	Else 
 		Return DateUtils.GetDayOfWeekName(lngTicks) '& " " & DateTime.Date(lngTicks)
 	End If
@@ -2538,8 +2541,6 @@ Sub ShowVideo (Link As String) As ResumableSub
 			Dim out As OutputStream = File.OpenOutput(File.DirInternal, "media.mp4", False)
 			File.Copy2(j.GetInputStream, out)
 			out.Close '<------ very important
-		
-			
 			
 			Dim sb As StringBuilder
 			sb.Initialize
@@ -3019,6 +3020,9 @@ End Sub
 
 Sub ivPlay_Click
 	Try
+		Dim p As Phone
+		p.SetMute(3,True)
+		
 		B4XLoadingIndicator4.Show
 		wvMedia.LoadUrl("")
 		
