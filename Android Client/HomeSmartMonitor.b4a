@@ -2361,11 +2361,6 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 		Dim rs As ResumableSub = ShowVideo(videoURL)
 		wait for (rs) complete (Result As Object)
-		
-		If p.NumberOfViews > 0 Then			
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
-			ContentLabel.Visible = True
-		End If
 	Catch
 		B4XLoadingIndicator4.Hide
 		Log(LastException)
@@ -2544,6 +2539,8 @@ Sub ShowVideo (Link As String) As ResumableSub
 			File.Copy2(j.GetInputStream, out)
 			out.Close '<------ very important
 		
+			
+			
 			Dim sb As StringBuilder
 			sb.Initialize
 			sb.Append("<video width='100%' height='100%' controls autoplay muted>")
@@ -2585,7 +2582,6 @@ Sub ShowVideo (Link As String) As ResumableSub
 	End Try
 	
 	Try
-		Sleep(2000)
 		Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 		If p.NumberOfViews > 0 Then
 			'get the content label view (it is inside an additional panel)
@@ -2597,6 +2593,9 @@ Sub ShowVideo (Link As String) As ResumableSub
 			
 			Dim ContentLabel1 As Label = p.GetView(0).GetView(0)
 			ContentLabel1.Text = "   " & ConvertDayName(cd.filedate)
+			
+			Dim ContentLabel As ImageView = p.GetView(0).GetView(6)
+			ContentLabel.Visible = True
 		End If
 		
 		GetUnwatchedVideos
@@ -2608,10 +2607,6 @@ End Sub
 
 Sub wvMedia_PageFinished (Url As String)
 	
-End Sub
-
-Sub lblSyncModule_Click
-
 End Sub
 
 Sub ConvertTicksToTimeString(t As Long) As String
@@ -3024,6 +3019,13 @@ End Sub
 
 Sub ivPlay_Click
 	Try
+		B4XLoadingIndicator4.Show
+		wvMedia.LoadUrl("")
+		
+		Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
+		Dim rs As ResumableSub = ShowVideo(cd.mediaURL)
+		wait for (rs) complete (Result As Object)
+		
 		Dim FileName As String = "media.mp4"
 		If File.Exists(File.DirInternal, FileName) Then
 			File.Copy(File.DirInternal, FileName, Starter.Provider.SharedFolder, FileName)
@@ -3034,6 +3036,7 @@ Sub ivPlay_Click
 			in.SetType("video/*")
 			StartActivity(in)
 		End If
+		B4XLoadingIndicator4.Hide
 	Catch
 		Log(LastException)
 	End Try

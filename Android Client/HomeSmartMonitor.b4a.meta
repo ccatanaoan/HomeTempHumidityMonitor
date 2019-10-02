@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,btnSideYardFullScreenshot_Click,2920,0,Main,ivPlay_Click,2924,6,Main,DownloadImageFullscreen,2869,0,Main,Globals,126,0,Main,Activity_Resume,383,0,Main,TabStrip1_PageSelected,772,0,Main,UpdateItemColor,2307,4,Main,clvActivity_VisibleRangeChanged,2193,0,Visual Designer,blinkcellitem.bal,-100,6,Main,clvActivity_ItemClick,2281,2
+NavigationStack=Main,ConvertTicksToTimeString,2529,0,Main,clvActivity_VisibleRangeChanged,2210,0,Main,wvMedia_PageFinished,2521,0,Main,Activity_Resume,382,0,Main,TabStrip1_PageSelected,771,0,Main,ShowVideo,2445,4,Main,UpdateItemColor,2288,6,Main,GetVideos,2125,0,Main,clvActivity_ItemClick,2262,3,Main,ivPlay_Click,2944,6
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
