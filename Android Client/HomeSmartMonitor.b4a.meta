@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,ShowVideo,2514,0,Main,clvActivity_VisibleRangeChanged,2213,5,Main,Process_Globals,27,0,Main,RefreshCameras,1158,0,Main,BlurIV,1923,0,Main,TabStrip1_PageSelected,728,0,Main,btnDriveway_Click,1904,0,Main,btnRefresh_Click,2837,0,Main,DownloadImageFullscreen,2875,0,Main,DownloadImage,1455,0
+NavigationStack=Main,RefreshCameras,1158,0,Main,BlurIV,1923,0,Main,btnDriveway_Click,1904,0,Main,btnRefresh_Click,2837,0,Main,DownloadImageFullscreen,2875,0,Main,DownloadImage,1455,0,Main,TabStrip1_PageSelected,718,0,Main,clvActivity_VisibleRangeChanged,2231,0,Visual Designer,blinkcellitem.bal,-100,6,Main,GetVideos,2146,0
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
