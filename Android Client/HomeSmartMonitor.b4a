@@ -5,10 +5,11 @@ File11=camera-icon.png
 File12=cloyd.png
 File13=crysta.ttf
 File14=exo_controls_fullscreen_enter.png
-File15=liveviewbuttontranparent.png
-File16=Main.bal
-File17=ScrollViewBasement.bal
-File18=TempHumidityBasement.bal
+File15=ic_play.png
+File16=liveviewbuttontranparent.png
+File17=Main.bal
+File18=ScrollViewBasement.bal
+File19=TempHumidityBasement.bal
 File2=1.bal
 File3=1ScrollView.bal
 File4=2.bal
@@ -27,6 +28,7 @@ FileGroup15=Default Group
 FileGroup16=Default Group
 FileGroup17=Default Group
 FileGroup18=Default Group
+FileGroup19=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
@@ -74,7 +76,7 @@ Module6=cMediaData
 Module7=Badger
 Module8=FileProvider
 Module9=Starter
-NumberOfFiles=18
+NumberOfFiles=19
 NumberOfLibraries=26
 NumberOfModules=10
 Version=9.5
@@ -203,6 +205,7 @@ Sub Globals
 	Private btnDrivewayFullScreenshot As ImageView
 	Private btnFrontDoorFullScreenshot As ImageView
 	Private btnSideYardFullScreenshot As ImageView
+	Private ivPlay As ImageView
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -457,20 +460,17 @@ Sub Activity_Resume
 				Sleep(100)
 				Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 				If p.NumberOfViews > 0 Then
-					'get the content label view (it is inside an additional panel)
-					Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
-					ContentLabel.TextColor = xui.Color_Blue
-		
-					Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
-					ContentLabel.TextColor = xui.Color_Blue
-		
-					Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
-					ContentLabel.TextColor = xui.Color_Blue
+					Dim backPane As B4XView = p.getview(0)
+					backPane.Color = xui.Color_ARGB(255,217,215,222)
+					
+					Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
+					ContentLabel.Visible = True
 				End If
 				B4XLoadingIndicator4.Show
 				Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
 				Dim firstvideo As String
 				firstvideo = cd.mediaURL
+				lblDuration.Text = "0:00"
 				ShowVideo(firstvideo)
 			End If
 		End If
@@ -527,7 +527,7 @@ Private Sub MQTT_Disconnected
 	Try
 		gblACMenu.Clear
 		gblACMenu.Add(0, 0, "Settings",Null)
-		'gblACMenu.Add(0, 0, "Restart board",Null)
+		gblACMenu.Add(0, 0, "Show KeyValueStore records numbers",Null)
 		gblACMenu.Add(0, 0, "Remove all KeyValueStore records",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		Log("Disconnected from MQTT broker")
@@ -640,6 +640,8 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 			ShowAboutMenu
 		else if Item.Title = "Settings" Then
 			StartActivity(screen.CreateIntent)
+		Else If Item.Title = "Show KeyValueStore records numbers" Then
+			Msgbox(Starter.kvs.ListKeys.Size & " records","Smart Home Monitor")
 		else if Item.Title = "Remove all KeyValueStore records" Then
 			Dim bd As BitmapDrawable
 			bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
@@ -733,6 +735,7 @@ Sub Activity_Createmenu(Menu As ACMenu)
 		Menu.Clear
 		gblACMenu = Menu
 		Menu.Add(0, 0, "Settings",Null)
+		Menu.Add(0, 0, "Show KeyValueStore records numbers",Null)
 		Menu.Add(0, 0, "Remove all KeyValueStore records",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
@@ -846,20 +849,17 @@ Sub TabStrip1_PageSelected (Position As Int)
 					Sleep(100)
 					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 					If p.NumberOfViews > 0 Then
-						'get the content label view (it is inside an additional panel)
-						Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
-						ContentLabel.TextColor = xui.Color_Blue
-		
-						Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
-						ContentLabel.TextColor = xui.Color_Blue
-		
-						Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
-						ContentLabel.TextColor = xui.Color_Blue
+						Dim backPane As B4XView = p.getview(0)
+						backPane.Color = xui.Color_ARGB(255,217,215,222)
+						
+						Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
+						ContentLabel.Visible = True
 					End If
 					B4XLoadingIndicator4.Show
 					Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
 					Dim firstvideo As String
 					firstvideo = cd.mediaURL
+					lblDuration.Text = "0:00"
 					ShowVideo(firstvideo)
 				End If
 			End If
@@ -1249,7 +1249,6 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 	Try
 		Dim camera As String
 		Dim iv As ImageView
-		Dim clv As CustomListView
 		Dim links As List
 		Dim attempts As Int
 		links = Array("347574", "236967", "226821")
@@ -1905,7 +1904,7 @@ Sub CheckBattLife(battlevel As Int, lbl As Label) As String
 		else If battlevel >= 160 Then
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
 			Return "Very high"
-		else If battlevel > 136 And battlevel < 138 Then
+		else If battlevel > 136 And battlevel < 140 Then
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Yellow))
 			Return "Very low"
 		Else
@@ -1983,10 +1982,25 @@ Sub btnDriveway_Click
 		btnDrivewayFullScreenshot.Enabled = False
 		btnFrontDoorFullScreenshot.Enabled = False
 		btnSideYardFullScreenshot.Enabled = False
+		ivDriveway.Enabled = False
+		ivFrontDoor.Enabled = False
+		ivSideYard.Enabled = False
 		BlurIV("Driveway.jpg",ivDriveway)
 		BlurIV("FrontDoor.jpg",ivFrontDoor)
 		BlurIV("SideYard.jpg",ivSideYard)
-		RefreshCameras(False)
+		Dim rs As ResumableSub = RefreshCameras(False)
+		wait for (rs) complete (Result As Object)
+		btnDriveway.Enabled = True
+		btnRefresh.Enabled = True
+		btnDrivewayNewClip.Enabled = True
+		btnFrontDoorNewClip.Enabled = True
+		btnSideYardNewClip.Enabled = True
+		btnDrivewayFullScreenshot.Enabled = True
+		btnFrontDoorFullScreenshot.Enabled = True
+		btnSideYardFullScreenshot.Enabled = True
+		ivDriveway.Enabled = True
+		ivFrontDoor.Enabled = True
+		ivSideYard.Enabled = True
 	End If
 End Sub
 
@@ -2165,6 +2179,26 @@ Sub GetVideos(json As String) As ResumableSub
 					out.Close
 				End If
 				j.Release
+			Else
+				Dim mytypes As Object = Starter.kvs.Get(VideoID)
+				Dim videos = mytypes As VideoInfo
+				If  watched <> videos.Watched Then
+					Dim j As HttpJob
+					j.Initialize("", Me)
+					j.Download("https://rest-" & userRegion &".immedia-semi.com" & thumbnail & ".jpg")
+					j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
+					Wait For (j) JobDone(j As HttpJob)
+					If j.Success Then
+						Dim image As B4XBitmap = j.GetBitmap
+						'Convert image to JPEG byte array
+						Dim out As OutputStream
+						out.InitializeToBytesArray(0)
+						image.WriteToStream(out, 100, "JPEG")
+						Starter.kvs.Put(VideoID, CreateCustomType(medianame,created_at,watched,device_name,VideoID,out.ToBytesArray))
+						out.Close
+					End If
+					j.Release
+				End If
 			End If
 		Next
 			
@@ -2193,11 +2227,11 @@ Sub GetVideos(json As String) As ResumableSub
 			p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width, 100dip)
 			clvActivity.Add(p, cd)
 			
-			If i > 24 Then
-				Log(Starter.kvs.Remove(list1.Get(i)))
+			If i > 50 Then
+				Starter.kvs.Remove(list1.Get(i))
 			End If
 		Next
-		Log(clvActivity.Size)
+
 		ProgressDialogHide
 
 		If list1.Size > 0 Then
@@ -2254,15 +2288,11 @@ Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
 				If previousSelectedIndex = i Then
 					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 					If p.NumberOfViews > 0 Then
-						'get the content label view (it is inside an additional panel)
-						Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
-						ContentLabel.TextColor = xui.Color_Blue
-		
-						Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
-						ContentLabel.TextColor = xui.Color_Blue
-		
-						Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
-						ContentLabel.TextColor = xui.Color_Blue
+						Dim backPane As B4XView = p.getview(0)
+						backPane.Color = xui.Color_ARGB(255,217,215,222)
+						
+						Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
+						ContentLabel.Visible = True
 					End If
 				End If
 			End If
@@ -2304,22 +2334,13 @@ End Sub
 
 Sub clvActivity_ItemClick (Index As Int, Value As Object)
 	Try
-		For i = 0 To clvActivity.Size-1
-			Dim p As B4XView = clvActivity.GetPanel(i)
-			If p.NumberOfViews > 0 Then
-				'get the content label view (it is inside an additional panel)
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
-				ContentLabel.TextColor = -1979711488 
+		Dim p As B4XView = clvActivity.GetPanel(Index)
+		If p.NumberOfViews > 0 Then			
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
+			ContentLabel.Visible = False
+		End If
 		
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
-				ContentLabel.TextColor = -1979711488 
-		
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
-				ContentLabel.TextColor = -1979711488
-			End If
-		Next
-		
-		UpdateItemColor(Index, xui.Color_Blue)
+		UpdateItemColor(Index)
 		wvMedia.LoadUrl("")
 		
 		Dim cd As CardData = clvActivity.GetValue(Index)
@@ -2336,9 +2357,15 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 				Starter.kvs.Put(videos.VideoID,CreateCustomType(videos.ThumbnailPath,videos.DateCreated,"true",videos.DeviceName,videos.VideoID,videos.ThumbnailBLOB))
 			End If
 		Next
+		lblDuration.Text = "0:00"
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 		Dim rs As ResumableSub = ShowVideo(videoURL)
 		wait for (rs) complete (Result As Object)
+		
+		If p.NumberOfViews > 0 Then			
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
+			ContentLabel.Visible = True
+		End If
 	Catch
 		B4XLoadingIndicator4.Hide
 		Log(LastException)
@@ -2346,34 +2373,26 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 
 End Sub
 
-Sub UpdateItemColor (Index As Int, Color As Int)
+Sub UpdateItemColor (Index As Int)
 	Try
 		If previousSelectedIndex <> Index Then
 			Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 			If p.NumberOfViews > 0 Then
-				'get the content label view (it is inside an additional panel)
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
-				ContentLabel.TextColor = -1979711488 
-		
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
-				ContentLabel.TextColor = -1979711488 
-		
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
-				ContentLabel.TextColor = -1979711488
+				Dim backPane As B4XView = p.getview(0)
+				backPane.Color = xui.Color_White
+				
+				Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
+				ContentLabel.Visible = False
 			End If
 		End If
 	
 		Dim p As B4XView = clvActivity.GetPanel(Index)
 		If p.NumberOfViews > 0 Then
-			'get the content label view (it is inside an additional panel)
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
-			ContentLabel.TextColor = Color
-		
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
-			ContentLabel.TextColor = Color
-		
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
-			ContentLabel.TextColor = Color
+			Dim backPane As B4XView = p.getview(0)
+			backPane.Color = xui.Color_ARGB(255,217,215,222)
+			
+			Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
+			ContentLabel.Visible = True
 		End If
 	
 		previousSelectedIndex = Index
@@ -2381,6 +2400,42 @@ Sub UpdateItemColor (Index As Int, Color As Int)
 		Log(LastException)
 	End Try
 End Sub
+
+'Sub UpdateItemColor (Index As Int, Color As Int)
+'	Try
+'		If previousSelectedIndex <> Index Then
+'			Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
+'			If p.NumberOfViews > 0 Then
+'				'get the content label view (it is inside an additional panel)
+'				Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
+'				ContentLabel.TextColor = -1979711488 
+'		
+'				Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
+'				ContentLabel.TextColor = -1979711488 
+'		
+'				Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
+'				ContentLabel.TextColor = -1979711488
+'			End If
+'		End If
+'	
+'		Dim p As B4XView = clvActivity.GetPanel(Index)
+'		If p.NumberOfViews > 0 Then
+'			'get the content label view (it is inside an additional panel)
+'			Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
+'			ContentLabel.TextColor = Color
+'		
+'			Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
+'			ContentLabel.TextColor = Color
+'		
+'			Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
+'			ContentLabel.TextColor = Color
+'		End If
+'
+'		previousSelectedIndex = Index
+'	Catch
+'		Log(LastException)
+'	End Try
+'End Sub
 
 Sub ConvertDateTimePeriod(inputTime As String, dayname As String) As String
 	' https://www.b4x.com/android/forum/threads/convert-utc-to-ticks-and-vice-versa.36592/#content
@@ -2616,6 +2671,9 @@ Sub btnDrivewayNewClip_Click
 			btnDrivewayFullScreenshot.Enabled = False
 			btnFrontDoorFullScreenshot.Enabled = False
 			btnSideYardFullScreenshot.Enabled = False
+			ivDriveway.Enabled = False
+			ivFrontDoor.Enabled = False
+			ivSideYard.Enabled = False
 			lblStatus.Text = "Capturing a new Driveway video clip..."
 			RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/347574/clip")
 			For i = 1 To 20
@@ -2634,6 +2692,9 @@ Sub btnDrivewayNewClip_Click
 				btnDrivewayFullScreenshot.Enabled = True
 				btnFrontDoorFullScreenshot.Enabled = True
 				btnSideYardFullScreenshot.Enabled = True
+				ivDriveway.Enabled = True
+				ivFrontDoor.Enabled = True
+				ivSideYard.Enabled = True
 				lblStatus.Text = "Ready"
 				Return
 			End If
@@ -2673,6 +2734,9 @@ Sub btnDrivewayNewClip_Click
 		btnDrivewayFullScreenshot.Enabled = True
 		btnFrontDoorFullScreenshot.Enabled = True
 		btnSideYardFullScreenshot.Enabled = True
+		ivDriveway.Enabled = True
+		ivFrontDoor.Enabled = True
+		ivSideYard.Enabled = True
 		lblStatus.Text = "Ready"
 	End If
 End Sub
@@ -2691,6 +2755,9 @@ Sub btnFrontDoorNewClip_Click
 			btnDrivewayFullScreenshot.Enabled = False
 			btnFrontDoorFullScreenshot.Enabled = False
 			btnSideYardFullScreenshot.Enabled = False
+			ivDriveway.Enabled = False
+			ivFrontDoor.Enabled = False
+			ivSideYard.Enabled = False
 			lblStatus.Text = "Capturing a new Front Door video clip..."
 			RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/236967/clip")
 			For i = 1 To 20
@@ -2709,6 +2776,9 @@ Sub btnFrontDoorNewClip_Click
 				btnDrivewayFullScreenshot.Enabled = True
 				btnFrontDoorFullScreenshot.Enabled = True
 				btnSideYardFullScreenshot.Enabled = True
+				ivDriveway.Enabled = True
+				ivFrontDoor.Enabled = True
+				ivSideYard.Enabled = True
 				lblStatus.Text = "Ready"
 				Return
 			End If
@@ -2748,6 +2818,9 @@ Sub btnFrontDoorNewClip_Click
 		btnDrivewayFullScreenshot.Enabled = True
 		btnFrontDoorFullScreenshot.Enabled = True
 		btnSideYardFullScreenshot.Enabled = True
+		ivDriveway.Enabled = True
+		ivFrontDoor.Enabled = True
+		ivSideYard.Enabled = True
 		lblStatus.Text = "Ready"
 	End If
 End Sub
@@ -2766,6 +2839,9 @@ Sub btnSideYardNewClip_Click
 			btnDrivewayFullScreenshot.Enabled = False
 			btnFrontDoorFullScreenshot.Enabled = False
 			btnSideYardFullScreenshot.Enabled = False
+			ivDriveway.Enabled = False
+			ivFrontDoor.Enabled = False
+			ivSideYard.Enabled = False
 			lblStatus.Text = "Capturing a new Side Yard video clip..."
 			RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/226821/clip")
 			For i = 1 To 20
@@ -2784,6 +2860,9 @@ Sub btnSideYardNewClip_Click
 				btnDrivewayFullScreenshot.Enabled = True
 				btnFrontDoorFullScreenshot.Enabled = True
 				btnSideYardFullScreenshot.Enabled = True
+				ivDriveway.Enabled = True
+				ivFrontDoor.Enabled = True
+				ivSideYard.Enabled = True
 				lblStatus.Text = "Ready"
 				Return
 			End If
@@ -2823,6 +2902,9 @@ Sub btnSideYardNewClip_Click
 		btnDrivewayFullScreenshot.Enabled = True
 		btnFrontDoorFullScreenshot.Enabled = True
 		btnSideYardFullScreenshot.Enabled = True
+		ivDriveway.Enabled = True
+		ivFrontDoor.Enabled = True
+		ivSideYard.Enabled = True
 		lblStatus.Text = "Ready"
 	End If
 End Sub
@@ -2836,11 +2918,15 @@ Sub btnRefresh_Click
 	btnDrivewayFullScreenshot.Enabled = False
 	btnFrontDoorFullScreenshot.Enabled = False
 	btnSideYardFullScreenshot.Enabled = False
+	ivDriveway.Enabled = False
+	ivFrontDoor.Enabled = False
+	ivSideYard.Enabled = False
 	ScrollViewBlink.ScrollToNow(0)
 	BlurIV("Driveway.jpg",ivDriveway)
 	BlurIV("FrontDoor.jpg",ivFrontDoor)
 	BlurIV("SideYard.jpg",ivSideYard)
-	RefreshCameras(True)
+	Dim rs As ResumableSub = RefreshCameras(True)
+	wait for (rs) complete (Result As Object)
 	btnDriveway.Enabled = True
 	btnRefresh.Enabled = True
 	btnDrivewayNewClip.Enabled = True
@@ -2849,6 +2935,9 @@ Sub btnRefresh_Click
 	btnDrivewayFullScreenshot.Enabled = True
 	btnFrontDoorFullScreenshot.Enabled = True
 	btnSideYardFullScreenshot.Enabled = True
+	ivDriveway.Enabled = True
+	ivFrontDoor.Enabled = True
+	ivSideYard.Enabled = True
 End Sub
 
 Sub DownloadImageFullscreen (Link As String, camera As String) 'ignore
@@ -2866,13 +2955,15 @@ Sub DownloadImageFullscreen (Link As String, camera As String) 'ignore
 			out.Close '<------ very important
 			
 			Dim FileName As String = "screenshot.jpg"
-			File.Copy(File.DirInternal, FileName, Starter.Provider.SharedFolder, FileName)
-			Dim in As Intent
-			in.Initialize(in.ACTION_VIEW, "")
-			Starter.Provider.SetFileUriAsIntentData(in, FileName)
-			'Type must be set after calling SetFileUriAsIntentData
-			in.SetType("image/*")
-			StartActivity(in)
+			If File.Exists(File.DirInternal, FileName) Then
+				File.Copy(File.DirInternal, FileName, Starter.Provider.SharedFolder, FileName)
+				Dim in As Intent
+				in.Initialize(in.ACTION_VIEW, "")
+				Starter.Provider.SetFileUriAsIntentData(in, FileName)
+				'Type must be set after calling SetFileUriAsIntentData
+				in.SetType("image/*")
+				StartActivity(in)
+			End If
 		Else
 			response = "ERROR: " & j.ErrorMessage
 			lblStatus.Text = GetRESTError(j.ErrorMessage)
@@ -2929,4 +3020,21 @@ Sub btnSideYardFullScreenshot_Click
 	If response.StartsWith("ERROR: ") = False Then
 		lblStatus.Text = "Ready"
 	End If
+End Sub
+
+Sub ivPlay_Click
+	Try
+		Dim FileName As String = "media.mp4"
+		If File.Exists(File.DirInternal, FileName) Then
+			File.Copy(File.DirInternal, FileName, Starter.Provider.SharedFolder, FileName)
+			Dim in As Intent
+			in.Initialize(in.ACTION_VIEW, "")
+			Starter.Provider.SetFileUriAsIntentData(in, FileName)
+			'Type must be set after calling SetFileUriAsIntentData
+			in.SetType("video/*")
+			StartActivity(in)
+		End If
+	Catch
+		Log(LastException)
+	End Try
 End Sub
