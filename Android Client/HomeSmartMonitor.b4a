@@ -1526,16 +1526,15 @@ Sub DownloadImage (Link As String, iv As ImageView, camera As String) 'ignore
 		Wait For (j) JobDone(j As HttpJob)
 		If j.Success Then
 			' Save to a JPG file
-'			Dim dir As String =rp.GetSafeDirDefaultExternal("")
-'			If camera = "347574" Then
-'				Dim out As OutputStream = File.OpenOutput(dir, "Driveway.jpg", False)
-'			Else If camera = "236967" Then
-'				Dim out As OutputStream = File.OpenOutput(dir, "FrontDoor.jpg", False)
-'			Else If camera = "226821" Then
-'				Dim out As OutputStream = File.OpenOutput(dir, "SideYard.jpg", False)
-'			End If
-'			File.Copy2(j.GetInputStream, out)
-'			out.Close '<------ very important
+			If camera = "347574" Then
+				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "Driveway.jpg", False)
+			Else If camera = "236967" Then
+				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "FrontDoor.jpg", False)
+			Else If camera = "226821" Then
+				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "SideYard.jpg", False)
+			End If
+			File.Copy2(j.GetInputStream, out)
+			out.Close '<------ very important
 			
 			' Display in ImageView
 			iv.Bitmap = j.GetBitmap
