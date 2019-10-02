@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,ConvertTicksToTimeString,2529,0,Main,clvActivity_VisibleRangeChanged,2210,0,Main,wvMedia_PageFinished,2521,0,Main,Activity_Resume,382,0,Main,TabStrip1_PageSelected,771,0,Main,ShowVideo,2445,4,Main,UpdateItemColor,2288,6,Main,GetVideos,2125,0,Main,clvActivity_ItemClick,2262,3,Main,ivPlay_Click,2944,6
+NavigationStack=SmartHomeMonitor,GetComfort,657,0,Main,Activity_Create,294,0,SmartHomeMonitor,MQTT_MessageArrived,108,5,Visual Designer,blinkcellitem.bal,-100,6,Main,Activity_Resume,382,0,Main,TabStrip1_PageSelected,771,0,Main,clvActivity_ItemClick,2255,6,Main,UpdateItemColor,2308,0,Main,ShowVideo,2514,0,Main,clvActivity_VisibleRangeChanged,2213,5
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
