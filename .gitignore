@@ -1,5 +1,11 @@
 # Ignore the account.txt file only in the repository
 /Objects/account.txt
-Blink_com.immediasemi.android.blink\
-AutoBackups\
+**/Blink_com.immediasemi.android.blink/**
+**/AutoBackups/**
 *.apk
+!Github commands.txt
+*.txt
+*.jar
+*.mp4
+*.jpg
+datastore
