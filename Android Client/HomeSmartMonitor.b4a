@@ -110,8 +110,8 @@ Sub Process_Globals
 	Dim manager As AHPreferenceManager
 	Dim screen As AHPreferenceScreen
 	
-	Private emailAddress As String = "[redacted]"
-	Private password As String = "[redacted]"
+	Private emailAddress As String 
+	Private password As String 
 	Private authToken As String
 	Private userRegion As String = "u006"
 	Private accountID As String = "88438" 'ignore
@@ -206,10 +206,14 @@ Sub Globals
 	Private btnFrontDoorFullScreenshot As ImageView
 	Private btnSideYardFullScreenshot As ImageView
 	Private ivPlay As ImageView
+	Private nativeMe As JavaObject
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
 	Try
+		nativeMe.InitializeContext
+		nativeMe.RunMethod("setDefaultUncaughtExceptionHandler", Null)
+		
 		If FirstTime Then
 			CreatePreferenceScreen
 			If manager.GetAll.Size = 0 Then SetDefaults
@@ -219,6 +223,12 @@ Sub Activity_Create(FirstTime As Boolean)
 			MQTT_Connect
 		End If
 		Activity.LoadLayout("Main")
+		
+		Dim iCrash As Intent
+		iCrash = Activity.GetStartingIntent
+		If iCrash.HasExtra("Crash") Then
+			Log("After crash: " & iCrash.GetExtra("Crash"))
+		End If
 
 		TabStrip1.LoadLayout("1ScrollView", "LIVING AREA" & CRLF & "Temp & Humidity  " & Chr(0xF2C7))
 		ScrollView1.Panel.LoadLayout("1")
@@ -371,13 +381,26 @@ Sub Activity_Create(FirstTime As Boolean)
 			lblBadge.RemoveViewFromParent
 			p.AddView(lblBadge, 0, 0, Width, Height)
 		Next
-		
-		'If FirstTime Then
-		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-		'Log("************* RequestAuthToken *************")
+
+		If File.Exists(File.DirInternal, "account.txt") Then
+			Dim List1 As List
+			List1.Initialize
+			List1 = File.ReadList(File.DirInternal, "account.txt")
+			For i = 0 To List1.Size - 1
+				If i = 0 Then
+					emailAddress = List1.Get(i)
+				Else if i = 1 Then
+					password = List1.Get(i)
+				End If
+			Next
+		Else
+			Msgbox("account.txt not found","Smart Home Monitor")
+			ExitApplication
+		End If
+
 		Dim rs As ResumableSub = RequestAuthToken
 		wait for (rs) complete (Result As Object)
-		'End If
+
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -385,9 +408,6 @@ End Sub
 
 Sub Activity_Resume
 	Try
-		
-		'previousSelectedIndex = 0
-			
 		HandleSettings
 		Dim in As Intent = Activity.GetStartingIntent
 		Dim NotificationClicked As String
@@ -456,6 +476,9 @@ Sub Activity_Resume
 		
 		If tabStripCurrentPage = False And TabStrip1.CurrentPage = 5 Then
 			If clvActivity.Size > 0 Then
+				If previousSelectedIndex > (clvActivity.Size-1) Then 
+					previousSelectedIndex = 0
+				End If
 				clvActivity.JumpToItem(previousSelectedIndex)
 				Sleep(100)
 				Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
@@ -527,8 +550,8 @@ Private Sub MQTT_Disconnected
 	Try
 		gblACMenu.Clear
 		gblACMenu.Add(0, 0, "Settings",Null)
-		gblACMenu.Add(0, 0, "Show KeyValueStore records numbers",Null)
 		gblACMenu.Add(0, 0, "Remove all KeyValueStore records",Null)
+		gblACMenu.Add(0, 0, "Show KeyValueStore records numbers",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		Log("Disconnected from MQTT broker")
 		MQTT_Connect
@@ -735,8 +758,8 @@ Sub Activity_Createmenu(Menu As ACMenu)
 		Menu.Clear
 		gblACMenu = Menu
 		Menu.Add(0, 0, "Settings",Null)
-		Menu.Add(0, 0, "Show KeyValueStore records numbers",Null)
 		Menu.Add(0, 0, "Remove all KeyValueStore records",Null)
+		Menu.Add(0, 0, "Show KeyValueStore records numbers",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
 		Log(LastException)
@@ -772,32 +795,27 @@ Sub TabStrip1_PageSelected (Position As Int)
 				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 			End If
 			CheckTempHumiditySetting
-			'previousSelectedIndex = 0
 		End If
 		If Position = 1 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("MQ7", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySetting
-			'previousSelectedIndex = 0
 		End If
 		If Position = 2 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
 			End If
 			CheckTempHumiditySettingBasement
-			'previousSelectedIndex = 0
 		End If
 		If Position = 3 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySettingBasement
-			'previousSelectedIndex = 0
 		End If
 		If Position = 4 Then
 			wvMedia.LoadUrl("")
-			'previousSelectedIndex = 0
 			If ivDriveway.Bitmap = Null Or lblStatus.Text.Contains("REST endpoint URL not found") Then
 				ProgressDialogShow2("Getting new camera information...",False)
 				btnDriveway.Enabled = False
@@ -845,6 +863,9 @@ Sub TabStrip1_PageSelected (Position As Int)
 				End If
 				
 				If clvActivity.Size > 0 Then
+					If previousSelectedIndex > (clvActivity.Size-1) Then
+						previousSelectedIndex = 0
+					End If
 					clvActivity.JumpToItem(previousSelectedIndex)
 					Sleep(100)
 					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
@@ -2203,31 +2224,30 @@ Sub GetVideos(json As String) As ResumableSub
 			
 		clvActivity.Clear
 		Dim list1 As List = Starter.kvs.ListKeys
-		For i =  0 To list1.Size-1  ' (list1.Size-1) To 0 Step -1
-			
-			Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
-			Dim videos = mytypes As VideoInfo
+		For i =  0 To list1.Size-1
 			
 			'Log("kvs.ListKeys " & i & " | " & videos.VideoID & " | " & videos.Watched)
 			
-			Dim In As InputStream
-			In.InitializeFromBytesArray(videos.ThumbnailBLOB, 0, videos.ThumbnailBLOB.Length)
-			Dim bmp As Bitmap
-			bmp.Initialize2(In)
-			
-			Dim cd As CardData
-			cd.Initialize
-			cd.screenshot = bmp
-			cd.filedate = videos.DateCreated
-			cd.deviceinfo = videos.DeviceName
-			cd.iswatchedvisible = Not(videos.Watched)
-			cd.mediaURL = "https://rest-" & userRegion &".immedia-semi.com" & videos.ThumbnailPath
-			Dim p As B4XView = xui.CreatePanel("")
-			p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width, 100dip)
-			clvActivity.Add(p, cd)
-			
-			If i > 50 Then
+			If i > 49 Then
 				Starter.kvs.Remove(list1.Get(i))
+			Else
+				Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
+				Dim videos = mytypes As VideoInfo		
+				Dim In As InputStream
+				In.InitializeFromBytesArray(videos.ThumbnailBLOB, 0, videos.ThumbnailBLOB.Length)
+				Dim bmp As Bitmap
+				bmp.Initialize2(In)
+			
+				Dim cd As CardData
+				cd.Initialize
+				cd.screenshot = bmp
+				cd.filedate = videos.DateCreated
+				cd.deviceinfo = videos.DeviceName
+				cd.iswatchedvisible = Not(videos.Watched)
+				cd.mediaURL = "https://rest-" & userRegion &".immedia-semi.com" & videos.ThumbnailPath
+				Dim p As B4XView = xui.CreatePanel("")
+				p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width, 100dip)
+				clvActivity.Add(p, cd)
 			End If
 		Next
 
@@ -2283,6 +2303,9 @@ Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
 				lblDeviceInfo.Text = "   " & cd.deviceinfo
 				lblMediaURL.Text = cd.mediaURL
 						
+				If previousSelectedIndex > (clvActivity.Size-1) Then
+					previousSelectedIndex = 0
+				End If
 				If previousSelectedIndex = i Then						
 					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 					If p.NumberOfViews > 0 Then
@@ -2372,6 +2395,10 @@ End Sub
 
 Sub UpdateItemColor (Index As Int)
 	Try
+		If previousSelectedIndex > (clvActivity.Size-1) Then
+			previousSelectedIndex = 0
+		End If
+		
 		If previousSelectedIndex <> Index Then
 			Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 			If p.NumberOfViews > 0 Then
@@ -2582,6 +2609,9 @@ Sub ShowVideo (Link As String) As ResumableSub
 	End Try
 	
 	Try
+		If previousSelectedIndex > (clvActivity.Size-1) Then
+			previousSelectedIndex = 0
+		End If
 		Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 		If p.NumberOfViews > 0 Then
 			'get the content label view (it is inside an additional panel)
@@ -2610,7 +2640,7 @@ Sub wvMedia_PageFinished (Url As String)
 End Sub
 
 Sub ConvertTicksToTimeString(t As Long) As String
-	Dim  hours, minutes, seconds As Int
+	Dim  hours, minutes, seconds As Int 'ignore
 	hours = t / DateTime.TicksPerHour
 	minutes = (t Mod DateTime.TicksPerHour) / DateTime.TicksPerMinute
 	seconds = (t Mod DateTime.TicksPerMinute) / DateTime.TicksPerSecond
@@ -3025,6 +3055,10 @@ Sub ivPlay_Click
 		B4XLoadingIndicator4.Show
 		wvMedia.LoadUrl("")
 		
+		If previousSelectedIndex > (clvActivity.Size-1) Then
+			previousSelectedIndex = 0
+		End If
+		
 		Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
 		Dim rs As ResumableSub = ShowVideo(cd.mediaURL)
 		wait for (rs) complete (Result As Object)
@@ -3044,3 +3078,32 @@ Sub ivPlay_Click
 		Log(LastException)
 	End Try
 End Sub
+
+#if Java
+//Sources:
+//https://medium.com/@ssaurel/how-to-auto-restart-an-android-application-after-a-crash-or-a-force-close-error-1a361677c0ce
+//https://stackoverflow.com/a/2903866
+//https://mobikul.com/auto-restart-application-crashforce-close-android/
+
+public void setDefaultUncaughtExceptionHandler() {
+   
+   Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler(this));
+}
+
+import android.app.Activity;
+
+public class MyExceptionHandler implements Thread.UncaughtExceptionHandler {
+
+  private Activity activity;
+
+  public MyExceptionHandler(Activity a) {
+    activity = a;
+  }
+
+  @Override
+  public void uncaughtException(Thread thread, Throwable ex) {
+    activity.finish();
+    System.exit(2);
+  }
+}
+#End if
