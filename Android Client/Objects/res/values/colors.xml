@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="actionbar">#90a4ae</color>
-   <color name="statusbar">#62757f</color>
-   <color name="textColorPrimary">#000000</color>
-   <color name="navigationBar">#90a4ae</color>
-</resources>
