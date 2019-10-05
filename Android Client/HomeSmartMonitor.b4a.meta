@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,Process_Globals,39,0,Main,Activity_Resume,374,0,Main,Globals,112,0,Main,ivPlay_Click,2994,0,Main,Activity_Create,132,6,Starter,ScheduleRestartCrashedActivity,51,0,Starter,Application_Error,34,0,Starter,Service_Start,25,0,Starter,Service_Destroy,42,0,Starter,Process_Globals,11,0
+NavigationStack=Main,GetUnwatchedVideos,2576,0,Main,ACToolBarLight1_MenuItemClick,614,0,Main,Activity_Resume,400,6,NotificationService,Listener_NotificationPosted,55,0,Main,TabStrip1_PageSelected,810,1,Starter,Process_Globals,14,1,cMediaData,Initialize,40,0,cMediaData,Class_Globals,12,0,Badger,CreateNewPanel,68,1,Main,GetCameraInfo,1709,0,Main,GetSyncModuleInfo,1739,0
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10

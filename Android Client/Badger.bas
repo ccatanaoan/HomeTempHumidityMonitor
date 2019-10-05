@@ -72,7 +72,7 @@ Private Sub GetLabel(panel As B4XView) As B4XView
 	Return panel.GetView(panel.NumberOfViews - 1)
 End Sub
 
-Private Sub CreateNewPanel(view As B4XView, count As Int) As B4XView
+Private Sub CreateNewPanel(view As B4XView, count As Int) As B4XView 'ignore
 #if B4J
 	Dim p As Pane
 #else

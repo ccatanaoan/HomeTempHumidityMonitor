@@ -18,7 +18,7 @@ Sub Process_Globals
 	Private const FLAG_ONE_SHOT As Int = 0x40000000
    
 	Private const ALM_RTC As Int = 0x00000001
-	Private const ALM_RTC_WAKEUP As Int = 0x00000000
+	Private const ALM_RTC_WAKEUP As Int = 0x00000000 'ignore
 End Sub
 
 Sub Service_Create
