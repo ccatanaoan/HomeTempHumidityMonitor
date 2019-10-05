@@ -6,29 +6,29 @@ Version=4.3
 @EndOfDesignText@
 'Class module
 Sub Class_Globals
-    Private Const METADATA_KEY_ALBUM            As Int     =  1       ' The metadata key to retrieve the information about the album title of the data source.
-    Private Const METADATA_KEY_ALBUMARTIST      As Int     = 13       ' The metadata key to retrieve the information about the performers or artist associated with the data source.
-    Private Const METADATA_KEY_ARTIST           As Int     =  2       ' The metadata key to retrieve the information about the artist of the data source.
-    Private Const METADATA_KEY_AUTHOR           As Int     =  3       ' The metadata key to retrieve the information about the author of the data source.
-    Private Const METADATA_KEY_BITRATE          As Int     = 20       ' This key retrieves the average bitrate (in bits/sec), if available.
-    Private Const METADATA_KEY_CD_TRACK_NUMBER  As Int     =  0       ' The metadata key to retrieve the numeric string describing the order of the audio data source on its original recording.
-    Private Const METADATA_KEY_COMPILATION      As Int     = 15       ' The metadata key to retrieve the music album compilation status.
-    Private Const METADATA_KEY_COMPOSER         As Int     =  4       ' The metadata key to retrieve the information about the composer of the data source.
-    Private Const METADATA_KEY_DATE             As Int     =  5       ' The metadata key to retrieve the date when the data source was created or modified.
-    Private Const METADATA_KEY_DISC_NUMBER      As Int     = 14       ' The metadata key to retrieve the numberic string that describes which part of a set the audio data source comes from.
+'    Private Const METADATA_KEY_ALBUM            As Int     =  1       ' The metadata key to retrieve the information about the album title of the data source.
+'    Private Const METADATA_KEY_ALBUMARTIST      As Int     = 13       ' The metadata key to retrieve the information about the performers or artist associated with the data source.
+'    Private Const METADATA_KEY_ARTIST           As Int     =  2       ' The metadata key to retrieve the information about the artist of the data source.
+'    Private Const METADATA_KEY_AUTHOR           As Int     =  3       ' The metadata key to retrieve the information about the author of the data source.
+'    Private Const METADATA_KEY_BITRATE          As Int     = 20       ' This key retrieves the average bitrate (in bits/sec), if available.
+'    Private Const METADATA_KEY_CD_TRACK_NUMBER  As Int     =  0       ' The metadata key to retrieve the numeric string describing the order of the audio data source on its original recording.
+'    Private Const METADATA_KEY_COMPILATION      As Int     = 15       ' The metadata key to retrieve the music album compilation status.
+'    Private Const METADATA_KEY_COMPOSER         As Int     =  4       ' The metadata key to retrieve the information about the composer of the data source.
+'    Private Const METADATA_KEY_DATE             As Int     =  5       ' The metadata key to retrieve the date when the data source was created or modified.
+'    Private Const METADATA_KEY_DISC_NUMBER      As Int     = 14       ' The metadata key to retrieve the numberic string that describes which part of a set the audio data source comes from.
     Private Const METADATA_KEY_DURATION         As Int     =  9       ' The metadata key to retrieve the playback duration of the data source.
-    Private Const METADATA_KEY_GENRE            As Int     =  6       ' The metadata key to retrieve the content type or genre of the data source.
-    Private Const METADATA_KEY_HAS_AUDIO        As Int     = 16       ' If this key exists the media contains audio content.
-    Private Const METADATA_KEY_HAS_VIDEO        As Int     = 17       ' If this key exists the media contains video content.
-    Private Const METADATA_KEY_LOCATION         As Int     = 23       ' This key retrieves the location information, if available.
-    Private Const METADATA_KEY_MIMETYPE         As Int     = 12       ' The metadata key to retrieve the mime type of the data source.
-    Private Const METADATA_KEY_NUM_TRACKS       As Int     = 10       ' The metadata key to retrieve the number of tracks, such as audio, video, text, in the data source, such as a mp4 or 3gpp file.
-    Private Const METADATA_KEY_TITLE            As Int     =  7       ' The metadata key to retrieve the data source title.
-    Private Const METADATA_KEY_VIDEO_HEIGHT     As Int     = 19       ' If the media contains video, this key retrieves its height.
-    Private Const METADATA_KEY_VIDEO_ROTATION   As Int     = 24       ' This key retrieves the video rotation angle in degrees, if available.
-    Private Const METADATA_KEY_VIDEO_WIDTH      As Int     = 18       ' If the media contains video, this key retrieves its width.
-    Private Const METADATA_KEY_WRITER           As Int     = 11       ' The metadata key to retrieve the information of the writer (such as lyricist) of the data source.
-    Private Const METADATA_KEY_YEAR             As Int     =  8       ' The metadata key to retrieve the year when the data source was created or modified.
+'    Private Const METADATA_KEY_GENRE            As Int     =  6       ' The metadata key to retrieve the content type or genre of the data source.
+'    Private Const METADATA_KEY_HAS_AUDIO        As Int     = 16       ' If this key exists the media contains audio content.
+'    Private Const METADATA_KEY_HAS_VIDEO        As Int     = 17       ' If this key exists the media contains video content.
+'    Private Const METADATA_KEY_LOCATION         As Int     = 23       ' This key retrieves the location information, if available.
+'    Private Const METADATA_KEY_MIMETYPE         As Int     = 12       ' The metadata key to retrieve the mime type of the data source.
+'    Private Const METADATA_KEY_NUM_TRACKS       As Int     = 10       ' The metadata key to retrieve the number of tracks, such as audio, video, text, in the data source, such as a mp4 or 3gpp file.
+'    Private Const METADATA_KEY_TITLE            As Int     =  7       ' The metadata key to retrieve the data source title.
+'    Private Const METADATA_KEY_VIDEO_HEIGHT     As Int     = 19       ' If the media contains video, this key retrieves its height.
+'    Private Const METADATA_KEY_VIDEO_ROTATION   As Int     = 24       ' This key retrieves the video rotation angle in degrees, if available.
+'    Private Const METADATA_KEY_VIDEO_WIDTH      As Int     = 18       ' If the media contains video, this key retrieves its width.
+'    Private Const METADATA_KEY_WRITER           As Int     = 11       ' The metadata key to retrieve the information of the writer (such as lyricist) of the data source.
+'    Private Const METADATA_KEY_YEAR             As Int     =  8       ' The metadata key to retrieve the year when the data source was created or modified.
 
     Private Const SetNotCalledError             As String  = "ProcessMediaFile has not been called"
 

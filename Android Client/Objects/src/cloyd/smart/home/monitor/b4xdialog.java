@@ -186,7 +186,7 @@ _setavg(_bc,_x,_y,_clrs,_temp);
  }
 };
  //BA.debugLineNum = 314;BA.debugLine="Log(\"Time: \" & (DateTime.Now - n))";
-__c.LogImpl("919988516","Time: "+BA.NumberToString((__c.DateTime.getNow()-_n)),0);
+__c.LogImpl("920119588","Time: "+BA.NumberToString((__c.DateTime.getNow()-_n)),0);
  //BA.debugLineNum = 315;BA.debugLine="Return bc";
 if (true) return _bc;
  //BA.debugLineNum = 316;BA.debugLine="End Sub";

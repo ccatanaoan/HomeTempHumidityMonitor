@@ -55,9 +55,8 @@ Library20=bitmapcreator
 Library21=xui views
 Library22=runtimepermissions
 Library23=webviewsettings
-Library24=exoplayer
-Library25=sql
-Library26=b4xencryption
+Library24=sql
+Library25=b4xencryption
 Library3=javaobject
 Library4=xmllayoutbuilder
 Library5=jmqtt
@@ -77,7 +76,7 @@ Module7=Badger
 Module8=FileProvider
 Module9=Starter
 NumberOfFiles=19
-NumberOfLibraries=26
+NumberOfLibraries=25
 NumberOfModules=10
 Version=9.5
 @EndOfDesignText@
@@ -381,7 +380,7 @@ Sub Activity_Create(FirstTime As Boolean)
 			lblBadge.RemoveViewFromParent
 			p.AddView(lblBadge, 0, 0, Width, Height)
 		Next
-
+		
 		If File.Exists(File.DirInternal, "account.txt") Then
 			Dim List1 As List
 			List1.Initialize
@@ -393,6 +392,23 @@ Sub Activity_Create(FirstTime As Boolean)
 					password = List1.Get(i)
 				End If
 			Next
+		Else If File.Exists(File.DirRootExternal,"account.txt") Then
+			File.Copy(File.DirRootExternal,"account.txt",File.DirInternal, "account.txt")
+			If File.Exists(File.DirInternal, "account.txt") Then
+				Dim List1 As List
+				List1.Initialize
+				List1 = File.ReadList(File.DirInternal, "account.txt")
+				For i = 0 To List1.Size - 1
+					If i = 0 Then
+						emailAddress = List1.Get(i)
+					Else if i = 1 Then
+						password = List1.Get(i)
+					End If
+				Next
+			Else
+				Msgbox("account.txt not found","Smart Home Monitor")
+				ExitApplication
+			End If
 		Else
 			Msgbox("account.txt not found","Smart Home Monitor")
 			ExitApplication
@@ -446,13 +462,22 @@ Sub Activity_Resume
 		
 		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
 		Sleep(100)
-		
-		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-		Dim rs As ResumableSub = GetUnwatchedVideos
-		wait for (rs) complete (Result As Object)
+
+		If IsNumber(UnwatchedVideoClips) = False Then
+			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+			Dim rs As ResumableSub = GetUnwatchedVideos
+			wait for (rs) complete (Result As Object)
+		Else
+			If UnwatchedVideoClips < 1 Then
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetUnwatchedVideos
+				wait for (rs) complete (Result As Object)
+			End If
+		End If 
 					
 		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
 		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo = True Then
+			isThereUnwatchedVideo = False
 			If UnwatchedVideoClips > 0 Then
 				tabStripCurrentPage = False
 				TabStrip1_PageSelected(5)
@@ -467,7 +492,6 @@ Sub Activity_Resume
 				Catch
 					Log(LastException)
 				End Try
-				isThereUnwatchedVideo = False
 				Return
 			End If
 		End If
@@ -842,14 +866,28 @@ Sub TabStrip1_PageSelected (Position As Int)
 			If tabStripCurrentPage = False Then
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				
-				
-				Dim rs As ResumableSub = GetUnwatchedVideos
-				wait for (rs) complete (Result As Object)
+				Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
+				If IsNumber(UnwatchedVideoClips) = False Then
+					' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+					Dim rs As ResumableSub = GetUnwatchedVideos
+					wait for (rs) complete (Result As Object)
+				Else
+					If UnwatchedVideoClips < 1 Then
+						' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+						Dim rs As ResumableSub = GetUnwatchedVideos
+						wait for (rs) complete (Result As Object)
+					End If
+				End If
 
 				Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-				If IsNumber(UnwatchedVideoClips) Or clvActivity.Size=0 Then
-					If UnwatchedVideoClips > 0 Or clvActivity.Size=0 Then
+				If IsNumber(UnwatchedVideoClips) Or clvActivity.Size=0 Or isThereUnwatchedVideo = True Then
+					If UnwatchedVideoClips > 0 Or clvActivity.Size=0 Or isThereUnwatchedVideo = True Then
+						isThereUnwatchedVideo = False
 						clvActivity.Clear
+						
+						Dim rs As ResumableSub = GetUnwatchedVideos
+						wait for (rs) complete (Result As Object)
+						
 						' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 						Dim rs As ResumableSub = GetVideos(response)
 						wait for (rs) complete (Result As Object)
@@ -1415,43 +1453,24 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 						Return Null
 					Else
 						For i = 1 To attempts
-							GetCommandStatus(response)
-							If commandComplete Then
-								RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
-								For i = 1 To 20
-									If response = "" Then
-										Sleep(50)
-									Else
-										Exit
-									End If
-								Next
-								GetCameraInfo(response)
-								DownloadImage("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg",iv,camera)
-								Exit
-							Else
-								If camera = "347574" Then
-									lblStatus.Text = "Awaiting for the Driveway thumbnail... " & i & "/" & attempts
-								Else If camera = "236967" Then
-									lblStatus.Text = "Awaiting for the Front Door thumbnail...  " & i & "/" & attempts
-								Else If camera = "226821" Then
-									lblStatus.Text = "Awaiting for the Side Yard thumbnail... " & i & "/" & attempts
-								End If
-							End If
+							' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+							Dim rs As ResumableSub = GetCommandResponse(iv,camera, i, attempts)
+							wait for (rs) complete (Result As Object)
+							If Result Then Exit
 							RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-							Sleep(1000)
-							If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-								btnDriveway.Enabled = True
-								btnRefresh.Enabled = True
-								btnDrivewayNewClip.Enabled = True
-								btnFrontDoorNewClip.Enabled = True
-								btnSideYardNewClip.Enabled = True
-								btnDrivewayFullScreenshot.Enabled = True
-								btnFrontDoorFullScreenshot.Enabled = True
-								btnSideYardFullScreenshot.Enabled = True
-								Return Null
-							End If
+							Sleep(1000) ' 1 second
 						Next
-						If commandComplete = False Then
+						If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
+							btnDriveway.Enabled = True
+							btnRefresh.Enabled = True
+							btnDrivewayNewClip.Enabled = True
+							btnFrontDoorNewClip.Enabled = True
+							btnSideYardNewClip.Enabled = True
+							btnDrivewayFullScreenshot.Enabled = True
+							btnFrontDoorFullScreenshot.Enabled = True
+							btnSideYardFullScreenshot.Enabled = True
+							Return Null
+						else If commandComplete = False Then
 							If camera = "347574" Then
 								lblStatus.Text = "Failed to retrieve Driveway thumbnail..."
 							Else If camera = "236967" Then
@@ -1480,6 +1499,32 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 	btnFrontDoorFullScreenshot.Enabled = True
 	btnSideYardFullScreenshot.Enabled = True
 	Return Null
+End Sub
+
+Sub GetCommandResponse(iv As ImageView,camera As String, attempts As String, attemptsAllowed As String) As ResumableSub
+	GetCommandStatus(response)
+	If commandComplete Then
+		RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
+		For i = 1 To 20
+			If response = "" Then
+				Sleep(50)
+			Else
+				Exit
+			End If
+		Next
+		GetCameraInfo(response)
+		DownloadImage("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg",iv,camera)
+		Return True
+	Else
+		If camera = "347574" Then
+			lblStatus.Text = "Awaiting for the Driveway thumbnail... " & attempts & "/" & attemptsAllowed
+		Else If camera = "236967" Then
+			lblStatus.Text = "Awaiting for the Front Door thumbnail...  " & attempts & "/" & attemptsAllowed
+		Else If camera = "226821" Then
+			lblStatus.Text = "Awaiting for the Side Yard thumbnail... " & attempts & "/" & attemptsAllowed
+		End If
+		Return False
+	End If
 End Sub
 
 Sub RESTGet(url As String) As ResumableSub
@@ -1549,16 +1594,21 @@ Sub DownloadImage (Link As String, iv As ImageView, camera As String) 'ignore
 			' Save to a JPG file
 			If camera = "347574" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "Driveway.jpg", False)
+				File.Copy2(j.GetInputStream, out)
+				out.Close '<------ very important
+				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", iv.Width, iv.Height, True)
 			Else If camera = "236967" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "FrontDoor.jpg", False)
+				File.Copy2(j.GetInputStream, out)
+				out.Close '<------ very important
+				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", iv.Width, iv.Height, True)
 			Else If camera = "226821" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "SideYard.jpg", False)
+				File.Copy2(j.GetInputStream, out)
+				out.Close '<------ very important
+				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", iv.Width, iv.Height, True)
 			End If
-			File.Copy2(j.GetInputStream, out)
-			out.Close '<------ very important
-			
-			' Display in ImageView
-			iv.Bitmap = j.GetBitmap
+			iv.Bitmap = bmp
 		Else
 			response = "ERROR: " & j.ErrorMessage
 			lblStatus.Text = GetRESTError(j.ErrorMessage)
@@ -1694,52 +1744,52 @@ Sub GetCameraInfo(json As String)
 		parser.Initialize(json)
 		Dim root As Map = parser.NextObject
 		Dim camera_status As Map = root.Get("camera_status")
-		Dim total_108_wakeups As Int = camera_status.Get("total_108_wakeups")
+'		Dim total_108_wakeups As Int = camera_status.Get("total_108_wakeups")
 		Dim battery_voltage As Int = camera_status.Get("battery_voltage")
-		Dim light_sensor_data_valid As String = camera_status.Get("light_sensor_data_valid")
-		Dim lfr_tb_wakeups As Int = camera_status.Get("lfr_tb_wakeups")
-		Dim fw_git_hash As String = camera_status.Get("fw_git_hash")
+'		Dim light_sensor_data_valid As String = camera_status.Get("light_sensor_data_valid")
+'		Dim lfr_tb_wakeups As Int = camera_status.Get("lfr_tb_wakeups")
+'		Dim fw_git_hash As String = camera_status.Get("fw_git_hash")
 		Dim wifi_strength As Int = camera_status.Get("wifi_strength")
-		Dim lfr_strength As Int = camera_status.Get("lfr_strength")
-		Dim total_tb_wakeups As Int = camera_status.Get("total_tb_wakeups")
-		Dim created_at As String = camera_status.Get("created_at")
-		Dim light_sensor_ch0 As Int = camera_status.Get("light_sensor_ch0")
-		Dim mac As String = camera_status.Get("mac")
-		Dim unit_number As Int = camera_status.Get("unit_number")
+'		Dim lfr_strength As Int = camera_status.Get("lfr_strength")
+'		Dim total_tb_wakeups As Int = camera_status.Get("total_tb_wakeups")
+'		Dim created_at As String = camera_status.Get("created_at")
+'		Dim light_sensor_ch0 As Int = camera_status.Get("light_sensor_ch0")
+'		Dim mac As String = camera_status.Get("mac")
+'		Dim unit_number As Int = camera_status.Get("unit_number")
 		Dim updated_at As String = camera_status.Get("updated_at")
-		Dim light_sensor_ch1 As Int = camera_status.Get("light_sensor_ch1")
-		Dim time_dhcp_lease As Int = camera_status.Get("time_dhcp_lease")
-		Dim temperature As Int = camera_status.Get("temperature")
-		Dim time_first_video As Int = camera_status.Get("time_first_video")
-		Dim time_dns_resolve As Int = camera_status.Get("time_dns_resolve")
-		Dim id As Int = camera_status.Get("id")
-		Dim temp_alert_status As String = camera_status.Get("temp_alert_status")
-		Dim time_108_boot As Int = camera_status.Get("time_108_boot")
-		Dim lfr_108_wakeups As Int = camera_status.Get("lfr_108_wakeups")
+'		Dim light_sensor_ch1 As Int = camera_status.Get("light_sensor_ch1")
+'		Dim time_dhcp_lease As Int = camera_status.Get("time_dhcp_lease")
+'		Dim temperature As Int = camera_status.Get("temperature")
+'		Dim time_first_video As Int = camera_status.Get("time_first_video")
+'		Dim time_dns_resolve As Int = camera_status.Get("time_dns_resolve")
+'		Dim id As Int = camera_status.Get("id")
+'		Dim temp_alert_status As String = camera_status.Get("temp_alert_status")
+'		Dim time_108_boot As Int = camera_status.Get("time_108_boot")
+'		Dim lfr_108_wakeups As Int = camera_status.Get("lfr_108_wakeups")
 		cameraThumbnail = camera_status.Get("thumbnail")
 		Log("cameraThumbnail: " & cameraThumbnail)
-		Dim lifetime_duration As Int = camera_status.Get("lifetime_duration")
-		Dim wifi_connect_failure_count As Int = camera_status.Get("wifi_connect_failure_count")
+'		Dim lifetime_duration As Int = camera_status.Get("lifetime_duration")
+'		Dim wifi_connect_failure_count As Int = camera_status.Get("wifi_connect_failure_count")
 		Dim camera_id As Int = camera_status.Get("camera_id")
-		Dim battery_alert_status As String = camera_status.Get("battery_alert_status")
-		Dim dhcp_failure_count As Int = camera_status.Get("dhcp_failure_count")
-		Dim ip_address As String = camera_status.Get("ip_address")
-		Dim ipv As String = camera_status.Get("ipv")
-		Dim light_sensor_data_new As String = camera_status.Get("light_sensor_data_new")
-		Dim network_id As Int = camera_status.Get("network_id")
-		Dim account_id As Int = camera_status.Get("account_id") '88438
-		Dim serial As String = camera_status.Get("serial")
-		Dim dev_1 As Int = camera_status.Get("dev_1")
-		Dim time_wlan_connect As Int = camera_status.Get("time_wlan_connect")
-		Dim dev_2 As Int = camera_status.Get("dev_2")
-		Dim socket_failure_count As Int = camera_status.Get("socket_failure_count")
-		Dim dev_3 As Int = camera_status.Get("dev_3")
-		Dim pir_rejections As Int = camera_status.Get("pir_rejections")
-		Dim sync_module_id As Int = camera_status.Get("sync_module_id")
-		Dim lifetime_count As Int = camera_status.Get("lifetime_count")
-		Dim error_codes As Int = camera_status.Get("error_codes")
+'		Dim battery_alert_status As String = camera_status.Get("battery_alert_status")
+'		Dim dhcp_failure_count As Int = camera_status.Get("dhcp_failure_count")
+'		Dim ip_address As String = camera_status.Get("ip_address")
+'		Dim ipv As String = camera_status.Get("ipv")
+'		Dim light_sensor_data_new As String = camera_status.Get("light_sensor_data_new")
+'		Dim network_id As Int = camera_status.Get("network_id")
+'		Dim account_id As Int = camera_status.Get("account_id") '88438
+'		Dim serial As String = camera_status.Get("serial")
+'		Dim dev_1 As Int = camera_status.Get("dev_1")
+'		Dim time_wlan_connect As Int = camera_status.Get("time_wlan_connect")
+'		Dim dev_2 As Int = camera_status.Get("dev_2")
+'		Dim socket_failure_count As Int = camera_status.Get("socket_failure_count")
+'		Dim dev_3 As Int = camera_status.Get("dev_3")
+'		Dim pir_rejections As Int = camera_status.Get("pir_rejections")
+'		Dim sync_module_id As Int = camera_status.Get("sync_module_id")
+'		Dim lifetime_count As Int = camera_status.Get("lifetime_count")
+'		Dim error_codes As Int = camera_status.Get("error_codes")
 		Dim fw_version As String = camera_status.Get("fw_version")
-		Dim ac_power As String = camera_status.Get("ac_power")
+'		Dim ac_power As String = camera_status.Get("ac_power")
 
 '		Dim strTimestamp As String
 '		strTimestamp = ConvertDateTime(updated_at)
@@ -2180,18 +2230,19 @@ Sub GetVideos(json As String) As ResumableSub
 			Dim watched As String = colmedia.Get("watched")
 			Dim medianame As String = colmedia.Get("media")
 			Dim VideoID As String = colmedia.Get("id")
-				
-			' https://www.b4x.com/android/forum/threads/b4x-xui-image-to-jpeg-byte-array-with-resize-quality-options.91774/#content
-			' https://www.b4x.com/android/forum/threads/b4x-bytes-to-file.70111/#post-445167
-			If Starter.kvs.ContainsKey(VideoID) = False Then
+			Dim mytypes As Object = Starter.kvs.Get(VideoID)
+			Dim videos = mytypes As VideoInfo
+			If (videos = Null) Or (watched <> videos.Watched) Then
 				Dim j As HttpJob
 				j.Initialize("", Me)
 				j.Download("https://rest-" & userRegion &".immedia-semi.com" & thumbnail & ".jpg")
 				j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
 				Wait For (j) JobDone(j As HttpJob)
 				If j.Success Then
-					Dim image As B4XBitmap = j.GetBitmap
-					'Convert image to JPEG byte array
+					Dim out As OutputStream = File.OpenOutput(File.DirInternal, "screenshot.jpg", False)
+					File.Copy2(j.GetInputStream, out)
+					out.Close '<------ very important
+					Dim image As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "screenshot.jpg", 178dip, 100dip, True)
 					Dim out As OutputStream
 					out.InitializeToBytesArray(0)
 					image.WriteToStream(out, 100, "JPEG")
@@ -2199,26 +2250,6 @@ Sub GetVideos(json As String) As ResumableSub
 					out.Close
 				End If
 				j.Release
-			Else
-				Dim mytypes As Object = Starter.kvs.Get(VideoID)
-				Dim videos = mytypes As VideoInfo
-				If  watched <> videos.Watched Then
-					Dim j As HttpJob
-					j.Initialize("", Me)
-					j.Download("https://rest-" & userRegion &".immedia-semi.com" & thumbnail & ".jpg")
-					j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
-					Wait For (j) JobDone(j As HttpJob)
-					If j.Success Then
-						Dim image As B4XBitmap = j.GetBitmap
-						'Convert image to JPEG byte array
-						Dim out As OutputStream
-						out.InitializeToBytesArray(0)
-						image.WriteToStream(out, 100, "JPEG")
-						Starter.kvs.Put(VideoID, CreateCustomType(medianame,created_at,watched,device_name,VideoID,out.ToBytesArray))
-						out.Close
-					End If
-					j.Release
-				End If
 			End If
 		Next
 			
@@ -2232,7 +2263,7 @@ Sub GetVideos(json As String) As ResumableSub
 				Starter.kvs.Remove(list1.Get(i))
 			Else
 				Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
-				Dim videos = mytypes As VideoInfo		
+				Dim videos = mytypes As VideoInfo
 				Dim In As InputStream
 				In.InitializeFromBytesArray(videos.ThumbnailBLOB, 0, videos.ThumbnailBLOB.Length)
 				Dim bmp As Bitmap
