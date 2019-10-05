@@ -26,7 +26,8 @@
 	<application
 		android:icon="@drawable/icon"
 		android:label="Smart Home Monitor"
-		android:theme="@style/MyAppTheme">
+		android:theme="@style/MyAppTheme"
+		android:largeHeap="true">
 		
 		<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"
 		   android:label="Smart Home Monitor"
