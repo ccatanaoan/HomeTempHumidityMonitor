@@ -64,7 +64,7 @@ Library6=callsubutils
 Library7=byteconverter
 Library8=xui
 Library9=phone
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddManifestText(<uses-permission~\n~   android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~   android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddManifestText(<uses-permission~\n~   android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~   android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~~\n~SetApplicationAttribute(android:largeHeap, "true")
 Module1=Gauge
 Module10=KeyValueStore
 Module2=SmartHomeMonitor
@@ -521,6 +521,16 @@ Sub Activity_Resume
 				ShowVideo(firstvideo)
 			End If
 		End If
+		
+		If TabStrip1.CurrentPage = 4 Then
+			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+			Dim rs As ResumableSub = CreateTab4
+			wait for (rs) complete (Result As Object)
+			
+			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+			Dim rs As ResumableSub = GetUnwatchedVideos
+			wait for (rs) complete (Result As Object)
+		End If
 	Catch
 		Log(LastException)
 	End Try
@@ -536,6 +546,9 @@ End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
 	wvMedia.LoadUrl("")
+	ivDriveway.Bitmap = Null
+	ivFrontDoor.Bitmap = Null
+	ivSideYard.Bitmap = Null
 End Sub
 
 'Connect to CloudMQTT broker
@@ -837,32 +850,23 @@ Sub TabStrip1_PageSelected (Position As Int)
 				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySettingBasement
+			ivDriveway.Bitmap = Null
+			ivFrontDoor.Bitmap = Null
+			ivSideYard.Bitmap = Null
 		End If
 		If Position = 4 Then
-			wvMedia.LoadUrl("")
-			If ivDriveway.Bitmap = Null Or lblStatus.Text.Contains("REST endpoint URL not found") Then
-				ProgressDialogShow2("Getting new camera information...",False)
-				btnDriveway.Enabled = False
-				btnRefresh.Enabled = False
-				btnDrivewayNewClip.Enabled = False
-				btnFrontDoorNewClip.Enabled = False
-				btnSideYardNewClip.Enabled = False
-				btnDrivewayFullScreenshot.Enabled = False
-				btnFrontDoorFullScreenshot.Enabled = False
-				btnSideYardFullScreenshot.Enabled = False
-				ScrollViewBlink.ScrollToNow(0)
-				BlurIV("Driveway.jpg",ivDriveway)
-				BlurIV("FrontDoor.jpg",ivFrontDoor)
-				BlurIV("SideYard.jpg",ivSideYard)
-				Dim rs As ResumableSub = RefreshCameras(True)
-				wait for (rs) complete (Result As Object)
-				ProgressDialogHide
-			End If
+			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+			Dim rs As ResumableSub = CreateTab4
+			wait for (rs) complete (Result As Object)
+			
 			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 			Dim rs As ResumableSub = GetUnwatchedVideos
 			wait for (rs) complete (Result As Object)
 		End If
 		If Position = 5 Then
+			ivDriveway.Bitmap = Null
+			ivFrontDoor.Bitmap = Null
+			ivSideYard.Bitmap = Null
 			If tabStripCurrentPage = False Then
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				
@@ -927,6 +931,47 @@ Sub TabStrip1_PageSelected (Position As Int)
 	Catch
 		Log(LastException)
 	End Try
+End Sub
+
+Sub CreateTab4() As ResumableSub
+	Try
+		wvMedia.LoadUrl("")
+		If lblDrivewayBatt.Text = "" Or lblFrontDoorBatt.Text = "" Or lblSideYardBatt.Text = "" Or lblStatus.Text.Contains("REST endpoint URL not found") Then
+			ProgressDialogShow2("Getting new camera information...",False)
+			btnDriveway.Enabled = False
+			btnRefresh.Enabled = False
+			btnDrivewayNewClip.Enabled = False
+			btnFrontDoorNewClip.Enabled = False
+			btnSideYardNewClip.Enabled = False
+			btnDrivewayFullScreenshot.Enabled = False
+			btnFrontDoorFullScreenshot.Enabled = False
+			btnSideYardFullScreenshot.Enabled = False
+			ScrollViewBlink.ScrollToNow(0)
+			BlurIV("Driveway.jpg",ivDriveway)
+			BlurIV("FrontDoor.jpg",ivFrontDoor)
+			BlurIV("SideYard.jpg",ivSideYard)
+			Dim rs As ResumableSub = RefreshCameras(True)
+			wait for (rs) complete (Result As Object)
+			ProgressDialogHide
+		else If ivDriveway.Bitmap = Null Then
+			If File.Exists(File.DirInternal, "Driveway.jpg") Then
+				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width, ivDriveway.Height, True)
+				ivDriveway.Bitmap = bmp
+			End If
+			If File.Exists(File.DirInternal, "FrontDoor.jpg") Then
+				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width, ivFrontDoor.Height, True)
+				ivFrontDoor.Bitmap = bmp
+			End If
+			If File.Exists(File.DirInternal, "SideYard.jpg") Then
+				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivSideYard.Width, ivSideYard.Height, True)
+				ivSideYard.Bitmap = bmp
+			End If
+		End If
+	Catch
+		Log(LastException)
+	End Try
+	
+	Return Null
 End Sub
 
 Public Sub GetAllTabLabels (tabstrip As TabStrip) As List
@@ -2351,6 +2396,8 @@ Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
 		Else
 			'not visible
 			If p.NumberOfViews > 0 Then
+				Dim ivCleanUP As ImageView = p.GetView(0).GetView(3)
+				ivCleanUP.Bitmap = Null
 				p.RemoveAllViews
 			End If
 		End If
