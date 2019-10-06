@@ -423,6 +423,19 @@ End Sub
 
 Sub Activity_Resume
 	Try
+		If File.Exists(File.DirInternal, "Driveway.jpg") Then
+			Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width,ivDriveway.Height, True)
+			ivDriveway.Bitmap = bmp
+		End If
+		If File.Exists(File.DirInternal, "FrontDoor.jpg") Then
+			Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
+			ivFrontDoor.Bitmap = bmp
+		End If
+		If File.Exists(File.DirInternal, "SideYard.jpg") Then
+			Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
+			ivSideYard.Bitmap = bmp
+		End If
+		
 		HandleSettings
 		Dim in As Intent = Activity.GetStartingIntent
 		Dim NotificationClicked As String
@@ -546,11 +559,11 @@ End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
 	wvMedia.LoadUrl("")
-	If UserClosed Then
-		ivDriveway.Bitmap = Null
-		ivFrontDoor.Bitmap = Null
-		ivSideYard.Bitmap = Null
-	End If
+
+	ivDriveway.Bitmap = Null
+	ivFrontDoor.Bitmap = Null
+	ivSideYard.Bitmap = Null
+
 End Sub
 
 'Connect to CloudMQTT broker
@@ -824,10 +837,6 @@ public boolean _onCreateOptionsMenu(android.view.Menu menu) {
 
 Sub TabStrip1_PageSelected (Position As Int)
 	Try
-		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-		Dim rs As ResumableSub = GetUnwatchedVideos
-		wait for (rs) complete (Result As Object)
-		
 		B4XPageIndicator1.CurrentPage = Position
 		If Position = 0 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
@@ -861,33 +870,35 @@ Sub TabStrip1_PageSelected (Position As Int)
 			Dim rs As ResumableSub = CreateTab4
 			wait for (rs) complete (Result As Object)
 		End If
+		
+		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+		Dim rs As ResumableSub = GetUnwatchedVideos
+		wait for (rs) complete (Result As Object)
+				
+		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
+		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo = True Then
+			If UnwatchedVideoClips > 0 Or isThereUnwatchedVideo = True Then
+				isThereUnwatchedVideo = False
+				clvActivity.Clear
+						
+				Dim rs As ResumableSub = GetUnwatchedVideos
+				wait for (rs) complete (Result As Object)
+						
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetVideos(response)
+				wait for (rs) complete (Result As Object)
+						
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetUnwatchedVideos
+				wait for (rs) complete (Result As Object)
+				Return
+			End If
+		End If
+			
 		If Position = 5 Then
 '			ivDriveway.Bitmap = Null
 '			ivFrontDoor.Bitmap = Null
 '			ivSideYard.Bitmap = Null
-				
-			Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-			If IsNumber(UnwatchedVideoClips) Or clvActivity.Size=0 Or isThereUnwatchedVideo = True Then
-				If UnwatchedVideoClips > 0 Or clvActivity.Size=0 Or isThereUnwatchedVideo = True Then
-					isThereUnwatchedVideo = False
-					clvActivity.Clear
-						
-					Dim rs As ResumableSub = GetUnwatchedVideos
-					wait for (rs) complete (Result As Object)
-						
-					' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-					Dim rs As ResumableSub = GetVideos(response)
-					wait for (rs) complete (Result As Object)
-						
-					' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-					Dim rs As ResumableSub = GetUnwatchedVideos
-					wait for (rs) complete (Result As Object)
-					Return
-				End If
-			End If
-			
-			isThereUnwatchedVideo = False
-			
 			If clvActivity.Size > 0 Then
 				If previousSelectedIndex > (clvActivity.Size-1) Then
 					previousSelectedIndex = 0
@@ -908,8 +919,22 @@ Sub TabStrip1_PageSelected (Position As Int)
 				firstvideo = cd.mediaURL
 				lblDuration.Text = "0:00"
 				ShowVideo(firstvideo)
+			Else
+				clvActivity.Clear
+						
+				Dim rs As ResumableSub = GetUnwatchedVideos
+				wait for (rs) complete (Result As Object)
+						
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetVideos(response)
+				wait for (rs) complete (Result As Object)
+						
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetUnwatchedVideos
+				wait for (rs) complete (Result As Object)
 			End If
 		End If
+
 	Catch
 		Log(LastException)
 	End Try
@@ -2729,7 +2754,7 @@ Sub GetUnwatchedVideos() As ResumableSub
 		badger1.SetBadge(lbl, j)
 		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
 		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo Then
-			If UnwatchedVideoClips > 0 Or isThereUnwatchedVideo Then
+			If j > 0 Or UnwatchedVideoClips > 0 Or isThereUnwatchedVideo Then
 				StateManager.SetSetting("UnwatchedVideoClips",j)
 				StateManager.SaveSettings
 				isThereUnwatchedVideo = True
