@@ -423,11 +423,6 @@ End Sub
 
 Sub Activity_Resume
 	Try
-		If TabStrip1.CurrentPage = 4 Then
-			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-			Dim rs As ResumableSub = CreateTab4
-			wait for (rs) complete (Result As Object)
-		End If
 		HandleSettings
 		Dim in As Intent = Activity.GetStartingIntent
 		Dim NotificationClicked As String
@@ -551,9 +546,11 @@ End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
 	wvMedia.LoadUrl("")
-'	ivDriveway.Bitmap = Null
-'	ivFrontDoor.Bitmap = Null
-'	ivSideYard.Bitmap = Null
+	If UserClosed Then
+		ivDriveway.Bitmap = Null
+		ivFrontDoor.Bitmap = Null
+		ivSideYard.Bitmap = Null
+	End If
 End Sub
 
 'Connect to CloudMQTT broker
@@ -1626,19 +1623,18 @@ Sub DownloadImage (Link As String, iv As ImageView, camera As String) 'ignore
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "Driveway.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
-'				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", iv.Width, iv.Height, True)
 				Dim bmp As B4XBitmap = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
+				Log("bmp width: " & bmp.Width)
+				Log("bmp height: " & bmp.Height)
 			Else If camera = "236967" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "FrontDoor.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
-'				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", iv.Width, iv.Height, True)
 				Dim bmp As B4XBitmap = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
 			Else If camera = "226821" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "SideYard.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
-'				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", iv.Width, iv.Height, True)
 				Dim bmp As B4XBitmap = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
 			End If
 			iv.Bitmap = bmp
