@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,Activity_Resume,467,3,Main,GetAuthInfo,1572,0,Main,Activity_Pause,471,0,Main,TabStrip1_PageSelected,785,0,Main,btnSideYardNewClip_Click,2883,0,Main,btnFrontDoorNewClip_Click,2799,0,Main,btnDrivewayNewClip_Click,2715,0,Main,Process_Globals,25,0,Main,CreateTab4,859,6,Main,DownloadImage,1547,6
+NavigationStack=Main,btnSideYardNewClip_Click,2883,0,Main,btnFrontDoorNewClip_Click,2799,0,Main,btnDrivewayNewClip_Click,2715,0,Main,Process_Globals,26,0,Main,Blur,2041,0,Main,BlurIV,2033,0,Main,CreateTab4,867,6,Main,DownloadImage,1568,6,Main,Activity_Resume,463,0,Main,Activity_Pause,467,5
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
