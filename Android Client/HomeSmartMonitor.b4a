@@ -480,6 +480,7 @@ Sub Activity_Resume
 		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo Then
 			isThereUnwatchedVideo = False
 			If UnwatchedVideoClips > 0 Then
+				
 				TabStrip1.ScrollTo(5,False)
 				Sleep(100)
 				clvActivity.Clear
@@ -491,6 +492,9 @@ Sub Activity_Resume
 				Dim rs As ResumableSub = GetVideos(response)
 				wait for (rs) complete (Results As Object)
 						
+				StateManager.SetSetting("UnwatchedVideoClips","0")
+				StateManager.SaveSettings
+				
 				Try
 					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 						MQTT_Connect
@@ -878,7 +882,8 @@ Sub TabStrip1_PageSelected (Position As Int)
 		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
 		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo = True Then
 			If UnwatchedVideoClips > 0 Or isThereUnwatchedVideo = True Then
-				isThereUnwatchedVideo = False
+				TabStrip1.ScrollTo(5,False)
+				Sleep(100)
 				clvActivity.Clear
 						
 				Dim rs As ResumableSub = GetUnwatchedVideos
@@ -887,6 +892,10 @@ Sub TabStrip1_PageSelected (Position As Int)
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				Dim rs As ResumableSub = GetVideos(response)
 				wait for (rs) complete (Result As Object)
+				
+				isThereUnwatchedVideo = False
+				StateManager.SetSetting("UnwatchedVideoClips","0")
+				StateManager.SaveSettings
 						
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				Dim rs As ResumableSub = GetUnwatchedVideos
