@@ -64,7 +64,7 @@ Library6=callsubutils
 Library7=byteconverter
 Library8=xui
 Library9=phone
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddManifestText(<uses-permission~\n~   android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~   android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~~\n~SetApplicationAttribute(android:largeHeap, "true")
+ManifestCode=AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddManifestText(<uses-permission~\n~   android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~   android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~~\n~SetApplicationAttribute(android:largeHeap, "true")
 Module1=Gauge
 Module10=KeyValueStore
 Module2=SmartHomeMonitor
@@ -124,7 +124,6 @@ Sub Process_Globals
 	Private drivewayArmedStatus As String
 	Private frontdoorArmedStatus As String
 	Private sideyardArmedStatus As String
-	Private tabStripCurrentPage As Boolean = False
 	Type CardData (screenshot As B4XBitmap,filedate As String, deviceinfo As String, iswatchedvisible As Boolean, mediaURL As String)
 	Type VideoInfo (ThumbnailPath As String, DateCreated As String, Watched As String, DeviceName As String, VideoID As String, ThumbnailBLOB() As Byte)
 	Public isThereUnwatchedVideo As Boolean
@@ -424,6 +423,11 @@ End Sub
 
 Sub Activity_Resume
 	Try
+		If TabStrip1.CurrentPage = 4 Then
+			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+			Dim rs As ResumableSub = CreateTab4
+			wait for (rs) complete (Result As Object)
+		End If
 		HandleSettings
 		Dim in As Intent = Activity.GetStartingIntent
 		Dim NotificationClicked As String
@@ -459,32 +463,26 @@ Sub Activity_Resume
 			TabStrip1.ScrollTo(3,False)
 			TabStrip1_PageSelected(3)
 		End If
+
+		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+		Dim rs As ResumableSub = GetUnwatchedVideos
+		wait for (rs) complete (Results As Object)
 		
 		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-		Sleep(100)
-
-		If IsNumber(UnwatchedVideoClips) = False Then
-			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-			Dim rs As ResumableSub = GetUnwatchedVideos
-			wait for (rs) complete (Result As Object)
-		Else
-			If UnwatchedVideoClips < 1 Then
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetUnwatchedVideos
-				wait for (rs) complete (Result As Object)
-			End If
-		End If 
-					
-		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo = True Then
+		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo Then
 			isThereUnwatchedVideo = False
 			If UnwatchedVideoClips > 0 Then
-				tabStripCurrentPage = False
-				TabStrip1_PageSelected(5)
-				tabStripCurrentPage = True
 				TabStrip1.ScrollTo(5,False)
 				Sleep(100)
+				clvActivity.Clear
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetUnwatchedVideos
+				wait for (rs) complete (Results As Object)
 				
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetVideos(response)
+				wait for (rs) complete (Results As Object)
+						
 				Try
 					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 						MQTT_Connect
@@ -498,9 +496,18 @@ Sub Activity_Resume
 		
 		isThereUnwatchedVideo = False
 		
-		If tabStripCurrentPage = False And TabStrip1.CurrentPage = 5 Then
-			If clvActivity.Size > 0 Then
-				If previousSelectedIndex > (clvActivity.Size-1) Then 
+		If TabStrip1.CurrentPage = 5 Then
+			If clvActivity.Size = 0 Then
+				clvActivity.Clear
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetUnwatchedVideos
+				wait for (rs) complete (Results As Object)
+				
+				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+				Dim rs As ResumableSub = GetVideos(response)
+				wait for (rs) complete (Results As Object)
+			Else
+				If previousSelectedIndex > (clvActivity.Size-1) Then
 					previousSelectedIndex = 0
 				End If
 				clvActivity.JumpToItem(previousSelectedIndex)
@@ -520,9 +527,7 @@ Sub Activity_Resume
 				lblDuration.Text = "0:00"
 				ShowVideo(firstvideo)
 			End If
-		End If
-		
-		If TabStrip1.CurrentPage = 4 Then
+		else If TabStrip1.CurrentPage = 4 Then
 			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 			Dim rs As ResumableSub = CreateTab4
 			wait for (rs) complete (Result As Object)
@@ -707,8 +712,6 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 			bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 			If  Msgbox2("Remove all KeyValueStore records?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then
 				Starter.kvs.DeleteAll
-				'Msgbox2("Please restart the application", "Smart Home Monitor", "OK", "", "", bd.Bitmap)
-				'ExitApplication
 				clvActivity.Clear
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				Dim rs As ResumableSub = GetUnwatchedVideos
@@ -717,8 +720,6 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				Dim rs As ResumableSub = GetVideos(response)
 				wait for (rs) complete (Results As Object)
-						
-				tabStripCurrentPage = False
 			End If
 		else if Item.Title = "Restart board" Then
 			Try
@@ -826,6 +827,10 @@ public boolean _onCreateOptionsMenu(android.view.Menu menu) {
 
 Sub TabStrip1_PageSelected (Position As Int)
 	Try
+		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+		Dim rs As ResumableSub = GetUnwatchedVideos
+		wait for (rs) complete (Result As Object)
+		
 		B4XPageIndicator1.CurrentPage = Position
 		If Position = 0 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
@@ -858,75 +863,55 @@ Sub TabStrip1_PageSelected (Position As Int)
 			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 			Dim rs As ResumableSub = CreateTab4
 			wait for (rs) complete (Result As Object)
-			
-			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-			Dim rs As ResumableSub = GetUnwatchedVideos
-			wait for (rs) complete (Result As Object)
 		End If
 		If Position = 5 Then
 '			ivDriveway.Bitmap = Null
 '			ivFrontDoor.Bitmap = Null
 '			ivSideYard.Bitmap = Null
-			If tabStripCurrentPage = False Then
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				
-				Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-				If IsNumber(UnwatchedVideoClips) = False Then
+			Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
+			If IsNumber(UnwatchedVideoClips) Or clvActivity.Size=0 Or isThereUnwatchedVideo = True Then
+				If UnwatchedVideoClips > 0 Or clvActivity.Size=0 Or isThereUnwatchedVideo = True Then
+					isThereUnwatchedVideo = False
+					clvActivity.Clear
+						
+					Dim rs As ResumableSub = GetUnwatchedVideos
+					wait for (rs) complete (Result As Object)
+						
+					' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+					Dim rs As ResumableSub = GetVideos(response)
+					wait for (rs) complete (Result As Object)
+						
 					' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 					Dim rs As ResumableSub = GetUnwatchedVideos
 					wait for (rs) complete (Result As Object)
-				Else
-					If UnwatchedVideoClips < 1 Then
-						' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-						Dim rs As ResumableSub = GetUnwatchedVideos
-						wait for (rs) complete (Result As Object)
-					End If
-				End If
-
-				Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-				If IsNumber(UnwatchedVideoClips) Or clvActivity.Size=0 Or isThereUnwatchedVideo = True Then
-					If UnwatchedVideoClips > 0 Or clvActivity.Size=0 Or isThereUnwatchedVideo = True Then
-						isThereUnwatchedVideo = False
-						clvActivity.Clear
-						
-						Dim rs As ResumableSub = GetUnwatchedVideos
-						wait for (rs) complete (Result As Object)
-						
-						' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-						Dim rs As ResumableSub = GetVideos(response)
-						wait for (rs) complete (Result As Object)
-						
-						' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-						Dim rs As ResumableSub = GetUnwatchedVideos
-						wait for (rs) complete (Result As Object)
-						tabStripCurrentPage = False
-						Return
-					End If
-				End If
-				
-				If clvActivity.Size > 0 Then
-					If previousSelectedIndex > (clvActivity.Size-1) Then
-						previousSelectedIndex = 0
-					End If
-					clvActivity.JumpToItem(previousSelectedIndex)
-					Sleep(100)
-					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
-					If p.NumberOfViews > 0 Then
-						Dim backPane As B4XView = p.getview(0)
-						backPane.Color = xui.Color_ARGB(255,217,215,222)
-						
-						Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
-						ContentLabel.Visible = True
-					End If
-					B4XLoadingIndicator4.Show
-					Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
-					Dim firstvideo As String
-					firstvideo = cd.mediaURL
-					lblDuration.Text = "0:00"
-					ShowVideo(firstvideo)
+					Return
 				End If
 			End If
-			tabStripCurrentPage = False
+			
+			isThereUnwatchedVideo = False
+			
+			If clvActivity.Size > 0 Then
+				If previousSelectedIndex > (clvActivity.Size-1) Then
+					previousSelectedIndex = 0
+				End If
+				clvActivity.JumpToItem(previousSelectedIndex)
+				Sleep(100)
+				Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
+				If p.NumberOfViews > 0 Then
+					Dim backPane As B4XView = p.getview(0)
+					backPane.Color = xui.Color_ARGB(255,217,215,222)
+						
+					Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
+					ContentLabel.Visible = True
+				End If
+				B4XLoadingIndicator4.Show
+				Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
+				Dim firstvideo As String
+				firstvideo = cd.mediaURL
+				lblDuration.Text = "0:00"
+				ShowVideo(firstvideo)
+			End If
 		End If
 	Catch
 		Log(LastException)
@@ -953,17 +938,17 @@ Sub CreateTab4() As ResumableSub
 			Dim rs As ResumableSub = RefreshCameras(True)
 			wait for (rs) complete (Result As Object)
 			ProgressDialogHide
-		else If ivDriveway.Bitmap = Null Then
+		else If ivDriveway.Bitmap = Null Or ivFrontDoor.Bitmap = Null Or ivSideYard.Bitmap = Null Then
 			If File.Exists(File.DirInternal, "Driveway.jpg") Then
-				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width, ivDriveway.Height, True)
+				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width,ivDriveway.Height, True)
 				ivDriveway.Bitmap = bmp
 			End If
 			If File.Exists(File.DirInternal, "FrontDoor.jpg") Then
-				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width, ivFrontDoor.Height, True)
+				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
 				ivFrontDoor.Bitmap = bmp
 			End If
 			If File.Exists(File.DirInternal, "SideYard.jpg") Then
-				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivSideYard.Width, ivSideYard.Height, True)
+				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
 				ivSideYard.Bitmap = bmp
 			End If
 		End If
@@ -1641,17 +1626,20 @@ Sub DownloadImage (Link As String, iv As ImageView, camera As String) 'ignore
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "Driveway.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
-				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", iv.Width, iv.Height, True)
+'				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", iv.Width, iv.Height, True)
+				Dim bmp As B4XBitmap = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
 			Else If camera = "236967" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "FrontDoor.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
-				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", iv.Width, iv.Height, True)
+'				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", iv.Width, iv.Height, True)
+				Dim bmp As B4XBitmap = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
 			Else If camera = "226821" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "SideYard.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
-				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", iv.Width, iv.Height, True)
+'				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", iv.Width, iv.Height, True)
+				Dim bmp As B4XBitmap = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
 			End If
 			iv.Bitmap = bmp
 		Else
@@ -2743,8 +2731,17 @@ Sub GetUnwatchedVideos() As ResumableSub
 		
 		Dim j As Int = StringCount(response,"""watched"":false",True)
 		badger1.SetBadge(lbl, j)
-		StateManager.SetSetting("UnwatchedVideoClips",j)
-		StateManager.SaveSettings
+		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
+		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo Then
+			If UnwatchedVideoClips > 0 Or isThereUnwatchedVideo Then
+				StateManager.SetSetting("UnwatchedVideoClips",j)
+				StateManager.SaveSettings
+				isThereUnwatchedVideo = True
+			End If
+		Else
+			StateManager.SetSetting("UnwatchedVideoClips",j)
+			StateManager.SaveSettings
+		End If
 	Catch
 		Log(LastException)
 	End Try
@@ -2798,7 +2795,7 @@ Sub btnDrivewayNewClip_Click
 				ivDriveway.Enabled = True
 				ivFrontDoor.Enabled = True
 				ivSideYard.Enabled = True
-				lblStatus.Text = "Ready"
+				'lblStatus.Text = "Ready"
 				Return
 			End If
 			GetCommandID(response)
@@ -2882,7 +2879,7 @@ Sub btnFrontDoorNewClip_Click
 				ivDriveway.Enabled = True
 				ivFrontDoor.Enabled = True
 				ivSideYard.Enabled = True
-				lblStatus.Text = "Ready"
+				'lblStatus.Text = "Ready"
 				Return
 			End If
 			GetCommandID(response)
@@ -2966,7 +2963,7 @@ Sub btnSideYardNewClip_Click
 				ivDriveway.Enabled = True
 				ivFrontDoor.Enabled = True
 				ivSideYard.Enabled = True
-				lblStatus.Text = "Ready"
+				'lblStatus.Text = "Ready"
 				Return
 			End If
 			GetCommandID(response)
