@@ -190,7 +190,7 @@ mostCurrent._main._isthereunwatchedvideo /*boolean*/  = anywheresoftware.b4a.key
  } 
        catch (Exception e32) {
 			processBA.setLastException(e32); //BA.debugLineNum = 54;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("37602212",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("17602212",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 57;BA.debugLine="End Sub";
 return "";
@@ -236,7 +236,7 @@ mostCurrent._smarthomemonitor._isoldairqualitynotificationongoingbasement /*bool
  } 
        catch (Exception e25) {
 			processBA.setLastException(e25); //BA.debugLineNum = 87;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("37667740",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("17667740",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 90;BA.debugLine="End Sub";
 return "";

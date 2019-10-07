@@ -127,6 +127,7 @@ Sub Process_Globals
 	Type CardData (screenshot As B4XBitmap,filedate As String, deviceinfo As String, iswatchedvisible As Boolean, mediaURL As String)
 	Type VideoInfo (ThumbnailPath As String, DateCreated As String, Watched As String, DeviceName As String, VideoID As String, ThumbnailBLOB() As Byte)
 	Public isThereUnwatchedVideo As Boolean
+	Private bmp As B4XBitmap
 End Sub
 
 Sub Globals
@@ -424,15 +425,15 @@ End Sub
 Sub Activity_Resume
 	Try
 		If File.Exists(File.DirInternal, "Driveway.jpg") Then
-			Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width,ivDriveway.Height, True)
+			bmp = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width,ivDriveway.Height, True)
 			ivDriveway.Bitmap = bmp
 		End If
 		If File.Exists(File.DirInternal, "FrontDoor.jpg") Then
-			Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
+			bmp = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
 			ivFrontDoor.Bitmap = bmp
 		End If
 		If File.Exists(File.DirInternal, "SideYard.jpg") Then
-			Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
+			bmp = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
 			ivSideYard.Bitmap = bmp
 		End If
 		
@@ -568,6 +569,11 @@ Sub Activity_Pause (UserClosed As Boolean)
 	ivFrontDoor.Bitmap = Null
 	ivSideYard.Bitmap = Null
 
+	Dim Obj1 As Reflector
+	Obj1.Target = bmp ' the unwanted Bitmap
+	Obj1.RunMethod("recycle")
+	bmp = Null
+	
 End Sub
 
 'Connect to CloudMQTT broker
@@ -971,15 +977,15 @@ Sub CreateTab4() As ResumableSub
 			ProgressDialogHide
 		else If ivDriveway.Bitmap = Null Or ivFrontDoor.Bitmap = Null Or ivSideYard.Bitmap = Null Then
 			If File.Exists(File.DirInternal, "Driveway.jpg") Then
-				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width,ivDriveway.Height, True)
+				bmp = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width,ivDriveway.Height, True)
 				ivDriveway.Bitmap = bmp
 			End If
 			If File.Exists(File.DirInternal, "FrontDoor.jpg") Then
-				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
+				bmp = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
 				ivFrontDoor.Bitmap = bmp
 			End If
 			If File.Exists(File.DirInternal, "SideYard.jpg") Then
-				Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
+				bmp = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
 				ivSideYard.Bitmap = bmp
 			End If
 		End If
@@ -1657,19 +1663,17 @@ Sub DownloadImage (Link As String, iv As ImageView, camera As String) 'ignore
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "Driveway.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
-				Dim bmp As B4XBitmap = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
-				Log("bmp width: " & bmp.Width)
-				Log("bmp height: " & bmp.Height)
+				bmp = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
 			Else If camera = "236967" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "FrontDoor.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
-				Dim bmp As B4XBitmap = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
+				bmp = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
 			Else If camera = "226821" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "SideYard.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
-				Dim bmp As B4XBitmap = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
+				bmp = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
 			End If
 			iv.Bitmap = bmp
 		Else
@@ -2036,13 +2040,13 @@ Sub CheckBattLife(battlevel As Int, lbl As Label) As String
 			Return "Replace battery now!"
 		else If battlevel >= 160 Then
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
-			Return "Very high"
+			Return "High"
 		else If battlevel > 136 And battlevel < 140 Then
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Yellow))
-			Return "Very low"
+			Return "Low"
 		Else
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
-			Return "High"
+			Return "Good"
 		End If
 	Catch
 		Log(LastException)
@@ -2139,15 +2143,15 @@ End Sub
 
 Sub BlurIV (image As String,iv As ImageView)
 	Try
-		Dim bmp As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, image, iv.Width, iv.Height, True)
-		iv.Bitmap = (Blur(bmp))
+		bmp = xui.LoadBitmapResize(File.DirInternal, image, iv.Width, iv.Height, True)
+		iv.Bitmap = (Blur)
 	Catch
 		Log(LastException)
 		'ToastMessageShow("BlurIV: " & LastException,False)
 	End Try
 End Sub
 
-Private Sub Blur (bmp As B4XBitmap) As B4XBitmap
+Private Sub Blur () As B4XBitmap
 	Dim bcBitmap As BitmapCreator
 	Dim ReduceScale As Int = 2
 	bcBitmap.Initialize(bmp.Width / ReduceScale / bmp.Scale, bmp.Height / ReduceScale / bmp.Scale)
@@ -2315,7 +2319,8 @@ Sub GetVideos(json As String) As ResumableSub
 				j.Release
 			End If
 		Next
-			
+		
+		Dim bmp2 As Bitmap
 		clvActivity.Clear
 		Dim list1 As List = Starter.kvs.ListKeys
 		For i =  0 To list1.Size-1
@@ -2329,12 +2334,11 @@ Sub GetVideos(json As String) As ResumableSub
 				Dim videos = mytypes As VideoInfo
 				Dim In As InputStream
 				In.InitializeFromBytesArray(videos.ThumbnailBLOB, 0, videos.ThumbnailBLOB.Length)
-				Dim bmp As Bitmap
-				bmp.Initialize2(In)
-			
+				
+				bmp2.Initialize2(In)
 				Dim cd As CardData
 				cd.Initialize
-				cd.screenshot = bmp
+				cd.screenshot = bmp2
 				cd.filedate = videos.DateCreated
 				cd.deviceinfo = videos.DeviceName
 				cd.iswatchedvisible = Not(videos.Watched)
@@ -2344,7 +2348,7 @@ Sub GetVideos(json As String) As ResumableSub
 				clvActivity.Add(p, cd)
 			End If
 		Next
-
+			
 		ProgressDialogHide
 
 		If list1.Size > 0 Then
@@ -2767,6 +2771,10 @@ Sub GetUnwatchedVideos() As ResumableSub
 				StateManager.SetSetting("UnwatchedVideoClips",j)
 				StateManager.SaveSettings
 				isThereUnwatchedVideo = True
+			Else
+				isThereUnwatchedVideo = False
+				StateManager.SetSetting("UnwatchedVideoClips","0")
+				StateManager.SaveSettings
 			End If
 		Else
 			StateManager.SetSetting("UnwatchedVideoClips",j)
