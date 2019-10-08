@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=KeyValueStore,GetBitmap,127,0,Main,GetUnwatchedVideos,2697,3,Main,Activity_Resume,469,6,Main,Activity_Pause,493,5,Main,Process_Globals,48,4,Main,DownloadImage,1575,6,Main,GetVideos,2268,6,Main,CheckBattLife,1955,1,Main,GetHomescreen,1943,0,Main,clvActivity_VisibleRangeChanged,2307,0
+NavigationStack=Main,Process_Globals,18,4,Main,Activity_Resume,394,6,Main,clvActivity_ItemClick,2407,0,Main,GetUnwatchedVideos,2699,6,Main,GetComfort,638,0,Main,GetFreeMem,639,0,Main,Activity_Createmenu,770,0,Main,GetCameraInfo,1816,0,Main,MQTT_Disconnected,534,6,Main,ACToolBarLight1_MenuItemClick,677,6
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10

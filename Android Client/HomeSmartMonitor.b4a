@@ -613,7 +613,8 @@ Private Sub MQTT_Disconnected
 		gblACMenu.Clear
 		gblACMenu.Add(0, 0, "Settings",Null)
 		gblACMenu.Add(0, 0, "Remove all KeyValueStore records",Null)
-		gblACMenu.Add(0, 0, "Show KeyValueStore records numbers",Null)
+		gblACMenu.Add(0, 0, "Restart application",Null)
+		gblACMenu.Add(0, 0, "Show free memory",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		Log("Disconnected from MQTT broker")
 		MQTT_Connect
@@ -719,14 +720,45 @@ Sub GetComfort(DHT11ComfortStatus As String) As String
 	Return localcomfortstatus
 End Sub
 
+Sub GetFreeMem As Float
+	Dim r As Reflector
+	Dim MM, TM, FM, Total As Int
+	r.Target = r.RunStaticMethod("java.lang.Runtime", "getRuntime", Null, Null)
+	MM = r.RunMethod("maxMemory")
+	FM = r.RunMethod("freeMemory")
+	TM = r.RunMethod("totalMemory")
+	Total = MM + FM - TM
+	Return Total / 1024
+End Sub
+
 Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 	Try
 		If Item.Title = "About" Then
 			ShowAboutMenu
 		else if Item.Title = "Settings" Then
 			StartActivity(screen.CreateIntent)
-		Else If Item.Title = "Show KeyValueStore records numbers" Then
-			Msgbox(Starter.kvs.ListKeys.Size & " records","Smart Home Monitor")
+		Else If Item.Title = "Restart Application" Then
+			Dim bd As BitmapDrawable
+			bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
+			If  Msgbox2("Restart the application?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then
+				Activity.Finish
+				Dim r, r2 As Reflector
+				r.Target = r.GetActivity
+				r.Target = r.RunMethod("getApplicationContext")
+				r2.Target = r.RunMethod("getPackageManager")
+				Dim i As Intent = r2.RunMethod2("getLaunchIntentForPackage", r.RunMethod("getPackageName"), "java.lang.String" )
+				r.Target = i
+				r.RunMethod2("addFlags",  67108864, "java.lang.int")
+				StartActivity(i)
+			End If
+		Else If Item.Title = "Show free memory" Then
+			Dim info As String
+			info = Starter.kvs.ListKeys.Size & " records" & CRLF & CRLF
+			Dim r As Reflector
+			r.Target = r.RunStaticMethod("java.lang.Runtime", "getRuntime", Null, Null)
+			info = info & "Available memory: " & NumberFormat2(((r.RunMethod("maxMemory") - r.RunMethod("totalMemory"))/(1024*1024)),0,2,2,False) & " MB" & CRLF
+			info = info & "Free memory: " & NumberFormat2(GetFreeMem/1000,0,2,2,False) & " MB"
+			Msgbox(info,"Smart Home Monitor")
 		else if Item.Title = "Remove all KeyValueStore records" Then
 			Dim bd As BitmapDrawable
 			bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
@@ -817,7 +849,8 @@ Sub Activity_Createmenu(Menu As ACMenu)
 		gblACMenu = Menu
 		Menu.Add(0, 0, "Settings",Null)
 		Menu.Add(0, 0, "Remove all KeyValueStore records",Null)
-		Menu.Add(0, 0, "Show KeyValueStore records numbers",Null)
+		Menu.Add(0, 0, "Restart Application",Null)
+		Menu.Add(0, 0, "Show free memory",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
 		Log(LastException)
@@ -2478,7 +2511,6 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 			Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
 			Dim videos = mytypes As VideoInfo
 			If videoURL.Contains(videos.VideoID) Then
-				' kvs.Put(VideoID, CreateCustomType(medianame,created_at,watched,device_name,VideoID,out.ToBytesArray))
 				Starter.kvs.Put(videos.VideoID,CreateCustomType(videos.ThumbnailPath,videos.DateCreated,"true",videos.DeviceName,videos.VideoID,videos.ThumbnailBLOB))
 			End If
 		Next
@@ -2486,6 +2518,10 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 		Dim rs As ResumableSub = ShowVideo(videoURL)
 		wait for (rs) complete (Result As Object)
+		
+		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
+		Dim rs As ResumableSub = GetUnwatchedVideos
+		wait for (rs) complete (Results As Object)
 	Catch
 		B4XLoadingIndicator4.Hide
 		Log(LastException)
@@ -2766,8 +2802,8 @@ Sub GetUnwatchedVideos() As ResumableSub
 		Dim j As Int = StringCount(response,"""watched"":false",True)
 		badger1.SetBadge(lbl, j)
 		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo Then
-			If j > 0 Or UnwatchedVideoClips > 0 Or isThereUnwatchedVideo Then
+		If IsNumber(UnwatchedVideoClips) Then
+			If j > 0 Or UnwatchedVideoClips > 0 Then
 				StateManager.SetSetting("UnwatchedVideoClips",j)
 				StateManager.SaveSettings
 				isThereUnwatchedVideo = True
@@ -2776,8 +2812,13 @@ Sub GetUnwatchedVideos() As ResumableSub
 				StateManager.SetSetting("UnwatchedVideoClips","0")
 				StateManager.SaveSettings
 			End If
+		Else If isThereUnwatchedVideo Then
+			StateManager.SetSetting("UnwatchedVideoClips","1")
+			StateManager.SaveSettings
+			isThereUnwatchedVideo = True
 		Else
-			StateManager.SetSetting("UnwatchedVideoClips",j)
+			isThereUnwatchedVideo = False
+			StateManager.SetSetting("UnwatchedVideoClips",0)
 			StateManager.SaveSettings
 		End If
 	Catch
