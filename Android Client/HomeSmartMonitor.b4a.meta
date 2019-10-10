@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,Process_Globals,18,4,Main,Activity_Resume,394,6,Main,clvActivity_ItemClick,2407,0,Main,GetUnwatchedVideos,2699,6,Main,GetComfort,638,0,Main,GetFreeMem,639,0,Main,Activity_Createmenu,770,0,Main,GetCameraInfo,1816,0,Main,MQTT_Disconnected,534,6,Main,ACToolBarLight1_MenuItemClick,677,6
+NavigationStack=Main,btnSideYardNewClip_Click,2954,0,Main,DownloadImageFullscreen,3036,4,Main,Process_Globals,48,0,Main,RefreshCameras,1427,3,Main,GetCommandResponse,1522,5,Main,btnSideYardFullScreenshot_Click,3107,1,Main,btnFrontDoorFullScreenshot_Click,3096,0,Main,btnDrivewayFullScreenshot_Click,3077,0,Main,GetCameraInfo,1824,6,Main,GetHomescreen,2023,2
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
