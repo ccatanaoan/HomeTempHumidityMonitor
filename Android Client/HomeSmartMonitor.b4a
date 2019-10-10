@@ -1482,7 +1482,7 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 				If camera = "347574" Then
 					lblStatus.Text = "Capturing a new Driveway thumbnail..."
 					iv = ivDriveway
-					attempts = 10
+					attempts = 15
 				Else If camera = "236967" Then
 					lblStatus.Text = "Capturing a new Front Door thumbnail..."
 					iv = ivFrontDoor
@@ -1507,7 +1507,7 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 				Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
 				wait for (rs) complete (Result As Object)
 				
-				Dim rs As ResumableSub = GetCameraInfo(response,true)
+				Dim rs As ResumableSub = GetCameraInfo(response,True)
 				wait for (rs) complete (Result As Object)
 				
 				prevCameraThumbnail = cameraThumbnail
@@ -1542,6 +1542,7 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 						btnSideYardFullScreenshot.Enabled = True
 						Return Null
 					Else
+						Dim reChecked As Boolean
 						For i = 1 To attempts
 							' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 							Dim rs As ResumableSub = GetCommandResponse(iv,camera, i, attempts)
@@ -1551,6 +1552,33 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 							Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
 							wait for (rs) complete (Result As Object)
 							Sleep(1000) ' 1 second
+
+							If i = attempts And reChecked = False Then
+								reChecked = True
+								Log("*********** HERE *********** i = " & i)
+								Dim rs As ResumableSub = RESTPost("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera & "/thumbnail")
+								wait for (rs) complete (Result As Object)
+								
+								If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
+									btnDriveway.Enabled = True
+									btnRefresh.Enabled = True
+									btnDrivewayNewClip.Enabled = True
+									btnFrontDoorNewClip.Enabled = True
+									btnSideYardNewClip.Enabled = True
+									btnDrivewayFullScreenshot.Enabled = True
+									btnFrontDoorFullScreenshot.Enabled = True
+									btnSideYardFullScreenshot.Enabled = True
+									Return Null
+								Else
+									i = 1
+								End If
+								Log("*********** HERE TWO ***********")
+								Dim rs As ResumableSub = GetCommandID(response)
+								wait for (rs) complete (Result As Object)
+					
+								Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
+								wait for (rs) complete (Result As Object)
+							End If
 						Next
 						If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 							btnDriveway.Enabled = True
@@ -2007,33 +2035,25 @@ Sub GetHomescreen(json As String) As ResumableSub
 			
 		
 			If device_id = "347574" Then
-				If enabled = "true" Then
-					drivewayArmedStatus = ""
-					Dim jo As JavaObject = lblDriveway
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-				Else
-					drivewayArmedStatus = "MOTION DETECTION IS DISABLED!"
-					Dim jo As JavaObject = lblDriveway
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-				If active = "armed" Then
-					drivewayArmedStatus = ""
-					Dim jo As JavaObject = lblDriveway
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-				Else
-					drivewayArmedStatus = "NOT ARMED!"
-					Dim jo As JavaObject = lblDriveway
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
 				If battery > 2 And battery_state = "ok" Then
-					drivewayArmedStatus = ""
-					Dim jo As JavaObject = lblDriveway
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
+					If active = "armed" Then
+						If enabled = "true" Then
+							drivewayArmedStatus = ""
+							Dim jo As JavaObject = lblDriveway
+							Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
+							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
+						Else
+							drivewayArmedStatus = "MOTION DETECTION IS DISABLED!"
+							Dim jo As JavaObject = lblDriveway
+							Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+						End If
+					Else
+						drivewayArmedStatus = "NOT ARMED!"
+						Dim jo As JavaObject = lblDriveway
+						Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+					End If
 				Else
 					drivewayArmedStatus = "REPLACE BATTERY NOW!"
 					Dim jo As JavaObject = lblDriveway
@@ -2041,33 +2061,25 @@ Sub GetHomescreen(json As String) As ResumableSub
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 				End If
 			Else If device_id = "236967" Then
-				If enabled = "true" Then
-					frontdoorArmedStatus = ""
-					Dim jo As JavaObject = lblFrontDoor
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-				Else
-					frontdoorArmedStatus = "MOTION DETECTION IS DISABLED!"
-					Dim jo As JavaObject = lblFrontDoor
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-				If active = "armed" Then
-					frontdoorArmedStatus = ""
-					Dim jo As JavaObject = lblFrontDoor
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-				Else
-					frontdoorArmedStatus = "NOT ARMED!"
-					Dim jo As JavaObject = lblFrontDoor
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
 				If battery > 2 And battery_state = "ok" Then
-					frontdoorArmedStatus = ""
-					Dim jo As JavaObject = lblFrontDoor
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
+					If active = "armed" Then
+						If enabled = "true" Then
+							frontdoorArmedStatus = ""
+							Dim jo As JavaObject = lblFrontDoor
+							Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
+							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
+						Else
+							frontdoorArmedStatus = "MOTION DETECTION IS DISABLED!"
+							Dim jo As JavaObject = lblFrontDoor
+							Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+						End If
+					Else
+						frontdoorArmedStatus = "NOT ARMED!"
+						Dim jo As JavaObject = lblFrontDoor
+						Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+					End If
 				Else
 					frontdoorArmedStatus = "REPLACE BATTERY NOW!"
 					Dim jo As JavaObject = lblFrontDoor
@@ -2075,33 +2087,25 @@ Sub GetHomescreen(json As String) As ResumableSub
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 				End If
 			Else If device_id = "226821" Then
-				If enabled = "true" Then
-					sideyardArmedStatus = ""
-					Dim jo As JavaObject = lblSideYard
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-				Else
-					sideyardArmedStatus ="MOTION DETECTION IS DISABLED!"
-					Dim jo As JavaObject = lblSideYard
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-				If active = "armed" Then
-					sideyardArmedStatus = ""
-					Dim jo As JavaObject = lblSideYard
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-				Else
-					sideyardArmedStatus = "NOT ARMED!"
-					Dim jo As JavaObject = lblSideYard
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
 				If battery > 2 And battery_state = "ok" Then
-					sideyardArmedStatus = ""
-					Dim jo As JavaObject = lblSideYard
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
+					If active = "armed" Then
+						If enabled = "true" Then
+							sideyardArmedStatus = ""
+							Dim jo As JavaObject = lblSideYard
+							Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
+							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
+						Else
+							sideyardArmedStatus ="MOTION DETECTION IS DISABLED!"
+							Dim jo As JavaObject = lblSideYard
+							Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+						End If
+					Else
+						sideyardArmedStatus = "NOT ARMED!"
+						Dim jo As JavaObject = lblSideYard
+						Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+					End If
 				Else
 					sideyardArmedStatus = "REPLACE BATTERY NOW!"
 					Dim jo As JavaObject = lblSideYard
@@ -2944,7 +2948,7 @@ Sub btnDrivewayNewClip_Click
 				ivDriveway.Enabled = True
 				ivFrontDoor.Enabled = True
 				ivSideYard.Enabled = True
-				'lblStatus.Text = "Ready"
+				lblStatus.Text = response
 				Return
 			End If
 			
@@ -3025,7 +3029,7 @@ Sub btnFrontDoorNewClip_Click
 				ivDriveway.Enabled = True
 				ivFrontDoor.Enabled = True
 				ivSideYard.Enabled = True
-				'lblStatus.Text = "Ready"
+				lblStatus.Text = response
 				Return
 			End If
 			
@@ -3105,7 +3109,7 @@ Sub btnSideYardNewClip_Click
 				ivDriveway.Enabled = True
 				ivFrontDoor.Enabled = True
 				ivSideYard.Enabled = True
-				'lblStatus.Text = "Ready"
+				lblStatus.Text = response
 				Return
 			End If
 			
