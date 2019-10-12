@@ -2897,10 +2897,11 @@ Sub GetUnwatchedVideos() As ResumableSub
 		
 		Dim n As Long = DateTime.Now
 		For Each colmedia As Map In media
+			Dim watched As String = colmedia.Get("watched")
 			Dim VideoID As String = colmedia.Get("id")
 			Dim mytypes As Object = Starter.kvs.Get(VideoID)
 			Dim videos = mytypes As VideoInfo
-			If videos = Null Then
+			If videos = Null Or watched = False Then
 				unwatchedVideoCount = unwatchedVideoCount + 1
 			End If
 		Next
