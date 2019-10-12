@@ -109,8 +109,8 @@ Sub Process_Globals
 	Dim manager As AHPreferenceManager
 	Dim screen As AHPreferenceScreen
 	
-	Private emailAddress As String 
-	Private password As String 
+	Private emailAddress As String
+	Private password As String
 	Private authToken As String
 	Private userRegion As String = "u006"
 	Private accountID As String = "88438" 'ignore
@@ -1045,17 +1045,17 @@ End Sub
 
 'This is a modified version of this sub that also checks for panels
 Public Sub GetAllTabLabelsForBadge (tabstrip As TabStrip) As List
-   Dim jo As JavaObject = tabstrip
-   Dim r As Reflector
-   r.Target = jo.GetField("tabStrip")
-   Dim tc As Panel = r.GetField("tabsContainer")
-   Dim res As List
-   res.Initialize
-   For Each v As View In tc
-     If v Is Label Then res.Add(v)
-	 If v.Tag Is Label Then res.Add(v.Tag)
-   Next
-   Return res
+	Dim jo As JavaObject = tabstrip
+	Dim r As Reflector
+	r.Target = jo.GetField("tabStrip")
+	Dim tc As Panel = r.GetField("tabsContainer")
+	Dim res As List
+	res.Initialize
+	For Each v As View In tc
+		If v Is Label Then res.Add(v)
+		If v.Tag Is Label Then res.Add(v.Tag)
+	Next
+	Return res
 End Sub
 
 Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
@@ -2035,79 +2035,100 @@ Sub GetHomescreen(json As String) As ResumableSub
 			
 		
 			If device_id = "347574" Then
-				If battery > 2 And battery_state = "ok" Then
-					If active = "armed" Then
-						If enabled = "true" Then
+				If active = "armed" Then
+					If enabled = "true" Then
+						If battery > 2 And battery_state = "ok" Then
 							drivewayArmedStatus = ""
 							Dim jo As JavaObject = lblDriveway
 							Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
 							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
 						Else
-							drivewayArmedStatus = "MOTION DETECTION IS DISABLED!"
-							Dim jo As JavaObject = lblDriveway
-							Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+							If battery = 2 Then
+								drivewayArmedStatus = "LOW BATTERY! [Level: " & battery & " - " & battery_state.ToUpperCase & "]"
+								Dim jo As JavaObject = lblDriveway
+								Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+								jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.RGB(255,127,80)))
+							Else
+								drivewayArmedStatus = "REPLACE BATTERY! [Level: " & battery & " - " & battery_state.ToUpperCase & "]"
+								Dim jo As JavaObject = lblDriveway
+								Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+								jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+							End If
 						End If
 					Else
-						drivewayArmedStatus = "NOT ARMED!"
+						drivewayArmedStatus = "MOTION DETECTION IS DISABLED!"
 						Dim jo As JavaObject = lblDriveway
 						Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 					End If
 				Else
-					drivewayArmedStatus = "REPLACE BATTERY NOW!"
+					drivewayArmedStatus = "NOT ARMED!"
 					Dim jo As JavaObject = lblDriveway
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 				End If
 			Else If device_id = "236967" Then
-				If battery > 2 And battery_state = "ok" Then
-					If active = "armed" Then
-						If enabled = "true" Then
+				If active = "armed" Then
+					If enabled = "true" Then
+						If battery > 2 And battery_state = "ok" Then
 							frontdoorArmedStatus = ""
 							Dim jo As JavaObject = lblFrontDoor
 							Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
 							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
 						Else
-							frontdoorArmedStatus = "MOTION DETECTION IS DISABLED!"
-							Dim jo As JavaObject = lblFrontDoor
-							Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+							If battery = 2 Then
+								frontdoorArmedStatus = "LOW BATTERY! [Level: " & battery & " - " & battery_state.ToUpperCase & "]"
+								Dim jo As JavaObject = lblFrontDoor
+								Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+								jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.RGB(255,127,80)))
+							Else
+								frontdoorArmedStatus = "REPLACE BATTERY! [Level: " & battery & " - " & battery_state.ToUpperCase & "]"
+								Dim jo As JavaObject = lblFrontDoor
+								Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+								jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+							End If
 						End If
 					Else
-						frontdoorArmedStatus = "NOT ARMED!"
+						frontdoorArmedStatus = "MOTION DETECTION IS DISABLED!"
 						Dim jo As JavaObject = lblFrontDoor
 						Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 					End If
 				Else
-					frontdoorArmedStatus = "REPLACE BATTERY NOW!"
+					frontdoorArmedStatus = "NOT ARMED!"
 					Dim jo As JavaObject = lblFrontDoor
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 				End If
 			Else If device_id = "226821" Then
-				If battery > 2 And battery_state = "ok" Then
-					If active = "armed" Then
-						If enabled = "true" Then
+				If active = "armed" Then
+					If enabled = "true" Then
+						If battery > 2 And battery_state = "ok" Then
 							sideyardArmedStatus = ""
 							Dim jo As JavaObject = lblSideYard
 							Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
 							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
 						Else
-							sideyardArmedStatus ="MOTION DETECTION IS DISABLED!"
-							Dim jo As JavaObject = lblSideYard
-							Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-							jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+							If battery = 2 Then
+								sideyardArmedStatus = "LOW BATTERY! [Level: " & battery & " - " & battery_state.ToUpperCase & "]"
+								Dim jo As JavaObject = lblSideYard
+								Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+								jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.RGB(255,127,80)))
+							Else
+								sideyardArmedStatus = "REPLACE BATTERY! [Level: " & battery & " - " & battery_state.ToUpperCase & "]"
+								Dim jo As JavaObject = lblSideYard
+								Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+								jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+							End If
 						End If
 					Else
-						sideyardArmedStatus = "NOT ARMED!"
+						sideyardArmedStatus ="MOTION DETECTION IS DISABLED!"
 						Dim jo As JavaObject = lblSideYard
 						Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 					End If
 				Else
-					sideyardArmedStatus = "REPLACE BATTERY NOW!"
+					sideyardArmedStatus = "NOT ARMED!"
 					Dim jo As JavaObject = lblSideYard
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
@@ -2128,17 +2149,17 @@ Sub GetHomescreen(json As String) As ResumableSub
 '		Dim status As String = network.Get("status")
 		
 		If armedNetwork <> "true" Then
-			drivewayArmedStatus = "NETWORK NOT ARMED!"
+			drivewayArmedStatus = "SYSTEM NOT ARMED!"
 			Dim jo As JavaObject = lblDriveway
 			Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 			
-			frontdoorArmedStatus = "NETWORK NOT ARMED!"
+			frontdoorArmedStatus = "SYSTEM NOT ARMED!"
 			Dim jo As JavaObject = lblFrontDoor
 			Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 			
-			sideyardArmedStatus = "NETWORK NOT ARMED!"
+			sideyardArmedStatus = "SYSTEM NOT ARMED!"
 			Dim jo As JavaObject = lblSideYard
 			Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
@@ -2152,9 +2173,9 @@ End Sub
 
 Sub CheckBattLife(battlevel As Int, lbl As Label) As String
 	Try
-		' https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.batteryuniversity.com%2F_img%2Fcontent%2Fbu-106-table-4.jpg&imgrefurl=https%3A%2F%2Fbatteryuniversity.com%2Flearn%2Farticle%2Fprimary_batteries&docid=iRglhUshphFArM&tbnid=lTA22wm3cFfbCM%3A&vet=10ahUKEwjCo66R0NrkAhWVrZ4KHVq8BmcQMwi4AShFMEU..i&w=570&h=265&bih=947&biw=1680&q=AAA%20battery%20level&ved=0ahUKEwjCo66R0NrkAhWVrZ4KHVq8BmcQMwi4AShFMEU&iact=mrc&uact=8
+		' http://data.energizer.com/pdfs/l91.pdf
 		Dim jo As JavaObject = lbl
-		Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
+		Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 		If battlevel <= 136 Then
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.red))
 			Return "Replace battery now!"
@@ -2162,7 +2183,7 @@ Sub CheckBattLife(battlevel As Int, lbl As Label) As String
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
 			Return "High"
 		else If battlevel > 136 And battlevel < 140 Then
-			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Yellow))
+			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.RGB(255,127,80)))
 			Return "Low"
 		Else
 			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
@@ -2232,7 +2253,7 @@ Sub btnDriveway_Click
 	If Msgbox2("Capture new camera thumbnails?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then
 		ScrollViewBlink.ScrollToNow(0)
 		btnDriveway.Enabled = False
-		btnRefresh.Enabled = False	
+		btnRefresh.Enabled = False
 		btnDrivewayNewClip.Enabled = False
 		btnFrontDoorNewClip.Enabled = False
 		btnSideYardNewClip.Enabled = False
@@ -2399,16 +2420,8 @@ Sub GetVideos(json As String) As ResumableSub
 		Dim root As Map = parser.NextObject
 		Dim media As List = root.Get("media")
 		
-		' https://www.b4x.com/android/forum/threads/tabstrip-labels-with-badger-possible.93308/#post-590560
-		Dim lbl As B4XView = GetAllTabLabelsForBadge(TabStrip1).Get(5)
-		'badger1.SetBadge(lbl, 0)
-
 		clvActivity.Clear
 		
-		Dim k As Int = StringCount(response,"""watched"":false",True)
-		badger1.SetBadge(lbl,k)
-		StateManager.SetSetting("UnwatchedVideoClips",k)
-		StateManager.SaveSettings
 		ProgressDialogShow2("Loading video clips...",False)
 		For Each colmedia As Map In media
 			Dim thumbnail As String = colmedia.Get("thumbnail")
@@ -2508,7 +2521,7 @@ Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
 				p.LoadLayout("blinkcellitem")
 				ivScreenshot.Bitmap = cd.screenshot
 								
-				Dim dayname As String 
+				Dim dayname As String
 				dayname = ConvertDayName(cd.filedate)
 				If cd.iswatchedvisible Then
 					ivWatched.Visible = True
@@ -2524,7 +2537,7 @@ Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
 				If previousSelectedIndex > (clvActivity.Size-1) Then
 					previousSelectedIndex = 0
 				End If
-				If previousSelectedIndex = i Then						
+				If previousSelectedIndex = i Then
 					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
 					If p.NumberOfViews > 0 Then
 						Dim backPane As B4XView = p.getview(0)
@@ -2577,7 +2590,7 @@ End Sub
 Sub clvActivity_ItemClick (Index As Int, Value As Object)
 	Try
 		Dim p As B4XView = clvActivity.GetPanel(Index)
-		If p.NumberOfViews > 0 Then			
+		If p.NumberOfViews > 0 Then
 			Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
 			ContentLabel.Visible = False
 			
@@ -2750,7 +2763,7 @@ Sub ConvertDayName(inputTime As String) As String
 		Return "Today" '& DateTime.Date(lngTicks)
 	Else If Yesterday = timestamp Then
 		Return "Yesterday" '& DateTime.Date(lngTicks)
-	Else 
+	Else
 		Return DateUtils.GetDayOfWeekName(lngTicks) '& " " & DateTime.Date(lngTicks)
 	End If
 End Sub
@@ -2772,7 +2785,7 @@ Sub ConvertFullDateTime(inputTime As String) As String
 		Return DateTime.Date(lngTicks)
 	Else If Yesterday = timestamp Then
 		Return DateTime.Date(lngTicks)
-	Else 
+	Else
 		Return DateTime.Date(lngTicks)
 	End If
 End Sub
@@ -2872,33 +2885,34 @@ End Sub
 
 Sub GetUnwatchedVideos() As ResumableSub
 	Try
-		' https://www.b4x.com/android/forum/threads/tabstrip-labels-with-badger-possible.93308/#post-590560
-		Dim lbl As B4XView = GetAllTabLabelsForBadge(TabStrip1).Get(5)
 		
 		Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/api/v1/accounts/88438/media/changed?since=-999999999-01-01T00:00:00+18:00&page=1")
 		wait for (rs) complete (Result As Object)
 		
-		Dim j As Int = StringCount(response,"""watched"":false",True)
-		badger1.SetBadge(lbl, j)
-		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-		If IsNumber(UnwatchedVideoClips) Then
-			If j > 0 Or UnwatchedVideoClips > 0 Then
-				StateManager.SetSetting("UnwatchedVideoClips",j)
-				StateManager.SaveSettings
-				isThereUnwatchedVideo = True
-			Else
-				isThereUnwatchedVideo = False
-				StateManager.SetSetting("UnwatchedVideoClips","0")
-				StateManager.SaveSettings
+		Dim unwatchedVideoCount As Int = 0
+		Dim parser As JSONParser
+		parser.Initialize(response)
+		Dim root As Map = parser.NextObject
+		Dim media As List = root.Get("media")
+		
+		Dim n As Long = DateTime.Now
+		For Each colmedia As Map In media
+			Dim VideoID As String = colmedia.Get("id")
+			Dim mytypes As Object = Starter.kvs.Get(VideoID)
+			Dim videos = mytypes As VideoInfo
+			If videos = Null Then
+				unwatchedVideoCount = unwatchedVideoCount + 1
 			End If
-		Else If isThereUnwatchedVideo Then
-			StateManager.SetSetting("UnwatchedVideoClips","1")
-			StateManager.SaveSettings
+		Next
+		Log("Loading unwatched videos took: " & (DateTime.Now - n) & "ms")
+		Dim lbl As B4XView = GetAllTabLabelsForBadge(TabStrip1).Get(5)
+		badger1.SetBadge(lbl, unwatchedVideoCount)
+		StateManager.SetSetting("UnwatchedVideoClips",unwatchedVideoCount)
+		StateManager.SaveSettings
+		If unwatchedVideoCount > 0 Then
 			isThereUnwatchedVideo = True
 		Else
 			isThereUnwatchedVideo = False
-			StateManager.SetSetting("UnwatchedVideoClips",0)
-			StateManager.SaveSettings
 		End If
 	Catch
 		Log(LastException)
@@ -2906,15 +2920,15 @@ Sub GetUnwatchedVideos() As ResumableSub
 	Return Null
 End Sub
 
-
-Sub StringCount(StringToSearch As String,TargetStr As String,IgnoreCase As Boolean) As Int
-	If IgnoreCase Then
-		StringToSearch = StringToSearch.ToLowerCase
-		TargetStr = TargetStr.ToLowerCase
-	End If
-	Return (StringToSearch.Length - StringToSearch.Replace(TargetStr,"").Length) / TargetStr.Length
-
-End Sub
+'
+'Sub StringCount(StringToSearch As String,TargetStr As String,IgnoreCase As Boolean) As Int
+'	If IgnoreCase Then
+'		StringToSearch = StringToSearch.ToLowerCase
+'		TargetStr = TargetStr.ToLowerCase
+'	End If
+'	Return (StringToSearch.Length - StringToSearch.Replace(TargetStr,"").Length) / TargetStr.Length
+'
+'End Sub
 
 Sub btnDrivewayNewClip_Click
 	Dim bd As BitmapDrawable
