@@ -6,6 +6,14 @@ namespace B4R {
 	int BufferedWiFiClient::connect(const char *host, uint16_t port) {
 		return wrappedClient->connect(host, port);
 	}
+	#if ESP32
+	int BufferedWiFiClient::connect(IPAddress ip, uint16_t port, int timeout) {
+		return wrappedClient->connect(ip, port, timeout);
+	}
+	int BufferedWiFiClient::connect(const char *host, uint16_t port, int timeout) {
+		return wrappedClient->connect(host, port, timeout);
+	}
+	#endif
 	size_t BufferedWiFiClient::write(uint8_t t) {
 		return write(&t, 1);
 	}
@@ -37,14 +45,15 @@ namespace B4R {
 	int BufferedWiFiClient::peek() {
 		return wrappedClient->peek();
 	}
-	void BufferedWiFiClient::flush() {
+	void BufferedWiFiClient::flush(){
 		if (index > 0)
 			wrappedClient->write(buffer, index);
 		index = 0;
 	}
+	
 	void BufferedWiFiClient::stop() {
 		flush();
-		return wrappedClient->stop();
+		wrappedClient->stop();
 	}
 	uint8_t BufferedWiFiClient::connected() {
 		return wrappedClient->connected();

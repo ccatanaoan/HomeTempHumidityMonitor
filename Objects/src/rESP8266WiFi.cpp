@@ -79,11 +79,18 @@ namespace B4R {
 		return client.connected();
 	}
 	void WiFiSocket::Close() {
+		#if ESP32
+		if (client.connected() == false)
+			return;
+		#endif
 		client.stop();
 	}
 	
 	WiFiSSLSocket::WiFiSSLSocket()  {
 		client.setClient(&wifiClient);
+		#ifndef ESP32
+		wifiClient.setInsecure();
+		#endif
 		stream.wrappedStream = stream.wrappedClient = &client;
 	}
 	bool WiFiSSLSocket::VerifyCertificate(B4RString* FingerPrint, B4RString* Host) {

@@ -8,7 +8,7 @@
 #endif
 #include <WiFiUdp.h>
 
-//~version: 1.33
+//~version: 1.50
 namespace B4R {
 	//~shortname: ESP8266WiFi
 	class B4RESPWiFi {
@@ -60,19 +60,24 @@ namespace B4R {
 			UInt index = 0;
 		public:
 			Client* wrappedClient;
-			virtual int connect(IPAddress ip, uint16_t port);
-			virtual int connect(const char *host, uint16_t port) ;
 			virtual size_t write(uint8_t);
 			virtual size_t write(const uint8_t *buf, size_t size);
 			virtual int available();
 			virtual int read();
 			virtual int read(uint8_t *buf, size_t size);
 			virtual int peek();
-			virtual void flush() ;
-			virtual void stop() ;
+			
 			virtual uint8_t connected();
 			virtual operator bool();
 			void setClient(Client* client);
+			virtual void flush();
+			virtual void stop();
+			virtual int connect(const char *host, uint16_t port) ;
+			virtual int connect(IPAddress ip, uint16_t port);
+			#ifdef ESP32
+			virtual int connect(IPAddress ip, uint16_t port, int timeout);
+			virtual int connect(const char *host, uint16_t port, int timeout);
+			#endif
 	};
 	//~shortname: WiFiSocket
 	//A client socket implementation. Usage is identical to the usage of EthernetSocket.

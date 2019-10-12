@@ -1,7 +1,6 @@
 
 #ifndef b4r_main_h
 #define b4r_main_h
-class b4r_timenist;
 
 class b4r_main {
 public:
@@ -41,7 +40,6 @@ static B4R::ByteConverter* _bc;
 static Double _dht22humidityaddvalue;
 static B4R::B4RESP8266TimeTools* _timelib;
 static ULong _timestamp;
-static b4r_timenist* _timenist;
 static void _readweather(Byte _tag);
 static void _timeisavailable();
 };

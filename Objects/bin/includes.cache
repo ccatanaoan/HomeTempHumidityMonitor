@@ -2,165 +2,185 @@
   {
     "Sourcefile": "",
     "Include": "",
-    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\cores\\esp8266"
+    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\cores\\esp8266"
   },
   {
     "Sourcefile": "",
     "Include": "",
-    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\variants\\nodemcu"
+    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\variants\\nodemcu"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\src.ino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\src.ino.cpp",
     "Include": "ESP8266WiFi.h",
-    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src"
+    "Includepath": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\src.ino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\src.ino.cpp",
     "Include": "TimeLib.h",
     "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\TimeLib"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\src.ino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\src.ino.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\AsyncStreams.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\AsyncStreams.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\B4RArduino.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\B4RArduino.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\B4RCore.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\B4RCore.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\B4RSerializator.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\B4RSerializator.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\B4RStream.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\B4RStream.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\BufferedWiFiClient.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\BufferedWiFiClient.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\ByteConverter.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\ByteConverter.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\PubSubClient.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\PubSubClient.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\RandomAccessFile.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\RandomAccessFile.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\Scheduler.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\Scheduler.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\b4r_main.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\b4r_main.cpp",
     "Include": "DHTesp.h",
-    "Includepath": "C:\\Program Files (x86)\\Arduino\\libraries\\DHT"
+    "Includepath": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\DHT_sensor_library_for_ESPx"
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\b4r_main.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\b4r_main.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\b4r_timenist.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\rESP8266.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\rESP8266.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\rESP8266TimeTools.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\rESP8266TimeTools.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\rESP8266WiFi.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\rESP8266WiFi.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~3\\Objects\\bin\\sketch\\rMQTT.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\Desktop\\HOMEAU~1\\LIVING~1\\Objects\\bin\\sketch\\rMQTT.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\BearSSLHelpers.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFi.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\CertStoreBearSSL.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiAP.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\ESP8266WiFi.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiGeneric.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiAP.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiMulti.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiGeneric.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiSTA.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiMulti.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiScan.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiSTA-WPS.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiClient.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiSTA.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiClientSecure.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\ESP8266WiFiScan.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiServer.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\WiFiClient.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiServerSecure.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\WiFiClientSecureAxTLS.cpp",
     "Include": "",
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.1\\libraries\\ESP8266WiFi\\src\\WiFiUdp.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\WiFiClientSecureBearSSL.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\WiFiServer.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\WiFiServerSecureAxTLS.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\WiFiServerSecureBearSSL.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\Cloyd\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.2\\libraries\\ESP8266WiFi\\src\\WiFiUdp.cpp",
     "Include": "",
     "Includepath": ""
   },
@@ -180,7 +200,7 @@
     "Includepath": ""
   },
   {
-    "Sourcefile": "C:\\Program Files (x86)\\Arduino\\libraries\\DHT\\DHTesp.cpp",
+    "Sourcefile": "C:\\Users\\Cloyd\\Documents\\Arduino\\libraries\\DHT_sensor_library_for_ESPx\\DHTesp.cpp",
     "Include": "",
     "Includepath": ""
   }

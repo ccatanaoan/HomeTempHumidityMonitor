@@ -6,11 +6,10 @@ Library3=resp8266wifi
 Library4=rmqtt
 Library5=rrandomaccessfile
 Library6=resp8266timetools
-Module1=TimeNIST
 NumberOfFiles=0
 NumberOfLibraries=6
-NumberOfModules=1
-Version=2.6
+NumberOfModules=0
+Version=2.8
 @EndOfDesignText@
 ' Home Weather Station Using DHT22 (AM2302)
 '
@@ -162,8 +161,6 @@ Sub ConnectToWifi
 
 	If WiFi.IsConnected Then
 		Log("Connected to ",WiFiSSID," network, Local IP ", WiFi.LocalIp)
-		' Get time from NIST server
-		'TimeNIST.Start
 		TimeIsAvailable
 	Else
 		Log("Not Connected to WiFi")
@@ -225,7 +222,7 @@ ComfortState cf;
 DHTesp dht22;
 
 void setup(B4R::Object* o){
-	dht22.setup(DHT22Pin);
+	dht22.setup(DHT22Pin, DHTesp::DHT22);
 }
 
  void SetSTA(B4R::Object* o) {

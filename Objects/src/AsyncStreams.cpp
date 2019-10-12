@@ -5,23 +5,33 @@ namespace B4R {
 	//static
 	void AsyncStreams::checkForData(void* b) {
 		AsyncStreams* me = (AsyncStreams*) b;
+		int av = me->stream->BytesAvailable();
+		bool dataNotAvailable = (av == 0 || (me->prefixMode && av < 4));
 		if (me->stream->wrappedClient != NULL) {
+			// ::Serial.print("is connected: ");
+			// ::Serial.println(me->stream->wrappedClient->connected());
+			// ::Serial.println(av);
 			if (me->stream->wrappedClient->connected() == false) {
-				me->Close();
-				if (me->ErrorSub != NULL) {
-					sender->wrapPointer(me);
-					me->ErrorSub();
+				delay(10);
+				av = me->stream->BytesAvailable();
+				dataNotAvailable = (av == 0 || (me->prefixMode && av < 4));
+				// ::Serial.print("not connected. DataNotAvailable: ");
+				// ::Serial.println(dataNotAvailable);
+				if (dataNotAvailable) {
+					me->Close();
+					if (me->ErrorSub != NULL) {
+						sender->wrapPointer(me);
+						me->ErrorSub();
+					}
+					return;
 				}
-				return;
+				
 			}
 			#ifdef ESP_H
 			me->stream->wrappedClient->flush();
 			#endif
-
 		}
-		
-		int av = me->stream->BytesAvailable();
-		if (av == 0 || (me->prefixMode && av < 4))
+		if (dataNotAvailable)
 			return;
 		const UInt cp = B4R::StackMemory::cp;
 		ArrayByte* arr = CreateStackMemoryObject(ArrayByte);
