@@ -483,8 +483,10 @@ Sub Activity_Resume
 			isThereUnwatchedVideo = False
 			If UnwatchedVideoClips > 0 Then
 				
-				TabStrip1.ScrollTo(5,False)
-				Sleep(100)
+				If TabStrip1.CurrentPage <> 5 Then
+					TabStrip1.ScrollTo(5,False)
+					Sleep(100)
+				End If
 				clvActivity.Clear
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				Dim rs As ResumableSub = GetUnwatchedVideos
@@ -920,10 +922,12 @@ Sub TabStrip1_PageSelected (Position As Int)
 		wait for (rs) complete (Result As Object)
 				
 		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo = True Then
-			If UnwatchedVideoClips > 0 Or isThereUnwatchedVideo = True Then
-				TabStrip1.ScrollTo(5,False)
-				Sleep(100)
+		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo Then
+			If UnwatchedVideoClips > 0 Or isThereUnwatchedVideo Then
+				If TabStrip1.CurrentPage <> 5 Then
+					TabStrip1.ScrollTo(5,False)
+					Sleep(100)
+				End If
 				clvActivity.Clear
 						
 				Dim rs As ResumableSub = GetUnwatchedVideos
