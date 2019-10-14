@@ -550,7 +550,7 @@ Private Sub MQTT_Disconnected
 	Try
 		gblACMenu.Clear
 		gblACMenu.Add(0, 0, "Settings",Null)
-		gblACMenu.Add(0, 0, "Remove all KeyValueStore records",Null)
+		gblACMenu.Add(0, 0, "Delete all local video clips",Null)
 		gblACMenu.Add(0, 0, "Restart application",Null)
 		gblACMenu.Add(0, 0, "Show free memory",Null)
 		gblACMenu.Add(0, 0, "About",Null)
@@ -691,16 +691,16 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 			End If
 		Else If Item.Title = "Show free memory" Then
 			Dim info As String
-			info = Starter.kvs.ListKeys.Size & " records" & CRLF & CRLF
+			info = Starter.kvs.ListKeys.Size & " video clips" & CRLF & CRLF
 			Dim r As Reflector
 			r.Target = r.RunStaticMethod("java.lang.Runtime", "getRuntime", Null, Null)
 			info = info & "Available memory: " & NumberFormat2(((r.RunMethod("maxMemory") - r.RunMethod("totalMemory"))/(1024*1024)),0,2,2,False) & " MB" & CRLF
 			info = info & "Free memory: " & NumberFormat2(GetFreeMem/1000,0,2,2,False) & " MB"
 			Msgbox(info,"Smart Home Monitor")
-		else if Item.Title = "Remove all KeyValueStore records" Then
+		else if Item.Title = "Delete all local video clips" Then
 			Dim bd As BitmapDrawable
 			bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-			If  Msgbox2("Remove all KeyValueStore records?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then
+			If  Msgbox2("Delete all local video clips?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then
 				Starter.kvs.DeleteAll
 				clvActivity.Clear
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
@@ -786,7 +786,7 @@ Sub Activity_Createmenu(Menu As ACMenu)
 		Menu.Clear
 		gblACMenu = Menu
 		Menu.Add(0, 0, "Settings",Null)
-		Menu.Add(0, 0, "Remove all KeyValueStore records",Null)
+		Menu.Add(0, 0, "Delete all local video clips",Null)
 		Menu.Add(0, 0, "Restart Application",Null)
 		Menu.Add(0, 0, "Show free memory",Null)
 		Menu.Add(0, 0, "About",Null)
