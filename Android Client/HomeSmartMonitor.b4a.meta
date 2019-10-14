@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,CreateCustomType,2344,0,Main,GetVideos,2303,5,Main,GetUnwatchedVideos,2728,1,Main,MQTT_MessageArrived,484,0,NotificationService,Service_Start,13,0,Main,UpdateItemColor,2488,0,Main,clvActivity_VisibleRangeChanged,2387,0,Main,Activity_Resume,405,6,Main,TabStrip1_PageSelected,782,5,Main,clvActivity_ItemClick,2477,5
+NavigationStack=NotificationService,Service_Start,13,0,Main,UpdateItemColor,2488,0,Main,clvActivity_VisibleRangeChanged,2387,0,Main,Activity_Resume,405,6,Main,TabStrip1_PageSelected,782,5,Main,clvActivity_ItemClick,2477,5,Main,Process_Globals,45,0,Main,GetVideos,2320,5,Main,MQTT_Connected,459,0,Main,MQTT_Disconnected,472,0,Main,ACToolBarLight1_MenuItemClick,607,2
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
