@@ -450,107 +450,42 @@ Sub Activity_Resume
 		
 		If NotificationClicked = "Living area temperature" Then
 			TabStrip1.ScrollTo(0,False)
-			TabStrip1_PageSelected(0)
+			'TabStrip1_PageSelected(0)
 		Else If NotificationClicked = "Living area carbon monoxide" Then
 			TabStrip1.ScrollTo(1,False)
-			TabStrip1_PageSelected(1)
+			'TabStrip1_PageSelected(1)
 		else If NotificationClicked = "Basement temperature" Then
 			TabStrip1.ScrollTo(2,False)
-			TabStrip1_PageSelected(2)
+			'TabStrip1_PageSelected(2)
 		Else If NotificationClicked = "Basement carbon monoxide" Then
 			TabStrip1.ScrollTo(3,False)
-			TabStrip1_PageSelected(3)
+			'TabStrip1_PageSelected(3)
 		Else If NotificationClicked = "Basement DHT22 sensor issue" Then
 			TabStrip1.ScrollTo(2,False)
-			TabStrip1_PageSelected(2)
+			'TabStrip1_PageSelected(2)
 		Else If NotificationClicked = "Living area DHT22 sensor issue" Then
 			TabStrip1.ScrollTo(0,False)
-			TabStrip1_PageSelected(0)
+			'TabStrip1_PageSelected(0)
 		Else If NotificationClicked = "Living area CO sensor issue" Then
 			TabStrip1.ScrollTo(1,False)
-			TabStrip1_PageSelected(1)
+			'TabStrip1_PageSelected(1)
 		Else If NotificationClicked = "Basement CO sensor issue" Then
 			TabStrip1.ScrollTo(3,False)
+			'TabStrip1_PageSelected(3)
+		End If
+	
+		If TabStrip1.CurrentPage = 0 Then
+			TabStrip1_PageSelected(0)
+		else If TabStrip1.CurrentPage = 1 Then
+			TabStrip1_PageSelected(1)
+		else If TabStrip1.CurrentPage = 2 Then
+			TabStrip1_PageSelected(2)
+		else If TabStrip1.CurrentPage = 3 Then
 			TabStrip1_PageSelected(3)
-		End If
-
-		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-		Dim rs As ResumableSub = GetUnwatchedVideos
-		wait for (rs) complete (Results As Object)
-		
-		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo Then
-			isThereUnwatchedVideo = False
-			If UnwatchedVideoClips > 0 Then
-				
-				If TabStrip1.CurrentPage <> 5 Then
-					TabStrip1.ScrollTo(5,False)
-					Sleep(100)
-				End If
-				clvActivity.Clear
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetUnwatchedVideos
-				wait for (rs) complete (Results As Object)
-				
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetVideos(response)
-				wait for (rs) complete (Results As Object)
-						
-				StateManager.SetSetting("UnwatchedVideoClips","0")
-				StateManager.SaveSettings
-				
-				Try
-					If MQTT.IsInitialized = False Or MQTT.Connected = False Then
-						MQTT_Connect
-					End If
-				Catch
-					Log(LastException)
-				End Try
-				Return
-			End If
-		End If
-		
-		isThereUnwatchedVideo = False
-		
-		If TabStrip1.CurrentPage = 5 Then
-			If clvActivity.Size = 0 Then
-				clvActivity.Clear
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetUnwatchedVideos
-				wait for (rs) complete (Results As Object)
-				
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetVideos(response)
-				wait for (rs) complete (Results As Object)
-			Else
-				If previousSelectedIndex > (clvActivity.Size-1) Then
-					previousSelectedIndex = 0
-				End If
-				clvActivity.JumpToItem(previousSelectedIndex)
-				Sleep(100)
-				Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
-				If p.NumberOfViews > 0 Then
-					Dim backPane As B4XView = p.getview(0)
-					backPane.Color = xui.Color_ARGB(255,217,215,222)
-					
-					Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
-					ContentLabel.Visible = True
-				End If
-				B4XLoadingIndicator4.Show
-				Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
-				Dim firstvideo As String
-				firstvideo = cd.mediaURL
-				lblDuration.Text = "0:00"
-				ShowVideo(firstvideo)
-			End If
 		else If TabStrip1.CurrentPage = 4 Then
-			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-			Dim rs As ResumableSub = CreateTab4
-			wait for (rs) complete (Result As Object)
-			
-			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-			Dim rs As ResumableSub = GetUnwatchedVideos
-			wait for (rs) complete (Result As Object)
+			TabStrip1_PageSelected(4)
+		else If TabStrip1.CurrentPage = 5 Then
+			TabStrip1_PageSelected(5)
 		End If
 	Catch
 		Log(LastException)
@@ -907,9 +842,6 @@ Sub TabStrip1_PageSelected (Position As Int)
 				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySettingBasement
-'			ivDriveway.Bitmap = Null
-'			ivFrontDoor.Bitmap = Null
-'			ivSideYard.Bitmap = Null
 		End If
 		If Position = 4 Then
 			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
@@ -927,6 +859,7 @@ Sub TabStrip1_PageSelected (Position As Int)
 				If TabStrip1.CurrentPage <> 5 Then
 					TabStrip1.ScrollTo(5,False)
 					Sleep(100)
+					Return
 				End If
 				clvActivity.Clear
 						
@@ -949,9 +882,6 @@ Sub TabStrip1_PageSelected (Position As Int)
 		End If
 			
 		If Position = 5 Then
-'			ivDriveway.Bitmap = Null
-'			ivFrontDoor.Bitmap = Null
-'			ivSideYard.Bitmap = Null
 			If clvActivity.Size > 0 Then
 				If previousSelectedIndex > (clvActivity.Size-1) Then
 					previousSelectedIndex = 0
@@ -2626,6 +2556,7 @@ Sub clvActivity_ItemClick (Index As Int, Value As Object)
 		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 		Dim rs As ResumableSub = GetUnwatchedVideos
 		wait for (rs) complete (Results As Object)
+		
 	Catch
 		B4XLoadingIndicator4.Hide
 		Log(LastException)
