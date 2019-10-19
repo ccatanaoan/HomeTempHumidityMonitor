@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=NotificationService,Service_Start,13,0,Main,UpdateItemColor,2488,0,Main,clvActivity_VisibleRangeChanged,2387,0,Main,Activity_Resume,405,6,Main,TabStrip1_PageSelected,782,5,Main,clvActivity_ItemClick,2477,5,Main,Process_Globals,45,0,Main,GetVideos,2320,5,Main,MQTT_Connected,459,0,Main,MQTT_Disconnected,472,0,Main,ACToolBarLight1_MenuItemClick,607,2
+NavigationStack=Visual Designer,blink.bal,-100,1,Main,GetHomescreen,2013,0,Main,Process_Globals,53,0,Main,Activity_Create,343,0,Main,CreateTab4,889,0,Main,TabStrip1_PageSelected,842,6,Main,GetVideos,2366,1,Main,clvActivity_ItemClick,2498,0,Main,ShowVideo,2671,0,Main,ivPlay_Click,3186,0
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
