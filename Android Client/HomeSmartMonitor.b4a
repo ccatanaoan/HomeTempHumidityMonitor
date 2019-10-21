@@ -9,8 +9,9 @@ File15=ic_play.png
 File16=liveviewbuttontranparent.png
 File17=Main.bal
 File18=ScrollViewBasement.bal
-File19=TempHumidityBasement.bal
+File19=snapshotbutton.png
 File2=1.bal
+File20=TempHumidityBasement.bal
 File3=1ScrollView.bal
 File4=2.bal
 File5=AirQualityBasement.bal
@@ -30,6 +31,7 @@ FileGroup17=Default Group
 FileGroup18=Default Group
 FileGroup19=Default Group
 FileGroup2=Default Group
+FileGroup20=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
 FileGroup5=Default Group
@@ -75,7 +77,7 @@ Module6=cMediaData
 Module7=Badger
 Module8=FileProvider
 Module9=Starter
-NumberOfFiles=19
+NumberOfFiles=20
 NumberOfLibraries=25
 NumberOfModules=10
 Version=9.5
@@ -207,11 +209,11 @@ Sub Globals
 	Private btnRefresh As SwiftButton
 	Private btnDriveway As SwiftButton
 	Private lblMediaURL As B4XView
-	Private btnDrivewayFullScreenshot As ImageView
-	Private btnFrontDoorFullScreenshot As ImageView
-	Private btnSideYardFullScreenshot As ImageView
 	Private ivPlay As ImageView
 	Private nativeMe As JavaObject
+	Private btnSideYardRefresh As ImageView
+	Private btnFrontDoorRefresh As ImageView
+	Private btnDrivewayRefresh As ImageView
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -960,14 +962,11 @@ Sub CreateTab4() As ResumableSub
 			btnDrivewayNewClip.Enabled = False
 			btnFrontDoorNewClip.Enabled = False
 			btnSideYardNewClip.Enabled = False
-			btnDrivewayFullScreenshot.Enabled = False
-			btnFrontDoorFullScreenshot.Enabled = False
-			btnSideYardFullScreenshot.Enabled = False
 			ScrollViewBlink.ScrollToNow(0)
 			BlurIV("Driveway.jpg",ivDriveway)
 			BlurIV("FrontDoor.jpg",ivFrontDoor)
 			BlurIV("SideYard.jpg",ivSideYard)
-			Dim rs As ResumableSub = RefreshCameras(True)
+			Dim rs As ResumableSub = RefreshCameras(True,"All")
 			wait for (rs) complete (Result As Object)
 			'ProgressDialogHide
 		else If ivDriveway.Bitmap = Null Or ivFrontDoor.Bitmap = Null Or ivSideYard.Bitmap = Null Then
@@ -1339,9 +1338,9 @@ Sub RequestAuthToken As ResumableSub
 				btnDrivewayNewClip.Enabled = True
 				btnFrontDoorNewClip.Enabled = True
 				btnSideYardNewClip.Enabled = True
-				btnDrivewayFullScreenshot.Enabled = True
-				btnFrontDoorFullScreenshot.Enabled = True
-				btnSideYardFullScreenshot.Enabled = True
+				btnDrivewayRefresh.Enabled = True
+				btnFrontDoorRefresh.Enabled = True
+				btnSideYardRefresh.Enabled = True
 				jobLogin.Release
 				Return Null
 			Else
@@ -1360,13 +1359,7 @@ Sub RequestAuthToken As ResumableSub
 	Return Null
 End Sub
 
-Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
-	' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/ <-- resumable
-	' http://www.basic4ppc.com:51042/json/index.html
-	' https://github.com/MattTW/BlinkMonitorProtocol
-	' https://www.b4x.com/android/forum/threads/b4x-okhttputils2-with-wait-for.79345/#content
-	' https://www.b4x.com/android/forum/threads/call-api-rest.89470/#content
-	' https://www.b4x.com/android/forum/threads/server-online-json-tree-example.39048/#content
+Sub RefreshCameras(FirstRun As Boolean, whatCamera As String) As ResumableSub
 	Try
 		Dim camera As String
 		Dim iv As ImageView
@@ -1383,9 +1376,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 			btnDrivewayNewClip.Enabled = True
 			btnFrontDoorNewClip.Enabled = True
 			btnSideYardNewClip.Enabled = True
-			btnDrivewayFullScreenshot.Enabled = True
-			btnFrontDoorFullScreenshot.Enabled = True
-			btnSideYardFullScreenshot.Enabled = True
+			btnDrivewayRefresh.Enabled = True
+			btnFrontDoorRefresh.Enabled = True
+			btnSideYardRefresh.Enabled = True
 			Return Null
 		End If
 		
@@ -1400,9 +1393,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 			btnDrivewayNewClip.Enabled = True
 			btnFrontDoorNewClip.Enabled = True
 			btnSideYardNewClip.Enabled = True
-			btnDrivewayFullScreenshot.Enabled = True
-			btnFrontDoorFullScreenshot.Enabled = True
-			btnSideYardFullScreenshot.Enabled = True
+			btnDrivewayRefresh.Enabled = True
+			btnFrontDoorRefresh.Enabled = True
+			btnSideYardRefresh.Enabled = True
 			Return Null
 		End If
 		
@@ -1428,6 +1421,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 		
 		For Each link As String In links
 			camera = link
+			If camera <> whatCamera And whatCamera <> "All" Then
+				Continue
+			End If
 			If FirstRun Then
 				If camera = "347574" Then
 					lblStatus.Text = "Retrieving Driveway thumbnail..."
@@ -1481,9 +1477,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 					btnDrivewayNewClip.Enabled = True
 					btnFrontDoorNewClip.Enabled = True
 					btnSideYardNewClip.Enabled = True
-					btnDrivewayFullScreenshot.Enabled = True
-					btnFrontDoorFullScreenshot.Enabled = True
-					btnSideYardFullScreenshot.Enabled = True
+					btnDrivewayRefresh.Enabled = True
+					btnFrontDoorRefresh.Enabled = True
+					btnSideYardRefresh.Enabled = True
 					Return Null
 				Else
 					Dim rs As ResumableSub = GetCommandID(response)
@@ -1498,9 +1494,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 						btnDrivewayNewClip.Enabled = True
 						btnFrontDoorNewClip.Enabled = True
 						btnSideYardNewClip.Enabled = True
-						btnDrivewayFullScreenshot.Enabled = True
-						btnFrontDoorFullScreenshot.Enabled = True
-						btnSideYardFullScreenshot.Enabled = True
+						btnDrivewayRefresh.Enabled = True
+						btnFrontDoorRefresh.Enabled = True
+						btnSideYardRefresh.Enabled = True
 						Return Null
 					Else
 						Dim reChecked As Boolean
@@ -1526,9 +1522,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 									btnDrivewayNewClip.Enabled = True
 									btnFrontDoorNewClip.Enabled = True
 									btnSideYardNewClip.Enabled = True
-									btnDrivewayFullScreenshot.Enabled = True
-									btnFrontDoorFullScreenshot.Enabled = True
-									btnSideYardFullScreenshot.Enabled = True
+									btnDrivewayRefresh.Enabled = True
+									btnFrontDoorRefresh.Enabled = True
+									btnSideYardRefresh.Enabled = True
 									Return Null
 								Else
 									i = 1
@@ -1547,9 +1543,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 							btnDrivewayNewClip.Enabled = True
 							btnFrontDoorNewClip.Enabled = True
 							btnSideYardNewClip.Enabled = True
-							btnDrivewayFullScreenshot.Enabled = True
-							btnFrontDoorFullScreenshot.Enabled = True
-							btnSideYardFullScreenshot.Enabled = True
+							btnDrivewayRefresh.Enabled = True
+							btnFrontDoorRefresh.Enabled = True
+							btnSideYardRefresh.Enabled = True
 							Return Null
 						else If commandComplete = False Then
 							If camera = "347574" Then
@@ -1576,9 +1572,9 @@ Sub RefreshCameras(FirstRun As Boolean) As ResumableSub
 	btnDrivewayNewClip.Enabled = True
 	btnFrontDoorNewClip.Enabled = True
 	btnSideYardNewClip.Enabled = True
-	btnDrivewayFullScreenshot.Enabled = True
-	btnFrontDoorFullScreenshot.Enabled = True
-	btnSideYardFullScreenshot.Enabled = True
+	btnDrivewayRefresh.Enabled = True
+	btnFrontDoorRefresh.Enabled = True
+	btnSideYardRefresh.Enabled = True
 	Return Null
 End Sub
 
@@ -2209,25 +2205,25 @@ Sub btnDriveway_Click
 		btnDrivewayNewClip.Enabled = False
 		btnFrontDoorNewClip.Enabled = False
 		btnSideYardNewClip.Enabled = False
-		btnDrivewayFullScreenshot.Enabled = False
-		btnFrontDoorFullScreenshot.Enabled = False
-		btnSideYardFullScreenshot.Enabled = False
+		btnDrivewayRefresh.Enabled = False
+		btnFrontDoorRefresh.Enabled = False
+		btnSideYardRefresh.Enabled = False
 		ivDriveway.Enabled = False
 		ivFrontDoor.Enabled = False
 		ivSideYard.Enabled = False
 		BlurIV("Driveway.jpg",ivDriveway)
 		BlurIV("FrontDoor.jpg",ivFrontDoor)
 		BlurIV("SideYard.jpg",ivSideYard)
-		Dim rs As ResumableSub = RefreshCameras(False)
+		Dim rs As ResumableSub = RefreshCameras(False, "All")
 		wait for (rs) complete (Result As Object)
 		btnDriveway.Enabled = True
 		btnRefresh.Enabled = True
 		btnDrivewayNewClip.Enabled = True
 		btnFrontDoorNewClip.Enabled = True
 		btnSideYardNewClip.Enabled = True
-		btnDrivewayFullScreenshot.Enabled = True
-		btnFrontDoorFullScreenshot.Enabled = True
-		btnSideYardFullScreenshot.Enabled = True
+		btnDrivewayRefresh.Enabled = True
+		btnFrontDoorRefresh.Enabled = True
+		btnSideYardRefresh.Enabled = True
 		ivDriveway.Enabled = True
 		ivFrontDoor.Enabled = True
 		ivSideYard.Enabled = True
@@ -2303,66 +2299,46 @@ Sub SetTextShadow(lbl As Label)
 End Sub
 
 Sub ivSideYard_Click
-	lblDrivewayBatt.Visible = Not(lblDrivewayBatt.Visible)
-	lblDrivewayTimestamp.Visible = Not(lblDrivewayTimestamp.Visible)
-	lblDrivewayWifi.Visible = Not(lblDrivewayWifi.Visible)
-	lblDriveway.Visible = Not(lblDriveway.Visible)
-	lblFrontDoorBatt.Visible = Not(lblFrontDoorBatt.Visible)
-	lblFrontDoorTimestamp.Visible = Not(lblFrontDoorTimestamp.Visible)
-	lblFrontDoorWiFi.Visible = Not(lblFrontDoorWiFi.Visible)
-	lblFrontDoor.Visible = Not(lblFrontDoor.Visible)
-	lblSideYardBatt.Visible = Not(lblSideYardBatt.Visible)
-	lblSideYardTimestamp.Visible = Not(lblSideYardTimestamp.Visible)
-	lblSideYardWiFi.Visible = Not(lblSideYardWiFi.Visible)
-	lblSideYard.Visible = Not(lblSideYard.Visible)
-	btnDrivewayNewClip.Visible = Not(btnDrivewayNewClip.Visible)
-	btnFrontDoorNewClip.Visible = Not(btnFrontDoorNewClip.Visible)
-	btnSideYardNewClip.Visible = Not(btnSideYardNewClip.Visible)
-	btnDrivewayFullScreenshot.Visible = Not(btnDrivewayFullScreenshot.Visible)
-	btnFrontDoorFullScreenshot.Visible = Not(btnFrontDoorFullScreenshot.Visible)
-	btnSideYardFullScreenshot.Visible = Not(btnSideYardFullScreenshot.Visible)
+	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/226821")
+	wait for (rs) complete (Result As Object)
+	
+	Dim rs As ResumableSub = GetCameraInfo(response,False)
+	wait for (rs) complete (Result As Object)
+	
+	
+	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "226821")
+	wait for (rs) complete (Result As Object)
+	If response.StartsWith("ERROR: ") = False Then
+		lblStatus.Text = "Ready"
+	End If
 End Sub
 
 Sub ivFrontDoor_Click
-	lblDrivewayBatt.Visible = Not(lblDrivewayBatt.Visible)
-	lblDrivewayTimestamp.Visible = Not(lblDrivewayTimestamp.Visible)
-	lblDrivewayWifi.Visible = Not(lblDrivewayWifi.Visible)
-	lblDriveway.Visible = Not(lblDriveway.Visible)
-	lblFrontDoorBatt.Visible = Not(lblFrontDoorBatt.Visible)
-	lblFrontDoorTimestamp.Visible = Not(lblFrontDoorTimestamp.Visible)
-	lblFrontDoorWiFi.Visible = Not(lblFrontDoorWiFi.Visible)
-	lblFrontDoor.Visible = Not(lblFrontDoor.Visible)
-	lblSideYardBatt.Visible = Not(lblSideYardBatt.Visible)
-	lblSideYardTimestamp.Visible = Not(lblSideYardTimestamp.Visible)
-	lblSideYardWiFi.Visible = Not(lblSideYardWiFi.Visible)
-	lblSideYard.Visible = Not(lblSideYard.Visible)
-	btnDrivewayNewClip.Visible = Not(btnDrivewayNewClip.Visible)
-	btnFrontDoorNewClip.Visible = Not(btnFrontDoorNewClip.Visible)
-	btnSideYardNewClip.Visible = Not(btnSideYardNewClip.Visible)
-	btnDrivewayFullScreenshot.Visible = Not(btnDrivewayFullScreenshot.Visible)
-	btnFrontDoorFullScreenshot.Visible = Not(btnFrontDoorFullScreenshot.Visible)
-	btnSideYardFullScreenshot.Visible = Not(btnSideYardFullScreenshot.Visible)
+	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/236967")
+	wait for (rs) complete (Result As Object)
+	
+	Dim rs As ResumableSub = GetCameraInfo(response,False)
+	wait for (rs) complete (Result As Object)
+	
+	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "236967")
+	wait for (rs) complete (Result As Object)
+	If response.StartsWith("ERROR: ") = False Then
+		lblStatus.Text = "Ready"
+	End If
 End Sub
 
 Sub ivDriveway_Click
-	lblDrivewayBatt.Visible = Not(lblDrivewayBatt.Visible)
-	lblDrivewayTimestamp.Visible = Not(lblDrivewayTimestamp.Visible)
-	lblDrivewayWifi.Visible = Not(lblDrivewayWifi.Visible)
-	lblDriveway.Visible = Not(lblDriveway.Visible)
-	lblFrontDoorBatt.Visible = Not(lblFrontDoorBatt.Visible)
-	lblFrontDoorTimestamp.Visible = Not(lblFrontDoorTimestamp.Visible)
-	lblFrontDoorWiFi.Visible = Not(lblFrontDoorWiFi.Visible)
-	lblFrontDoor.Visible = Not(lblFrontDoor.Visible)
-	lblSideYardBatt.Visible = Not(lblSideYardBatt.Visible)
-	lblSideYardTimestamp.Visible = Not(lblSideYardTimestamp.Visible)
-	lblSideYardWiFi.Visible = Not(lblSideYardWiFi.Visible)
-	lblSideYard.Visible = Not(lblSideYard.Visible)
-	btnDrivewayNewClip.Visible = Not(btnDrivewayNewClip.Visible)
-	btnFrontDoorNewClip.Visible = Not(btnFrontDoorNewClip.Visible)
-	btnSideYardNewClip.Visible = Not(btnSideYardNewClip.Visible)
-	btnDrivewayFullScreenshot.Visible = Not(btnDrivewayFullScreenshot.Visible)
-	btnFrontDoorFullScreenshot.Visible = Not(btnFrontDoorFullScreenshot.Visible)
-	btnSideYardFullScreenshot.Visible = Not(btnSideYardFullScreenshot.Visible)
+	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/347574")
+	wait for (rs) complete (Result As Object)
+	
+	Dim rs As ResumableSub = GetCameraInfo(response,False)
+	wait for (rs) complete (Result As Object)
+	
+	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "347574")
+	wait for (rs) complete (Result As Object)
+	If response.StartsWith("ERROR: ") = False Then
+		lblStatus.Text = "Ready"
+	End If
 End Sub
 
 Sub GetVideos(json As String) As ResumableSub
@@ -2895,9 +2871,9 @@ Sub btnDrivewayNewClip_Click
 			btnDrivewayNewClip.Enabled = False
 			btnFrontDoorNewClip.Enabled = False
 			btnSideYardNewClip.Enabled = False
-			btnDrivewayFullScreenshot.Enabled = False
-			btnFrontDoorFullScreenshot.Enabled = False
-			btnSideYardFullScreenshot.Enabled = False
+			btnDrivewayRefresh.Enabled = False
+			btnFrontDoorRefresh.Enabled = False
+			btnSideYardRefresh.Enabled = False
 			ivDriveway.Enabled = False
 			ivFrontDoor.Enabled = False
 			ivSideYard.Enabled = False
@@ -2911,9 +2887,9 @@ Sub btnDrivewayNewClip_Click
 				btnDrivewayNewClip.Enabled = True
 				btnFrontDoorNewClip.Enabled = True
 				btnSideYardNewClip.Enabled = True
-				btnDrivewayFullScreenshot.Enabled = True
-				btnFrontDoorFullScreenshot.Enabled = True
-				btnSideYardFullScreenshot.Enabled = True
+				btnDrivewayRefresh.Enabled = True
+				btnFrontDoorRefresh.Enabled = True
+				btnSideYardRefresh.Enabled = True
 				ivDriveway.Enabled = True
 				ivFrontDoor.Enabled = True
 				ivSideYard.Enabled = True
@@ -2955,9 +2931,9 @@ Sub btnDrivewayNewClip_Click
 		btnDrivewayNewClip.Enabled = True
 		btnFrontDoorNewClip.Enabled = True
 		btnSideYardNewClip.Enabled = True
-		btnDrivewayFullScreenshot.Enabled = True
-		btnFrontDoorFullScreenshot.Enabled = True
-		btnSideYardFullScreenshot.Enabled = True
+		btnDrivewayRefresh.Enabled = True
+		btnFrontDoorRefresh.Enabled = True
+		btnSideYardRefresh.Enabled = True
 		ivDriveway.Enabled = True
 		ivFrontDoor.Enabled = True
 		ivSideYard.Enabled = True
@@ -2976,9 +2952,9 @@ Sub btnFrontDoorNewClip_Click
 			btnDrivewayNewClip.Enabled = False
 			btnFrontDoorNewClip.Enabled = False
 			btnSideYardNewClip.Enabled = False
-			btnDrivewayFullScreenshot.Enabled = False
-			btnFrontDoorFullScreenshot.Enabled = False
-			btnSideYardFullScreenshot.Enabled = False
+			btnDrivewayRefresh.Enabled = False
+			btnFrontDoorRefresh.Enabled = False
+			btnSideYardRefresh.Enabled = False
 			ivDriveway.Enabled = False
 			ivFrontDoor.Enabled = False
 			ivSideYard.Enabled = False
@@ -2992,9 +2968,9 @@ Sub btnFrontDoorNewClip_Click
 				btnDrivewayNewClip.Enabled = True
 				btnFrontDoorNewClip.Enabled = True
 				btnSideYardNewClip.Enabled = True
-				btnDrivewayFullScreenshot.Enabled = True
-				btnFrontDoorFullScreenshot.Enabled = True
-				btnSideYardFullScreenshot.Enabled = True
+				btnDrivewayRefresh.Enabled = True
+				btnFrontDoorRefresh.Enabled = True
+				btnSideYardRefresh.Enabled = True
 				ivDriveway.Enabled = True
 				ivFrontDoor.Enabled = True
 				ivSideYard.Enabled = True
@@ -3035,9 +3011,9 @@ Sub btnFrontDoorNewClip_Click
 		btnDrivewayNewClip.Enabled = True
 		btnFrontDoorNewClip.Enabled = True
 		btnSideYardNewClip.Enabled = True
-		btnDrivewayFullScreenshot.Enabled = True
-		btnFrontDoorFullScreenshot.Enabled = True
-		btnSideYardFullScreenshot.Enabled = True
+		btnDrivewayRefresh.Enabled = True
+		btnFrontDoorRefresh.Enabled = True
+		btnSideYardRefresh.Enabled = True
 		ivDriveway.Enabled = True
 		ivFrontDoor.Enabled = True
 		ivSideYard.Enabled = True
@@ -3055,10 +3031,9 @@ Sub btnSideYardNewClip_Click
 			btnRefresh.Enabled = False
 			btnDrivewayNewClip.Enabled = False
 			btnFrontDoorNewClip.Enabled = False
-			btnSideYardNewClip.Enabled = False
-			btnDrivewayFullScreenshot.Enabled = False
-			btnFrontDoorFullScreenshot.Enabled = False
-			btnSideYardFullScreenshot.Enabled = False
+			btnDrivewayRefresh.Enabled = False
+			btnFrontDoorRefresh.Enabled = False
+			btnSideYardRefresh.Enabled = False
 			ivDriveway.Enabled = False
 			ivFrontDoor.Enabled = False
 			ivSideYard.Enabled = False
@@ -3072,9 +3047,9 @@ Sub btnSideYardNewClip_Click
 				btnDrivewayNewClip.Enabled = True
 				btnFrontDoorNewClip.Enabled = True
 				btnSideYardNewClip.Enabled = True
-				btnDrivewayFullScreenshot.Enabled = True
-				btnFrontDoorFullScreenshot.Enabled = True
-				btnSideYardFullScreenshot.Enabled = True
+				btnDrivewayRefresh.Enabled = True
+				btnFrontDoorRefresh.Enabled = True
+				btnSideYardRefresh.Enabled = True
 				ivDriveway.Enabled = True
 				ivFrontDoor.Enabled = True
 				ivSideYard.Enabled = True
@@ -3115,9 +3090,9 @@ Sub btnSideYardNewClip_Click
 		btnDrivewayNewClip.Enabled = True
 		btnFrontDoorNewClip.Enabled = True
 		btnSideYardNewClip.Enabled = True
-		btnDrivewayFullScreenshot.Enabled = True
-		btnFrontDoorFullScreenshot.Enabled = True
-		btnSideYardFullScreenshot.Enabled = True
+		btnDrivewayRefresh.Enabled = True
+		btnFrontDoorRefresh.Enabled = True
+		btnSideYardRefresh.Enabled = True
 		ivDriveway.Enabled = True
 		ivFrontDoor.Enabled = True
 		ivSideYard.Enabled = True
@@ -3131,9 +3106,9 @@ Sub btnRefresh_Click
 	btnDrivewayNewClip.Enabled = False
 	btnFrontDoorNewClip.Enabled = False
 	btnSideYardNewClip.Enabled = False
-	btnDrivewayFullScreenshot.Enabled = False
-	btnFrontDoorFullScreenshot.Enabled = False
-	btnSideYardFullScreenshot.Enabled = False
+	btnDrivewayRefresh.Enabled = False
+	btnFrontDoorRefresh.Enabled = False
+	btnSideYardRefresh.Enabled = False
 	ivDriveway.Enabled = False
 	ivFrontDoor.Enabled = False
 	ivSideYard.Enabled = False
@@ -3141,16 +3116,16 @@ Sub btnRefresh_Click
 	BlurIV("Driveway.jpg",ivDriveway)
 	BlurIV("FrontDoor.jpg",ivFrontDoor)
 	BlurIV("SideYard.jpg",ivSideYard)
-	Dim rs As ResumableSub = RefreshCameras(True)
+	Dim rs As ResumableSub = RefreshCameras(True, "All")
 	wait for (rs) complete (Result As Object)
 	btnDriveway.Enabled = True
 	btnRefresh.Enabled = True
 	btnDrivewayNewClip.Enabled = True
 	btnFrontDoorNewClip.Enabled = True
 	btnSideYardNewClip.Enabled = True
-	btnDrivewayFullScreenshot.Enabled = True
-	btnFrontDoorFullScreenshot.Enabled = True
-	btnSideYardFullScreenshot.Enabled = True
+	btnDrivewayRefresh.Enabled = True
+	btnFrontDoorRefresh.Enabled = True
+	btnSideYardRefresh.Enabled = True
 	ivDriveway.Enabled = True
 	ivFrontDoor.Enabled = True
 	ivSideYard.Enabled = True
@@ -3189,52 +3164,6 @@ Sub DownloadImageFullscreen (Link As String, camera As String) As ResumableSub'i
 		Log(LastException)
 	End Try
 	Return Null
-End Sub
-
-Sub btnDrivewayFullScreenshot_Click
-	
-	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/347574")
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = GetCameraInfo(response,False)
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "347574")
-	wait for (rs) complete (Result As Object)
-	If response.StartsWith("ERROR: ") = False Then
-		lblStatus.Text = "Ready"
-	End If
-End Sub
-
-Sub btnFrontDoorFullScreenshot_Click
-	
-	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/236967")
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = GetCameraInfo(response,False)
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "236967")
-	wait for (rs) complete (Result As Object)
-	If response.StartsWith("ERROR: ") = False Then
-		lblStatus.Text = "Ready"
-	End If
-End Sub
-
-Sub btnSideYardFullScreenshot_Click
-	
-	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/226821")
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = GetCameraInfo(response,False)
-	wait for (rs) complete (Result As Object)
-	
-	
-	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "226821")
-	wait for (rs) complete (Result As Object)
-	If response.StartsWith("ERROR: ") = False Then
-		lblStatus.Text = "Ready"
-	End If
 End Sub
 
 Sub ivPlay_Click
@@ -3297,3 +3226,21 @@ public class MyExceptionHandler implements Thread.UncaughtExceptionHandler {
   }
 }
 #End if
+
+Sub btnSideYardRefresh_Click
+	ScrollViewBlink.ScrollToNow(0)
+	Dim rs As ResumableSub = RefreshCameras(False, "226821")
+	wait for (rs) complete (Result As Object)
+End Sub
+
+Sub btnFrontDoorRefresh_Click
+	ScrollViewBlink.ScrollToNow(0)
+	Dim rs As ResumableSub = RefreshCameras(False, "236967")
+	wait for (rs) complete (Result As Object)
+End Sub
+
+Sub btnDrivewayRefresh_Click
+	ScrollViewBlink.ScrollToNow(0)
+	Dim rs As ResumableSub = RefreshCameras(False, "347574")
+	wait for (rs) complete (Result As Object)
+End Sub
