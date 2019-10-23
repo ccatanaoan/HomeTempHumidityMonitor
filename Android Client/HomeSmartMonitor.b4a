@@ -1575,6 +1575,16 @@ Sub RefreshCameras(FirstRun As Boolean, whatCamera As String) As ResumableSub
 	btnDrivewayRefresh.Enabled = True
 	btnFrontDoorRefresh.Enabled = True
 	btnSideYardRefresh.Enabled = True
+	If lblSideYardBatt.Text.Contains("OFFLINE") Then
+		'lblSideYardBatt.Text = sideyardBattStatus
+		BlurIV("SideYard.jpg",ivSideYard)
+	Else if lblDrivewayBatt.Text.Contains("OFFLINE") Then
+		'lblDrivewayBatt.Text = drivewayBattStatus
+		BlurIV("Driveway.jpg",ivDriveway)
+	Else if lblFrontDoorBatt.Text.Contains("OFFLINE") Then
+		'lblFrontDoorBatt.Text = frontdoorBattStatus
+		BlurIV("FrontDoor.jpg",ivFrontDoor)
+	End If
 	Return Null
 End Sub
 
@@ -1910,7 +1920,13 @@ Sub GetCameraInfo(json As String, isJustInfoNeeded As Boolean) As ResumableSub
 			lblSideYard.Text = "Side Yard v" & fw_version  & " " & sideyardArmedStatus
 			lblSideYardWiFi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
 		End If
-		
+		If lblSideYardBatt.Text.Contains("OFFLINE") Then
+			lblSideYardBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & sideyardBattStatus
+		Else if lblDrivewayBatt.Text.Contains("OFFLINE") Then
+			lblDrivewayBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & drivewayBattStatus
+		Else if lblFrontDoorBatt.Text.Contains("OFFLINE") Then
+			lblFrontDoorBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & frontdoorBattStatus
+		End If
 	Catch
 		Log(LastException)
 	End Try
@@ -1988,7 +2004,7 @@ Sub GetHomescreen(json As String) As ResumableSub
 '			Dim warning As Int = coldevices.Get("warning")
 '			Dim notifications As Int = coldevices.Get("notifications")
 '			Dim errors As Int = coldevices.Get("errors")
-'			Dim status As String = coldevices.Get("status")
+			Dim status As String = coldevices.Get("status")
 			
 		
 			If device_id = "347574" Then
@@ -2017,6 +2033,12 @@ Sub GetHomescreen(json As String) As ResumableSub
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
 				Else
 					drivewayBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
+					Dim jo As JavaObject = lblDrivewayBatt
+					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+				End If
+				If status = "offline" Then
+					drivewayBattStatus = "OFFLINE"
 					Dim jo As JavaObject = lblDrivewayBatt
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
@@ -2051,6 +2073,12 @@ Sub GetHomescreen(json As String) As ResumableSub
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 				End If
+				If status = "offline" Then
+					frontdoorBattStatus = "OFFLINE"
+					Dim jo As JavaObject = lblFrontDoorBatt
+					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+				End If
 			Else If device_id = "226821" Then
 				If active = "armed" Then
 					If enabled = "true" Then
@@ -2077,6 +2105,12 @@ Sub GetHomescreen(json As String) As ResumableSub
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
 				Else
 					sideyardBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
+					Dim jo As JavaObject = lblSideYardBatt
+					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
+					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
+				End If
+				If status = "offline" Then
+					sideyardBattStatus = "OFFLINE"
 					Dim jo As JavaObject = lblSideYardBatt
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
@@ -3228,19 +3262,88 @@ public class MyExceptionHandler implements Thread.UncaughtExceptionHandler {
 #End if
 
 Sub btnSideYardRefresh_Click
+	btnDriveway.Enabled = False
+	btnRefresh.Enabled = False
+	btnDrivewayNewClip.Enabled = False
+	btnFrontDoorNewClip.Enabled = False
+	btnSideYardNewClip.Enabled = False
+	btnDrivewayRefresh.Enabled = False
+	btnFrontDoorRefresh.Enabled = False
+	btnSideYardRefresh.Enabled = False
+	ivDriveway.Enabled = False
+	ivFrontDoor.Enabled = False
+	ivSideYard.Enabled = False
 	ScrollViewBlink.ScrollToNow(0)
+	BlurIV("SideYard.jpg",ivSideYard)
 	Dim rs As ResumableSub = RefreshCameras(False, "226821")
 	wait for (rs) complete (Result As Object)
+	btnDriveway.Enabled = True
+	btnRefresh.Enabled = True
+	btnDrivewayNewClip.Enabled = True
+	btnFrontDoorNewClip.Enabled = True
+	btnSideYardNewClip.Enabled = True
+	btnDrivewayRefresh.Enabled = True
+	btnFrontDoorRefresh.Enabled = True
+	btnSideYardRefresh.Enabled = True
+	ivDriveway.Enabled = True
+	ivFrontDoor.Enabled = True
+	ivSideYard.Enabled = True
 End Sub
 
 Sub btnFrontDoorRefresh_Click
+	btnDriveway.Enabled = False
+	btnRefresh.Enabled = False
+	btnDrivewayNewClip.Enabled = False
+	btnFrontDoorNewClip.Enabled = False
+	btnSideYardNewClip.Enabled = False
+	btnDrivewayRefresh.Enabled = False
+	btnFrontDoorRefresh.Enabled = False
+	btnSideYardRefresh.Enabled = False
+	ivDriveway.Enabled = False
+	ivFrontDoor.Enabled = False
+	ivSideYard.Enabled = False
 	ScrollViewBlink.ScrollToNow(0)
+	BlurIV("FrontDoor.jpg",ivFrontDoor)
 	Dim rs As ResumableSub = RefreshCameras(False, "236967")
 	wait for (rs) complete (Result As Object)
+	btnDriveway.Enabled = True
+	btnRefresh.Enabled = True
+	btnDrivewayNewClip.Enabled = True
+	btnFrontDoorNewClip.Enabled = True
+	btnSideYardNewClip.Enabled = True
+	btnDrivewayRefresh.Enabled = True
+	btnFrontDoorRefresh.Enabled = True
+	btnSideYardRefresh.Enabled = True
+	ivDriveway.Enabled = True
+	ivFrontDoor.Enabled = True
+	ivSideYard.Enabled = True
 End Sub
 
 Sub btnDrivewayRefresh_Click
+	btnDriveway.Enabled = False
+	btnRefresh.Enabled = False
+	btnDrivewayNewClip.Enabled = False
+	btnFrontDoorNewClip.Enabled = False
+	btnSideYardNewClip.Enabled = False
+	btnDrivewayRefresh.Enabled = False
+	btnFrontDoorRefresh.Enabled = False
+	btnSideYardRefresh.Enabled = False
+	ivDriveway.Enabled = False
+	ivFrontDoor.Enabled = False
+	ivSideYard.Enabled = False
 	ScrollViewBlink.ScrollToNow(0)
+	BlurIV("Driveway.jpg",ivDriveway)
 	Dim rs As ResumableSub = RefreshCameras(False, "347574")
 	wait for (rs) complete (Result As Object)
+	btnDriveway.Enabled = True
+	btnRefresh.Enabled = True
+	btnDrivewayNewClip.Enabled = True
+	btnFrontDoorNewClip.Enabled = True
+	btnSideYardNewClip.Enabled = True
+	btnDrivewayRefresh.Enabled = True
+	btnFrontDoorRefresh.Enabled = True
+	btnSideYardRefresh.Enabled = True
+	ivDriveway.Enabled = True
+	ivFrontDoor.Enabled = True
+	ivSideYard.Enabled = True
 End Sub
