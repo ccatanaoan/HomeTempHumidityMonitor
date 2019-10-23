@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,ivDriveway_Click,2216,0,Visual Designer,blink.bal,-100,2,Main,CreateTab4,877,0,Main,RequestAuthToken,1256,0,Main,RefreshCameras,1492,0,Main,btnDriveway_Click,2141,0,Main,btnDrivewayNewClip_Click,2851,0,Main,btnFrontDoorNewClip_Click,2931,0,Main,btnSideYardNewClip_Click,3010,0,Main,btnRefresh_Click,3043,3
+NavigationStack=Visual Designer,blink.bal,-100,6,Main,CreateTab4,873,0,Main,Process_Globals,51,0,Main,RefreshCameras,1498,1,Main,GetCameraInfo,1833,0,Main,GetHomescreen,1956,4,Main,btnRefresh_Click,3053,4,Main,btnSideYardRefresh_Click,3180,0,Main,btnFrontDoorRefresh_Click,3209,2,Main,btnDrivewayRefresh_Click,3239,1
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
