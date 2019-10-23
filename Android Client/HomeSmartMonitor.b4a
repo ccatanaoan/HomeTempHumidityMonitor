@@ -897,10 +897,6 @@ Sub TabStrip1_PageSelected (Position As Int)
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				Dim rs As ResumableSub = GetVideos(response)
 				wait for (rs) complete (Result As Object)
-				
-				isThereUnwatchedVideo = False
-				StateManager.SetSetting("UnwatchedVideoClips","0")
-				StateManager.SaveSettings
 						
 				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
 				Dim rs As ResumableSub = GetUnwatchedVideos
