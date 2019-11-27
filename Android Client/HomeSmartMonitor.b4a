@@ -2244,8 +2244,18 @@ Sub btnDriveway_Click
 		BlurIV("Driveway.jpg",ivDriveway)
 		BlurIV("FrontDoor.jpg",ivFrontDoor)
 		BlurIV("SideYard.jpg",ivSideYard)
-		Dim rs As ResumableSub = RefreshCameras(False, "All")
+'		Dim rs As ResumableSub = RefreshCameras(False, "All")
+'		wait for (rs) complete (Result As Object)
+
+		Dim rs As ResumableSub = RefreshCameras(False, "347574")
 		wait for (rs) complete (Result As Object)
+
+		Dim rs As ResumableSub = RefreshCameras(False, "236967")
+		wait for (rs) complete (Result As Object)
+	
+		Dim rs As ResumableSub = RefreshCameras(False, "226821")
+		wait for (rs) complete (Result As Object)
+		
 		btnDriveway.Enabled = True
 		btnRefresh.Enabled = True
 		btnDrivewayNewClip.Enabled = True
@@ -2800,6 +2810,12 @@ Sub ShowVideo (Link As String) As ResumableSub
 			ToastMessageShow("Media not found. Removed from the list.",True)
 		End If
 		j.Release
+		
+		' Remove all Blink notifications via Tasker intent
+		Dim Intent1 As Intent
+		Intent1.Initialize("blink.noti.clear", "")
+		Dim Phone As Phone
+		Phone.SendBroadcastIntent(Intent1)
 	Catch
 		Log(LastException)
 	End Try
