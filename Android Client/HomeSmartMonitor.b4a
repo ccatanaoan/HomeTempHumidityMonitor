@@ -1361,7 +1361,7 @@ Sub RefreshCameras(FirstRun As Boolean, whatCamera As String) As ResumableSub
 		Dim iv As ImageView
 		Dim links As List
 		Dim attempts As Int
-		links = Array("347574", "236967", "226821")
+		links = Array("347574", "236967", "458236")
 		
 		Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/syncmodules")
 		wait for (rs) complete (Result As Object)
@@ -1427,7 +1427,7 @@ Sub RefreshCameras(FirstRun As Boolean, whatCamera As String) As ResumableSub
 				Else If camera = "236967" Then
 					lblStatus.Text = "Retrieving Front Door thumbnail..."
 					iv = ivFrontDoor
-				Else If camera = "226821" Then
+				Else If camera = "458236" Then
 					lblStatus.Text = "Retrieving Side Yard thumbnail..."
 					iv = ivSideYard
 				End If
@@ -1440,7 +1440,7 @@ Sub RefreshCameras(FirstRun As Boolean, whatCamera As String) As ResumableSub
 					lblStatus.Text = "Capturing a new Front Door thumbnail..."
 					iv = ivFrontDoor
 					attempts = 15
-				Else If camera = "226821" Then
+				Else If camera = "458236" Then
 					lblStatus.Text = "Capturing a new Side Yard thumbnail..."
 					iv = ivSideYard
 					attempts = 15
@@ -1548,7 +1548,7 @@ Sub RefreshCameras(FirstRun As Boolean, whatCamera As String) As ResumableSub
 								lblStatus.Text = "Failed to retrieve Driveway thumbnail..."
 							Else If camera = "236967" Then
 								lblStatus.Text = "Failed to retrieve Front Door thumbnail..."
-							Else If camera = "226821" Then
+							Else If camera = "458236" Then
 								lblStatus.Text = "Failed to retrieve Side Yard thumbnail..."
 							End If
 						Else
@@ -1621,7 +1621,7 @@ Sub GetCommandResponse(iv As ImageView,camera As String, attempts As String, att
 			lblStatus.Text = "Awaiting for the Driveway thumbnail... " & attempts & "/" & attemptsAllowed
 		Else If camera = "236967" Then
 			lblStatus.Text = "Awaiting for the Front Door thumbnail...  " & attempts & "/" & attemptsAllowed
-		Else If camera = "226821" Then
+		Else If camera = "458236" Then
 			lblStatus.Text = "Awaiting for the Side Yard thumbnail... " & attempts & "/" & attemptsAllowed
 		End If
 		Return False
@@ -1703,7 +1703,7 @@ Sub DownloadImage (Link As String, iv As ImageView, camera As String) As Resumab
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
 				bmp = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
-			Else If camera = "226821" Then
+			Else If camera = "458236" Then
 				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "SideYard.jpg", False)
 				File.Copy2(j.GetInputStream, out)
 				out.Close '<------ very important
@@ -1910,7 +1910,7 @@ Sub GetCameraInfo(json As String, isJustInfoNeeded As Boolean) As ResumableSub
 			lblFrontDoorTimestamp.Text = ConvertDateTime(updated_at)
 			lblFrontDoor.Text = "Front Door v" & fw_version  & " " & frontdoorArmedStatus
 			lblFrontDoorWiFi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
-		Else If camera_id = "226821" Then
+		Else If camera_id = "458236" Then
 			lblSideYardBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & sideyardBattStatus
 			lblSideYardTimestamp.Text = ConvertDateTime(updated_at)
 			lblSideYard.Text = "Side Yard v" & fw_version  & " " & sideyardArmedStatus
@@ -2029,6 +2029,9 @@ Sub GetHomescreen(json As String) As ResumableSub
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
 				Else
 					drivewayBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
+					If drivewayBattStatus = "[Level 1 - LOW]" Then
+						drivewayBattStatus = "[REPLACE]"
+					End If
 					Dim jo As JavaObject = lblDrivewayBatt
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
@@ -2065,6 +2068,9 @@ Sub GetHomescreen(json As String) As ResumableSub
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
 				Else
 					frontdoorBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
+					If frontdoorBattStatus = "[Level 1 - LOW]" Then
+						frontdoorBattStatus = "[REPLACE]"
+					End If
 					Dim jo As JavaObject = lblFrontDoorBatt
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
@@ -2075,7 +2081,7 @@ Sub GetHomescreen(json As String) As ResumableSub
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
 				End If
-			Else If device_id = "226821" Then
+			Else If device_id = "458236" Then
 				If active = "armed" Then
 					If enabled = "true" Then
 						sideyardArmedStatus = ""
@@ -2101,6 +2107,9 @@ Sub GetHomescreen(json As String) As ResumableSub
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
 				Else
 					sideyardBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
+					If sideyardBattStatus = "[Level 1 - LOW]" Then
+						sideyardBattStatus = "[REPLACE]"
+					End If
 					Dim jo As JavaObject = lblSideYardBatt
 					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
 					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
@@ -2253,7 +2262,7 @@ Sub btnDriveway_Click
 		Dim rs As ResumableSub = RefreshCameras(False, "236967")
 		wait for (rs) complete (Result As Object)
 	
-		Dim rs As ResumableSub = RefreshCameras(False, "226821")
+		Dim rs As ResumableSub = RefreshCameras(False, "458236")
 		wait for (rs) complete (Result As Object)
 		
 		btnDriveway.Enabled = True
@@ -2339,14 +2348,14 @@ Sub SetTextShadow(lbl As Label)
 End Sub
 
 Sub ivSideYard_Click
-	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/226821")
+	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/458236")
 	wait for (rs) complete (Result As Object)
 	
 	Dim rs As ResumableSub = GetCameraInfo(response,False)
 	wait for (rs) complete (Result As Object)
 	
 	
-	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "226821")
+	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "458236")
 	wait for (rs) complete (Result As Object)
 	If response.StartsWith("ERROR: ") = False Then
 		lblStatus.Text = "Ready"
@@ -3085,7 +3094,7 @@ Sub btnSideYardNewClip_Click
 			ivSideYard.Enabled = False
 			lblStatus.Text = "Capturing a new Side Yard video clip..."
 			
-			Dim rs As ResumableSub = RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/226821/clip")
+			Dim rs As ResumableSub = RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/458236/clip")
 			wait for (rs) complete (Result As Object)
 			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
 				btnDriveway.Enabled = True
@@ -3287,7 +3296,7 @@ Sub btnSideYardRefresh_Click
 	ivSideYard.Enabled = False
 	ScrollViewBlink.ScrollToNow(0)
 	BlurIV("SideYard.jpg",ivSideYard)
-	Dim rs As ResumableSub = RefreshCameras(False, "226821")
+	Dim rs As ResumableSub = RefreshCameras(False, "458236")
 	wait for (rs) complete (Result As Object)
 	btnDriveway.Enabled = True
 	btnRefresh.Enabled = True
