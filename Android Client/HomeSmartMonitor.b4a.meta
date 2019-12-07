@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,btnDrivewayRefresh_Click,3263,2,Main,RefreshCameras,1273,2,Main,CreateTab4,880,0,Main,btnDriveway_Click,2162,0,Main,btnRefresh_Click,3080,3,Main,btnSideYardRefresh_Click,3205,0,Main,btnFrontDoorRefresh_Click,3225,0,Main,Globals,123,0,Main,GetHomescreen,2026,6,Main,Activity_Create,261,0
+NavigationStack=Main,Globals,123,0,Main,GetHomescreen,2026,6,Main,Activity_Create,261,0,Main,Process_Globals,24,0,Main,ShowVideo,2735,0,Main,btnDrivewayRefresh_Click,3285,0,Main,btnRefresh_Click,3097,0,Main,btnSideYardNewClip_Click,3042,6,Main,btnFrontDoorNewClip_Click,2974,2,Main,btnDrivewayNewClip_Click,2839,1
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
