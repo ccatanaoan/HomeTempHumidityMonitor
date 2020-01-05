@@ -1,7 +1,7 @@
 #pragma once
 #include "B4RDefines.h"
 
-//~version: 1.90
+//~version: 1.91
 namespace B4R {
 	class SplitIterator;
 	/**

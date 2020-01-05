@@ -151,12 +151,13 @@ namespace B4R {
 							break;
 					}
 				}
+				#ifdef CHECK_ARRAY_BOUNDS
+				Result->getData(length - 1);
+				#endif
 		} else {
 			length = 0;
 		}
-		#ifdef CHECK_ARRAY_BOUNDS
-			Result->getData(length - 1);
-		#endif
+		
 		Array* arr = Result->length == length ? Result : CreateStackMemoryObject(Array);
 		arr->length = length;
 		arr->data = Result->data;

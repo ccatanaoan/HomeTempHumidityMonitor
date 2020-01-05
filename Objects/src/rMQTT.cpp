@@ -78,6 +78,15 @@ namespace B4R {
 	bool MqttClient::Publish2(B4RString* Topic, ArrayByte* Payload, bool Retained) {
 		return psClient.publish(Topic->data, (Byte*)Payload->data, Payload->length, Retained);
 	}
+	bool MqttClient::BeginPublish(B4RString* Topic, UInt TotalLength, bool Retained) {
+		return psClient.beginPublish(Topic->data, TotalLength, Retained);
+	}
+	bool MqttClient::WriteChunk(ArrayByte* Payload) {
+		return psClient.write((Byte*)Payload->data, Payload->length);
+	}
+	bool MqttClient::EndPublish() {
+		return psClient.endPublish();
+	}
 	void MqttClient::Close() {
 		psClient.disconnect();
 		if (pnode.next != NULL)

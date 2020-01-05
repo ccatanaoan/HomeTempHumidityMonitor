@@ -9,7 +9,7 @@ Library6=resp8266timetools
 NumberOfFiles=0
 NumberOfLibraries=6
 NumberOfModules=0
-Version=2.8
+Version=3
 @EndOfDesignText@
 ' Home Weather Station Using DHT22 (AM2302)
 '
@@ -69,8 +69,8 @@ Sub Process_Globals
 	Private MQTTHostName As String = "m14.cloudmqtt.com"
 	Private MQTTPort As Int = 11816
 	Private ESP As ESP8266
-	Private WiFiSSID As String = "RiseAboveThisHome"
-	Private WiFiPassword As String = "SteelReserve" 
+	Private WiFiSSID As String = "IoT2G"
+	Private WiFiPassword As String = "SteelReserveIOT1980"
 	Public DHT22pin As Pin                    ' ESP8266 Pin connected to DHT22 signal
 	Private d3pins As D1Pins
 	Public DHT22Temp As Double

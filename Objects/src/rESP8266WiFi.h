@@ -8,7 +8,7 @@
 #endif
 #include <WiFiUdp.h>
 
-//~version: 1.50
+//~version: 1.55
 namespace B4R {
 	//~shortname: ESP8266WiFi
 	class B4RESPWiFi {
@@ -74,10 +74,6 @@ namespace B4R {
 			virtual void stop();
 			virtual int connect(const char *host, uint16_t port) ;
 			virtual int connect(IPAddress ip, uint16_t port);
-			#ifdef ESP32
-			virtual int connect(IPAddress ip, uint16_t port, int timeout);
-			virtual int connect(const char *host, uint16_t port, int timeout);
-			#endif
 	};
 	//~shortname: WiFiSocket
 	//A client socket implementation. Usage is identical to the usage of EthernetSocket.

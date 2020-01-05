@@ -21,7 +21,7 @@ namespace B4R {
 			void SetLastWill(B4RString* Topic, B4RString* Message, Byte QOS, bool Retained);
 	};
 	
-	//~Version: 1.30
+	//~Version: 1.40
 	//~ShortName: MqttClient
 	//~Event: MessageArrived (Topic As String, Payload() As Byte)
 	//~Event: Disconnected
@@ -63,6 +63,27 @@ namespace B4R {
 			bool Publish2(B4RString* Topic, ArrayByte* Payload, bool Retained);
 			//Closes the client.
 			void Close();
+			/**
+			*Starts a chunk based publish. This allows sending large messages.
+			*TotalLength - Total payload size.
+			*Example: <code>
+			 *mqtt.BeginPublish("last", 100, False)
+			 *Dim buffer(5) As Byte
+			 *For i = 1 To 100 Step 5
+			 *	buffer(0) = i
+			 *	buffer(1) = i + 1
+			 *	buffer(2) = i + 2
+			 *	buffer(3) = i + 3
+			 *	buffer(4) = i + 4
+			 *	mqtt.WriteChunk(buffer)
+			 *Next
+			 *mqtt.EndPublish</code>
+			*/
+			bool BeginPublish(B4RString* Topic, UInt TotalLength, bool Retained);
+			//Writes a chunk of data. Must be called between a call to BeginPublish and a call to EndPublish.
+			bool WriteChunk(ArrayByte* Payload);
+			//Ends a chunk based publish.
+			bool EndPublish();
 	};
 	
 }
