@@ -13,7 +13,7 @@ Module1=Starter
 NumberOfFiles=1
 NumberOfLibraries=5
 NumberOfModules=1
-Version=8.5
+Version=9.5
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Living Area Chart Hour
@@ -169,8 +169,8 @@ Sub Activity_Create(FirstTime As Boolean)
 		End If
 		' ***************************** STARTED WORK ON HOURLY *****************************
 		lc1.YaxisDivisions = 10
-		lc1.YaxisRange(minimumRange, maximumRange)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
-		lc1.YaxisValueFormat = lc1.ValueFormat_1                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
+		'lc1.YaxisRange(minimumRange, maximumRange)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
+		lc1.YaxisValueFormat = lc1.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
 		lc1.YaxisGridLineColor = Colors.Black
 		lc1.YaxisGridLineWidth = 2
 		lc1.YaxisLabelTicks = 1
