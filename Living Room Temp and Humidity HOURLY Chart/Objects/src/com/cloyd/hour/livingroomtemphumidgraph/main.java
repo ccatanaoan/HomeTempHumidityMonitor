@@ -61,7 +61,7 @@ public class main extends Activity implements B4AActivity{
 		setContentView(layout);
 		afterFirstLayout = false;
         WaitForLayout wl = new WaitForLayout();
-        if (anywheresoftware.b4a.objects.ServiceHelper.StarterHelper.startFromActivity(processBA, wl, false))
+        if (anywheresoftware.b4a.objects.ServiceHelper.StarterHelper.startFromActivity(this, processBA, wl, false))
 		    BA.handler.postDelayed(wl, 5);
 
 	}
@@ -526,10 +526,8 @@ _zerorange = (float) (0);
  };
  //BA.debugLineNum = 154;BA.debugLine="lc1.YaxisDivisions = 10";
 mostCurrent._lc1.setYaxisDivisions((int) (10));
- //BA.debugLineNum = 155;BA.debugLine="lc1.YaxisRange(minimumRange, maximumRange)";
-mostCurrent._lc1.YaxisRange(_minimumrange,_maximumrange);
- //BA.debugLineNum = 156;BA.debugLine="lc1.YaxisValueFormat = lc1.ValueFormat_1";
-mostCurrent._lc1.setYaxisValueFormat(mostCurrent._lc1.ValueFormat_1);
+ //BA.debugLineNum = 156;BA.debugLine="lc1.YaxisValueFormat = lc1.ValueFormat_2";
+mostCurrent._lc1.setYaxisValueFormat(mostCurrent._lc1.ValueFormat_2);
  //BA.debugLineNum = 157;BA.debugLine="lc1.YaxisGridLineColor = Colors.Black";
 mostCurrent._lc1.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
  //BA.debugLineNum = 158;BA.debugLine="lc1.YaxisGridLineWidth = 2";
@@ -733,9 +731,9 @@ _timer1.Initialize(processBA,"Timer1",(long) (1000));
  //BA.debugLineNum = 381;BA.debugLine="Timer1.Enabled = True 'start timer";
 _timer1.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  } 
-       catch (Exception e196) {
-			processBA.setLastException(e196); //BA.debugLineNum = 383;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+       catch (Exception e195) {
+			processBA.setLastException(e195); //BA.debugLineNum = 383;BA.debugLine="Log(LastException)";
+anywheresoftware.b4a.keywords.Common.LogImpl("4131396",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 384;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -1251,7 +1249,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 646;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)));
+anywheresoftware.b4a.keywords.Common.LogImpl("4327929",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 648;BA.debugLine="End Sub";
 return "";
