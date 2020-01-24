@@ -132,44 +132,44 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.XAxisLabels = timeArray 'Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
 		
 		Dim tmpRange As String
-		If File.Exists(File.DirRootExternal, "minimumRange.txt") Then
-			tmpRange = File.ReadString(File.DirRootExternal, "minimumRange.txt")
+		If File.Exists(File.DirRootExternal, "minimumRange2.txt") Then
+			tmpRange = File.ReadString(File.DirRootExternal, "minimumRange2.txt")
 			If IsNumber(tmpRange) Then
 				minimumRange = tmpRange
 			Else
 				minimumRange = 50
 			End If
 		Else
-			File.WriteString(File.DirRootExternal, "minimumRange.txt","50")
+			File.WriteString(File.DirRootExternal, "minimumRange2.txt","50")
 			minimumRange = 50
 		End If
 		
-		If File.Exists(File.DirRootExternal, "maximumRange.txt") Then
-			tmpRange = File.ReadString(File.DirRootExternal, "maximumRange.txt")
+		If File.Exists(File.DirRootExternal, "maximumRange2.txt") Then
+			tmpRange = File.ReadString(File.DirRootExternal, "maximumRange2.txt")
 			If IsNumber(tmpRange) Then
 				maximumRange = tmpRange
 			Else
 				maximumRange = 90
 			End If
 		Else
-			File.WriteString(File.DirRootExternal, "maximumRange.txt","90")
+			File.WriteString(File.DirRootExternal, "maximumRange2.txt","90")
 			maximumRange = 90
 		End If
 		
-		If File.Exists(File.DirRootExternal, "zeroRange.txt") Then
-			tmpRange = File.ReadString(File.DirRootExternal, "zeroRange.txt")
+		If File.Exists(File.DirRootExternal, "zeroRange2.txt") Then
+			tmpRange = File.ReadString(File.DirRootExternal, "zeroRange2.txt")
 			If IsNumber(tmpRange) Then
 				zeroRange = tmpRange
 			Else
 				zeroRange = 0
 			End If
 		Else
-			File.WriteString(File.DirRootExternal, "zeroRange.txt","0")
+			File.WriteString(File.DirRootExternal, "zeroRange2.txt","0")
 			zeroRange = 0
 		End If
 		' ***************************** STARTED WORK ON HOURLY *****************************
 		lc1.YaxisDivisions = 10
-		'lc1.YaxisRange(minimumRange, maximumRange)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
+		lc1.YaxisRange(minimumRange, maximumRange)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
 		lc1.YaxisValueFormat = lc1.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
 		lc1.YaxisGridLineColor = Colors.Black
 		lc1.YaxisGridLineWidth = 2

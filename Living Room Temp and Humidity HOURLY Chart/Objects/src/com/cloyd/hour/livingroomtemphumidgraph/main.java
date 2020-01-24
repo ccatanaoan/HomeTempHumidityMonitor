@@ -471,9 +471,9 @@ mostCurrent._lc1.setXAxisLabels(mostCurrent._timearray);
  //BA.debugLineNum = 117;BA.debugLine="Dim tmpRange As String";
 _tmprange = "";
  //BA.debugLineNum = 118;BA.debugLine="If File.Exists(File.DirRootExternal, \"minimumRan";
-if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"minimumRange.txt")) { 
+if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"minimumRange2.txt")) { 
  //BA.debugLineNum = 119;BA.debugLine="tmpRange = File.ReadString(File.DirRootExternal";
-_tmprange = anywheresoftware.b4a.keywords.Common.File.ReadString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"minimumRange.txt");
+_tmprange = anywheresoftware.b4a.keywords.Common.File.ReadString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"minimumRange2.txt");
  //BA.debugLineNum = 120;BA.debugLine="If IsNumber(tmpRange) Then";
 if (anywheresoftware.b4a.keywords.Common.IsNumber(_tmprange)) { 
  //BA.debugLineNum = 121;BA.debugLine="minimumRange = tmpRange";
@@ -484,14 +484,14 @@ _minimumrange = (float) (50);
  };
  }else {
  //BA.debugLineNum = 126;BA.debugLine="File.WriteString(File.DirRootExternal, \"minimum";
-anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"minimumRange.txt","50");
+anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"minimumRange2.txt","50");
  //BA.debugLineNum = 127;BA.debugLine="minimumRange = 50";
 _minimumrange = (float) (50);
  };
  //BA.debugLineNum = 130;BA.debugLine="If File.Exists(File.DirRootExternal, \"maximumRan";
-if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"maximumRange.txt")) { 
+if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"maximumRange2.txt")) { 
  //BA.debugLineNum = 131;BA.debugLine="tmpRange = File.ReadString(File.DirRootExternal";
-_tmprange = anywheresoftware.b4a.keywords.Common.File.ReadString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"maximumRange.txt");
+_tmprange = anywheresoftware.b4a.keywords.Common.File.ReadString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"maximumRange2.txt");
  //BA.debugLineNum = 132;BA.debugLine="If IsNumber(tmpRange) Then";
 if (anywheresoftware.b4a.keywords.Common.IsNumber(_tmprange)) { 
  //BA.debugLineNum = 133;BA.debugLine="maximumRange = tmpRange";
@@ -502,14 +502,14 @@ _maximumrange = (float) (90);
  };
  }else {
  //BA.debugLineNum = 138;BA.debugLine="File.WriteString(File.DirRootExternal, \"maximum";
-anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"maximumRange.txt","90");
+anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"maximumRange2.txt","90");
  //BA.debugLineNum = 139;BA.debugLine="maximumRange = 90";
 _maximumrange = (float) (90);
  };
- //BA.debugLineNum = 142;BA.debugLine="If File.Exists(File.DirRootExternal, \"zeroRange.";
-if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"zeroRange.txt")) { 
+ //BA.debugLineNum = 142;BA.debugLine="If File.Exists(File.DirRootExternal, \"zeroRange2";
+if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"zeroRange2.txt")) { 
  //BA.debugLineNum = 143;BA.debugLine="tmpRange = File.ReadString(File.DirRootExternal";
-_tmprange = anywheresoftware.b4a.keywords.Common.File.ReadString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"zeroRange.txt");
+_tmprange = anywheresoftware.b4a.keywords.Common.File.ReadString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"zeroRange2.txt");
  //BA.debugLineNum = 144;BA.debugLine="If IsNumber(tmpRange) Then";
 if (anywheresoftware.b4a.keywords.Common.IsNumber(_tmprange)) { 
  //BA.debugLineNum = 145;BA.debugLine="zeroRange = tmpRange";
@@ -520,12 +520,14 @@ _zerorange = (float) (0);
  };
  }else {
  //BA.debugLineNum = 150;BA.debugLine="File.WriteString(File.DirRootExternal, \"zeroRan";
-anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"zeroRange.txt","0");
+anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"zeroRange2.txt","0");
  //BA.debugLineNum = 151;BA.debugLine="zeroRange = 0";
 _zerorange = (float) (0);
  };
  //BA.debugLineNum = 154;BA.debugLine="lc1.YaxisDivisions = 10";
 mostCurrent._lc1.setYaxisDivisions((int) (10));
+ //BA.debugLineNum = 155;BA.debugLine="lc1.YaxisRange(minimumRange, maximumRange)";
+mostCurrent._lc1.YaxisRange(_minimumrange,_maximumrange);
  //BA.debugLineNum = 156;BA.debugLine="lc1.YaxisValueFormat = lc1.ValueFormat_2";
 mostCurrent._lc1.setYaxisValueFormat(mostCurrent._lc1.ValueFormat_2);
  //BA.debugLineNum = 157;BA.debugLine="lc1.YaxisGridLineColor = Colors.Black";
@@ -731,9 +733,9 @@ _timer1.Initialize(processBA,"Timer1",(long) (1000));
  //BA.debugLineNum = 381;BA.debugLine="Timer1.Enabled = True 'start timer";
 _timer1.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  } 
-       catch (Exception e195) {
-			processBA.setLastException(e195); //BA.debugLineNum = 383;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("4131396",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+       catch (Exception e196) {
+			processBA.setLastException(e196); //BA.debugLineNum = 383;BA.debugLine="Log(LastException)";
+anywheresoftware.b4a.keywords.Common.LogImpl("0131396",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 384;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -1249,7 +1251,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 646;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("4327929",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("0721145",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 648;BA.debugLine="End Sub";
 return "";
