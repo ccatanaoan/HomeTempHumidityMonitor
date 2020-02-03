@@ -4,6 +4,6 @@ ModuleBreakpoints0=
 ModuleBreakpoints1=
 ModuleClosedNodes0=
 ModuleClosedNodes1=
-NavigationStack=Main,Process_Globals,18,0,Main,Globals,53,0,Main,Activity_Create,154,0
+NavigationStack=Main,Timer1_Tick,598,0,Main,ReadTextReader,334,0,Main,Process_Globals,16,0,Main,CheckTempBoundaries,335,0,Main,Globals,55,0,Main,Activity_Create,251,6
 SelectedBuild=0
 VisibleModules=1
