@@ -12,7 +12,7 @@ Module1=Starter
 NumberOfFiles=1
 NumberOfLibraries=4
 NumberOfModules=1
-Version=9.01
+Version=9.5
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Living Area Chart
@@ -68,6 +68,9 @@ Sub Globals
 	Private minimumRange As Float
 	Private maximumRange As Float
 	Private zeroRange As Float
+	Private tempZeroRange As Float
+	Private tempMaxRange As Float
+	Private tempMinRange As Float
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -140,17 +143,17 @@ Sub Activity_Create(FirstTime As Boolean)
 		If File.Exists(File.DirRootExternal, "zeroRange.txt") Then
 			tmpRange = File.ReadString(File.DirRootExternal, "zeroRange.txt")
 			If IsNumber(tmpRange) Then
-				zeroRange = tmpRange
+				zeroRange = 88.88
 			Else
-				zeroRange = 0
+				zeroRange = 88.88
 			End If
 		Else
 			File.WriteString(File.DirRootExternal, "zeroRange.txt","0")
-			zeroRange = 0
+			zeroRange = 88.88
 		End If
 		
 		lc1.YaxisDivisions = 10
-		lc1.YaxisRange(minimumRange, maximumRange)                                'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
+		'lc1.YaxisRange(minimumRange, maximumRange)                                'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
 		lc1.YaxisValueFormat = lc1.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
 		lc1.YaxisGridLineColor = Colors.Black
 		lc1.YaxisGridLineWidth = 2
@@ -174,80 +177,82 @@ Sub Activity_Create(FirstTime As Boolean)
 			
 		DateTime.DateFormat = "MMM d, yyyy"
 		lc1.Line_1_LegendText = "Today, " & DateTime.Date(DateTime.Now)
-			
-		If am12 <> zeroRange Then
+		
+		CheckTempBoundaries
+		
+		If am12 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12)
 		End If
-		If am1 <> zeroRange Then
+		If am1 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1)
 		End If
-		If am2 <> zeroRange Then
+		If am2 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2)
 		End If
-		If am3 <> zeroRange Then
+		If am3 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3)
 		End If
-		If am4 <> zeroRange Then
+		If am4 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4)
 		End If
-		If am5 <> zeroRange Then
+		If am5 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5)
 		End If
-		If am6 <> zeroRange Then
+		If am6 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
 		End If
-		If am7 <> zeroRange Then
+		If am7 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
 		End If
-		If am8 <> zeroRange Then
+		If am8 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
 		End If
-		If am9 <> zeroRange Then
+		If am9 <> tempZeroRange Then			
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
 		End If
-		If am10 <> zeroRange Then
+		If am10 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
 		End If
-		If am11 <> zeroRange Then
+		If am11 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
 		End If
-		If pm12 <> zeroRange Then
+		If pm12 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
 		End If
-		If pm1 <> zeroRange Then
+		If pm1 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
 		End If
-		If pm2 <> zeroRange Then
+		If pm2 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
 		End If
-		If pm3 <> zeroRange Then
+		If pm3 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
 		End If
-		If pm4 <> zeroRange Then
+		If pm4 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
 		End If
-		If pm5 <> zeroRange Then
+		If pm5 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
 		End If
-		If pm6 <> zeroRange Then
+		If pm6 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
 		End If
-		If pm7 <> zeroRange Then
+		If pm7 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
 		End If
-		If pm8 <> zeroRange Then
+		If pm8 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
 		End If
-		If pm9 <> zeroRange Then
+		If pm9 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
 		End If
-		If pm10 <> zeroRange Then
+		If pm10 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
 		End If
-		If pm11 <> zeroRange Then
+		If pm11 <> tempZeroRange Then
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
 		End If
-			
+					
 		lc1.Line_1_PointLabelTextColor = Colors.Yellow
 		lc1.Line_1_PointLabelTextSize = 35.0
 		lc1.Line_1_LineColor = Colors.Red
@@ -269,77 +274,79 @@ Sub Activity_Create(FirstTime As Boolean)
 
 		DateTime.DateFormat = "MMM d, yyyy"
 		lc1.Line_2_LegendText = "Yesterday, " & DateTime.Date(Yesterday)
-			
-		If am12 <> zeroRange Then
+		
+		CheckTempBoundaries
+		
+		If am12 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12)
 		End If
-		If am1 <> zeroRange Then
+		If am1 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1)
 		End If
-		If am2 <> zeroRange Then
+		If am2 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2)
 		End If
-		If am3 <> zeroRange Then
+		If am3 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3)
 		End If
-		If am4 <> zeroRange Then
+		If am4 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4)
 		End If
-		If am5 <> zeroRange Then
+		If am5 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5)
 		End If
-		If am6 <> zeroRange Then
+		If am6 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
 		End If
-		If am7 <> zeroRange Then
+		If am7 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
 		End If
-		If am8 <> zeroRange Then
+		If am8 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
 		End If
-		If am9 <> zeroRange Then
+		If am9 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
 		End If
-		If am10 <> zeroRange Then
+		If am10 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
 		End If
-		If am11 <> zeroRange Then
+		If am11 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
 		End If
-		If pm12 <> zeroRange Then
+		If pm12 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
 		End If
-		If pm1 <> zeroRange Then
+		If pm1 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
 		End If
-		If pm2 <> zeroRange Then
+		If pm2 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
 		End If
-		If pm3 <> zeroRange Then
+		If pm3 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
 		End If
-		If pm4 <> zeroRange Then
+		If pm4 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
 		End If
-		If pm5 <> zeroRange Then
+		If pm5 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
 		End If
-		If pm6 <> zeroRange Then
+		If pm6 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
 		End If
-		If pm7 <> zeroRange Then
+		If pm7 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
 		End If
-		If pm8 <> zeroRange Then
+		If pm8 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
 		End If
-		If pm9 <> zeroRange Then
+		If pm9 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
 		End If
-		If pm10 <> zeroRange Then
+		If pm10 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
 		End If
-		If pm11 <> zeroRange Then
+		If pm11 <> tempZeroRange Then
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
 		End If
 			
@@ -381,6 +388,65 @@ Sub Activity_Create(FirstTime As Boolean)
 		Log(LastException)
 		ToastMessageShow (LastException,True)
 	End Try
+	
+End Sub
+
+Sub CheckTempBoundaries 
+	Dim tempList As List
+	tempList.Initialize
+	tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
+	tempList.Sort(True)
+			
+	tempZeroRange = tempList.Get(0)-1.5
+		
+	If am12 = zeroRange Then am12 = tempZeroRange
+	If am1 = zeroRange Then am1 = tempZeroRange
+	If am2 = zeroRange Then am2 = tempZeroRange
+	If am3 = zeroRange Then am3 = tempZeroRange
+	If am4 = zeroRange Then am4 = tempZeroRange
+	If am5 = zeroRange Then am5 = tempZeroRange
+	If am6 = zeroRange Then am6 = tempZeroRange
+	If am7 = zeroRange Then am7 = tempZeroRange
+	If am8 = zeroRange Then am8 = tempZeroRange
+	If am9 = zeroRange Then am9 = tempZeroRange
+	If am10 = zeroRange Then am10 = tempZeroRange
+	If am11 = zeroRange Then am11 = tempZeroRange
+	If pm12 = zeroRange Then pm12 = tempZeroRange
+	If pm1 = zeroRange Then pm1 = tempZeroRange
+	If pm2 = zeroRange Then pm2 = tempZeroRange
+	If pm3 = zeroRange Then pm3 = tempZeroRange
+	If pm4 = zeroRange Then pm4 = tempZeroRange
+	If pm5 = zeroRange Then pm5 = tempZeroRange
+	If pm6 = zeroRange Then pm6 = tempZeroRange
+	If pm7 = zeroRange Then pm7 = tempZeroRange
+	If pm8 = zeroRange Then pm8 = tempZeroRange
+	If pm9 = zeroRange Then pm9 = tempZeroRange
+	If pm10 = zeroRange Then pm10 = tempZeroRange
+	If pm11 = zeroRange Then pm11 = tempZeroRange
+		
+	tempList.Initialize
+	tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
+	tempList.Sort(True)
+	
+	If tempList.Get(0) < tempMinRange Then
+		tempMinRange = tempList.Get(0)-1.5
+	End If
+	If tempList.Get(tempList.Size-1) >= 88.88 Then
+		If tempMaxRange > tempList.Get(tempList.Size-2) Then
+			lc1.YaxisRange(tempMinRange, (tempMaxRange)+1.5)
+		Else
+			lc1.YaxisRange(tempMinRange, (tempList.Get(tempList.Size-2))+1.5)
+		End If
+		tempMaxRange = tempList.Get(tempList.Size-2)
+	Else
+		If tempMaxRange > tempList.Get(tempList.Size-1) Then
+			lc1.YaxisRange(tempMinRange, (tempMaxRange)+1.5)
+		Else
+			lc1.YaxisRange(tempMinRange, (tempList.Get(tempList.Size-1))+1.5)
+		End If
+		tempMaxRange = tempList.Get(tempList.Size-1)
+	End If
+	tempMinRange = tempList.Get(0)
 	
 End Sub
 
