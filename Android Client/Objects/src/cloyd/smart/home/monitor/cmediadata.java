@@ -165,14 +165,14 @@ _reflectorisvalid = __c.True;
 if (true) return __c.True;
  } 
        catch (Exception e13) {
-			ba.setLastException(e13); //BA.debugLineNum = 68;BA.debugLine="Msgbox(\"File cannot be read. Is it a v";
+			ba.setLastException(e13); //BA.debugLineNum = 68;BA.debugLine="Msgbox(\"File cannot be read. Is it a valid Medi";
 __c.Msgbox(BA.ObjectToCharSequence("File cannot be read. Is it a valid Media File?"),BA.ObjectToCharSequence("Error"),getActivityBA());
  //BA.debugLineNum = 69;BA.debugLine="Return False";
 if (true) return __c.False;
  };
  } 
        catch (Exception e17) {
-			ba.setLastException(e17); //BA.debugLineNum = 72;BA.debugLine="Msgbox(\"Unknown Error on Meddia File?\", \"E";
+			ba.setLastException(e17); //BA.debugLineNum = 72;BA.debugLine="Msgbox(\"Unknown Error on Meddia File?\", \"Error\")";
 __c.Msgbox(BA.ObjectToCharSequence("Unknown Error on Meddia File?"),BA.ObjectToCharSequence("Error"),getActivityBA());
  //BA.debugLineNum = 73;BA.debugLine="Return False";
 if (true) return __c.False;

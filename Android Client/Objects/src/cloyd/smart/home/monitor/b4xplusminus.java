@@ -142,43 +142,45 @@ return "";
 public anywheresoftware.b4a.objects.B4XViewWrapper  _createlabel(String _text) throws Exception{
 anywheresoftware.b4a.objects.LabelWrapper _lbl = null;
 anywheresoftware.b4a.objects.B4XViewWrapper _xlbl = null;
- //BA.debugLineNum = 241;BA.debugLine="Private Sub CreateLabel (text As String) As B4XVie";
- //BA.debugLineNum = 242;BA.debugLine="Dim lbl As Label";
+ //BA.debugLineNum = 243;BA.debugLine="Private Sub CreateLabel (text As String) As B4XVie";
+ //BA.debugLineNum = 244;BA.debugLine="Dim lbl As Label";
 _lbl = new anywheresoftware.b4a.objects.LabelWrapper();
- //BA.debugLineNum = 243;BA.debugLine="lbl.Initialize(\"\")";
+ //BA.debugLineNum = 245;BA.debugLine="lbl.Initialize(\"\")";
 _lbl.Initialize(ba,"");
- //BA.debugLineNum = 244;BA.debugLine="Dim xlbl As B4XView = lbl";
+ //BA.debugLineNum = 246;BA.debugLine="Dim xlbl As B4XView = lbl";
 _xlbl = new anywheresoftware.b4a.objects.B4XViewWrapper();
 _xlbl.setObject((java.lang.Object)(_lbl.getObject()));
- //BA.debugLineNum = 245;BA.debugLine="xlbl.Font = xui.CreateMaterialIcons(30)";
+ //BA.debugLineNum = 247;BA.debugLine="xlbl.Font = xui.CreateMaterialIcons(30)";
 _xlbl.setFont(_xui.CreateMaterialIcons((float) (30)));
- //BA.debugLineNum = 246;BA.debugLine="xlbl.Text = text";
+ //BA.debugLineNum = 248;BA.debugLine="xlbl.Text = text";
 _xlbl.setText(BA.ObjectToCharSequence(_text));
- //BA.debugLineNum = 247;BA.debugLine="xlbl.TextColor = MainLabel.TextColor";
+ //BA.debugLineNum = 249;BA.debugLine="xlbl.TextColor = MainLabel.TextColor";
 _xlbl.setTextColor(_mainlabel.getTextColor());
- //BA.debugLineNum = 248;BA.debugLine="Return xlbl";
+ //BA.debugLineNum = 250;BA.debugLine="Return xlbl";
 if (true) return _xlbl;
- //BA.debugLineNum = 249;BA.debugLine="End Sub";
+ //BA.debugLineNum = 251;BA.debugLine="End Sub";
 return null;
 }
 public String  _decrement() throws Exception{
- //BA.debugLineNum = 178;BA.debugLine="Public Sub Decrement";
- //BA.debugLineNum = 179;BA.debugLine="If mSelectedIndex <= 0 Then";
+ //BA.debugLineNum = 179;BA.debugLine="Public Sub Decrement";
+ //BA.debugLineNum = 180;BA.debugLine="If mSelectedIndex <= 0 Then";
 if (_mselectedindex<=0) { 
- //BA.debugLineNum = 180;BA.debugLine="If mCyclic Then";
+ //BA.debugLineNum = 181;BA.debugLine="If mCyclic Then";
 if (_mcyclic) { 
- //BA.debugLineNum = 181;BA.debugLine="mSelectedIndex = Size";
+ //BA.debugLineNum = 182;BA.debugLine="mSelectedIndex = Size";
 _mselectedindex = _size;
  }else {
- //BA.debugLineNum = 183;BA.debugLine="mSelectedIndex = 0";
+ //BA.debugLineNum = 184;BA.debugLine="mSelectedIndex = 0";
 _mselectedindex = (int) (0);
- //BA.debugLineNum = 184;BA.debugLine="Return";
+ //BA.debugLineNum = 185;BA.debugLine="LoopIndex = LoopIndex + 1";
+_loopindex = (int) (_loopindex+1);
+ //BA.debugLineNum = 186;BA.debugLine="Return";
 if (true) return "";
  };
  };
- //BA.debugLineNum = 187;BA.debugLine="SetIndex(mSelectedIndex - 1, True)";
+ //BA.debugLineNum = 189;BA.debugLine="SetIndex(mSelectedIndex - 1, True)";
 _setindex((int) (_mselectedindex-1),__c.True);
- //BA.debugLineNum = 188;BA.debugLine="End Sub";
+ //BA.debugLineNum = 190;BA.debugLine="End Sub";
 return "";
 }
 public String  _designercreateview(Object _base,anywheresoftware.b4a.objects.LabelWrapper _lbl,anywheresoftware.b4a.objects.collections.Map _props) throws Exception{
@@ -301,13 +303,15 @@ _mselectedindex = (int) (-1);
  }else {
  //BA.debugLineNum = 171;BA.debugLine="mSelectedIndex = Size - 1";
 _mselectedindex = (int) (_size-1);
- //BA.debugLineNum = 172;BA.debugLine="Return";
+ //BA.debugLineNum = 172;BA.debugLine="LoopIndex = LoopIndex + 1";
+_loopindex = (int) (_loopindex+1);
+ //BA.debugLineNum = 173;BA.debugLine="Return";
 if (true) return "";
  };
  };
- //BA.debugLineNum = 175;BA.debugLine="SetIndex(mSelectedIndex + 1, True)";
+ //BA.debugLineNum = 176;BA.debugLine="SetIndex(mSelectedIndex + 1, True)";
 _setindex((int) (_mselectedindex+1),__c.True);
- //BA.debugLineNum = 176;BA.debugLine="End Sub";
+ //BA.debugLineNum = 177;BA.debugLine="End Sub";
 return "";
 }
 public String  _initialize(anywheresoftware.b4a.BA _ba,Object _callback,String _eventname) throws Exception{
@@ -323,17 +327,17 @@ _formatter._initialize /*String*/ (ba);
 return "";
 }
 public String  _internalsettextorcsbuildertolabel(anywheresoftware.b4a.objects.B4XViewWrapper _xlbl,Object _text) throws Exception{
- //BA.debugLineNum = 251;BA.debugLine="Private Sub InternalSetTextOrCSBuilderToLabel(xlbl";
- //BA.debugLineNum = 253;BA.debugLine="xlbl.Text = Text";
+ //BA.debugLineNum = 253;BA.debugLine="Private Sub InternalSetTextOrCSBuilderToLabel(xlbl";
+ //BA.debugLineNum = 255;BA.debugLine="xlbl.Text = Text";
 _xlbl.setText(BA.ObjectToCharSequence(_text));
- //BA.debugLineNum = 263;BA.debugLine="End Sub";
+ //BA.debugLineNum = 265;BA.debugLine="End Sub";
 return "";
 }
 public String  _pnlarrow_touch(int _action,float _x,float _y) throws Exception{
- //BA.debugLineNum = 190;BA.debugLine="Private Sub pnlArrow_Touch (Action As Int, X As Fl";
- //BA.debugLineNum = 191;BA.debugLine="Touch(Action = lblPlus.TOUCH_ACTION_DOWN, Action";
+ //BA.debugLineNum = 192;BA.debugLine="Private Sub pnlArrow_Touch (Action As Int, X As Fl";
+ //BA.debugLineNum = 193;BA.debugLine="Touch(Action = lblPlus.TOUCH_ACTION_DOWN, Action";
 _touch(_action==_lblplus.TOUCH_ACTION_DOWN,_action!=_lblplus.TOUCH_ACTION_MOVE,(anywheresoftware.b4a.objects.B4XViewWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.B4XViewWrapper(), (java.lang.Object)(__c.Sender(ba))));
- //BA.debugLineNum = 192;BA.debugLine="End Sub";
+ //BA.debugLineNum = 194;BA.debugLine="End Sub";
 return "";
 }
 public String  _setindex(int _i,boolean _raiseevent) throws Exception{
@@ -442,9 +446,9 @@ return;
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 229;BA.debugLine="LoopIndex = LoopIndex + 1";
+ //BA.debugLineNum = 231;BA.debugLine="LoopIndex = LoopIndex + 1";
 parent._loopindex = (int) (parent._loopindex+1);
- //BA.debugLineNum = 230;BA.debugLine="If mRapid = False Then Return";
+ //BA.debugLineNum = 232;BA.debugLine="If mRapid = False Then Return";
 if (true) break;
 
 case 1:
@@ -464,9 +468,9 @@ case 6:
 //C
 this.state = 7;
 ;
- //BA.debugLineNum = 231;BA.debugLine="Dim MyIndex As Int = LoopIndex";
+ //BA.debugLineNum = 233;BA.debugLine="Dim MyIndex As Int = LoopIndex";
 _myindex = parent._loopindex;
- //BA.debugLineNum = 232;BA.debugLine="Sleep(RapidPeriod1)";
+ //BA.debugLineNum = 234;BA.debugLine="Sleep(RapidPeriod1)";
 parent.__c.Sleep(ba,this,parent._rapidperiod1);
 this.state = 19;
 return;
@@ -474,7 +478,7 @@ case 19:
 //C
 this.state = 7;
 ;
- //BA.debugLineNum = 233;BA.debugLine="Do While MyIndex = LoopIndex";
+ //BA.debugLineNum = 235;BA.debugLine="Do While MyIndex = LoopIndex";
 if (true) break;
 
 case 7:
@@ -489,7 +493,7 @@ if (true) break;
 case 9:
 //C
 this.state = 10;
- //BA.debugLineNum = 234;BA.debugLine="If Up Then Increment Else Decrement";
+ //BA.debugLineNum = 236;BA.debugLine="If Up Then Increment Else Decrement";
 if (true) break;
 
 case 10:
@@ -518,7 +522,7 @@ case 17:
 //C
 this.state = 7;
 ;
- //BA.debugLineNum = 235;BA.debugLine="Sleep(RapidPeriod2)";
+ //BA.debugLineNum = 237;BA.debugLine="Sleep(RapidPeriod2)";
 parent.__c.Sleep(ba,this,parent._rapidperiod2);
 this.state = 20;
 return;
@@ -532,7 +536,7 @@ case 18:
 //C
 this.state = -1;
 ;
- //BA.debugLineNum = 237;BA.debugLine="End Sub";
+ //BA.debugLineNum = 239;BA.debugLine="End Sub";
 if (true) break;
 
             }
@@ -540,29 +544,29 @@ if (true) break;
     }
 }
 public String  _touch(boolean _start,boolean _stop,anywheresoftware.b4a.objects.B4XViewWrapper _pnl) throws Exception{
- //BA.debugLineNum = 194;BA.debugLine="Private Sub Touch (Start As Boolean, Stop As Boole";
- //BA.debugLineNum = 195;BA.debugLine="If pnl.GetView(0).Enabled = False Then Return";
+ //BA.debugLineNum = 196;BA.debugLine="Private Sub Touch (Start As Boolean, Stop As Boole";
+ //BA.debugLineNum = 197;BA.debugLine="If pnl.GetView(0).Enabled = False Then Return";
 if (_pnl.GetView((int) (0)).getEnabled()==__c.False) { 
 if (true) return "";};
- //BA.debugLineNum = 196;BA.debugLine="If Start Then";
+ //BA.debugLineNum = 198;BA.debugLine="If Start Then";
 if (_start) { 
- //BA.debugLineNum = 197;BA.debugLine="If pnl.Tag = True Then";
+ //BA.debugLineNum = 199;BA.debugLine="If pnl.Tag = True Then";
 if ((_pnl.getTag()).equals((Object)(__c.True))) { 
- //BA.debugLineNum = 198;BA.debugLine="Increment";
+ //BA.debugLineNum = 200;BA.debugLine="Increment";
 _increment();
- //BA.debugLineNum = 199;BA.debugLine="StartDownLoop(True)";
+ //BA.debugLineNum = 201;BA.debugLine="StartDownLoop(True)";
 _startdownloop(__c.True);
  }else {
- //BA.debugLineNum = 201;BA.debugLine="Decrement";
+ //BA.debugLineNum = 203;BA.debugLine="Decrement";
 _decrement();
- //BA.debugLineNum = 202;BA.debugLine="StartDownLoop(False)";
+ //BA.debugLineNum = 204;BA.debugLine="StartDownLoop(False)";
 _startdownloop(__c.False);
  };
  }else if(_stop) { 
- //BA.debugLineNum = 205;BA.debugLine="LoopIndex = LoopIndex + 1";
+ //BA.debugLineNum = 207;BA.debugLine="LoopIndex = LoopIndex + 1";
 _loopindex = (int) (_loopindex+1);
  };
- //BA.debugLineNum = 207;BA.debugLine="End Sub";
+ //BA.debugLineNum = 209;BA.debugLine="End Sub";
 return "";
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

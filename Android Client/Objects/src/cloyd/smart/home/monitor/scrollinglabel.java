@@ -66,7 +66,7 @@ _xui = new anywheresoftware.b4a.objects.B4XViewWrapper.XUI();
 _mtext = "";
  //BA.debugLineNum = 8;BA.debugLine="Private taskIndex As Int";
 _taskindex = 0;
- //BA.debugLineNum = 9;BA.debugLine="Private WidthPerSecond As Int = 100dip";
+ //BA.debugLineNum = 9;BA.debugLine="Public WidthPerSecond As Int = 100dip";
 _widthpersecond = __c.DipToCurrent((int) (100));
  //BA.debugLineNum = 10;BA.debugLine="Private fnt As B4XFont";
 _fnt = new anywheresoftware.b4a.objects.B4XViewWrapper.B4XFont();

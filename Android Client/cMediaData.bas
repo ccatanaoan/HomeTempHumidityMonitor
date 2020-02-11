@@ -71,11 +71,11 @@ Public Sub ProcessMediaFile(FilePath As String, FileName As String) As Boolean
 			
 			Return True
         Catch
-            Msgbox("File cannot be read. Is it a valid Media File?", "Error")
+			Msgbox("File cannot be read. Is it a valid Media File?", "Error") 'ignore
             Return False
         End Try
 	Catch
-        Msgbox("Unknown Error on Meddia File?", "Error")
+		Msgbox("Unknown Error on Meddia File?", "Error") 'ignore
         Return False	
 	End Try
 End Sub
