@@ -36,7 +36,7 @@ Sub Service_Create
 	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
 	CreateNotification("Living area temperature","Living area temperature","temp",Main,False,False,True,"Living area temperature")
 	CreateNotification("Living area carbon monoxide","Living area carbon monoxide","co",Main,False,False,True,"Living area carbon monoxide")
-	CreateNotification("Basement temperature","Basement temperature","temp",Main,False,False,True,"Basement temperature")
+	CreateNotification("Basement temperature","Basement temperature","tempbasement",Main,False,False,True,"Basement temperature")
 	CreateNotification("Basement carbon monoxide","Basement carbon monoxide","cobasement",Main,False,False,True,"Basement carbon monoxide")
 	CreateNotification("Basement DHT22 sensor issue","Basement DHT22 sensor issue","sensor",Main,False,False,True,"Basement DHT22 sensor issue")
 	CreateNotification("Living area DHT22 sensor issue","Living area DHT22 sensor issue","sensor",Main,False,False,True,"Living area DHT22 sensor issue")
@@ -381,7 +381,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 			Dim lngTicks As Long = ticks
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 and p.Years < 1 and p.Months < 1 Then
+			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1 Then
 				If IsOldTempHumidityNotificationOnGoingBasement = False Then
 					CreateNotification("Basement DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old","sensorbasement",Main,False,False,True,"Basement DHT22 sensor issue").Notify(730)
 					MQTT.Publish("TempHumidBasement", bc.StringToBytes("Sensor is not working", "utf8"))
@@ -419,7 +419,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 			Dim lngTicks As Long = ticks
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 and p.Years < 1 and p.Months < 1  Then
+			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1  Then
 				If IsOldTempHumidityNotificationOnGoing = False Then
 					CreateNotification("Living area DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old","sensor",Main,False,False,True,"Living area DHT22 sensor issue").Notify(729)
 					MQTT.Publish("TempHumid", bc.StringToBytes("Sensor is not working", "utf8"))
@@ -456,7 +456,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
 			Dim lngTicks As Long = ticks
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 and p.Years < 1 and p.Months < 1 Then
+			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1 Then
 				If IsOldAirQualityNotificationOnGoing = False Then
 					CreateNotification("Living area carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old","sensor",Main,False,False,True,"Living area CO sensor issue").Notify(731)
 					MQTT.Publish("MQ7", bc.StringToBytes("Sensor is not working", "utf8"))
@@ -630,22 +630,23 @@ Sub GetPerception(DHT11Perception As String) As String
 	
 	Dim localperception As String
 	Select Case DHT11Perception
+		' https://www.google.com/url?sa=i&source=imgres&cd=&cad=rja&uact=8&ved=2ahUKEwiQ2LSXpMznAhVkgnIEHQ67C9cQjRx6BAgBEAQ&url=https%3A%2F%2Ftwitter.com%2Fterpweather%2Fstatus%2F484003487127461889&psig=AOvVaw0h-Vtb_wN3Yy_gfmROPjFh&ust=1581606149864984
 		Case 0
-			localperception = "Feels like the western US, a bit dry to some"
+			localperception = "A bit dry"
 		Case 1
 			localperception = "Very comfortable"
 		Case 2
 			localperception = "Comfortable"
 		Case 3
-			localperception = "Okay but the humidity is at upper limit"
+			localperception = "Okay but sticky"
 		Case 4
-			localperception = "Uncomfortable, and the humidity is at upper limit"
+			localperception = "Slightly uncomfortable and the humidity is at upper limit"
 		Case 5
-			localperception = "Very humid, and quite uncomfortable"
+			localperception = "Very humid and uncomfortable"
 		Case 6
-			localperception = "Extremely uncomfortable, and oppressive"
+			localperception = "Extremely uncomfortable and oppressive"
 		Case 7
-			localperception = "Humidity is severely high, and even deadly for asthma related illnesses"
+			localperception = "Humidity is severely high and intolerable"
 	End Select
 	Return localperception
 End Sub
