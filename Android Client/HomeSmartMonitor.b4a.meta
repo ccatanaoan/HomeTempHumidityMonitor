@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,GetUnwatchedVideos,2799,0,Main,Activity_Create,336,3,Main,btnDriveway_Click,2155,0,Main,btnDrivewayNewClip_Click,2837,0,Main,btnFrontDoorNewClip_Click,2923,0,Main,btnSideYardNewClip_Click,3020,0,cMediaData,ProcessMediaFile,66,0,Main,GetVersionCode,696,0,Main,ShowAboutMenu,688,2,Main,ACToolBarLight1_MenuItemClick,682,0
+NavigationStack=Main,CreatePreferenceScreen,1198,0,Main,Activity_Create,301,0,Main,GetComfort,571,0,SmartHomeMonitor,GetAirQuality,674,0,SmartHomeMonitor,Service_Create,37,0,SmartHomeMonitor,MQTT_MessageArrived,521,0,SmartHomeMonitor,CreateNotification,597,0,SmartHomeMonitor,GetComfort,647,0,SmartHomeMonitor,GetPerception,628,6,Main,GetPerception,559,2
 SelectedBuild=0
 VisibleModules=5,8,7,10,1,3,2,4,9,6

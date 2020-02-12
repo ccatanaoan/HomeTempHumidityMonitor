@@ -65,7 +65,7 @@ Library6=callsubutils
 Library7=byteconverter
 Library8=xui
 Library9=phone
-ManifestCode=AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddManifestText(<uses-permission~\n~   android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~   android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~~\n~SetApplicationAttribute(android:largeHeap, "true")
+ManifestCode=AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddManifestText(<uses-permission~\n~   android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~   android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~~\n~SetApplicationAttribute(android:largeHeap, "true")
 Module1=B4XPageIndicator
 Module10=StateManager
 Module2=Badger
@@ -135,6 +135,7 @@ Sub Process_Globals
 	Private sideyardBattStatus As String
 	Private CurrentPage As Int
 	Private Pages As List
+	Private Awake As PhoneWakeState
 End Sub
 
 Sub Globals
@@ -433,6 +434,8 @@ End Sub
 
 Sub Activity_Resume
 	Try
+		Awake.KeepAlive(True)
+		
 		If File.Exists(File.DirInternal, "Driveway.jpg") Then
 			bmp = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width,ivDriveway.Height, True)
 			ivDriveway.Bitmap = bmp
@@ -509,6 +512,8 @@ Sub Activity_Resume
 End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
+	Awake.ReleaseKeepAlive
+
 	wvMedia.LoadUrl("")
 
 	ivDriveway.Bitmap = Null
@@ -619,22 +624,23 @@ Sub GetPerception(DHT11Perception As String) As String
 	
 	Dim localperception As String
 	Select Case DHT11Perception
+		' https://www.google.com/url?sa=i&source=imgres&cd=&cad=rja&uact=8&ved=2ahUKEwiQ2LSXpMznAhVkgnIEHQ67C9cQjRx6BAgBEAQ&url=https%3A%2F%2Ftwitter.com%2Fterpweather%2Fstatus%2F484003487127461889&psig=AOvVaw0h-Vtb_wN3Yy_gfmROPjFh&ust=1581606149864984
 		Case 0
-			localperception = "Feels like the western US, a bit dry to some"
+			localperception = "A bit dry"
 		Case 1
 			localperception = "Very comfortable"
 		Case 2
 			localperception = "Comfortable"
 		Case 3
-			localperception = "OK but humidity is at upper limit"
+			localperception = "Okay but sticky"
 		Case 4
-			localperception = "Uncomfortable and the humidity is at upper limit"
+			localperception = "Slightly uncomfortable and the humidity is at upper limit"
 		Case 5
-			localperception = "Very humid, quite uncomfortable"
+			localperception = "Very humid and uncomfortable"
 		Case 6
-			localperception = "Extremely uncomfortable, oppressive"
+			localperception = "Extremely uncomfortable and oppressive"
 		Case 7
-			localperception = "Severely high, even deadly for asthma related illnesses"
+			localperception = "Humidity is severely high and intolerable"
 	End Select
 	Return localperception
 End Sub
@@ -770,7 +776,7 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by: Cloyd Nino Catanaoan" & CRLF & "Compiled on: February 11, 2020", "About", "OK", "", "", bd.Bitmap) 'ignore
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by: Cloyd Nino Catanaoan" & CRLF & "Compiled on: February 12, 2020", "About", "OK", "", "", bd.Bitmap) 'ignore
 	Catch
 		Log(LastException)
 	End Try
@@ -1264,9 +1270,9 @@ Sub CreatePreferenceScreen
 	Dim cat1,cat2,cat3 As AHPreferenceCategory
 	
 	cat1.Initialize("Temperature & Humidity")
-	cat1.AddEditText("TempHumidityCooldownTime", "Living Area Cooldown Time", "Minimum creation time interval between new notification", "5","")
-	cat1.AddEditText("TempHumidityCooldownTimeBasement", "Basement Cooldown Time", "Minimum creation time interval between new notification", "5","")
-	cat1.AddEditText("HumidityAddValue", "Humidity Additional Value", "Value to be added to humidity to improve accuracy", "0","")
+	cat1.AddEditText("TempHumidityCooldownTime", "Living Area Cooldown Time", "Minimum creation time interval between new notification", "1","")
+	cat1.AddEditText("TempHumidityCooldownTimeBasement", "Basement Cooldown Time", "Minimum creation time interval between new notification", "1","")
+	cat1.AddEditText("HumidityAddValue", "Humidity Additional Value", "Value to be added to humidity to improve accuracy", "6","")
 	
 	cat2.Initialize("Special Settings")
 	Dim In As Intent
@@ -1274,29 +1280,29 @@ Sub CreatePreferenceScreen
 	cat2.AddIntent("Notification Access", "Enable or disable listening to notifications", In, Null)
 	
 	cat3.Initialize("Sensors")
-	cat3.AddEditText("SensorNotRespondingTime", "Sensor Not Responding", "Data age when to restart sensor", "5","")
+	cat3.AddEditText("SensorNotRespondingTime", "Sensor Not Responding", "Data age when to restart sensor", "10","")
 	
 	screen.AddPreferenceCategory(cat2)
 	screen.AddPreferenceCategory(cat1)
 	screen.AddPreferenceCategory(cat3)
-	StateManager.SetSetting("TempHumidityCooldownTime","5")
-	StateManager.SetSetting("TempHumidityCooldownTimeBasement","5")
-	StateManager.SetSetting("HumidityAddValue","0")
-	StateManager.SetSetting("SensorNotRespondingTime","5")
+	StateManager.SetSetting("TempHumidityCooldownTime","1")
+	StateManager.SetSetting("TempHumidityCooldownTimeBasement","1")
+	StateManager.SetSetting("HumidityAddValue","6")
+	StateManager.SetSetting("SensorNotRespondingTime","10")
 	StateManager.SaveSettings
 End Sub
 
 
 Sub SetDefaults
 	'defaults are only set on the first run.
-	manager.SetString("TempHumidityCooldownTime", "5")
-	manager.SetString("TempHumidityCooldownTimeBasement", "5")
-	manager.SetString("HumidityAddValue", "0")
-	manager.SetString("SensorNotRespondingTime", "5")
-	StateManager.SetSetting("TempHumidityCooldownTime","5")
-	StateManager.SetSetting("TempHumidityCooldownTimeBasement","5")
-	StateManager.SetSetting("HumidityAddValue","0")
-	StateManager.SetSetting("SensorNotRespondingTime","5")
+	manager.SetString("TempHumidityCooldownTime", "1")
+	manager.SetString("TempHumidityCooldownTimeBasement", "1")
+	manager.SetString("HumidityAddValue", "6")
+	manager.SetString("SensorNotRespondingTime", "10")
+	StateManager.SetSetting("TempHumidityCooldownTime","1")
+	StateManager.SetSetting("TempHumidityCooldownTimeBasement","1")
+	StateManager.SetSetting("HumidityAddValue","6")
+	StateManager.SetSetting("SensorNotRespondingTime","10")
 	StateManager.SaveSettings
 End Sub
 
@@ -2869,6 +2875,9 @@ End Sub
 
 Sub GetUnwatchedVideos() As ResumableSub
 	Try
+		'************************************************************************************************************************************************************
+		' ***** KEEP android:targetSdkVersion="26" IN THE THE MANIFEST INSTEAD OF 28 ELSE IT WILL CRASH WHEN CALLING THIS SUB FROM ANOTHER TAB OR DURING LAUNCH *****
+		'************************************************************************************************************************************************************
 		
 		Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/api/v1/accounts/88438/media/changed?since=-999999999-01-01T00:00:00+18:00&page=1")
 		wait for (rs) complete (Result As Object)

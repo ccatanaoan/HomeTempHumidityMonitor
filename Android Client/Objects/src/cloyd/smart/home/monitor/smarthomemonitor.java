@@ -237,79 +237,79 @@ if (true) return _n;
 return null;
 }
 public static String  _getairquality(int _number) throws Exception{
- //BA.debugLineNum = 674;BA.debugLine="Sub GetAirQuality(number As Int) As String";
- //BA.debugLineNum = 677;BA.debugLine="If number <= 100 Then";
+ //BA.debugLineNum = 675;BA.debugLine="Sub GetAirQuality(number As Int) As String";
+ //BA.debugLineNum = 678;BA.debugLine="If number <= 100 Then";
 if (_number<=100) { 
- //BA.debugLineNum = 678;BA.debugLine="Return(\"Carbon monoxide level is perfect\")";
+ //BA.debugLineNum = 679;BA.debugLine="Return(\"Carbon monoxide level is perfect\")";
 if (true) return ("Carbon monoxide level is perfect");
  }else if(((_number>100) && (_number<400)) || _number==400) { 
- //BA.debugLineNum = 680;BA.debugLine="Return(\"Carbon monoxide level is normal\")";
+ //BA.debugLineNum = 681;BA.debugLine="Return(\"Carbon monoxide level is normal\")";
 if (true) return ("Carbon monoxide level is normal");
  }else if(((_number>400) && (_number<900)) || _number==900) { 
- //BA.debugLineNum = 682;BA.debugLine="Return(\"Carbon monoxide level is high\")";
+ //BA.debugLineNum = 683;BA.debugLine="Return(\"Carbon monoxide level is high\")";
 if (true) return ("Carbon monoxide level is high");
  }else if(_number>900) { 
- //BA.debugLineNum = 684;BA.debugLine="Return(\"ALARM Carbon monoxide level is very high";
+ //BA.debugLineNum = 685;BA.debugLine="Return(\"ALARM Carbon monoxide level is very high";
 if (true) return ("ALARM Carbon monoxide level is very high");
  }else {
- //BA.debugLineNum = 686;BA.debugLine="Return(\"MQ-7 - cant read any value - check the s";
+ //BA.debugLineNum = 687;BA.debugLine="Return(\"MQ-7 - cant read any value - check the s";
 if (true) return ("MQ-7 - cant read any value - check the sensor!");
  };
- //BA.debugLineNum = 688;BA.debugLine="End Sub";
+ //BA.debugLineNum = 689;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getcomfort(String _dht11comfortstatus) throws Exception{
 String _localcomfortstatus = "";
- //BA.debugLineNum = 647;BA.debugLine="Sub GetComfort(DHT11ComfortStatus As String) As St";
- //BA.debugLineNum = 648;BA.debugLine="Dim localcomfortstatus As String";
+ //BA.debugLineNum = 648;BA.debugLine="Sub GetComfort(DHT11ComfortStatus As String) As St";
+ //BA.debugLineNum = 649;BA.debugLine="Dim localcomfortstatus As String";
 _localcomfortstatus = "";
- //BA.debugLineNum = 649;BA.debugLine="Select Case DHT11ComfortStatus";
+ //BA.debugLineNum = 650;BA.debugLine="Select Case DHT11ComfortStatus";
 switch (BA.switchObjectToInt(_dht11comfortstatus,BA.NumberToString(0),BA.NumberToString(1),BA.NumberToString(2),BA.NumberToString(4),BA.NumberToString(5),BA.NumberToString(6),BA.NumberToString(8),BA.NumberToString(9),BA.NumberToString(10))) {
 case 0: {
- //BA.debugLineNum = 651;BA.debugLine="localcomfortstatus = \"Home is OK\"";
+ //BA.debugLineNum = 652;BA.debugLine="localcomfortstatus = \"Home is OK\"";
 _localcomfortstatus = "Home is OK";
  break; }
 case 1: {
- //BA.debugLineNum = 653;BA.debugLine="localcomfortstatus = \"Home is too hot\"";
+ //BA.debugLineNum = 654;BA.debugLine="localcomfortstatus = \"Home is too hot\"";
 _localcomfortstatus = "Home is too hot";
  break; }
 case 2: {
- //BA.debugLineNum = 655;BA.debugLine="localcomfortstatus = \"Home is too cold\"";
+ //BA.debugLineNum = 656;BA.debugLine="localcomfortstatus = \"Home is too cold\"";
 _localcomfortstatus = "Home is too cold";
  break; }
 case 3: {
- //BA.debugLineNum = 657;BA.debugLine="localcomfortstatus = \"Home is too dry\"";
+ //BA.debugLineNum = 658;BA.debugLine="localcomfortstatus = \"Home is too dry\"";
 _localcomfortstatus = "Home is too dry";
  break; }
 case 4: {
- //BA.debugLineNum = 659;BA.debugLine="localcomfortstatus = \"Home is hot and dry\"";
+ //BA.debugLineNum = 660;BA.debugLine="localcomfortstatus = \"Home is hot and dry\"";
 _localcomfortstatus = "Home is hot and dry";
  break; }
 case 5: {
- //BA.debugLineNum = 661;BA.debugLine="localcomfortstatus = \"Home is cold and dry\"";
+ //BA.debugLineNum = 662;BA.debugLine="localcomfortstatus = \"Home is cold and dry\"";
 _localcomfortstatus = "Home is cold and dry";
  break; }
 case 6: {
- //BA.debugLineNum = 663;BA.debugLine="localcomfortstatus = \"Home is too humid\"";
+ //BA.debugLineNum = 664;BA.debugLine="localcomfortstatus = \"Home is too humid\"";
 _localcomfortstatus = "Home is too humid";
  break; }
 case 7: {
- //BA.debugLineNum = 665;BA.debugLine="localcomfortstatus = \"Home is hot and humid\"";
+ //BA.debugLineNum = 666;BA.debugLine="localcomfortstatus = \"Home is hot and humid\"";
 _localcomfortstatus = "Home is hot and humid";
  break; }
 case 8: {
- //BA.debugLineNum = 667;BA.debugLine="localcomfortstatus = \"Home is cold and humid\"";
+ //BA.debugLineNum = 668;BA.debugLine="localcomfortstatus = \"Home is cold and humid\"";
 _localcomfortstatus = "Home is cold and humid";
  break; }
 default: {
- //BA.debugLineNum = 669;BA.debugLine="localcomfortstatus = \"Unknown\"";
+ //BA.debugLineNum = 670;BA.debugLine="localcomfortstatus = \"Unknown\"";
 _localcomfortstatus = "Unknown";
  break; }
 }
 ;
- //BA.debugLineNum = 671;BA.debugLine="Return localcomfortstatus";
+ //BA.debugLineNum = 672;BA.debugLine="Return localcomfortstatus";
 if (true) return _localcomfortstatus;
- //BA.debugLineNum = 672;BA.debugLine="End Sub";
+ //BA.debugLineNum = 673;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getperception(String _dht11perception) throws Exception{
@@ -320,42 +320,42 @@ _localperception = "";
  //BA.debugLineNum = 626;BA.debugLine="Select Case DHT11Perception";
 switch (BA.switchObjectToInt(_dht11perception,BA.NumberToString(0),BA.NumberToString(1),BA.NumberToString(2),BA.NumberToString(3),BA.NumberToString(4),BA.NumberToString(5),BA.NumberToString(6),BA.NumberToString(7))) {
 case 0: {
- //BA.debugLineNum = 628;BA.debugLine="localperception = \"Feels like the western US, a";
-_localperception = "Feels like the western US, a bit dry to some";
+ //BA.debugLineNum = 629;BA.debugLine="localperception = \"A bit dry\"";
+_localperception = "A bit dry";
  break; }
 case 1: {
- //BA.debugLineNum = 630;BA.debugLine="localperception = \"Very comfortable\"";
+ //BA.debugLineNum = 631;BA.debugLine="localperception = \"Very comfortable\"";
 _localperception = "Very comfortable";
  break; }
 case 2: {
- //BA.debugLineNum = 632;BA.debugLine="localperception = \"Comfortable\"";
+ //BA.debugLineNum = 633;BA.debugLine="localperception = \"Comfortable\"";
 _localperception = "Comfortable";
  break; }
 case 3: {
- //BA.debugLineNum = 634;BA.debugLine="localperception = \"Okay but the humidity is at";
-_localperception = "Okay but the humidity is at upper limit";
+ //BA.debugLineNum = 635;BA.debugLine="localperception = \"Okay but sticky\"";
+_localperception = "Okay but sticky";
  break; }
 case 4: {
- //BA.debugLineNum = 636;BA.debugLine="localperception = \"Uncomfortable, and the humid";
-_localperception = "Uncomfortable, and the humidity is at upper limit";
+ //BA.debugLineNum = 637;BA.debugLine="localperception = \"Slightly uncomfortable and t";
+_localperception = "Slightly uncomfortable and the humidity is at upper limit";
  break; }
 case 5: {
- //BA.debugLineNum = 638;BA.debugLine="localperception = \"Very humid, and quite uncomf";
-_localperception = "Very humid, and quite uncomfortable";
+ //BA.debugLineNum = 639;BA.debugLine="localperception = \"Very humid and uncomfortable";
+_localperception = "Very humid and uncomfortable";
  break; }
 case 6: {
- //BA.debugLineNum = 640;BA.debugLine="localperception = \"Extremely uncomfortable, and";
-_localperception = "Extremely uncomfortable, and oppressive";
+ //BA.debugLineNum = 641;BA.debugLine="localperception = \"Extremely uncomfortable and";
+_localperception = "Extremely uncomfortable and oppressive";
  break; }
 case 7: {
- //BA.debugLineNum = 642;BA.debugLine="localperception = \"Humidity is severely high, a";
-_localperception = "Humidity is severely high, and even deadly for asthma related illnesses";
+ //BA.debugLineNum = 643;BA.debugLine="localperception = \"Humidity is severely high an";
+_localperception = "Humidity is severely high and intolerable";
  break; }
 }
 ;
- //BA.debugLineNum = 644;BA.debugLine="Return localperception";
+ //BA.debugLineNum = 645;BA.debugLine="Return localperception";
 if (true) return _localperception;
- //BA.debugLineNum = 645;BA.debugLine="End Sub";
+ //BA.debugLineNum = 646;BA.debugLine="End Sub";
 return "";
 }
 public static String  _logevent(String _texttolog) throws Exception{
@@ -405,7 +405,7 @@ _fw1.Close();
  } 
        catch (Exception e20) {
 			processBA.setLastException(e20); //BA.debugLineNum = 556;BA.debugLine="Log(\"Error in Sub LogEvent: \" & LastException.Me";
-anywheresoftware.b4a.keywords.Common.LogImpl("26553626","Error in Sub LogEvent: "+anywheresoftware.b4a.keywords.Common.LastException(processBA).getMessage(),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("21900570","Error in Sub LogEvent: "+anywheresoftware.b4a.keywords.Common.LastException(processBA).getMessage(),0);
  //BA.debugLineNum = 557;BA.debugLine="ToastMessageShow(LastException,False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(processBA).getObject()),anywheresoftware.b4a.keywords.Common.False);
  };
@@ -430,7 +430,7 @@ _mqtt.Connect2((org.eclipse.paho.client.mqttv3.MqttConnectOptions)(_connopt.getO
  } 
        catch (Exception e8) {
 			processBA.setLastException(e8); //BA.debugLineNum = 67;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("26291465",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("21638409",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 69;BA.debugLine="End Sub";
 return "";
@@ -441,7 +441,7 @@ public static String  _mqtt_connected(boolean _success) throws Exception{
 try { //BA.debugLineNum = 73;BA.debugLine="If Success = False Then";
 if (_success==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 74;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("26356995",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("21703939",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 75;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  }else {
@@ -459,7 +459,7 @@ _mqtt.Subscribe("HumidityAddValue",(int) (0));
  } 
        catch (Exception e13) {
 			processBA.setLastException(e13); //BA.debugLineNum = 84;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("26357005",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("21703949",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 85;BA.debugLine="ToastMessageShow(LastException,False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(processBA).getObject()),anywheresoftware.b4a.keywords.Common.False);
  };
@@ -474,7 +474,7 @@ _mqtt_connect();
  } 
        catch (Exception e4) {
 			processBA.setLastException(e4); //BA.debugLineNum = 94;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("26422532",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("21769476",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 95;BA.debugLine="ToastMessageShow(LastException,False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(processBA).getObject()),anywheresoftware.b4a.keywords.Common.False);
  };
@@ -1148,7 +1148,7 @@ _n.Cancel((int) (732));
  } 
        catch (Exception e361) {
 			processBA.setLastException(e361); //BA.debugLineNum = 502;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("26488467",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("21835411",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 504;BA.debugLine="Select sensorInTrouble";
 switch (BA.switchObjectToInt(_sensorintrouble,"TempHumidityBasement","TempHumidity","AirQuality","AirQualityBasement")) {
 case 0: {
@@ -1243,7 +1243,7 @@ _createnotification("Living area temperature","Living area temperature","temp",(
  //BA.debugLineNum = 32;BA.debugLine="CreateNotification(\"Living area carbon monoxide\",";
 _createnotification("Living area carbon monoxide","Living area carbon monoxide","co",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Living area carbon monoxide");
  //BA.debugLineNum = 33;BA.debugLine="CreateNotification(\"Basement temperature\",\"Baseme";
-_createnotification("Basement temperature","Basement temperature","temp",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Basement temperature");
+_createnotification("Basement temperature","Basement temperature","tempbasement",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Basement temperature");
  //BA.debugLineNum = 34;BA.debugLine="CreateNotification(\"Basement carbon monoxide\",\"Ba";
 _createnotification("Basement carbon monoxide","Basement carbon monoxide","cobasement",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.True,"Basement carbon monoxide");
  //BA.debugLineNum = 35;BA.debugLine="CreateNotification(\"Basement DHT22 sensor issue\",";
@@ -1290,57 +1290,57 @@ int _l = 0;
 String _testitem = "";
 String _mask = "";
 String _pattern = "";
- //BA.debugLineNum = 690;BA.debugLine="Sub WildCardFilesList2(FilesPath As String, WildCa";
- //BA.debugLineNum = 691;BA.debugLine="If File.IsDirectory(\"\", FilesPath) Then";
+ //BA.debugLineNum = 691;BA.debugLine="Sub WildCardFilesList2(FilesPath As String, WildCa";
+ //BA.debugLineNum = 692;BA.debugLine="If File.IsDirectory(\"\", FilesPath) Then";
 if (anywheresoftware.b4a.keywords.Common.File.IsDirectory("",_filespath)) { 
- //BA.debugLineNum = 692;BA.debugLine="Dim FilesFound As List = File.ListFiles(FilesPat";
+ //BA.debugLineNum = 693;BA.debugLine="Dim FilesFound As List = File.ListFiles(FilesPat";
 _filesfound = new anywheresoftware.b4a.objects.collections.List();
 _filesfound = anywheresoftware.b4a.keywords.Common.File.ListFiles(_filespath);
- //BA.debugLineNum = 693;BA.debugLine="Dim GetCards() As String = Regex.Split(\",\", Wild";
+ //BA.debugLineNum = 694;BA.debugLine="Dim GetCards() As String = Regex.Split(\",\", Wild";
 _getcards = anywheresoftware.b4a.keywords.Common.Regex.Split(",",_wildcards);
- //BA.debugLineNum = 694;BA.debugLine="Dim FilteredFiles As List : FilteredFiles.Initia";
+ //BA.debugLineNum = 695;BA.debugLine="Dim FilteredFiles As List : FilteredFiles.Initia";
 _filteredfiles = new anywheresoftware.b4a.objects.collections.List();
- //BA.debugLineNum = 694;BA.debugLine="Dim FilteredFiles As List : FilteredFiles.Initia";
+ //BA.debugLineNum = 695;BA.debugLine="Dim FilteredFiles As List : FilteredFiles.Initia";
 _filteredfiles.Initialize();
- //BA.debugLineNum = 695;BA.debugLine="For i = 0 To FilesFound.Size -1";
+ //BA.debugLineNum = 696;BA.debugLine="For i = 0 To FilesFound.Size -1";
 {
 final int step6 = 1;
 final int limit6 = (int) (_filesfound.getSize()-1);
 _i = (int) (0) ;
 for (;_i <= limit6 ;_i = _i + step6 ) {
- //BA.debugLineNum = 696;BA.debugLine="For l = 0 To GetCards.Length -1";
+ //BA.debugLineNum = 697;BA.debugLine="For l = 0 To GetCards.Length -1";
 {
 final int step7 = 1;
 final int limit7 = (int) (_getcards.length-1);
 _l = (int) (0) ;
 for (;_l <= limit7 ;_l = _l + step7 ) {
- //BA.debugLineNum = 697;BA.debugLine="Dim TestItem As String = FilesFound.Get(i)";
+ //BA.debugLineNum = 698;BA.debugLine="Dim TestItem As String = FilesFound.Get(i)";
 _testitem = BA.ObjectToString(_filesfound.Get(_i));
- //BA.debugLineNum = 698;BA.debugLine="Dim mask As String = GetCards(l).Trim";
+ //BA.debugLineNum = 699;BA.debugLine="Dim mask As String = GetCards(l).Trim";
 _mask = _getcards[_l].trim();
- //BA.debugLineNum = 699;BA.debugLine="Dim pattern As String = \"^\"&mask.Replace(\".\",\"";
+ //BA.debugLineNum = 700;BA.debugLine="Dim pattern As String = \"^\"&mask.Replace(\".\",\"";
 _pattern = "^"+_mask.replace(".","\\.").replace("*",".+").replace("?",".")+"$";
- //BA.debugLineNum = 700;BA.debugLine="If Regex.IsMatch(pattern,TestItem) = True Then";
+ //BA.debugLineNum = 701;BA.debugLine="If Regex.IsMatch(pattern,TestItem) = True Then";
 if (anywheresoftware.b4a.keywords.Common.Regex.IsMatch(_pattern,_testitem)==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 701;BA.debugLine="FilteredFiles.Add(TestItem.Trim)";
+ //BA.debugLineNum = 702;BA.debugLine="FilteredFiles.Add(TestItem.Trim)";
 _filteredfiles.Add((Object)(_testitem.trim()));
  };
  }
 };
  }
 };
- //BA.debugLineNum = 705;BA.debugLine="If Sorted Then";
+ //BA.debugLineNum = 706;BA.debugLine="If Sorted Then";
 if (_sorted) { 
- //BA.debugLineNum = 706;BA.debugLine="FilteredFiles.SortCaseInsensitive(Ascending)";
+ //BA.debugLineNum = 707;BA.debugLine="FilteredFiles.SortCaseInsensitive(Ascending)";
 _filteredfiles.SortCaseInsensitive(_ascending);
  };
- //BA.debugLineNum = 708;BA.debugLine="Return FilteredFiles";
+ //BA.debugLineNum = 709;BA.debugLine="Return FilteredFiles";
 if (true) return _filteredfiles;
  }else {
- //BA.debugLineNum = 710;BA.debugLine="ToastMessageShow(\"You must pass a valid Director";
+ //BA.debugLineNum = 711;BA.debugLine="ToastMessageShow(\"You must pass a valid Director";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("You must pass a valid Directory."),anywheresoftware.b4a.keywords.Common.False);
  };
- //BA.debugLineNum = 712;BA.debugLine="End Sub";
+ //BA.debugLineNum = 713;BA.debugLine="End Sub";
 return null;
 }
 }
