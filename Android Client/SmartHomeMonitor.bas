@@ -169,13 +169,13 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 								End If
 							End If
 						End If
-						StateManager.SetSetting("TempHumidityPrevious",status)
-						StateManager.SaveSettings
 					Else
 						lngTicksTempHumid = DateTime.now
 						IsTempHumidityNotificationOnGoing = False
 						Notification1.Cancel(725)
 					End If
+					StateManager.SetSetting("TempHumidityPrevious",status)
+					StateManager.SaveSettings
 				End If
 			End If
 			
@@ -332,13 +332,13 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 								End If
 							End If
 						End If
-						StateManager.SetSetting("TempHumidityBasementPrevious",status)
-						StateManager.SaveSettings
 					Else
 						lngTicksTempHumidBasement = DateTime.now
 						IsTempHumidityNotificationOnGoingBasement = False
 						Notification1.Cancel(728)
 					End If
+					StateManager.SetSetting("TempHumidityBasementPrevious",status)
+					StateManager.SaveSettings
 				End If
 			End If
 			If strHumidityAddValue = "" Then

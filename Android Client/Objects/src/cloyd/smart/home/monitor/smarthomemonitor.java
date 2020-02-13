@@ -405,7 +405,7 @@ _fw1.Close();
  } 
        catch (Exception e20) {
 			processBA.setLastException(e20); //BA.debugLineNum = 556;BA.debugLine="Log(\"Error in Sub LogEvent: \" & LastException.Me";
-anywheresoftware.b4a.keywords.Common.LogImpl("21900570","Error in Sub LogEvent: "+anywheresoftware.b4a.keywords.Common.LastException(processBA).getMessage(),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("66553626","Error in Sub LogEvent: "+anywheresoftware.b4a.keywords.Common.LastException(processBA).getMessage(),0);
  //BA.debugLineNum = 557;BA.debugLine="ToastMessageShow(LastException,False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(processBA).getObject()),anywheresoftware.b4a.keywords.Common.False);
  };
@@ -430,7 +430,7 @@ _mqtt.Connect2((org.eclipse.paho.client.mqttv3.MqttConnectOptions)(_connopt.getO
  } 
        catch (Exception e8) {
 			processBA.setLastException(e8); //BA.debugLineNum = 67;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("21638409",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("66291465",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 69;BA.debugLine="End Sub";
 return "";
@@ -441,7 +441,7 @@ public static String  _mqtt_connected(boolean _success) throws Exception{
 try { //BA.debugLineNum = 73;BA.debugLine="If Success = False Then";
 if (_success==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 74;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("21703939",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("66356995",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 75;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  }else {
@@ -459,7 +459,7 @@ _mqtt.Subscribe("HumidityAddValue",(int) (0));
  } 
        catch (Exception e13) {
 			processBA.setLastException(e13); //BA.debugLineNum = 84;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("21703949",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("66357005",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 85;BA.debugLine="ToastMessageShow(LastException,False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(processBA).getObject()),anywheresoftware.b4a.keywords.Common.False);
  };
@@ -474,7 +474,7 @@ _mqtt_connect();
  } 
        catch (Exception e4) {
 			processBA.setLastException(e4); //BA.debugLineNum = 94;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("21769476",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("66422532",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 95;BA.debugLine="ToastMessageShow(LastException,False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(processBA).getObject()),anywheresoftware.b4a.keywords.Common.False);
  };
@@ -608,18 +608,18 @@ _lngtickstemphumid = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
  };
  };
  };
- //BA.debugLineNum = 166;BA.debugLine="StateManager.SetSetting(\"TempHumidityPreviou";
-mostCurrent._statemanager._setsetting /*String*/ (processBA,"TempHumidityPrevious",_status);
- //BA.debugLineNum = 167;BA.debugLine="StateManager.SaveSettings";
-mostCurrent._statemanager._savesettings /*String*/ (processBA);
  }else {
- //BA.debugLineNum = 169;BA.debugLine="lngTicksTempHumid = DateTime.now";
+ //BA.debugLineNum = 167;BA.debugLine="lngTicksTempHumid = DateTime.now";
 _lngtickstemphumid = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
- //BA.debugLineNum = 170;BA.debugLine="IsTempHumidityNotificationOnGoing = False";
+ //BA.debugLineNum = 168;BA.debugLine="IsTempHumidityNotificationOnGoing = False";
 _istemphumiditynotificationongoing = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 171;BA.debugLine="Notification1.Cancel(725)";
+ //BA.debugLineNum = 169;BA.debugLine="Notification1.Cancel(725)";
 _notification1.Cancel((int) (725));
  };
+ //BA.debugLineNum = 171;BA.debugLine="StateManager.SetSetting(\"TempHumidityPrevious";
+mostCurrent._statemanager._setsetting /*String*/ (processBA,"TempHumidityPrevious",_status);
+ //BA.debugLineNum = 172;BA.debugLine="StateManager.SaveSettings";
+mostCurrent._statemanager._savesettings /*String*/ (processBA);
  };
  };
  //BA.debugLineNum = 176;BA.debugLine="If strHumidityAddValue = \"\" Then";
@@ -864,18 +864,18 @@ _lngtickstemphumidbasement = anywheresoftware.b4a.keywords.Common.DateTime.getNo
  };
  };
  };
- //BA.debugLineNum = 329;BA.debugLine="StateManager.SetSetting(\"TempHumidityBasemen";
-mostCurrent._statemanager._setsetting /*String*/ (processBA,"TempHumidityBasementPrevious",_status);
- //BA.debugLineNum = 330;BA.debugLine="StateManager.SaveSettings";
-mostCurrent._statemanager._savesettings /*String*/ (processBA);
  }else {
- //BA.debugLineNum = 332;BA.debugLine="lngTicksTempHumidBasement = DateTime.now";
+ //BA.debugLineNum = 330;BA.debugLine="lngTicksTempHumidBasement = DateTime.now";
 _lngtickstemphumidbasement = anywheresoftware.b4a.keywords.Common.DateTime.getNow();
- //BA.debugLineNum = 333;BA.debugLine="IsTempHumidityNotificationOnGoingBasement =";
+ //BA.debugLineNum = 331;BA.debugLine="IsTempHumidityNotificationOnGoingBasement =";
 _istemphumiditynotificationongoingbasement = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 334;BA.debugLine="Notification1.Cancel(728)";
+ //BA.debugLineNum = 332;BA.debugLine="Notification1.Cancel(728)";
 _notification1.Cancel((int) (728));
  };
+ //BA.debugLineNum = 334;BA.debugLine="StateManager.SetSetting(\"TempHumidityBasement";
+mostCurrent._statemanager._setsetting /*String*/ (processBA,"TempHumidityBasementPrevious",_status);
+ //BA.debugLineNum = 335;BA.debugLine="StateManager.SaveSettings";
+mostCurrent._statemanager._savesettings /*String*/ (processBA);
  };
  };
  //BA.debugLineNum = 338;BA.debugLine="If strHumidityAddValue = \"\" Then";
@@ -1148,7 +1148,7 @@ _n.Cancel((int) (732));
  } 
        catch (Exception e361) {
 			processBA.setLastException(e361); //BA.debugLineNum = 502;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("21835411",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("66488467",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 504;BA.debugLine="Select sensorInTrouble";
 switch (BA.switchObjectToInt(_sensorintrouble,"TempHumidityBasement","TempHumidity","AirQuality","AirQualityBasement")) {
 case 0: {
