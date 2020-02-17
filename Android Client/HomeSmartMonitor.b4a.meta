@@ -31,6 +31,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,Activity_Create,301,0,Main,GetComfort,571,0,SmartHomeMonitor,GetAirQuality,674,0,SmartHomeMonitor,Service_Create,37,0,SmartHomeMonitor,CreateNotification,597,0,Main,GetPerception,559,2,Main,Process_Globals,25,0,SmartHomeMonitor,GetPerception,613,6,SmartHomeMonitor,GetComfort,656,0,SmartHomeMonitor,MQTT_MessageArrived,334,0
+NavigationStack=Main,GetPerception,559,2,SmartHomeMonitor,GetPerception,613,6,SmartHomeMonitor,GetComfort,656,0,Main,Process_Globals,30,0,NotificationService,Listener_NotificationPosted,28,0,NotificationService,Listener_NotificationRemoved,64,0,SmartHomeMonitor,Process_Globals,23,0,Main,SetDefaults,1214,0,Main,CreatePreferenceScreen,1204,0,SmartHomeMonitor,MQTT_MessageArrived,145,6
 SelectedBuild=0
 VisibleModules=5,8,7,10,1,3,2,4,9,6
