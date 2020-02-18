@@ -299,7 +299,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 							managerTempHumidityCooldownTime = 1
 						End If
 						If IsTempHumidityNotificationOnGoingBasement = False Then
-							If p.Minutes > = managerTempHumidityCooldownTime Then
+							If p.Minutes > = managerTempHumidityCooldownTime Or p.Days > 0 Or p.Hours > 0 Or p.Months > 0 Or p.Years > 0 Then
+								Notification1.Cancel(728)
 								If a(4) = 2 Or a(4) = 6 Then
 									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldbasement",Main,False,False,False,"Basement temperature").Notify(728)
 								else If a(4) = 10 Then
@@ -312,8 +313,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						Else
 							Dim TempHumidityBasementPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityBasementPrevious"))
 							If a(4) <> TempHumidityBasementPrevious(4) Then
-								If p.Minutes > = managerTempHumidityCooldownTime Then
-									If a(4) = 2 Or a(4) = 6 Or a(4) = 10 Then
+								If p.Minutes > = managerTempHumidityCooldownTime Or p.Days > 0 Or p.Hours > 0 Or p.Months > 0 Or p.Years > 0 Then
+									Notification1.Cancel(728)
+									If a(4) = 2 Or a(4) = 6 Then
 										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldbasement",Main,False,False,False,"Basement temperature").Notify(728)
 									else If a(4) = 10 Then
 										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldhumidbasement",Main,False,False,False,"Basement temperature").Notify(728)
@@ -323,7 +325,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 									lngTicksTempHumidBasement = DateTime.now
 								End If
 							else if a(3) <> TempHumidityBasementPrevious(3) Then
-								If p.Minutes > = managerTempHumidityCooldownTime Then
+								If p.Minutes > = managerTempHumidityCooldownTime Or p.Days > 0 Or p.Hours > 0 Or p.Months > 0 Or p.Years > 0 Then
+									Notification1.Cancel(728)
 									If a(4) = 2 Or a(4) = 6 Then
 										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldbasement",Main,False,False,False,"Basement temperature").Notify(728)
 									else If a(4) = 10 Then
