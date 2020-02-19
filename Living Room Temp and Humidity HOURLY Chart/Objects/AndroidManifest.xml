@@ -6,18 +6,19 @@
 	android:versionName=""
 	android:installLocation="internalOnly">
 	
-	<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>
+	<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="28"/>
 	<supports-screens android:largeScreens="true" 
 	    android:normalScreens="true" 
 	    android:smallScreens="true" 
 	    android:anyDensity="true"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 	<application
 		android:icon="@drawable/icon"
 		android:label="Living Area Chart Hour"
-		android:theme="@android:style/Theme.Holo">
+		android:theme="@style/DarkTheme">
 		<activity
 			android:windowSoftInputMode="stateHidden"
 			android:launchMode="singleTop"

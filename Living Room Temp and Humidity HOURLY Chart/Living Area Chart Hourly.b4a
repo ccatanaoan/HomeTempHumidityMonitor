@@ -2,18 +2,17 @@
 File1=main.bal
 FileGroup1=Default Group
 Group=Default Group
-IconFile=
 Library1=core
 Library2=androidplot_0_6_2
 Library3=javaobject
 Library4=phone
 Library5=dateutils
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'End of default text.~\n~
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/DarkTheme")~\n~CreateResource(values-v20, theme.xml,~\n~<resources>~\n~    <style~\n~        name="DarkTheme" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">~\n~    </style>~\n~</resources>~\n~)~\n~CreateResource(values-v14, theme.xml,~\n~<resources>~\n~    <style~\n~        name="DarkTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">~\n~    </style>~\n~</resources>~\n~)~\n~
 Module1=Starter
 NumberOfFiles=1
 NumberOfLibraries=5
 NumberOfModules=1
-Version=9.5
+Version=9.801
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Living Area Chart Hour
@@ -34,6 +33,7 @@ Sub Process_Globals
 	'These global variables will be declared once when the application starts.
 	'These variables can be accessed from all modules.
 	Dim Timer1 As Timer
+	Dim Awake As PhoneWakeState
 End Sub
 
 Sub Globals
@@ -68,9 +68,7 @@ Sub Globals
 	Private tempRightNow As String
 	Private timeRightNow As Long
 	Private timeArray(24) As String
-	Private minimumRange As Float
-	Private maximumRange As Float
-	Private zeroRange As Float
+	Private zeroRange As Float = 88.88
 	Private tempZeroRange As Float
 End Sub
 
@@ -132,42 +130,6 @@ Sub Activity_Create(FirstTime As Boolean)
 		Next 
 		lc1.XAxisLabels = timeArray 'Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
 		
-		Dim tmpRange As String
-		If File.Exists(File.DirRootExternal, "minimumRange2.txt") Then
-			tmpRange = File.ReadString(File.DirRootExternal, "minimumRange2.txt")
-			If IsNumber(tmpRange) Then
-				minimumRange = tmpRange
-			Else
-				minimumRange = 50
-			End If
-		Else
-			File.WriteString(File.DirRootExternal, "minimumRange2.txt","50")
-			minimumRange = 50
-		End If
-		
-		If File.Exists(File.DirRootExternal, "maximumRange2.txt") Then
-			tmpRange = File.ReadString(File.DirRootExternal, "maximumRange2.txt")
-			If IsNumber(tmpRange) Then
-				maximumRange = tmpRange
-			Else
-				maximumRange = 90
-			End If
-		Else
-			File.WriteString(File.DirRootExternal, "maximumRange2.txt","90")
-			maximumRange = 90
-		End If
-		
-		If File.Exists(File.DirRootExternal, "zeroRange2.txt") Then
-			tmpRange = File.ReadString(File.DirRootExternal, "zeroRange2.txt")
-			If IsNumber(tmpRange) Then
-				zeroRange = 88.88
-			Else
-				zeroRange = 88.88
-			End If
-		Else
-			File.WriteString(File.DirRootExternal, "zeroRange2.txt","0")
-			zeroRange = 88.88
-		End If
 		' ***************************** STARTED WORK ON HOURLY *****************************
 		lc1.YaxisDivisions = 10
 		'lc1.YaxisRange(minimumRange, maximumRange)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
@@ -284,7 +246,7 @@ Sub Activity_Create(FirstTime As Boolean)
 			
 		' ******************* Last 10 minutes *******************
 		
-		lc1.Line_2_LegendText = "Compiled: February 3, 2020 9:29 am" '& DateTime.Time(DateTime.Now)
+		lc1.Line_2_LegendText = "Compiled: February 19, 2020 9:29 am" '& DateTime.Time(DateTime.Now)
 		lc1.Line_2_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
 		lc1.Line_2_PointLabelTextColor = Colors.Green
 		lc1.Line_2_PointLabelTextSize = 30.0
@@ -358,11 +320,12 @@ Sub CheckTempBoundaries
 End Sub
 
 Sub Activity_Resume
-	
+	Awake.KeepAlive(True)
+	Activity_WindowFocusChanged(True)
 End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
-
+	Awake.ReleaseKeepAlive
 End Sub
 
 Sub ReadTextReader(fileDay As String)
