@@ -678,7 +678,7 @@ _timer1.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  } 
        catch (Exception e162) {
 			processBA.setLastException(e162); //BA.debugLineNum = 254;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("5131267",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("2131267",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 255;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -701,105 +701,23 @@ _activity_windowfocuschanged(anywheresoftware.b4a.keywords.Common.True);
  //BA.debugLineNum = 309;BA.debugLine="End Sub";
 return "";
 }
-public static void  _activity_windowfocuschanged(boolean _hasfocus) throws Exception{
-ResumableSub_Activity_WindowFocusChanged rsub = new ResumableSub_Activity_WindowFocusChanged(null,_hasfocus);
-rsub.resume(processBA, null);
-}
-public static class ResumableSub_Activity_WindowFocusChanged extends BA.ResumableSub {
-public ResumableSub_Activity_WindowFocusChanged(com.cloyd.hour.livingroomtemphumidgraph.main parent,boolean _hasfocus) {
-this.parent = parent;
-this._hasfocus = _hasfocus;
-}
-com.cloyd.hour.livingroomtemphumidgraph.main parent;
-boolean _hasfocus;
+public static String  _activity_windowfocuschanged(boolean _hasfocus) throws Exception{
 anywheresoftware.b4j.object.JavaObject _jo = null;
-
-@Override
-public void resume(BA ba, Object[] result) throws Exception{
-
-    while (true) {
-try {
-
-        switch (state) {
-            case -1:
-return;
-
-case 0:
-//C
-this.state = 1;
+ //BA.debugLineNum = 468;BA.debugLine="Sub Activity_WindowFocusChanged(HasFocus As Boolea";
  //BA.debugLineNum = 469;BA.debugLine="If HasFocus Then";
-if (true) break;
-
-case 1:
-//if
-this.state = 10;
 if (_hasfocus) { 
-this.state = 3;
-}if (true) break;
-
-case 3:
-//C
-this.state = 4;
  //BA.debugLineNum = 470;BA.debugLine="Try";
-if (true) break;
-
-case 4:
-//try
-this.state = 9;
-this.catchState = 8;
-this.state = 6;
-if (true) break;
-
-case 6:
-//C
-this.state = 9;
-this.catchState = 8;
- //BA.debugLineNum = 471;BA.debugLine="Dim jo As JavaObject = Activity";
+try { //BA.debugLineNum = 471;BA.debugLine="Dim jo As JavaObject = Activity";
 _jo = new anywheresoftware.b4j.object.JavaObject();
-_jo.setObject((java.lang.Object)(parent.mostCurrent._activity.getObject()));
- //BA.debugLineNum = 472;BA.debugLine="Sleep(300)";
-anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,this,(int) (300));
-this.state = 11;
-return;
-case 11:
-//C
-this.state = 9;
-;
+_jo.setObject((java.lang.Object)(mostCurrent._activity.getObject()));
  //BA.debugLineNum = 473;BA.debugLine="jo.RunMethod(\"setSystemUiVisibility\", Array As";
 _jo.RunMethod("setSystemUiVisibility",new Object[]{(Object)(5894)});
- if (true) break;
-
-case 8:
-//C
-this.state = 9;
-this.catchState = 0;
- if (true) break;
-if (true) break;
-
-case 9:
-//C
-this.state = 10;
-this.catchState = 0;
-;
- if (true) break;
-
-case 10:
-//C
-this.state = -1;
-;
+ } 
+       catch (Exception e6) {
+			processBA.setLastException(e6); };
+ };
  //BA.debugLineNum = 479;BA.debugLine="End Sub";
-if (true) break;
-}} 
-       catch (Exception e0) {
-			
-if (catchState == 0)
-    throw e0;
-else {
-    state = catchState;
-processBA.setLastException(e0);}
-            }
-        }
-    }
+return "";
 }
 public static String  _checktempboundaries() throws Exception{
 anywheresoftware.b4a.objects.collections.List _templist = null;
@@ -1304,7 +1222,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 444;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("5393345",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("2393345",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 446;BA.debugLine="End Sub";
 return "";
