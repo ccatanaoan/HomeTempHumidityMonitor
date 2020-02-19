@@ -485,7 +485,7 @@ Sub Activity_WindowFocusChanged(HasFocus As Boolean)
 	If HasFocus Then
 		Try
 			Dim jo As JavaObject = Activity
-			Sleep(300)
+			'Sleep(300)
 			jo.RunMethod("setSystemUiVisibility", Array As Object(5894)) '3846 - non-sticky
 		Catch
 			'Log(LastException) 'This can cause another error
