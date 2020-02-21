@@ -368,6 +368,13 @@ public static boolean isAnyActivityVisible() {
     boolean vis = false;
 vis = vis | (main.mostCurrent != null);
 return vis;}
+public static String  _activity_click() throws Exception{
+ //BA.debugLineNum = 487;BA.debugLine="Sub Activity_Click";
+ //BA.debugLineNum = 488;BA.debugLine="Activity_WindowFocusChanged(True)";
+_activity_windowfocuschanged(anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 489;BA.debugLine="End Sub";
+return "";
+}
 public static String  _activity_create(boolean _firsttime) throws Exception{
 anywheresoftware.b4a.keywords.LayoutValues _lv = null;
 anywheresoftware.b4j.object.JavaObject _jo = null;
@@ -678,7 +685,7 @@ _timer1.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  } 
        catch (Exception e162) {
 			processBA.setLastException(e162); //BA.debugLineNum = 254;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("2131267",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("5131267",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 255;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -1222,7 +1229,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 444;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("2393345",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("5393345",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 446;BA.debugLine="End Sub";
 return "";

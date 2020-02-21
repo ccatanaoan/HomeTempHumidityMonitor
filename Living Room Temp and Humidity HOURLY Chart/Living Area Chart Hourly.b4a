@@ -499,3 +499,7 @@ Sub Timer1_Tick
 	lc1.RemoveView
 	Activity_Create(False)
 End Sub
+
+Sub Activity_Click
+	Activity_WindowFocusChanged(True)
+End Sub
