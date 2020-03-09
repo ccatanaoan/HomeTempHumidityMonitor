@@ -148,69 +148,138 @@ Sub Activity_Create(FirstTime As Boolean)
 			lc1.Line_1_Data = Array As Float (am12, am1)
 		End If
 		If am2 <> tempZeroRange Then
+			If am1 = tempZeroRange Then
+				am1 = (am12 + am2)/2
+			End If
+			If am12 = tempZeroRange Then
+				am12 = am1
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2)
 		End If
 		If am3 <> tempZeroRange Then
+			If am2 = tempZeroRange Then
+				am2 = (am1 + am3)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3)
 		End If
 		If am4 <> tempZeroRange Then
+			If am3 = tempZeroRange Then
+				am3 = (am2 + am4)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4)
 		End If
 		If am5 <> tempZeroRange Then
+			If am4 = tempZeroRange Then
+				am4 = (am3 + am5)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5)
 		End If
 		If am6 <> tempZeroRange Then
+			If am5 = tempZeroRange Then
+				am5 = (am4 + am6)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
 		End If
 		If am7 <> tempZeroRange Then
+			If am6 = tempZeroRange Then
+				am6 = (am5 + am7)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
 		End If
 		If am8 <> tempZeroRange Then
+			If am7 = tempZeroRange Then
+				am7 = (am6 + am8)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
 		End If
-		If am9 <> tempZeroRange Then			
+		If am9 <> tempZeroRange Then
+			If am8 = tempZeroRange Then
+				am8 = (am7 + am9)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
 		End If
 		If am10 <> tempZeroRange Then
+			If am9 = tempZeroRange Then
+				am9 = (am8 + am10)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
 		End If
 		If am11 <> tempZeroRange Then
+			If am10 = tempZeroRange Then
+				am10 = (am9 + am11)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
 		End If
 		If pm12 <> tempZeroRange Then
+			If am11 = tempZeroRange Then
+				am11 = (am10 + pm12)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
 		End If
 		If pm1 <> tempZeroRange Then
+			If pm12 = tempZeroRange Then
+				pm12 = (am11 + pm1)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
 		End If
 		If pm2 <> tempZeroRange Then
+			If pm1 = tempZeroRange Then
+				pm1 = (pm12 + pm2)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
 		End If
 		If pm3 <> tempZeroRange Then
+			If pm2 = tempZeroRange Then
+				pm2 = (pm1 + pm3)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
 		End If
 		If pm4 <> tempZeroRange Then
+			If pm3 = tempZeroRange Then
+				pm3 = (pm2 + pm4)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
 		End If
 		If pm5 <> tempZeroRange Then
+			If pm4 = tempZeroRange Then
+				pm4 = (pm3 + pm5)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
 		End If
 		If pm6 <> tempZeroRange Then
+			If pm5 = tempZeroRange Then
+				pm5 = (pm4 + pm6)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
 		End If
 		If pm7 <> tempZeroRange Then
+			If pm6 = tempZeroRange Then
+				pm6 = (pm5 + pm7)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
 		End If
 		If pm8 <> tempZeroRange Then
+			If pm7 = tempZeroRange Then
+				pm7 = (pm6 + pm8)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
 		End If
 		If pm9 <> tempZeroRange Then
+			If pm8 = tempZeroRange Then
+				pm8 = (pm7 + pm9)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
 		End If
 		If pm10 <> tempZeroRange Then
+			If pm9 = tempZeroRange Then
+				pm9 = (pm8 + pm10)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
 		End If
 		If pm11 <> tempZeroRange Then
+			If pm10 = tempZeroRange Then
+				pm10 = (pm9 + pm11)/2
+			End If
 			lc1.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
 		End If
 					
@@ -245,69 +314,138 @@ Sub Activity_Create(FirstTime As Boolean)
 			lc1.Line_2_Data = Array As Float (am12, am1)
 		End If
 		If am2 <> tempZeroRange Then
+			If am1 = tempZeroRange Then
+				am1 = (am12 + am2)/2
+			End If
+			If am12 = tempZeroRange Then
+				am12 = am1
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2)
 		End If
 		If am3 <> tempZeroRange Then
+			If am2 = tempZeroRange Then
+				am2 = (am1 + am3)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3)
 		End If
 		If am4 <> tempZeroRange Then
+			If am3 = tempZeroRange Then
+				am3 = (am2 + am4)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4)
 		End If
 		If am5 <> tempZeroRange Then
+			If am4 = tempZeroRange Then
+				am4 = (am3 + am5)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5)
 		End If
 		If am6 <> tempZeroRange Then
+			If am5 = tempZeroRange Then
+				am5 = (am4 + am6)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
 		End If
 		If am7 <> tempZeroRange Then
+			If am6 = tempZeroRange Then
+				am6 = (am5 + am7)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
 		End If
 		If am8 <> tempZeroRange Then
+			If am7 = tempZeroRange Then
+				am7 = (am6 + am8)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
 		End If
 		If am9 <> tempZeroRange Then
+			If am8 = tempZeroRange Then
+				am8 = (am7 + am9)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
 		End If
 		If am10 <> tempZeroRange Then
+			If am9 = tempZeroRange Then
+				am9 = (am8 + am10)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
 		End If
 		If am11 <> tempZeroRange Then
+			If am10 = tempZeroRange Then
+				am10 = (am9 + am11)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
 		End If
 		If pm12 <> tempZeroRange Then
+			If am11 = tempZeroRange Then
+				am11 = (am10 + pm12)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
 		End If
 		If pm1 <> tempZeroRange Then
+			If pm12 = tempZeroRange Then
+				pm12 = (am11 + pm1)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
 		End If
 		If pm2 <> tempZeroRange Then
+			If pm1 = tempZeroRange Then
+				pm1 = (pm12 + pm2)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
 		End If
 		If pm3 <> tempZeroRange Then
+			If pm2 = tempZeroRange Then
+				pm2 = (pm1 + pm3)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
 		End If
 		If pm4 <> tempZeroRange Then
+			If pm3 = tempZeroRange Then
+				pm3 = (pm2 + pm4)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
 		End If
 		If pm5 <> tempZeroRange Then
+			If pm4 = tempZeroRange Then
+				pm4 = (pm3 + pm5)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
 		End If
 		If pm6 <> tempZeroRange Then
+			If pm5 = tempZeroRange Then
+				pm5 = (pm4 + pm6)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
 		End If
 		If pm7 <> tempZeroRange Then
+			If pm6 = tempZeroRange Then
+				pm6 = (pm5 + pm7)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
 		End If
 		If pm8 <> tempZeroRange Then
+			If pm7 = tempZeroRange Then
+				pm7 = (pm6 + pm8)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
 		End If
 		If pm9 <> tempZeroRange Then
+			If pm8 = tempZeroRange Then
+				pm8 = (pm7 + pm9)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
 		End If
 		If pm10 <> tempZeroRange Then
+			If pm9 = tempZeroRange Then
+				pm9 = (pm8 + pm10)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
 		End If
 		If pm11 <> tempZeroRange Then
+			If pm10 = tempZeroRange Then
+				pm10 = (pm9 + pm11)/2
+			End If
 			lc1.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
 		End If
 			
