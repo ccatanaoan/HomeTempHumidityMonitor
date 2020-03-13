@@ -109,7 +109,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.XaxisGridLineWidth = 2.0
 		lc1.XaxisLabelTicks = 1
 		lc1.XaxisLabelOrientation = 0
-		lc1.XaxisLabelTextColor = Colors.Red
+		lc1.XaxisLabelTextColor = Colors.White
 		lc1.XaxisLabelTextSize = 32.0
 		lc1.XAxisLabels = Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
 		
@@ -131,6 +131,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.YaxisTitle = "Temperature (Fahrenheit)"                 'put this statement last
 		
 		lc1.MaxNumberOfEntriesPerLineChart = 24                   'this value must be equal to the number of x-axis labels that you pass
+		lc1.GraphLegendVisibility = False
 		
 		' ********************* Today *********************
 		
@@ -288,7 +289,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.Line_1_LineColor = Colors.Red
 		lc1.Line_1_LineWidth = 11.0
 		lc1.Line_1_PointColor = Colors.Black
-		lc1.Line_1_PointSize = 20.0
+		lc1.Line_1_PointSize = 25.0
 		lc1.Line_1_PointShape = lc1.SHAPE_ROUND
 		lc1.Line_1_DrawDash = False
 		lc1.Line_1_DrawCubic = False
@@ -470,7 +471,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		lc1.Line_3_LineColor = Colors.Green
 		lc1.Line_3_LineWidth = 5.0
 		lc1.Line_3_PointColor = Colors.Green
-		lc1.Line_3_PointSize = 8.0
+		lc1.Line_3_PointSize = 1.0
 		lc1.Line_3_PointShape = lc1.SHAPE_ROUND
 		lc1.Line_3_DrawDash = False
 		lc1.Line_3_DrawCubic = False
