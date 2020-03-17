@@ -89,6 +89,7 @@ Version=9.801
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
 	#BridgeLogger:True
+	#ExcludeClasses:True
 #End Region
 
 #Region  Activity Attributes 
@@ -1270,8 +1271,6 @@ Sub CreatePreferenceScreen
 	Dim cat1,cat2,cat3 As AHPreferenceCategory
 	
 	cat1.Initialize("Temperature & Humidity")
-	cat1.AddEditText("TempHumidityCooldownTime", "Living Area Cooldown Time", "Minimum creation time interval between new notification", "1","")
-	cat1.AddEditText("TempHumidityCooldownTimeBasement", "Basement Cooldown Time", "Minimum creation time interval between new notification", "1","")
 	cat1.AddEditText("HumidityAddValue", "Humidity Additional Value", "Value to be added to humidity to improve accuracy", "6","")
 	
 	cat2.Initialize("Special Settings")
@@ -1285,8 +1284,6 @@ Sub CreatePreferenceScreen
 	screen.AddPreferenceCategory(cat2)
 	screen.AddPreferenceCategory(cat1)
 	screen.AddPreferenceCategory(cat3)
-	StateManager.SetSetting("TempHumidityCooldownTime","1")
-	StateManager.SetSetting("TempHumidityCooldownTimeBasement","1")
 	StateManager.SetSetting("HumidityAddValue","6")
 	StateManager.SetSetting("SensorNotRespondingTime","10")
 	StateManager.SaveSettings
@@ -1295,20 +1292,14 @@ End Sub
 
 Sub SetDefaults
 	'defaults are only set on the first run.
-	manager.SetString("TempHumidityCooldownTime", "1")
-	manager.SetString("TempHumidityCooldownTimeBasement", "1")
 	manager.SetString("HumidityAddValue", "6")
 	manager.SetString("SensorNotRespondingTime", "10")
-	StateManager.SetSetting("TempHumidityCooldownTime","1")
-	StateManager.SetSetting("TempHumidityCooldownTimeBasement","1")
 	StateManager.SetSetting("HumidityAddValue","6")
 	StateManager.SetSetting("SensorNotRespondingTime","10")
 	StateManager.SaveSettings
 End Sub
 
 Sub HandleSettings
-	StateManager.SetSetting("TempHumidityCooldownTime",manager.GetString("TempHumidityCooldownTime"))
-	StateManager.SetSetting("TempHumidityCooldownTimeBasement",manager.GetString("TempHumidityCooldownTimeBasement"))
 	StateManager.SetSetting("HumidityAddValue",manager.GetString("HumidityAddValue"))
 	StateManager.SetSetting("SensorNotRespondingTime",manager.GetString("SensorNotRespondingTime"))
 	StateManager.SaveSettings
