@@ -89,7 +89,6 @@ Version=9.801
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
 	#BridgeLogger:True
-	#ExcludeClasses:True
 #End Region
 
 #Region  Activity Attributes 
