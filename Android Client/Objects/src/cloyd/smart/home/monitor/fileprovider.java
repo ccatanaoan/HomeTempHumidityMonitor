@@ -99,7 +99,11 @@ _usefileprovider = __c.False;
 _sharedfolder = _rp.GetSafeDirDefaultExternal("shared");
  };
  //BA.debugLineNum = 18;BA.debugLine="Log($\"Using FileProvider? ${UseFileProvider}\"$)";
+<<<<<<< HEAD
 __c.LogImpl("68978442",("Using FileProvider? "+__c.SmartStringFormatter("",(Object)(_usefileprovider))+""),0);
+=======
+__c.LogImpl("310289162",("Using FileProvider? "+__c.SmartStringFormatter("",(Object)(_usefileprovider))+""),0);
+>>>>>>> origin/master
  //BA.debugLineNum = 19;BA.debugLine="End Sub";
 return "";
 }
