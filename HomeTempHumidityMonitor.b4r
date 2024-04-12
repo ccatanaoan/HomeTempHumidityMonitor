@@ -46,6 +46,14 @@ Version=3
 '         VCC        ->        VIN (5.5V)
 '         GRD        ->        GRD
 
+'*****************************************************************************************************
+'How To Select the board in B4R
+'*****************************************************************************************************
+'1. After connecting the ESP32, determine the COM Port.
+'2. Tools > Board Selector
+'3. Board: ESP32 Dev Module. If encountering error, use NodeMCU 1.0 (ESP-12E Module)
+'4. Serial Port: COM12 Silicon Labs CP210x USB To UART Bridge - Note: COM port depends on system setup
+'*****************************************************************************************************
 
 #Region Project Attributes
 	#AutoFlushLogs: True
@@ -63,14 +71,11 @@ Sub Process_Globals
 	Private WiFi As ESP8266WiFi
 	Private WiFiStr As WiFiSocket
 	Private MQTT As MqttClient
-	Private MQTTOpt As MqttConnectOptions
-	Private MQTTUser As String = "vynckfaq"
-	Private MQTTPassword As String = "KHSV1Q1qSUUY"
-	Private MQTTHostName As String = "m14.cloudmqtt.com"
-	Private MQTTPort As Int = 11816
+	Private MQTTHostName As String = "broker.hivemq.com"
+	Private MQTTPort As Int = 1883
 	Private ESP As ESP8266
-	Private WiFiSSID As String = "IoT2G"
-	Private WiFiPassword As String = "SteelReserveIOT1980"
+	Private WiFiSSID As String = "InternetOfThings"
+	Private WiFiPassword As String = "SteelReserve"
 	Public DHT22pin As Pin                    ' ESP8266 Pin connected to DHT22 signal
 	Private d3pins As D1Pins
 	Public DHT22Temp As Double
@@ -103,7 +108,6 @@ Private Sub AppStart
 	' Connect to cloud MQTT broker
 	Dim ClientId As String = Rnd(0, 999999999) 'create a unique id
 	MQTT.Initialize2(WiFiStr.stream, MQTTHostName, MQTTPort, ClientId, "MQTT_MessageArrived", "MQTT_Disconnected")
-	MQTTOpt.Initialize(MQTTUser, MQTTPassword)
 	MQTT_Connect(0)
 	
 	' Initialize pin D3 for DHT22
@@ -116,14 +120,15 @@ Sub MQTT_Connect(Unused As Byte)
 	End If
 	
 	If MQTT.Connect = False Then
-		Log("Connecting to broker")
-		MQTT.Connect2(MQTTOpt)
+		Log("Not connected to broker")
+		MQTT.Connect
 		CallSubPlus("MQTT_Connect", 1000, 0)
 	Else
 		pin16.DigitalWrite(False)
 		Log("Connected to broker")
 		MQTT.Subscribe("TempHumid", 0)
 		MQTT.Subscribe("HumidityAddValue", 0)
+		ReadSensor
 	End If
 End Sub
 
@@ -154,17 +159,13 @@ Sub mqtt_Disconnected
 End Sub
 
 Sub ConnectToWifi
-	Log("Connecting to WiFi")
-	If WiFi.Connect2(WiFiSSID, WiFiPassword) = False Then
-		ConnectToWifi
-	End If
-
 	If WiFi.IsConnected Then
 		Log("Connected to ",WiFiSSID," network, Local IP ", WiFi.LocalIp)
-		TimeIsAvailable
 	Else
-		Log("Not Connected to WiFi")
-		ConnectToWifi
+		Log("Connecting to WiFi")
+		If WiFi.Connect2(WiFiSSID, WiFiPassword) = False Then
+			ConnectToWifi
+		End If
 	End If
 End Sub
 
@@ -203,11 +204,11 @@ Sub ReadWeather(tag As Byte)
 	End If
 	
 	If tag = 0 Then
-		CallSubPlus("ReadWeather",5000,0)
+		CallSubPlus("ReadWeather",60000,0)
 	End If
 End Sub
 
-Public Sub TimeIsAvailable
+Public Sub ReadSensor
 	' Loop for DHT22 reading
 	RunNative("setup",Null)
 	ReadWeather(0)

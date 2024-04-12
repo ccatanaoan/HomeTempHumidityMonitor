@@ -1,4 +1,4 @@
-C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~3\Objects\bin\libraries\TimeLib\DateStrings.cpp.o: \
+C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\libraries\TimeLib\DateStrings.cpp.o: \
  C:\Users\Cloyd\Documents\Arduino\libraries\TimeLib\DateStrings.cpp \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.6.3/tools/sdk/libc/xtensa-lx106-elf/include/string.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.6.3/tools/sdk/libc/xtensa-lx106-elf/include/_ansi.h \

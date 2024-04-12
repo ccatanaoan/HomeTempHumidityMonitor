@@ -128,9 +128,11 @@ public class notificationservice extends  android.app.Service{
 public static anywheresoftware.b4a.objects.NotificationListenerWrapper.NotificationListener _listener = null;
 public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
+public cloyd.smart.home.monitor.chart _chart = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.statemanager _statemanager = null;
 public cloyd.smart.home.monitor.starter _starter = null;
+public cloyd.smart.home.monitor.b4xcollections _b4xcollections = null;
 public cloyd.smart.home.monitor.httputils2service _httputils2service = null;
 public static String  _listener_notificationposted(anywheresoftware.b4a.objects.NotificationListenerWrapper.StatusBarNotificationWrapper _sbn) throws Exception{
 anywheresoftware.b4a.phone.Phone _p = null;
@@ -183,7 +185,7 @@ mostCurrent._smarthomemonitor._isoldairqualitynotificationongoingbasement /*bool
  } 
        catch (Exception e28) {
 			processBA.setLastException(e28); //BA.debugLineNum = 47;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("37143453",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("66225949",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 50;BA.debugLine="End Sub";
 return "";
@@ -228,10 +230,10 @@ mostCurrent._smarthomemonitor._isoldairqualitynotificationongoingbasement /*bool
  };
  } 
        catch (Exception e25) {
-			processBA.setLastException(e25); //BA.debugLineNum = 80;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("37208988",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+			processBA.setLastException(e25); //BA.debugLineNum = 78;BA.debugLine="Log(LastException)";
+anywheresoftware.b4a.keywords.Common.LogImpl("66291482",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
- //BA.debugLineNum = 83;BA.debugLine="End Sub";
+ //BA.debugLineNum = 81;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
@@ -249,8 +251,8 @@ _listener.Initialize(processBA,"listener");
 return "";
 }
 public static String  _service_destroy() throws Exception{
- //BA.debugLineNum = 85;BA.debugLine="Sub Service_Destroy";
- //BA.debugLineNum = 87;BA.debugLine="End Sub";
+ //BA.debugLineNum = 83;BA.debugLine="Sub Service_Destroy";
+ //BA.debugLineNum = 85;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{

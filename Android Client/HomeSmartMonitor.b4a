@@ -1,37 +1,21 @@
 ﻿Build1=Default,cloyd.smart.home.monitor
 File1=0.png
-File10=blinkscrollview.bal
-File11=camera-icon.png
-File12=cloyd.png
-File13=crysta.ttf
-File14=exo_controls_fullscreen_enter.png
-File15=ic_play.png
-File16=liveviewbuttontranparent.png
-File17=Main.bal
-File18=ScrollViewBasement.bal
-File19=snapshotbutton.png
+File10=Main.bal
+File11=ScrollViewBasement.bal
+File12=TempHumidityBasement.bal
 File2=1.bal
-File20=TempHumidityBasement.bal
 File3=1ScrollView.bal
 File4=2.bal
 File5=AirQualityBasement.bal
-File6=blink.bal
-File7=blink_clip_roll_blue_dot_icon.png
-File8=blinkactivity.bal
-File9=blinkcellitem.bal
+File6=chart.bal
+File7=cloyd.png
+File8=compiletime.txt
+File9=crysta.ttf
 FileGroup1=Default Group
 FileGroup10=Default Group
 FileGroup11=Default Group
 FileGroup12=Default Group
-FileGroup13=Default Group
-FileGroup14=Default Group
-FileGroup15=Default Group
-FileGroup16=Default Group
-FileGroup17=Default Group
-FileGroup18=Default Group
-FileGroup19=Default Group
 FileGroup2=Default Group
-FileGroup20=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
 FileGroup5=Default Group
@@ -40,47 +24,54 @@ FileGroup7=Default Group
 FileGroup8=Default Group
 FileGroup9=Default Group
 Group=Default Group
-Library1=core
-Library10=tabstripviewpager
-Library11=reflection
-Library12=notificationbuilder
-Library13=notificationlistener
-Library14=randomaccessfile
-Library15=dateutils
-Library16=ahpreferenceactivity
-Library17=okhttputils2
-Library18=xcustomlistview
-Library19=json
-Library2=appcompat
-Library20=bitmapcreator
-Library21=xui views
-Library22=runtimepermissions
-Library23=webviewsettings
-Library24=sql
-Library25=b4xencryption
-Library3=javaobject
-Library4=xmllayoutbuilder
-Library5=jmqtt
-Library6=callsubutils
+Library1=ahpreferenceactivity
+Library10=dateutils
+Library11=javaobject
+Library12=jmqtt
+Library13=network
+Library14=notificationbuilder
+Library15=notificationlistener
+Library16=okhttputils2
+Library17=phone
+Library18=randomaccessfile
+Library19=reflection
+Library2=androidplot_0_6_2
+Library20=runtimepermissions
+Library21=sql
+Library22=tabstripviewpager
+Library23=xcustomlistview
+Library24=xmllayoutbuilder
+Library25=xui
+Library26=xui views
+Library3=appcompat
+Library4=b4xcollections
+Library5=b4xencryption
+Library6=bitmapcreator
 Library7=byteconverter
-Library8=xui
-Library9=phone
-ManifestCode=AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="18" />~\n~)~\n~~\n~AddManifestText(<uses-permission~\n~   android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~   android:maxSdkVersion="18" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~~\n~SetApplicationAttribute(android:largeHeap, "true")
+Library8=callsubutils
+Library9=core
+ManifestCode=AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="29"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="19" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~~\n~SetApplicationAttribute(android:largeHeap, "true")
 Module1=B4XPageIndicator
-Module10=StateManager
+Module10=SmartHomeMonitor
+Module11=Starter
+Module12=StateManager
 Module2=Badger
-Module3=cMediaData
-Module4=FileProvider
-Module5=Gauge
-Module6=KeyValueStore
-Module7=NotificationService
-Module8=SmartHomeMonitor
-Module9=Starter
-NumberOfFiles=20
-NumberOfLibraries=25
-NumberOfModules=10
+Module3=Chart
+Module4=cMediaData
+Module5=FileProvider
+Module6=Gauge
+Module7=KeyValueStore
+Module8=MJPEG
+Module9=NotificationService
+NumberOfFiles=12
+NumberOfLibraries=26
+NumberOfModules=12
 Version=9.801
 @EndOfDesignText@
+'***************************************************************************** 
+' ************************ COMPILE IN PERSONAL LAPTOP ************************ 
+'*****************************************************************************
+
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
 	#VersionCode: 2088
@@ -98,44 +89,23 @@ Version=9.801
 	#AdditionalRes: "..\resource"
 	#Extends: android.support.v7.app.AppCompatActivity
 	#AdditionalJar: com.android.support:support-v4
+	#CustomBuildAction: 2, C:\Program Files (x86)\Java\jdk1.8.0_221\bin\java.exe, -jar "C:\Users\Cloyd\Desktop\Home Automation\Living Area TempHumidityMonitor\Android Client\compiletime.jar"
 	
 Sub Process_Globals
 	Private MQTT As MqttClient
-	Private MQTTUser As String = "vynckfaq"
-	Private MQTTPassword As String = "KHSV1Q1qSUUY"
-	Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:11816"
+	'Private MQTTUser As String = "vynckfaq1"
+	'Private MQTTPassword As String = "KHSV1Q1qSUUY"
+	Private MQTTServerURI As String = "tcp://broker.hivemq.com:1883"
 	Private bc As ByteConverter
 	Private csu As CallSubUtils
 	Private OldIntent As Intent
 	Dim manager As AHPreferenceManager
 	Dim screen As AHPreferenceScreen
-	
-	Private emailAddress As String
-	Private password As String
-	Private authToken As String
-	Private userRegion As String = "u006"
-	Private accountID As String = "88438" 'ignore
-	Private networkID As String = "94896"
-	Private commandID As String
-	Private commandComplete As Boolean
-	Private cameraThumbnail As String
-	Private response As String
-	Private previousSelectedIndex As Int
-	Private mediaMetaData As cMediaData
-	Private drivewayArmedStatus As String
-	Private frontdoorArmedStatus As String
-	Private sideyardArmedStatus As String
 	Type CardData (screenshot As B4XBitmap,filedate As String, deviceinfo As String, iswatchedvisible As Boolean, mediaURL As String)
 	Type VideoInfo (ThumbnailPath As String, DateCreated As String, Watched As String, DeviceName As String, VideoID As String, ThumbnailBLOB() As Byte)
 	Public isThereUnwatchedVideo As Boolean
-	Private bmp As B4XBitmap
-	Private prevCameraThumbnail As String
-	Private drivewayBattStatus As String
-	Private frontdoorBattStatus As String
-	Private sideyardBattStatus As String
-	Private CurrentPage As Int
-	Private Pages As List
 	Private Awake As PhoneWakeState
+	Private compileTimeStamp As String
 End Sub
 
 Sub Globals
@@ -172,48 +142,11 @@ Sub Globals
 	Private lblPingBasement As Label
 	Private ScrollViewBasement As ScrollView
 	Private PanelTempHumidityBasement As Panel
-	Private lblStatus As Label
-	Private ivDriveway As ImageView
-	Private ivFrontDoor As ImageView
-	Private ivSideYard As ImageView
-	Private ScrollViewBlink As ScrollView
-	Private panelBlink As Panel
-	Private lblDriveway As Label
-	Private lblFrontDoor As Label
-	Private lblSideYard As Label
-	Private lblDrivewayBatt As Label
-	Private lblDrivewayTimestamp As Label
-	Private lblDrivewayWifi As Label
-	Private lblFrontDoorBatt As Label
-	Private lblFrontDoorTimestamp As Label
-	Private lblFrontDoorWiFi As Label
-	Private lblSideYardBatt As Label
-	Private lblSideYardTimestamp As Label
-	Private lblSideYardWiFi As Label
-	Private lblSyncModule As Label
 	Private B4XPageIndicator1 As B4XPageIndicator
-	Private ivScreenshot As ImageView
-	Private lblDate As B4XView
-	Private lblDeviceInfo As B4XView
-	Private lblFileInfo As B4XView
-	Private clvActivity As CustomListView
-	Private wvMedia As WebView
-	Private WebViewSettings1 As WebViewSettings
-	Private B4XLoadingIndicator4 As B4XLoadingIndicator
-	Private lblDuration As Label
-	Private ivWatched As ImageView
 	Private badger1 As Badger
-	Private btnDrivewayNewClip As ImageView
-	Private btnFrontDoorNewClip As ImageView
-	Private btnSideYardNewClip As ImageView
-	Private btnRefresh As SwiftButton
-	Private btnDriveway As SwiftButton
-	Private lblMediaURL As B4XView
-	Private ivPlay As ImageView
 	Private nativeMe As JavaObject
-	Private btnSideYardRefresh As ImageView
-	Private btnFrontDoorRefresh As ImageView
-	Private btnDrivewayRefresh As ImageView
+	Private dialog As B4XDialog
+	Private btnChart As SwiftButton
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -228,8 +161,17 @@ Sub Activity_Create(FirstTime As Boolean)
 			StartService(SmartHomeMonitor)
 			csu.Initialize
 			MQTT_Connect
+			
+			Dim compiledata As Map
+			compiledata = File.ReadMap(File.DirAssets, "compiletime.txt")
+			Log($"autoversion: ${compiledata.Get("autoversion")}"$)
+			Log($"compilation time: $DateTime{compiledata.Get("time")}"$)
+			compileTimeStamp = compiledata.Get("time")
 		End If
 		Activity.LoadLayout("Main")
+		
+		dialog.Initialize(Activity)
+		dialog.Title = "Smart Home Monitor"
 		
 		Dim iCrash As Intent
 		iCrash = Activity.GetStartingIntent
@@ -247,13 +189,7 @@ Sub Activity_Create(FirstTime As Boolean)
 		PanelTempHumidityBasement.Height = ScrollViewBasement.Height 'PanelTempHumidityBasement.Height + 100dip
 		ScrollViewBasement.Panel.Height = PanelTempHumidityBasement.Height
 		TabStrip1.LoadLayout("AirQualityBasement", "BASEMENT" & CRLF & "Air Quality (CO)  " & Chr(0xF289))
-		TabStrip1.LoadLayout("blinkscrollview", "OUTSIDE" & CRLF & "Security Camera  " & Chr(0xF030))
-		ScrollViewBlink.Panel.LoadLayout("blink")
-		'https://www.b4x.com/android/forum/threads/how-to-create-a-scrollable-screen.102755/#post-644462
-		ScrollViewBlink.panel.height = 910dip
-		panelBlink.Height = 910dip
-		TabStrip1.LoadLayout("blinkactivity", "ACTIVITY" & CRLF & "Security Camera  " & Chr(0xF03D))
-
+		
 		For Each lbl As Label In GetAllTabLabels(TabStrip1)
 			' Two lines in a tab of TabStripViewPager
 			lbl.SingleLine = False
@@ -299,10 +235,10 @@ Sub Activity_Create(FirstTime As Boolean)
 	    GaugeDewPoint.CreateRange(78.8, 100, xui.Color_Red)))
 		' Dew Point
 		
-		GaugeAirQuality.SetRanges(Array(GaugeAirQuality.CreateRange(0, 100, xui.Color_RGB(100,221,23)), _
-		GaugeAirQuality.CreateRange(100, 400, xui.Color_RGB(100,240,23)), _
-	    GaugeAirQuality.CreateRange(400, 900, xui.Color_Yellow), _
-	    GaugeAirQuality.CreateRange(900, 1000, xui.Color_Red)))	
+		GaugeAirQuality.SetRanges(Array(GaugeAirQuality.CreateRange(0, 10, xui.Color_RGB(100,221,23)), _
+		GaugeAirQuality.CreateRange(10, 40, xui.Color_RGB(100,240,23)), _
+	    GaugeAirQuality.CreateRange(40, 90, xui.Color_Yellow), _
+	    GaugeAirQuality.CreateRange(90, 100, xui.Color_Red)))	
 		GaugeAirQuality.CurrentValue=0
 		
 		GaugeHumidityBasement.SetRanges(Array(GaugeHumidityBasement.CreateRange(0, 70, xui.Color_RGB(100,221,23)), _
@@ -322,10 +258,10 @@ Sub Activity_Create(FirstTime As Boolean)
 	    GaugeDewPointBasement.CreateRange(78.8, 100, xui.Color_Red)))
 		' Dew Point
 		
-		GaugeAirQualityBasement.SetRanges(Array(GaugeAirQualityBasement.CreateRange(0, 100, xui.Color_RGB(100,221,23)), _
-		GaugeAirQualityBasement.CreateRange(100, 400, xui.Color_RGB(100,240,23)), _
-	    GaugeAirQualityBasement.CreateRange(400, 900, xui.Color_Yellow), _
-	    GaugeAirQualityBasement.CreateRange(900, 1000, xui.Color_Red)))	
+		GaugeAirQualityBasement.SetRanges(Array(GaugeAirQualityBasement.CreateRange(0, 10, xui.Color_RGB(100,221,23)), _
+		GaugeAirQualityBasement.CreateRange(10, 40, xui.Color_RGB(100,240,23)), _
+	    GaugeAirQualityBasement.CreateRange(40, 90, xui.Color_Yellow), _
+	    GaugeAirQualityBasement.CreateRange(90, 100, xui.Color_Red)))	
 		GaugeAirQualityBasement.CurrentValue=0
 		
 		Dim cs As CSBuilder
@@ -358,17 +294,6 @@ Sub Activity_Create(FirstTime As Boolean)
 			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
 		End If
 				
-		SetTextShadow(lblDrivewayBatt)
-		SetTextShadow(lblDrivewayTimestamp)
-		SetTextShadow(lblDrivewayWifi)
-		SetTextShadow(lblFrontDoorBatt)
-		SetTextShadow(lblFrontDoorTimestamp)
-		SetTextShadow(lblFrontDoorWiFi)
-		SetTextShadow(lblSideYardBatt)
-		SetTextShadow(lblSideYardTimestamp)
-		SetTextShadow(lblSideYardWiFi)
-		SetTextShadow(lblDuration)
-		
 		badger1.Initialize
 		
 		For Each lblBadge As B4XView In GetAllTabLabelsForBadge(TabStrip1)
@@ -389,44 +314,6 @@ Sub Activity_Create(FirstTime As Boolean)
 			p.AddView(lblBadge, 0, 0, Width, Height)
 		Next
 		
-		If File.Exists(File.DirInternal, "account.txt") Then
-			Dim List1 As List
-			List1.Initialize
-			List1 = File.ReadList(File.DirInternal, "account.txt")
-			For i = 0 To List1.Size - 1
-				If i = 0 Then
-					emailAddress = List1.Get(i)
-				Else if i = 1 Then
-					password = List1.Get(i)
-				End If
-			Next
-		Else If File.Exists(File.DirRootExternal,"account.txt") Then
-			File.Copy(File.DirRootExternal,"account.txt",File.DirInternal, "account.txt")
-			If File.Exists(File.DirInternal, "account.txt") Then
-				Dim List1 As List
-				List1.Initialize
-				List1 = File.ReadList(File.DirInternal, "account.txt")
-				For i = 0 To List1.Size - 1
-					If i = 0 Then
-						emailAddress = List1.Get(i)
-					Else if i = 1 Then
-						password = List1.Get(i)
-					End If
-				Next
-			Else
-				Msgbox("account.txt not found","Smart Home Monitor") 'ignore
-				ExitApplication
-			End If
-		Else
-			Msgbox("account.txt not found","Smart Home Monitor") 'ignore
-			ExitApplication
-		End If
-
-		Dim rs As ResumableSub = RequestAuthToken
-		wait for (rs) complete (Result As Object)
-		
-		Pages = Array(True, True, True, True, True, True) 'True = Enabled
-
 	Catch
 		ToastMessageShow(LastException,True)
 	End Try
@@ -435,20 +322,6 @@ End Sub
 Sub Activity_Resume
 	Try
 		Awake.KeepAlive(True)
-		
-		If File.Exists(File.DirInternal, "Driveway.jpg") Then
-			bmp = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width,ivDriveway.Height, True)
-			ivDriveway.Bitmap = bmp
-		End If
-		If File.Exists(File.DirInternal, "FrontDoor.jpg") Then
-			bmp = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
-			ivFrontDoor.Bitmap = bmp
-		End If
-		If File.Exists(File.DirInternal, "SideYard.jpg") Then
-			bmp = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
-			ivSideYard.Bitmap = bmp
-		End If
-		
 		HandleSettings
 		Dim in As Intent = Activity.GetStartingIntent
 		Dim NotificationClicked As String
@@ -497,6 +370,8 @@ Sub Activity_Resume
 			TabStrip1_PageSelected(4)
 		else If TabStrip1.CurrentPage = 5 Then
 			TabStrip1_PageSelected(5)
+		else If TabStrip1.CurrentPage = 6 Then
+			TabStrip1_PageSelected(6)
 		End If
 	Catch
 		Log(LastException)
@@ -513,18 +388,6 @@ End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
 	Awake.ReleaseKeepAlive
-
-	wvMedia.LoadUrl("")
-
-	ivDriveway.Bitmap = Null
-	ivFrontDoor.Bitmap = Null
-	ivSideYard.Bitmap = Null
-
-	Dim Obj1 As Reflector
-	Obj1.Target = bmp ' the unwanted Bitmap
-	Obj1.RunMethod("recycle")
-	bmp = Null
-	
 End Sub
 
 'Connect to CloudMQTT broker
@@ -533,9 +396,9 @@ Sub MQTT_Connect
 		Dim ClientId As String = Rnd(0, 999999999) 'create a unique id
 		MQTT.Initialize("MQTT", MQTTServerURI, ClientId)
 
-		Dim ConnOpt As MqttConnectOptions
-		ConnOpt.Initialize(MQTTUser, MQTTPassword)
-		MQTT.Connect2(ConnOpt)
+		'Dim ConnOpt As MqttConnectOptions
+		'ConnOpt.Initialize(MQTTUser, MQTTPassword)
+		MQTT.Connect
 	Catch
 		Log("MQTT_Connect: " & LastException)
 	End Try
@@ -544,12 +407,12 @@ End Sub
 Sub MQTT_Connected (Success As Boolean)
 	Try
 		If Success = False Then
-			Log(LastException)
+			Log("MQTT_NotConnected: " & LastException)
 			MQTT_Connect
 		Else
 			Log("Connected to MQTT broker")
 			MQTT.Subscribe("TempHumid", 0)
-			MQTT.Subscribe("MQ7", 0)
+			MQTT.Subscribe("MQ7LivingRoomCloyd", 0)
 			MQTT.Subscribe("MQ7Basement", 0)
 			MQTT.Subscribe("TempHumidBasement", 0)
 			MQTT.Subscribe("HumidityAddValue", 0)
@@ -563,9 +426,9 @@ Private Sub MQTT_Disconnected
 	Try
 		gblACMenu.Clear
 		gblACMenu.Add(0, 0, "Settings",Null)
-		gblACMenu.Add(0, 0, "Delete all local video clips",Null)
 		gblACMenu.Add(0, 0, "Restart application",Null)
 		gblACMenu.Add(0, 0, "Show free memory",Null)
+		gblACMenu.Add(0, 0, "Show chart",Null)
 		gblACMenu.Add(0, 0, "About",Null)
 		Log("Disconnected from MQTT broker")
 		MQTT_Connect
@@ -580,7 +443,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			lblPing.SetVisibleAnimated(500, True)
 			csu.CallSubPlus(Me, "HidePing", 700)
 			CheckTempHumiditySetting
-		Else If Topic = "MQ7" Then
+		Else If Topic = "MQ7LivingRoomCloyd" Then
 			CheckAirQualitySetting
 		Else If Topic = "MQ7Basement" Then
 			CheckAirQualitySettingBasement
@@ -598,13 +461,13 @@ End Sub
 Sub GetAirQuality(number As Int) As String
 	' Detecting range: 10ppm-1000ppm carbon monoxide
 	' Air quality-cases: < 100 perfect | 100 - 400 normal | > 400 - 900 high | > 900 abnormal
-	If number <= 100 Then
+	If number <= 10 Then
 		Return("Carbon monoxide perfect")
-	else if ((number > 100) And (number < 400)) Or number = 400 Then
+	else if ((number > 10) And (number < 40)) Or number = 40 Then
 		Return("Carbon monoxide normal")
-	else if ((number > 400) And (number < 900)) Or number = 900 Then
+	else if ((number > 40) And (number < 90)) Or number = 90 Then
 		Return("Carbon monoxide high")
-	else If number > 900 Then
+	else If number > 90 Then
 		Return("ALARM Carbon monoxide very high")
 	Else
 		Return("MQ-7 - cant read any value - check the sensor!")
@@ -693,15 +556,11 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 			Dim bd As BitmapDrawable
 			bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 			If  Msgbox2("Restart the application?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then 'ignore
-				Activity.Finish
-				Dim r, r2 As Reflector
-				r.Target = r.GetActivity
-				r.Target = r.RunMethod("getApplicationContext")
-				r2.Target = r.RunMethod("getPackageManager")
-				Dim i As Intent = r2.RunMethod2("getLaunchIntentForPackage", r.RunMethod("getPackageName"), "java.lang.String" )
-				r.Target = i
-				r.RunMethod2("addFlags",  67108864, "java.lang.int")
-				StartActivity(i)
+				' Restart application via Tasker intent
+				Dim Intent1 As Intent
+				Intent1.Initialize("smart.home.restart", "")
+				Dim Phone As Phone
+				Phone.SendBroadcastIntent(Intent1)
 			End If
 		Else If Item.Title = "Show free memory" Then
 			Dim info As String
@@ -711,20 +570,8 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 			info = info & "Available memory: " & NumberFormat2(((r.RunMethod("maxMemory") - r.RunMethod("totalMemory"))/(1024*1024)),0,2,2,False) & " MB" & CRLF
 			info = info & "Free memory: " & NumberFormat2(GetFreeMem/1000,0,2,2,False) & " MB"
 			Msgbox(info,"Smart Home Monitor") 'ignore
-		else if Item.Title = "Delete all local video clips" Then
-			Dim bd As BitmapDrawable
-			bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-			If  Msgbox2("Delete all local video clips?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then 'ignore
-				Starter.kvs.DeleteAll
-				clvActivity.Clear
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetUnwatchedVideos
-				wait for (rs) complete (Results As Object)
-				
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetVideos(response)
-				wait for (rs) complete (Results As Object)
-			End If
+		Else If Item.Title = "Show chart" Then
+			StartActivity("Chart")
 		else if Item.Title = "Restart board" Then
 			Try
 				Dim Result As Int
@@ -744,7 +591,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
 						End If
-						MQTT.Publish("MQ7", bc.StringToBytes("Restart controller", "utf8"))
+						MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Restart controller", "utf8"))
 					End If
 				else If TabStrip1.CurrentPage = 3 Then
 					Result = Msgbox2("Restart the BASEMENT AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) 'ignore
@@ -776,7 +623,10 @@ Sub ShowAboutMenu
 	Try
 		Dim bd As BitmapDrawable
 		bd.Initialize(LoadBitmapResize(File.DirAssets, "cloyd.png", 32dip, 32dip, True))
-		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by: Cloyd Nino Catanaoan" & CRLF & "Compiled on: February 18, 2020", "About", "OK", "", "", bd.Bitmap) 'ignore
+		Dim tempDate As String
+		DateTime.DateFormat="EEE, MMM d, yyyy h:mm aa"
+		tempDate = DateTime.Date(compileTimeStamp)
+		Msgbox2("Smart Home Monitor v" & GetVersionCode & CRLF & CRLF & "Developed by: Cloyd Nino Catanaoan" & CRLF & "Compiled: " & tempDate, "About", "OK", "", "", bd.Bitmap) 'ignore
 	Catch
 		Log(LastException)
 	End Try
@@ -800,9 +650,9 @@ Sub Activity_Createmenu(Menu As ACMenu)
 		Menu.Clear
 		gblACMenu = Menu
 		Menu.Add(0, 0, "Settings",Null)
-		Menu.Add(0, 0, "Delete all local video clips",Null)
 		Menu.Add(0, 0, "Restart Application",Null)
 		Menu.Add(0, 0, "Show free memory",Null)
+		Menu.Add(0, 0, "Show chart",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
 		Log(LastException)
@@ -832,26 +682,14 @@ public boolean _onCreateOptionsMenu(android.view.Menu menu) {
 
 Sub TabStrip1_PageSelected (Position As Int)
 	Try
-		Dim FixedPosition As Int = -1
-		If Pages.Get(Position) = False Then
-			Dim direction As Int = Position - CurrentPage
-			Dim i As Int = Position + direction
-			Do While i >= 0 And i < Pages.Size
-				If Pages.Get(i) = True Then
-					FixedPosition = i
-					Exit
-				End If
-				i = i + direction
-			Loop
-			If FixedPosition = -1 Then FixedPosition = CurrentPage
-		Else
-			FixedPosition = Position
-		End If
-		CurrentPage = FixedPosition
-		TabStrip1.ScrollTo(FixedPosition, True)
-		If CurrentPage <> Position Then Return
-		
 		B4XPageIndicator1.CurrentPage = Position
+		
+		If Position > 3 Then
+			btnChart.mBase.Visible = False
+		Else
+			btnChart.mBase.Visible = True
+		End If
+		
 		If Position = 0 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
@@ -860,7 +698,7 @@ Sub TabStrip1_PageSelected (Position As Int)
 		End If
 		If Position = 1 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
-				MQTT.Publish("MQ7", bc.StringToBytes("Read voltage", "utf8"))
+				MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySetting
 		End If
@@ -876,119 +714,10 @@ Sub TabStrip1_PageSelected (Position As Int)
 			End If
 			CheckAirQualitySettingBasement
 		End If
-		If Position = 4 Then
-			' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-			Dim rs As ResumableSub = CreateTab4
-			wait for (rs) complete (Result As Object)
-		End If
-		
-		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-		Dim rs As ResumableSub = GetUnwatchedVideos
-		wait for (rs) complete (Result As Object)
-				
-		Dim UnwatchedVideoClips As String = StateManager.GetSetting("UnwatchedVideoClips")
-		If IsNumber(UnwatchedVideoClips) Or isThereUnwatchedVideo Then
-			If UnwatchedVideoClips > 0 Or isThereUnwatchedVideo Then
-				If TabStrip1.CurrentPage <> 5 Then
-					TabStrip1.ScrollTo(5,False)
-					Sleep(100)
-					Return
-				End If
-				clvActivity.Clear
-						
-				Dim rs As ResumableSub = GetUnwatchedVideos
-				wait for (rs) complete (Result As Object)
-				
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetVideos(response)
-				wait for (rs) complete (Result As Object)
-						
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetUnwatchedVideos
-				wait for (rs) complete (Result As Object)
-				Return
-			End If
-		End If
-			
-		If Position = 5 Then
-			If clvActivity.Size > 0 Then
-				If previousSelectedIndex > (clvActivity.Size-1) Then
-					previousSelectedIndex = 0
-				End If
-				clvActivity.JumpToItem(previousSelectedIndex)
-				Sleep(100)
-				Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
-				If p.NumberOfViews > 0 Then
-					Dim backPane As B4XView = p.getview(0)
-					backPane.Color = xui.Color_ARGB(255,217,215,222)
-						
-					Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
-					ContentLabel.Visible = True
-				End If
-				B4XLoadingIndicator4.Show
-				Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
-				Dim firstvideo As String
-				firstvideo = cd.mediaURL
-				lblDuration.Text = "0:00"
-				ShowVideo(firstvideo)
-			Else
-				clvActivity.Clear
-						
-				Dim rs As ResumableSub = GetUnwatchedVideos
-				wait for (rs) complete (Result As Object)
-						
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetVideos(response)
-				wait for (rs) complete (Result As Object)
-						
-				' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-				Dim rs As ResumableSub = GetUnwatchedVideos
-				wait for (rs) complete (Result As Object)
-			End If
-		End If
 
 	Catch
 		Log(LastException)
 	End Try
-End Sub
-
-Sub CreateTab4() As ResumableSub
-	Try
-		Pages = Array(False, False, False, False, True, False) 'True = Enabled
-		wvMedia.LoadUrl("")
-		If lblDrivewayBatt.Text = "" Or lblFrontDoorBatt.Text = "" Or lblSideYardBatt.Text = "" Or lblStatus.Text.Contains("REST endpoint URL not found") Then
-			'ProgressDialogShow2("Getting new camera information...",False)
-			btnDriveway.Enabled = False
-			btnRefresh.Enabled = False
-			btnDrivewayNewClip.Enabled = False
-			btnFrontDoorNewClip.Enabled = False
-			btnSideYardNewClip.Enabled = False
-			ScrollViewBlink.ScrollToNow(0)
-			BlurIV("Driveway.jpg",ivDriveway)
-			BlurIV("FrontDoor.jpg",ivFrontDoor)
-			BlurIV("SideYard.jpg",ivSideYard)
-			Dim rs As ResumableSub = RefreshCameras(True,"All")
-			wait for (rs) complete (Result As Object)
-			'ProgressDialogHide
-		else If ivDriveway.Bitmap = Null Or ivFrontDoor.Bitmap = Null Or ivSideYard.Bitmap = Null Then
-			If File.Exists(File.DirInternal, "Driveway.jpg") Then
-				bmp = xui.LoadBitmapResize(File.DirInternal, "Driveway.jpg", ivDriveway.Width,ivDriveway.Height, True)
-				ivDriveway.Bitmap = bmp
-			End If
-			If File.Exists(File.DirInternal, "FrontDoor.jpg") Then
-				bmp = xui.LoadBitmapResize(File.DirInternal, "FrontDoor.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
-				ivFrontDoor.Bitmap = bmp
-			End If
-			If File.Exists(File.DirInternal, "SideYard.jpg") Then
-				bmp = xui.LoadBitmapResize(File.DirInternal, "SideYard.jpg", ivFrontDoor.Width,ivFrontDoor.Height, True)
-				ivSideYard.Bitmap = bmp
-			End If
-		End If
-	Catch
-		Log(LastException)
-	End Try
-	Pages = Array(True, True, True, True, True, True) 'True = Enabled
-	Return Null
 End Sub
 
 Public Sub GetAllTabLabels (tabstrip As TabStrip) As List
@@ -1022,24 +751,28 @@ End Sub
 Sub Activity_KeyPress (KeyCode As Int) As Boolean 'ignore
 	If KeyCode = KeyCodes.KEYCODE_BACK Then
 		If TabStrip1.CurrentPage = 2 Then
-			TabStrip1.ScrollTo(1,True)
+			TabStrip1.ScrollTo(1,False)
 			TabStrip1_PageSelected(1)
 			Return True
 		Else If TabStrip1.CurrentPage = 1 Then
-			TabStrip1.ScrollTo(0,True)
+			TabStrip1.ScrollTo(0,False)
 			TabStrip1_PageSelected(0)
 			Return True
 		Else If TabStrip1.CurrentPage = 3 Then
-			TabStrip1.ScrollTo(2,True)
+			TabStrip1.ScrollTo(2,False)
 			TabStrip1_PageSelected(2)
 			Return True
 		Else If TabStrip1.CurrentPage = 4 Then
-			TabStrip1.ScrollTo(3,True)
+			TabStrip1.ScrollTo(3,False)
 			TabStrip1_PageSelected(3)
 			Return True
 		Else If TabStrip1.CurrentPage = 5 Then
-			TabStrip1.ScrollTo(4,True)
+			TabStrip1.ScrollTo(4,False)
 			TabStrip1_PageSelected(4)
+			Return True
+		Else If TabStrip1.CurrentPage = 6 Then
+			TabStrip1.ScrollTo(5,False)
+			TabStrip1_PageSelected(5)
 			Return True
 		End If
 	End If
@@ -1056,11 +789,11 @@ Sub CheckAirQualitySetting
 		Dim a() As String = Regex.Split("\|",status)
 		If a.Length = 3 Then
 			If IsNumber(a(0)) And a(0) > 0 Then
-				GaugeAirQuality.CurrentValue = a(0)
-				If a(0) > 400 Then
-					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Color(Colors.Red).Append(GetAirQuality(a(0))).PopAll
+				GaugeAirQuality.CurrentValue = (a(0)/10)
+				If (a(0)/10) > 40 Then
+					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Color(Colors.Red).Append(GetAirQuality((a(0)/10))).PopAll
 				Else
-					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
+					lblAirQuality.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality((a(0)/10))).PopAll
 				End If
 				If a(1) = "" Then
 					Dim Tomorrow As Long
@@ -1081,14 +814,14 @@ Sub CheckAirQualitySetting
 				Dim lngTicks As Long = ticks
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
-				If p.Minutes > = 5 Then
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
-				Else
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+				If p.Minutes >= 5 Or p.Minutes <= -5 Then
+						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+					Else
+						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					End If
+				Else If a(2) = "00:00:00" Then
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
 				End If
-			Else If a(2) = "00:00:00" Then
-				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
-			End If
 		End If
 	Catch
 		Log(LastException)
@@ -1106,11 +839,11 @@ Sub CheckAirQualitySettingBasement
 		Dim a() As String = Regex.Split("\|",status)
 		If a.Length = 3 Then
 			If IsNumber(a(0)) And a(0) > 0 Then
-				GaugeAirQualityBasement.CurrentValue = a(0)
-				If a(0) > 400 Then
-					lblAirQualityBasement.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Color(Colors.Red).Append(GetAirQuality(a(0))).PopAll
+				GaugeAirQualityBasement.CurrentValue = (a(0)/10)
+				If (a(0)/10) > 40 Then
+					lblAirQualityBasement.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Color(Colors.Red).Append(GetAirQuality((a(0)/10))).PopAll
 				Else
-					lblAirQualityBasement.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality(a(0))).PopAll
+					lblAirQualityBasement.Text = cs.Initialize.Bold.Append("Air Quality: ").Pop.Append(GetAirQuality((a(0)/10))).PopAll
 				End If
 				If a(1) = "" Then
 					Dim Tomorrow As Long
@@ -1132,7 +865,7 @@ Sub CheckAirQualitySettingBasement
 				Dim lngTicks As Long = ticks
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
-				If p.Minutes > = 5 Then
+				If p.Minutes >= 5 Or p.Minutes <= -5 Then
 					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 				Else
 					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
@@ -1191,7 +924,7 @@ Sub CheckTempHumiditySetting
 				Dim lngTicks As Long = ticks
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
-				If p.Minutes > = 5 Then
+				If p.Minutes >= 5 Or p.Minutes <= -5 Then
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 				Else
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
@@ -1249,7 +982,7 @@ Sub CheckTempHumiditySettingBasement
 				Dim lngTicks As Long = ticks
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
-				If p.Minutes > = 5 Then
+				If p.Minutes >= 5 Or p.Minutes <= -5 Then
 					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
 				Else
 					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
@@ -1270,8 +1003,6 @@ Sub CreatePreferenceScreen
 	Dim cat1,cat2,cat3 As AHPreferenceCategory
 	
 	cat1.Initialize("Temperature & Humidity")
-	cat1.AddEditText("TempHumidityCooldownTime", "Living Area Cooldown Time", "Minimum creation time interval between new notification", "1","")
-	cat1.AddEditText("TempHumidityCooldownTimeBasement", "Basement Cooldown Time", "Minimum creation time interval between new notification", "1","")
 	cat1.AddEditText("HumidityAddValue", "Humidity Additional Value", "Value to be added to humidity to improve accuracy", "6","")
 	
 	cat2.Initialize("Special Settings")
@@ -1285,8 +1016,6 @@ Sub CreatePreferenceScreen
 	screen.AddPreferenceCategory(cat2)
 	screen.AddPreferenceCategory(cat1)
 	screen.AddPreferenceCategory(cat3)
-	StateManager.SetSetting("TempHumidityCooldownTime","1")
-	StateManager.SetSetting("TempHumidityCooldownTimeBasement","1")
 	StateManager.SetSetting("HumidityAddValue","6")
 	StateManager.SetSetting("SensorNotRespondingTime","10")
 	StateManager.SaveSettings
@@ -1295,1988 +1024,17 @@ End Sub
 
 Sub SetDefaults
 	'defaults are only set on the first run.
-	manager.SetString("TempHumidityCooldownTime", "1")
-	manager.SetString("TempHumidityCooldownTimeBasement", "1")
 	manager.SetString("HumidityAddValue", "6")
 	manager.SetString("SensorNotRespondingTime", "10")
-	StateManager.SetSetting("TempHumidityCooldownTime","1")
-	StateManager.SetSetting("TempHumidityCooldownTimeBasement","1")
 	StateManager.SetSetting("HumidityAddValue","6")
 	StateManager.SetSetting("SensorNotRespondingTime","10")
 	StateManager.SaveSettings
 End Sub
 
 Sub HandleSettings
-	StateManager.SetSetting("TempHumidityCooldownTime",manager.GetString("TempHumidityCooldownTime"))
-	StateManager.SetSetting("TempHumidityCooldownTimeBasement",manager.GetString("TempHumidityCooldownTimeBasement"))
 	StateManager.SetSetting("HumidityAddValue",manager.GetString("HumidityAddValue"))
 	StateManager.SetSetting("SensorNotRespondingTime",manager.GetString("SensorNotRespondingTime"))
 	StateManager.SaveSettings
-End Sub
-
-
-Sub RequestAuthToken As ResumableSub
-	' https://github.com/MattTW/BlinkMonitorProtocol
-	' http://www.basic4ppc.com:51042/json/index.html
-	' https://www.b4x.com/android/forum/threads/b4x-okhttputils2-with-wait-for.79345/#content
-	' https://www.b4x.com/android/forum/threads/call-api-rest.89470/#content
-	' https://www.b4x.com/android/forum/threads/server-online-json-tree-example.39048/#content
-	Try
-		lblStatus.Text = "Authenticating..."
-		Dim jobLogin As HttpJob
-		jobLogin.Initialize("", Me)
-		jobLogin.PostString("https://rest.prod.immedia-semi.com/login","email=" &  emailAddress & "&password=" & password)
-		jobLogin.GetRequest.SetContentType("application/x-www-form-urlencoded")
-		Wait For (jobLogin) JobDone(jobLogin As HttpJob)
-		If jobLogin.Success Then
-			lblStatus.Text = "Successfully logged in to the Blink server..."
-			' {"account":{"id":88438},"client":{"id":343747},"authtoken":{"authtoken":"93dThwIjJVPFNsksddH2cA","message":"auth"},"networks":{"94896":{"name":"Home","onboarded":true}},"region":{"u006":"United States"}}
-			GetAuthInfo(jobLogin.GetString)
-
-			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-				btnDriveway.Enabled = True
-				btnRefresh.Enabled = True
-				btnDrivewayNewClip.Enabled = True
-				btnFrontDoorNewClip.Enabled = True
-				btnSideYardNewClip.Enabled = True
-				btnDrivewayRefresh.Enabled = True
-				btnFrontDoorRefresh.Enabled = True
-				btnSideYardRefresh.Enabled = True
-				jobLogin.Release
-				Return Null
-			Else
-				lblStatus.Text = "Authtoken acquired..."
-			End If
-		Else
-			lblStatus.Text = GetRESTError(jobLogin.ErrorMessage)
-			Log("RequestAuthToken error: " & jobLogin.ErrorMessage)
-			jobLogin.Release
-			Return Null
-		End If
-		jobLogin.Release
-	Catch
-		Log("RequestAuthToken LastException: " & LastException)
-	End Try
-	Return Null
-End Sub
-
-Sub RefreshCameras(FirstRun As Boolean, whatCamera As String) As ResumableSub
-	Try
-		Dim camera As String
-		Dim iv As ImageView
-		Dim links As List
-		Dim attempts As Int
-		links = Array("347574", "236967", "458236")
-		
-		Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/syncmodules")
-		wait for (rs) complete (Result As Object)
-		
-		If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-			btnDriveway.Enabled = True
-			btnRefresh.Enabled = True
-			btnDrivewayNewClip.Enabled = True
-			btnFrontDoorNewClip.Enabled = True
-			btnSideYardNewClip.Enabled = True
-			btnDrivewayRefresh.Enabled = True
-			btnFrontDoorRefresh.Enabled = True
-			btnSideYardRefresh.Enabled = True
-			Return Null
-		End If
-		
-		Dim rs As ResumableSub = GetSyncModuleInfo(response)
-		wait for (rs) complete (Result As Object)
-		
-		Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/homescreen")
-		wait for (rs) complete (Result As Object)
-		If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-			btnDriveway.Enabled = True
-			btnRefresh.Enabled = True
-			btnDrivewayNewClip.Enabled = True
-			btnFrontDoorNewClip.Enabled = True
-			btnSideYardNewClip.Enabled = True
-			btnDrivewayRefresh.Enabled = True
-			btnFrontDoorRefresh.Enabled = True
-			btnSideYardRefresh.Enabled = True
-			Return Null
-		End If
-		
-		Dim rs As ResumableSub = GetHomescreen(response)
-		wait for (rs) complete (Result As Object)
-		
-		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-		Dim rs As ResumableSub = GetUnwatchedVideos
-		wait for (rs) complete (Result As Object)
-		
-		lblDrivewayBatt.Visible = True
-		lblDrivewayTimestamp.Visible = True
-		lblDrivewayWifi.Visible = True
-		lblDriveway.Visible = True
-		lblFrontDoorBatt.Visible = True
-		lblFrontDoorTimestamp.Visible = True
-		lblFrontDoorWiFi.Visible = True
-		lblFrontDoor.Visible = True
-		lblSideYardBatt.Visible = True
-		lblSideYardTimestamp.Visible = True
-		lblSideYardWiFi.Visible = True
-		lblSideYard.Visible = True
-		
-		For Each link As String In links
-			camera = link
-			If camera <> whatCamera And whatCamera <> "All" Then
-				Continue
-			End If
-			If FirstRun Then
-				If camera = "347574" Then
-					lblStatus.Text = "Retrieving Driveway thumbnail..."
-					iv = ivDriveway
-				Else If camera = "236967" Then
-					lblStatus.Text = "Retrieving Front Door thumbnail..."
-					iv = ivFrontDoor
-				Else If camera = "458236" Then
-					lblStatus.Text = "Retrieving Side Yard thumbnail..."
-					iv = ivSideYard
-				End If
-			Else
-				If camera = "347574" Then
-					lblStatus.Text = "Capturing a new Driveway thumbnail..."
-					iv = ivDriveway
-					attempts = 15
-				Else If camera = "236967" Then
-					lblStatus.Text = "Capturing a new Front Door thumbnail..."
-					iv = ivFrontDoor
-					attempts = 15
-				Else If camera = "458236" Then
-					lblStatus.Text = "Capturing a new Side Yard thumbnail..."
-					iv = ivSideYard
-					attempts = 15
-				End If
-			End If
-
-			If FirstRun Then
-				Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
-				wait for (rs) complete (Result As Object)
-				
-				Dim rs As ResumableSub = GetCameraInfo(response, False)
-				wait for (rs) complete (Result As Object)
-				
-				Dim rs As ResumableSub = DownloadImage("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg",iv, camera)
-				wait for (rs) complete (Result As Object)
-			Else
-				Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
-				wait for (rs) complete (Result As Object)
-				
-				Dim rs As ResumableSub = GetCameraInfo(response,True)
-				wait for (rs) complete (Result As Object)
-				
-				prevCameraThumbnail = cameraThumbnail
-				
-				Dim rs As ResumableSub = RESTPost("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera & "/thumbnail")
-				wait for (rs) complete (Result As Object)
-				If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-					btnDriveway.Enabled = True
-					btnRefresh.Enabled = True
-					btnDrivewayNewClip.Enabled = True
-					btnFrontDoorNewClip.Enabled = True
-					btnSideYardNewClip.Enabled = True
-					btnDrivewayRefresh.Enabled = True
-					btnFrontDoorRefresh.Enabled = True
-					btnSideYardRefresh.Enabled = True
-					Return Null
-				Else
-					Dim rs As ResumableSub = GetCommandID(response)
-					wait for (rs) complete (Result As Object)
-					
-					Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-					wait for (rs) complete (Result As Object)
-					
-					If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-						btnDriveway.Enabled = True
-						btnRefresh.Enabled = True
-						btnDrivewayNewClip.Enabled = True
-						btnFrontDoorNewClip.Enabled = True
-						btnSideYardNewClip.Enabled = True
-						btnDrivewayRefresh.Enabled = True
-						btnFrontDoorRefresh.Enabled = True
-						btnSideYardRefresh.Enabled = True
-						Return Null
-					Else
-						Dim reChecked As Boolean
-						For i = 1 To attempts
-							' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-							Dim rs As ResumableSub = GetCommandResponse(iv,camera, i, attempts)
-							wait for (rs) complete (Result As Object)
-							If Result Then Exit
-							
-							Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-							wait for (rs) complete (Result As Object)
-							Sleep(1000) ' 1 second
-
-							If i = attempts And reChecked = False Then
-								reChecked = True
-								Log("*********** HERE *********** i = " & i)
-								Dim rs As ResumableSub = RESTPost("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera & "/thumbnail")
-								wait for (rs) complete (Result As Object)
-								
-								If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-									btnDriveway.Enabled = True
-									btnRefresh.Enabled = True
-									btnDrivewayNewClip.Enabled = True
-									btnFrontDoorNewClip.Enabled = True
-									btnSideYardNewClip.Enabled = True
-									btnDrivewayRefresh.Enabled = True
-									btnFrontDoorRefresh.Enabled = True
-									btnSideYardRefresh.Enabled = True
-									Return Null
-								Else
-									i = 1
-								End If
-								Log("*********** HERE TWO ***********")
-								Dim rs As ResumableSub = GetCommandID(response)
-								wait for (rs) complete (Result As Object)
-					
-								Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-								wait for (rs) complete (Result As Object)
-							End If
-						Next
-						If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-							btnDriveway.Enabled = True
-							btnRefresh.Enabled = True
-							btnDrivewayNewClip.Enabled = True
-							btnFrontDoorNewClip.Enabled = True
-							btnSideYardNewClip.Enabled = True
-							btnDrivewayRefresh.Enabled = True
-							btnFrontDoorRefresh.Enabled = True
-							btnSideYardRefresh.Enabled = True
-							Return Null
-						else If commandComplete = False Then
-							If camera = "347574" Then
-								lblStatus.Text = "Failed to retrieve Driveway thumbnail..."
-							Else If camera = "236967" Then
-								lblStatus.Text = "Failed to retrieve Front Door thumbnail..."
-							Else If camera = "458236" Then
-								lblStatus.Text = "Failed to retrieve Side Yard thumbnail..."
-							End If
-						Else
-							' Completed
-						End If
-					End If
-				End If
-			End If
-		Next
-		
-		lblStatus.Text = "Ready"
-	Catch
-		Log("RefreshCamera LastException: " & LastException)
-	End Try
-	btnDriveway.Enabled = True
-	btnRefresh.Enabled = True
-	btnDrivewayNewClip.Enabled = True
-	btnFrontDoorNewClip.Enabled = True
-	btnSideYardNewClip.Enabled = True
-	btnDrivewayRefresh.Enabled = True
-	btnFrontDoorRefresh.Enabled = True
-	btnSideYardRefresh.Enabled = True
-	If lblSideYardBatt.Text.Contains("OFFLINE") Then
-		'lblSideYardBatt.Text = sideyardBattStatus
-		BlurIV("SideYard.jpg",ivSideYard)
-	Else if lblDrivewayBatt.Text.Contains("OFFLINE") Then
-		'lblDrivewayBatt.Text = drivewayBattStatus
-		BlurIV("Driveway.jpg",ivDriveway)
-	Else if lblFrontDoorBatt.Text.Contains("OFFLINE") Then
-		'lblFrontDoorBatt.Text = frontdoorBattStatus
-		BlurIV("FrontDoor.jpg",ivFrontDoor)
-	End If
-	Return Null
-End Sub
-
-Sub GetCommandResponse(iv As ImageView,camera As String, attempts As String, attemptsAllowed As String) As ResumableSub
-	GetCommandStatus(response)
-	If commandComplete Then
-		
-		Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
-		wait for (rs) complete (Result As Object)
-		
-		Dim rs As ResumableSub = GetCameraInfo(response,False)
-		wait for (rs) complete (Result As Object)
-		
-		Dim rs As ResumableSub = DownloadImage("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg",iv,camera)
-		wait for (rs) complete (Result As Object)
-		Return True
-	End If
-		
-	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
-	wait for (rs) complete (Result As Object)
-				
-	Dim rs As ResumableSub = GetCameraInfo(response,True)
-	wait for (rs) complete (Result As Object)
-	
-	If prevCameraThumbnail <> "" And prevCameraThumbnail <> cameraThumbnail Then
-		Log("**** ALRIGHT " & attempts & "/" & attemptsAllowed & " *****")
-		Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/" & camera)
-		wait for (rs) complete (Result As Object)
-		
-		Dim rs As ResumableSub = GetCameraInfo(response,False)
-		wait for (rs) complete (Result As Object)
-		
-		Dim rs As ResumableSub = DownloadImage("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg",iv,camera)
-		wait for (rs) complete (Result As Object)
-		Return True
-	Else
-		If camera = "347574" Then
-			lblStatus.Text = "Awaiting for the Driveway thumbnail... " & attempts & "/" & attemptsAllowed
-		Else If camera = "236967" Then
-			lblStatus.Text = "Awaiting for the Front Door thumbnail...  " & attempts & "/" & attemptsAllowed
-		Else If camera = "458236" Then
-			lblStatus.Text = "Awaiting for the Side Yard thumbnail... " & attempts & "/" & attemptsAllowed
-		End If
-		Return False
-	End If
-End Sub
-
-Sub RESTGet(url As String) As ResumableSub
-	Try
-		Dim j As HttpJob
-		response = ""
-		j.Initialize("", Me) 'name is empty as it is no longer needed
-		j.Download(url)
-		j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
-		Wait For (j) JobDone(j As HttpJob)
-		If j.Success Then
-			response = j.GetString
-		Else
-			response = "ERROR: " & j.ErrorMessage
-			lblStatus.Text = GetRESTError(j.ErrorMessage)
-		End If
-		If response.Contains("System is busy, please wait") Then
-			lblStatus.Text = "System is busy, please wait"
-		End If
-		j.Release
-	Catch
-		response = "ERROR: " & LastException
-		Log("RESTDownload LastException: " & LastException)
-	End Try
-	Log("URL: " & url)
-	Log("Response: " & response)
-	Return(response)
-End Sub
-
-Sub RESTPost(url As String) As ResumableSub
-	Try
-		Dim j As HttpJob
-		response = ""
-		j.Initialize("", Me) 'name is empty as it is no longer needed
-		j.PostString(url,"")
-		j.GetRequest.SetContentType("application/x-www-form-urlencoded")
-		j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
-		Wait For (j) JobDone(j As HttpJob)
-		If j.Success Then
-			response = j.GetString
-		Else
-			response = "ERROR: " & j.ErrorMessage
-			lblStatus.Text = GetRESTError(j.ErrorMessage)
-		End If
-		If response.Contains("System is busy, please wait") Then
-			lblStatus.Text = "System is busy, please wait"
-		End If
-		j.Release
-	Catch
-		response = "ERROR: " & LastException
-		Log("RESTPost LastException: " & LastException)
-	End Try
-	Log("URL: " & url)
-	Log("Response: " & response)
-	Return(response)
-End Sub
-
-Sub DownloadImage (Link As String, iv As ImageView, camera As String) As ResumableSub'ignore
-	Try
-		Dim j As HttpJob
-		response = ""
-		j.Initialize("", Me)
-		j.Download(Link)
-		j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
-		Wait For (j) JobDone(j As HttpJob)
-		If j.Success Then
-			' Save to a JPG file
-			If camera = "347574" Then
-				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "Driveway.jpg", False)
-				File.Copy2(j.GetInputStream, out)
-				out.Close '<------ very important
-				bmp = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
-			Else If camera = "236967" Then
-				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "FrontDoor.jpg", False)
-				File.Copy2(j.GetInputStream, out)
-				out.Close '<------ very important
-				bmp = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
-			Else If camera = "458236" Then
-				Dim out As OutputStream = File.OpenOutput(File.DirInternal, "SideYard.jpg", False)
-				File.Copy2(j.GetInputStream, out)
-				out.Close '<------ very important
-				bmp = j.GetBitmapResize(iv.Width, iv.Height,True) ' 10% of 1440x810 192dip,108dip
-			End If
-			iv.Bitmap = bmp
-		Else
-			response = "ERROR: " & j.ErrorMessage
-			lblStatus.Text = GetRESTError(j.ErrorMessage)
-		End If
-		j.Release
-	Catch
-		Log(LastException)
-	End Try
-	Return Null
-End Sub
-
-Sub GetAuthInfo(json As String)
-	Try
-		lblStatus.Text = "Getting authtoken..."
-		Dim parser As JSONParser
-		parser.Initialize(json)
-		Dim root As Map = parser.NextObject
-		Dim authtokenmap As Map = root.Get("authtoken")
-		authToken = authtokenmap.Get("authtoken")
-		Log("authToken: " &  authToken)
-		Dim networks As Map = root.Get("networks")
-		Log("networkID: " & networks.GetKeyAt(0))
-		networkID = networks.GetKeyAt(0)
-		Dim region As Map = root.Get("region")
-		userRegion = region.GetKeyAt(0)
-		Log("userRegion: " &  userRegion)
-
-		Dim account As Map = root.Get("account")
-		Dim id As Int = account.Get("id")
-		Log("accountID: " & id)
-		accountID = id
-	Catch
-		lblStatus.Text = "ERROR: GetAuthInfo - " & LastException
-		response = "ERROR: GetAuthInfo - " & LastException
-		Log(LastException)
-	End Try
-
-End Sub
-
-
-Sub GetCommandID(json As String) As ResumableSub
-	Try
-		Dim parser As JSONParser
-		parser.Initialize(json)
-		Dim root As Map = parser.NextObject
-'	Dim server As String = root.Get("server")
-'	Dim stage_vs As String = root.Get("stage_vs")
-'	Dim firmware_id As String = root.Get("firmware_id")
-'	Dim stage_rest As String = root.Get("stage_rest")
-'	Dim created_at As String = root.Get("created_at")
-'	Dim stage_cs_db As String = root.Get("stage_cs_db")
-'	Dim sm_ack As String = root.Get("sm_ack")
-'	Dim duration As String = root.Get("duration")
-'	Dim stage_is As String = root.Get("stage_is")
-'	Dim stage_cs_sent As String = root.Get("stage_cs_sent")
-'	Dim updated_at As String = root.Get("updated_at")
-'	Dim stage_dev As String = root.Get("stage_dev")
-'	Dim execute_time As String = root.Get("execute_time")
-'	Dim by_whom As String = root.Get("by_whom")
-		commandID = root.Get("id")
-		Log("commandID: " & commandID)
-'	Dim diagnostic As String = root.Get("diagnostic")
-'	Dim player_transaction As String = root.Get("player_transaction")
-'	Dim attempts As Int = root.Get("attempts")
-'	Dim lfr_ack As String = root.Get("lfr_ack")
-'	Dim stage_sm As String = root.Get("stage_sm")
-'	Dim debug As String = root.Get("debug")
-'	Dim state_stage As String = root.Get("state_stage")
-'	Dim camera_id As Int = root.Get("camera_id")
-'	Dim target_id As Int = root.Get("target_id")
-'	Dim command As String = root.Get("command")
-'	Dim target As String = root.Get("target")
-'	Dim stage_lv As String = root.Get("stage_lv")
-'	Dim sequence As String = root.Get("sequence")
-'	Dim network_id As Int = root.Get("network_id")
-'	Dim account_id As Int = root.Get("account_id")
-'	Dim state_condition As String = root.Get("state_condition")
-'	Dim siren_id As String = root.Get("siren_id")
-'	Dim parent_command_id As String = root.Get("parent_command_id")
-'	Dim sync_module_id As Int = root.Get("sync_module_id")
-'	Dim transaction As String = root.Get("transaction")
-	Catch
-		Log(LastException)
-		'ToastMessageShow("GetCommandID: " & LastException, False)
-	End Try
-	Return Null
-End Sub
-
-Sub GetCommandStatus(json As String) As ResumableSub
-	Try
-		Dim parser As JSONParser
-		parser.Initialize(json)
-		Dim root As Map = parser.NextObject
-		commandComplete = root.Get("complete")
-		Log("commandComplete: " & commandComplete)
-	Catch
-		Log(LastException)
-		'ToastMessageShow("GetCommandStatus: " & LastException,False)
-	End Try
-	Return Null
-End Sub
-
-Sub GetRESTError(json As String) As String
-	Try
-		'ResponseError. Reason: , Response: {"message":"Unauthorized Access","code":101}
-		'Code: 101 Message: Unauthorized Access
-		'ResponseError. Reason: , Response: {"message":"Invalid credentials","code":200}
-		'RequestAuthToken LastException: (FileNotFoundException) java.io.FileNotFoundException: /data/user/0/cloyd.smart.home.monitor/cache/1 (No such file or directory)
-		'ResponseError. Reason: , Response: <h1>Not Found</h1>
-		If json.Contains("<h1>Not Found</h1>") Then
-			Return "REST endpoint URL not found. Try again."
-		Else
-			If json.IndexOf("{") <> -1 Then
-				json = json.SubString(json.IndexOf("{"))
-				Dim parser As JSONParser
-				parser.Initialize(json)
-				Dim root As Map = parser.NextObject
-				Dim code As Int = root.Get("code")
-				Dim message As String = root.Get("message")
-				Log("Code: " & code & " Message: " & message)
-				Return "Code: " & code & " Message: " & message
-			Else
-				Return json
-			End If
-		End If
-	Catch
-		Log(LastException)
-		'ToastMessageShow("GetRESTError: " & LastException,False)
-		Return json
-	End Try
-End Sub
-
-Sub GetCameraInfo(json As String, isJustInfoNeeded As Boolean) As ResumableSub
-	Try
-		Dim parser As JSONParser
-		parser.Initialize(json)
-		Dim root As Map = parser.NextObject
-		Dim camera_status As Map = root.Get("camera_status")
-'		Dim total_108_wakeups As Int = camera_status.Get("total_108_wakeups")
-		Dim battery_voltage As Int = camera_status.Get("battery_voltage")
-'		Dim light_sensor_data_valid As String = camera_status.Get("light_sensor_data_valid")
-'		Dim lfr_tb_wakeups As Int = camera_status.Get("lfr_tb_wakeups")
-'		Dim fw_git_hash As String = camera_status.Get("fw_git_hash")
-		Dim wifi_strength As Int = camera_status.Get("wifi_strength")
-'		Dim lfr_strength As Int = camera_status.Get("lfr_strength")
-'		Dim total_tb_wakeups As Int = camera_status.Get("total_tb_wakeups")
-'		Dim created_at As String = camera_status.Get("created_at")
-'		Dim light_sensor_ch0 As Int = camera_status.Get("light_sensor_ch0")
-'		Dim mac As String = camera_status.Get("mac")
-'		Dim unit_number As Int = camera_status.Get("unit_number")
-		Dim updated_at As String = camera_status.Get("updated_at")
-'		Dim light_sensor_ch1 As Int = camera_status.Get("light_sensor_ch1")
-'		Dim time_dhcp_lease As Int = camera_status.Get("time_dhcp_lease")
-'		Dim temperature As Int = camera_status.Get("temperature")
-'		Dim time_first_video As Int = camera_status.Get("time_first_video")
-'		Dim time_dns_resolve As Int = camera_status.Get("time_dns_resolve")
-'		Dim id As Int = camera_status.Get("id")
-'		Dim temp_alert_status As String = camera_status.Get("temp_alert_status")
-'		Dim time_108_boot As Int = camera_status.Get("time_108_boot")
-'		Dim lfr_108_wakeups As Int = camera_status.Get("lfr_108_wakeups")
-		cameraThumbnail = camera_status.Get("thumbnail")
-'		Dim lifetime_duration As Int = camera_status.Get("lifetime_duration")
-'		Dim wifi_connect_failure_count As Int = camera_status.Get("wifi_connect_failure_count")
-		Dim camera_id As Int = camera_status.Get("camera_id")
-'		Dim battery_alert_status As String = camera_status.Get("battery_alert_status")
-'		Dim dhcp_failure_count As Int = camera_status.Get("dhcp_failure_count")
-'		Dim ip_address As String = camera_status.Get("ip_address")
-'		Dim ipv As String = camera_status.Get("ipv")
-'		Dim light_sensor_data_new As String = camera_status.Get("light_sensor_data_new")
-'		Dim network_id As Int = camera_status.Get("network_id")
-'		Dim account_id As Int = camera_status.Get("account_id") '88438
-'		Dim serial As String = camera_status.Get("serial")
-'		Dim dev_1 As Int = camera_status.Get("dev_1")
-'		Dim time_wlan_connect As Int = camera_status.Get("time_wlan_connect")
-'		Dim dev_2 As Int = camera_status.Get("dev_2")
-'		Dim socket_failure_count As Int = camera_status.Get("socket_failure_count")
-'		Dim dev_3 As Int = camera_status.Get("dev_3")
-'		Dim pir_rejections As Int = camera_status.Get("pir_rejections")
-'		Dim sync_module_id As Int = camera_status.Get("sync_module_id")
-'		Dim lifetime_count As Int = camera_status.Get("lifetime_count")
-'		Dim error_codes As Int = camera_status.Get("error_codes")
-		Dim fw_version As String = camera_status.Get("fw_version")
-'		Dim ac_power As String = camera_status.Get("ac_power")
-
-'		Dim strTimestamp As String
-'		strTimestamp = ConvertDateTime(updated_at)
-'		lblStatus.Text = "Last updated: " & strTimestamp
-
-		If isJustInfoNeeded Then Return Null
-
-		If camera_id = "347574" Then
-			lblDrivewayBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & drivewayBattStatus
-			lblDrivewayTimestamp.Text = ConvertDateTime(updated_at)
-			lblDriveway.Text = "Driveway v" & fw_version & " " & drivewayArmedStatus
-			lblDrivewayWifi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
-		Else If camera_id = "236967" Then
-			lblFrontDoorBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & frontdoorBattStatus
-			lblFrontDoorTimestamp.Text = ConvertDateTime(updated_at)
-			lblFrontDoor.Text = "Front Door v" & fw_version  & " " & frontdoorArmedStatus
-			lblFrontDoorWiFi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
-		Else If camera_id = "458236" Then
-			lblSideYardBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & sideyardBattStatus
-			lblSideYardTimestamp.Text = ConvertDateTime(updated_at)
-			lblSideYard.Text = "Side Yard v" & fw_version  & " " & sideyardArmedStatus
-			lblSideYardWiFi.Text = "WiFi: " & wifi_strength & "dBm - " & CheckLFRLevel(wifi_strength)
-		End If
-		If lblSideYardBatt.Text.Contains("OFFLINE") Then
-			lblSideYardBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & sideyardBattStatus
-		Else if lblDrivewayBatt.Text.Contains("OFFLINE") Then
-			lblDrivewayBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & drivewayBattStatus
-		Else if lblFrontDoorBatt.Text.Contains("OFFLINE") Then
-			lblFrontDoorBatt.Text = "Batt: " & NumberFormat2((battery_voltage / 100),0,2,2,False) & "V " & frontdoorBattStatus
-		End If
-	Catch
-		Log(LastException)
-	End Try
-	Return Null
-End Sub
-
-Sub GetSyncModuleInfo(json As String) As ResumableSub
-	Try
-		Dim parser As JSONParser
-		parser.Initialize(json)
-		Dim root As Map = parser.NextObject
-		Dim syncmodule As Map = root.Get("syncmodule")
-'	Dim onboarded As String = syncmodule.Get("onboarded")
-'	Dim server As String = syncmodule.Get("server")
-'	Dim feature_plan_id As String = syncmodule.Get("feature_plan_id")
-		Dim wifi_strength As Int = syncmodule.Get("wifi_strength")
-		Dim os_version As String = syncmodule.Get("os_version")
-'	Dim created_at As String = syncmodule.Get("created_at")
-'	Dim ip_address As String = syncmodule.Get("ip_address")
-'	Dim table_update_sequence As Int = syncmodule.Get("table_update_sequence")
-'	Dim lfr_frequency As String = syncmodule.Get("lfr_frequency")
-'	Dim last_wifi_alert As String = syncmodule.Get("last_wifi_alert")
-'	Dim offline_alert_count As Int = syncmodule.Get("offline_alert_count")
-'	Dim last_hb As String = syncmodule.Get("last_hb")
-'	Dim network_id As Int = syncmodule.Get("network_id")
-'	Dim last_activity As String = syncmodule.Get("last_activity")
-'	Dim account_id As Int = syncmodule.Get("account_id") '88438
-'	Dim updated_at As String = syncmodule.Get("updated_at")
-'	Dim serial As String = syncmodule.Get("serial")
-'	Dim mac_address As String = syncmodule.Get("mac_address")
-'	Dim wifi_alert_count As Int = syncmodule.Get("wifi_alert_count")
-'	Dim name As String = syncmodule.Get("name")
-'	Dim id As Int = syncmodule.Get("id")
-		Dim fw_version As String = syncmodule.Get("fw_version")
-'	Dim last_offline_alert As String = syncmodule.Get("last_offline_alert")
-		Dim status As String = syncmodule.Get("status")
-		Dim jo As JavaObject = lblSyncModule
-		Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-		
-		If status = "online" Then
-			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
-		Else
-			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-		End If
-		lblSyncModule.Text = "Sync Module is " & status & CRLF & CRLF & "Wifi Strength: " & wifi_strength & " bars" & CRLF & "Firmware version: " & fw_version & CRLF & "OS version: " & os_version
-	Catch
-		Log(LastException)
-	End Try
-	Return Null
-End Sub
-
-Sub GetHomescreen(json As String) As ResumableSub
-	Try
-		Dim parser As JSONParser
-		parser.Initialize(json)
-		Dim root As Map = parser.NextObject
-		Dim devices As List = root.Get("devices")
-		For Each coldevices As Map In devices
-			Dim battery_state As String = coldevices.Get("battery_state")
-'			Dim thumbnail As String = coldevices.Get("thumbnail")
-'			'Dim temp As Int = coldevices.Get("temp")
-'			Dim error_msg As String = coldevices.Get("error_msg")
-			Dim device_id As Int = coldevices.Get("device_id")
-'			Dim wifi_strength As Int = coldevices.Get("wifi_strength")
-'			Dim lfr_strength As Int = coldevices.Get("lfr_strength")
-			Dim active As String = coldevices.Get("active")
-'			Dim device_type As String = coldevices.Get("device_type")
-'			Dim Type As String = coldevices.Get("type")
-			Dim battery As Int = coldevices.Get("battery")
-			Dim enabled As String = coldevices.Get("enabled")
-'			Dim updated_at As String = coldevices.Get("updated_at")
-'			Dim usage_rate As String = coldevices.Get("usage_rate")
-'			Dim armed As String = coldevices.Get("armed")
-'			Dim name As String = coldevices.Get("name")
-'			Dim warning As Int = coldevices.Get("warning")
-'			Dim notifications As Int = coldevices.Get("notifications")
-'			Dim errors As Int = coldevices.Get("errors")
-			Dim status As String = coldevices.Get("status")
-			
-		
-			If device_id = "347574" Then
-				If active = "armed" Then
-					If enabled = "true" Then
-						drivewayArmedStatus = ""
-						Dim jo As JavaObject = lblDriveway
-						Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-					Else
-						drivewayArmedStatus = "MOTION DETECTION IS DISABLED!"
-						Dim jo As JavaObject = lblDriveway
-						Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-					End If
-				Else
-					drivewayArmedStatus = "NOT ARMED!"
-					Dim jo As JavaObject = lblDriveway
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-				If battery > 1 And battery_state = "ok" Then
-					drivewayBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
-					Dim jo As JavaObject = lblDrivewayBatt
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
-				Else
-					drivewayBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
-					If drivewayBattStatus = "[Level 1 - LOW]" Then
-						drivewayBattStatus = "[REPLACE]"
-					End If
-					Dim jo As JavaObject = lblDrivewayBatt
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-				If status = "offline" Then
-					drivewayBattStatus = "OFFLINE"
-					Dim jo As JavaObject = lblDrivewayBatt
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-			Else If device_id = "236967" Then
-				If active = "armed" Then
-					If enabled = "true" Then
-						frontdoorArmedStatus = ""
-						Dim jo As JavaObject = lblFrontDoor
-						Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-					Else
-						frontdoorArmedStatus = "MOTION DETECTION IS DISABLED!"
-						Dim jo As JavaObject = lblFrontDoor
-						Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-					End If
-				Else
-					frontdoorArmedStatus = "NOT ARMED!"
-					Dim jo As JavaObject = lblFrontDoor
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-				If battery > 1 And battery_state = "ok" Then
-					frontdoorBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
-					Dim jo As JavaObject = lblFrontDoorBatt
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
-				Else
-					frontdoorBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
-					If frontdoorBattStatus = "[Level 1 - LOW]" Then
-						frontdoorBattStatus = "[REPLACE]"
-					End If
-					Dim jo As JavaObject = lblFrontDoorBatt
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-				If status = "offline" Then
-					frontdoorBattStatus = "OFFLINE"
-					Dim jo As JavaObject = lblFrontDoorBatt
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-			Else If device_id = "458236" Then
-				If active = "armed" Then
-					If enabled = "true" Then
-						sideyardArmedStatus = ""
-						Dim jo As JavaObject = lblSideYard
-						Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-					Else
-						sideyardArmedStatus ="MOTION DETECTION IS DISABLED!"
-						Dim jo As JavaObject = lblSideYard
-						Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-						jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-					End If
-				Else
-					sideyardArmedStatus = "NOT ARMED!"
-					Dim jo As JavaObject = lblSideYard
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-				If battery > 1 And battery_state = "ok" Then
-					sideyardBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
-					Dim jo As JavaObject = lblSideYardBatt
-					Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
-				Else
-					sideyardBattStatus = "[Level " & battery & " - " & battery_state.ToUpperCase & "]"
-					If sideyardBattStatus = "[Level 1 - LOW]" Then
-						sideyardBattStatus = "[REPLACE]"
-					End If
-					Dim jo As JavaObject = lblSideYardBatt
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-				If status = "offline" Then
-					sideyardBattStatus = "OFFLINE"
-					Dim jo As JavaObject = lblSideYardBatt
-					Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-					jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-				End If
-			End If
-		Next
-		
-'		Dim account As Map = root.Get("account")
-'		Dim notifications As Int = account.Get("notifications")
-		Dim network As Map = root.Get("network")
-'		Dim enable_temp_alerts As String = network.Get("enable_temp_alerts")
-'		Dim error_msg As String = network.Get("error_msg")
-'		Dim wifi_strength As Int = network.Get("wifi_strength")
-		Dim armedNetwork As String = network.Get("armed")
-'		Dim name As String = network.Get("name")
-'		Dim warning As Int = network.Get("warning")
-'		Dim notifications As Int = network.Get("notifications")
-'		Dim status As String = network.Get("status")
-		
-		If armedNetwork <> "true" Then
-			drivewayArmedStatus = "SYSTEM NOT ARMED!"
-			Dim jo As JavaObject = lblDriveway
-			Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-			
-			frontdoorArmedStatus = "SYSTEM NOT ARMED!"
-			Dim jo As JavaObject = lblFrontDoor
-			Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-			
-			sideyardArmedStatus = "SYSTEM NOT ARMED!"
-			Dim jo As JavaObject = lblSideYard
-			Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Red))
-		End If
-	Catch
-		Log(LastException)
-	End Try
-	Return Null
-End Sub
-
-
-'Sub CheckBattLife(battlevel As Int, lbl As Label) As String
-'	Try
-'		' http://data.energizer.com/pdfs/l91.pdf
-'		Dim jo As JavaObject = lbl
-'		Dim radius = 4dip, dx = 0dip, dy = 0dip As Float
-'		If battlevel <= 136 Then
-'			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.red))
-'			Return "Replace battery now!"
-'		else If battlevel >= 160 Then
-'			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
-'			Return "High"
-'		else If battlevel > 136 And battlevel < 140 Then
-'			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.RGB(255,127,80)))
-'			Return "Low"
-'		Else
-'			jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Green))
-'			Return "Good"
-'		End If
-'	Catch
-'		Log(LastException)
-'		'ToastMessageShow("CheckBattLife: " & LastException,False)
-'		Return ""
-'	End Try
-'End Sub
-
-Sub CheckLFRLevel(lfrlevel As Int) As String
-	Try
-		' https://www.metageek.com/training/resources/wifi-signal-strength-basics.html
-		If lfrlevel > -67 Then
-			Return "Amazing"
-		else If lfrlevel > -70 And lfrlevel <= -67 Then
-			Return "Very good"
-		else If lfrlevel > -80 And lfrlevel <= -70 Then
-			Return "OK"
-		else If lfrlevel > -90 And lfrlevel <= -80 Then
-			Return "Not Good"
-		Else
-			Return "Unusable"
-		End If
-	Catch
-		Log(LastException)
-		lblStatus.Text = "CheckLFRLevel LastException: " & LastException
-		Return ""
-	End Try
-End Sub
-
-Sub ConvertDateTime(inputTime As String) As String
-	' https://www.b4x.com/android/forum/threads/convert-utc-to-ticks-and-vice-versa.36592/#content
-	Dim ticks As Long = ParseUTCstring(inputTime.Replace("+00:00","+0000"))
-	DateTime.DateFormat = "MMM d, yyyy h:mm:ss a"
-	Dim lngTicks As Long = ticks
-	'Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-	'Log("Time difference: " & p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s")
-	Return DateTime.Date(lngTicks)
-End Sub
-
-Sub ParseUTCstring(utc As String) As Long
-	Dim df As String = DateTime.DateFormat
-	Dim res As Long
-	If utc.CharAt(10) = "T" Then
-		'convert the second format to the first one.
-		If utc.CharAt(19) = "." Then utc = utc.SubString2(0, 19) & "+0000"
-		DateTime.DateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-		' 2019-09-20T13:04:05+00:00
-	Else
-		DateTime.DateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
-	End If
-	Try
-		res = DateTime.DateParse(utc)
-	Catch
-		res = 0
-	End Try
-	DateTime.DateFormat = df
-	Return res
-End Sub
-
-Sub btnDriveway_Click
-	Dim bd As BitmapDrawable
-	bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-	If Msgbox2("Capture new camera thumbnails?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then 'ignore
-		ScrollViewBlink.ScrollToNow(0)
-		btnDriveway.Enabled = False
-		btnRefresh.Enabled = False
-		btnDrivewayNewClip.Enabled = False
-		btnFrontDoorNewClip.Enabled = False
-		btnSideYardNewClip.Enabled = False
-		btnDrivewayRefresh.Enabled = False
-		btnFrontDoorRefresh.Enabled = False
-		btnSideYardRefresh.Enabled = False
-		ivDriveway.Enabled = False
-		ivFrontDoor.Enabled = False
-		ivSideYard.Enabled = False
-		BlurIV("Driveway.jpg",ivDriveway)
-		BlurIV("FrontDoor.jpg",ivFrontDoor)
-		BlurIV("SideYard.jpg",ivSideYard)
-'		Dim rs As ResumableSub = RefreshCameras(False, "All")
-'		wait for (rs) complete (Result As Object)
-
-		Dim rs As ResumableSub = RefreshCameras(False, "347574")
-		wait for (rs) complete (Result As Object)
-
-		Dim rs As ResumableSub = RefreshCameras(False, "236967")
-		wait for (rs) complete (Result As Object)
-	
-		Dim rs As ResumableSub = RefreshCameras(False, "458236")
-		wait for (rs) complete (Result As Object)
-		
-		btnDriveway.Enabled = True
-		btnRefresh.Enabled = True
-		btnDrivewayNewClip.Enabled = True
-		btnFrontDoorNewClip.Enabled = True
-		btnSideYardNewClip.Enabled = True
-		btnDrivewayRefresh.Enabled = True
-		btnFrontDoorRefresh.Enabled = True
-		btnSideYardRefresh.Enabled = True
-		ivDriveway.Enabled = True
-		ivFrontDoor.Enabled = True
-		ivSideYard.Enabled = True
-	End If
-End Sub
-
-Sub BlurIV (image As String,iv As ImageView)
-	Try
-		bmp = xui.LoadBitmapResize(File.DirInternal, image, iv.Width, iv.Height, True)
-		iv.Bitmap = (Blur)
-	Catch
-		Log(LastException)
-		'ToastMessageShow("BlurIV: " & LastException,False)
-	End Try
-End Sub
-
-Private Sub Blur () As B4XBitmap
-	Dim bcBitmap As BitmapCreator
-	Dim ReduceScale As Int = 2
-	bcBitmap.Initialize(bmp.Width / ReduceScale / bmp.Scale, bmp.Height / ReduceScale / bmp.Scale)
-	bcBitmap.CopyPixelsFromBitmap(bmp)
-	Dim count As Int = 3
-	Dim clrs(3) As ARGBColor
-	Dim temp As ARGBColor
-	Dim m As Int
-	For steps = 1 To count
-		For y = 0 To bcBitmap.mHeight - 1
-			For x = 0 To 2
-				bcBitmap.GetARGB(x, y, clrs(x))
-			Next
-			SetAvg(bcBitmap, 1, y, clrs, temp)
-			m = 0
-			For x = 2 To bcBitmap.mWidth - 2
-				bcBitmap.GetARGB(x + 1, y, clrs(m))
-				m = (m + 1) Mod clrs.Length
-				SetAvg(bcBitmap, x, y, clrs, temp)
-			Next
-		Next
-		For x = 0 To bcBitmap.mWidth - 1
-			For y = 0 To 2
-				bcBitmap.GetARGB(x, y, clrs(y))
-			Next
-			SetAvg(bcBitmap, x, 1, clrs, temp)
-			m = 0
-			For y = 2 To bcBitmap.mHeight - 2
-				bcBitmap.GetARGB(x, y + 1, clrs(m))
-				m = (m + 1) Mod clrs.Length
-				SetAvg(bcBitmap, x, y, clrs, temp)
-			Next
-		Next
-	Next
-	Return bcBitmap.Bitmap
-End Sub
-
-Private Sub SetAvg(bcBitmap As BitmapCreator, x As Int, y As Int, clrs() As ARGBColor, temp As ARGBColor)
-	temp.Initialize
-	For Each c As ARGBColor In clrs
-		temp.r = temp.r + c.r
-		temp.g = temp.g + c.g
-		temp.b = temp.b + c.b
-	Next
-	temp.a = 255
-	temp.r = temp.r / clrs.Length
-	temp.g = temp.g / clrs.Length
-	temp.b = temp.b / clrs.Length
-	bcBitmap.SetARGB(x, y, temp)
-End Sub
-
-Sub SetTextShadow(lbl As Label)
-	Dim jo As JavaObject = lbl
-	Dim radius = 2dip, dx = 0dip, dy = 0dip As Float
-	jo.RunMethod("setShadowLayer", Array(radius, dx, dy, Colors.Black))
-End Sub
-
-Sub ivSideYard_Click
-	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/458236")
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = GetCameraInfo(response,False)
-	wait for (rs) complete (Result As Object)
-	
-	
-	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "458236")
-	wait for (rs) complete (Result As Object)
-	If response.StartsWith("ERROR: ") = False Then
-		lblStatus.Text = "Ready"
-	End If
-End Sub
-
-Sub ivFrontDoor_Click
-	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/236967")
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = GetCameraInfo(response,False)
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "236967")
-	wait for (rs) complete (Result As Object)
-	If response.StartsWith("ERROR: ") = False Then
-		lblStatus.Text = "Ready"
-	End If
-End Sub
-
-Sub ivDriveway_Click
-	Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/camera/347574")
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = GetCameraInfo(response,False)
-	wait for (rs) complete (Result As Object)
-	
-	Dim rs As ResumableSub = DownloadImageFullscreen("https://rest-" & userRegion &".immedia-semi.com/" & cameraThumbnail & ".jpg", "347574")
-	wait for (rs) complete (Result As Object)
-	If response.StartsWith("ERROR: ") = False Then
-		lblStatus.Text = "Ready"
-	End If
-End Sub
-
-Sub GetVideos(json As String) As ResumableSub
-	Try
-		Dim parser As JSONParser
-		parser.Initialize(json)
-		Dim root As Map = parser.NextObject
-		Dim media As List = root.Get("media")
-		
-		clvActivity.Clear
-		
-		'ProgressDialogShow2("Loading video clips...",False)
-		Pages = Array(False, False, False, False, False, True) 'True = Enabled
-		For Each colmedia As Map In media
-			Dim thumbnail As String = colmedia.Get("thumbnail")
-			Dim created_at As String = colmedia.Get("created_at")
-			Dim device_name As String = colmedia.Get("device_name")
-			Dim watched As String = colmedia.Get("watched")
-			Dim medianame As String = colmedia.Get("media")
-			Dim VideoID As String = colmedia.Get("id")
-			Dim mytypes As Object = Starter.kvs.Get(VideoID)
-			Dim videos = mytypes As VideoInfo
-			If (videos = Null) Or (watched <> videos.Watched) Then
-				Dim j As HttpJob
-				j.Initialize("", Me)
-				j.Download("https://rest-" & userRegion &".immedia-semi.com" & thumbnail & ".jpg")
-				j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
-				Wait For (j) JobDone(j As HttpJob)
-				If j.Success Then
-					Dim out As OutputStream = File.OpenOutput(File.DirInternal, "screenshot.jpg", False)
-					File.Copy2(j.GetInputStream, out)
-					out.Close '<------ very important
-					Dim image As B4XBitmap = xui.LoadBitmapResize(File.DirInternal, "screenshot.jpg", 178dip, 100dip, True)
-					Dim out As OutputStream
-					out.InitializeToBytesArray(0)
-					image.WriteToStream(out, 100, "JPEG")
-					Starter.kvs.Put(VideoID, CreateCustomType(medianame,created_at,watched,device_name,VideoID,out.ToBytesArray))
-					out.Close
-				End If
-				j.Release
-			End If
-		Next
-		
-		Dim bmp2 As Bitmap
-		clvActivity.Clear
-		Dim list1 As List = Starter.kvs.ListKeys
-		For i =  0 To list1.Size-1
-			
-			'Log("kvs.ListKeys " & i & " | " & videos.VideoID & " | " & videos.Watched)
-			
-			If i > 49 Then
-				Starter.kvs.Remove(list1.Get(i))
-			Else
-				Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
-				Dim videos = mytypes As VideoInfo
-				Dim In As InputStream
-				In.InitializeFromBytesArray(videos.ThumbnailBLOB, 0, videos.ThumbnailBLOB.Length)
-				
-				bmp2.Initialize2(In)
-				Dim cd As CardData
-				cd.Initialize
-				cd.screenshot = bmp2
-				cd.filedate = videos.DateCreated
-				cd.deviceinfo = videos.DeviceName
-				cd.iswatchedvisible = Not(videos.Watched)
-				cd.mediaURL = "https://rest-" & userRegion &".immedia-semi.com" & videos.ThumbnailPath
-				Dim p As B4XView = xui.CreatePanel("")
-				p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width, 100dip)
-				clvActivity.Add(p, cd)
-			End If
-		Next
-			
-		'ProgressDialogHide
-
-		If list1.Size > 0 Then
-			clvActivity.JumpToItem(0)
-			Sleep(100)
-			clvActivity_ItemClick(0,"") '"https://rest-" & userRegion &".immedia-semi.com" & videos.ThumbnailPath & "|" & videos.DeviceName & " " & ConvertFullDateTime(videos.DateCreated))
-			Sleep(100)
-		End If
-	Catch
-		Log(LastException)
-	End Try
-	B4XLoadingIndicator4.hide
-	Pages = Array(True, True, True, True, True, True) 'True = Enabled
-	Return Null
-End Sub
-
-Private Sub CreateCustomType(ThumbnailPath As String, DateCreated As String, Watched As String, DeviceName As String, VideoID As String, ThumbnailBLOB() As Byte) As VideoInfo
-	Dim ct As VideoInfo
-	ct.Initialize
-	ct.ThumbnailPath = ThumbnailPath
-	ct.DateCreated = DateCreated
-	ct.Watched = Watched
-	ct.DeviceName = DeviceName
-	ct.ThumbnailBLOB = ThumbnailBLOB
-	ct.VideoID = VideoID
-	Return ct
-End Sub
-
-
-Sub clvActivity_VisibleRangeChanged (FirstIndex As Int, LastIndex As Int)
-	Dim ExtraSize As Int = 1
-	For i = 0 To clvActivity.Size - 1
-		Dim p As B4XView = clvActivity.GetPanel(i)
-		If i > FirstIndex - ExtraSize And i < LastIndex + ExtraSize Then
-			'visible+
-			If p.NumberOfViews = 0 Then
-				Dim cd As CardData = clvActivity.GetValue(i)
-				p.LoadLayout("blinkcellitem")
-				ivScreenshot.Bitmap = cd.screenshot
-								
-				Dim dayname As String
-				dayname = ConvertDayName(cd.filedate)
-				If cd.iswatchedvisible Then
-					ivWatched.Visible = True
-					lblDate.Text = "   " & dayname & " " & ConvertDateTimePeriod(cd.filedate,dayname)
-				Else
-					ivWatched.Visible = False
-					lblDate.Text = "   " & dayname
-				End If
-				lblFileInfo.Text = "   " & ConvertFullDateTime(cd.filedate)
-				lblDeviceInfo.Text = "   " & cd.deviceinfo
-				lblMediaURL.Text = cd.mediaURL
-						
-				If previousSelectedIndex > (clvActivity.Size-1) Then
-					previousSelectedIndex = 0
-				End If
-				If previousSelectedIndex = i Then
-					Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
-					If p.NumberOfViews > 0 Then
-						Dim backPane As B4XView = p.getview(0)
-						backPane.Color = xui.Color_ARGB(255,217,215,222)
-						
-						Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
-						ContentLabel.Visible = True
-					End If
-				End If
-			End If
-		Else
-			'not visible
-			If p.NumberOfViews > 0 Then
-				Dim ivCleanUP As ImageView = p.GetView(0).GetView(3)
-				ivCleanUP.Bitmap = Null
-				p.RemoveAllViews
-			End If
-		End If
-	Next
-End Sub
-
-'
-'Sub CreateListItem(screenshot As B4XBitmap, fileinfo As String, devicename As String, isWatchedVisible As Boolean) As B4XView
-'	Try
-'		'https://www.b4x.com/android/forum/threads/customlistview.103498/#post-648747
-'		'https://www.b4x.com/android/forum/threads/customlistview-b4a-to-b4j.85047/#post-539068
-'		'https://www.b4x.com/android/forum/threads/b4x-xui-xcustomlistview.90789/#post-573958
-'		Dim p As B4XView = xui.CreatePanel("")
-'		'Dim height As Int = 280dip
-'		'If GetDeviceLayoutValues.ApproximateScreenSize < 4.5 Then height = 310dip
-'		p.SetLayoutAnimated(0, 0, 0, clvActivity.AsView.Width,100dip)
-'		p.LoadLayout("blinkcellitem")
-'		ivScreenshot.Bitmap = screenshot
-'		If isWatchedVisible Then
-'			lblDate.Text = "   " & ConvertDayName(fileinfo)
-'			lblDate.Text = lblDate.Text & " " & ConvertDateTimePeriod(fileinfo,ConvertDayName(fileinfo))
-'		Else
-'			lblDate.Text = "   " & ConvertDayName(fileinfo)
-'		End If
-'		lblFileInfo.Text = "   " & ConvertFullDateTime(fileinfo)
-'		lblDeviceInfo.Text = "   " & devicename
-'		Return p
-'		
-'	Catch
-'		Log(LastException)
-'		Return Null
-'	End Try
-'End Sub
-
-Sub clvActivity_ItemClick (Index As Int, Value As Object)
-	Try
-		Dim p As B4XView = clvActivity.GetPanel(Index)
-		If p.NumberOfViews > 0 Then
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
-			ContentLabel.Visible = False
-			
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(4)
-			ContentLabel.Visible = False
-		End If
-		
-		UpdateItemColor(Index)
-		wvMedia.LoadUrl("")
-		
-		Dim cd As CardData = clvActivity.GetValue(Index)
-		Dim videoURL As String = cd.mediaURL
-		
-		B4XLoadingIndicator4.Show
-		
-		Dim list1 As List = Starter.kvs.ListKeys
-		For i =  0 To list1.Size-1
-			Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
-			Dim videos = mytypes As VideoInfo
-			If videoURL.Contains(videos.VideoID) Then
-				Starter.kvs.Put(videos.VideoID,CreateCustomType(videos.ThumbnailPath,videos.DateCreated,"true",videos.DeviceName,videos.VideoID,videos.ThumbnailBLOB))
-			End If
-		Next
-		lblDuration.Text = "0:00"
-		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-		Dim rs As ResumableSub = ShowVideo(videoURL)
-		wait for (rs) complete (Result As Object)
-		
-		' https://www.b4x.com/android/forum/threads/b4x-resumable-subs-that-return-values-resumablesub.82670/
-		Dim rs As ResumableSub = GetUnwatchedVideos
-		wait for (rs) complete (Results As Object)
-		
-	Catch
-		Log(LastException)
-	End Try
-	B4XLoadingIndicator4.Hide
-End Sub
-
-Sub UpdateItemColor (Index As Int)
-	Try
-		If previousSelectedIndex > (clvActivity.Size-1) Then
-			previousSelectedIndex = 0
-		End If
-		
-		If previousSelectedIndex <> Index Then
-			Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
-			If p.NumberOfViews > 0 Then
-				Dim backPane As B4XView = p.getview(0)
-				backPane.Color = xui.Color_White
-				
-				Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
-				ContentLabel.Visible = False
-			End If
-		End If
-	
-		Dim p As B4XView = clvActivity.GetPanel(Index)
-		If p.NumberOfViews > 0 Then
-			Dim backPane As B4XView = p.getview(0)
-			backPane.Color = xui.Color_ARGB(255,217,215,222)
-			
-			Dim ContentLabel As B4XView = p.GetView(0).GetView(6)
-			ContentLabel.Visible = True
-		End If
-	
-		previousSelectedIndex = Index
-	Catch
-		Log(LastException)
-	End Try
-End Sub
-
-'Sub UpdateItemColor (Index As Int, Color As Int)
-'	Try
-'		If previousSelectedIndex <> Index Then
-'			Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
-'			If p.NumberOfViews > 0 Then
-'				'get the content label view (it is inside an additional panel)
-'				Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
-'				ContentLabel.TextColor = -1979711488 
-'		
-'				Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
-'				ContentLabel.TextColor = -1979711488 
-'		
-'				Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
-'				ContentLabel.TextColor = -1979711488
-'			End If
-'		End If
-'	
-'		Dim p As B4XView = clvActivity.GetPanel(Index)
-'		If p.NumberOfViews > 0 Then
-'			'get the content label view (it is inside an additional panel)
-'			Dim ContentLabel As B4XView = p.GetView(0).GetView(0) ' 2nd label e.g. Today 10:30 am
-'			ContentLabel.TextColor = Color
-'		
-'			Dim ContentLabel As B4XView = p.GetView(0).GetView(1) ' 3rd label e.g. 48m 35s 2s ago
-'			ContentLabel.TextColor = Color
-'		
-'			Dim ContentLabel As B4XView = p.GetView(0).GetView(2) ' 1st label e.g. Front Door
-'			ContentLabel.TextColor = Color
-'		End If
-'
-'		previousSelectedIndex = Index
-'	Catch
-'		Log(LastException)
-'	End Try
-'End Sub
-
-Sub ConvertDateTimePeriod(inputTime As String, dayname As String) As String
-	' https://www.b4x.com/android/forum/threads/convert-utc-to-ticks-and-vice-versa.36592/#content
-	Dim ticks As Long = ParseUTCstring(inputTime.Replace("+00:00","+0000"))
-	DateTime.DateFormat = "MMM d, yyyy h:mm:ss a"
-	Dim lngTicks As Long = ticks
-	Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-	'Log("Time difference: " & p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s")
-	If dayname.Contains("Today") Then
-		If p.Days = 0 Then
-			If p.Hours = 0 Then
-				If p.Minutes = 0 Then
-					Return p.Seconds & "s ago"
-				Else
-					Return p.Minutes & "m " & p.Seconds & "s ago"
-				End If
-			Else
-				Return p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
-			End If
-		else If p.Hours = 0 Then
-			If p.Minutes = 0 Then
-				Return p.Seconds & "s ago"
-			Else
-				Return p.Minutes & "m " & p.Seconds & "s ago"
-			End If
-		else If p.Minutes = 0 Then
-			Return p.Seconds & "s ago"
-		Else
-			Return p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
-		End If
-	else if dayname.Contains("Yesterday") Then
-		If p.Days = 0 Then
-			If p.Hours = 0 Then
-				If p.Minutes = 0 Then
-					Return p.Seconds & "s ago"
-				Else
-					Return p.Minutes & "m " & p.Seconds & "s ago"
-				End If
-			Else
-				Return p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
-			End If
-		Else
-			Return p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
-		End If
-	Else
-		Return p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago"
-	End If
-
-End Sub
-
-Sub ConvertDayName(inputTime As String) As String
-	' https://www.b4x.com/android/forum/threads/convert-utc-to-ticks-and-vice-versa.36592/#content
-	Dim ticks As Long = ParseUTCstring(inputTime.Replace("+00:00","+0000"))
-	DateTime.DateFormat = "MMM d, yyyy h:mm:ss a"
-	Dim lngTicks As Long = ticks
-
-	Dim Yesterday As Long
-	Dim timestamp As Long
-	DateTime.DateFormat = "yyyyMMdd"
-	Yesterday = DateTime.Date(DateTime.add(DateTime.Now, 0, 0, -1))
-	timestamp = DateTime.Date(lngTicks)
-
-	DateTime.DateFormat = "h:mm:ss a"
-	If DateUtils.IsSameDay(lngTicks,DateTime.now) Then
-		Return "Today" '& DateTime.Date(lngTicks)
-	Else If Yesterday = timestamp Then
-		Return "Yesterday" '& DateTime.Date(lngTicks)
-	Else
-		Return DateUtils.GetDayOfWeekName(lngTicks) '& " " & DateTime.Date(lngTicks)
-	End If
-End Sub
-
-Sub ConvertFullDateTime(inputTime As String) As String
-	' https://www.b4x.com/android/forum/threads/convert-utc-to-ticks-and-vice-versa.36592/#content
-	Dim ticks As Long = ParseUTCstring(inputTime.Replace("+00:00","+0000"))
-	DateTime.DateFormat = "MMM d, yyyy h:mm:ss a"
-	Dim lngTicks As Long = ticks
-
-	Dim Yesterday As Long
-	Dim timestamp As Long
-	DateTime.DateFormat = "yyyyMMdd"
-	Yesterday = DateTime.Date(DateTime.add(DateTime.Now, 0, 0, -1))
-	timestamp = DateTime.Date(lngTicks)
-
-	DateTime.DateFormat = "h:mm:ss a"
-	If DateUtils.IsSameDay(lngTicks,DateTime.now) Then
-		Return DateTime.Date(lngTicks)
-	Else If Yesterday = timestamp Then
-		Return DateTime.Date(lngTicks)
-	Else
-		Return DateTime.Date(lngTicks)
-	End If
-End Sub
-
-Sub ShowVideo (Link As String) As ResumableSub
-	Try
-		Dim j As HttpJob
-		j.Initialize("", Me)
-		j.Download(Link)
-		j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
-		Wait For (j) JobDone(j As HttpJob)
-		B4XLoadingIndicator4.hide
-		If j.Success Then
-			' Save to a JPG file
-			Dim out As OutputStream = File.OpenOutput(File.DirInternal, "media.mp4", False)
-			File.Copy2(j.GetInputStream, out)
-			out.Close '<------ very important
-			
-			Dim sb As StringBuilder
-			sb.Initialize
-			sb.Append("<video width='100%' height='100%' controls autoplay muted>")
-			sb.Append("<source src='" & File.Combine(File.DirInternal, "\media.mp4") & "' Type='video/mp4'/>")
-			sb.Append("</video>")
-			Dim WebViewSettings1 As WebViewSettings
-			WebViewSettings1.setMediaPlaybackRequiresUserGesture(wvMedia,False)
-			wvMedia.LoadHtml(sb.ToString)
-			
-			Dim r As Reflector
-			r.Target = wvMedia
-			r.Target = r.RunMethod("getSettings")
-			r.RunMethod2("setBuiltInZoomControls", True, "java.lang.boolean")
-			r.RunMethod2("setDisplayZoomControls", False, "java.lang.boolean")
-				
-			mediaMetaData.Initialize
-			mediaMetaData.ProcessMediaFile(File.DirInternal,"media.mp4")
-			Dim ticks As Long = (mediaMetaData.GetDuration/1000) * DateTime.TicksPerSecond
-			lblDuration.Text = ConvertTicksToTimeString(ticks)
-		Else
-
-		End If
-		If j.ErrorMessage.Contains("Media not found") Then
-			clvActivity.RemoveAt(previousSelectedIndex)
-			Dim list1 As List = Starter.kvs.ListKeys
-			For i =  0 To list1.Size-1
-				Dim mytypes As Object = Starter.kvs.Get(list1.Get(i))
-				Dim videos = mytypes As VideoInfo
-				If Link.Contains(videos.VideoID) Then
-					Starter.kvs.Remove(list1.Get(i))
-					Exit
-				End If
-			Next
-			ToastMessageShow("Media not found. Removed from the list.",True)
-		End If
-		j.Release
-		
-		' Remove all Blink notifications via Tasker intent
-		Dim Intent1 As Intent
-		Intent1.Initialize("blink.noti.clear", "")
-		Dim Phone As Phone
-		Phone.SendBroadcastIntent(Intent1)
-	Catch
-		Log(LastException)
-	End Try
-	
-	Try
-		If previousSelectedIndex > (clvActivity.Size-1) Then
-			previousSelectedIndex = 0
-		End If
-		Dim p As B4XView = clvActivity.GetPanel(previousSelectedIndex)
-		If p.NumberOfViews > 0 Then
-			'get the content label view (it is inside an additional panel)
-			Dim ContentLabel As ImageView = p.GetView(0).GetView(4) ' imageview for unwatched videos
-			ContentLabel.Visible = False
-			
-			Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
-			cd.iswatchedvisible = False
-			
-			Dim ContentLabel1 As Label = p.GetView(0).GetView(0)
-			ContentLabel1.Text = "   " & ConvertDayName(cd.filedate)
-			
-			Dim ContentLabel As ImageView = p.GetView(0).GetView(6)
-			ContentLabel.Visible = True
-		End If
-		
-		GetUnwatchedVideos
-	Catch
-		Log(LastException)
-	End Try
-	Return Null
-End Sub
-
-Sub wvMedia_PageFinished (Url As String)
-	
-End Sub
-
-Sub ConvertTicksToTimeString(t As Long) As String
-	Dim  hours, minutes, seconds As Int 'ignore
-	hours = t / DateTime.TicksPerHour
-	minutes = (t Mod DateTime.TicksPerHour) / DateTime.TicksPerMinute
-	seconds = (t Mod DateTime.TicksPerMinute) / DateTime.TicksPerSecond
-	Return NumberFormat(minutes, 1, 0) & ":" & NumberFormat(seconds, 2, 0)
-End Sub
-
-Sub GetUnwatchedVideos() As ResumableSub
-	Try
-		'************************************************************************************************************************************************************
-		' ***** KEEP android:targetSdkVersion="26" IN THE THE MANIFEST INSTEAD OF 28 ELSE IT WILL CRASH WHEN CALLING THIS SUB FROM ANOTHER TAB OR DURING LAUNCH *****
-		'************************************************************************************************************************************************************
-		
-		Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/api/v1/accounts/88438/media/changed?since=-999999999-01-01T00:00:00+18:00&page=1")
-		wait for (rs) complete (Result As Object)
-		
-		Dim unwatchedVideoCount As Int = 0
-		Dim parser As JSONParser
-		parser.Initialize(response)
-		Dim root As Map = parser.NextObject
-		Dim media As List = root.Get("media")
-		
-		Dim n As Long = DateTime.Now
-		For Each colmedia As Map In media
-			Dim watched As String = colmedia.Get("watched")
-			'Dim VideoID As String = colmedia.Get("id")
-			'Dim mytypes As Object = Starter.kvs.Get(VideoID)
-			'Dim videos = mytypes As VideoInfo
-			If watched = False Then
-				unwatchedVideoCount = unwatchedVideoCount + 1
-			End If
-		Next
-		Log("Loading unwatched videos took: " & (DateTime.Now - n) & "ms")
-		Dim lbl As B4XView = GetAllTabLabelsForBadge(TabStrip1).Get(5)
-		badger1.SetBadge(lbl, unwatchedVideoCount)
-		StateManager.SetSetting("UnwatchedVideoClips",unwatchedVideoCount)
-		StateManager.SaveSettings
-		If unwatchedVideoCount > 0 Then
-			isThereUnwatchedVideo = True
-		Else
-			isThereUnwatchedVideo = False
-		End If
-	Catch
-		Log(LastException)
-	End Try
-	Return Null
-End Sub
-
-'
-'Sub StringCount(StringToSearch As String,TargetStr As String,IgnoreCase As Boolean) As Int
-'	If IgnoreCase Then
-'		StringToSearch = StringToSearch.ToLowerCase
-'		TargetStr = TargetStr.ToLowerCase
-'	End If
-'	Return (StringToSearch.Length - StringToSearch.Replace(TargetStr,"").Length) / TargetStr.Length
-'
-'End Sub
-
-Sub btnDrivewayNewClip_Click
-	Dim bd As BitmapDrawable
-	bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-	If Msgbox2("Capture a new video from the Driveway camera?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then 'ignore
-		Try
-			' Open Liveview by clicking notification via Tasker intent
-			Dim Intent1 As Intent
-			Intent1.Initialize("blink.liveview.driveway", "")
-			Dim Phone As Phone
-			Phone.SendBroadcastIntent(Intent1)
-			
-			btnDriveway.Enabled = False
-			btnRefresh.Enabled = False
-			btnDrivewayNewClip.Enabled = False
-			btnFrontDoorNewClip.Enabled = False
-			btnSideYardNewClip.Enabled = False
-			btnDrivewayRefresh.Enabled = False
-			btnFrontDoorRefresh.Enabled = False
-			btnSideYardRefresh.Enabled = False
-			ivDriveway.Enabled = False
-			ivFrontDoor.Enabled = False
-			ivSideYard.Enabled = False
-			lblStatus.Text = "Capturing a new Driveway video clip..."
-			
-			Dim rs As ResumableSub = RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/347574/clip")
-			wait for (rs) complete (Result As Object)
-			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-				btnDriveway.Enabled = True
-				btnRefresh.Enabled = True
-				btnDrivewayNewClip.Enabled = True
-				btnFrontDoorNewClip.Enabled = True
-				btnSideYardNewClip.Enabled = True
-				btnDrivewayRefresh.Enabled = True
-				btnFrontDoorRefresh.Enabled = True
-				btnSideYardRefresh.Enabled = True
-				ivDriveway.Enabled = True
-				ivFrontDoor.Enabled = True
-				ivSideYard.Enabled = True
-				lblStatus.Text = response
-				Return
-			End If
-			
-			Dim rs As ResumableSub = GetCommandID(response)
-			wait for (rs) complete (Result As Object)
-			
-			Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-			wait for (rs) complete (Result As Object)
-
-			For i = 1 To 70
-				
-				Dim rs As ResumableSub = GetCommandStatus(response)
-				wait for (rs) complete (Result As Object)
-				If commandComplete Then
-'					For i = 3 To 1 Step -1
-'						lblStatus.Text = "New Driveway video clip will be shown in " & i & " seconds..."
-'						Sleep(1000)
-'					Next
-					Dim rs As ResumableSub = GetUnwatchedVideos
-					wait for (rs) complete (Result As Object)
-					Exit
-				Else
-					lblStatus.Text = "Awaiting for the Driveway video clip... " & i & "/70"
-				End If
-				
-				Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-				wait for (rs) complete (Result As Object)
-				Sleep(1000)
-			Next
-		Catch
-			Log(LastException)
-		End Try
-		btnDriveway.Enabled = True
-		btnRefresh.Enabled = True
-		btnDrivewayNewClip.Enabled = True
-		btnFrontDoorNewClip.Enabled = True
-		btnSideYardNewClip.Enabled = True
-		btnDrivewayRefresh.Enabled = True
-		btnFrontDoorRefresh.Enabled = True
-		btnSideYardRefresh.Enabled = True
-		ivDriveway.Enabled = True
-		ivFrontDoor.Enabled = True
-		ivSideYard.Enabled = True
-		lblStatus.Text = "Ready"
-	End If
-End Sub
-
-Sub btnFrontDoorNewClip_Click
-	Dim bd As BitmapDrawable
-	bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-	If Msgbox2("Capture a new video from the Front Door camera?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then 'ignore
-		Try
-			' Open Liveview by clicking notification via Tasker intent
-			Dim Intent1 As Intent
-			Intent1.Initialize("blink.liveview.frontdoor", "")
-			Dim Phone As Phone
-			Phone.SendBroadcastIntent(Intent1)
-			
-			ScrollViewBlink.ScrollToNow(0)
-			btnDriveway.Enabled = False
-			btnRefresh.Enabled = False
-			btnDrivewayNewClip.Enabled = False
-			btnFrontDoorNewClip.Enabled = False
-			btnSideYardNewClip.Enabled = False
-			btnDrivewayRefresh.Enabled = False
-			btnFrontDoorRefresh.Enabled = False
-			btnSideYardRefresh.Enabled = False
-			ivDriveway.Enabled = False
-			ivFrontDoor.Enabled = False
-			ivSideYard.Enabled = False
-			lblStatus.Text = "Capturing a new Front Door video clip..."
-			
-			Dim rs As ResumableSub = RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/236967/clip")
-			wait for (rs) complete (Result As Object)
-			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-				btnDriveway.Enabled = True
-				btnRefresh.Enabled = True
-				btnDrivewayNewClip.Enabled = True
-				btnFrontDoorNewClip.Enabled = True
-				btnSideYardNewClip.Enabled = True
-				btnDrivewayRefresh.Enabled = True
-				btnFrontDoorRefresh.Enabled = True
-				btnSideYardRefresh.Enabled = True
-				ivDriveway.Enabled = True
-				ivFrontDoor.Enabled = True
-				ivSideYard.Enabled = True
-				lblStatus.Text = response
-				Return
-			End If
-			
-			Dim rs As ResumableSub = GetCommandID(response)
-			wait for (rs) complete (Result As Object)
-			
-			Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-			wait for (rs) complete (Result As Object)
-			For i = 1 To 70
-				
-				Dim rs As ResumableSub = GetCommandStatus(response)
-				wait for (rs) complete (Result As Object)
-				If commandComplete Then
-'					For i = 3 To 1 Step -1
-'						lblStatus.Text = "New Front Door video clip will be shown in " & i & " seconds..."
-'						Sleep(1000)
-'					Next
-					Dim rs As ResumableSub = GetUnwatchedVideos
-					wait for (rs) complete (Result As Object)
-					Exit
-				Else
-					lblStatus.Text = "Awaiting for the Front Door video clip... " & i & "/70"
-				End If
-				
-				Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-				wait for (rs) complete (Result As Object)
-				Sleep(1000)
-			Next
-		Catch
-			Log(LastException)
-		End Try
-		btnDriveway.Enabled = True
-		btnRefresh.Enabled = True
-		btnDrivewayNewClip.Enabled = True
-		btnFrontDoorNewClip.Enabled = True
-		btnSideYardNewClip.Enabled = True
-		btnDrivewayRefresh.Enabled = True
-		btnFrontDoorRefresh.Enabled = True
-		btnSideYardRefresh.Enabled = True
-		ivDriveway.Enabled = True
-		ivFrontDoor.Enabled = True
-		ivSideYard.Enabled = True
-		lblStatus.Text = "Ready"
-	End If
-End Sub
-
-Sub btnSideYardNewClip_Click
-	Dim bd As BitmapDrawable
-	bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
-	If Msgbox2("Capture a new video from the Side Yard camera?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) = DialogResponse.POSITIVE Then 'ignore
-		Try
-			' Open Liveview by clicking notification via Tasker intent
-			Dim Intent1 As Intent
-			Intent1.Initialize("blink.liveview.sideyard", "")
-			Dim Phone As Phone
-			Phone.SendBroadcastIntent(Intent1)
-			
-			ScrollViewBlink.ScrollToNow(0)
-			btnDriveway.Enabled = False
-			btnRefresh.Enabled = False
-			btnDrivewayNewClip.Enabled = False
-			btnFrontDoorNewClip.Enabled = False
-			btnDrivewayRefresh.Enabled = False
-			btnFrontDoorRefresh.Enabled = False
-			btnSideYardRefresh.Enabled = False
-			ivDriveway.Enabled = False
-			ivFrontDoor.Enabled = False
-			ivSideYard.Enabled = False
-			lblStatus.Text = "Capturing a new Side Yard video clip..."
-			
-			Dim rs As ResumableSub = RESTPost("https://rest-" & userRegion & ".immedia-semi.com/network/" & networkID & "/camera/458236/clip")
-			wait for (rs) complete (Result As Object)
-			If response.StartsWith("ERROR: ") Or response.Contains("System is busy, please wait") Then
-				btnDriveway.Enabled = True
-				btnRefresh.Enabled = True
-				btnDrivewayNewClip.Enabled = True
-				btnFrontDoorNewClip.Enabled = True
-				btnSideYardNewClip.Enabled = True
-				btnDrivewayRefresh.Enabled = True
-				btnFrontDoorRefresh.Enabled = True
-				btnSideYardRefresh.Enabled = True
-				ivDriveway.Enabled = True
-				ivFrontDoor.Enabled = True
-				ivSideYard.Enabled = True
-				lblStatus.Text = response
-				Return
-			End If
-			
-			Dim rs As ResumableSub = GetCommandID(response)
-			wait for (rs) complete (Result As Object)
-			
-			Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-			wait for (rs) complete (Result As Object)
-			For i = 1 To 70
-				
-				Dim rs As ResumableSub = GetCommandStatus(response)
-				wait for (rs) complete (Result As Object)
-				If commandComplete Then
-'					For i = 3 To 1 Step -1
-'						lblStatus.Text = "New Side Yard video clip will be shown in " & i & " seconds..."
-'						Sleep(1000)
-'					Next
-					Dim rs As ResumableSub = GetUnwatchedVideos
-					wait for (rs) complete (Result As Object)
-					Exit
-				Else
-					lblStatus.Text = "Awaiting for the Side Yard video clip... " & i & "/70"
-				End If
-				
-				Dim rs As ResumableSub = RESTGet("https://rest-" & userRegion &".immedia-semi.com/network/" & networkID &"/command/" & commandID)
-				wait for (rs) complete (Result As Object)
-				Sleep(1000)
-			Next
-		Catch
-			Log(LastException)
-		End Try
-		btnDriveway.Enabled = True
-		btnRefresh.Enabled = True
-		btnDrivewayNewClip.Enabled = True
-		btnFrontDoorNewClip.Enabled = True
-		btnSideYardNewClip.Enabled = True
-		btnDrivewayRefresh.Enabled = True
-		btnFrontDoorRefresh.Enabled = True
-		btnSideYardRefresh.Enabled = True
-		ivDriveway.Enabled = True
-		ivFrontDoor.Enabled = True
-		ivSideYard.Enabled = True
-		lblStatus.Text = "Ready"
-	End If
-End Sub
-
-Sub btnRefresh_Click
-	btnDriveway.Enabled = False
-	btnRefresh.Enabled = False
-	btnDrivewayNewClip.Enabled = False
-	btnFrontDoorNewClip.Enabled = False
-	btnSideYardNewClip.Enabled = False
-	btnDrivewayRefresh.Enabled = False
-	btnFrontDoorRefresh.Enabled = False
-	btnSideYardRefresh.Enabled = False
-	ivDriveway.Enabled = False
-	ivFrontDoor.Enabled = False
-	ivSideYard.Enabled = False
-	ScrollViewBlink.ScrollToNow(0)
-	BlurIV("Driveway.jpg",ivDriveway)
-	BlurIV("FrontDoor.jpg",ivFrontDoor)
-	BlurIV("SideYard.jpg",ivSideYard)
-	Dim rs As ResumableSub = RefreshCameras(True, "All")
-	wait for (rs) complete (Result As Object)
-	btnDriveway.Enabled = True
-	btnRefresh.Enabled = True
-	btnDrivewayNewClip.Enabled = True
-	btnFrontDoorNewClip.Enabled = True
-	btnSideYardNewClip.Enabled = True
-	btnDrivewayRefresh.Enabled = True
-	btnFrontDoorRefresh.Enabled = True
-	btnSideYardRefresh.Enabled = True
-	ivDriveway.Enabled = True
-	ivFrontDoor.Enabled = True
-	ivSideYard.Enabled = True
-End Sub
-
-Sub DownloadImageFullscreen (Link As String, camera As String) As ResumableSub'ignore
-	Try
-		Dim j As HttpJob
-		response = ""
-		j.Initialize("", Me)
-		j.Download(Link)
-		j.GetRequest.SetHeader("TOKEN_AUTH", authToken)
-		Wait For (j) JobDone(j As HttpJob)
-		If j.Success Then
-			
-			Dim out As OutputStream = File.OpenOutput(File.DirInternal, "screenshot.jpg", False)
-			File.Copy2(j.GetInputStream, out)
-			out.Close '<------ very important
-			
-			Dim FileName As String = "screenshot.jpg"
-			If File.Exists(File.DirInternal, FileName) Then
-				File.Copy(File.DirInternal, FileName, Starter.Provider.SharedFolder, FileName)
-				Dim in As Intent
-				in.Initialize(in.ACTION_VIEW, "")
-				Starter.Provider.SetFileUriAsIntentData(in, FileName)
-				'Type must be set after calling SetFileUriAsIntentData
-				in.SetType("image/*")
-				StartActivity(in)
-			End If
-		Else
-			response = "ERROR: " & j.ErrorMessage
-			lblStatus.Text = GetRESTError(j.ErrorMessage)
-		End If
-		j.Release
-	Catch
-		Log(LastException)
-	End Try
-	Return Null
-End Sub
-
-Sub ivPlay_Click
-	Try
-		Dim p As Phone
-		p.SetMute(3,True)
-		
-		B4XLoadingIndicator4.Show
-		wvMedia.LoadUrl("")
-		
-		If previousSelectedIndex > (clvActivity.Size-1) Then
-			previousSelectedIndex = 0
-		End If
-		
-		Dim cd As CardData = clvActivity.GetValue(previousSelectedIndex)
-		Dim rs As ResumableSub = ShowVideo(cd.mediaURL)
-		wait for (rs) complete (Result As Object)
-		
-		Dim FileName As String = "media.mp4"
-		If File.Exists(File.DirInternal, FileName) Then
-			File.Copy(File.DirInternal, FileName, Starter.Provider.SharedFolder, FileName)
-			Dim in As Intent
-			in.Initialize(in.ACTION_VIEW, "")
-			Starter.Provider.SetFileUriAsIntentData(in, FileName)
-			'Type must be set after calling SetFileUriAsIntentData
-			in.SetType("video/*")
-			StartActivity(in)
-		End If
-	Catch
-		Log(LastException)
-	End Try
-	B4XLoadingIndicator4.Hide
 End Sub
 
 #if Java
@@ -3308,89 +1066,6 @@ public class MyExceptionHandler implements Thread.UncaughtExceptionHandler {
 }
 #End if
 
-Sub btnSideYardRefresh_Click
-	btnDriveway.Enabled = False
-	btnRefresh.Enabled = False
-	btnDrivewayNewClip.Enabled = False
-	btnFrontDoorNewClip.Enabled = False
-	btnSideYardNewClip.Enabled = False
-	btnDrivewayRefresh.Enabled = False
-	btnFrontDoorRefresh.Enabled = False
-	btnSideYardRefresh.Enabled = False
-	ivDriveway.Enabled = False
-	ivFrontDoor.Enabled = False
-	ivSideYard.Enabled = False
-	ScrollViewBlink.ScrollToNow(0)
-	BlurIV("SideYard.jpg",ivSideYard)
-	Dim rs As ResumableSub = RefreshCameras(False, "458236")
-	wait for (rs) complete (Result As Object)
-	btnDriveway.Enabled = True
-	btnRefresh.Enabled = True
-	btnDrivewayNewClip.Enabled = True
-	btnFrontDoorNewClip.Enabled = True
-	btnSideYardNewClip.Enabled = True
-	btnDrivewayRefresh.Enabled = True
-	btnFrontDoorRefresh.Enabled = True
-	btnSideYardRefresh.Enabled = True
-	ivDriveway.Enabled = True
-	ivFrontDoor.Enabled = True
-	ivSideYard.Enabled = True
-End Sub
-
-Sub btnFrontDoorRefresh_Click
-	btnDriveway.Enabled = False
-	btnRefresh.Enabled = False
-	btnDrivewayNewClip.Enabled = False
-	btnFrontDoorNewClip.Enabled = False
-	btnSideYardNewClip.Enabled = False
-	btnDrivewayRefresh.Enabled = False
-	btnFrontDoorRefresh.Enabled = False
-	btnSideYardRefresh.Enabled = False
-	ivDriveway.Enabled = False
-	ivFrontDoor.Enabled = False
-	ivSideYard.Enabled = False
-	ScrollViewBlink.ScrollToNow(0)
-	BlurIV("FrontDoor.jpg",ivFrontDoor)
-	Dim rs As ResumableSub = RefreshCameras(False, "236967")
-	wait for (rs) complete (Result As Object)
-	btnDriveway.Enabled = True
-	btnRefresh.Enabled = True
-	btnDrivewayNewClip.Enabled = True
-	btnFrontDoorNewClip.Enabled = True
-	btnSideYardNewClip.Enabled = True
-	btnDrivewayRefresh.Enabled = True
-	btnFrontDoorRefresh.Enabled = True
-	btnSideYardRefresh.Enabled = True
-	ivDriveway.Enabled = True
-	ivFrontDoor.Enabled = True
-	ivSideYard.Enabled = True
-End Sub
-
-Sub btnDrivewayRefresh_Click
-	btnDriveway.Enabled = False
-	btnRefresh.Enabled = False
-	btnDrivewayNewClip.Enabled = False
-	btnFrontDoorNewClip.Enabled = False
-	btnSideYardNewClip.Enabled = False
-	btnDrivewayRefresh.Enabled = False
-	btnFrontDoorRefresh.Enabled = False
-	btnSideYardRefresh.Enabled = False
-	ivDriveway.Enabled = False
-	ivFrontDoor.Enabled = False
-	ivSideYard.Enabled = False
-	ScrollViewBlink.ScrollToNow(0)
-	BlurIV("Driveway.jpg",ivDriveway)
-	Dim rs As ResumableSub = RefreshCameras(False, "347574")
-	wait for (rs) complete (Result As Object)
-	btnDriveway.Enabled = True
-	btnRefresh.Enabled = True
-	btnDrivewayNewClip.Enabled = True
-	btnFrontDoorNewClip.Enabled = True
-	btnSideYardNewClip.Enabled = True
-	btnDrivewayRefresh.Enabled = True
-	btnFrontDoorRefresh.Enabled = True
-	btnSideYardRefresh.Enabled = True
-	ivDriveway.Enabled = True
-	ivFrontDoor.Enabled = True
-	ivSideYard.Enabled = True
+Private Sub btnChart_Click
+	StartActivity("Chart")
 End Sub

@@ -1,4 +1,4 @@
-C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~3\Objects\bin\core\libc_replacements.cpp.o: \
+C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\core\libc_replacements.cpp.o: \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\libc_replacements.cpp \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.6.3/tools/sdk/libc/xtensa-lx106-elf/include/stdio.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.6.3/tools/sdk/libc/xtensa-lx106-elf/include/_ansi.h \

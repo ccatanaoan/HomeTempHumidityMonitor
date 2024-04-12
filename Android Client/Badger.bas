@@ -4,8 +4,7 @@ ModulesStructureVersion=1
 Type=Class
 Version=7.3
 @EndOfDesignText@
-' Erel --> https://www.b4x.com/android/forum/threads/b4x-xui-badger-add-badges-to-views.81723/#content
-'v3.00
+'v3.10
 Sub Class_Globals
 	Private views As Map
 	Private stub As B4XView 'ignore this is required in B4A for the class to have an activity context.
@@ -30,7 +29,7 @@ Public Sub SetBadge(view As B4XView, Badge As Int)
 		End If
 	Else
 		If Badge > 0 Then
-			Dim p As B4XView = CreateNewPanel(view, Badge)
+			Dim p As B4XView = CreateNewPanel(view)
 			CreateLabel(p, Badge)
 			p.SetLayoutAnimated(animationDuration, cx - radius, cy - radius, radius * 2, radius * 2)
 			views.Put(view, p)
@@ -42,7 +41,7 @@ Private Sub RemoveBadge(view As B4XView)
 	Dim p As B4XView = GetPanel(view)
 	GetLabel(p).RemoveViewFromParent
 	views.Remove(view)
-	p.SetLayoutAnimated(animationDuration, cx, cy, 0, 0)
+	p.SetLayoutAnimated(animationDuration, cx, cy, 2dip, 2dip)
 	Sleep(animationDuration)
 	p.RemoveViewFromParent
 End Sub
@@ -72,7 +71,7 @@ Private Sub GetLabel(panel As B4XView) As B4XView
 	Return panel.GetView(panel.NumberOfViews - 1)
 End Sub
 
-Private Sub CreateNewPanel(view As B4XView, count As Int) As B4XView 'ignore
+Private Sub CreateNewPanel(view As B4XView) As B4XView
 #if B4J
 	Dim p As Pane
 #else

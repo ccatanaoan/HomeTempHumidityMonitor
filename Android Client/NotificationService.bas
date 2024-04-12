@@ -5,7 +5,7 @@ Type=Service
 Version=8
 @EndOfDesignText@
 #Region  Service Attributes 
-	#StartAtBoot: False
+	#StartAtBoot: true
 	
 #End Region
 
@@ -23,7 +23,7 @@ End Sub
 
 Sub Listener_NotificationPosted (SBN As StatusBarNotification)
 	Try
-		'Log("NotificationPosted, package = " & SBN.PackageName & ", id = " & SBN.Id & ", text = " & SBN.TickerText)
+		' Log("NotificationPosted, package = " & SBN.PackageName & ", id = " & SBN.Id & ", text = " & SBN.TickerText)
 		Dim p As Phone
 		If p.SdkVersion >= 19 Then
 			Dim jno As JavaObject = SBN.Notification
@@ -79,8 +79,6 @@ Sub Listener_NotificationRemoved (SBN As StatusBarNotification)
 			else If SBN.Id = 732 Then
 				SmartHomeMonitor.IsOldAirQualityNotificationOnGoingBasement = False
 			End If
-			'Else If SBN.PackageName = "com.immediasemi.android.blink" Then
-
 		End If
 	Catch
 		Log(LastException)

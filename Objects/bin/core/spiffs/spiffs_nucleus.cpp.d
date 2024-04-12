@@ -1,4 +1,4 @@
-C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~3\Objects\bin\core\spiffs\spiffs_nucleus.cpp.o: \
+C:\Users\Cloyd\Desktop\HOMEAU~1\LIVING~1\Objects\bin\core\spiffs\spiffs_nucleus.cpp.o: \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\spiffs\spiffs_nucleus.cpp \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\spiffs\spiffs.h \
  C:\Users\Cloyd\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\spiffs\spiffs_config.h \

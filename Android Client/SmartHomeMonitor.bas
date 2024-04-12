@@ -13,9 +13,9 @@ Sub Process_Globals
 	'These global variables will be declared once when the application starts.
 	'These variables can be accessed from all modules.
 	Private MQTT As MqttClient
-	Private MQTTUser As String = "vynckfaq"
-	Private MQTTPassword As String = "KHSV1Q1qSUUY"
-	Private MQTTServerURI As String = "tcp://m14.cloudmqtt.com:11816"
+	'Private MQTTUser As String = "vynckfaq1"
+	'Private MQTTPassword As String = "KHSV1Q1qSUUY"
+	Private MQTTServerURI As String = "tcp://broker.hivemq.com:1883"
 	Private Notification1 As Notification
 	Public IsAirQualityNotificationOnGoing As Boolean
 	Public IsTempHumidityNotificationOnGoing As Boolean
@@ -29,6 +29,8 @@ Sub Process_Globals
 	Public lngTicksTempHumid As Long
 	Public lngTicksTempHumidBasement As Long
 	Private bc As ByteConverter
+	Private rp As RuntimePermissions
+	Private shared As String
 End Sub
 
 Sub Service_Create
@@ -54,6 +56,7 @@ End Sub
 Sub Service_Start (StartingIntent As Intent)
 	MQTT_Connect
 	'Service.StopAutomaticForeground 'Call this when the background task completes (if there is one)
+	'StartActivity(Main)
 End Sub
 
 Sub Service_Destroy
@@ -66,9 +69,9 @@ Sub MQTT_Connect
 		Dim ClientId As String = Rnd(0, 999999999) 'create a unique id
 		MQTT.Initialize("MQTT", MQTTServerURI, ClientId)
 
-		Dim ConnOpt As MqttConnectOptions
-		ConnOpt.Initialize(MQTTUser, MQTTPassword)
-		MQTT.Connect2(ConnOpt)
+		'Dim ConnOpt As MqttConnectOptions
+		'ConnOpt.Initialize(MQTTUser, MQTTPassword)
+		MQTT.Connect
 	Catch
 		Log(LastException)
 	End Try
@@ -81,7 +84,7 @@ Sub MQTT_Connected (Success As Boolean)
 			MQTT_Connect
 		Else
 			MQTT.Subscribe("TempHumid", 0)
-			MQTT.Subscribe("MQ7", 0)
+			MQTT.Subscribe("MQ7LivingRoomCloyd", 0)
 			MQTT.Subscribe("MQ7Basement", 0)
 			MQTT.Subscribe("TempHumidBasement", 0)
 			MQTT.Subscribe("HumidityAddValue", 0)
@@ -109,8 +112,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 		
 			Dim status As String
 			status = BytesToString(Payload, 0, Payload.Length, "UTF8")
-			'If DateTime.GetSecond(DateTime.Now) Mod 20 = 0 Then
-			LogEvent(status)
+			'If DateTime.GetSecond(DateTime.Now) Mod 5 = 0 Then
+				LogEvent(status)
 			'End If
 
 			Dim a() As String = Regex.Split("\|",status)
@@ -127,13 +130,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						NotificationText = GetPerception(a(3))
 						' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 			
-						Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumid,DateTime.now)
-						Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTime")
-						If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
-							managerTempHumidityCooldownTime = 1
-						End If
 						If IsTempHumidityNotificationOnGoing = False Then
-							If p.Minutes > = managerTempHumidityCooldownTime Or p.Days > 0 Or p.Hours > 0 Or p.Months > 0 Or p.Years > 0 Then
 								Notification1.Cancel(725)
 								If a(4) = 2 Or a(4) = 6 Then
 									CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,False,"Living area temperature").Notify(725)
@@ -143,11 +140,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 									CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,False,"Living area temperature").Notify(725)
 								End If
 								lngTicksTempHumid = DateTime.now
-							End If
 						Else
 							Dim TempHumidityPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityPrevious"))
 							If a(4) <> TempHumidityPrevious(4) Then
-								If p.Minutes > = managerTempHumidityCooldownTime Or p.Days > 0 Or p.Hours > 0 Or p.Months > 0 Or p.Years > 0 Then
 									Notification1.Cancel(725)
 									If a(4) = 2 Or a(4) = 6 Then
 										CreateNotification(GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,False,"Living area temperature").Notify(725)
@@ -157,9 +152,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 										CreateNotification(GetComfort(a(4)),NotificationText,"temp",Main,False,False,False,"Living area temperature").Notify(725)
 									End If
 									lngTicksTempHumid = DateTime.now
-								End If
 							else if a(3) <> TempHumidityPrevious(3) Then
-								If p.Minutes > = managerTempHumidityCooldownTime Or p.Days > 0 Or p.Hours > 0 Or p.Months > 0 Or p.Years > 0 Then
 									Notification1.Cancel(725)
 									If a(4) = 2 Or a(4) = 6 Then
 										CreateNotification("* " & GetComfort(a(4)),NotificationText,"tempcold",Main,False,False,False,"Living area temperature").Notify(725)
@@ -169,7 +162,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 										CreateNotification("* " & GetComfort(a(4)),NotificationText,"temp",Main,False,False,False,"Living area temperature").Notify(725)
 									End If
 									lngTicksTempHumid = DateTime.now
-								End If
 							End If
 						End If
 					Else
@@ -186,7 +178,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 				strHumidityAddValue = "0"
 			End If
 			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
-		Else If Topic = "MQ7" Then
+		Else If Topic = "MQ7LivingRoomCloyd" Then
 			Dim status As String
 			Dim cs As CSBuilder
 			cs.Initialize
@@ -198,8 +190,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					StateManager.SaveSettings
 					
 					Dim NotificationText As String
-					NotificationText = GetAirQuality(a(0)) & ", at " & a(0) & " ppm"
-					If a(0) > 400 Then
+					NotificationText = GetAirQuality((a(0)/10)) & ", at " & (a(0)/10) & " ppm"
+					If (a(0)/10) > 40 Then
 						If IsAirQualityNotificationOnGoing = False Then
 							CreateNotification("Living Area Air Quality",NotificationText,"co",Main,False,False,False,"Living area carbon monoxide").Notify(726)
 						Else
@@ -223,8 +215,8 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 					StateManager.SaveSettings
 					
 					Dim NotificationText As String
-					NotificationText = GetAirQuality(a(0)) & ", at " & a(0) & " ppm"
-					If a(0) > 400 Then
+					NotificationText = GetAirQuality((a(0)/10)) & ", at " & (a(0)/10) & " ppm"
+					If (a(0)/10) > 40 Then
 						If IsAirQualityNotificationOnGoingBasement = False Then
 							CreateNotification("Basement Air Quality",NotificationText,"cobasement",Main,False,False,False,"Basement carbon monoxide").Notify(727)
 						Else
@@ -262,13 +254,14 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			FileNameToday = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 			FileNameYesterday = "LivingRoomTempHumid_" & YearYesterday & "-" & NumberFormat(MonthYesterday,2,0) & "-" & NumberFormat(DayYesterday,2,0) & ".log"
 			
-			Dim flist As List = WildCardFilesList2(File.DirRootExternal,"LivingRoomTempHumid_*.log",True, True)
+			shared = rp.GetSafeDirDefaultExternal("")
+			Dim flist As List = WildCardFilesList2(shared,"LivingRoomTempHumid_*.log",True, True)
 			
 			For i = 0 To flist.Size -1
 				Dim FileName As String = flist.Get(i)
 				If FileName <> FileNameToday Then
 					If FileName <> FileNameYesterday Then
-						File.Delete(File.DirRootExternal,FileName)
+						File.Delete(shared,FileName)
 					End If
 				End If
 			Next
@@ -293,13 +286,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 						Dim NotificationText As String
 						NotificationText = GetPerception(a(3))
 					
-						Dim p As Period = DateUtils.PeriodBetween(lngTicksTempHumidBasement,DateTime.now)
-						Dim managerTempHumidityCooldownTime As String = StateManager.GetSetting("TempHumidityCooldownTimeBasement")
-						If managerTempHumidityCooldownTime = "" Or IsNumber(managerTempHumidityCooldownTime) = False Or managerTempHumidityCooldownTime ="0" Then
-							managerTempHumidityCooldownTime = 1
-						End If
 						If IsTempHumidityNotificationOnGoingBasement = False Then
-							If p.Minutes > = managerTempHumidityCooldownTime Or p.Days > 0 Or p.Hours > 0 Or p.Months > 0 Or p.Years > 0 Then
 								Notification1.Cancel(728)
 								If a(4) = 2 Or a(4) = 6 Then
 									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldbasement",Main,False,False,False,"Basement temperature").Notify(728)
@@ -309,11 +296,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 									CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempbasement",Main,False,False,False,"Basement temperature").Notify(728)
 								End If
 								lngTicksTempHumidBasement = DateTime.now
-							End If
 						Else
 							Dim TempHumidityBasementPrevious() As String = Regex.Split("\|",StateManager.GetSetting("TempHumidityBasementPrevious"))
 							If a(4) <> TempHumidityBasementPrevious(4) Then
-								If p.Minutes > = managerTempHumidityCooldownTime Or p.Days > 0 Or p.Hours > 0 Or p.Months > 0 Or p.Years > 0 Then
 									Notification1.Cancel(728)
 									If a(4) = 2 Or a(4) = 6 Then
 										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldbasement",Main,False,False,False,"Basement temperature").Notify(728)
@@ -323,9 +308,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 										CreateNotification(GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempbasement",Main,False,False,False,"Basement temperature").Notify(728)
 									End If
 									lngTicksTempHumidBasement = DateTime.now
-								End If
 							else if a(3) <> TempHumidityBasementPrevious(3) Then
-								If p.Minutes > = managerTempHumidityCooldownTime Or p.Days > 0 Or p.Hours > 0 Or p.Months > 0 Or p.Years > 0 Then
 									Notification1.Cancel(728)
 									If a(4) = 2 Or a(4) = 6 Then
 										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempcoldbasement",Main,False,False,False,"Basement temperature").Notify(728)
@@ -335,7 +318,6 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 										CreateNotification("* " & GetComfort(a(4)).Replace("Home","Basement"),NotificationText,"tempbasement",Main,False,False,False,"Basement temperature").Notify(728)
 									End If
 									lngTicksTempHumidBasement = DateTime.now
-								End If
 							End If
 						End If
 					Else
@@ -465,7 +447,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1 Then
 				If IsOldAirQualityNotificationOnGoing = False Then
 					CreateNotification("Living area carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old","sensor",Main,False,False,False,"Living area CO sensor issue").Notify(731)
-					MQTT.Publish("MQ7", bc.StringToBytes("Sensor is not working", "utf8"))
+					MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
 				IsOldAirQualityNotificationOnGoing = False
@@ -527,7 +509,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Case "AirQuality"
 				If IsOldAirQualityNotificationOnGoing = False Then
 					CreateNotification("Living area carbon monoxide sensor exception", LastException.Message,"sensor",Main,False,False,False,"Living area CO sensor issue").Notify(731)
-					MQTT.Publish("MQ7", bc.StringToBytes("AirQuality Exception: " & LastException.Message, "utf8"))
+					MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("AirQuality Exception: " & LastException.Message, "utf8"))
 				End If
 			Case "AirQualityBasement"
 				If IsOldAirQualityNotificationOnGoingBasement = False Then
@@ -556,8 +538,8 @@ Sub LogEvent(TextToLog As String)
 
 		FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 
-'		, DateTime.Date(DateTime.Now) & " " & DateTime.Time(DateTime.Now)
-		FW1.Initialize(File.OpenOutput (File.DirRootExternal, FileName, True))
+		shared = rp.GetSafeDirDefaultExternal("")
+		FW1.Initialize(File.OpenOutput (shared, FileName, True))
 		LogEntry = NumberFormat(DateTime.GetHour(Now),2,0) & ":" & NumberFormat(DateTime.GetMinute(Now),2,0)& ":" & NumberFormat(DateTime.GetSecond (Now),2,0)
 		LogEntry =LogEntry & " " & TextToLog
 		FW1.WriteLine(LogEntry)
@@ -687,13 +669,13 @@ End Sub
 Sub GetAirQuality(number As Int) As String
 	' Detecting range: 10ppm-1000ppm carbon monoxide
 	' Air quality-cases: < 100 perfect | 100 - 400 normal | > 400 - 900 high | > 900 abnormal
-	If number <= 100 Then
+	If number <= 10 Then
 		Return("Carbon monoxide level is perfect")
-	else if ((number > 100) And (number < 400)) Or number = 400 Then
+	else if ((number > 10) And (number < 40)) Or number = 40 Then
 		Return("Carbon monoxide level is normal")
-	else if ((number > 400) And (number < 900)) Or number = 900 Then
+	else if ((number > 40) And (number < 90)) Or number = 90 Then
 		Return("Carbon monoxide level is high")
-	else If number > 900 Then
+	else If number > 90 Then
 		Return("ALARM Carbon monoxide level is very high")
 	Else
 		Return("MQ-7 - cant read any value - check the sensor!")

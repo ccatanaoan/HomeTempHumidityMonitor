@@ -6,18 +6,14 @@
 	android:versionName="2.0.8.8"
 	android:installLocation="internalOnly">
 	
-	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="26"/>
+	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="29"/>
 	<supports-screens android:largeScreens="true" 
 	    android:normalScreens="true" 
 	    android:smallScreens="true" 
 	    android:anyDensity="true"/>
 	<uses-permission
 	  android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-	  android:maxSdkVersion="18" />
-	<uses-permission
-	   android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-	   android:maxSdkVersion="18" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	  android:maxSdkVersion="19" />
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<uses-permission android:name="android.permission.VIBRATE"/>
@@ -61,6 +57,13 @@
 			</intent-filter>
 			
 		</activity>
+		<activity
+			android:windowSoftInputMode="stateHidden"
+			android:launchMode="singleTop"
+			android:name=".chart"
+			android:label="Smart Home Monitor"
+			android:screenOrientation="portrait">
+		</activity>
 		<service android:name=".smarthomemonitor">
 		</service>
 		<receiver android:name=".smarthomemonitor$smarthomemonitor_BR">
@@ -71,6 +74,9 @@
 		<service android:name=".notificationservice">
 		</service>
 		<receiver android:name=".notificationservice$notificationservice_BR">
+			<intent-filter>
+			<action android:name="android.intent.action.BOOT_COMPLETED"/>
+			</intent-filter>
 		</receiver>
 		<service android:name=".starter">
 		</service>

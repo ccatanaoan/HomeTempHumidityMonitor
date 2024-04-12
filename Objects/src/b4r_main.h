@@ -19,9 +19,6 @@ static B4R::Pin* _d6;
 static B4R::B4RESPWiFi* _wifi;
 static B4R::WiFiSocket* _wifistr;
 static B4R::MqttClient* _mqtt;
-static B4R::MqttConnectOptions* _mqttopt;
-static B4R::B4RString* _mqttuser;
-static B4R::B4RString* _mqttpassword;
 static B4R::B4RString* _mqtthostname;
 static Int _mqttport;
 static B4R::B4RESP8266* _esp;
@@ -40,8 +37,8 @@ static B4R::ByteConverter* _bc;
 static Double _dht22humidityaddvalue;
 static B4R::B4RESP8266TimeTools* _timelib;
 static ULong _timestamp;
+static void _readsensor();
 static void _readweather(Byte _tag);
-static void _timeisavailable();
 };
 
 #endif
