@@ -161,7 +161,7 @@ Private Sub TemperatureHourlyCreate()
 		LineChart.DomainLabelColor = Colors.Green
 		LineChart.DomainLabelTextSize = 25.0
 
-		LineChart.XaxisGridLineColor = Colors.ARGB(100,255,255,255)
+		LineChart.XaxisGridLineColor = Colors.DarkGray 'Colors.ARGB(100,255,255,255)
 		LineChart.XaxisGridLineWidth = 2.0
 		LineChart.XaxisLabelTicks = 1
 		LineChart.XaxisLabelOrientation = 0
@@ -189,7 +189,7 @@ Private Sub TemperatureHourlyCreate()
 		LineChart.YaxisDivisions = 10
 		'LineChart.YaxisRange(minimumRange, maximumRange)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
 		LineChart.YaxisValueFormat = LineChart.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
-		LineChart.YaxisGridLineColor = Colors.Black
+		LineChart.YaxisGridLineColor = Colors.DarkGray
 		LineChart.YaxisGridLineWidth = 2
 		LineChart.YaxisLabelTicks = 1
 		LineChart.YaxisLabelColor = Colors.Yellow
@@ -430,7 +430,7 @@ Private Sub HumidityHourlyCreate()
 		LineChart.DomainLabelColor = Colors.Green
 		LineChart.DomainLabelTextSize = 25.0
 
-		LineChart.XaxisGridLineColor = Colors.ARGB(100,255,255,255)
+		LineChart.XaxisGridLineColor = Colors.DarkGray
 		LineChart.XaxisGridLineWidth = 2.0
 		LineChart.XaxisLabelTicks = 1
 		LineChart.XaxisLabelOrientation = 0
@@ -458,7 +458,7 @@ Private Sub HumidityHourlyCreate()
 		LineChart.YaxisDivisions = 10
 		'LineChart.YaxisRange(minimumRange, maximumRange)                                 'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
 		LineChart.YaxisValueFormat = LineChart.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
-		LineChart.YaxisGridLineColor = Colors.Black
+		LineChart.YaxisGridLineColor = Colors.DarkGray
 		LineChart.YaxisGridLineWidth = 2
 		LineChart.YaxisLabelTicks = 1
 		LineChart.YaxisLabelColor = Colors.Yellow
@@ -698,7 +698,7 @@ Private Sub TemperatureDailyCreate()
 		LineChart.DomainLabelColor = Colors.Green
 		LineChart.DomainLabelTextSize = 25.0
 
-		LineChart.XaxisGridLineColor = Colors.ARGB(100,255,255,255)
+		LineChart.XaxisGridLineColor = Colors.DarkGray
 		LineChart.XaxisGridLineWidth = 2.0
 		LineChart.XaxisLabelTicks = 1
 		LineChart.XaxisLabelOrientation = 0
@@ -709,7 +709,7 @@ Private Sub TemperatureDailyCreate()
 		LineChart.YaxisDivisions = 10
 		'LineChart.YaxisRange(minimumRange, maximumRange)                                'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
 		LineChart.YaxisValueFormat = LineChart.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
-		LineChart.YaxisGridLineColor = Colors.Black
+		LineChart.YaxisGridLineColor = Colors.DarkGray
 		LineChart.YaxisGridLineWidth = 2
 		LineChart.YaxisLabelTicks = 1
 		LineChart.YaxisLabelColor = Colors.Yellow
@@ -1115,7 +1115,7 @@ Private Sub HumidityDailyCreate()
 		LineChart.DomainLabelColor = Colors.Green
 		LineChart.DomainLabelTextSize = 25.0
 
-		LineChart.XaxisGridLineColor = Colors.ARGB(100,255,255,255)
+		LineChart.XaxisGridLineColor = Colors.DarkGray
 		LineChart.XaxisGridLineWidth = 2.0
 		LineChart.XaxisLabelTicks = 1
 		LineChart.XaxisLabelOrientation = 0
@@ -1126,7 +1126,7 @@ Private Sub HumidityDailyCreate()
 		LineChart.YaxisDivisions = 10
 		'LineChart.YaxisRange(minimumRange, maximumRange)                                'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
 		LineChart.YaxisValueFormat = LineChart.ValueFormat_2                'could be ValueFormat_0, ValueFormat_1, ValueFormat_2, or ValueFormat_3
-		LineChart.YaxisGridLineColor = Colors.Black
+		LineChart.YaxisGridLineColor = Colors.DarkGray
 		LineChart.YaxisGridLineWidth = 2
 		LineChart.YaxisLabelTicks = 1
 		LineChart.YaxisLabelColor = Colors.Yellow
@@ -2043,7 +2043,7 @@ Sub CheckTempBoundaries
 	tempList.Sort(True)
 			
 	'Dim tempZeroRange As Float
-	tempZeroRange = tempList.Get(0)-1.5
+	tempZeroRange = tempList.Get(0)-0.3
 		
 	If am12 = zeroRange Then am12 = tempZeroRange
 	If am1 = zeroRange Then am1 = tempZeroRange
@@ -2076,22 +2076,22 @@ Sub CheckTempBoundaries
 		
 	Dim minValue=0, maxValue=0 As Float
 	If tempRightNow <= tempList.Get(0) Then
-		minValue = tempRightNow-1.5
+		minValue = tempRightNow-0.3
 	Else
-		minValue = tempList.Get(0)-1.5
+		minValue = tempList.Get(0)-0.3
 	End If
 	
 	If tempList.Get(tempList.Size-1) >= 88.88 Then
 		If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
-			maxValue = tempRightNow+1.5
+			maxValue = tempRightNow+0.5
 		Else
-			maxValue = (tempList.Get(tempList.Size-2))+1.5
+			maxValue = (tempList.Get(tempList.Size-2))+0.5
 		End If
 	Else
 		If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
-			maxValue = tempRightNow+1.5
+			maxValue = tempRightNow+0.5
 		Else
-			maxValue = (tempList.Get(tempList.Size-1))+1.5
+			maxValue = (tempList.Get(tempList.Size-1))+0.5
 		End If
 	End If
 	LineChart.YaxisRange(minValue, maxValue)
@@ -2103,7 +2103,7 @@ Sub CheckTempBoundariesDaily
 	tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
 	tempList.Sort(True)
 			
-	tempZeroRange = tempList.Get(0)-1.5
+	tempZeroRange = tempList.Get(0)-0.3
 		
 	If am12 = zeroRange Then am12 = tempZeroRange
 	If am1 = zeroRange Then am1 = tempZeroRange
@@ -2138,53 +2138,53 @@ Sub CheckTempBoundariesDaily
 	
 	If tempRightNow <= tempList.Get(0) Then
 		If tempMinRange <= tempRightNow Then
-			minValue = tempMinRange-1.5
+			minValue = tempMinRange-0.3
 		Else
-			minValue = tempRightNow-1.5
+			minValue = tempRightNow-0.3
 		End If
 	Else
 		If tempMinRange > 0 And tempMinRange <= tempList.Get(0) Then
-			minValue = tempMinRange-1.5
+			minValue = tempMinRange-0.3
 		Else
-			minValue = tempList.Get(0)-1.5
+			minValue = tempList.Get(0)-0.3
 		End If
 	End If
 	
 	If tempList.Get(tempList.Size-1) >= 88.88 Then
 		If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
 			If tempMaxRange >= tempRightNow Then
-				maxValue =  tempMaxRange+1.5
+				maxValue =  tempMaxRange+0.5
 			Else
-				maxValue = tempRightNow+1.5
+				maxValue = tempRightNow+0.5
 			End If
 		Else
 			If tempMaxRange >= (tempList.Get(tempList.Size-2)) Then
-				maxValue =  tempMaxRange+1.5
+				maxValue =  tempMaxRange+0.5
 			Else
-				maxValue = (tempList.Get(tempList.Size-2))+1.5
+				maxValue = (tempList.Get(tempList.Size-2))+0.5
 			End If
 		End If
 	Else
 		If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
 			If tempMaxRange >= tempRightNow Then
-				maxValue =  tempMaxRange+1.5
+				maxValue =  tempMaxRange+0.5
 			Else
-				maxValue = tempRightNow+1.5
+				maxValue = tempRightNow+0.5
 			End If
 		Else
 			If tempMaxRange >= (tempList.Get(tempList.Size-1)) Then
-				maxValue =  tempMaxRange+1.5
+				maxValue =  tempMaxRange+0.5
 			Else
-				maxValue = (tempList.Get(tempList.Size-1))+1.5
+				maxValue = (tempList.Get(tempList.Size-1))+0.5
 			End If
 		End If
 	End If
 	
-	If (maxValue-1.5) >= tempMaxRange Then
-		tempMaxRange = maxValue-1.5
+	If (maxValue-0.3) >= tempMaxRange Then
+		tempMaxRange = maxValue-0.3
 	End If
-	'If (minValue+1.5) <= tempMinRange Then
-	tempMinRange = minValue+1.5
+	'If (minValue+0.5) <= tempMinRange Then
+	tempMinRange = minValue+0.5
 	'End If
 	
 	LineChart.YaxisRange(minValue, maxValue)

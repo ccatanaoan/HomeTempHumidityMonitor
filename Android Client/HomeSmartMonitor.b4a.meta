@@ -37,10 +37,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-<<<<<<< HEAD
-NavigationStack=Main,Activity_Resume,310,0,Main,MQTT_Connect,330,1,Main,ACToolBarLight1_MenuItemClick,536,0,Main,TabStrip1_PageSelected,641,0,SmartHomeMonitor,MQTT_Connect,67,0,Main,Process_Globals,35,1,Chart,Process_Globals,10,0,Main,Globals,59,0,Main,MQTT_Connected,346,0,SmartHomeMonitor,Process_Globals,11,1
-=======
-NavigationStack=SmartHomeMonitor,GetComfort,653,0,SmartHomeMonitor,MQTT_MessageArrived,310,6,Main,SetDefaults,1212,0,Main,HandleSettings,1218,0,Main,CreatePreferenceScreen,1204,0,Main,RequestAuthToken,1226,0,Main,RefreshCameras,1371,0,Main,ShowAboutMenu,698,1,Main,GetVersionCode,705,0,Main,Process_Globals,23,0
->>>>>>> origin/master
+NavigationStack=Main,ShowAboutMenu,559,0,Main,ACToolBarLight1_MenuItemClick,545,0,Chart,Globals,19,0,Chart,ReadHumidityDaily,1676,0,Chart,HumidityHourlyCreate,454,0,Chart,TemperatureDailyCreate,705,0,Chart,HumidityDailyCreate,1122,0,Chart,CheckTempBoundariesDaily,2177,0,Chart,TemperatureHourlyCreate,143,6,Chart,CheckTempBoundaries,2066,0
 SelectedBuild=0
-VisibleModules=3,6,10,9,12,1,4,2,5,11
+VisibleModules=1,2,3,4,5,6,7,8,9,10
