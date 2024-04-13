@@ -64,16 +64,16 @@
 			android:label="Smart Home Monitor"
 			android:screenOrientation="portrait">
 		</activity>
-		<service android:name=".smarthomemonitor">
+		<service android:name=".notificationservice">
 		</service>
-		<receiver android:name=".smarthomemonitor$smarthomemonitor_BR">
+		<receiver android:name=".notificationservice$notificationservice_BR">
 			<intent-filter>
 			<action android:name="android.intent.action.BOOT_COMPLETED"/>
 			</intent-filter>
 		</receiver>
-		<service android:name=".notificationservice">
+		<service android:name=".smarthomemonitor">
 		</service>
-		<receiver android:name=".notificationservice$notificationservice_BR">
+		<receiver android:name=".smarthomemonitor$smarthomemonitor_BR">
 			<intent-filter>
 			<action android:name="android.intent.action.BOOT_COMPLETED"/>
 			</intent-filter>

@@ -30,10 +30,10 @@ public anywheresoftware.b4a.objects.RuntimePermissions _rp = null;
 public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.chart _chart = null;
-public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.notificationservice _notificationservice = null;
-public cloyd.smart.home.monitor.statemanager _statemanager = null;
+public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.starter _starter = null;
+public cloyd.smart.home.monitor.statemanager _statemanager = null;
 public cloyd.smart.home.monitor.b4xcollections _b4xcollections = null;
 public cloyd.smart.home.monitor.httputils2service _httputils2service = null;
 public String  _class_globals() throws Exception{
@@ -99,11 +99,7 @@ _usefileprovider = __c.False;
 _sharedfolder = _rp.GetSafeDirDefaultExternal("shared");
  };
  //BA.debugLineNum = 18;BA.debugLine="Log($\"Using FileProvider? ${UseFileProvider}\"$)";
-<<<<<<< HEAD
-__c.LogImpl("68978442",("Using FileProvider? "+__c.SmartStringFormatter("",(Object)(_usefileprovider))+""),0);
-=======
-__c.LogImpl("310289162",("Using FileProvider? "+__c.SmartStringFormatter("",(Object)(_usefileprovider))+""),0);
->>>>>>> origin/master
+__c.LogImpl("55767178",("Using FileProvider? "+__c.SmartStringFormatter("",(Object)(_usefileprovider))+""),0);
  //BA.debugLineNum = 19;BA.debugLine="End Sub";
 return "";
 }

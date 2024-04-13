@@ -376,10 +376,10 @@ public anywheresoftware.b4a.objects.ButtonWrapper _btntempdaily = null;
 public anywheresoftware.b4a.objects.PanelWrapper _panel1 = null;
 public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
-public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.notificationservice _notificationservice = null;
-public cloyd.smart.home.monitor.statemanager _statemanager = null;
+public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
 public cloyd.smart.home.monitor.starter _starter = null;
+public cloyd.smart.home.monitor.statemanager _statemanager = null;
 public cloyd.smart.home.monitor.b4xcollections _b4xcollections = null;
 public cloyd.smart.home.monitor.httputils2service _httputils2service = null;
 
@@ -535,8 +535,8 @@ _templist.Initialize();
 _templist.AddAll(anywheresoftware.b4a.keywords.Common.ArrayToList(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8)),(float)(Double.parseDouble(mostCurrent._pm9)),(float)(Double.parseDouble(mostCurrent._pm10)),(float)(Double.parseDouble(mostCurrent._pm11))}));
  //BA.debugLineNum = 2037;BA.debugLine="tempList.Sort(True)";
 _templist.Sort(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 2040;BA.debugLine="tempZeroRange = tempList.Get(0)-1.5";
-_tempzerorange = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-1.5);
+ //BA.debugLineNum = 2040;BA.debugLine="tempZeroRange = tempList.Get(0)-0.3";
+_tempzerorange = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-0.3);
  //BA.debugLineNum = 2042;BA.debugLine="If am12 = zeroRange Then am12 = tempZeroRange";
 if ((mostCurrent._am12).equals(BA.NumberToString(_zerorange))) { 
 mostCurrent._am12 = BA.NumberToString(_tempzerorange);};
@@ -620,30 +620,30 @@ _minvalue = (float) (0);
 _maxvalue = (float) (0);
  //BA.debugLineNum = 2072;BA.debugLine="If tempRightNow <= tempList.Get(0) Then";
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))<=(double)(BA.ObjectToNumber(_templist.Get((int) (0))))) { 
- //BA.debugLineNum = 2073;BA.debugLine="minValue = tempRightNow-1.5";
-_minvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))-1.5);
+ //BA.debugLineNum = 2073;BA.debugLine="minValue = tempRightNow-0.3";
+_minvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))-0.3);
  }else {
- //BA.debugLineNum = 2075;BA.debugLine="minValue = tempList.Get(0)-1.5";
-_minvalue = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-1.5);
+ //BA.debugLineNum = 2075;BA.debugLine="minValue = tempList.Get(0)-0.3";
+_minvalue = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-0.3);
  };
  //BA.debugLineNum = 2078;BA.debugLine="If tempList.Get(tempList.Size-1) >= 88.88 Then";
 if ((double)(BA.ObjectToNumber(_templist.Get((int) (_templist.getSize()-1))))>=88.88) { 
  //BA.debugLineNum = 2079;BA.debugLine="If tempRightNow >= (tempList.Get(tempList.Size-2";
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))) { 
- //BA.debugLineNum = 2080;BA.debugLine="maxValue = tempRightNow+1.5";
-_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+1.5);
+ //BA.debugLineNum = 2080;BA.debugLine="maxValue = tempRightNow+0.5";
+_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.5);
  }else {
- //BA.debugLineNum = 2082;BA.debugLine="maxValue = (tempList.Get(tempList.Size-2))+1.5";
-_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))+1.5);
+ //BA.debugLineNum = 2082;BA.debugLine="maxValue = (tempList.Get(tempList.Size-2))+0.5";
+_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))+0.5);
  };
  }else {
  //BA.debugLineNum = 2085;BA.debugLine="If tempRightNow >= (tempList.Get(tempList.Size-1";
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))) { 
- //BA.debugLineNum = 2086;BA.debugLine="maxValue = tempRightNow+1.5";
-_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+1.5);
+ //BA.debugLineNum = 2086;BA.debugLine="maxValue = tempRightNow+0.5";
+_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.5);
  }else {
- //BA.debugLineNum = 2088;BA.debugLine="maxValue = (tempList.Get(tempList.Size-1))+1.5";
-_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))+1.5);
+ //BA.debugLineNum = 2088;BA.debugLine="maxValue = (tempList.Get(tempList.Size-1))+0.5";
+_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))+0.5);
  };
  };
  //BA.debugLineNum = 2091;BA.debugLine="LineChart.YaxisRange(minValue, maxValue)";
@@ -664,8 +664,8 @@ _templist.Initialize();
 _templist.AddAll(anywheresoftware.b4a.keywords.Common.ArrayToList(new float[]{(float)(Double.parseDouble(mostCurrent._am12)),(float)(Double.parseDouble(mostCurrent._am1)),(float)(Double.parseDouble(mostCurrent._am2)),(float)(Double.parseDouble(mostCurrent._am3)),(float)(Double.parseDouble(mostCurrent._am4)),(float)(Double.parseDouble(mostCurrent._am5)),(float)(Double.parseDouble(mostCurrent._am6)),(float)(Double.parseDouble(mostCurrent._am7)),(float)(Double.parseDouble(mostCurrent._am8)),(float)(Double.parseDouble(mostCurrent._am9)),(float)(Double.parseDouble(mostCurrent._am10)),(float)(Double.parseDouble(mostCurrent._am11)),(float)(Double.parseDouble(mostCurrent._pm12)),(float)(Double.parseDouble(mostCurrent._pm1)),(float)(Double.parseDouble(mostCurrent._pm2)),(float)(Double.parseDouble(mostCurrent._pm3)),(float)(Double.parseDouble(mostCurrent._pm4)),(float)(Double.parseDouble(mostCurrent._pm5)),(float)(Double.parseDouble(mostCurrent._pm6)),(float)(Double.parseDouble(mostCurrent._pm7)),(float)(Double.parseDouble(mostCurrent._pm8)),(float)(Double.parseDouble(mostCurrent._pm9)),(float)(Double.parseDouble(mostCurrent._pm10)),(float)(Double.parseDouble(mostCurrent._pm11))}));
  //BA.debugLineNum = 2098;BA.debugLine="tempList.Sort(True)";
 _templist.Sort(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 2100;BA.debugLine="tempZeroRange = tempList.Get(0)-1.5";
-_tempzerorange = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-1.5);
+ //BA.debugLineNum = 2100;BA.debugLine="tempZeroRange = tempList.Get(0)-0.3";
+_tempzerorange = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-0.3);
  //BA.debugLineNum = 2102;BA.debugLine="If am12 = zeroRange Then am12 = tempZeroRange";
 if ((mostCurrent._am12).equals(BA.NumberToString(_zerorange))) { 
 mostCurrent._am12 = BA.NumberToString(_tempzerorange);};
@@ -751,20 +751,20 @@ _maxvalue = (float) (0);
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))<=(double)(BA.ObjectToNumber(_templist.Get((int) (0))))) { 
  //BA.debugLineNum = 2134;BA.debugLine="If tempMinRange <= tempRightNow Then";
 if (_tempminrange<=(double)(Double.parseDouble(mostCurrent._temprightnow))) { 
- //BA.debugLineNum = 2135;BA.debugLine="minValue = tempMinRange-1.5";
-_minvalue = (float) (_tempminrange-1.5);
+ //BA.debugLineNum = 2135;BA.debugLine="minValue = tempMinRange-0.3";
+_minvalue = (float) (_tempminrange-0.3);
  }else {
- //BA.debugLineNum = 2137;BA.debugLine="minValue = tempRightNow-1.5";
-_minvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))-1.5);
+ //BA.debugLineNum = 2137;BA.debugLine="minValue = tempRightNow-0.3";
+_minvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))-0.3);
  };
  }else {
  //BA.debugLineNum = 2140;BA.debugLine="If tempMinRange > 0 And tempMinRange <= tempList";
 if (_tempminrange>0 && _tempminrange<=(double)(BA.ObjectToNumber(_templist.Get((int) (0))))) { 
- //BA.debugLineNum = 2141;BA.debugLine="minValue = tempMinRange-1.5";
-_minvalue = (float) (_tempminrange-1.5);
+ //BA.debugLineNum = 2141;BA.debugLine="minValue = tempMinRange-0.3";
+_minvalue = (float) (_tempminrange-0.3);
  }else {
- //BA.debugLineNum = 2143;BA.debugLine="minValue = tempList.Get(0)-1.5";
-_minvalue = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-1.5);
+ //BA.debugLineNum = 2143;BA.debugLine="minValue = tempList.Get(0)-0.3";
+_minvalue = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-0.3);
  };
  };
  //BA.debugLineNum = 2147;BA.debugLine="If tempList.Get(tempList.Size-1) >= 88.88 Then";
@@ -773,20 +773,20 @@ if ((double)(BA.ObjectToNumber(_templist.Get((int) (_templist.getSize()-1))))>=8
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))) { 
  //BA.debugLineNum = 2149;BA.debugLine="If tempMaxRange >= tempRightNow Then";
 if (_tempmaxrange>=(double)(Double.parseDouble(mostCurrent._temprightnow))) { 
- //BA.debugLineNum = 2150;BA.debugLine="maxValue =  tempMaxRange+1.5";
-_maxvalue = (float) (_tempmaxrange+1.5);
+ //BA.debugLineNum = 2150;BA.debugLine="maxValue =  tempMaxRange+0.5";
+_maxvalue = (float) (_tempmaxrange+0.5);
  }else {
- //BA.debugLineNum = 2152;BA.debugLine="maxValue = tempRightNow+1.5";
-_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+1.5);
+ //BA.debugLineNum = 2152;BA.debugLine="maxValue = tempRightNow+0.5";
+_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.5);
  };
  }else {
  //BA.debugLineNum = 2155;BA.debugLine="If tempMaxRange >= (tempList.Get(tempList.Size-";
 if (_tempmaxrange>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))) { 
- //BA.debugLineNum = 2156;BA.debugLine="maxValue =  tempMaxRange+1.5";
-_maxvalue = (float) (_tempmaxrange+1.5);
+ //BA.debugLineNum = 2156;BA.debugLine="maxValue =  tempMaxRange+0.5";
+_maxvalue = (float) (_tempmaxrange+0.5);
  }else {
- //BA.debugLineNum = 2158;BA.debugLine="maxValue = (tempList.Get(tempList.Size-2))+1.5";
-_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))+1.5);
+ //BA.debugLineNum = 2158;BA.debugLine="maxValue = (tempList.Get(tempList.Size-2))+0.5";
+_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))+0.5);
  };
  };
  }else {
@@ -794,30 +794,30 @@ _maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))) { 
  //BA.debugLineNum = 2163;BA.debugLine="If tempMaxRange >= tempRightNow Then";
 if (_tempmaxrange>=(double)(Double.parseDouble(mostCurrent._temprightnow))) { 
- //BA.debugLineNum = 2164;BA.debugLine="maxValue =  tempMaxRange+1.5";
-_maxvalue = (float) (_tempmaxrange+1.5);
+ //BA.debugLineNum = 2164;BA.debugLine="maxValue =  tempMaxRange+0.5";
+_maxvalue = (float) (_tempmaxrange+0.5);
  }else {
- //BA.debugLineNum = 2166;BA.debugLine="maxValue = tempRightNow+1.5";
-_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+1.5);
+ //BA.debugLineNum = 2166;BA.debugLine="maxValue = tempRightNow+0.5";
+_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.5);
  };
  }else {
  //BA.debugLineNum = 2169;BA.debugLine="If tempMaxRange >= (tempList.Get(tempList.Size-";
 if (_tempmaxrange>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))) { 
- //BA.debugLineNum = 2170;BA.debugLine="maxValue =  tempMaxRange+1.5";
-_maxvalue = (float) (_tempmaxrange+1.5);
+ //BA.debugLineNum = 2170;BA.debugLine="maxValue =  tempMaxRange+0.5";
+_maxvalue = (float) (_tempmaxrange+0.5);
  }else {
- //BA.debugLineNum = 2172;BA.debugLine="maxValue = (tempList.Get(tempList.Size-1))+1.5";
-_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))+1.5);
+ //BA.debugLineNum = 2172;BA.debugLine="maxValue = (tempList.Get(tempList.Size-1))+0.5";
+_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))+0.5);
  };
  };
  };
- //BA.debugLineNum = 2177;BA.debugLine="If (maxValue-1.5) >= tempMaxRange Then";
-if ((_maxvalue-1.5)>=_tempmaxrange) { 
- //BA.debugLineNum = 2178;BA.debugLine="tempMaxRange = maxValue-1.5";
-_tempmaxrange = (float) (_maxvalue-1.5);
+ //BA.debugLineNum = 2177;BA.debugLine="If (maxValue-0.3) >= tempMaxRange Then";
+if ((_maxvalue-0.3)>=_tempmaxrange) { 
+ //BA.debugLineNum = 2178;BA.debugLine="tempMaxRange = maxValue-0.3";
+_tempmaxrange = (float) (_maxvalue-0.3);
  };
- //BA.debugLineNum = 2181;BA.debugLine="tempMinRange = minValue+1.5";
-_tempminrange = (float) (_minvalue+1.5);
+ //BA.debugLineNum = 2181;BA.debugLine="tempMinRange = minValue+0.5";
+_tempminrange = (float) (_minvalue+0.5);
  //BA.debugLineNum = 2184;BA.debugLine="LineChart.YaxisRange(minValue, maxValue)";
 mostCurrent._linechart.YaxisRange(_minvalue,_maxvalue);
  //BA.debugLineNum = 2185;BA.debugLine="End Sub";
@@ -1003,8 +1003,8 @@ mostCurrent._linechart.setDomianLabel("The time now is: "+anywheresoftware.b4a.k
 mostCurrent._linechart.setDomainLabelColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
  //BA.debugLineNum = 1110;BA.debugLine="LineChart.DomainLabelTextSize = 25.0";
 mostCurrent._linechart.setDomainLabelTextSize((float) (25.0));
- //BA.debugLineNum = 1112;BA.debugLine="LineChart.XaxisGridLineColor = Colors.ARGB(100,2";
-mostCurrent._linechart.setXaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.ARGB((int) (100),(int) (255),(int) (255),(int) (255)));
+ //BA.debugLineNum = 1112;BA.debugLine="LineChart.XaxisGridLineColor = Colors.DarkGray";
+mostCurrent._linechart.setXaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
  //BA.debugLineNum = 1113;BA.debugLine="LineChart.XaxisGridLineWidth = 2.0";
 mostCurrent._linechart.setXaxisGridLineWidth((float) (2.0));
  //BA.debugLineNum = 1114;BA.debugLine="LineChart.XaxisLabelTicks = 1";
@@ -1021,8 +1021,8 @@ mostCurrent._linechart.setXAxisLabels(new String[]{"12 am","1 am","2 am","3 am",
 mostCurrent._linechart.setYaxisDivisions((int) (10));
  //BA.debugLineNum = 1122;BA.debugLine="LineChart.YaxisValueFormat = LineChart.ValueForm";
 mostCurrent._linechart.setYaxisValueFormat(mostCurrent._linechart.ValueFormat_2);
- //BA.debugLineNum = 1123;BA.debugLine="LineChart.YaxisGridLineColor = Colors.Black";
-mostCurrent._linechart.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
+ //BA.debugLineNum = 1123;BA.debugLine="LineChart.YaxisGridLineColor = Colors.DarkGray";
+mostCurrent._linechart.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
  //BA.debugLineNum = 1124;BA.debugLine="LineChart.YaxisGridLineWidth = 2";
 mostCurrent._linechart.setYaxisGridLineWidth((float) (2));
  //BA.debugLineNum = 1125;BA.debugLine="LineChart.YaxisLabelTicks = 1";
@@ -1606,7 +1606,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e375) {
 			processBA.setLastException(e375); //BA.debugLineNum = 1490;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("63211676",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54456860",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 1491;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -1695,8 +1695,8 @@ mostCurrent._linechart.setDomianLabel("The time now is: "+anywheresoftware.b4a.k
 mostCurrent._linechart.setDomainLabelColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
  //BA.debugLineNum = 425;BA.debugLine="LineChart.DomainLabelTextSize = 25.0";
 mostCurrent._linechart.setDomainLabelTextSize((float) (25.0));
- //BA.debugLineNum = 427;BA.debugLine="LineChart.XaxisGridLineColor = Colors.ARGB(100,2";
-mostCurrent._linechart.setXaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.ARGB((int) (100),(int) (255),(int) (255),(int) (255)));
+ //BA.debugLineNum = 427;BA.debugLine="LineChart.XaxisGridLineColor = Colors.DarkGray";
+mostCurrent._linechart.setXaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
  //BA.debugLineNum = 428;BA.debugLine="LineChart.XaxisGridLineWidth = 2.0";
 mostCurrent._linechart.setXaxisGridLineWidth((float) (2.0));
  //BA.debugLineNum = 429;BA.debugLine="LineChart.XaxisLabelTicks = 1";
@@ -1739,8 +1739,8 @@ mostCurrent._linechart.setXAxisLabels(mostCurrent._timearray);
 mostCurrent._linechart.setYaxisDivisions((int) (10));
  //BA.debugLineNum = 454;BA.debugLine="LineChart.YaxisValueFormat = LineChart.ValueForm";
 mostCurrent._linechart.setYaxisValueFormat(mostCurrent._linechart.ValueFormat_2);
- //BA.debugLineNum = 455;BA.debugLine="LineChart.YaxisGridLineColor = Colors.Black";
-mostCurrent._linechart.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
+ //BA.debugLineNum = 455;BA.debugLine="LineChart.YaxisGridLineColor = Colors.DarkGray";
+mostCurrent._linechart.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
  //BA.debugLineNum = 456;BA.debugLine="LineChart.YaxisGridLineWidth = 2";
 mostCurrent._linechart.setYaxisGridLineWidth((float) (2));
  //BA.debugLineNum = 457;BA.debugLine="LineChart.YaxisLabelTicks = 1";
@@ -2057,7 +2057,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e229) {
 			processBA.setLastException(e229); //BA.debugLineNum = 656;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("63080455",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54325639",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 657;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -2369,7 +2369,7 @@ _textreader1.Close();
  } 
        catch (Exception e116) {
 			processBA.setLastException(e116); //BA.debugLineNum = 1767;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("63407996",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54653180",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 1769;BA.debugLine="End Sub";
 return "";
@@ -2637,7 +2637,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 2029;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("63539071",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54784255",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 2031;BA.debugLine="End Sub";
 return "";
@@ -2903,7 +2903,7 @@ _textreader1.Close();
  } 
        catch (Exception e116) {
 			processBA.setLastException(e116); //BA.debugLineNum = 1639;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("63342460",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54587644",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 1641;BA.debugLine="End Sub";
 return "";
@@ -3171,7 +3171,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 1898;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("63473535",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54718719",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 1900;BA.debugLine="End Sub";
 return "";
@@ -3233,8 +3233,8 @@ mostCurrent._linechart.setDomianLabel("The time now is: "+anywheresoftware.b4a.k
 mostCurrent._linechart.setDomainLabelColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
  //BA.debugLineNum = 693;BA.debugLine="LineChart.DomainLabelTextSize = 25.0";
 mostCurrent._linechart.setDomainLabelTextSize((float) (25.0));
- //BA.debugLineNum = 695;BA.debugLine="LineChart.XaxisGridLineColor = Colors.ARGB(100,2";
-mostCurrent._linechart.setXaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.ARGB((int) (100),(int) (255),(int) (255),(int) (255)));
+ //BA.debugLineNum = 695;BA.debugLine="LineChart.XaxisGridLineColor = Colors.DarkGray";
+mostCurrent._linechart.setXaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
  //BA.debugLineNum = 696;BA.debugLine="LineChart.XaxisGridLineWidth = 2.0";
 mostCurrent._linechart.setXaxisGridLineWidth((float) (2.0));
  //BA.debugLineNum = 697;BA.debugLine="LineChart.XaxisLabelTicks = 1";
@@ -3251,8 +3251,8 @@ mostCurrent._linechart.setXAxisLabels(new String[]{"12 am","1 am","2 am","3 am",
 mostCurrent._linechart.setYaxisDivisions((int) (10));
  //BA.debugLineNum = 705;BA.debugLine="LineChart.YaxisValueFormat = LineChart.ValueForm";
 mostCurrent._linechart.setYaxisValueFormat(mostCurrent._linechart.ValueFormat_2);
- //BA.debugLineNum = 706;BA.debugLine="LineChart.YaxisGridLineColor = Colors.Black";
-mostCurrent._linechart.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
+ //BA.debugLineNum = 706;BA.debugLine="LineChart.YaxisGridLineColor = Colors.DarkGray";
+mostCurrent._linechart.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
  //BA.debugLineNum = 707;BA.debugLine="LineChart.YaxisGridLineWidth = 2";
 mostCurrent._linechart.setYaxisGridLineWidth((float) (2));
  //BA.debugLineNum = 708;BA.debugLine="LineChart.YaxisLabelTicks = 1";
@@ -3836,7 +3836,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e375) {
 			processBA.setLastException(e375); //BA.debugLineNum = 1073;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("63146140",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54391324",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 1074;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -3923,8 +3923,8 @@ mostCurrent._linechart.setDomianLabel("The time now is: "+anywheresoftware.b4a.k
 mostCurrent._linechart.setDomainLabelColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
  //BA.debugLineNum = 156;BA.debugLine="LineChart.DomainLabelTextSize = 25.0";
 mostCurrent._linechart.setDomainLabelTextSize((float) (25.0));
- //BA.debugLineNum = 158;BA.debugLine="LineChart.XaxisGridLineColor = Colors.ARGB(100,2";
-mostCurrent._linechart.setXaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.ARGB((int) (100),(int) (255),(int) (255),(int) (255)));
+ //BA.debugLineNum = 158;BA.debugLine="LineChart.XaxisGridLineColor = Colors.DarkGray '";
+mostCurrent._linechart.setXaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
  //BA.debugLineNum = 159;BA.debugLine="LineChart.XaxisGridLineWidth = 2.0";
 mostCurrent._linechart.setXaxisGridLineWidth((float) (2.0));
  //BA.debugLineNum = 160;BA.debugLine="LineChart.XaxisLabelTicks = 1";
@@ -3967,8 +3967,8 @@ mostCurrent._linechart.setXAxisLabels(mostCurrent._timearray);
 mostCurrent._linechart.setYaxisDivisions((int) (10));
  //BA.debugLineNum = 185;BA.debugLine="LineChart.YaxisValueFormat = LineChart.ValueForm";
 mostCurrent._linechart.setYaxisValueFormat(mostCurrent._linechart.ValueFormat_2);
- //BA.debugLineNum = 186;BA.debugLine="LineChart.YaxisGridLineColor = Colors.Black";
-mostCurrent._linechart.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
+ //BA.debugLineNum = 186;BA.debugLine="LineChart.YaxisGridLineColor = Colors.DarkGray";
+mostCurrent._linechart.setYaxisGridLineColor(anywheresoftware.b4a.keywords.Common.Colors.DarkGray);
  //BA.debugLineNum = 187;BA.debugLine="LineChart.YaxisGridLineWidth = 2";
 mostCurrent._linechart.setYaxisGridLineWidth((float) (2));
  //BA.debugLineNum = 188;BA.debugLine="LineChart.YaxisLabelTicks = 1";
@@ -4285,7 +4285,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e228) {
 			processBA.setLastException(e228); //BA.debugLineNum = 387;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("63014918",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54260102",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 388;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };

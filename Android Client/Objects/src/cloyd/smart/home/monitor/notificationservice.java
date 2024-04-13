@@ -130,8 +130,8 @@ public b4a.example.dateutils _dateutils = null;
 public cloyd.smart.home.monitor.main _main = null;
 public cloyd.smart.home.monitor.chart _chart = null;
 public cloyd.smart.home.monitor.smarthomemonitor _smarthomemonitor = null;
-public cloyd.smart.home.monitor.statemanager _statemanager = null;
 public cloyd.smart.home.monitor.starter _starter = null;
+public cloyd.smart.home.monitor.statemanager _statemanager = null;
 public cloyd.smart.home.monitor.b4xcollections _b4xcollections = null;
 public cloyd.smart.home.monitor.httputils2service _httputils2service = null;
 public static String  _listener_notificationposted(anywheresoftware.b4a.objects.NotificationListenerWrapper.StatusBarNotificationWrapper _sbn) throws Exception{
@@ -185,11 +185,7 @@ mostCurrent._smarthomemonitor._isoldairqualitynotificationongoingbasement /*bool
  } 
        catch (Exception e28) {
 			processBA.setLastException(e28); //BA.debugLineNum = 47;BA.debugLine="Log(LastException)";
-<<<<<<< HEAD
-anywheresoftware.b4a.keywords.Common.LogImpl("66225949",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
-=======
-anywheresoftware.b4a.keywords.Common.LogImpl("37536669",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
->>>>>>> origin/master
+anywheresoftware.b4a.keywords.Common.LogImpl("59043997",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 50;BA.debugLine="End Sub";
 return "";
@@ -234,13 +230,8 @@ mostCurrent._smarthomemonitor._isoldairqualitynotificationongoingbasement /*bool
  };
  } 
        catch (Exception e25) {
-<<<<<<< HEAD
 			processBA.setLastException(e25); //BA.debugLineNum = 78;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("66291482",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
-=======
-			processBA.setLastException(e25); //BA.debugLineNum = 80;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("37602204",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
->>>>>>> origin/master
+anywheresoftware.b4a.keywords.Common.LogImpl("59109530",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 81;BA.debugLine="End Sub";
 return "";
