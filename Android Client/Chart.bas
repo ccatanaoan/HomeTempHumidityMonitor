@@ -361,7 +361,7 @@ Private Sub TemperatureHourlyCreate()
 		LineChart.Line_1_PointLabelTextSize = 35.0
 		LineChart.Line_1_LineColor = Colors.Red
 		LineChart.Line_1_LineWidth = 11.0
-		LineChart.Line_1_PointColor = Colors.Black
+		LineChart.Line_1_PointColor = Colors.Yellow
 		LineChart.Line_1_PointSize = 25.0
 		LineChart.Line_1_PointShape = LineChart.SHAPE_ROUND
 		LineChart.Line_1_DrawDash = False
@@ -630,7 +630,7 @@ Private Sub HumidityHourlyCreate()
 		LineChart.Line_1_PointLabelTextSize = 35.0
 		LineChart.Line_1_LineColor = Colors.Red
 		LineChart.Line_1_LineWidth = 11.0
-		LineChart.Line_1_PointColor = Colors.Black
+		LineChart.Line_1_PointColor = Colors.Yellow
 		LineChart.Line_1_PointSize = 25.0
 		LineChart.Line_1_PointShape = LineChart.SHAPE_ROUND
 		LineChart.Line_1_DrawDash = False
@@ -881,7 +881,7 @@ Private Sub TemperatureDailyCreate()
 		LineChart.Line_1_PointLabelTextSize = 35.0
 		LineChart.Line_1_LineColor = Colors.Red
 		LineChart.Line_1_LineWidth = 11.0
-		LineChart.Line_1_PointColor = Colors.Black
+		LineChart.Line_1_PointColor = Colors.Yellow
 		LineChart.Line_1_PointSize = 25.0
 		LineChart.Line_1_PointShape = LineChart.SHAPE_ROUND
 		LineChart.Line_1_DrawDash = False
@@ -1298,7 +1298,7 @@ Private Sub HumidityDailyCreate()
 		LineChart.Line_1_PointLabelTextSize = 35.0
 		LineChart.Line_1_LineColor = Colors.Red
 		LineChart.Line_1_LineWidth = 11.0
-		LineChart.Line_1_PointColor = Colors.Black
+		LineChart.Line_1_PointColor = Colors.Yellow
 		LineChart.Line_1_PointSize = 25.0
 		LineChart.Line_1_PointShape = LineChart.SHAPE_ROUND
 		LineChart.Line_1_DrawDash = False
@@ -2076,22 +2076,22 @@ Sub CheckTempBoundaries
 		
 	Dim minValue=0, maxValue=0 As Float
 	If tempRightNow <= tempList.Get(0) Then
-		minValue = tempRightNow-0.3
+		minValue = tempRightNow-0.1
 	Else
-		minValue = tempList.Get(0)-0.3
+		minValue = tempList.Get(0)-0.1
 	End If
 	
 	If tempList.Get(tempList.Size-1) >= 88.88 Then
 		If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
-			maxValue = tempRightNow+0.5
+			maxValue = tempRightNow+0.2
 		Else
-			maxValue = (tempList.Get(tempList.Size-2))+0.5
+			maxValue = (tempList.Get(tempList.Size-2))+0.2
 		End If
 	Else
 		If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
-			maxValue = tempRightNow+0.5
+			maxValue = tempRightNow+0.2
 		Else
-			maxValue = (tempList.Get(tempList.Size-1))+0.5
+			maxValue = (tempList.Get(tempList.Size-1))+0.2
 		End If
 	End If
 	LineChart.YaxisRange(minValue, maxValue)
