@@ -630,20 +630,20 @@ _minvalue = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-0.1);
 if ((double)(BA.ObjectToNumber(_templist.Get((int) (_templist.getSize()-1))))>=88.88) { 
  //BA.debugLineNum = 2079;BA.debugLine="If tempRightNow >= (tempList.Get(tempList.Size-2";
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))) { 
- //BA.debugLineNum = 2080;BA.debugLine="maxValue = tempRightNow+0.2";
-_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.2);
+ //BA.debugLineNum = 2080;BA.debugLine="maxValue = tempRightNow+0.6";
+_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.6);
  }else {
- //BA.debugLineNum = 2082;BA.debugLine="maxValue = (tempList.Get(tempList.Size-2))+0.2";
-_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))+0.2);
+ //BA.debugLineNum = 2082;BA.debugLine="maxValue = (tempList.Get(tempList.Size-2))+0.6";
+_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))+0.6);
  };
  }else {
  //BA.debugLineNum = 2085;BA.debugLine="If tempRightNow >= (tempList.Get(tempList.Size-1";
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))) { 
- //BA.debugLineNum = 2086;BA.debugLine="maxValue = tempRightNow+0.2";
-_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.2);
+ //BA.debugLineNum = 2086;BA.debugLine="maxValue = tempRightNow+0.6";
+_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.6);
  }else {
- //BA.debugLineNum = 2088;BA.debugLine="maxValue = (tempList.Get(tempList.Size-1))+0.2";
-_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))+0.2);
+ //BA.debugLineNum = 2088;BA.debugLine="maxValue = (tempList.Get(tempList.Size-1))+0.6";
+_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))+0.6);
  };
  };
  //BA.debugLineNum = 2091;BA.debugLine="LineChart.YaxisRange(minValue, maxValue)";
@@ -773,20 +773,20 @@ if ((double)(BA.ObjectToNumber(_templist.Get((int) (_templist.getSize()-1))))>=8
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))) { 
  //BA.debugLineNum = 2149;BA.debugLine="If tempMaxRange >= tempRightNow Then";
 if (_tempmaxrange>=(double)(Double.parseDouble(mostCurrent._temprightnow))) { 
- //BA.debugLineNum = 2150;BA.debugLine="maxValue =  tempMaxRange+0.5";
-_maxvalue = (float) (_tempmaxrange+0.5);
+ //BA.debugLineNum = 2150;BA.debugLine="maxValue =  tempMaxRange+0.6";
+_maxvalue = (float) (_tempmaxrange+0.6);
  }else {
- //BA.debugLineNum = 2152;BA.debugLine="maxValue = tempRightNow+0.5";
-_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.5);
+ //BA.debugLineNum = 2152;BA.debugLine="maxValue = tempRightNow+0.6";
+_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.6);
  };
  }else {
  //BA.debugLineNum = 2155;BA.debugLine="If tempMaxRange >= (tempList.Get(tempList.Size-";
 if (_tempmaxrange>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))) { 
- //BA.debugLineNum = 2156;BA.debugLine="maxValue =  tempMaxRange+0.5";
-_maxvalue = (float) (_tempmaxrange+0.5);
+ //BA.debugLineNum = 2156;BA.debugLine="maxValue =  tempMaxRange+0.6";
+_maxvalue = (float) (_tempmaxrange+0.6);
  }else {
- //BA.debugLineNum = 2158;BA.debugLine="maxValue = (tempList.Get(tempList.Size-2))+0.5";
-_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))+0.5);
+ //BA.debugLineNum = 2158;BA.debugLine="maxValue = (tempList.Get(tempList.Size-2))+0.6";
+_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-2)))))+0.6);
  };
  };
  }else {
@@ -794,20 +794,20 @@ _maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.
 if ((double)(Double.parseDouble(mostCurrent._temprightnow))>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))) { 
  //BA.debugLineNum = 2163;BA.debugLine="If tempMaxRange >= tempRightNow Then";
 if (_tempmaxrange>=(double)(Double.parseDouble(mostCurrent._temprightnow))) { 
- //BA.debugLineNum = 2164;BA.debugLine="maxValue =  tempMaxRange+0.5";
-_maxvalue = (float) (_tempmaxrange+0.5);
+ //BA.debugLineNum = 2164;BA.debugLine="maxValue =  tempMaxRange+0.6";
+_maxvalue = (float) (_tempmaxrange+0.6);
  }else {
- //BA.debugLineNum = 2166;BA.debugLine="maxValue = tempRightNow+0.5";
-_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.5);
+ //BA.debugLineNum = 2166;BA.debugLine="maxValue = tempRightNow+0.6";
+_maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.6);
  };
  }else {
  //BA.debugLineNum = 2169;BA.debugLine="If tempMaxRange >= (tempList.Get(tempList.Size-";
 if (_tempmaxrange>=(double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))) { 
- //BA.debugLineNum = 2170;BA.debugLine="maxValue =  tempMaxRange+0.5";
-_maxvalue = (float) (_tempmaxrange+0.5);
+ //BA.debugLineNum = 2170;BA.debugLine="maxValue =  tempMaxRange+0.6";
+_maxvalue = (float) (_tempmaxrange+0.6);
  }else {
- //BA.debugLineNum = 2172;BA.debugLine="maxValue = (tempList.Get(tempList.Size-1))+0.5";
-_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))+0.5);
+ //BA.debugLineNum = 2172;BA.debugLine="maxValue = (tempList.Get(tempList.Size-1))+0.6";
+_maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))+0.6);
  };
  };
  };
@@ -1583,8 +1583,8 @@ mostCurrent._linechart.setLine_3_LegendText("Real time");
 mostCurrent._linechart.setLine_3_Data(new float[]{(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow))});
  //BA.debugLineNum = 1473;BA.debugLine="LineChart.Line_3_PointLabelTextColor = Colors.Gr";
 mostCurrent._linechart.setLine_3_PointLabelTextColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
- //BA.debugLineNum = 1474;BA.debugLine="LineChart.Line_3_PointLabelTextSize = 30.0";
-mostCurrent._linechart.setLine_3_PointLabelTextSize((float) (30.0));
+ //BA.debugLineNum = 1474;BA.debugLine="LineChart.Line_3_PointLabelTextSize = 35.0";
+mostCurrent._linechart.setLine_3_PointLabelTextSize((float) (35.0));
  //BA.debugLineNum = 1475;BA.debugLine="LineChart.Line_3_LineColor = Colors.Green";
 mostCurrent._linechart.setLine_3_LineColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
  //BA.debugLineNum = 1476;BA.debugLine="LineChart.Line_3_LineWidth = 5.0";
@@ -1595,8 +1595,8 @@ mostCurrent._linechart.setLine_3_PointColor(anywheresoftware.b4a.keywords.Common
 mostCurrent._linechart.setLine_3_PointSize((float) (1.0));
  //BA.debugLineNum = 1479;BA.debugLine="LineChart.Line_3_PointShape = LineChart.SHAPE_RO";
 mostCurrent._linechart.setLine_3_PointShape(mostCurrent._linechart.SHAPE_ROUND);
- //BA.debugLineNum = 1480;BA.debugLine="LineChart.Line_3_DrawDash = False";
-mostCurrent._linechart.setLine_3_DrawDash(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 1480;BA.debugLine="LineChart.Line_3_DrawDash = True";
+mostCurrent._linechart.setLine_3_DrawDash(anywheresoftware.b4a.keywords.Common.True);
  //BA.debugLineNum = 1481;BA.debugLine="LineChart.Line_3_DrawCubic = False";
 mostCurrent._linechart.setLine_3_DrawCubic(anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 1485;BA.debugLine="LineChart.NumberOfLineCharts = 3";
@@ -1606,7 +1606,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e375) {
 			processBA.setLastException(e375); //BA.debugLineNum = 1490;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("24456860",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54063644",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 1491;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -2034,8 +2034,8 @@ mostCurrent._linechart.setLine_1_DrawCubic(anywheresoftware.b4a.keywords.Common.
 mostCurrent._linechart.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow))});
  //BA.debugLineNum = 639;BA.debugLine="LineChart.Line_2_PointLabelTextColor = Colors.Gr";
 mostCurrent._linechart.setLine_2_PointLabelTextColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
- //BA.debugLineNum = 640;BA.debugLine="LineChart.Line_2_PointLabelTextSize = 30.0";
-mostCurrent._linechart.setLine_2_PointLabelTextSize((float) (30.0));
+ //BA.debugLineNum = 640;BA.debugLine="LineChart.Line_2_PointLabelTextSize = 35.0";
+mostCurrent._linechart.setLine_2_PointLabelTextSize((float) (35.0));
  //BA.debugLineNum = 641;BA.debugLine="LineChart.Line_2_LineColor = Colors.Green";
 mostCurrent._linechart.setLine_2_LineColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
  //BA.debugLineNum = 642;BA.debugLine="LineChart.Line_2_LineWidth = 5.0";
@@ -2046,8 +2046,8 @@ mostCurrent._linechart.setLine_2_PointColor(anywheresoftware.b4a.keywords.Common
 mostCurrent._linechart.setLine_2_PointSize((float) (1.0));
  //BA.debugLineNum = 645;BA.debugLine="LineChart.Line_2_PointShape = LineChart.SHAPE_RO";
 mostCurrent._linechart.setLine_2_PointShape(mostCurrent._linechart.SHAPE_ROUND);
- //BA.debugLineNum = 646;BA.debugLine="LineChart.Line_2_DrawDash = False";
-mostCurrent._linechart.setLine_2_DrawDash(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 646;BA.debugLine="LineChart.Line_2_DrawDash = True";
+mostCurrent._linechart.setLine_2_DrawDash(anywheresoftware.b4a.keywords.Common.True);
  //BA.debugLineNum = 647;BA.debugLine="LineChart.Line_2_DrawCubic = False";
 mostCurrent._linechart.setLine_2_DrawCubic(anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 651;BA.debugLine="LineChart.NumberOfLineCharts = 2";
@@ -2057,7 +2057,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e229) {
 			processBA.setLastException(e229); //BA.debugLineNum = 656;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("24325639",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("53932423",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 657;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -2369,7 +2369,7 @@ _textreader1.Close();
  } 
        catch (Exception e116) {
 			processBA.setLastException(e116); //BA.debugLineNum = 1767;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("24653180",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54259964",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 1769;BA.debugLine="End Sub";
 return "";
@@ -2637,7 +2637,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 2029;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("24784255",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54391039",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 2031;BA.debugLine="End Sub";
 return "";
@@ -2903,7 +2903,7 @@ _textreader1.Close();
  } 
        catch (Exception e116) {
 			processBA.setLastException(e116); //BA.debugLineNum = 1639;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("24587644",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54194428",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 1641;BA.debugLine="End Sub";
 return "";
@@ -3171,7 +3171,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 1898;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("24718719",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("54325503",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 1900;BA.debugLine="End Sub";
 return "";
@@ -3813,8 +3813,8 @@ mostCurrent._linechart.setLine_3_LegendText("Real time");
 mostCurrent._linechart.setLine_3_Data(new float[]{(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow))});
  //BA.debugLineNum = 1056;BA.debugLine="LineChart.Line_3_PointLabelTextColor = Colors.Gr";
 mostCurrent._linechart.setLine_3_PointLabelTextColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
- //BA.debugLineNum = 1057;BA.debugLine="LineChart.Line_3_PointLabelTextSize = 30.0";
-mostCurrent._linechart.setLine_3_PointLabelTextSize((float) (30.0));
+ //BA.debugLineNum = 1057;BA.debugLine="LineChart.Line_3_PointLabelTextSize = 35.0";
+mostCurrent._linechart.setLine_3_PointLabelTextSize((float) (35.0));
  //BA.debugLineNum = 1058;BA.debugLine="LineChart.Line_3_LineColor = Colors.Green";
 mostCurrent._linechart.setLine_3_LineColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
  //BA.debugLineNum = 1059;BA.debugLine="LineChart.Line_3_LineWidth = 5.0";
@@ -3825,8 +3825,8 @@ mostCurrent._linechart.setLine_3_PointColor(anywheresoftware.b4a.keywords.Common
 mostCurrent._linechart.setLine_3_PointSize((float) (1.0));
  //BA.debugLineNum = 1062;BA.debugLine="LineChart.Line_3_PointShape = LineChart.SHAPE_RO";
 mostCurrent._linechart.setLine_3_PointShape(mostCurrent._linechart.SHAPE_ROUND);
- //BA.debugLineNum = 1063;BA.debugLine="LineChart.Line_3_DrawDash = False";
-mostCurrent._linechart.setLine_3_DrawDash(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 1063;BA.debugLine="LineChart.Line_3_DrawDash = True";
+mostCurrent._linechart.setLine_3_DrawDash(anywheresoftware.b4a.keywords.Common.True);
  //BA.debugLineNum = 1064;BA.debugLine="LineChart.Line_3_DrawCubic = False";
 mostCurrent._linechart.setLine_3_DrawCubic(anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 1068;BA.debugLine="LineChart.NumberOfLineCharts = 3";
@@ -3836,7 +3836,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e375) {
 			processBA.setLastException(e375); //BA.debugLineNum = 1073;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("24391324",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("53998108",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 1074;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -4262,8 +4262,8 @@ mostCurrent._linechart.setLine_1_DrawCubic(anywheresoftware.b4a.keywords.Common.
 mostCurrent._linechart.setLine_2_Data(new float[]{(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow)),(float)(Double.parseDouble(mostCurrent._temprightnow))});
  //BA.debugLineNum = 370;BA.debugLine="LineChart.Line_2_PointLabelTextColor = Colors.Gr";
 mostCurrent._linechart.setLine_2_PointLabelTextColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
- //BA.debugLineNum = 371;BA.debugLine="LineChart.Line_2_PointLabelTextSize = 30.0";
-mostCurrent._linechart.setLine_2_PointLabelTextSize((float) (30.0));
+ //BA.debugLineNum = 371;BA.debugLine="LineChart.Line_2_PointLabelTextSize = 35.0";
+mostCurrent._linechart.setLine_2_PointLabelTextSize((float) (35.0));
  //BA.debugLineNum = 372;BA.debugLine="LineChart.Line_2_LineColor = Colors.Green";
 mostCurrent._linechart.setLine_2_LineColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
  //BA.debugLineNum = 373;BA.debugLine="LineChart.Line_2_LineWidth = 5.0";
@@ -4274,8 +4274,8 @@ mostCurrent._linechart.setLine_2_PointColor(anywheresoftware.b4a.keywords.Common
 mostCurrent._linechart.setLine_2_PointSize((float) (1.0));
  //BA.debugLineNum = 376;BA.debugLine="LineChart.Line_2_PointShape = LineChart.SHAPE_RO";
 mostCurrent._linechart.setLine_2_PointShape(mostCurrent._linechart.SHAPE_ROUND);
- //BA.debugLineNum = 377;BA.debugLine="LineChart.Line_2_DrawDash = False";
-mostCurrent._linechart.setLine_2_DrawDash(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 377;BA.debugLine="LineChart.Line_2_DrawDash = True";
+mostCurrent._linechart.setLine_2_DrawDash(anywheresoftware.b4a.keywords.Common.True);
  //BA.debugLineNum = 378;BA.debugLine="LineChart.Line_2_DrawCubic = False";
 mostCurrent._linechart.setLine_2_DrawCubic(anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 382;BA.debugLine="LineChart.NumberOfLineCharts = 2";
@@ -4285,7 +4285,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e228) {
 			processBA.setLastException(e228); //BA.debugLineNum = 387;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("24260102",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("53866886",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 388;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };

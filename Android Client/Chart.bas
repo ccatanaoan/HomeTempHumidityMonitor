@@ -374,13 +374,13 @@ Private Sub TemperatureHourlyCreate()
 		'LineChart.Line_2_LegendText = "Compiled: March 9, 2020 10:29 am" '& DateTime.Time(DateTime.Now)
 		LineChart.Line_2_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
 		LineChart.Line_2_PointLabelTextColor = Colors.Green
-		LineChart.Line_2_PointLabelTextSize = 30.0
+		LineChart.Line_2_PointLabelTextSize = 35.0
 		LineChart.Line_2_LineColor = Colors.Green
 		LineChart.Line_2_LineWidth = 5.0
 		LineChart.Line_2_PointColor = Colors.Green
 		LineChart.Line_2_PointSize = 1.0
 		LineChart.Line_2_PointShape = LineChart.SHAPE_ROUND
-		LineChart.Line_2_DrawDash = False
+		LineChart.Line_2_DrawDash = True
 		LineChart.Line_2_DrawCubic = False
 		
 		' ******************* Last 10 minutes *******************
@@ -643,13 +643,13 @@ Private Sub HumidityHourlyCreate()
 		'LineChart.Line_2_LegendText = "Compiled: March 9, 2020 10:29 am" '& DateTime.Time(DateTime.Now)
 		LineChart.Line_2_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
 		LineChart.Line_2_PointLabelTextColor = Colors.Green
-		LineChart.Line_2_PointLabelTextSize = 30.0
+		LineChart.Line_2_PointLabelTextSize = 35.0
 		LineChart.Line_2_LineColor = Colors.Green
 		LineChart.Line_2_LineWidth = 5.0
 		LineChart.Line_2_PointColor = Colors.Green
 		LineChart.Line_2_PointSize = 1.0
 		LineChart.Line_2_PointShape = LineChart.SHAPE_ROUND
-		LineChart.Line_2_DrawDash = False
+		LineChart.Line_2_DrawDash = True
 		LineChart.Line_2_DrawCubic = False
 		
 		' ******************* Last 10 minutes *******************
@@ -1060,13 +1060,13 @@ Private Sub TemperatureDailyCreate()
 		LineChart.Line_3_LegendText = "Real time"
 		LineChart.Line_3_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
 		LineChart.Line_3_PointLabelTextColor = Colors.Green
-		LineChart.Line_3_PointLabelTextSize = 30.0
+		LineChart.Line_3_PointLabelTextSize = 35.0
 		LineChart.Line_3_LineColor = Colors.Green
 		LineChart.Line_3_LineWidth = 5.0
 		LineChart.Line_3_PointColor = Colors.Green
 		LineChart.Line_3_PointSize = 1.0
 		LineChart.Line_3_PointShape = LineChart.SHAPE_ROUND
-		LineChart.Line_3_DrawDash = False
+		LineChart.Line_3_DrawDash = True
 		LineChart.Line_3_DrawCubic = False
 		
 		' ******************* Last 10 minutes *******************
@@ -1477,13 +1477,13 @@ Private Sub HumidityDailyCreate()
 		LineChart.Line_3_LegendText = "Real time"
 		LineChart.Line_3_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
 		LineChart.Line_3_PointLabelTextColor = Colors.Green
-		LineChart.Line_3_PointLabelTextSize = 30.0
+		LineChart.Line_3_PointLabelTextSize = 35.0
 		LineChart.Line_3_LineColor = Colors.Green
 		LineChart.Line_3_LineWidth = 5.0
 		LineChart.Line_3_PointColor = Colors.Green
 		LineChart.Line_3_PointSize = 1.0
 		LineChart.Line_3_PointShape = LineChart.SHAPE_ROUND
-		LineChart.Line_3_DrawDash = False
+		LineChart.Line_3_DrawDash = True
 		LineChart.Line_3_DrawCubic = False
 		
 		' ******************* Last 10 minutes *******************
@@ -2083,15 +2083,15 @@ Sub CheckTempBoundaries
 	
 	If tempList.Get(tempList.Size-1) >= 88.88 Then
 		If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
-			maxValue = tempRightNow+0.2
+			maxValue = tempRightNow+0.6
 		Else
-			maxValue = (tempList.Get(tempList.Size-2))+0.2
+			maxValue = (tempList.Get(tempList.Size-2))+0.6
 		End If
 	Else
 		If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
-			maxValue = tempRightNow+0.2
+			maxValue = tempRightNow+0.6
 		Else
-			maxValue = (tempList.Get(tempList.Size-1))+0.2
+			maxValue = (tempList.Get(tempList.Size-1))+0.6
 		End If
 	End If
 	LineChart.YaxisRange(minValue, maxValue)
@@ -2153,29 +2153,29 @@ Sub CheckTempBoundariesDaily
 	If tempList.Get(tempList.Size-1) >= 88.88 Then
 		If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
 			If tempMaxRange >= tempRightNow Then
-				maxValue =  tempMaxRange+0.5
+				maxValue =  tempMaxRange+0.6
 			Else
-				maxValue = tempRightNow+0.5
+				maxValue = tempRightNow+0.6
 			End If
 		Else
 			If tempMaxRange >= (tempList.Get(tempList.Size-2)) Then
-				maxValue =  tempMaxRange+0.5
+				maxValue =  tempMaxRange+0.6
 			Else
-				maxValue = (tempList.Get(tempList.Size-2))+0.5
+				maxValue = (tempList.Get(tempList.Size-2))+0.6
 			End If
 		End If
 	Else
 		If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
 			If tempMaxRange >= tempRightNow Then
-				maxValue =  tempMaxRange+0.5
+				maxValue =  tempMaxRange+0.6
 			Else
-				maxValue = tempRightNow+0.5
+				maxValue = tempRightNow+0.6
 			End If
 		Else
 			If tempMaxRange >= (tempList.Get(tempList.Size-1)) Then
-				maxValue =  tempMaxRange+0.5
+				maxValue =  tempMaxRange+0.6
 			Else
-				maxValue = (tempList.Get(tempList.Size-1))+0.5
+				maxValue = (tempList.Get(tempList.Size-1))+0.6
 			End If
 		End If
 	End If
@@ -2184,7 +2184,7 @@ Sub CheckTempBoundariesDaily
 		tempMaxRange = maxValue-0.3
 	End If
 	'If (minValue+0.5) <= tempMinRange Then
-	tempMinRange = minValue+0.5
+	tempMinRange = minValue+0.5 
 	'End If
 	
 	LineChart.YaxisRange(minValue, maxValue)
