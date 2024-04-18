@@ -93,8 +93,6 @@ Version=9.801
 	
 Sub Process_Globals
 	Private MQTT As MqttClient
-	'Private MQTTUser As String = "vynckfaq1"
-	'Private MQTTPassword As String = "KHSV1Q1qSUUY"
 	Private MQTTServerURI As String = "tcp://broker.hivemq.com:1883"
 	Private bc As ByteConverter
 	Private csu As CallSubUtils
@@ -106,6 +104,10 @@ Sub Process_Globals
 	Public isThereUnwatchedVideo As Boolean
 	Private Awake As PhoneWakeState
 	Private compileTimeStamp As String
+	Private oldlblAirQualityLastUpdate As Long
+	Private oldlblAirQualityLastUpdateBasement As Long
+	Private oldlblLastUpdate As Long
+	Private oldlblLastUpdateBasement As Long
 End Sub
 
 Sub Globals
@@ -815,11 +817,18 @@ Sub CheckAirQualitySetting
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
 				If p.Minutes <= -5 Then
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m old").PopAll
+					If p.Years < 0 Or p.Years > 0 Then
+						p = DateUtils.PeriodBetween(oldlblAirQualityLastUpdate,DateTime.now)
+					End If
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Years & "yr " & p.Months & "mo " & p.Days & "d " & p.Hours & "hr " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
 				else If p.Minutes >= 5 Then
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m advance").PopAll
+					If p.Years < 0 Or p.Years > 0 Then
+						p = DateUtils.PeriodBetween(oldlblAirQualityLastUpdate,DateTime.now)
+					End If
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Years & "yr " & p.Months & "mo " & p.Days & "d " & p.Hours & "hr " & p.Minutes & "m " & p.Seconds & "s ahead").PopAll
 				Else
 					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					oldlblAirQualityLastUpdate = lngTicks
 				End If
 			Else If a(2) = "00:00:00" Then
 				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
@@ -868,11 +877,18 @@ Sub CheckAirQualitySettingBasement
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
 				If p.Minutes <= -5 Then
-					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m old").PopAll
+					If p.Years < 0 Or p.Years > 0 Then
+						p = DateUtils.PeriodBetween(oldlblAirQualityLastUpdateBasement,DateTime.now)
+					End If
+					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Years & "yr " & p.Months & "mo " & p.Days & "d " & p.Hours & "hr " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
 				else If p.Minutes >= 5 Then
-					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m advance").PopAll
+					If p.Years < 0 Or p.Years > 0 Then
+						p = DateUtils.PeriodBetween(oldlblAirQualityLastUpdateBasement,DateTime.now)
+					End If
+					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Years & "yr " & p.Months & "mo " & p.Days & "d " & p.Hours & "hr " & p.Minutes & "m " & p.Seconds & "s ahead").PopAll
 				Else
 					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					oldlblAirQualityLastUpdateBasement = lngTicks
 				End If
 			Else If a(2) = "00:00:00" Then
 				lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdateBasement.Text.Replace("Last update: ","")).PopAll
@@ -929,11 +945,18 @@ Sub CheckTempHumiditySetting
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
 				If p.Minutes <= -5 Then
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m old").PopAll
+					If p.Years < 0 Or p.Years > 0 Then
+						p = DateUtils.PeriodBetween(oldlblLastUpdate,DateTime.now)
+					End If
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Years & "yr " & p.Months & "mo " & p.Days & "d " & p.Hours & "hr " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
 				else If p.Minutes >= 5 Then
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m advance").PopAll
+					If p.Years < 0 Or p.Years > 0 Then
+						p = DateUtils.PeriodBetween(oldlblLastUpdate,DateTime.now)
+					End If
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Years & "yr " & p.Months & "mo " & p.Days & "d " & p.Hours & "hr " & p.Minutes & "m " & p.Seconds & "s ahead").PopAll
 				Else
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					oldlblLastUpdate = lngTicks
 				End If
 			Else If a(8) = "00:00:00" Then
 				lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdate.Text.Replace("Last update: ","")).PopAll
@@ -989,11 +1012,18 @@ Sub CheckTempHumiditySettingBasement
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
 				If p.Minutes <= -5 Then
-					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m old").PopAll
+					If p.Years < 0 Or p.Years > 0 Then
+						p = DateUtils.PeriodBetween(oldlblLastUpdateBasement,DateTime.now)
+					End If
+					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Years & "yr " & p.Months & "mo " & p.Days & "d " & p.Hours & "hr " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
 				else If p.Minutes >= 5 Then
-					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m advance").PopAll
+					If p.Years < 0 Or p.Years > 0 Then
+						p = DateUtils.PeriodBetween(oldlblLastUpdateBasement,DateTime.now)
+					End If
+					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Years & "yr " & p.Months & "mo " & p.Days & "d " & p.Hours & "hr " & p.Minutes & "m " & p.Seconds & "s ahead").PopAll
 				Else
 					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
+					oldlblLastUpdateBasement = lngTicks
 				End If
 			Else If a(8) = "00:00:00" Then
 				lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblLastUpdateBasement.Text.Replace("Last update: ","")).PopAll

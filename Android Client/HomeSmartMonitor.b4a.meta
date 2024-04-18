@@ -37,6 +37,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Chart,HumidityHourlyCreate,645,2,Chart,TemperatureDailyCreate,1056,0,Chart,HumidityDailyCreate,1473,0,Chart,CheckTempBoundariesDaily,2163,0,Chart,ReadHumidityHourly,2016,0,Chart,TemperatureHourlyCreate,374,6,Main,CheckAirQualitySetting,747,6,Main,CheckAirQualitySettingBasement,802,2,Main,CheckTempHumiditySetting,861,5,Main,CheckTempHumiditySettingBasement,925,2,Main,CreatePreferenceScreen,942,0
+NavigationStack=Chart,ReadHumidityHourly,2016,0,Chart,TemperatureHourlyCreate,374,6,Main,CreatePreferenceScreen,942,0,Main,Activity_KeyPress,712,0,Main,Globals,76,6,Main,Process_Globals,36,0,Main,CheckTempHumiditySettingBasement,947,6,Main,CheckTempHumiditySetting,880,6,Main,CheckAirQualitySettingBasement,812,5,Main,CheckAirQualitySetting,752,6
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
