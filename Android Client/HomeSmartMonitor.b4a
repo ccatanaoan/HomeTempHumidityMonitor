@@ -814,14 +814,16 @@ Sub CheckAirQualitySetting
 				Dim lngTicks As Long = ticks
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
-				If p.Minutes >= 5 Or p.Minutes <= -5 Then
-						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
-					Else
-						lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
-					End If
-				Else If a(2) = "00:00:00" Then
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
+				If p.Minutes <= -5 Then
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m old").PopAll
+				else If p.Minutes >= 5 Then
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m advance").PopAll
+				Else
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
+			Else If a(2) = "00:00:00" Then
+				lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(lblAirQualityLastUpdate.Text.Replace("Last update: ","")).PopAll
+			End If
 		End If
 	Catch
 		Log(LastException)
@@ -865,8 +867,10 @@ Sub CheckAirQualitySettingBasement
 				Dim lngTicks As Long = ticks
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("AirQuality Time difference: " & p.Minutes & " minutes" & p.Seconds & " seconds")
-				If p.Minutes >= 5 Or p.Minutes <= -5 Then
-					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+				If p.Minutes <= -5 Then
+					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m old").PopAll
+				else If p.Minutes >= 5 Then
+					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m advance").PopAll
 				Else
 					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
@@ -924,8 +928,10 @@ Sub CheckTempHumiditySetting
 				Dim lngTicks As Long = ticks
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
-				If p.Minutes >= 5 Or p.Minutes <= -5 Then
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+				If p.Minutes <= -5 Then
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m old").PopAll
+				else If p.Minutes >= 5 Then
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m advance").PopAll
 				Else
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
@@ -982,8 +988,10 @@ Sub CheckTempHumiditySettingBasement
 				Dim lngTicks As Long = ticks
 				Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 				'Log("TempHumidity Time difference: " & p.Hours & ":" & p.Minutes & " minutes")
-				If p.Minutes >= 5 Or p.Minutes <= -5 Then
-					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(DateTime.Date(lngTicks)).PopAll
+				If p.Minutes <= -5 Then
+					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m old").PopAll
+				else If p.Minutes >= 5 Then
+					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append("Timestamp is " & p.Hours & "hr " & p.Minutes & "m advance").PopAll
 				Else
 					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 				End If
