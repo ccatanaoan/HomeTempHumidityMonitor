@@ -37,6 +37,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Chart,TemperatureHourlyTimer_Tick,2195,0,Visual Designer,chart.bal,-100,1,Gauge,DrawTicks,158,0,Chart,ReadTemperatureDaily,1555,0,Chart,HumidityHourlyCreate,645,2,Chart,TemperatureDailyCreate,1056,0,Chart,HumidityDailyCreate,1473,0,Chart,CheckTempBoundariesDaily,2163,0,Chart,ReadHumidityHourly,2016,0,Chart,TemperatureHourlyCreate,374,6
+NavigationStack=Chart,HumidityHourlyCreate,645,2,Chart,TemperatureDailyCreate,1056,0,Chart,HumidityDailyCreate,1473,0,Chart,CheckTempBoundariesDaily,2163,0,Chart,ReadHumidityHourly,2016,0,Chart,TemperatureHourlyCreate,374,6,Main,CheckAirQualitySetting,747,6,Main,CheckAirQualitySettingBasement,802,2,Main,CheckTempHumiditySetting,861,5,Main,CheckTempHumiditySettingBasement,925,2,Main,CreatePreferenceScreen,942,0
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
