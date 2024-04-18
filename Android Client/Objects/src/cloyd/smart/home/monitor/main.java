@@ -548,9 +548,9 @@ _compiledata = new anywheresoftware.b4a.objects.collections.Map();
  //BA.debugLineNum = 98;BA.debugLine="compiledata = File.ReadMap(File.DirAssets, \"com";
 _compiledata = anywheresoftware.b4a.keywords.Common.File.ReadMap(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"compiletime.txt");
  //BA.debugLineNum = 99;BA.debugLine="Log($\"autoversion: ${compiledata.Get(\"autoversi";
-anywheresoftware.b4a.keywords.Common.LogImpl("1131087",("autoversion: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",_compiledata.Get((Object)("autoversion")))+""),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8131087",("autoversion: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",_compiledata.Get((Object)("autoversion")))+""),0);
  //BA.debugLineNum = 100;BA.debugLine="Log($\"compilation time: $DateTime{compiledata.G";
-anywheresoftware.b4a.keywords.Common.LogImpl("1131088",("compilation time: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("datetime",_compiledata.Get((Object)("time")))+""),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8131088",("compilation time: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("datetime",_compiledata.Get((Object)("time")))+""),0);
  //BA.debugLineNum = 101;BA.debugLine="compileTimeStamp = compiledata.Get(\"time\")";
 parent._compiletimestamp = BA.ObjectToString(_compiledata.Get((Object)("time")));
  if (true) break;
@@ -583,7 +583,7 @@ case 16:
 //C
 this.state = 17;
  //BA.debugLineNum = 111;BA.debugLine="Log(\"After crash: \" & iCrash.GetExtra(\"Crash\"))";
-anywheresoftware.b4a.keywords.Common.LogImpl("1131099","After crash: "+BA.ObjectToString(_icrash.GetExtra("Crash")),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8131099","After crash: "+BA.ObjectToString(_icrash.GetExtra("Crash")),0);
  if (true) break;
 
 case 17:
@@ -979,7 +979,7 @@ _menu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("About"),(android.graphics
  } 
        catch (Exception e10) {
 			processBA.setLastException(e10); //BA.debugLineNum = 590;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("11441802",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("81048586",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 592;BA.debugLine="End Sub";
 return "";
@@ -1119,7 +1119,7 @@ _tabstrip1_pageselected((int) (6));
  } 
        catch (Exception e45) {
 			processBA.setLastException(e45); //BA.debugLineNum = 309;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("1196663",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8196663",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 312;BA.debugLine="Try";
 try { //BA.debugLineNum = 313;BA.debugLine="If MQTT.IsInitialized = False Or MQTT.Connected";
@@ -1130,7 +1130,7 @@ _mqtt_connect();
  } 
        catch (Exception e52) {
 			processBA.setLastException(e52); //BA.debugLineNum = 317;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("1196671",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8196671",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 319;BA.debugLine="End Sub";
 return "";
@@ -1250,13 +1250,13 @@ _mqtt.Publish("TempHumid",_bc.StringToBytes("Restart controller","utf8"));
  } 
        catch (Exception e64) {
 			processBA.setLastException(e64); //BA.debugLineNum = 546;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("11245249",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8852033",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  };
  } 
        catch (Exception e68) {
 			processBA.setLastException(e68); //BA.debugLineNum = 550;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("11245253",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8852037",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 552;BA.debugLine="End Sub";
 return "";
@@ -1346,7 +1346,7 @@ if (_p.Years<0 || _p.Years>0) {
 _p = mostCurrent._dateutils._periodbetween(mostCurrent.activityBA,_oldlblairqualitylastupdate,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  };
  //BA.debugLineNum = 753;BA.debugLine="lblAirQualityLastUpdate.Text = cs.Initialize.";
-mostCurrent._lblairqualitylastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ago")).PopAll().getObject()));
+mostCurrent._lblairqualitylastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ahead")).PopAll().getObject()));
  }else if(_p.Minutes>=5) { 
  //BA.debugLineNum = 755;BA.debugLine="If p.Years < 0 Or p.Years > 0 Then";
 if (_p.Years<0 || _p.Years>0) { 
@@ -1354,7 +1354,7 @@ if (_p.Years<0 || _p.Years>0) {
 _p = mostCurrent._dateutils._periodbetween(mostCurrent.activityBA,_oldlblairqualitylastupdate,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  };
  //BA.debugLineNum = 758;BA.debugLine="lblAirQualityLastUpdate.Text = cs.Initialize.";
-mostCurrent._lblairqualitylastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ahead")).PopAll().getObject()));
+mostCurrent._lblairqualitylastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ago")).PopAll().getObject()));
  }else {
  //BA.debugLineNum = 760;BA.debugLine="lblAirQualityLastUpdate.Text = cs.Initialize.";
 mostCurrent._lblairqualitylastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.DateTime.Date(_lngticks))).PopAll().getObject()));
@@ -1369,7 +1369,7 @@ mostCurrent._lblairqualitylastupdate.setText(BA.ObjectToCharSequence(_cs.Initial
  } 
        catch (Exception e53) {
 			processBA.setLastException(e53); //BA.debugLineNum = 768;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("11900598",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("81507382",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 769;BA.debugLine="lblAirQualityLastUpdate.Text = cs.Initialize.Bol";
 mostCurrent._lblairqualitylastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Exception: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject())).PopAll().getObject()));
  };
@@ -1454,7 +1454,7 @@ if (_p.Years<0 || _p.Years>0) {
 _p = mostCurrent._dateutils._periodbetween(mostCurrent.activityBA,_oldlblairqualitylastupdatebasement,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  };
  //BA.debugLineNum = 813;BA.debugLine="lblAirQualityLastUpdateBasement.Text = cs.Ini";
-mostCurrent._lblairqualitylastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ago")).PopAll().getObject()));
+mostCurrent._lblairqualitylastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ahead")).PopAll().getObject()));
  }else if(_p.Minutes>=5) { 
  //BA.debugLineNum = 815;BA.debugLine="If p.Years < 0 Or p.Years > 0 Then";
 if (_p.Years<0 || _p.Years>0) { 
@@ -1462,7 +1462,7 @@ if (_p.Years<0 || _p.Years>0) {
 _p = mostCurrent._dateutils._periodbetween(mostCurrent.activityBA,_oldlblairqualitylastupdatebasement,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  };
  //BA.debugLineNum = 818;BA.debugLine="lblAirQualityLastUpdateBasement.Text = cs.Ini";
-mostCurrent._lblairqualitylastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ahead")).PopAll().getObject()));
+mostCurrent._lblairqualitylastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ago")).PopAll().getObject()));
  }else {
  //BA.debugLineNum = 820;BA.debugLine="lblAirQualityLastUpdateBasement.Text = cs.Ini";
 mostCurrent._lblairqualitylastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.DateTime.Date(_lngticks))).PopAll().getObject()));
@@ -1477,7 +1477,7 @@ mostCurrent._lblairqualitylastupdatebasement.setText(BA.ObjectToCharSequence(_cs
  } 
        catch (Exception e53) {
 			processBA.setLastException(e53); //BA.debugLineNum = 828;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("11966135",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("81572919",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 829;BA.debugLine="lblAirQualityLastUpdateBasement.Text = cs.Initia";
 mostCurrent._lblairqualitylastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Exception: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject())).PopAll().getObject()));
  };
@@ -1577,7 +1577,7 @@ if (_p.Years<0 || _p.Years>0) {
 _p = mostCurrent._dateutils._periodbetween(mostCurrent.activityBA,_oldlbllastupdate,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  };
  //BA.debugLineNum = 881;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Appen";
-mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ago")).PopAll().getObject()));
+mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ahead")).PopAll().getObject()));
  }else if(_p.Minutes>=5) { 
  //BA.debugLineNum = 883;BA.debugLine="If p.Years < 0 Or p.Years > 0 Then";
 if (_p.Years<0 || _p.Years>0) { 
@@ -1585,7 +1585,7 @@ if (_p.Years<0 || _p.Years>0) {
 _p = mostCurrent._dateutils._periodbetween(mostCurrent.activityBA,_oldlbllastupdate,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  };
  //BA.debugLineNum = 886;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Appen";
-mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ahead")).PopAll().getObject()));
+mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ago")).PopAll().getObject()));
  }else {
  //BA.debugLineNum = 888;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Appen";
 mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.DateTime.Date(_lngticks))).PopAll().getObject()));
@@ -1600,7 +1600,7 @@ mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold
  } 
        catch (Exception e61) {
 			processBA.setLastException(e61); //BA.debugLineNum = 896;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("12031679",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("81638463",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 897;BA.debugLine="lblLastUpdate.Text = cs.Initialize.Bold.Append(\"";
 mostCurrent._lbllastupdate.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Exception: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject())).PopAll().getObject()));
  };
@@ -1700,7 +1700,7 @@ if (_p.Years<0 || _p.Years>0) {
 _p = mostCurrent._dateutils._periodbetween(mostCurrent.activityBA,_oldlbllastupdatebasement,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  };
  //BA.debugLineNum = 948;BA.debugLine="lblLastUpdateBasement.Text = cs.Initialize.Bo";
-mostCurrent._lbllastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ago")).PopAll().getObject()));
+mostCurrent._lbllastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ahead")).PopAll().getObject()));
  }else if(_p.Minutes>=5) { 
  //BA.debugLineNum = 950;BA.debugLine="If p.Years < 0 Or p.Years > 0 Then";
 if (_p.Years<0 || _p.Years>0) { 
@@ -1708,7 +1708,7 @@ if (_p.Years<0 || _p.Years>0) {
 _p = mostCurrent._dateutils._periodbetween(mostCurrent.activityBA,_oldlbllastupdatebasement,anywheresoftware.b4a.keywords.Common.DateTime.getNow());
  };
  //BA.debugLineNum = 953;BA.debugLine="lblLastUpdateBasement.Text = cs.Initialize.Bo";
-mostCurrent._lbllastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ahead")).PopAll().getObject()));
+mostCurrent._lbllastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(BA.NumberToString(_p.Years)+"yr "+BA.NumberToString(_p.Months)+"mo "+BA.NumberToString(_p.Days)+"d "+BA.NumberToString(_p.Hours)+"hr "+BA.NumberToString(_p.Minutes)+"m "+BA.NumberToString(_p.Seconds)+"s ago")).PopAll().getObject()));
  }else {
  //BA.debugLineNum = 955;BA.debugLine="lblLastUpdateBasement.Text = cs.Initialize.Bo";
 mostCurrent._lbllastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Last update: ")).Pop().Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.DateTime.Date(_lngticks))).PopAll().getObject()));
@@ -1723,7 +1723,7 @@ mostCurrent._lbllastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initializ
  } 
        catch (Exception e61) {
 			processBA.setLastException(e61); //BA.debugLineNum = 963;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("12097214",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("81703998",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 964;BA.debugLine="lblLastUpdateBasement.Text = cs.Initialize.Bold.";
 mostCurrent._lbllastupdatebasement.setText(BA.ObjectToCharSequence(_cs.Initialize().Bold().Append(BA.ObjectToCharSequence("Exception: ")).Pop().Color(anywheresoftware.b4a.keywords.Common.Colors.Red).Append(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject())).PopAll().getObject()));
  };
@@ -2026,7 +2026,7 @@ _appversion = _pm.GetVersionName(_packagename);
  } 
        catch (Exception e8) {
 			processBA.setLastException(e8); //BA.debugLineNum = 575;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("11376264",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8983048",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 577;BA.debugLine="Return AppVersion";
 if (true) return _appversion;
@@ -2152,7 +2152,7 @@ _mqtt.Connect();
  } 
        catch (Exception e6) {
 			processBA.setLastException(e6); //BA.debugLineNum = 335;BA.debugLine="Log(\"MQTT_Connect: \" & LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("1720905","MQTT_Connect: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8327689","MQTT_Connect: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 337;BA.debugLine="End Sub";
 return "";
@@ -2163,12 +2163,12 @@ public static String  _mqtt_connected(boolean _success) throws Exception{
 try { //BA.debugLineNum = 341;BA.debugLine="If Success = False Then";
 if (_success==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 342;BA.debugLine="Log(\"MQTT_NotConnected: \" & LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("1786435","MQTT_NotConnected: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8393219","MQTT_NotConnected: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 343;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  }else {
  //BA.debugLineNum = 345;BA.debugLine="Log(\"Connected to MQTT broker\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("1786438","Connected to MQTT broker",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8393222","Connected to MQTT broker",0);
  //BA.debugLineNum = 346;BA.debugLine="MQTT.Subscribe(\"TempHumid\", 0)";
 _mqtt.Subscribe("TempHumid",(int) (0));
  //BA.debugLineNum = 347;BA.debugLine="MQTT.Subscribe(\"MQ7LivingRoomCloyd\", 0)";
@@ -2183,7 +2183,7 @@ _mqtt.Subscribe("HumidityAddValue",(int) (0));
  } 
        catch (Exception e14) {
 			processBA.setLastException(e14); //BA.debugLineNum = 353;BA.debugLine="Log(\"MQTT_Connected: \" & LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("1786446","MQTT_Connected: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8393230","MQTT_Connected: "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 355;BA.debugLine="End Sub";
 return "";
@@ -2204,13 +2204,13 @@ mostCurrent._gblacmenu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("Show cha
  //BA.debugLineNum = 364;BA.debugLine="gblACMenu.Add(0, 0, \"About\",Null)";
 mostCurrent._gblacmenu.Add((int) (0),(int) (0),BA.ObjectToCharSequence("About"),(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null));
  //BA.debugLineNum = 365;BA.debugLine="Log(\"Disconnected from MQTT broker\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("1851976","Disconnected from MQTT broker",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8458760","Disconnected from MQTT broker",0);
  //BA.debugLineNum = 366;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  } 
        catch (Exception e11) {
 			processBA.setLastException(e11); //BA.debugLineNum = 368;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("1851979",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8458763",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 370;BA.debugLine="End Sub";
 return "";
@@ -2243,7 +2243,7 @@ _checktemphumiditysettingbasement();
  } 
        catch (Exception e16) {
 			processBA.setLastException(e16); //BA.debugLineNum = 389;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("1917521",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8524305",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 391;BA.debugLine="End Sub";
 return "";
@@ -2340,7 +2340,7 @@ anywheresoftware.b4a.keywords.Common.Msgbox2(BA.ObjectToCharSequence("Smart Home
  } 
        catch (Exception e9) {
 			processBA.setLastException(e9); //BA.debugLineNum = 563;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("11310729",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("8917513",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 565;BA.debugLine="End Sub";
 return "";
@@ -2401,7 +2401,7 @@ _checkairqualitysettingbasement();
  } 
        catch (Exception e33) {
 			processBA.setLastException(e33); //BA.debugLineNum = 651;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("11638436",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("81245220",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 653;BA.debugLine="End Sub";
 return "";
