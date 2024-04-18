@@ -190,7 +190,7 @@ _setavg(_bc,_x,_y,_clrs,_temp);
  }
 };
  //BA.debugLineNum = 320;BA.debugLine="Log(\"Time: \" & (DateTime.Now - n))";
-__c.LogImpl("913500452","Time: "+BA.NumberToString((__c.DateTime.getNow()-_n)),0);
+__c.LogImpl("922675492","Time: "+BA.NumberToString((__c.DateTime.getNow()-_n)),0);
  //BA.debugLineNum = 321;BA.debugLine="Return bc";
 if (true) return _bc;
  //BA.debugLineNum = 322;BA.debugLine="End Sub";
