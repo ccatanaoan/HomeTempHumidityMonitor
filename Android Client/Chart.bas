@@ -2095,7 +2095,7 @@ Sub CheckTempBoundaries
 		End If
 	End If
 	
-	If minValue < 50 Then
+	If minValue < 40 Then
 		minValue = tempList.Get(tempList.Size-1)
 	End If
 	
@@ -2189,7 +2189,7 @@ Sub CheckTempBoundariesDaily
 		tempMaxRange = maxValue-0.3
 	End If
 	
-	If minValue < 50 Then
+	If minValue < 40 Then
 		minValue = tempList.Get(tempList.Size-1)
 	End If
 	
