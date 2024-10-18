@@ -17,7 +17,7 @@ typedef unsigned int B4R_VAARGS_UINT;
 #if !defined(_NEW) && !defined(SKIP_B4RNEW)
 extern void *operator new( size_t size, void *ptr );
 #endif
-//~version: 2.01
+//~version: 3.90
 namespace B4R {
 	//numeric types < 20
 	#define BR_BYTE 1
@@ -396,21 +396,27 @@ namespace B4R {
 	 */
 		static void Return();
 		/**
-	 * Compares a single value to multiple values.
-	 *Example:<code>
-	 *Dim value As Int = 7
-	 *Select value
-	 *	Case 1
-	 *		Log("One")
-	 *	Case 2, 4, 6, 8
-	 *		Log("Even")
-	 *	Case 3, 5, 7, 9
-	 *		Log("Odd larger than one")
-	 *	Case Else
-	 *		Log("Larger than 9")
-	 *End Select</code>
-	 */
+		 * Compares a single value to multiple values.
+		 *Example:<code>
+		 *Dim value As Int = 7
+		 *Select value
+		 *	Case 1
+		 *		Log("One")
+		 *	Case 2, 4, 6, 8
+		 *		Log("Even")
+		 *	Case 3, 5, 7, 9
+		 *		Log("Odd larger than one")
+		 *	Case Else
+		 *		Log("Larger than 9")
+		 *End Select</code>
+		 */
 		static void Select();
+		/**
+		 * Inline If - returns TrueValue if Condition is True and False otherwise. Only the relevant expression is evaluated. 
+		 *It is recommended to explicitly set the return type with a following As:
+		 *<code>Dim x As Int = IIf(y > 10, 17, 7).As(Int)</code>
+		 */
+		static Object IIf (boolean Condition, Object TrueValue, Object FalseValue);
 		/**
 		*Returns the size (number of bytes) of the given object. The object type must be known during compilation.
 		*/

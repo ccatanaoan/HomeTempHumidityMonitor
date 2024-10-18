@@ -15,7 +15,7 @@ Sub Process_Globals
 	Private MQTT As MqttClient
 	'Private MQTTUser As String = "vynckfaq1"
 	'Private MQTTPassword As String = "KHSV1Q1qSUUY"
-	Private MQTTServerURI As String = "tcp://broker.hivemq.com:1883"
+	Private MQTTServerURI As String = "tcp://broker.emqx.io:1883"
 	Private Notification1 As Notification
 	Public IsAirQualityNotificationOnGoing As Boolean
 	Public IsTempHumidityNotificationOnGoing As Boolean

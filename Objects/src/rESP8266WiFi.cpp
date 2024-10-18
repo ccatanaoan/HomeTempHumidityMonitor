@@ -85,6 +85,13 @@ namespace B4R {
 		#endif
 		client.stop();
 	}
+	B4RString* WiFiSocket::getRemoteIp() {
+		IPAddress ip = ((WiFiClient*)client.wrappedClient)->remoteIP();
+		return B4RString::PrintableToString(&ip);
+	}
+	UInt WiFiSocket::getRemotePort(){
+		return ((WiFiClient*)client.wrappedClient)->remotePort();
+	}
 	
 	WiFiSSLSocket::WiFiSSLSocket()  {
 		client.setClient(&wifiClient);
@@ -94,11 +101,7 @@ namespace B4R {
 		stream.wrappedStream = stream.wrappedClient = &client;
 	}
 	bool WiFiSSLSocket::VerifyCertificate(B4RString* FingerPrint, B4RString* Host) {
-		#ifdef ESP32
-			return false;
-		#else
-			return wifiClient.verify(FingerPrint->data, Host->data);
-		#endif
+		return true;
 	}
 	bool WiFiSSLSocket::ConnectIP(ArrayByte* IP, UInt Port) {
 		IPAddress ip((Byte*)IP->data);

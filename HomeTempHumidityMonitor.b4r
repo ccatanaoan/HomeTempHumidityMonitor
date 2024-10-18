@@ -9,7 +9,7 @@ Library6=resp8266timetools
 NumberOfFiles=0
 NumberOfLibraries=6
 NumberOfModules=0
-Version=3
+Version=3.9
 @EndOfDesignText@
 ' Home Weather Station Using DHT22 (AM2302)
 '
@@ -71,7 +71,7 @@ Sub Process_Globals
 	Private WiFi As ESP8266WiFi
 	Private WiFiStr As WiFiSocket
 	Private MQTT As MqttClient
-	Private MQTTHostName As String = "broker.hivemq.com"
+	Private MQTTHostName As String = "broker.emqx.io"
 	Private MQTTPort As Int = 1883
 	Private ESP As ESP8266
 	Private WiFiSSID As String = "InternetOfThings"

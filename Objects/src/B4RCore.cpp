@@ -276,11 +276,11 @@ static ULong AvailableRAM() {
 	return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);
 #endif
 }
-#if  !defined(_NEW)
-void *operator new( size_t, void *ptr ) {
-	return ptr;
-}
-#endif
+// #if  !defined(_NEW)
+// void *operator new( size_t, void *ptr ) {
+	// return ptr;
+// }
+// #endif
 namespace B4R {
 	
 	ULong Common::AvailableRAM() {
@@ -383,6 +383,10 @@ namespace B4R {
 		B4RString* s = B4RString::PrintableToString(NULL);
 		Long lng = 1;
 		byte i;
+		if (Number < 0) {
+			pm.print("-");
+			Number = -Number;
+		}
 		for (i = 0;i < MinimumIntegers - 1;i++) {
 			lng *= 10;
 			if (lng > Number) {
@@ -393,7 +397,7 @@ namespace B4R {
 				}
 			}
 		}
-		pm.print(Number, MaximumFractions);
+		pm.print(Number, (Int)MaximumFractions);
 		StackMemory::buffer[StackMemory::cp++] = 0;
 		return s;
 		

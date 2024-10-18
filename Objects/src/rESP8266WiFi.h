@@ -8,7 +8,7 @@
 #endif
 #include <WiFiUdp.h>
 
-//~version: 1.55
+//~version: 1.57
 namespace B4R {
 	//~shortname: ESP8266WiFi
 	class B4RESPWiFi {
@@ -106,6 +106,11 @@ namespace B4R {
 			bool getConnected();
 			//Closes the connection.
 			void Close();
+			//Returns the remote client ip address as a string.
+			//Useful in server solutions.
+			B4RString* getRemoteIp();
+			//Returns the remote client port.
+			UInt getRemotePort();
 	};
 	//~shortname: WiFiSSLSocket
 	//A client SSL socket implementation. Similar to WiFiSocket. Can only make SSL connections.
@@ -130,6 +135,9 @@ namespace B4R {
 			*Port - Server port.
 			*/
 			bool ConnectIP(ArrayByte* IP, UInt Port);
+			/**
+			*Doesn't do anything.
+			*/
 			bool VerifyCertificate(B4RString* FingerPrint, B4RString* Host);
 			/**
 			*Tries to connect to the server. Returns true if connection was successful.

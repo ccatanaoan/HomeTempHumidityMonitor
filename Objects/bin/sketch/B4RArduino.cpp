@@ -7,23 +7,23 @@ namespace B4R {
 		setMode(Mode);
 	}
 	void Pin::setMode(Byte arduino_Mode) {
-#ifdef _VARIANT_ARDUINO_STM32_
-		WiringPinMode stm32_Mode;
-		switch (arduino_Mode) {
-			case INPUT:
-				stm32_Mode = INPUT;
-				break;
-			case OUTPUT:
-				stm32_Mode = OUTPUT;
-				break;
-			case INPUT_PULLUP:
-				stm32_Mode = INPUT_PULLUP;
-				break;
-		}
-		pinMode(PinNumber, stm32_Mode);
-#else
+// #ifdef _VARIANT_ARDUINO_STM32_
+		// WiringPinMode stm32_Mode;
+		// switch (arduino_Mode) {
+			// case INPUT:
+				// stm32_Mode = INPUT;
+				// break;
+			// case OUTPUT:
+				// stm32_Mode = OUTPUT;
+				// break;
+			// case INPUT_PULLUP:
+				// stm32_Mode = INPUT_PULLUP;
+				// break;
+		// }
+		// pinMode(PinNumber, stm32_Mode);
+// #else
 		pinMode(PinNumber, arduino_Mode);
-#endif
+// #endif
 		if (arduino_Mode == INPUT_PULLUP)
 			CurrentValue = true;
     }
