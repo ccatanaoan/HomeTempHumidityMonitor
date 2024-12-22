@@ -2037,165 +2037,175 @@ Sub ReadHumidityHourly(fileDay As String)
 End Sub
 
 Sub CheckTempBoundaries
-	Dim tempList As List
-	tempList.Initialize
-	tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
-	tempList.Sort(True)
+	Try
+		Dim tempList As List
+		tempList.Initialize
+		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
+		tempList.Sort(True)
 			
-	'Dim tempZeroRange As Float
-	tempZeroRange = tempList.Get(0)-0.3
+		'Dim tempZeroRange As Float
+		tempZeroRange = tempList.Get(0)-0.3
 		
-	If am12 = zeroRange Then am12 = tempZeroRange
-	If am1 = zeroRange Then am1 = tempZeroRange
-	If am2 = zeroRange Then am2 = tempZeroRange
-	If am3 = zeroRange Then am3 = tempZeroRange
-	If am4 = zeroRange Then am4 = tempZeroRange
-	If am5 = zeroRange Then am5 = tempZeroRange
-	If am6 = zeroRange Then am6 = tempZeroRange
-	If am7 = zeroRange Then am7 = tempZeroRange
-	If am8 = zeroRange Then am8 = tempZeroRange
-	If am9 = zeroRange Then am9 = tempZeroRange
-	If am10 = zeroRange Then am10 = tempZeroRange
-	If am11 = zeroRange Then am11 = tempZeroRange
-	If pm12 = zeroRange Then pm12 = tempZeroRange
-	If pm1 = zeroRange Then pm1 = tempZeroRange
-	If pm2 = zeroRange Then pm2 = tempZeroRange
-	If pm3 = zeroRange Then pm3 = tempZeroRange
-	If pm4 = zeroRange Then pm4 = tempZeroRange
-	If pm5 = zeroRange Then pm5 = tempZeroRange
-	If pm6 = zeroRange Then pm6 = tempZeroRange
-	If pm7 = zeroRange Then pm7 = tempZeroRange
-	If pm8 = zeroRange Then pm8 = tempZeroRange
-	If pm9 = zeroRange Then pm9 = tempZeroRange
-	If pm10 = zeroRange Then pm10 = tempZeroRange
-	If pm11 = zeroRange Then pm11 = tempZeroRange
+		If am12 = zeroRange Then am12 = tempZeroRange
+		If am1 = zeroRange Then am1 = tempZeroRange
+		If am2 = zeroRange Then am2 = tempZeroRange
+		If am3 = zeroRange Then am3 = tempZeroRange
+		If am4 = zeroRange Then am4 = tempZeroRange
+		If am5 = zeroRange Then am5 = tempZeroRange
+		If am6 = zeroRange Then am6 = tempZeroRange
+		If am7 = zeroRange Then am7 = tempZeroRange
+		If am8 = zeroRange Then am8 = tempZeroRange
+		If am9 = zeroRange Then am9 = tempZeroRange
+		If am10 = zeroRange Then am10 = tempZeroRange
+		If am11 = zeroRange Then am11 = tempZeroRange
+		If pm12 = zeroRange Then pm12 = tempZeroRange
+		If pm1 = zeroRange Then pm1 = tempZeroRange
+		If pm2 = zeroRange Then pm2 = tempZeroRange
+		If pm3 = zeroRange Then pm3 = tempZeroRange
+		If pm4 = zeroRange Then pm4 = tempZeroRange
+		If pm5 = zeroRange Then pm5 = tempZeroRange
+		If pm6 = zeroRange Then pm6 = tempZeroRange
+		If pm7 = zeroRange Then pm7 = tempZeroRange
+		If pm8 = zeroRange Then pm8 = tempZeroRange
+		If pm9 = zeroRange Then pm9 = tempZeroRange
+		If pm10 = zeroRange Then pm10 = tempZeroRange
+		If pm11 = zeroRange Then pm11 = tempZeroRange
 		
-	tempList.Initialize
-	tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
-	tempList.Sort(True)
+		tempList.Initialize
+		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
+		tempList.Sort(True)
 		
-	Dim minValue=0, maxValue=0 As Float
-	If tempRightNow <= tempList.Get(0) Then
-		minValue = tempRightNow-0.1
-	Else
-		minValue = tempList.Get(0)-0.1
-	End If
-	
-	If tempList.Get(tempList.Size-1) >= 88.88 Then
-		If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
-			maxValue = tempRightNow+0.6
+		Dim minValue=0, maxValue=0 As Float
+		If tempRightNow <= tempList.Get(0) Then
+			minValue = tempRightNow-0.1
 		Else
-			maxValue = (tempList.Get(tempList.Size-2))+0.6
+			minValue = tempList.Get(0)-0.1
 		End If
-	Else
-		If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
-			maxValue = tempRightNow+0.6
-		Else
-			maxValue = (tempList.Get(tempList.Size-1))+0.6
-		End If
-	End If
 	
-	If minValue < 40 Then
-		minValue = tempList.Get(tempList.Size-1)
-	End If
-	
-	LineChart.YaxisRange(minValue, maxValue)
-End Sub
-
-Sub CheckTempBoundariesDaily
-	Dim tempList As List
-	tempList.Initialize
-	tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
-	tempList.Sort(True)
-			
-	tempZeroRange = tempList.Get(0)-0.3
-		
-	If am12 = zeroRange Then am12 = tempZeroRange
-	If am1 = zeroRange Then am1 = tempZeroRange
-	If am2 = zeroRange Then am2 = tempZeroRange
-	If am3 = zeroRange Then am3 = tempZeroRange
-	If am4 = zeroRange Then am4 = tempZeroRange
-	If am5 = zeroRange Then am5 = tempZeroRange
-	If am6 = zeroRange Then am6 = tempZeroRange
-	If am7 = zeroRange Then am7 = tempZeroRange
-	If am8 = zeroRange Then am8 = tempZeroRange
-	If am9 = zeroRange Then am9 = tempZeroRange
-	If am10 = zeroRange Then am10 = tempZeroRange
-	If am11 = zeroRange Then am11 = tempZeroRange
-	If pm12 = zeroRange Then pm12 = tempZeroRange
-	If pm1 = zeroRange Then pm1 = tempZeroRange
-	If pm2 = zeroRange Then pm2 = tempZeroRange
-	If pm3 = zeroRange Then pm3 = tempZeroRange
-	If pm4 = zeroRange Then pm4 = tempZeroRange
-	If pm5 = zeroRange Then pm5 = tempZeroRange
-	If pm6 = zeroRange Then pm6 = tempZeroRange
-	If pm7 = zeroRange Then pm7 = tempZeroRange
-	If pm8 = zeroRange Then pm8 = tempZeroRange
-	If pm9 = zeroRange Then pm9 = tempZeroRange
-	If pm10 = zeroRange Then pm10 = tempZeroRange
-	If pm11 = zeroRange Then pm11 = tempZeroRange
-		
-	tempList.Initialize
-	tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
-	tempList.Sort(True)
-	
-	Dim minValue=0, maxValue=0 As Float
-	
-	If tempRightNow <= tempList.Get(0) Then
-		If tempMinRange <= tempRightNow Then
-			minValue = tempMinRange-0.3
-		Else
-			minValue = tempRightNow-0.3
-		End If
-	Else
-		If tempMinRange > 0 And tempMinRange <= tempList.Get(0) Then
-			minValue = tempMinRange-0.3
-		Else
-			minValue = tempList.Get(0)-0.3
-		End If
-	End If
-	
-	If tempList.Get(tempList.Size-1) >= 88.88 Then
-		If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
-			If tempMaxRange >= tempRightNow Then
-				maxValue =  tempMaxRange+0.6
-			Else
+		If tempList.Get(tempList.Size-1) >= 88.88 Then
+			If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
 				maxValue = tempRightNow+0.6
-			End If
-		Else
-			If tempMaxRange >= (tempList.Get(tempList.Size-2)) Then
-				maxValue =  tempMaxRange+0.6
 			Else
 				maxValue = (tempList.Get(tempList.Size-2))+0.6
 			End If
-		End If
-	Else
-		If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
-			If tempMaxRange >= tempRightNow Then
-				maxValue =  tempMaxRange+0.6
-			Else
-				maxValue = tempRightNow+0.6
-			End If
 		Else
-			If tempMaxRange >= (tempList.Get(tempList.Size-1)) Then
-				maxValue =  tempMaxRange+0.6
+			If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
+				maxValue = tempRightNow+0.6
 			Else
 				maxValue = (tempList.Get(tempList.Size-1))+0.6
 			End If
 		End If
-	End If
 	
-	If (maxValue-0.3) >= tempMaxRange Then
-		tempMaxRange = maxValue-0.3
-	End If
+		If minValue < 40 Then
+			minValue = tempList.Get(tempList.Size-1)
+		End If
 	
-	If minValue < 40 Then
-		minValue = tempList.Get(tempList.Size-1)
-	End If
+		LineChart.YaxisRange(minValue-2, maxValue+2)
+	Catch
+		Log(LastException)
+	End Try
+
+End Sub
+
+Sub CheckTempBoundariesDaily
+	Try
+		Dim tempList As List
+		tempList.Initialize
+		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
+		tempList.Sort(True)
+			
+		tempZeroRange = tempList.Get(0)-0.3
+		
+		If am12 = zeroRange Then am12 = tempZeroRange
+		If am1 = zeroRange Then am1 = tempZeroRange
+		If am2 = zeroRange Then am2 = tempZeroRange
+		If am3 = zeroRange Then am3 = tempZeroRange
+		If am4 = zeroRange Then am4 = tempZeroRange
+		If am5 = zeroRange Then am5 = tempZeroRange
+		If am6 = zeroRange Then am6 = tempZeroRange
+		If am7 = zeroRange Then am7 = tempZeroRange
+		If am8 = zeroRange Then am8 = tempZeroRange
+		If am9 = zeroRange Then am9 = tempZeroRange
+		If am10 = zeroRange Then am10 = tempZeroRange
+		If am11 = zeroRange Then am11 = tempZeroRange
+		If pm12 = zeroRange Then pm12 = tempZeroRange
+		If pm1 = zeroRange Then pm1 = tempZeroRange
+		If pm2 = zeroRange Then pm2 = tempZeroRange
+		If pm3 = zeroRange Then pm3 = tempZeroRange
+		If pm4 = zeroRange Then pm4 = tempZeroRange
+		If pm5 = zeroRange Then pm5 = tempZeroRange
+		If pm6 = zeroRange Then pm6 = tempZeroRange
+		If pm7 = zeroRange Then pm7 = tempZeroRange
+		If pm8 = zeroRange Then pm8 = tempZeroRange
+		If pm9 = zeroRange Then pm9 = tempZeroRange
+		If pm10 = zeroRange Then pm10 = tempZeroRange
+		If pm11 = zeroRange Then pm11 = tempZeroRange
+		
+		tempList.Initialize
+		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
+		tempList.Sort(True)
 	
-	tempMinRange = minValue+0.5 
+		Dim minValue=0, maxValue=0 As Float
 	
-	LineChart.YaxisRange(minValue, maxValue)
+		If tempRightNow <= tempList.Get(0) Then
+			If tempMinRange <= tempRightNow Then
+				minValue = tempMinRange-0.3
+			Else
+				minValue = tempRightNow-0.3
+			End If
+		Else
+			If tempMinRange > 0 And tempMinRange <= tempList.Get(0) Then
+				minValue = tempMinRange-0.3
+			Else
+				minValue = tempList.Get(0)-0.3
+			End If
+		End If
+	
+		If tempList.Get(tempList.Size-1) >= 88.88 Then
+			If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
+				If tempMaxRange >= tempRightNow Then
+					maxValue =  tempMaxRange+0.6
+				Else
+					maxValue = tempRightNow+0.6
+				End If
+			Else
+				If tempMaxRange >= (tempList.Get(tempList.Size-2)) Then
+					maxValue =  tempMaxRange+0.6
+				Else
+					maxValue = (tempList.Get(tempList.Size-2))+0.6
+				End If
+			End If
+		Else
+			If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
+				If tempMaxRange >= tempRightNow Then
+					maxValue =  tempMaxRange+0.6
+				Else
+					maxValue = tempRightNow+0.6
+				End If
+			Else
+				If tempMaxRange >= (tempList.Get(tempList.Size-1)) Then
+					maxValue =  tempMaxRange+0.6
+				Else
+					maxValue = (tempList.Get(tempList.Size-1))+0.6
+				End If
+			End If
+		End If
+	
+		If (maxValue-0.3) >= tempMaxRange Then
+			tempMaxRange = maxValue-0.3
+		End If
+	
+		If minValue < 40 Then
+			minValue = tempList.Get(tempList.Size-1)
+		End If
+	
+		tempMinRange = minValue+0.5
+	
+		LineChart.YaxisRange(minValue-2, maxValue+2)
+	Catch
+		Log(LastException)
+	End Try
+
 End Sub
 
 Sub TemperatureHourlyTimer_Tick
