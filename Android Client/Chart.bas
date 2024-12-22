@@ -2121,11 +2121,11 @@ Sub CheckTempBoundaries
 			End If
 		End If
 	
-		If minValue < 40 Then
-			minValue = tempList.Get(tempList.Size-1)
+		If minValue <= 0 Then
+			minValue = tempList.Get(0)-0.1
 		End If
 	
-		LineChart.YaxisRange(minValue-2, maxValue+2)
+		LineChart.YaxisRange(minValue-1, maxValue+1)
 	Catch
 		Log(LastException)
 	End Try
@@ -2246,13 +2246,17 @@ Sub CheckTempBoundariesDaily
 			tempMaxRange = maxValue-0.3
 		End If
 	
-		If minValue < 40 Then
-			minValue = tempList.Get(tempList.Size-1)
+		If minValue <= 0 Then
+			If tempMinRange > 0 And tempMinRange <= tempList.Get(0) Then
+				minValue = tempMinRange-0.3
+			Else
+				minValue = tempList.Get(0)-0.3
+			End If
 		End If
 	
 		tempMinRange = minValue+0.5
 	
-		LineChart.YaxisRange(minValue-2, maxValue+2)
+		LineChart.YaxisRange(minValue-1, maxValue+1)
 	Catch
 		Log(LastException)
 	End Try
