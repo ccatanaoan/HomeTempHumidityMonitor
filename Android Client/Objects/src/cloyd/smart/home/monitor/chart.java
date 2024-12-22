@@ -422,20 +422,20 @@ return "";
 }
 public static String  _activity_windowfocuschanged(boolean _hasfocus) throws Exception{
 anywheresoftware.b4j.object.JavaObject _jo = null;
- //BA.debugLineNum = 2304;BA.debugLine="Sub Activity_WindowFocusChanged(HasFocus As Boolea";
- //BA.debugLineNum = 2305;BA.debugLine="If HasFocus Then";
+ //BA.debugLineNum = 2308;BA.debugLine="Sub Activity_WindowFocusChanged(HasFocus As Boolea";
+ //BA.debugLineNum = 2309;BA.debugLine="If HasFocus Then";
 if (_hasfocus) { 
- //BA.debugLineNum = 2306;BA.debugLine="Try";
-try { //BA.debugLineNum = 2307;BA.debugLine="Dim jo As JavaObject = Activity";
+ //BA.debugLineNum = 2310;BA.debugLine="Try";
+try { //BA.debugLineNum = 2311;BA.debugLine="Dim jo As JavaObject = Activity";
 _jo = new anywheresoftware.b4j.object.JavaObject();
 _jo.setObject((java.lang.Object)(mostCurrent._activity.getObject()));
- //BA.debugLineNum = 2309;BA.debugLine="jo.RunMethod(\"setSystemUiVisibility\", Array As";
+ //BA.debugLineNum = 2313;BA.debugLine="jo.RunMethod(\"setSystemUiVisibility\", Array As";
 _jo.RunMethod("setSystemUiVisibility",new Object[]{(Object)(5894)});
  } 
        catch (Exception e6) {
 			processBA.setLastException(e6); };
  };
- //BA.debugLineNum = 2315;BA.debugLine="End Sub";
+ //BA.debugLineNum = 2319;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btnhumiditydaily_click() throws Exception{
@@ -695,17 +695,17 @@ _maxvalue = (float) ((double)(Double.parseDouble(mostCurrent._temprightnow))+0.6
 _maxvalue = (float) ((double)(BA.ObjectToNumber((_templist.Get((int) (_templist.getSize()-1)))))+0.6);
  };
  };
- //BA.debugLineNum = 2118;BA.debugLine="If minValue < 40 Then";
-if (_minvalue<40) { 
- //BA.debugLineNum = 2119;BA.debugLine="minValue = tempList.Get(tempList.Size-1)";
-_minvalue = (float)(BA.ObjectToNumber(_templist.Get((int) (_templist.getSize()-1))));
+ //BA.debugLineNum = 2118;BA.debugLine="If minValue <= 0 Then";
+if (_minvalue<=0) { 
+ //BA.debugLineNum = 2119;BA.debugLine="minValue = tempList.Get(0)-0.1";
+_minvalue = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-0.1);
  };
- //BA.debugLineNum = 2122;BA.debugLine="LineChart.YaxisRange(minValue-2, maxValue+2)";
-mostCurrent._linechart.YaxisRange((float) (_minvalue-2),(float) (_maxvalue+2));
+ //BA.debugLineNum = 2122;BA.debugLine="LineChart.YaxisRange(minValue-1, maxValue+1)";
+mostCurrent._linechart.YaxisRange((float) (_minvalue-1),(float) (_maxvalue+1));
  } 
        catch (Exception e82) {
 			processBA.setLastException(e82); //BA.debugLineNum = 2124;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227852891",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("44849755",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 2127;BA.debugLine="End Sub";
 return "";
@@ -924,21 +924,27 @@ if ((_maxvalue-0.3)>=_tempmaxrange) {
  //BA.debugLineNum = 2240;BA.debugLine="tempMaxRange = maxValue-0.3";
 _tempmaxrange = (float) (_maxvalue-0.3);
  };
- //BA.debugLineNum = 2243;BA.debugLine="If minValue < 40 Then";
-if (_minvalue<40) { 
- //BA.debugLineNum = 2244;BA.debugLine="minValue = tempList.Get(tempList.Size-1)";
-_minvalue = (float)(BA.ObjectToNumber(_templist.Get((int) (_templist.getSize()-1))));
+ //BA.debugLineNum = 2243;BA.debugLine="If minValue <= 0 Then";
+if (_minvalue<=0) { 
+ //BA.debugLineNum = 2244;BA.debugLine="If tempMinRange > 0 And tempMinRange <= tempLis";
+if (_tempminrange>0 && _tempminrange<=(double)(BA.ObjectToNumber(_templist.Get((int) (0))))) { 
+ //BA.debugLineNum = 2245;BA.debugLine="minValue = tempMinRange-0.3";
+_minvalue = (float) (_tempminrange-0.3);
+ }else {
+ //BA.debugLineNum = 2247;BA.debugLine="minValue = tempList.Get(0)-0.3";
+_minvalue = (float) ((double)(BA.ObjectToNumber(_templist.Get((int) (0))))-0.3);
  };
- //BA.debugLineNum = 2247;BA.debugLine="tempMinRange = minValue+0.5";
+ };
+ //BA.debugLineNum = 2251;BA.debugLine="tempMinRange = minValue+0.5";
 _tempminrange = (float) (_minvalue+0.5);
- //BA.debugLineNum = 2249;BA.debugLine="LineChart.YaxisRange(minValue-2, maxValue+2)";
-mostCurrent._linechart.YaxisRange((float) (_minvalue-2),(float) (_maxvalue+2));
+ //BA.debugLineNum = 2253;BA.debugLine="LineChart.YaxisRange(minValue-1, maxValue+1)";
+mostCurrent._linechart.YaxisRange((float) (_minvalue-1),(float) (_maxvalue+1));
  } 
-       catch (Exception e110) {
-			processBA.setLastException(e110); //BA.debugLineNum = 2251;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227918458",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+       catch (Exception e114) {
+			processBA.setLastException(e114); //BA.debugLineNum = 2255;BA.debugLine="Log(LastException)";
+anywheresoftware.b4a.keywords.Common.LogImpl("44915326",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
- //BA.debugLineNum = 2254;BA.debugLine="End Sub";
+ //BA.debugLineNum = 2258;BA.debugLine="End Sub";
 return "";
 }
 public static anywheresoftware.b4a.keywords.LayoutValues  _getrealsize() throws Exception{
@@ -1724,7 +1730,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e375) {
 			processBA.setLastException(e375); //BA.debugLineNum = 1490;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227459996",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("44456860",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 1491;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -1732,26 +1738,26 @@ anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(an
 return "";
 }
 public static String  _humiditydailytimer_tick() throws Exception{
- //BA.debugLineNum = 2292;BA.debugLine="Sub HumidityDailyTimer_Tick";
- //BA.debugLineNum = 2293;BA.debugLine="Activity.RequestFocus";
+ //BA.debugLineNum = 2296;BA.debugLine="Sub HumidityDailyTimer_Tick";
+ //BA.debugLineNum = 2297;BA.debugLine="Activity.RequestFocus";
 mostCurrent._activity.RequestFocus();
- //BA.debugLineNum = 2294;BA.debugLine="btnHumidityHourly.RemoveView";
+ //BA.debugLineNum = 2298;BA.debugLine="btnHumidityHourly.RemoveView";
 mostCurrent._btnhumidityhourly.RemoveView();
- //BA.debugLineNum = 2295;BA.debugLine="btnTempHourly.RemoveView";
+ //BA.debugLineNum = 2299;BA.debugLine="btnTempHourly.RemoveView";
 mostCurrent._btntemphourly.RemoveView();
- //BA.debugLineNum = 2296;BA.debugLine="btnHumidityDaily.RemoveView";
+ //BA.debugLineNum = 2300;BA.debugLine="btnHumidityDaily.RemoveView";
 mostCurrent._btnhumiditydaily.RemoveView();
- //BA.debugLineNum = 2297;BA.debugLine="btnTempDaily.RemoveView";
+ //BA.debugLineNum = 2301;BA.debugLine="btnTempDaily.RemoveView";
 mostCurrent._btntempdaily.RemoveView();
- //BA.debugLineNum = 2298;BA.debugLine="LineChart.RemoveView";
+ //BA.debugLineNum = 2302;BA.debugLine="LineChart.RemoveView";
 mostCurrent._linechart.RemoveView();
- //BA.debugLineNum = 2299;BA.debugLine="tempMaxRange=0";
+ //BA.debugLineNum = 2303;BA.debugLine="tempMaxRange=0";
 _tempmaxrange = (float) (0);
- //BA.debugLineNum = 2300;BA.debugLine="tempMinRange=0";
+ //BA.debugLineNum = 2304;BA.debugLine="tempMinRange=0";
 _tempminrange = (float) (0);
- //BA.debugLineNum = 2301;BA.debugLine="HumidityDailyCreate";
+ //BA.debugLineNum = 2305;BA.debugLine="HumidityDailyCreate";
 _humiditydailycreate();
- //BA.debugLineNum = 2302;BA.debugLine="End Sub";
+ //BA.debugLineNum = 2306;BA.debugLine="End Sub";
 return "";
 }
 public static String  _humidityhourlycreate() throws Exception{
@@ -2175,7 +2181,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e229) {
 			processBA.setLastException(e229); //BA.debugLineNum = 656;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227328775",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("44325639",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 657;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -2183,26 +2189,26 @@ anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(an
 return "";
 }
 public static String  _humidityhourlytimer_tick() throws Exception{
- //BA.debugLineNum = 2268;BA.debugLine="Sub HumidityHourlyTimer_Tick";
- //BA.debugLineNum = 2269;BA.debugLine="Activity.RequestFocus";
+ //BA.debugLineNum = 2272;BA.debugLine="Sub HumidityHourlyTimer_Tick";
+ //BA.debugLineNum = 2273;BA.debugLine="Activity.RequestFocus";
 mostCurrent._activity.RequestFocus();
- //BA.debugLineNum = 2270;BA.debugLine="btnHumidityHourly.RemoveView";
+ //BA.debugLineNum = 2274;BA.debugLine="btnHumidityHourly.RemoveView";
 mostCurrent._btnhumidityhourly.RemoveView();
- //BA.debugLineNum = 2271;BA.debugLine="btnTempHourly.RemoveView";
+ //BA.debugLineNum = 2275;BA.debugLine="btnTempHourly.RemoveView";
 mostCurrent._btntemphourly.RemoveView();
- //BA.debugLineNum = 2272;BA.debugLine="btnHumidityDaily.RemoveView";
+ //BA.debugLineNum = 2276;BA.debugLine="btnHumidityDaily.RemoveView";
 mostCurrent._btnhumiditydaily.RemoveView();
- //BA.debugLineNum = 2273;BA.debugLine="btnTempDaily.RemoveView";
+ //BA.debugLineNum = 2277;BA.debugLine="btnTempDaily.RemoveView";
 mostCurrent._btntempdaily.RemoveView();
- //BA.debugLineNum = 2274;BA.debugLine="LineChart.RemoveView";
+ //BA.debugLineNum = 2278;BA.debugLine="LineChart.RemoveView";
 mostCurrent._linechart.RemoveView();
- //BA.debugLineNum = 2275;BA.debugLine="tempMaxRange=0";
+ //BA.debugLineNum = 2279;BA.debugLine="tempMaxRange=0";
 _tempmaxrange = (float) (0);
- //BA.debugLineNum = 2276;BA.debugLine="tempMinRange=0";
+ //BA.debugLineNum = 2280;BA.debugLine="tempMinRange=0";
 _tempminrange = (float) (0);
- //BA.debugLineNum = 2277;BA.debugLine="HumidityHourlyCreate";
+ //BA.debugLineNum = 2281;BA.debugLine="HumidityHourlyCreate";
 _humidityhourlycreate();
- //BA.debugLineNum = 2278;BA.debugLine="End Sub";
+ //BA.debugLineNum = 2282;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
@@ -2487,7 +2493,7 @@ _textreader1.Close();
  } 
        catch (Exception e116) {
 			processBA.setLastException(e116); //BA.debugLineNum = 1767;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227656316",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("44653180",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 1769;BA.debugLine="End Sub";
 return "";
@@ -2755,7 +2761,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 2029;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227787391",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("44784255",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 2031;BA.debugLine="End Sub";
 return "";
@@ -3021,7 +3027,7 @@ _textreader1.Close();
  } 
        catch (Exception e116) {
 			processBA.setLastException(e116); //BA.debugLineNum = 1639;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227590780",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("44587644",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 1641;BA.debugLine="End Sub";
 return "";
@@ -3289,7 +3295,7 @@ _textreader1.Close();
  } 
        catch (Exception e117) {
 			processBA.setLastException(e117); //BA.debugLineNum = 1898;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227721855",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("44718719",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  };
  //BA.debugLineNum = 1900;BA.debugLine="End Sub";
 return "";
@@ -3954,7 +3960,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e375) {
 			processBA.setLastException(e375); //BA.debugLineNum = 1073;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227394460",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("44391324",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 1074;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -3962,26 +3968,26 @@ anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(an
 return "";
 }
 public static String  _temperaturedailytimer_tick() throws Exception{
- //BA.debugLineNum = 2280;BA.debugLine="Sub TemperatureDailyTimer_Tick";
- //BA.debugLineNum = 2281;BA.debugLine="Activity.RequestFocus";
+ //BA.debugLineNum = 2284;BA.debugLine="Sub TemperatureDailyTimer_Tick";
+ //BA.debugLineNum = 2285;BA.debugLine="Activity.RequestFocus";
 mostCurrent._activity.RequestFocus();
- //BA.debugLineNum = 2282;BA.debugLine="btnHumidityHourly.RemoveView";
+ //BA.debugLineNum = 2286;BA.debugLine="btnHumidityHourly.RemoveView";
 mostCurrent._btnhumidityhourly.RemoveView();
- //BA.debugLineNum = 2283;BA.debugLine="btnTempHourly.RemoveView";
+ //BA.debugLineNum = 2287;BA.debugLine="btnTempHourly.RemoveView";
 mostCurrent._btntemphourly.RemoveView();
- //BA.debugLineNum = 2284;BA.debugLine="btnHumidityDaily.RemoveView";
+ //BA.debugLineNum = 2288;BA.debugLine="btnHumidityDaily.RemoveView";
 mostCurrent._btnhumiditydaily.RemoveView();
- //BA.debugLineNum = 2285;BA.debugLine="btnTempDaily.RemoveView";
+ //BA.debugLineNum = 2289;BA.debugLine="btnTempDaily.RemoveView";
 mostCurrent._btntempdaily.RemoveView();
- //BA.debugLineNum = 2286;BA.debugLine="LineChart.RemoveView";
+ //BA.debugLineNum = 2290;BA.debugLine="LineChart.RemoveView";
 mostCurrent._linechart.RemoveView();
- //BA.debugLineNum = 2287;BA.debugLine="tempMaxRange=0";
+ //BA.debugLineNum = 2291;BA.debugLine="tempMaxRange=0";
 _tempmaxrange = (float) (0);
- //BA.debugLineNum = 2288;BA.debugLine="tempMinRange=0";
+ //BA.debugLineNum = 2292;BA.debugLine="tempMinRange=0";
 _tempminrange = (float) (0);
- //BA.debugLineNum = 2289;BA.debugLine="TemperatureDailyCreate";
+ //BA.debugLineNum = 2293;BA.debugLine="TemperatureDailyCreate";
 _temperaturedailycreate();
- //BA.debugLineNum = 2290;BA.debugLine="End Sub";
+ //BA.debugLineNum = 2294;BA.debugLine="End Sub";
 return "";
 }
 public static String  _temperaturehourlycreate() throws Exception{
@@ -4403,7 +4409,7 @@ mostCurrent._linechart.DrawTheGraphs();
  } 
        catch (Exception e228) {
 			processBA.setLastException(e228); //BA.debugLineNum = 387;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("227263238",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("44260102",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA)),0);
  //BA.debugLineNum = 388;BA.debugLine="ToastMessageShow (LastException,True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(mostCurrent.activityBA).getObject()),anywheresoftware.b4a.keywords.Common.True);
  };
@@ -4411,26 +4417,26 @@ anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(an
 return "";
 }
 public static String  _temperaturehourlytimer_tick() throws Exception{
- //BA.debugLineNum = 2256;BA.debugLine="Sub TemperatureHourlyTimer_Tick";
- //BA.debugLineNum = 2257;BA.debugLine="Activity.RequestFocus";
+ //BA.debugLineNum = 2260;BA.debugLine="Sub TemperatureHourlyTimer_Tick";
+ //BA.debugLineNum = 2261;BA.debugLine="Activity.RequestFocus";
 mostCurrent._activity.RequestFocus();
- //BA.debugLineNum = 2258;BA.debugLine="btnHumidityHourly.RemoveView";
+ //BA.debugLineNum = 2262;BA.debugLine="btnHumidityHourly.RemoveView";
 mostCurrent._btnhumidityhourly.RemoveView();
- //BA.debugLineNum = 2259;BA.debugLine="btnTempHourly.RemoveView";
+ //BA.debugLineNum = 2263;BA.debugLine="btnTempHourly.RemoveView";
 mostCurrent._btntemphourly.RemoveView();
- //BA.debugLineNum = 2260;BA.debugLine="btnHumidityDaily.RemoveView";
+ //BA.debugLineNum = 2264;BA.debugLine="btnHumidityDaily.RemoveView";
 mostCurrent._btnhumiditydaily.RemoveView();
- //BA.debugLineNum = 2261;BA.debugLine="btnTempDaily.RemoveView";
+ //BA.debugLineNum = 2265;BA.debugLine="btnTempDaily.RemoveView";
 mostCurrent._btntempdaily.RemoveView();
- //BA.debugLineNum = 2262;BA.debugLine="LineChart.RemoveView";
+ //BA.debugLineNum = 2266;BA.debugLine="LineChart.RemoveView";
 mostCurrent._linechart.RemoveView();
- //BA.debugLineNum = 2263;BA.debugLine="tempMaxRange=0";
+ //BA.debugLineNum = 2267;BA.debugLine="tempMaxRange=0";
 _tempmaxrange = (float) (0);
- //BA.debugLineNum = 2264;BA.debugLine="tempMinRange=0";
+ //BA.debugLineNum = 2268;BA.debugLine="tempMinRange=0";
 _tempminrange = (float) (0);
- //BA.debugLineNum = 2265;BA.debugLine="TemperatureHourlyCreate";
+ //BA.debugLineNum = 2269;BA.debugLine="TemperatureHourlyCreate";
 _temperaturehourlycreate();
- //BA.debugLineNum = 2266;BA.debugLine="End Sub";
+ //BA.debugLineNum = 2270;BA.debugLine="End Sub";
 return "";
 }
 }
