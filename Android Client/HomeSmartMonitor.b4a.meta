@@ -37,6 +37,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,CheckAirQualitySetting,752,6,Main,CheckTempHumiditySetting,870,6,Main,CheckAirQualitySettingBasement,809,6,Main,CheckTempHumiditySettingBasement,944,6,Chart,CheckTempBoundaries,2091,0,Chart,CheckTempBoundariesDaily,2187,0,Main,Activity_Create,83,0,Main,Globals,76,6,Main,Process_Globals,25,3,SmartHomeMonitor,Process_Globals,13,0
+NavigationStack=Main,CheckAirQualitySetting,752,6,Main,CheckTempHumiditySetting,870,6,Main,CheckAirQualitySettingBasement,809,6,Main,CheckTempHumiditySettingBasement,944,6,Chart,CheckTempBoundaries,2091,0,Chart,CheckTempBoundariesDaily,2187,0,Main,Activity_Create,83,0,Main,Globals,76,6,SmartHomeMonitor,Process_Globals,11,0,Main,Process_Globals,25,3
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
