@@ -1586,56 +1586,56 @@ Sub ReadTemperatureDaily(fileDay As String)
 
 				Select timeStamp
 					Case "00"
-						If am12 = zeroRange Or am12 = "" Then am12 = a(1)
+						If am12 = zeroRange Or am12 = "" Then am12 = NumberFormat(a(1),0,2)
 					Case "01"
-						If am1 = zeroRange Or am1 = "" Then am1 = a(1)
+						If am1 = zeroRange Or am1 = "" Then am1 = NumberFormat(a(1),0,2)
 					Case "02"
-						If am2 = zeroRange Or am2 = "" Then am2 = a(1)
+						If am2 = zeroRange Or am2 = "" Then am2 = NumberFormat(a(1),0,2)
 					Case "03"
-						If am3 = zeroRange Or am3 = "" Then am3 = a(1)
+						If am3 = zeroRange Or am3 = "" Then am3 = NumberFormat(a(1),0,2)
 					Case "04"
-						If am4 = zeroRange Or am4 = "" Then am4 = a(1)
+						If am4 = zeroRange Or am4 = "" Then am4 = NumberFormat(a(1),0,2)
 					Case "05"
-						If am5 = zeroRange Or am5 = "" Then am5 = a(1)
+						If am5 = zeroRange Or am5 = "" Then am5 = NumberFormat(a(1),0,2)
 					Case "06"
-						If am6 = zeroRange Or am6 = "" Then am6 = a(1)
+						If am6 = zeroRange Or am6 = "" Then am6 = NumberFormat(a(1),0,2)
 					Case "07"
-						If am7 = zeroRange Or am7 = "" Then am7 = a(1)
+						If am7 = zeroRange Or am7 = "" Then am7 = NumberFormat(a(1),0,2)
 					Case "08"
-						If am8 = zeroRange Or am8 = "" Then am8 = a(1)
+						If am8 = zeroRange Or am8 = "" Then am8 = NumberFormat(a(1),0,2)
 					Case "09"
-						If am9 = zeroRange Or am9 = "" Then am9 = a(1)
+						If am9 = zeroRange Or am9 = "" Then am9 = NumberFormat(a(1),0,2)
 					Case "10"
-						If am10 = zeroRange Or am10 = "" Then am10 = a(1)
+						If am10 = zeroRange Or am10 = "" Then am10 = NumberFormat(a(1),0,2)
 					Case "11"
-						If am11 = zeroRange Or am11 = "" Then am11 = a(1)
+						If am11 = zeroRange Or am11 = "" Then am11 = NumberFormat(a(1),0,2)
 					Case "12"
-						If pm12 = zeroRange Or pm12 = "" Then pm12 = a(1)
+						If pm12 = zeroRange Or pm12 = "" Then pm12 = NumberFormat(a(1),0,2)
 					Case "13"
-						If pm1 = zeroRange Or pm1 = "" Then pm1 = a(1)
+						If pm1 = zeroRange Or pm1 = "" Then pm1 = NumberFormat(a(1),0,2)
 					Case "14"
-						If pm2 = zeroRange Or pm2 = "" Then pm2 = a(1)
+						If pm2 = zeroRange Or pm2 = "" Then pm2 = NumberFormat(a(1),0,2)
 					Case "15"
-						If pm3 = zeroRange Or pm3 = "" Then pm3 = a(1)
+						If pm3 = zeroRange Or pm3 = "" Then pm3 = NumberFormat(a(1),0,2)
 					Case "16"
-						If pm4 = zeroRange Or pm4 = "" Then pm4 = a(1)
+						If pm4 = zeroRange Or pm4 = "" Then pm4 = NumberFormat(a(1),0,2)
 					Case "17"
-						If pm5 = zeroRange Or pm5 = "" Then pm5 = a(1)
+						If pm5 = zeroRange Or pm5 = "" Then pm5 = NumberFormat(a(1),0,2)
 					Case "18"
-						If pm6 = zeroRange Or pm6 = "" Then pm6 = a(1)
+						If pm6 = zeroRange Or pm6 = "" Then pm6 = NumberFormat(a(1),0,2)
 					Case "19"
-						If pm7 = zeroRange Or pm7 = "" Then pm7 = a(1)
+						If pm7 = zeroRange Or pm7 = "" Then pm7 = NumberFormat(a(1),0,2)
 					Case "20"
-						If pm8 = zeroRange Or pm8 = "" Then pm8 = a(1)
+						If pm8 = zeroRange Or pm8 = "" Then pm8 = NumberFormat(a(1),0,2)
 					Case "21"
-						If pm9 = zeroRange Or pm9 = "" Then pm9 = a(1)
+						If pm9 = zeroRange Or pm9 = "" Then pm9 = NumberFormat(a(1),0,2)
 					Case "22"
-						If pm10 = zeroRange Or pm10 = "" Then pm10 = a(1)
+						If pm10 = zeroRange Or pm10 = "" Then pm10 = NumberFormat(a(1),0,2)
 					Case "23"
-						If pm11 = zeroRange Or pm11 = "" Then pm11 = a(1)
+						If pm11 = zeroRange Or pm11 = "" Then pm11 = NumberFormat(a(1),0,2)
 				End Select
 				If fileDay = "Today" Then
-					tempRightNow = a(1)
+					tempRightNow = NumberFormat(a(1),0,2)
 				End If
 			End If
 		Loop
@@ -1711,59 +1711,59 @@ Sub ReadHumidityDaily(fileDay As String)
 				timeStamp = a(0).SubString2(0,2)
 				
 				If IsNumber(a(2)) = False Then Continue
-
+				
 				Select timeStamp
 					Case "00"
-						If am12 = zeroRange Or am12 = "" Then am12 = a(2)
+						If am12 = zeroRange Or am12 = "" Then am12 = NumberFormat(a(2),0,2)
 					Case "01"
-						If am1 = zeroRange Or am1 = "" Then am1 = a(2)
+						If am1 = zeroRange Or am1 = "" Then am1 = NumberFormat(a(2),0,2)
 					Case "02"
-						If am2 = zeroRange Or am2 = "" Then am2 = a(2)
+						If am2 = zeroRange Or am2 = "" Then am2 = NumberFormat(a(2),0,2)
 					Case "03"
-						If am3 = zeroRange Or am3 = "" Then am3 = a(2)
+						If am3 = zeroRange Or am3 = "" Then am3 = NumberFormat(a(2),0,2)
 					Case "04"
-						If am4 = zeroRange Or am4 = "" Then am4 = a(2)
+						If am4 = zeroRange Or am4 = "" Then am4 = NumberFormat(a(2),0,2)
 					Case "05"
-						If am5 = zeroRange Or am5 = "" Then am5 = a(2)
+						If am5 = zeroRange Or am5 = "" Then am5 = NumberFormat(a(2),0,2)
 					Case "06"
-						If am6 = zeroRange Or am6 = "" Then am6 = a(2)
+						If am6 = zeroRange Or am6 = "" Then am6 = NumberFormat(a(2),0,2)
 					Case "07"
-						If am7 = zeroRange Or am7 = "" Then am7 = a(2)
+						If am7 = zeroRange Or am7 = "" Then am7 = NumberFormat(a(2),0,2)
 					Case "08"
-						If am8 = zeroRange Or am8 = "" Then am8 = a(2)
+						If am8 = zeroRange Or am8 = "" Then am8 = NumberFormat(a(2),0,2)
 					Case "09"
-						If am9 = zeroRange Or am9 = "" Then am9 = a(2)
+						If am9 = zeroRange Or am9 = "" Then am9 = NumberFormat(a(2),0,2)
 					Case "10"
-						If am10 = zeroRange Or am10 = "" Then am10 = a(2)
+						If am10 = zeroRange Or am10 = "" Then am10 = NumberFormat(a(2),0,2)
 					Case "11"
-						If am11 = zeroRange Or am11 = "" Then am11 = a(2)
+						If am11 = zeroRange Or am11 = "" Then am11 = NumberFormat(a(2),0,2)
 					Case "12"
-						If pm12 = zeroRange Or pm12 = "" Then pm12 = a(2)
+						If pm12 = zeroRange Or pm12 = "" Then pm12 = NumberFormat(a(2),0,2)
 					Case "13"
-						If pm1 = zeroRange Or pm1 = "" Then pm1 = a(2)
+						If pm1 = zeroRange Or pm1 = "" Then pm1 = NumberFormat(a(2),0,2)
 					Case "14"
-						If pm2 = zeroRange Or pm2 = "" Then pm2 = a(2)
+						If pm2 = zeroRange Or pm2 = "" Then pm2 = NumberFormat(a(2),0,2)
 					Case "15"
-						If pm3 = zeroRange Or pm3 = "" Then pm3 = a(2)
+						If pm3 = zeroRange Or pm3 = "" Then pm3 = NumberFormat(a(2),0,2)
 					Case "16"
-						If pm4 = zeroRange Or pm4 = "" Then pm4 = a(2)
+						If pm4 = zeroRange Or pm4 = "" Then pm4 = NumberFormat(a(2),0,2)
 					Case "17"
-						If pm5 = zeroRange Or pm5 = "" Then pm5 = a(2)
+						If pm5 = zeroRange Or pm5 = "" Then pm5 = NumberFormat(a(2),0,2)
 					Case "18"
-						If pm6 = zeroRange Or pm6 = "" Then pm6 = a(2)
+						If pm6 = zeroRange Or pm6 = "" Then pm6 = NumberFormat(a(2),0,2)
 					Case "19"
-						If pm7 = zeroRange Or pm7 = "" Then pm7 = a(2)
+						If pm7 = zeroRange Or pm7 = "" Then pm7 = NumberFormat(a(2),0,2)
 					Case "20"
-						If pm8 = zeroRange Or pm8 = "" Then pm8 = a(2)
+						If pm8 = zeroRange Or pm8 = "" Then pm8 = NumberFormat(a(2),0,2)
 					Case "21"
-						If pm9 = zeroRange Or pm9 = "" Then pm9 = a(2)
+						If pm9 = zeroRange Or pm9 = "" Then pm9 = NumberFormat(a(2),0,2)
 					Case "22"
-						If pm10 = zeroRange Or pm10 = "" Then pm10 = a(2)
+						If pm10 = zeroRange Or pm10 = "" Then pm10 = NumberFormat(a(2),0,2)
 					Case "23"
-						If pm11 = zeroRange Or pm11 = "" Then pm11 = a(2)
+						If pm11 = zeroRange Or pm11 = "" Then pm11 = NumberFormat(a(2),0,2)
 				End Select
 				If fileDay = "Today" Then
-					tempRightNow = a(2)
+					tempRightNow = NumberFormat(a(2),0,2)
 				End If
 			End If
 		Loop
@@ -1842,56 +1842,56 @@ Sub ReadTemperatureHourly(fileDay As String)
 					
 				Select timeStamp
 					Case timeArray(0)
-						If am12 = zeroRange Or am12 = "" Then am12 = a(1)
+						If am12 = zeroRange Or am12 = "" Then am12 = NumberFormat(a(1),0,2)
 					Case timeArray(1)
-						If am1 = zeroRange Or am1 = "" Then am1 = a(1)
+						If am1 = zeroRange Or am1 = "" Then am1 = NumberFormat(a(1),0,2)
 					Case timeArray(2)
-						If am2 = zeroRange Or am2 = "" Then am2 = a(1)
+						If am2 = zeroRange Or am2 = "" Then am2 = NumberFormat(a(1),0,2)
 					Case timeArray(3)
-						If am3 = zeroRange Or am3 = "" Then am3 = a(1)
+						If am3 = zeroRange Or am3 = "" Then am3 = NumberFormat(a(1),0,2)
 					Case timeArray(4)
-						If am4 = zeroRange Or am4 = "" Then am4 = a(1)
+						If am4 = zeroRange Or am4 = "" Then am4 = NumberFormat(a(1),0,2)
 					Case timeArray(5)
-						If am5 = zeroRange Or am5 = "" Then am5 = a(1)
+						If am5 = zeroRange Or am5 = "" Then am5 = NumberFormat(a(1),0,2)
 					Case timeArray(6)
-						If am6 = zeroRange Or am6 = "" Then am6 = a(1)
+						If am6 = zeroRange Or am6 = "" Then am6 = NumberFormat(a(1),0,2)
 					Case timeArray(7)
-						If am7 = zeroRange Or am7 = "" Then am7 = a(1)
+						If am7 = zeroRange Or am7 = "" Then am7 = NumberFormat(a(1),0,2)
 					Case timeArray(8)
-						If am8 = zeroRange Or am8 = "" Then am8 = a(1)
+						If am8 = zeroRange Or am8 = "" Then am8 = NumberFormat(a(1),0,2)
 					Case timeArray(9)
-						If am9 = zeroRange Or am9 = "" Then am9 = a(1)
+						If am9 = zeroRange Or am9 = "" Then am9 = NumberFormat(a(1),0,2)
 					Case timeArray(10)
-						If am10 = zeroRange Or am10 = "" Then am10 = a(1)
+						If am10 = zeroRange Or am10 = "" Then am10 = NumberFormat(a(1),0,2)
 					Case timeArray(11)
-						If am11 = zeroRange Or am11 = "" Then am11 = a(1)
+						If am11 = zeroRange Or am11 = "" Then am11 = NumberFormat(a(1),0,2)
 					Case timeArray(12)
-						If pm12 = zeroRange Or pm12 = "" Then pm12 = a(1)
+						If pm12 = zeroRange Or pm12 = "" Then pm12 = NumberFormat(a(1),0,2)
 					Case timeArray(13)
-						If pm1 = zeroRange Or pm1 = "" Then pm1 = a(1)
+						If pm1 = zeroRange Or pm1 = "" Then pm1 = NumberFormat(a(1),0,2)
 					Case timeArray(14)
-						If pm2 = zeroRange Or pm2 = "" Then pm2 = a(1)
+						If pm2 = zeroRange Or pm2 = "" Then pm2 = NumberFormat(a(1),0,2)
 					Case timeArray(15)
-						If pm3 = zeroRange Or pm3 = "" Then pm3 = a(1)
+						If pm3 = zeroRange Or pm3 = "" Then pm3 = NumberFormat(a(1),0,2)
 					Case timeArray(16)
-						If pm4 = zeroRange Or pm4 = "" Then pm4 = a(1)
+						If pm4 = zeroRange Or pm4 = "" Then pm4 = NumberFormat(a(1),0,2)
 					Case timeArray(17)
-						If pm5 = zeroRange Or pm5 = "" Then pm5 = a(1)
+						If pm5 = zeroRange Or pm5 = "" Then pm5 = NumberFormat(a(1),0,2)
 					Case timeArray(18)
-						If pm6 = zeroRange Or pm6 = "" Then pm6 = a(1)
+						If pm6 = zeroRange Or pm6 = "" Then pm6 = NumberFormat(a(1),0,2)
 					Case timeArray(19)
-						If pm7 = zeroRange Or pm7 = "" Then pm7 = a(1)
+						If pm7 = zeroRange Or pm7 = "" Then pm7 = NumberFormat(a(1),0,2)
 					Case timeArray(20)
-						If pm8 = zeroRange Or pm8 = "" Then pm8 = a(1)
+						If pm8 = zeroRange Or pm8 = "" Then pm8 = NumberFormat(a(1),0,2)
 					Case timeArray(21)
-						If pm9 = zeroRange Or pm9 = "" Then pm9 = a(1)
+						If pm9 = zeroRange Or pm9 = "" Then pm9 = NumberFormat(a(1),0,2)
 					Case timeArray(22)
-						If pm10 = zeroRange Or pm10 = "" Then pm10 = a(1)
+						If pm10 = zeroRange Or pm10 = "" Then pm10 = NumberFormat(a(1),0,2)
 					Case timeArray(23)
-						If pm11 = zeroRange Or pm11 = "" Then pm11 = a(1)
+						If pm11 = zeroRange Or pm11 = "" Then pm11 = NumberFormat(a(1),0,2)
 				End Select
 				If fileDay = "Today" Then
-					tempRightNow = a(1)
+					tempRightNow = NumberFormat(a(1),0,2)
 					DateTime.TimeFormat = "h:mm a"
 				End If
 			End If
@@ -1973,56 +1973,56 @@ Sub ReadHumidityHourly(fileDay As String)
 						
 				Select timeStamp
 					Case timeArray(0)
-						If am12 = zeroRange Or am12 = "" Then am12 = a(2)
+						If am12 = zeroRange Or am12 = "" Then am12 = NumberFormat(a(2),0,2)
 					Case timeArray(1)
-						If am1 = zeroRange Or am1 = "" Then am1 = a(2)
+						If am1 = zeroRange Or am1 = "" Then am1 = NumberFormat(a(2),0,2)
 					Case timeArray(2)
-						If am2 = zeroRange Or am2 = "" Then am2 = a(2)
+						If am2 = zeroRange Or am2 = "" Then am2 = NumberFormat(a(2),0,2)
 					Case timeArray(3)
-						If am3 = zeroRange Or am3 = "" Then am3 = a(2)
+						If am3 = zeroRange Or am3 = "" Then am3 = NumberFormat(a(2),0,2)
 					Case timeArray(4)
-						If am4 = zeroRange Or am4 = "" Then am4 = a(2)
+						If am4 = zeroRange Or am4 = "" Then am4 = NumberFormat(a(2),0,2)
 					Case timeArray(5)
-						If am5 = zeroRange Or am5 = "" Then am5 = a(2)
+						If am5 = zeroRange Or am5 = "" Then am5 = NumberFormat(a(2),0,2)
 					Case timeArray(6)
-						If am6 = zeroRange Or am6 = "" Then am6 = a(2)
+						If am6 = zeroRange Or am6 = "" Then am6 = NumberFormat(a(2),0,2)
 					Case timeArray(7)
-						If am7 = zeroRange Or am7 = "" Then am7 = a(2)
+						If am7 = zeroRange Or am7 = "" Then am7 = NumberFormat(a(2),0,2)
 					Case timeArray(8)
-						If am8 = zeroRange Or am8 = "" Then am8 = a(2)
+						If am8 = zeroRange Or am8 = "" Then am8 = NumberFormat(a(2),0,2)
 					Case timeArray(9)
-						If am9 = zeroRange Or am9 = "" Then am9 = a(2)
+						If am9 = zeroRange Or am9 = "" Then am9 = NumberFormat(a(2),0,2)
 					Case timeArray(10)
-						If am10 = zeroRange Or am10 = "" Then am10 = a(2)
+						If am10 = zeroRange Or am10 = "" Then am10 = NumberFormat(a(2),0,2)
 					Case timeArray(11)
-						If am11 = zeroRange Or am11 = "" Then am11 = a(2)
+						If am11 = zeroRange Or am11 = "" Then am11 = NumberFormat(a(2),0,2)
 					Case timeArray(12)
-						If pm12 = zeroRange Or pm12 = "" Then pm12 = a(2)
+						If pm12 = zeroRange Or pm12 = "" Then pm12 = NumberFormat(a(2),0,2)
 					Case timeArray(13)
-						If pm1 = zeroRange Or pm1 = "" Then pm1 = a(2)
+						If pm1 = zeroRange Or pm1 = "" Then pm1 = NumberFormat(a(2),0,2)
 					Case timeArray(14)
-						If pm2 = zeroRange Or pm2 = "" Then pm2 = a(2)
+						If pm2 = zeroRange Or pm2 = "" Then pm2 = NumberFormat(a(2),0,2)
 					Case timeArray(15)
-						If pm3 = zeroRange Or pm3 = "" Then pm3 = a(2)
+						If pm3 = zeroRange Or pm3 = "" Then pm3 = NumberFormat(a(2),0,2)
 					Case timeArray(16)
-						If pm4 = zeroRange Or pm4 = "" Then pm4 = a(2)
+						If pm4 = zeroRange Or pm4 = "" Then pm4 = NumberFormat(a(2),0,2)
 					Case timeArray(17)
-						If pm5 = zeroRange Or pm5 = "" Then pm5 = a(2)
+						If pm5 = zeroRange Or pm5 = "" Then pm5 = NumberFormat(a(2),0,2)
 					Case timeArray(18)
-						If pm6 = zeroRange Or pm6 = "" Then pm6 = a(2)
+						If pm6 = zeroRange Or pm6 = "" Then pm6 = NumberFormat(a(2),0,2)
 					Case timeArray(19)
-						If pm7 = zeroRange Or pm7 = "" Then pm7 = a(2)
+						If pm7 = zeroRange Or pm7 = "" Then pm7 = NumberFormat(a(2),0,2)
 					Case timeArray(20)
-						If pm8 = zeroRange Or pm8 = "" Then pm8 = a(2)
+						If pm8 = zeroRange Or pm8 = "" Then pm8 = NumberFormat(a(2),0,2)
 					Case timeArray(21)
-						If pm9 = zeroRange Or pm9 = "" Then pm9 = a(2)
+						If pm9 = zeroRange Or pm9 = "" Then pm9 = NumberFormat(a(2),0,2)
 					Case timeArray(22)
-						If pm10 = zeroRange Or pm10 = "" Then pm10 = a(2)
+						If pm10 = zeroRange Or pm10 = "" Then pm10 = NumberFormat(a(2),0,2)
 					Case timeArray(23)
-						If pm11 = zeroRange Or pm11 = "" Then pm11 = a(2)
+						If pm11 = zeroRange Or pm11 = "" Then pm11 = NumberFormat(a(2),0,2)
 				End Select
 				If fileDay = "Today" Then
-					tempRightNow = a(2)
+					tempRightNow = NumberFormat(a(2),0,2)
 					DateTime.TimeFormat = "h:mm a"
 				End If
 			End If
@@ -2070,6 +2070,31 @@ Sub CheckTempBoundaries
 		If pm9 = zeroRange Then pm9 = tempZeroRange
 		If pm10 = zeroRange Then pm10 = tempZeroRange
 		If pm11 = zeroRange Then pm11 = tempZeroRange
+		
+		am12 = NumberFormat(am12,0,2)
+		am1 = NumberFormat(am1,0,2)
+		am2 = NumberFormat(am2,0,2)
+		am3 = NumberFormat(am3,0,2)
+		am4 = NumberFormat(am4,0,2)
+		am5 = NumberFormat(am5,0,2)
+		am6 = NumberFormat(am6,0,2)
+		am7 = NumberFormat(am7,0,2)
+		am8 = NumberFormat(am8,0,2)
+		am9 = NumberFormat(am9,0,2)
+		am10 = NumberFormat(am10,0,2)
+		am11 = NumberFormat(am11,0,2)
+		pm12 = NumberFormat(pm12,0,2)
+		pm1 = NumberFormat(pm1,0,2)
+		pm2 = NumberFormat(pm2,0,2)
+		pm3 = NumberFormat(pm3,0,2)
+		pm4 = NumberFormat(pm4,0,2)
+		pm5 = NumberFormat(pm5,0,2)
+		pm6 = NumberFormat(pm6,0,2)
+		pm7 = NumberFormat(pm7,0,2)
+		pm8 = NumberFormat(pm8,0,2)
+		pm9 = NumberFormat(pm9,0,2)
+		pm10 = NumberFormat(pm10,0,2)
+		pm11 = NumberFormat(pm11,0,2)
 		
 		tempList.Initialize
 		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
@@ -2140,6 +2165,32 @@ Sub CheckTempBoundariesDaily
 		If pm9 = zeroRange Then pm9 = tempZeroRange
 		If pm10 = zeroRange Then pm10 = tempZeroRange
 		If pm11 = zeroRange Then pm11 = tempZeroRange
+		
+		am12 = NumberFormat(am12,0,2)
+		am1 = NumberFormat(am1,0,2)
+		am2 = NumberFormat(am2,0,2)
+		am3 = NumberFormat(am3,0,2)
+		am4 = NumberFormat(am4,0,2)
+		am5 = NumberFormat(am5,0,2)
+		am6 = NumberFormat(am6,0,2)
+		am7 = NumberFormat(am7,0,2)
+		am8 = NumberFormat(am8,0,2)
+		am9 = NumberFormat(am9,0,2)
+		am10 = NumberFormat(am10,0,2)
+		am11 = NumberFormat(am11,0,2)
+		pm12 = NumberFormat(pm12,0,2)
+		pm1 = NumberFormat(pm1,0,2)
+		pm2 = NumberFormat(pm2,0,2)
+		pm3 = NumberFormat(pm3,0,2)
+		pm4 = NumberFormat(pm4,0,2)
+		pm5 = NumberFormat(pm5,0,2)
+		pm6 = NumberFormat(pm6,0,2)
+		pm7 = NumberFormat(pm7,0,2)
+		pm8 = NumberFormat(pm8,0,2)
+		pm9 = NumberFormat(pm9,0,2)
+		pm10 = NumberFormat(pm10,0,2)
+		pm11 = NumberFormat(pm11,0,2)
+		
 		
 		tempList.Initialize
 		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))

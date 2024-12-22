@@ -305,7 +305,7 @@ _length = 0;
  //BA.debugLineNum = 145;BA.debugLine="If Dir = File.DirAssets Then";
 if ((_dir).equals(__c.File.getDirAssets())) { 
  //BA.debugLineNum = 146;BA.debugLine="Log(\"Cannot send files from the assets folder.\")";
-__c.LogImpl("915335431","Cannot send files from the assets folder.",0);
+__c.LogImpl("96160391","Cannot send files from the assets folder.",0);
  //BA.debugLineNum = 147;BA.debugLine="Return";
 if (true) return "";
  };
