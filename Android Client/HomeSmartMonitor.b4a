@@ -820,7 +820,7 @@ Sub CheckAirQualitySetting
 					If p.Years < 0 Or p.Years > 0 Then
 						p = DateUtils.PeriodBetween(oldlblAirQualityLastUpdate,DateTime.now)
 					End If
-					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
+					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
 				Else
 					lblAirQualityLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 					oldlblAirQualityLastUpdate = lngTicks
@@ -875,7 +875,7 @@ Sub CheckAirQualitySettingBasement
 					If p.Years < 0 Or p.Years > 0 Then
 						p = DateUtils.PeriodBetween(oldlblAirQualityLastUpdateBasement,DateTime.now)
 					End If
-					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
+					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
 				Else
 					lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 					oldlblAirQualityLastUpdateBasement = lngTicks
@@ -938,7 +938,7 @@ Sub CheckTempHumiditySetting
 					If p.Years < 0 Or p.Years > 0 Then
 						p = DateUtils.PeriodBetween(oldlblLastUpdate,DateTime.now)
 					End If
-					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
+					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
 				Else
 					lblLastUpdate.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 					oldlblLastUpdate = lngTicks
@@ -1000,7 +1000,7 @@ Sub CheckTempHumiditySettingBasement
 					If p.Years < 0 Or p.Years > 0 Then
 						p = DateUtils.PeriodBetween(oldlblLastUpdateBasement,DateTime.now)
 					End If
-					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
+					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Color(Colors.Red).Append(p.Days & "d " & p.Hours & "h " & p.Minutes & "m " & p.Seconds & "s ago").PopAll
 				Else
 					lblLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").Pop.Append(DateTime.Date(lngTicks)).PopAll
 					oldlblLastUpdateBasement = lngTicks
