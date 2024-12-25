@@ -232,6 +232,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			' Delete log files older than 2 days
 			Dim FileNameToday As String
 			Dim FileNameYesterday As String
+			Dim FileNameTomorrow As String
 			Dim Now As Long
 			Dim Month As Int
 			Dim Day As Int
@@ -240,6 +241,10 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim MonthYesterday As Int
 			Dim DayYesterday As Int
 			Dim YearYesterday As Int
+			Dim Tomorrow As Long
+			Dim MonthTomorrow As Int
+			Dim DayTomorrow As Int
+			Dim YearTomorrow As Int
 
 			Now = DateTime.Now
 			Month = DateTime.GetMonth(Now)
@@ -250,18 +255,26 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			MonthYesterday = DateTime.GetMonth(Yesterday)
 			DayYesterday = DateTime.GetDayOfMonth (Yesterday)
 			YearYesterday = DateTime.GetYear(Yesterday)
+			
+			Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+			MonthTomorrow = DateTime.GetMonth(Tomorrow)
+			DayTomorrow = DateTime.GetDayOfMonth (Tomorrow)
+			YearTomorrow = DateTime.GetYear(Tomorrow)
 
-			FileNameToday = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-			FileNameYesterday = "LivingRoomTempHumid_" & YearYesterday & "-" & NumberFormat(MonthYesterday,2,0) & "-" & NumberFormat(DayYesterday,2,0) & ".log"
+			FileNameToday = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileNameYesterday = YearYesterday & "-" & NumberFormat(MonthYesterday,2,0) & "-" & NumberFormat(DayYesterday,2,0) & ".log"
+			FileNameTomorrow = YearTomorrow & "-" & NumberFormat(MonthTomorrow,2,0) & "-" & NumberFormat(DayTomorrow,2,0) & ".log"
 			
 			shared = rp.GetSafeDirDefaultExternal("")
-			Dim flist As List = WildCardFilesList2(shared,"LivingRoomTempHumid_*.log",True, True)
+			Dim flist As List = WildCardFilesList2(shared,"*.log",True, True)
 			
 			For i = 0 To flist.Size -1
 				Dim FileName As String = flist.Get(i)
 				If FileName <> FileNameToday Then
 					If FileName <> FileNameYesterday Then
-						File.Delete(shared,FileName)
+						If FileName <> FileNameTomorrow Then
+							File.Delete(shared,FileName)
+						End If
 					End If
 				End If
 			Next
@@ -536,15 +549,39 @@ Sub LogEvent(TextToLog As String)
 		Day = DateTime.GetDayOfMonth (Now)
 		Year = DateTime.GetYear(Now)
 
-		FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+		FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 
 		shared = rp.GetSafeDirDefaultExternal("")
 		FW1.Initialize(File.OpenOutput (shared, FileName, True))
 		LogEntry = NumberFormat(DateTime.GetHour(Now),2,0) & ":" & NumberFormat(DateTime.GetMinute(Now),2,0)& ":" & NumberFormat(DateTime.GetSecond (Now),2,0)
-		LogEntry =LogEntry & " " & TextToLog
+		LogEntry = LogEntry & " " & TextToLog
 		FW1.WriteLine(LogEntry)
 
 		FW1.Close
+		
+		If NumberFormat(DateTime.GetHour(Now),2,0) >= 22 Then
+			Dim Tomorrow As Long
+
+			Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
+			Month = DateTime.GetMonth(Tomorrow)
+			Day = DateTime.GetDayOfMonth (Tomorrow)
+			Year = DateTime.GetYear(Tomorrow)
+			
+			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+
+			shared = rp.GetSafeDirDefaultExternal("")
+			FW1.Initialize(File.OpenOutput (shared, FileName, True))
+			LogEntry = NumberFormat(DateTime.GetHour(Now),2,0) & "c" & NumberFormat(DateTime.GetMinute(Now),2,0)& ":" & NumberFormat(DateTime.GetSecond (Now),2,0)
+			LogEntry = LogEntry & " " & TextToLog
+			FW1.WriteLine(LogEntry)
+
+			FW1.Close
+		End If
+		
+		'If File.Exists(shared,"2024-12-24.log") = False Then
+			'File.Delete(shared,"2024-12-24.log")
+		'		File.Copy(File.DirAssets, "yesterday.log",shared,"2024-12-24.log")
+		'End If
 
 	Catch
 		Log("Error in Sub LogEvent: " & LastException.Message)

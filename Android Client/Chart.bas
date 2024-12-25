@@ -1558,13 +1558,13 @@ Sub ReadTemperatureDaily(fileDay As String)
 		Year = DateTime.GetYear(Now)
 
 		If fileDay = "Today" Then
-			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 		Else
 			Now = DateTime.add(DateTime.Now, 0, 0, -1)
 			Month = DateTime.GetMonth(Now)
 			Day = DateTime.GetDayOfMonth (Now)
 			Year = DateTime.GetYear(Now)
-			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 		End If
 			
 		shared = rp.GetSafeDirDefaultExternal("")
@@ -1583,6 +1583,8 @@ Sub ReadTemperatureDaily(fileDay As String)
 				timeStamp = a(0).SubString2(0,2)
 				
 				If IsNumber(a(1)) = False Then Continue
+				
+				If a(0).Contains("c") Then Continue
 
 				Select timeStamp
 					Case "00"
@@ -1686,13 +1688,13 @@ Sub ReadHumidityDaily(fileDay As String)
 		Year = DateTime.GetYear(Now)
 
 		If fileDay = "Today" Then
-			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 		Else
 			Now = DateTime.add(DateTime.Now, 0, 0, -1)
 			Month = DateTime.GetMonth(Now)
 			Day = DateTime.GetDayOfMonth (Now)
 			Year = DateTime.GetYear(Now)
-			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 		End If
 		
 		shared = rp.GetSafeDirDefaultExternal("")
@@ -1711,6 +1713,8 @@ Sub ReadHumidityDaily(fileDay As String)
 				timeStamp = a(0).SubString2(0,2)
 				
 				If IsNumber(a(2)) = False Then Continue
+				
+				If a(0).Contains("c") Then Continue
 				
 				Select timeStamp
 					Case "00"
@@ -1808,19 +1812,24 @@ Sub ReadTemperatureHourly(fileDay As String)
 		pm10 = zeroRange
 		pm11 = zeroRange
 		
+		Dim Tomorrow As Boolean
+		If NumberFormat(DateTime.GetHour(DateTime.Now),2,0) <= 2 Then
+			Tomorrow = True
+		End If
+		
 		Now = DateTime.Now
 		Month = DateTime.GetMonth(Now)
 		Day = DateTime.GetDayOfMonth (Now)
 		Year = DateTime.GetYear(Now)
 			
 		If fileDay = "Today" Then
-			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 		Else
 			Now = DateTime.add(DateTime.Now, 0, 0, -1)
 			Month = DateTime.GetMonth(Now)
 			Day = DateTime.GetDayOfMonth (Now)
 			Year = DateTime.GetYear(Now)
-			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 		End If
 		
 		shared = rp.GetSafeDirDefaultExternal("")
@@ -1839,7 +1848,15 @@ Sub ReadTemperatureHourly(fileDay As String)
 				timeStamp = a(0).SubString2(0,5)
 					
 				If IsNumber(a(1)) = False Then Continue
-					
+				
+				If timeStamp.Contains("c") Then
+					If Tomorrow Then
+						timeStamp = timeStamp.Replace("c",":")
+					Else	
+						Continue
+					End If
+				End If
+				
 				Select timeStamp
 					Case timeArray(0)
 						If am12 = zeroRange Or am12 = "" Then am12 = NumberFormat(a(1),0,2)
@@ -1938,6 +1955,11 @@ Sub ReadHumidityHourly(fileDay As String)
 		pm9 = zeroRange
 		pm10 = zeroRange
 		pm11 = zeroRange
+
+		Dim Tomorrow As Boolean
+		If NumberFormat(DateTime.GetHour(DateTime.Now),2,0) <= 2 Then
+			Tomorrow = True
+		End If
 		
 		Now = DateTime.Now
 		Month = DateTime.GetMonth(Now)
@@ -1945,13 +1967,13 @@ Sub ReadHumidityHourly(fileDay As String)
 		Year = DateTime.GetYear(Now)
 			
 		If fileDay = "Today" Then
-			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 		Else
 			Now = DateTime.add(DateTime.Now, 0, 0, -1)
 			Month = DateTime.GetMonth(Now)
 			Day = DateTime.GetDayOfMonth (Now)
 			Year = DateTime.GetYear(Now)
-			FileName = "LivingRoomTempHumid_" & Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
 		End If
 		
 		shared = rp.GetSafeDirDefaultExternal("")
@@ -1970,6 +1992,14 @@ Sub ReadHumidityHourly(fileDay As String)
 				timeStamp = a(0).SubString2(0,5)
 					
 				If IsNumber(a(2)) = False Then Continue
+				
+				If timeStamp.Contains("c") Then
+					If Tomorrow Then
+						timeStamp = timeStamp.Replace("c",":")
+					Else
+						Continue
+					End If
+				End If
 						
 				Select timeStamp
 					Case timeArray(0)
@@ -2046,30 +2076,32 @@ Sub CheckTempBoundaries
 		'Dim tempZeroRange As Float
 		tempZeroRange = tempList.Get(0)-0.3
 		
-		If am12 = zeroRange Then am12 = tempZeroRange
-		If am1 = zeroRange Then am1 = tempZeroRange
-		If am2 = zeroRange Then am2 = tempZeroRange
-		If am3 = zeroRange Then am3 = tempZeroRange
-		If am4 = zeroRange Then am4 = tempZeroRange
-		If am5 = zeroRange Then am5 = tempZeroRange
-		If am6 = zeroRange Then am6 = tempZeroRange
-		If am7 = zeroRange Then am7 = tempZeroRange
-		If am8 = zeroRange Then am8 = tempZeroRange
-		If am9 = zeroRange Then am9 = tempZeroRange
-		If am10 = zeroRange Then am10 = tempZeroRange
-		If am11 = zeroRange Then am11 = tempZeroRange
-		If pm12 = zeroRange Then pm12 = tempZeroRange
-		If pm1 = zeroRange Then pm1 = tempZeroRange
-		If pm2 = zeroRange Then pm2 = tempZeroRange
-		If pm3 = zeroRange Then pm3 = tempZeroRange
-		If pm4 = zeroRange Then pm4 = tempZeroRange
-		If pm5 = zeroRange Then pm5 = tempZeroRange
-		If pm6 = zeroRange Then pm6 = tempZeroRange
-		If pm7 = zeroRange Then pm7 = tempZeroRange
-		If pm8 = zeroRange Then pm8 = tempZeroRange
-		If pm9 = zeroRange Then pm9 = tempZeroRange
-		If pm10 = zeroRange Then pm10 = tempZeroRange
-		If pm11 = zeroRange Then pm11 = tempZeroRange
+		Dim temphook As String = tempZeroRange
+		
+		If am12 = zeroRange Then am12 = tempZeroRange Else temphook=am12
+		If am1 = zeroRange Then am1 = temphook Else temphook=am1
+		If am2 = zeroRange Then am2 = temphook Else temphook=am2
+		If am3 = zeroRange Then am3 = temphook Else temphook=am3
+		If am4 = zeroRange Then am4 = temphook Else temphook=am4
+		If am5 = zeroRange Then am5 = temphook Else temphook=am5
+		If am6 = zeroRange Then am6 = temphook Else temphook=am6
+		If am7 = zeroRange Then am7 = temphook Else temphook=am7
+		If am8 = zeroRange Then am8 = temphook Else temphook=am8
+		If am9 = zeroRange Then am9 = temphook Else temphook=am9
+		If am10 = zeroRange Then am10 = temphook Else temphook=am10
+		If am11 = zeroRange Then am11 = temphook Else temphook=am11
+		If pm12 = zeroRange Then pm12 = temphook Else temphook=pm12
+		If pm1 = zeroRange Then pm1 = temphook Else temphook=pm1
+		If pm2 = zeroRange Then pm2 = temphook Else temphook=pm2
+		If pm3 = zeroRange Then pm3 = temphook Else temphook=pm3
+		If pm4 = zeroRange Then pm4 = temphook Else temphook=pm4
+		If pm5 = zeroRange Then pm5 = temphook Else temphook=pm5
+		If pm6 = zeroRange Then pm6 = temphook Else temphook=pm6
+		If pm7 = zeroRange Then pm7 = temphook Else temphook=pm7
+		If pm8 = zeroRange Then pm8 = temphook Else temphook=pm8
+		If pm9 = zeroRange Then pm9 = temphook Else temphook=pm9
+		If pm10 = zeroRange Then pm10 = temphook Else temphook=pm10
+		If pm11 = zeroRange Then pm11 = temphook Else temphook=pm11
 		
 		am12 = NumberFormat(am12,0,2)
 		am1 = NumberFormat(am1,0,2)
@@ -2125,7 +2157,11 @@ Sub CheckTempBoundaries
 			minValue = tempList.Get(0)-0.1
 		End If
 	
-		LineChart.YaxisRange(minValue-1, maxValue+1)
+		If (maxValue-minValue) >= 20 Then
+			LineChart.YaxisRange(minValue-2, maxValue+2)
+		Else
+			LineChart.YaxisRange(minValue-.5, maxValue+.5)
+		End If
 	Catch
 		Log(LastException)
 	End Try
@@ -2155,7 +2191,7 @@ Sub CheckTempBoundariesDaily
 		If am9 = zeroRange Then am9 = temphook Else temphook=am9
 		If am10 = zeroRange Then am10 = temphook Else temphook=am10
 		If am11 = zeroRange Then am11 = temphook Else temphook=am11
-		If pm12 = zeroRange Then pm12 = temphook Else temphook=am12
+		If pm12 = zeroRange Then pm12 = temphook Else temphook=pm12
 		If pm1 = zeroRange Then pm1 = temphook Else temphook=pm1
 		If pm2 = zeroRange Then pm2 = temphook Else temphook=pm2
 		If pm3 = zeroRange Then pm3 = temphook Else temphook=pm3
@@ -2257,8 +2293,12 @@ Sub CheckTempBoundariesDaily
 		End If
 	
 		tempMinRange = minValue+0.5
-	
-		LineChart.YaxisRange(minValue-1, maxValue+1)
+		
+		If (maxValue-minValue) >= 20 Then
+			LineChart.YaxisRange(minValue-2, maxValue+2)
+		Else
+			LineChart.YaxisRange(minValue-.5, maxValue+.5)	
+		End If
 	Catch
 		Log(LastException)
 	End Try
@@ -2325,4 +2365,3 @@ Sub Activity_WindowFocusChanged(HasFocus As Boolean)
 		
 	End If
 End Sub
-
