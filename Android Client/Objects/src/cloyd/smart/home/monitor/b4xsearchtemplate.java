@@ -373,7 +373,7 @@ _count = (int) (_count+1);
  }
 };
  //BA.debugLineNum = 219;BA.debugLine="Log(\"Index time: \" & (DateTime.Now - startTime) &";
-__c.LogImpl("921364769","Index time: "+BA.NumberToString((__c.DateTime.getNow()-_starttime))+" ms ("+BA.NumberToString(_items.getSize())+" Items)",0);
+__c.LogImpl("929229089","Index time: "+BA.NumberToString((__c.DateTime.getNow()-_starttime))+" ms ("+BA.NumberToString(_items.getSize())+" Items)",0);
  //BA.debugLineNum = 220;BA.debugLine="AllItems = Items";
 _allitems = _items;
  //BA.debugLineNum = 221;BA.debugLine="Return Array(prefixList, substringList, AllItems)";
