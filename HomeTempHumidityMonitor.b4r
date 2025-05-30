@@ -96,6 +96,10 @@ Private Sub AppStart
 	Delay(3000)
 	Log("AppStart")
 	
+	Dim bb() As Byte = "LivingRoomTempHumid"
+	RunNative("SetHostName", bb)
+	RunNative("stopAP", Null)
+	
 	' Pin 2 is the blue LED
 	' Pin 16 is the red LED
 	' D6 = pin 12 is the logic/signal pin. Use 3.3v pin of Node MCU.
@@ -120,6 +124,7 @@ Sub MQTT_Connect(Unused As Byte)
 	End If
 	
 	If MQTT.Connect = False Then
+		pin16.DigitalWrite(True)
 		Log("Not connected to broker")
 		MQTT.Connect
 		CallSubPlus("MQTT_Connect", 1000, 0)
@@ -133,7 +138,6 @@ Sub MQTT_Connect(Unused As Byte)
 End Sub
 
 Sub mqtt_MessageArrived (Topic As String, Payload() As Byte)
-	pin16.DigitalWrite(False)
 	Log("Message arrived. Topic=", Topic, " Payload=", Payload)
 	
 	If Topic = "TempHumid" Then
@@ -162,6 +166,7 @@ Sub ConnectToWifi
 	If WiFi.IsConnected Then
 		Log("Connected to ",WiFiSSID," network, Local IP ", WiFi.LocalIp)
 	Else
+		pin16.DigitalWrite(True)
 		Log("Connecting to WiFi")
 		If WiFi.Connect2(WiFiSSID, WiFiPassword) = False Then
 			ConnectToWifi
@@ -226,8 +231,14 @@ void setup(B4R::Object* o){
 	dht22.setup(DHT22Pin, DHTesp::DHT22);
 }
 
- void SetSTA(B4R::Object* o) {
-   WiFi.mode(WIFI_STA);
+void SetHostName(B4R::Object* o) {
+	B4R::Array* b = (B4R::Array*)B4R::Object::toPointer(o);
+	char* c = (char*)b->data;
+	WiFi.hostname(c);
+}
+
+void stopAP (B4R::Object* u) {
+	WiFi.softAPdisconnect(true);
 }
 
 void ReadDHT22(B4R::Object* o) {

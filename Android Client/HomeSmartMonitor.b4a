@@ -580,7 +580,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 				Dim bd As BitmapDrawable
 				bd.Initialize(LoadBitmapResize(File.DirAssets, "0.png", 32dip, 32dip, True))
 				If TabStrip1.CurrentPage = 2 Then
-					Result = Msgbox2("Restart the BASEMENT controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) 'ignore
+					Result = Msgbox2("Restart the basement temp and humid?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) 'ignore
 					If Result = DialogResponse.POSITIVE Then
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
@@ -588,7 +588,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 						MQTT.Publish("TempHumidBasement", bc.StringToBytes("Restart controller", "utf8"))
 					End If
 				else If TabStrip1.CurrentPage = 1 Then
-					Result = Msgbox2("Restart the AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) 'ignore
+					Result = Msgbox2("Restart the living room air quality?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) 'ignore
 					If Result = DialogResponse.POSITIVE Then
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
@@ -596,7 +596,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 						MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Restart controller", "utf8"))
 					End If
 				else If TabStrip1.CurrentPage = 3 Then
-					Result = Msgbox2("Restart the BASEMENT AIR QUALITY controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) 'ignore
+					Result = Msgbox2("Restart the basement air quality?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) 'ignore
 					If Result = DialogResponse.POSITIVE Then
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
@@ -604,7 +604,7 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 						MQTT.Publish("MQ7Basement", bc.StringToBytes("Restart controller", "utf8"))
 					End If
 				Else
-					Result = Msgbox2("Restart the WEATHER controller?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) 'ignore
+					Result = Msgbox2("Restart the living room temp and humid?", "Smart Home Monitor", "Yes", "", "No", bd.Bitmap) 'ignore
 					If Result = DialogResponse.POSITIVE Then
 						If MQTT.IsInitialized = False Or MQTT.Connected = False Then
 							MQTT_Connect
@@ -652,9 +652,10 @@ Sub Activity_Createmenu(Menu As ACMenu)
 		Menu.Clear
 		gblACMenu = Menu
 		Menu.Add(0, 0, "Settings",Null)
-		Menu.Add(0, 0, "Restart Application",Null)
-		Menu.Add(0, 0, "Show free memory",Null)
-		Menu.Add(0, 0, "Show chart",Null)
+		'Menu.Add(0, 0, "Restart Application",Null)
+		'Menu.Add(0, 0, "Show free memory",Null)
+		'Menu.Add(0, 0, "Show chart",Null)
+		Menu.Add(0, 0, "Restart board",Null)
 		Menu.Add(0, 0, "About",Null)
 	Catch
 		Log(LastException)

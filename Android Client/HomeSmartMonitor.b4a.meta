@@ -37,6 +37,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,Activity_Create,216,0,Main,CheckAirQualitySetting,752,0,Main,CheckAirQualitySettingBasement,807,0,Main,CheckTempHumiditySetting,870,2,Main,CheckTempHumiditySettingBasement,885,0,Chart,ReadTemperatureHourly,1804,6,Chart,ReadHumidityHourly,1989,0,Chart,ReadHumidityDaily,1712,0,Chart,ReadTemperatureDaily,1581,1,Chart,CheckTempBoundariesDaily,2297,4,Chart,CheckTempBoundaries,2153,0
+NavigationStack=Main,CheckTempHumiditySettingBasement,885,0,Chart,ReadTemperatureHourly,1804,6,Chart,ReadHumidityHourly,1989,0,Chart,ReadHumidityDaily,1712,0,Chart,ReadTemperatureDaily,1581,1,Chart,CheckTempBoundariesDaily,2297,4,Chart,CheckTempBoundaries,2153,0,Main,MQTT_Disconnected,360,0,Main,ACToolBarLight1_MenuItemClick,534,6,Main,Activity_Createmenu,582,0
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
