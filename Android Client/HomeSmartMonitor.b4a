@@ -93,7 +93,8 @@ Version=9.801
 	
 Sub Process_Globals
 	Private MQTT As MqttClient
-	Private MQTTServerURI As String = "tcp://mqtt.eclipseprojects.io:1883"
+	'Private MQTTServerURI As String = "tcp://mqtt.eclipseprojects.io:1883"
+	Private MQTTServerURI As String = "tcp://test.mosquitto.org:1883"
 	Private bc As ByteConverter
 	Private csu As CallSubUtils
 	Private OldIntent As Intent
@@ -288,12 +289,17 @@ Sub Activity_Create(FirstTime As Boolean)
 		
 		If MQTT.IsInitialized And MQTT.Connected  Then
 			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
-			
+						
 			Dim strHumidityAddValue As String = StateManager.GetSetting("HumidityAddValue")
 			If strHumidityAddValue = "" Then
 				strHumidityAddValue = "0"
 			End If
 			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
+			
+			MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Read voltage", "utf8"))
+			MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
+			MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
+			
 		End If
 				
 		badger1.Initialize

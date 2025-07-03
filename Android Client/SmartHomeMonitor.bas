@@ -15,7 +15,8 @@ Sub Process_Globals
 	Private MQTT As MqttClient
 	'Private MQTTUser As String = "vynckfaq1"
 	'Private MQTTPassword As String = "KHSV1Q1qSUUY"
-	Private MQTTServerURI As String = "tcp://mqtt.eclipseprojects.io:1883"
+	'Private MQTTServerURI As String = "tcp://mqtt.eclipseprojects.io:1883"
+	Private MQTTServerURI As String = "tcp://test.mosquitto.org:1883"
 	Private Notification1 As Notification
 	Public IsAirQualityNotificationOnGoing As Boolean
 	Public IsTempHumidityNotificationOnGoing As Boolean

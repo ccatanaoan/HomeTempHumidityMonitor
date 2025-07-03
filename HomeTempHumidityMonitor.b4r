@@ -71,7 +71,8 @@ Sub Process_Globals
 	Private WiFi As ESP8266WiFi
 	Private WiFiStr As WiFiSocket
 	Private MQTT As MqttClient
-	Private MQTTHostName As String = "mqtt.eclipseprojects.io"
+	'Private MQTTHostName As String = "mqtt.eclipseprojects.io"
+	Private MQTTHostName As String = "test.mosquitto.org"
 	Private MQTTPort As Int = 1883
 	Private ESP As ESP8266
 	Private WiFiSSID As String = "InternetOfThings"
