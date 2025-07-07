@@ -16,7 +16,7 @@ Sub Process_Globals
 	'Private MQTTUser As String = "vynckfaq1"
 	'Private MQTTPassword As String = "KHSV1Q1qSUUY"
 	'Private MQTTServerURI As String = "tcp://mqtt.eclipseprojects.io:1883"
-	Private MQTTServerURI As String = "tcp://test.mosquitto.org:1883"
+	Private MQTTServerURI As String = "tcp://broker.hivemq.com:1883"
 	Private Notification1 As Notification
 	Public IsAirQualityNotificationOnGoing As Boolean
 	Public IsTempHumidityNotificationOnGoing As Boolean
@@ -385,7 +385,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1 Then
 				If IsOldTempHumidityNotificationOnGoingBasement = False Then
-					CreateNotification("Basement DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old","sensorbasement",Main,False,False,False,"Basement DHT22 sensor issue").Notify(730)
+					CreateNotification("Basement DHT22", "Temperature and humidity data is " & p.Minutes & " minutes old","sensorbasement",Main,False,False,False,"Basement DHT22 sensor issue").Notify(730)
 					MQTT.Publish("TempHumidBasement", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
@@ -423,7 +423,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1  Then
 				If IsOldTempHumidityNotificationOnGoing = False Then
-					CreateNotification("Living area DHT22 sensor is not responding", "Temperature and humidity data is " & p.Minutes & " minutes old","sensor",Main,False,False,False,"Living area DHT22 sensor issue").Notify(729)
+					CreateNotification("Living area DHT22", "Temperature and humidity data is " & p.Minutes & " minutes old","sensor",Main,False,False,False,"Living area DHT22 sensor issue").Notify(729)
 					MQTT.Publish("TempHumid", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
@@ -460,7 +460,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1 Then
 				If IsOldAirQualityNotificationOnGoing = False Then
-					CreateNotification("Living area carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old","sensor",Main,False,False,False,"Living area CO sensor issue").Notify(731)
+					CreateNotification("Living area MQ7", "Air quality data is " & p.Minutes & " minutes old","sensor",Main,False,False,False,"Living area CO sensor issue").Notify(731)
 					MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
@@ -497,7 +497,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
 			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1 Then
 				If IsOldAirQualityNotificationOnGoingBasement = False Then
-					CreateNotification("Basement carbon monoxide sensor is not responding", "Air quality data is " & p.Minutes & " minutes old","sensorbasement",Main,False,False,False,"Basement CO sensor issue").Notify(732)
+					CreateNotification("Basement MQ7", "Air quality data is " & p.Minutes & " minutes old","sensorbasement",Main,False,False,False,"Basement CO sensor issue").Notify(732)
 					MQTT.Publish("MQ7Basement", bc.StringToBytes("Sensor is not working", "utf8"))
 				End If
 			Else
