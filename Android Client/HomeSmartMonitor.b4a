@@ -94,7 +94,7 @@ Version=9.801
 Sub Process_Globals
 	Private MQTT As MqttClient
 	'Private MQTTServerURI As String = "tcp://mqtt.eclipseprojects.io:1883"
-	Private MQTTServerURI As String = "tcp://test.mosquitto.org:1883"
+	Private MQTTServerURI As String = "tcp://broker.hivemq.com:1883"
 	Private bc As ByteConverter
 	Private csu As CallSubUtils
 	Private OldIntent As Intent
@@ -288,14 +288,13 @@ Sub Activity_Create(FirstTime As Boolean)
 		lblAirQualityLastUpdateBasement.Text = cs.Initialize.Bold.Append("Last update: ").PopAll
 		
 		If MQTT.IsInitialized And MQTT.Connected  Then
-			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
-						
 			Dim strHumidityAddValue As String = StateManager.GetSetting("HumidityAddValue")
 			If strHumidityAddValue = "" Then
 				strHumidityAddValue = "0"
 			End If
-			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
 			
+			MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
+			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))		
 			MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Read voltage", "utf8"))
 			MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
 			MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
@@ -702,23 +701,35 @@ Sub TabStrip1_PageSelected (Position As Int)
 		If Position = 0 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
 				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
+				MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Read voltage", "utf8"))
+				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
+				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckTempHumiditySetting
 		End If
 		If Position = 1 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
+				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
 				MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Read voltage", "utf8"))
+				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
+				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySetting
 		End If
 		If Position = 2 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
+				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
+				MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Read voltage", "utf8"))
 				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
+				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckTempHumiditySettingBasement
 		End If
 		If Position = 3 Then
 			If MQTT.IsInitialized And MQTT.Connected  Then
+				MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
+				MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Read voltage", "utf8"))
+				MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
 				MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
 			End If
 			CheckAirQualitySettingBasement

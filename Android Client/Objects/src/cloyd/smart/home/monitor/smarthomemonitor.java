@@ -437,7 +437,7 @@ _fw1.Close();
  } 
        catch (Exception e35) {
 			processBA.setLastException(e35); //BA.debugLineNum = 582;BA.debugLine="Log(\"Error in Sub LogEvent: \" & LastException.Me";
-anywheresoftware.b4a.keywords.Common.LogImpl("29764914","Error in Sub LogEvent: "+anywheresoftware.b4a.keywords.Common.LastException(processBA).getMessage(),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("79764914","Error in Sub LogEvent: "+anywheresoftware.b4a.keywords.Common.LastException(processBA).getMessage(),0);
  //BA.debugLineNum = 583;BA.debugLine="ToastMessageShow(LastException,False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(processBA).getObject()),anywheresoftware.b4a.keywords.Common.False);
  };
@@ -457,7 +457,7 @@ _mqtt.Connect();
  } 
        catch (Exception e6) {
 			processBA.setLastException(e6); //BA.debugLineNum = 71;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("29502729",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("79502729",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  };
  //BA.debugLineNum = 73;BA.debugLine="End Sub";
 return "";
@@ -468,7 +468,7 @@ public static String  _mqtt_connected(boolean _success) throws Exception{
 try { //BA.debugLineNum = 77;BA.debugLine="If Success = False Then";
 if (_success==anywheresoftware.b4a.keywords.Common.False) { 
  //BA.debugLineNum = 78;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("29568259",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("79568259",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 79;BA.debugLine="MQTT_Connect";
 _mqtt_connect();
  }else {
@@ -486,7 +486,7 @@ _mqtt.Subscribe("HumidityAddValue",(int) (0));
  } 
        catch (Exception e13) {
 			processBA.setLastException(e13); //BA.debugLineNum = 88;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("29568269",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("79568269",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 89;BA.debugLine="ToastMessageShow(LastException,False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(processBA).getObject()),anywheresoftware.b4a.keywords.Common.False);
  };
@@ -501,7 +501,7 @@ _mqtt_connect();
  } 
        catch (Exception e4) {
 			processBA.setLastException(e4); //BA.debugLineNum = 98;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("29633796",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("79633796",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 99;BA.debugLine="ToastMessageShow(LastException,False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(anywheresoftware.b4a.keywords.Common.LastException(processBA).getObject()),anywheresoftware.b4a.keywords.Common.False);
  };
@@ -978,8 +978,8 @@ _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.
 if (_p.Minutes!=59 && _p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime)) && _p.Days<=1 && _p.Years<1 && _p.Months<1) { 
  //BA.debugLineNum = 381;BA.debugLine="If IsOldTempHumidityNotificationOnGoingBasemen";
 if (_isoldtemphumiditynotificationongoingbasement==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 382;BA.debugLine="CreateNotification(\"Basement DHT22 sensor is";
-_createnotification("Basement DHT22 sensor is not responding","Temperature and humidity data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensorbasement",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,"Basement DHT22 sensor issue").Notify((int) (730));
+ //BA.debugLineNum = 382;BA.debugLine="CreateNotification(\"Basement DHT22\", \"Tempera";
+_createnotification("Basement DHT22","Temperature and humidity data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensorbasement",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,"Basement DHT22 sensor issue").Notify((int) (730));
  //BA.debugLineNum = 383;BA.debugLine="MQTT.Publish(\"TempHumidBasement\", bc.StringTo";
 _mqtt.Publish("TempHumidBasement",_bc.StringToBytes("Sensor is not working","utf8"));
  };
@@ -1040,8 +1040,8 @@ _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.
 if (_p.Minutes!=59 && _p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime)) && _p.Days<=1 && _p.Years<1 && _p.Months<1) { 
  //BA.debugLineNum = 419;BA.debugLine="If IsOldTempHumidityNotificationOnGoing = Fals";
 if (_isoldtemphumiditynotificationongoing==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 420;BA.debugLine="CreateNotification(\"Living area DHT22 sensor";
-_createnotification("Living area DHT22 sensor is not responding","Temperature and humidity data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensor",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,"Living area DHT22 sensor issue").Notify((int) (729));
+ //BA.debugLineNum = 420;BA.debugLine="CreateNotification(\"Living area DHT22\", \"Temp";
+_createnotification("Living area DHT22","Temperature and humidity data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensor",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,"Living area DHT22 sensor issue").Notify((int) (729));
  //BA.debugLineNum = 421;BA.debugLine="MQTT.Publish(\"TempHumid\", bc.StringToBytes(\"S";
 _mqtt.Publish("TempHumid",_bc.StringToBytes("Sensor is not working","utf8"));
  };
@@ -1102,8 +1102,8 @@ _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.
 if (_p.Minutes!=59 && _p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime)) && _p.Days<=1 && _p.Years<1 && _p.Months<1) { 
  //BA.debugLineNum = 456;BA.debugLine="If IsOldAirQualityNotificationOnGoing = False";
 if (_isoldairqualitynotificationongoing==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 457;BA.debugLine="CreateNotification(\"Living area carbon monoxi";
-_createnotification("Living area carbon monoxide sensor is not responding","Air quality data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensor",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,"Living area CO sensor issue").Notify((int) (731));
+ //BA.debugLineNum = 457;BA.debugLine="CreateNotification(\"Living area MQ7\", \"Air qu";
+_createnotification("Living area MQ7","Air quality data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensor",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,"Living area CO sensor issue").Notify((int) (731));
  //BA.debugLineNum = 458;BA.debugLine="MQTT.Publish(\"MQ7LivingRoomCloyd\", bc.StringT";
 _mqtt.Publish("MQ7LivingRoomCloyd",_bc.StringToBytes("Sensor is not working","utf8"));
  };
@@ -1164,8 +1164,8 @@ _p = mostCurrent._dateutils._periodbetween(processBA,_lngticks,anywheresoftware.
 if (_p.Minutes!=59 && _p.Minutes>=(double)(Double.parseDouble(_managersensornotrespondingtime)) && _p.Days<=1 && _p.Years<1 && _p.Months<1) { 
  //BA.debugLineNum = 493;BA.debugLine="If IsOldAirQualityNotificationOnGoingBasement";
 if (_isoldairqualitynotificationongoingbasement==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 494;BA.debugLine="CreateNotification(\"Basement carbon monoxide";
-_createnotification("Basement carbon monoxide sensor is not responding","Air quality data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensorbasement",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,"Basement CO sensor issue").Notify((int) (732));
+ //BA.debugLineNum = 494;BA.debugLine="CreateNotification(\"Basement MQ7\", \"Air quali";
+_createnotification("Basement MQ7","Air quality data is "+BA.NumberToString(_p.Minutes)+" minutes old","sensorbasement",(Object)(mostCurrent._main.getObject()),anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,anywheresoftware.b4a.keywords.Common.False,"Basement CO sensor issue").Notify((int) (732));
  //BA.debugLineNum = 495;BA.debugLine="MQTT.Publish(\"MQ7Basement\", bc.StringToBytes(";
 _mqtt.Publish("MQ7Basement",_bc.StringToBytes("Sensor is not working","utf8"));
  };
@@ -1179,7 +1179,7 @@ _n.Cancel((int) (732));
  } 
        catch (Exception e358) {
 			processBA.setLastException(e358); //BA.debugLineNum = 504;BA.debugLine="Log(LastException)";
-anywheresoftware.b4a.keywords.Common.LogImpl("29699729",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("79699729",BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  //BA.debugLineNum = 506;BA.debugLine="Select sensorInTrouble";
 switch (BA.switchObjectToInt(_sensorintrouble,"TempHumidityBasement","TempHumidity","AirQuality","AirQualityBasement")) {
 case 0: {
@@ -1228,8 +1228,8 @@ public static String  _process_globals() throws Exception{
  //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
  //BA.debugLineNum = 9;BA.debugLine="Private MQTT As MqttClient";
 _mqtt = new anywheresoftware.b4j.objects.MqttAsyncClientWrapper();
- //BA.debugLineNum = 13;BA.debugLine="Private MQTTServerURI As String = \"tcp://test.mos";
-_mqttserveruri = "tcp://test.mosquitto.org:1883";
+ //BA.debugLineNum = 13;BA.debugLine="Private MQTTServerURI As String = \"tcp://broker.h";
+_mqttserveruri = "tcp://broker.hivemq.com:1883";
  //BA.debugLineNum = 14;BA.debugLine="Private Notification1 As Notification";
 _notification1 = new anywheresoftware.b4a.objects.NotificationWrapper();
  //BA.debugLineNum = 15;BA.debugLine="Public IsAirQualityNotificationOnGoing As Boolean";
