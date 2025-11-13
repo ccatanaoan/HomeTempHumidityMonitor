@@ -37,6 +37,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=Main,MQTT_Connect,341,0,Main,TabStrip1_PageSelected,656,0,Main,GetPerception,418,0,Main,Activity_Create,181,0,Main,CheckAirQualitySetting,768,0,Main,Globals,43,0,SmartHomeMonitor,Service_Create,33,0,SmartHomeMonitor,MQTT_MessageArrived,501,3,Main,Process_Globals,27,6,SmartHomeMonitor,Process_Globals,16,5
+NavigationStack=Main,MQTT_Connect,341,0,Main,TabStrip1_PageSelected,656,0,Main,GetPerception,418,0,Main,Activity_Create,181,0,Main,CheckAirQualitySetting,768,0,Main,Globals,43,0,SmartHomeMonitor,Service_Create,33,0,SmartHomeMonitor,MQTT_MessageArrived,501,3,SmartHomeMonitor,Process_Globals,22,5,Main,Process_Globals,31,6
 SelectedBuild=0
 VisibleModules=1,2,3,4,5,6,7,8,9,10
