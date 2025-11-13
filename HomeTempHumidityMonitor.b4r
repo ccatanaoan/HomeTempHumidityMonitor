@@ -73,7 +73,8 @@ Sub Process_Globals
 	Private MQTT As MqttClient
 	'Private MQTTHostName As String = "mqtt.eclipseprojects.io"
 	'Private MQTTHostName As String = "broker.hivemq.com"
-	Private MQTTHostName As String = "test.mosquitto.org"
+	'Private MQTTHostName As String = "test.mosquitto.org"
+	Private MQTTHostName As String = "broker.emqx.io"
 	Private MQTTPort As Int = 1883
 	Private ESP As ESP8266
 	Private WiFiSSID As String = "InternetOfThings"
