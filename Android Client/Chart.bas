@@ -55,9 +55,7 @@ Sub Globals
 	Private timeRightNow As Long
 	Private timeArray(24) As String
 	Private zeroRange As Float = 88.88
-	Private tempZeroRange As Float
-	Private tempMaxRange As Float
-	Private tempMinRange As Float
+	Private BucketHasData(24) As Boolean
 	Private btnHumidityHourly As Button
 	Private btnTempHourly As Button
 	Private btnHumidityDaily As Button
@@ -66,11 +64,11 @@ Sub Globals
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
-	Activity.LoadLayout("chart")
-	
+	' Phase 4.6: start with one completely fresh chart instance.
 	phone1.SetScreenOrientation(0) 'landscape
-	
-	btnTempHourly_Click
+	TemperatureHourlyCreate
+	TemperatureHourlyTimer.Initialize("TemperatureHourlyTimer",60000)
+	TemperatureHourlyTimer.Enabled = True
 End Sub
 
 Sub Activity_Resume
@@ -88,10 +86,8 @@ Sub btnTempHourly_Click
 	TemperatureDailyTimer.Enabled = False
 	HumidityHourlyTimer.Enabled = False
 	HumidityDailyTimer.Enabled = False
-	tempMaxRange=0
-	tempMinRange=0
 	TemperatureHourlyCreate
-	TemperatureHourlyTimer.Initialize("TemperatureHourlyTimer",1000) 'check every second
+	TemperatureHourlyTimer.Initialize("TemperatureHourlyTimer",60000) 'refresh every 60 seconds
 	TemperatureHourlyTimer.Enabled = True 'start timer
 End Sub
 
@@ -99,10 +95,8 @@ Sub btnHumidityHourly_Click
 	TemperatureDailyTimer.Enabled = False
 	TemperatureHourlyTimer.Enabled = False
 	HumidityDailyTimer.Enabled = False
-	tempMaxRange=0
-	tempMinRange=0
 	HumidityHourlyCreate
-	HumidityHourlyTimer.Initialize("HumidityHourlyTimer",1000) 'check every second
+	HumidityHourlyTimer.Initialize("HumidityHourlyTimer",60000) 'refresh every 60 seconds
 	HumidityHourlyTimer.Enabled = True 'start timer
 End Sub
 
@@ -110,10 +104,8 @@ Sub btnTempDaily_Click
 	TemperatureHourlyTimer.Enabled = False
 	HumidityHourlyTimer.Enabled = False
 	HumidityDailyTimer.Enabled = False
-	tempMaxRange=0
-	tempMinRange=0
 	TemperatureDailyCreate
-	TemperatureDailyTimer.Initialize("TemperatureDailyTimer",1000) 'check every second
+	TemperatureDailyTimer.Initialize("TemperatureDailyTimer",60000) 'refresh every 60 seconds
 	TemperatureDailyTimer.Enabled = True 'start timer
 End Sub
 
@@ -121,25 +113,29 @@ Sub btnHumidityDaily_Click
 	TemperatureHourlyTimer.Enabled = False
 	HumidityHourlyTimer.Enabled = False
 	TemperatureDailyTimer.Enabled = False
-	tempMaxRange=0
-	tempMinRange=0
 	HumidityDailyCreate
-	HumidityDailyTimer.Initialize("HumidityDailyTimer",1000) 'check every second
+	HumidityDailyTimer.Initialize("HumidityDailyTimer",60000) 'refresh every 60 seconds
 	HumidityDailyTimer.Enabled = True 'start timer
+End Sub
+
+Private Sub PrepareFreshChartLayout
+	' This old AndroidPlot wrapper appends series when DrawTheGraphs is called
+	' repeatedly on the same custom view. Re-create the chart view each time
+	' so old series can never accumulate.
+	Dim lv As LayoutValues = GetRealSize
+	Dim jo As JavaObject = Activity
+	jo.RunMethod("setBottom", Array(lv.Height))
+	jo.RunMethod("setRight", Array(lv.Width))
+	Activity.Height = lv.Height
+	Activity.Width = lv.Width
+	Activity.RemoveAllViews
+	Activity.LoadLayout("chart")
 End Sub
 
 Private Sub TemperatureHourlyCreate()
 	Try
-		'  Immersive mode
-		Dim lv As LayoutValues = GetRealSize
-		Dim jo As JavaObject = Activity
-		jo.RunMethod("setBottom", Array(lv.Height))
-		jo.RunMethod("setRight", Array(lv.Width))
-		Activity.Height = lv.Height
-		Activity.Width = lv.Width
-'		'  Immersive mode
-
-		Activity.LoadLayout("chart")
+		' Fresh chart instance: no old AndroidPlot series survive.
+		PrepareFreshChartLayout
 		
 		LineChart.GraphBackgroundColor = Colors.DarkGray ' Colors.Transparent
 		LineChart.GraphFrameColor = Colors.Blue
@@ -150,7 +146,7 @@ Private Sub TemperatureHourlyCreate()
 		LineChart.GraphTitleSkewX = -0.25
 		LineChart.GraphTitleUnderline = True
 		LineChart.GraphTitleBold = True
-		LineChart.GraphTitle = "TEMPERATURE HOURLY  "	          'put this statement last
+		LineChart.GraphTitle = "TEMPERATURE - LAST 2 HOURS  "	          'put this statement last
 		
 		LineChart.LegendBackgroundColor = Colors.White                          'it will be converted to an Alpha = 100
 		LineChart.LegendTextColor = Colors.Black
@@ -170,7 +166,7 @@ Private Sub TemperatureHourlyCreate()
 		
 		' ***************************** STARTED WORK ON HOURLY *****************************
 		
-		timeRightNow = DateTime.Now
+		timeRightNow = GetFiveMinuteWindowEnd(DateTime.Now)
 		
 		For i = 23 To 0 Step -1
 			Dim p As Period
@@ -183,7 +179,7 @@ Private Sub TemperatureHourlyCreate()
 			'Log(DateTime.Time(NextTime)) 'DateUtils.TicksToString(NextTime))
 			timeArray(23-i) = DateTime.Time(NextTime) 'DateUtils.TicksToString(NextTime)
 		Next
-		LineChart.XAxisLabels = timeArray 'Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
+		LineChart.XAxisLabels = BuildHourlyAxisLabels 'Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
 		
 		' ***************************** STARTED WORK ON HOURLY *****************************
 		LineChart.YaxisDivisions = 10
@@ -203,160 +199,23 @@ Private Sub TemperatureHourlyCreate()
 		LineChart.YaxisLabelAndTitleDistance = 60.0
 		LineChart.YaxisTitle = "Temperature (Fahrenheit)"                 'put this statement last
 		
-		LineChart.MaxNumberOfEntriesPerLineChart = 24                   'this value must be equal to the number of x-axis labels that you pass
+		LineChart.MaxNumberOfEntriesPerLineChart = 26                   'this value must be equal to the number of x-axis labels that you pass
 		LineChart.GraphLegendVisibility = False
 		
 		' ********************* Today *********************
 		
-		ReadTemperatureHourly("Today")
-			
-		DateTime.DateFormat = "MMM d, yyyy"
-		LineChart.Line_1_LegendText = "From " & timeArray(0) & " to " & timeArray(23) '"Today, " & DateTime.Date(DateTime.Now)
+		ReadTemperatureHourly
 
-		CheckTempBoundaries
-		
-		If am12 <> tempZeroRange Then
-			LineChart.Line_1_Data = Array As Float (am12)
-		End If
-		If am1 <> tempZeroRange Then
-			LineChart.Line_1_Data = Array As Float (am12, am1)
-		End If
-		If am2 <> tempZeroRange Then
-			If am1 = tempZeroRange Then
-				am1 = (am12 + am2)/2
-			End If
-			If am12 = tempZeroRange Then
-				am12 = am1
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2)
-		End If
-		If am3 <> tempZeroRange Then
-			If am2 = tempZeroRange Then
-				am2 = (am1 + am3)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3)
-		End If
-		If am4 <> tempZeroRange Then
-			If am3 = tempZeroRange Then
-				am3 = (am2 + am4)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4)
-		End If
-		If am5 <> tempZeroRange Then
-			If am4 = tempZeroRange Then
-				am4 = (am3 + am5)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5)
-		End If
-		If am6 <> tempZeroRange Then
-			If am5 = tempZeroRange Then
-				am5 = (am4 + am6)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
-		End If
-		If am7 <> tempZeroRange Then
-			If am6 = tempZeroRange Then
-				am6 = (am5 + am7)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
-		End If
-		If am8 <> tempZeroRange Then
-			If am7 = tempZeroRange Then
-				am7 = (am6 + am8)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
-		End If
-		If am9 <> tempZeroRange Then
-			If am8 = tempZeroRange Then
-				am8 = (am7 + am9)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
-		End If
-		If am10 <> tempZeroRange Then
-			If am9 = tempZeroRange Then
-				am9 = (am8 + am10)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
-		End If
-		If am11 <> tempZeroRange Then
-			If am10 = tempZeroRange Then
-				am10 = (am9 + am11)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
-		End If
-		If pm12 <> tempZeroRange Then
-			If am11 = tempZeroRange Then
-				am11 = (am10 + pm12)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
-		End If
-		If pm1 <> tempZeroRange Then
-			If pm12 = tempZeroRange Then
-				pm12 = (am11 + pm1)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
-		End If
-		If pm2 <> tempZeroRange Then
-			If pm1 = tempZeroRange Then
-				pm1 = (pm12 + pm2)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
-		End If
-		If pm3 <> tempZeroRange Then
-			If pm2 = tempZeroRange Then
-				pm2 = (pm1 + pm3)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
-		End If
-		If pm4 <> tempZeroRange Then
-			If pm3 = tempZeroRange Then
-				pm3 = (pm2 + pm4)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
-		End If
-		If pm5 <> tempZeroRange Then
-			If pm4 = tempZeroRange Then
-				pm4 = (pm3 + pm5)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
-		End If
-		If pm6 <> tempZeroRange Then
-			If pm5 = tempZeroRange Then
-				pm5 = (pm4 + pm6)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
-		End If
-		If pm7 <> tempZeroRange Then
-			If pm6 = tempZeroRange Then
-				pm6 = (pm5 + pm7)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
-		End If
-		If pm8 <> tempZeroRange Then
-			If pm7 = tempZeroRange Then
-				pm7 = (pm6 + pm8)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
-		End If
-		If pm9 <> tempZeroRange Then
-			If pm8 = tempZeroRange Then
-				pm8 = (pm7 + pm9)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
-		End If
-		If pm10 <> tempZeroRange Then
-			If pm9 = tempZeroRange Then
-				pm9 = (pm8 + pm10)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
-		End If
-		If pm11 <> tempZeroRange Then
-			If pm10 = tempZeroRange Then
-				pm10 = (pm9 + pm11)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
-		End If
-		
+		Dim CurrentValid As Boolean = HasCurrentChartValue
+		Dim CurrentValue As Float = GetSafeCurrentValue(70)
+		Dim HourlyData() As Float = BuildChartData(CurrentValue)
+		Dim HourlyHasData() As Boolean = CopyBucketFlags
+
+		DateTime.DateFormat = "MMM d, yyyy"
+		LineChart.Line_1_LegendText = "From " & timeArray(0) & " to " & timeArray(23)
+		SetYAxisRangeSingle(HourlyData, HourlyHasData, CurrentValue, CurrentValid, False)
+		LineChart.Line_1_Data = HourlyData
+
 		LineChart.Line_1_PointLabelTextColor = Colors.Yellow
 		LineChart.Line_1_PointLabelTextSize = 35.0
 		LineChart.Line_1_LineColor = Colors.Red
@@ -369,11 +228,11 @@ Private Sub TemperatureHourlyCreate()
 
 		' ********************* Today *********************
 			
-		' ******************* Last 10 minutes *******************
+		' ******************* Current reading reference *******************
 		
 		'LineChart.Line_2_LegendText = "Compiled: March 9, 2020 10:29 am" '& DateTime.Time(DateTime.Now)
-		LineChart.Line_2_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
-		LineChart.Line_2_PointLabelTextColor = Colors.Green
+		If CurrentValid Then LineChart.Line_2_Data = BuildFlatLine(CurrentValue)
+		LineChart.Line_2_PointLabelTextColor = Colors.Transparent
 		LineChart.Line_2_PointLabelTextSize = 35.0
 		LineChart.Line_2_LineColor = Colors.Green
 		LineChart.Line_2_LineWidth = 5.0
@@ -382,12 +241,25 @@ Private Sub TemperatureHourlyCreate()
 		LineChart.Line_2_PointShape = LineChart.SHAPE_ROUND
 		LineChart.Line_2_DrawDash = True
 		LineChart.Line_2_DrawCubic = False
+
+		Dim GreenLabelHasData() As Boolean = BuildGreenReferenceLabelFlags
 		
-		' ******************* Last 10 minutes *******************
+		' ******************* Current reading reference *******************
 		
-		LineChart.NumberOfLineCharts = 2                              'set the number of graphs to draw from the 1 to 5 graph that has been set up above
-			 
+		If CurrentValid Then
+			LineChart.NumberOfLineCharts = 2
+		Else
+			LineChart.NumberOfLineCharts = 1
+		End If
+
 		LineChart.DrawTheGraphs
+		ApplyMissingGaps(1, HourlyHasData)
+		' Keep the real chart edges blank first.
+		LineChart.ApplyEdgeSpacers(1, 1)
+		' Then add one native AndroidPlot Y-value marker label for the green
+		' reference value in the blank right-side area.
+		If CurrentValid Then ApplyMissingGaps(-2, GreenLabelHasData)
+		LineChart.Invalidate
 
 	Catch
 		Log(LastException)
@@ -398,17 +270,9 @@ End Sub
 
 Private Sub HumidityHourlyCreate()
 	Try
-		'  Immersive mode
 		Activity_WindowFocusChanged(True)
-		Dim lv As LayoutValues = GetRealSize
-		Dim jo As JavaObject = Activity
-		jo.RunMethod("setBottom", Array(lv.Height))
-		jo.RunMethod("setRight", Array(lv.Width))
-		Activity.Height = lv.Height
-		Activity.Width = lv.Width
-		'  Immersive mode
-
-		Activity.LoadLayout("chart")
+		' Fresh chart instance: no old AndroidPlot series survive.
+		PrepareFreshChartLayout
 			
 		LineChart.GraphBackgroundColor = Colors.DarkGray ' Colors.Transparent
 		LineChart.GraphFrameColor = Colors.Blue
@@ -419,7 +283,7 @@ Private Sub HumidityHourlyCreate()
 		LineChart.GraphTitleSkewX = -0.25
 		LineChart.GraphTitleUnderline = True
 		LineChart.GraphTitleBold = True
-		LineChart.GraphTitle = " HUMIDITY HOURLY  "	          'put this statement last
+		LineChart.GraphTitle = "HUMIDITY - LAST 2 HOURS  "	          'put this statement last
 		
 		LineChart.LegendBackgroundColor = Colors.White                          'it will be converted to an Alpha = 100
 		LineChart.LegendTextColor = Colors.Black
@@ -439,7 +303,7 @@ Private Sub HumidityHourlyCreate()
 		
 		' ***************************** STARTED WORK ON HOURLY *****************************
 		
-		timeRightNow = DateTime.Now
+		timeRightNow = GetFiveMinuteWindowEnd(DateTime.Now)
 		
 		For i = 23 To 0 Step -1
 			Dim p As Period
@@ -452,7 +316,7 @@ Private Sub HumidityHourlyCreate()
 			'Log(DateTime.Time(NextTime)) 'DateUtils.TicksToString(NextTime))
 			timeArray(23-i) = DateTime.Time(NextTime) 'DateUtils.TicksToString(NextTime)
 		Next
-		LineChart.XAxisLabels = timeArray 'Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
+		LineChart.XAxisLabels = BuildHourlyAxisLabels 'Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
 		
 		' ***************************** STARTED WORK ON HOURLY *****************************
 		LineChart.YaxisDivisions = 10
@@ -472,160 +336,23 @@ Private Sub HumidityHourlyCreate()
 		LineChart.YaxisLabelAndTitleDistance = 60.0
 		LineChart.YaxisTitle = "Humidity (Percentage)"                 'put this statement last
 		
-		LineChart.MaxNumberOfEntriesPerLineChart = 24                   'this value must be equal to the number of x-axis labels that you pass
+		LineChart.MaxNumberOfEntriesPerLineChart = 26                   'this value must be equal to the number of x-axis labels that you pass
 		LineChart.GraphLegendVisibility = False
 		
 		' ********************* Today *********************
 		
-		ReadHumidityHourly("Today")
-			
-		DateTime.DateFormat = "MMM d, yyyy"
-		LineChart.Line_1_LegendText = "From " & timeArray(0) & " to " & timeArray(23) '"Today, " & DateTime.Date(DateTime.Now)
+		ReadHumidityHourly
 
-		CheckTempBoundaries
-		
-		If am12 <> tempZeroRange Then
-			LineChart.Line_1_Data = Array As Float (am12)
-		End If
-		If am1 <> tempZeroRange Then
-			LineChart.Line_1_Data = Array As Float (am12, am1)
-		End If
-		If am2 <> tempZeroRange Then
-			If am1 = tempZeroRange Then
-				am1 = (am12 + am2)/2
-			End If
-			If am12 = tempZeroRange Then
-				am12 = am1
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2)
-		End If
-		If am3 <> tempZeroRange Then
-			If am2 = tempZeroRange Then
-				am2 = (am1 + am3)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3)
-		End If
-		If am4 <> tempZeroRange Then
-			If am3 = tempZeroRange Then
-				am3 = (am2 + am4)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4)
-		End If
-		If am5 <> tempZeroRange Then
-			If am4 = tempZeroRange Then
-				am4 = (am3 + am5)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5)
-		End If
-		If am6 <> tempZeroRange Then
-			If am5 = tempZeroRange Then
-				am5 = (am4 + am6)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
-		End If
-		If am7 <> tempZeroRange Then
-			If am6 = tempZeroRange Then
-				am6 = (am5 + am7)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
-		End If
-		If am8 <> tempZeroRange Then
-			If am7 = tempZeroRange Then
-				am7 = (am6 + am8)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
-		End If
-		If am9 <> tempZeroRange Then
-			If am8 = tempZeroRange Then
-				am8 = (am7 + am9)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
-		End If
-		If am10 <> tempZeroRange Then
-			If am9 = tempZeroRange Then
-				am9 = (am8 + am10)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
-		End If
-		If am11 <> tempZeroRange Then
-			If am10 = tempZeroRange Then
-				am10 = (am9 + am11)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
-		End If
-		If pm12 <> tempZeroRange Then
-			If am11 = tempZeroRange Then
-				am11 = (am10 + pm12)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
-		End If
-		If pm1 <> tempZeroRange Then
-			If pm12 = tempZeroRange Then
-				pm12 = (am11 + pm1)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
-		End If
-		If pm2 <> tempZeroRange Then
-			If pm1 = tempZeroRange Then
-				pm1 = (pm12 + pm2)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
-		End If
-		If pm3 <> tempZeroRange Then
-			If pm2 = tempZeroRange Then
-				pm2 = (pm1 + pm3)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
-		End If
-		If pm4 <> tempZeroRange Then
-			If pm3 = tempZeroRange Then
-				pm3 = (pm2 + pm4)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
-		End If
-		If pm5 <> tempZeroRange Then
-			If pm4 = tempZeroRange Then
-				pm4 = (pm3 + pm5)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
-		End If
-		If pm6 <> tempZeroRange Then
-			If pm5 = tempZeroRange Then
-				pm5 = (pm4 + pm6)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
-		End If
-		If pm7 <> tempZeroRange Then
-			If pm6 = tempZeroRange Then
-				pm6 = (pm5 + pm7)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
-		End If
-		If pm8 <> tempZeroRange Then
-			If pm7 = tempZeroRange Then
-				pm7 = (pm6 + pm8)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
-		End If
-		If pm9 <> tempZeroRange Then
-			If pm8 = tempZeroRange Then
-				pm8 = (pm7 + pm9)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
-		End If
-		If pm10 <> tempZeroRange Then
-			If pm9 = tempZeroRange Then
-				pm9 = (pm8 + pm10)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
-		End If
-		If pm11 <> tempZeroRange Then
-			If pm10 = tempZeroRange Then
-				pm10 = (pm9 + pm11)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
-		End If
-		
+		Dim CurrentValid As Boolean = HasCurrentChartValue
+		Dim CurrentValue As Float = GetSafeCurrentValue(50)
+		Dim HourlyData() As Float = BuildChartData(CurrentValue)
+		Dim HourlyHasData() As Boolean = CopyBucketFlags
+
+		DateTime.DateFormat = "MMM d, yyyy"
+		LineChart.Line_1_LegendText = "From " & timeArray(0) & " to " & timeArray(23)
+		SetYAxisRangeSingle(HourlyData, HourlyHasData, CurrentValue, CurrentValid, True)
+		LineChart.Line_1_Data = HourlyData
+
 		LineChart.Line_1_PointLabelTextColor = Colors.Yellow
 		LineChart.Line_1_PointLabelTextSize = 35.0
 		LineChart.Line_1_LineColor = Colors.Red
@@ -638,11 +365,11 @@ Private Sub HumidityHourlyCreate()
 
 		' ********************* Today *********************
 			
-		' ******************* Last 10 minutes *******************
+		' ******************* Current reading reference *******************
 		
 		'LineChart.Line_2_LegendText = "Compiled: March 9, 2020 10:29 am" '& DateTime.Time(DateTime.Now)
-		LineChart.Line_2_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
-		LineChart.Line_2_PointLabelTextColor = Colors.Green
+		If CurrentValid Then LineChart.Line_2_Data = BuildFlatLine(CurrentValue)
+		LineChart.Line_2_PointLabelTextColor = Colors.Transparent
 		LineChart.Line_2_PointLabelTextSize = 35.0
 		LineChart.Line_2_LineColor = Colors.Green
 		LineChart.Line_2_LineWidth = 5.0
@@ -651,12 +378,25 @@ Private Sub HumidityHourlyCreate()
 		LineChart.Line_2_PointShape = LineChart.SHAPE_ROUND
 		LineChart.Line_2_DrawDash = True
 		LineChart.Line_2_DrawCubic = False
+
+		Dim GreenLabelHasData() As Boolean = BuildGreenReferenceLabelFlags
 		
-		' ******************* Last 10 minutes *******************
+		' ******************* Current reading reference *******************
 		
-		LineChart.NumberOfLineCharts = 2                              'set the number of graphs to draw from the 1 to 5 graph that has been set up above
-			 
+		If CurrentValid Then
+			LineChart.NumberOfLineCharts = 2
+		Else
+			LineChart.NumberOfLineCharts = 1
+		End If
+
 		LineChart.DrawTheGraphs
+		ApplyMissingGaps(1, HourlyHasData)
+		' Keep the real chart edges blank first.
+		LineChart.ApplyEdgeSpacers(1, 1)
+		' Then add one native AndroidPlot Y-value marker label for the green
+		' reference value in the blank right-side area.
+		If CurrentValid Then ApplyMissingGaps(-2, GreenLabelHasData)
+		LineChart.Invalidate
 		
 	Catch
 		Log(LastException)
@@ -666,17 +406,9 @@ End Sub
 
 Private Sub TemperatureDailyCreate()
 	Try
-		'  Immersive mode
 		Activity_WindowFocusChanged(True)
-		Dim lv As LayoutValues = GetRealSize
-		Dim jo As JavaObject = Activity
-		jo.RunMethod("setBottom", Array(lv.Height))
-		jo.RunMethod("setRight", Array(lv.Width))
-		Activity.Height = lv.Height
-		Activity.Width = lv.Width
-		'  Immersive mode
-		
-		Activity.LoadLayout("chart")
+		' Fresh chart instance: no old AndroidPlot series survive.
+		PrepareFreshChartLayout
 		
 		LineChart.GraphBackgroundColor = Colors.DarkGray ' Colors.Transparent
 		LineChart.GraphFrameColor = Colors.Blue
@@ -704,7 +436,7 @@ Private Sub TemperatureDailyCreate()
 		LineChart.XaxisLabelOrientation = 0
 		LineChart.XaxisLabelTextColor = Colors.White
 		LineChart.XaxisLabelTextSize = 32.0
-		LineChart.XAxisLabels = Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
+		LineChart.XAxisLabels = BuildDailyAxisLabels
 		
 		LineChart.YaxisDivisions = 10
 		'LineChart.YaxisRange(minimumRange, maximumRange)                                'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
@@ -723,160 +455,22 @@ Private Sub TemperatureDailyCreate()
 		LineChart.YaxisLabelAndTitleDistance = 60.0
 		LineChart.YaxisTitle = "Temperature (Fahrenheit)"                 'put this statement last
 		
-		LineChart.MaxNumberOfEntriesPerLineChart = 24                   'this value must be equal to the number of x-axis labels that you pass
+		LineChart.MaxNumberOfEntriesPerLineChart = 26                   'this value must be equal to the number of x-axis labels that you pass
 		LineChart.GraphLegendVisibility = False
 		
 		' ********************* Today *********************
 		
 		ReadTemperatureDaily("Today")
-			
+
+		Dim CurrentValid As Boolean = HasCurrentChartValue
+		Dim CurrentValue As Float = GetSafeCurrentValue(70)
+		Dim TodayData() As Float = BuildChartData(CurrentValue)
+		Dim TodayHasData() As Boolean = CopyBucketFlags
+
 		DateTime.DateFormat = "MMM d, yyyy"
 		LineChart.Line_1_LegendText = "Today, " & DateTime.Date(DateTime.Now)
-		
-		CheckTempBoundariesDaily
-		
-		If am12 <> tempZeroRange Then
-			LineChart.Line_1_Data = Array As Float (am12)
-		End If
-		If am1 <> tempZeroRange Then
-			LineChart.Line_1_Data = Array As Float (am12, am1)
-		End If
-		If am2 <> tempZeroRange Then
-			If am1 = tempZeroRange Then
-				am1 = (am12 + am2)/2
-			End If
-			If am12 = tempZeroRange Then
-				am12 = am1
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2)
-		End If
-		If am3 <> tempZeroRange Then
-			If am2 = tempZeroRange Then
-				am2 = (am1 + am3)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3)
-		End If
-		If am4 <> tempZeroRange Then
-			If am3 = tempZeroRange Then
-				am3 = (am2 + am4)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4)
-		End If
-		If am5 <> tempZeroRange Then
-			If am4 = tempZeroRange Then
-				am4 = (am3 + am5)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5)
-		End If
-		If am6 <> tempZeroRange Then
-			If am5 = tempZeroRange Then
-				am5 = (am4 + am6)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
-		End If
-		If am7 <> tempZeroRange Then
-			If am6 = tempZeroRange Then
-				am6 = (am5 + am7)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
-		End If
-		If am8 <> tempZeroRange Then
-			If am7 = tempZeroRange Then
-				am7 = (am6 + am8)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
-		End If
-		If am9 <> tempZeroRange Then
-			If am8 = tempZeroRange Then
-				am8 = (am7 + am9)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
-		End If
-		If am10 <> tempZeroRange Then
-			If am9 = tempZeroRange Then
-				am9 = (am8 + am10)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
-		End If
-		If am11 <> tempZeroRange Then
-			If am10 = tempZeroRange Then
-				am10 = (am9 + am11)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
-		End If
-		If pm12 <> tempZeroRange Then
-			If am11 = tempZeroRange Then
-				am11 = (am10 + pm12)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
-		End If
-		If pm1 <> tempZeroRange Then
-			If pm12 = tempZeroRange Then
-				pm12 = (am11 + pm1)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
-		End If
-		If pm2 <> tempZeroRange Then
-			If pm1 = tempZeroRange Then
-				pm1 = (pm12 + pm2)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
-		End If
-		If pm3 <> tempZeroRange Then
-			If pm2 = tempZeroRange Then
-				pm2 = (pm1 + pm3)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
-		End If
-		If pm4 <> tempZeroRange Then
-			If pm3 = tempZeroRange Then
-				pm3 = (pm2 + pm4)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
-		End If
-		If pm5 <> tempZeroRange Then
-			If pm4 = tempZeroRange Then
-				pm4 = (pm3 + pm5)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
-		End If
-		If pm6 <> tempZeroRange Then
-			If pm5 = tempZeroRange Then
-				pm5 = (pm4 + pm6)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
-		End If
-		If pm7 <> tempZeroRange Then
-			If pm6 = tempZeroRange Then
-				pm6 = (pm5 + pm7)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
-		End If
-		If pm8 <> tempZeroRange Then
-			If pm7 = tempZeroRange Then
-				pm7 = (pm6 + pm8)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
-		End If
-		If pm9 <> tempZeroRange Then
-			If pm8 = tempZeroRange Then
-				pm8 = (pm7 + pm9)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
-		End If
-		If pm10 <> tempZeroRange Then
-			If pm9 = tempZeroRange Then
-				pm9 = (pm8 + pm10)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
-		End If
-		If pm11 <> tempZeroRange Then
-			If pm10 = tempZeroRange Then
-				pm10 = (pm9 + pm11)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
-		End If
-					
+		LineChart.Line_1_Data = TodayData
+
 		LineChart.Line_1_PointLabelTextColor = Colors.Yellow
 		LineChart.Line_1_PointLabelTextSize = 35.0
 		LineChart.Line_1_LineColor = Colors.Red
@@ -892,157 +486,18 @@ Private Sub TemperatureDailyCreate()
 		' ******************* Yesterday *******************
 
 		ReadTemperatureDaily("Yesterday")
-			
-		Dim Yesterday As Long
-		Yesterday = DateTime.add(DateTime.Now, 0, 0, -1)
+		Dim YesterdayData() As Float = BuildChartData(CurrentValue)
+		Dim YesterdayHasData() As Boolean = CopyBucketFlags
 
+		Dim Yesterday As Long
+		Yesterday = DateTime.Add(DateTime.Now, 0, 0, -1)
 		DateTime.DateFormat = "MMM d, yyyy"
 		LineChart.Line_2_LegendText = "Yesterday, " & DateTime.Date(Yesterday)
-		
-		CheckTempBoundariesDaily
-		
-		If am12 <> tempZeroRange Then
-			LineChart.Line_2_Data = Array As Float (am12)
-		End If
-		If am1 <> tempZeroRange Then
-			LineChart.Line_2_Data = Array As Float (am12, am1)
-		End If
-		If am2 <> tempZeroRange Then
-			If am1 = tempZeroRange Then
-				am1 = (am12 + am2)/2
-			End If
-			If am12 = tempZeroRange Then
-				am12 = am1
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2)
-		End If
-		If am3 <> tempZeroRange Then
-			If am2 = tempZeroRange Then
-				am2 = (am1 + am3)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3)
-		End If
-		If am4 <> tempZeroRange Then
-			If am3 = tempZeroRange Then
-				am3 = (am2 + am4)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4)
-		End If
-		If am5 <> tempZeroRange Then
-			If am4 = tempZeroRange Then
-				am4 = (am3 + am5)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5)
-		End If
-		If am6 <> tempZeroRange Then
-			If am5 = tempZeroRange Then
-				am5 = (am4 + am6)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
-		End If
-		If am7 <> tempZeroRange Then
-			If am6 = tempZeroRange Then
-				am6 = (am5 + am7)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
-		End If
-		If am8 <> tempZeroRange Then
-			If am7 = tempZeroRange Then
-				am7 = (am6 + am8)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
-		End If
-		If am9 <> tempZeroRange Then
-			If am8 = tempZeroRange Then
-				am8 = (am7 + am9)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
-		End If
-		If am10 <> tempZeroRange Then
-			If am9 = tempZeroRange Then
-				am9 = (am8 + am10)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
-		End If
-		If am11 <> tempZeroRange Then
-			If am10 = tempZeroRange Then
-				am10 = (am9 + am11)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
-		End If
-		If pm12 <> tempZeroRange Then
-			If am11 = tempZeroRange Then
-				am11 = (am10 + pm12)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
-		End If
-		If pm1 <> tempZeroRange Then
-			If pm12 = tempZeroRange Then
-				pm12 = (am11 + pm1)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
-		End If
-		If pm2 <> tempZeroRange Then
-			If pm1 = tempZeroRange Then
-				pm1 = (pm12 + pm2)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
-		End If
-		If pm3 <> tempZeroRange Then
-			If pm2 = tempZeroRange Then
-				pm2 = (pm1 + pm3)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
-		End If
-		If pm4 <> tempZeroRange Then
-			If pm3 = tempZeroRange Then
-				pm3 = (pm2 + pm4)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
-		End If
-		If pm5 <> tempZeroRange Then
-			If pm4 = tempZeroRange Then
-				pm4 = (pm3 + pm5)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
-		End If
-		If pm6 <> tempZeroRange Then
-			If pm5 = tempZeroRange Then
-				pm5 = (pm4 + pm6)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
-		End If
-		If pm7 <> tempZeroRange Then
-			If pm6 = tempZeroRange Then
-				pm6 = (pm5 + pm7)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
-		End If
-		If pm8 <> tempZeroRange Then
-			If pm7 = tempZeroRange Then
-				pm7 = (pm6 + pm8)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
-		End If
-		If pm9 <> tempZeroRange Then
-			If pm8 = tempZeroRange Then
-				pm8 = (pm7 + pm9)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
-		End If
-		If pm10 <> tempZeroRange Then
-			If pm9 = tempZeroRange Then
-				pm9 = (pm8 + pm10)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
-		End If
-		If pm11 <> tempZeroRange Then
-			If pm10 = tempZeroRange Then
-				pm10 = (pm9 + pm11)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
-		End If
-			
+		LineChart.Line_2_Data = YesterdayData
+
+		SetYAxisRangeDouble(TodayData, TodayHasData, YesterdayData, YesterdayHasData, _
+			CurrentValue, CurrentValid, False)
+
 		LineChart.Line_2_PointLabelTextColor = Colors.Cyan
 		LineChart.Line_2_PointLabelTextSize = 35.0
 		LineChart.Line_2_LineColor = Colors.White
@@ -1055,11 +510,11 @@ Private Sub TemperatureDailyCreate()
 		
 		' ******************* Yesterday *******************
 		
-		' ******************* Last 10 minutes *******************
+		' ******************* Current reading reference *******************
 		
 		LineChart.Line_3_LegendText = "Real time"
-		LineChart.Line_3_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
-		LineChart.Line_3_PointLabelTextColor = Colors.Green
+		If CurrentValid Then LineChart.Line_3_Data = BuildFlatLine(CurrentValue)
+		LineChart.Line_3_PointLabelTextColor = Colors.Transparent
 		LineChart.Line_3_PointLabelTextSize = 35.0
 		LineChart.Line_3_LineColor = Colors.Green
 		LineChart.Line_3_LineWidth = 5.0
@@ -1068,12 +523,26 @@ Private Sub TemperatureDailyCreate()
 		LineChart.Line_3_PointShape = LineChart.SHAPE_ROUND
 		LineChart.Line_3_DrawDash = True
 		LineChart.Line_3_DrawCubic = False
+
+		Dim GreenLabelHasData() As Boolean = BuildGreenReferenceLabelFlags
 		
-		' ******************* Last 10 minutes *******************
+		' ******************* Current reading reference *******************
 		
-		LineChart.NumberOfLineCharts = 3                              'set the number of graphs to draw from the 1 to 5 graph that has been set up above
-			 
+		If CurrentValid Then
+			LineChart.NumberOfLineCharts = 3
+		Else
+			LineChart.NumberOfLineCharts = 2
+		End If
+
 		LineChart.DrawTheGraphs
+		ApplyMissingGaps(1, TodayHasData)
+		ApplyMissingGaps(2, YesterdayHasData)
+		' Keep the real chart edges blank first.
+		LineChart.ApplyEdgeSpacers(1, 1)
+		' Then add one native AndroidPlot Y-value marker label for the green
+		' reference value in the blank right-side area.
+		If CurrentValid Then ApplyMissingGaps(-3, GreenLabelHasData)
+		LineChart.Invalidate
 
 	Catch
 		Log(LastException)
@@ -1083,17 +552,9 @@ End Sub
 
 Private Sub HumidityDailyCreate()
 	Try
-		'  Immersive mode
 		Activity_WindowFocusChanged(True)
-		Dim lv As LayoutValues = GetRealSize
-		Dim jo As JavaObject = Activity
-		jo.RunMethod("setBottom", Array(lv.Height))
-		jo.RunMethod("setRight", Array(lv.Width))
-		Activity.Height = lv.Height
-		Activity.Width = lv.Width
-		'  Immersive mode
-		
-		Activity.LoadLayout("chart")
+		' Fresh chart instance: no old AndroidPlot series survive.
+		PrepareFreshChartLayout
 		
 		LineChart.GraphBackgroundColor = Colors.DarkGray 'Colors.Transparent
 		LineChart.GraphFrameColor = Colors.Blue
@@ -1121,7 +582,7 @@ Private Sub HumidityDailyCreate()
 		LineChart.XaxisLabelOrientation = 0
 		LineChart.XaxisLabelTextColor = Colors.White
 		LineChart.XaxisLabelTextSize = 32.0
-		LineChart.XAxisLabels = Array As String("12 am","1 am", "2 am","3 am", "4 am","5 am","6 am", "7 am","8 am","9 am","10 am","11 am", "12 pm","1 pm", "2 pm","3 pm","4 pm", "5 pm","6 pm","7 pm","8 pm","9 pm", "10 pm","11 pm")
+		LineChart.XAxisLabels = BuildDailyAxisLabels
 		
 		LineChart.YaxisDivisions = 10
 		'LineChart.YaxisRange(minimumRange, maximumRange)                                'enable this line if you want to set the y-axis minimum and maximum values - else it will be scaled automatically
@@ -1140,160 +601,22 @@ Private Sub HumidityDailyCreate()
 		LineChart.YaxisLabelAndTitleDistance = 60.0
 		LineChart.YaxisTitle = "Humidity (Percentage)"                 'put this statement last
 		
-		LineChart.MaxNumberOfEntriesPerLineChart = 24                   'this value must be equal to the number of x-axis labels that you pass
+		LineChart.MaxNumberOfEntriesPerLineChart = 26                   'this value must be equal to the number of x-axis labels that you pass
 		LineChart.GraphLegendVisibility = False
 		
 		' ********************* Today *********************
 		
 		ReadHumidityDaily("Today")
-			
+
+		Dim CurrentValid As Boolean = HasCurrentChartValue
+		Dim CurrentValue As Float = GetSafeCurrentValue(50)
+		Dim TodayData() As Float = BuildChartData(CurrentValue)
+		Dim TodayHasData() As Boolean = CopyBucketFlags
+
 		DateTime.DateFormat = "MMM d, yyyy"
 		LineChart.Line_1_LegendText = "Today, " & DateTime.Date(DateTime.Now)
-		
-		CheckTempBoundariesDaily
-		
-		If am12 <> tempZeroRange Then
-			LineChart.Line_1_Data = Array As Float (am12)
-		End If
-		If am1 <> tempZeroRange Then
-			LineChart.Line_1_Data = Array As Float (am12, am1)
-		End If
-		If am2 <> tempZeroRange Then
-			If am1 = tempZeroRange Then
-				am1 = (am12 + am2)/2
-			End If
-			If am12 = tempZeroRange Then
-				am12 = am1
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2)
-		End If
-		If am3 <> tempZeroRange Then
-			If am2 = tempZeroRange Then
-				am2 = (am1 + am3)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3)
-		End If
-		If am4 <> tempZeroRange Then
-			If am3 = tempZeroRange Then
-				am3 = (am2 + am4)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4)
-		End If
-		If am5 <> tempZeroRange Then
-			If am4 = tempZeroRange Then
-				am4 = (am3 + am5)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5)
-		End If
-		If am6 <> tempZeroRange Then
-			If am5 = tempZeroRange Then
-				am5 = (am4 + am6)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
-		End If
-		If am7 <> tempZeroRange Then
-			If am6 = tempZeroRange Then
-				am6 = (am5 + am7)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
-		End If
-		If am8 <> tempZeroRange Then
-			If am7 = tempZeroRange Then
-				am7 = (am6 + am8)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
-		End If
-		If am9 <> tempZeroRange Then
-			If am8 = tempZeroRange Then
-				am8 = (am7 + am9)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
-		End If
-		If am10 <> tempZeroRange Then
-			If am9 = tempZeroRange Then
-				am9 = (am8 + am10)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
-		End If
-		If am11 <> tempZeroRange Then
-			If am10 = tempZeroRange Then
-				am10 = (am9 + am11)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
-		End If
-		If pm12 <> tempZeroRange Then
-			If am11 = tempZeroRange Then
-				am11 = (am10 + pm12)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
-		End If
-		If pm1 <> tempZeroRange Then
-			If pm12 = tempZeroRange Then
-				pm12 = (am11 + pm1)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
-		End If
-		If pm2 <> tempZeroRange Then
-			If pm1 = tempZeroRange Then
-				pm1 = (pm12 + pm2)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
-		End If
-		If pm3 <> tempZeroRange Then
-			If pm2 = tempZeroRange Then
-				pm2 = (pm1 + pm3)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
-		End If
-		If pm4 <> tempZeroRange Then
-			If pm3 = tempZeroRange Then
-				pm3 = (pm2 + pm4)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
-		End If
-		If pm5 <> tempZeroRange Then
-			If pm4 = tempZeroRange Then
-				pm4 = (pm3 + pm5)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
-		End If
-		If pm6 <> tempZeroRange Then
-			If pm5 = tempZeroRange Then
-				pm5 = (pm4 + pm6)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
-		End If
-		If pm7 <> tempZeroRange Then
-			If pm6 = tempZeroRange Then
-				pm6 = (pm5 + pm7)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
-		End If
-		If pm8 <> tempZeroRange Then
-			If pm7 = tempZeroRange Then
-				pm7 = (pm6 + pm8)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
-		End If
-		If pm9 <> tempZeroRange Then
-			If pm8 = tempZeroRange Then
-				pm8 = (pm7 + pm9)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
-		End If
-		If pm10 <> tempZeroRange Then
-			If pm9 = tempZeroRange Then
-				pm9 = (pm8 + pm10)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
-		End If
-		If pm11 <> tempZeroRange Then
-			If pm10 = tempZeroRange Then
-				pm10 = (pm9 + pm11)/2
-			End If
-			LineChart.Line_1_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
-		End If
-					
+		LineChart.Line_1_Data = TodayData
+
 		LineChart.Line_1_PointLabelTextColor = Colors.Yellow
 		LineChart.Line_1_PointLabelTextSize = 35.0
 		LineChart.Line_1_LineColor = Colors.Red
@@ -1309,157 +632,18 @@ Private Sub HumidityDailyCreate()
 		' ******************* Yesterday *******************
 
 		ReadHumidityDaily("Yesterday")
-			
-		Dim Yesterday As Long
-		Yesterday = DateTime.add(DateTime.Now, 0, 0, -1)
+		Dim YesterdayData() As Float = BuildChartData(CurrentValue)
+		Dim YesterdayHasData() As Boolean = CopyBucketFlags
 
+		Dim Yesterday As Long
+		Yesterday = DateTime.Add(DateTime.Now, 0, 0, -1)
 		DateTime.DateFormat = "MMM d, yyyy"
 		LineChart.Line_2_LegendText = "Yesterday, " & DateTime.Date(Yesterday)
-		
-		CheckTempBoundariesDaily
-		
-		If am12 <> tempZeroRange Then
-			LineChart.Line_2_Data = Array As Float (am12)
-		End If
-		If am1 <> tempZeroRange Then
-			LineChart.Line_2_Data = Array As Float (am12, am1)
-		End If
-		If am2 <> tempZeroRange Then
-			If am1 = tempZeroRange Then
-				am1 = (am12 + am2)/2
-			End If
-			If am12 = tempZeroRange Then
-				am12 = am1
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2)
-		End If
-		If am3 <> tempZeroRange Then
-			If am2 = tempZeroRange Then
-				am2 = (am1 + am3)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3)
-		End If
-		If am4 <> tempZeroRange Then
-			If am3 = tempZeroRange Then
-				am3 = (am2 + am4)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4)
-		End If
-		If am5 <> tempZeroRange Then
-			If am4 = tempZeroRange Then
-				am4 = (am3 + am5)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5)
-		End If
-		If am6 <> tempZeroRange Then
-			If am5 = tempZeroRange Then
-				am5 = (am4 + am6)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6)
-		End If
-		If am7 <> tempZeroRange Then
-			If am6 = tempZeroRange Then
-				am6 = (am5 + am7)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7)
-		End If
-		If am8 <> tempZeroRange Then
-			If am7 = tempZeroRange Then
-				am7 = (am6 + am8)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8)
-		End If
-		If am9 <> tempZeroRange Then
-			If am8 = tempZeroRange Then
-				am8 = (am7 + am9)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9)
-		End If
-		If am10 <> tempZeroRange Then
-			If am9 = tempZeroRange Then
-				am9 = (am8 + am10)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9, am10)
-		End If
-		If am11 <> tempZeroRange Then
-			If am10 = tempZeroRange Then
-				am10 = (am9 + am11)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11)
-		End If
-		If pm12 <> tempZeroRange Then
-			If am11 = tempZeroRange Then
-				am11 = (am10 + pm12)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12)
-		End If
-		If pm1 <> tempZeroRange Then
-			If pm12 = tempZeroRange Then
-				pm12 = (am11 + pm1)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1)
-		End If
-		If pm2 <> tempZeroRange Then
-			If pm1 = tempZeroRange Then
-				pm1 = (pm12 + pm2)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2)
-		End If
-		If pm3 <> tempZeroRange Then
-			If pm2 = tempZeroRange Then
-				pm2 = (pm1 + pm3)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3)
-		End If
-		If pm4 <> tempZeroRange Then
-			If pm3 = tempZeroRange Then
-				pm3 = (pm2 + pm4)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4)
-		End If
-		If pm5 <> tempZeroRange Then
-			If pm4 = tempZeroRange Then
-				pm4 = (pm3 + pm5)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5)
-		End If
-		If pm6 <> tempZeroRange Then
-			If pm5 = tempZeroRange Then
-				pm5 = (pm4 + pm6)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6)
-		End If
-		If pm7 <> tempZeroRange Then
-			If pm6 = tempZeroRange Then
-				pm6 = (pm5 + pm7)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7)
-		End If
-		If pm8 <> tempZeroRange Then
-			If pm7 = tempZeroRange Then
-				pm7 = (pm6 + pm8)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8)
-		End If
-		If pm9 <> tempZeroRange Then
-			If pm8 = tempZeroRange Then
-				pm8 = (pm7 + pm9)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9)
-		End If
-		If pm10 <> tempZeroRange Then
-			If pm9 = tempZeroRange Then
-				pm9 = (pm8 + pm10)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10)
-		End If
-		If pm11 <> tempZeroRange Then
-			If pm10 = tempZeroRange Then
-				pm10 = (pm9 + pm11)/2
-			End If
-			LineChart.Line_2_Data = Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11)
-		End If
-			
+		LineChart.Line_2_Data = YesterdayData
+
+		SetYAxisRangeDouble(TodayData, TodayHasData, YesterdayData, YesterdayHasData, _
+			CurrentValue, CurrentValid, True)
+
 		LineChart.Line_2_PointLabelTextColor = Colors.Cyan
 		LineChart.Line_2_PointLabelTextSize = 35.0
 		LineChart.Line_2_LineColor = Colors.White
@@ -1472,11 +656,11 @@ Private Sub HumidityDailyCreate()
 		
 		' ******************* Yesterday *******************
 		
-		' ******************* Last 10 minutes *******************
+		' ******************* Current reading reference *******************
 		
 		LineChart.Line_3_LegendText = "Real time"
-		LineChart.Line_3_Data = Array As Float (tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow,tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow, tempRightNow)
-		LineChart.Line_3_PointLabelTextColor = Colors.Green
+		If CurrentValid Then LineChart.Line_3_Data = BuildFlatLine(CurrentValue)
+		LineChart.Line_3_PointLabelTextColor = Colors.Transparent
 		LineChart.Line_3_PointLabelTextSize = 35.0
 		LineChart.Line_3_LineColor = Colors.Green
 		LineChart.Line_3_LineWidth = 5.0
@@ -1485,12 +669,26 @@ Private Sub HumidityDailyCreate()
 		LineChart.Line_3_PointShape = LineChart.SHAPE_ROUND
 		LineChart.Line_3_DrawDash = True
 		LineChart.Line_3_DrawCubic = False
+
+		Dim GreenLabelHasData() As Boolean = BuildGreenReferenceLabelFlags
 		
-		' ******************* Last 10 minutes *******************
+		' ******************* Current reading reference *******************
 		
-		LineChart.NumberOfLineCharts = 3                              'set the number of graphs to draw from the 1 to 5 graph that has been set up above
-			 
+		If CurrentValid Then
+			LineChart.NumberOfLineCharts = 3
+		Else
+			LineChart.NumberOfLineCharts = 2
+		End If
+
 		LineChart.DrawTheGraphs
+		ApplyMissingGaps(1, TodayHasData)
+		ApplyMissingGaps(2, YesterdayHasData)
+		' Keep the real chart edges blank first.
+		LineChart.ApplyEdgeSpacers(1, 1)
+		' Then add one native AndroidPlot Y-value marker label for the green
+		' reference value in the blank right-side area.
+		If CurrentValid Then ApplyMissingGaps(-3, GreenLabelHasData)
+		LineChart.Invalidate
 
 	Catch
 		Log(LastException)
@@ -1519,837 +717,575 @@ Sub GetRealSize As LayoutValues
 End Sub
 
 Sub ReadTemperatureDaily(fileDay As String)
-	Try
-		Dim TextReader1 As TextReader
-		Dim Now As Long
-		Dim Month As Int
-		Dim Day As Int
-		Dim Year As Int
-		Dim FileName As String
-	
-		am12 = zeroRange
-		am1 = zeroRange
-		am2 = zeroRange
-		am3 = zeroRange
-		am4 = zeroRange
-		am5 = zeroRange
-		am6 = zeroRange
-		am7 = zeroRange
-		am8 = zeroRange
-		am9 = zeroRange
-		am10 = zeroRange
-		am11 = zeroRange
-		pm12 = zeroRange
-		pm1 = zeroRange
-		pm2 = zeroRange
-		pm3 = zeroRange
-		pm4 = zeroRange
-		pm5 = zeroRange
-		pm6 = zeroRange
-		pm7 = zeroRange
-		pm8 = zeroRange
-		pm9 = zeroRange
-		pm10 = zeroRange
-		pm11 = zeroRange
-		
-		Now = DateTime.Now
-		Month = DateTime.GetMonth(Now)
-		Day = DateTime.GetDayOfMonth (Now)
-		Year = DateTime.GetYear(Now)
-
-		If fileDay = "Today" Then
-			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-		Else
-			Now = DateTime.add(DateTime.Now, 0, 0, -1)
-			Month = DateTime.GetMonth(Now)
-			Day = DateTime.GetDayOfMonth (Now)
-			Year = DateTime.GetYear(Now)
-			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-		End If
-			
-		shared = rp.GetSafeDirDefaultExternal("")
-		TextReader1.Initialize(File.OpenInput(shared, FileName))
-		Dim line As String
-		line = TextReader1.ReadLine
-		Do While line <> Null
-			'Log(line) 'write the line to LogCat
-			line = TextReader1.ReadLine
-			If line = Null Then
-				Exit
-			End If
-			Dim a() As String = Regex.Split("\|",line)
-			If a.Length = 9 Then
-				Dim timeStamp As String
-				timeStamp = a(0).SubString2(0,2)
-				
-				If IsNumber(a(1)) = False Then Continue
-				
-				If a(0).Contains("c") Then Continue
-
-				Select timeStamp
-					Case "00"
-						If am12 = zeroRange Or am12 = "" Then am12 = NumberFormat(a(1),0,2)
-					Case "01"
-						If am1 = zeroRange Or am1 = "" Then am1 = NumberFormat(a(1),0,2)
-					Case "02"
-						If am2 = zeroRange Or am2 = "" Then am2 = NumberFormat(a(1),0,2)
-					Case "03"
-						If am3 = zeroRange Or am3 = "" Then am3 = NumberFormat(a(1),0,2)
-					Case "04"
-						If am4 = zeroRange Or am4 = "" Then am4 = NumberFormat(a(1),0,2)
-					Case "05"
-						If am5 = zeroRange Or am5 = "" Then am5 = NumberFormat(a(1),0,2)
-					Case "06"
-						If am6 = zeroRange Or am6 = "" Then am6 = NumberFormat(a(1),0,2)
-					Case "07"
-						If am7 = zeroRange Or am7 = "" Then am7 = NumberFormat(a(1),0,2)
-					Case "08"
-						If am8 = zeroRange Or am8 = "" Then am8 = NumberFormat(a(1),0,2)
-					Case "09"
-						If am9 = zeroRange Or am9 = "" Then am9 = NumberFormat(a(1),0,2)
-					Case "10"
-						If am10 = zeroRange Or am10 = "" Then am10 = NumberFormat(a(1),0,2)
-					Case "11"
-						If am11 = zeroRange Or am11 = "" Then am11 = NumberFormat(a(1),0,2)
-					Case "12"
-						If pm12 = zeroRange Or pm12 = "" Then pm12 = NumberFormat(a(1),0,2)
-					Case "13"
-						If pm1 = zeroRange Or pm1 = "" Then pm1 = NumberFormat(a(1),0,2)
-					Case "14"
-						If pm2 = zeroRange Or pm2 = "" Then pm2 = NumberFormat(a(1),0,2)
-					Case "15"
-						If pm3 = zeroRange Or pm3 = "" Then pm3 = NumberFormat(a(1),0,2)
-					Case "16"
-						If pm4 = zeroRange Or pm4 = "" Then pm4 = NumberFormat(a(1),0,2)
-					Case "17"
-						If pm5 = zeroRange Or pm5 = "" Then pm5 = NumberFormat(a(1),0,2)
-					Case "18"
-						If pm6 = zeroRange Or pm6 = "" Then pm6 = NumberFormat(a(1),0,2)
-					Case "19"
-						If pm7 = zeroRange Or pm7 = "" Then pm7 = NumberFormat(a(1),0,2)
-					Case "20"
-						If pm8 = zeroRange Or pm8 = "" Then pm8 = NumberFormat(a(1),0,2)
-					Case "21"
-						If pm9 = zeroRange Or pm9 = "" Then pm9 = NumberFormat(a(1),0,2)
-					Case "22"
-						If pm10 = zeroRange Or pm10 = "" Then pm10 = NumberFormat(a(1),0,2)
-					Case "23"
-						If pm11 = zeroRange Or pm11 = "" Then pm11 = NumberFormat(a(1),0,2)
-				End Select
-				If fileDay = "Today" Then
-					tempRightNow = NumberFormat(a(1),0,2)
-				End If
-			End If
-		Loop
-
-		TextReader1.Close
-	Catch
-		Log(LastException)
-	End Try
+	ReadDailyAverages(fileDay, 1)
 End Sub
 
 Sub ReadHumidityDaily(fileDay As String)
-	Try
-		Dim TextReader1 As TextReader
-		Dim Now As Long
-		Dim Month As Int
-		Dim Day As Int
-		Dim Year As Int
-		Dim FileName As String
-	
-		am12 = zeroRange
-		am1 = zeroRange
-		am2 = zeroRange
-		am3 = zeroRange
-		am4 = zeroRange
-		am5 = zeroRange
-		am6 = zeroRange
-		am7 = zeroRange
-		am8 = zeroRange
-		am9 = zeroRange
-		am10 = zeroRange
-		am11 = zeroRange
-		pm12 = zeroRange
-		pm1 = zeroRange
-		pm2 = zeroRange
-		pm3 = zeroRange
-		pm4 = zeroRange
-		pm5 = zeroRange
-		pm6 = zeroRange
-		pm7 = zeroRange
-		pm8 = zeroRange
-		pm9 = zeroRange
-		pm10 = zeroRange
-		pm11 = zeroRange
-		
-		Now = DateTime.Now
-		Month = DateTime.GetMonth(Now)
-		Day = DateTime.GetDayOfMonth (Now)
-		Year = DateTime.GetYear(Now)
+	ReadDailyAverages(fileDay, 2)
+End Sub
 
+Sub ReadTemperatureHourly
+	ReadRollingTwoHourLatestSamples(1)
+End Sub
+
+Sub ReadHumidityHourly
+	ReadRollingTwoHourLatestSamples(2)
+End Sub
+
+' ============================================================
+' CHART LOG READER - PHASE 4.2
+'
+' The log still contains every valid Living Room DHT22 sample.
+' The chart now summarizes those real samples instead of choosing
+' an arbitrary first/exact-minute sample:
+'
+'   Hourly view: 24 x 5-minute buckets = rolling last 2 hours.
+'                Each point is the newest REAL sensor reading
+'                received in that 5-minute window (no averaging).
+'
+'   Daily view:  24 x 1-hour buckets.
+'                Each point is the average of all valid samples
+'                received during that hour.
+'
+' Legacy "c" carry-forward lines are ignored. The writer no longer
+' creates them. The rolling chart
+' reads yesterday + today directly, so midnight no longer needs
+' the old future-file trick.
+' ============================================================
+
+Private Sub ReadDailyAverages(fileDay As String, ValueIndex As Int)
+	Try
+		ResetChartBuckets
+
+		Dim TargetDay As Long
 		If fileDay = "Today" Then
-			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			TargetDay = DateTime.Now
 		Else
-			Now = DateTime.add(DateTime.Now, 0, 0, -1)
-			Month = DateTime.GetMonth(Now)
-			Day = DateTime.GetDayOfMonth (Now)
-			Year = DateTime.GetYear(Now)
-			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
+			TargetDay = DateTime.Add(DateTime.Now, 0, 0, -1)
 		End If
-		
+
+		Dim BucketSum(24) As Double
+		Dim BucketCount(24) As Int
+
+		Dim LatestTicks As Long = 0
+		Dim LatestValue As String = ""
+
+		AccumulateDailyFile(TargetDay, ValueIndex, BucketSum, BucketCount, _
+			fileDay = "Today", LatestTicks, LatestValue)
+
+		ApplyBucketAverages(BucketSum, BucketCount)
+
+		If fileDay = "Today" And LatestValue <> "" Then
+			tempRightNow = LatestValue
+		End If
+
+	Catch
+		Log("ReadDailyAverages: " & LastException)
+	End Try
+End Sub
+
+Private Sub AccumulateDailyFile(FileDay As Long, ValueIndex As Int, _
+	BucketSum() As Double, BucketCount() As Int, TrackLatest As Boolean, _
+	LatestTicks As Long, LatestValue As String)
+	Try
 		shared = rp.GetSafeDirDefaultExternal("")
+		Dim FileName As String = GetChartLogFileName(FileDay)
+		If File.Exists(shared, FileName) = False Then Return
+
+		Dim TextReader1 As TextReader
 		TextReader1.Initialize(File.OpenInput(shared, FileName))
+
 		Dim line As String
-		line = TextReader1.ReadLine
-		Do While line <> Null
-			'Log(line) 'write the line to LogCat
+		Do While True
 			line = TextReader1.ReadLine
-			If line = Null Then
-				Exit
-			End If
-			Dim a() As String = Regex.Split("\|",line)
-			If a.Length = 9 Then
-				Dim timeStamp As String
-				timeStamp = a(0).SubString2(0,2)
-				
-				If IsNumber(a(2)) = False Then Continue
-				
-				If a(0).Contains("c") Then Continue
-				
-				Select timeStamp
-					Case "00"
-						If am12 = zeroRange Or am12 = "" Then am12 = NumberFormat(a(2),0,2)
-					Case "01"
-						If am1 = zeroRange Or am1 = "" Then am1 = NumberFormat(a(2),0,2)
-					Case "02"
-						If am2 = zeroRange Or am2 = "" Then am2 = NumberFormat(a(2),0,2)
-					Case "03"
-						If am3 = zeroRange Or am3 = "" Then am3 = NumberFormat(a(2),0,2)
-					Case "04"
-						If am4 = zeroRange Or am4 = "" Then am4 = NumberFormat(a(2),0,2)
-					Case "05"
-						If am5 = zeroRange Or am5 = "" Then am5 = NumberFormat(a(2),0,2)
-					Case "06"
-						If am6 = zeroRange Or am6 = "" Then am6 = NumberFormat(a(2),0,2)
-					Case "07"
-						If am7 = zeroRange Or am7 = "" Then am7 = NumberFormat(a(2),0,2)
-					Case "08"
-						If am8 = zeroRange Or am8 = "" Then am8 = NumberFormat(a(2),0,2)
-					Case "09"
-						If am9 = zeroRange Or am9 = "" Then am9 = NumberFormat(a(2),0,2)
-					Case "10"
-						If am10 = zeroRange Or am10 = "" Then am10 = NumberFormat(a(2),0,2)
-					Case "11"
-						If am11 = zeroRange Or am11 = "" Then am11 = NumberFormat(a(2),0,2)
-					Case "12"
-						If pm12 = zeroRange Or pm12 = "" Then pm12 = NumberFormat(a(2),0,2)
-					Case "13"
-						If pm1 = zeroRange Or pm1 = "" Then pm1 = NumberFormat(a(2),0,2)
-					Case "14"
-						If pm2 = zeroRange Or pm2 = "" Then pm2 = NumberFormat(a(2),0,2)
-					Case "15"
-						If pm3 = zeroRange Or pm3 = "" Then pm3 = NumberFormat(a(2),0,2)
-					Case "16"
-						If pm4 = zeroRange Or pm4 = "" Then pm4 = NumberFormat(a(2),0,2)
-					Case "17"
-						If pm5 = zeroRange Or pm5 = "" Then pm5 = NumberFormat(a(2),0,2)
-					Case "18"
-						If pm6 = zeroRange Or pm6 = "" Then pm6 = NumberFormat(a(2),0,2)
-					Case "19"
-						If pm7 = zeroRange Or pm7 = "" Then pm7 = NumberFormat(a(2),0,2)
-					Case "20"
-						If pm8 = zeroRange Or pm8 = "" Then pm8 = NumberFormat(a(2),0,2)
-					Case "21"
-						If pm9 = zeroRange Or pm9 = "" Then pm9 = NumberFormat(a(2),0,2)
-					Case "22"
-						If pm10 = zeroRange Or pm10 = "" Then pm10 = NumberFormat(a(2),0,2)
-					Case "23"
-						If pm11 = zeroRange Or pm11 = "" Then pm11 = NumberFormat(a(2),0,2)
-				End Select
-				If fileDay = "Today" Then
-					tempRightNow = NumberFormat(a(2),0,2)
+			If line = Null Then Exit
+
+			Dim EntryTicks As Long = ParseChartLogTicks(FileDay, line)
+			If EntryTicks = 0 Then Continue
+
+			' Today must stop at the latest/current time.  Ignore any
+			' impossible future-dated rows left by an older log format.
+			If TrackLatest And EntryTicks > DateTime.Now Then Continue
+
+			Dim a() As String = Regex.Split("\|", line)
+			If a.Length <> 9 Then Continue
+			If a(0).Contains(" OK") = False Then Continue
+			If IsNumber(a(ValueIndex)) = False Then Continue
+
+			Dim Value As Double = a(ValueIndex)
+			If ValueIndex = 1 And Value <= 0 Then Continue
+
+			Dim Bucket As Int = DateTime.GetHour(EntryTicks)
+			If Bucket < 0 Or Bucket > 23 Then Continue
+
+			BucketSum(Bucket) = BucketSum(Bucket) + Value
+			BucketCount(Bucket) = BucketCount(Bucket) + 1
+
+			If TrackLatest Then
+				'Log files are appended chronologically, but compare timestamps
+				'anyway so a malformed/out-of-order line cannot become "real time".
+				If EntryTicks >= LatestTicks Then
+					LatestTicks = EntryTicks
+					LatestValue = NumberFormat(Value, 0, 2)
+					tempRightNow = LatestValue
 				End If
 			End If
 		Loop
 
 		TextReader1.Close
 	Catch
-		Log(LastException)
+		Log("AccumulateDailyFile: " & LastException)
 	End Try
 End Sub
 
-Sub ReadTemperatureHourly(fileDay As String)
+Private Sub ReadRollingTwoHourLatestSamples(ValueIndex As Int)
 	Try
-		Dim TextReader1 As TextReader
-		Dim Now As Long
-		Dim Month As Int
-		Dim Day As Int
-		Dim Year As Int
-		Dim FileName As String
-	
-		am12 = zeroRange
-		am1 = zeroRange
-		am2 = zeroRange
-		am3 = zeroRange
-		am4 = zeroRange
-		am5 = zeroRange
-		am6 = zeroRange
-		am7 = zeroRange
-		am8 = zeroRange
-		am9 = zeroRange
-		am10 = zeroRange
-		am11 = zeroRange
-		pm12 = zeroRange
-		pm1 = zeroRange
-		pm2 = zeroRange
-		pm3 = zeroRange
-		pm4 = zeroRange
-		pm5 = zeroRange
-		pm6 = zeroRange
-		pm7 = zeroRange
-		pm8 = zeroRange
-		pm9 = zeroRange
-		pm10 = zeroRange
-		pm11 = zeroRange
-		
-		Dim Tomorrow As Boolean
-		If NumberFormat(DateTime.GetHour(DateTime.Now),2,0) <= 2 Then
-			Tomorrow = True
+		ResetChartBuckets
+
+		' Keep the proven 24 x 5-minute chart layout from Phase 4.6,
+		' but do NOT average the readings inside each bucket.
+		' Each bucket shows the newest real sensor reading received
+		' during that five-minute window.
+		Dim BucketLatestTicks(24) As Long
+
+		Dim WindowEnd As Long = timeRightNow
+		Dim WindowStart As Long = WindowEnd - (120 * 60 * 1000)
+
+		Dim LatestTicks As Long = 0
+		Dim LatestValue As String = ""
+
+		Dim Yesterday As Long = DateTime.Add(WindowEnd, 0, 0, -1)
+		AccumulateRollingLatestFile(Yesterday, ValueIndex, WindowStart, WindowEnd, _
+			BucketLatestTicks, LatestTicks, LatestValue)
+		AccumulateRollingLatestFile(WindowEnd, ValueIndex, WindowStart, WindowEnd, _
+			BucketLatestTicks, LatestTicks, LatestValue)
+
+		If LatestValue <> "" Then
+			tempRightNow = LatestValue
 		End If
-		
-		Now = DateTime.Now
-		Month = DateTime.GetMonth(Now)
-		Day = DateTime.GetDayOfMonth (Now)
-		Year = DateTime.GetYear(Now)
-			
-		If fileDay = "Today" Then
-			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-		Else
-			Now = DateTime.add(DateTime.Now, 0, 0, -1)
-			Month = DateTime.GetMonth(Now)
-			Day = DateTime.GetDayOfMonth (Now)
-			Year = DateTime.GetYear(Now)
-			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-		End If
-		
+
+	Catch
+		Log("ReadRollingTwoHourLatestSamples: " & LastException)
+	End Try
+End Sub
+
+Private Sub AccumulateRollingLatestFile(FileDay As Long, ValueIndex As Int, _
+	WindowStart As Long, WindowEnd As Long, BucketLatestTicks() As Long, _
+	LatestTicks As Long, LatestValue As String)
+	Try
 		shared = rp.GetSafeDirDefaultExternal("")
+		Dim FileName As String = GetChartLogFileName(FileDay)
+		If File.Exists(shared, FileName) = False Then Return
+
+		Dim TextReader1 As TextReader
 		TextReader1.Initialize(File.OpenInput(shared, FileName))
+
 		Dim line As String
-		line = TextReader1.ReadLine
-		Do While line <> Null
-			'Log(line) 'write the line to LogCat
+		Do While True
 			line = TextReader1.ReadLine
-			If line = Null Then
-				Exit
+			If line = Null Then Exit
+
+			Dim EntryTicks As Long = ParseChartLogTicks(FileDay, line)
+			If EntryTicks = 0 Then Continue
+			If EntryTicks < WindowStart Or EntryTicks >= WindowEnd Then Continue
+
+			Dim a() As String = Regex.Split("\|", line)
+			If a.Length <> 9 Then Continue
+			If a(0).Contains(" OK") = False Then Continue
+			If IsNumber(a(ValueIndex)) = False Then Continue
+
+			Dim Value As Double = a(ValueIndex)
+			If ValueIndex = 1 And Value <= 0 Then Continue
+
+			Dim Bucket As Int = Floor((EntryTicks - WindowStart) / 300000)
+			If Bucket < 0 Or Bucket > 23 Then Continue
+
+			' Keep the newest REAL reading in this five-minute bucket.
+			' No averaging and no invented/interpolated value.
+			If EntryTicks >= BucketLatestTicks(Bucket) Then
+				BucketLatestTicks(Bucket) = EntryTicks
+				SetChartBucket(Bucket, NumberFormat(Value, 0, 2))
 			End If
-			Dim a() As String = Regex.Split("\|",line)
-			If a.Length = 9 Then
-				Dim timeStamp As String
-				timeStamp = a(0).SubString2(0,5)
-					
-				If IsNumber(a(1)) = False Then Continue
-				
-				If timeStamp.Contains("c") Then
-					If Tomorrow Then
-						timeStamp = timeStamp.Replace("c",":")
-					Else	
-						Continue
-					End If
-				End If
-				
-				Select timeStamp
-					Case timeArray(0)
-						If am12 = zeroRange Or am12 = "" Then am12 = NumberFormat(a(1),0,2)
-					Case timeArray(1)
-						If am1 = zeroRange Or am1 = "" Then am1 = NumberFormat(a(1),0,2)
-					Case timeArray(2)
-						If am2 = zeroRange Or am2 = "" Then am2 = NumberFormat(a(1),0,2)
-					Case timeArray(3)
-						If am3 = zeroRange Or am3 = "" Then am3 = NumberFormat(a(1),0,2)
-					Case timeArray(4)
-						If am4 = zeroRange Or am4 = "" Then am4 = NumberFormat(a(1),0,2)
-					Case timeArray(5)
-						If am5 = zeroRange Or am5 = "" Then am5 = NumberFormat(a(1),0,2)
-					Case timeArray(6)
-						If am6 = zeroRange Or am6 = "" Then am6 = NumberFormat(a(1),0,2)
-					Case timeArray(7)
-						If am7 = zeroRange Or am7 = "" Then am7 = NumberFormat(a(1),0,2)
-					Case timeArray(8)
-						If am8 = zeroRange Or am8 = "" Then am8 = NumberFormat(a(1),0,2)
-					Case timeArray(9)
-						If am9 = zeroRange Or am9 = "" Then am9 = NumberFormat(a(1),0,2)
-					Case timeArray(10)
-						If am10 = zeroRange Or am10 = "" Then am10 = NumberFormat(a(1),0,2)
-					Case timeArray(11)
-						If am11 = zeroRange Or am11 = "" Then am11 = NumberFormat(a(1),0,2)
-					Case timeArray(12)
-						If pm12 = zeroRange Or pm12 = "" Then pm12 = NumberFormat(a(1),0,2)
-					Case timeArray(13)
-						If pm1 = zeroRange Or pm1 = "" Then pm1 = NumberFormat(a(1),0,2)
-					Case timeArray(14)
-						If pm2 = zeroRange Or pm2 = "" Then pm2 = NumberFormat(a(1),0,2)
-					Case timeArray(15)
-						If pm3 = zeroRange Or pm3 = "" Then pm3 = NumberFormat(a(1),0,2)
-					Case timeArray(16)
-						If pm4 = zeroRange Or pm4 = "" Then pm4 = NumberFormat(a(1),0,2)
-					Case timeArray(17)
-						If pm5 = zeroRange Or pm5 = "" Then pm5 = NumberFormat(a(1),0,2)
-					Case timeArray(18)
-						If pm6 = zeroRange Or pm6 = "" Then pm6 = NumberFormat(a(1),0,2)
-					Case timeArray(19)
-						If pm7 = zeroRange Or pm7 = "" Then pm7 = NumberFormat(a(1),0,2)
-					Case timeArray(20)
-						If pm8 = zeroRange Or pm8 = "" Then pm8 = NumberFormat(a(1),0,2)
-					Case timeArray(21)
-						If pm9 = zeroRange Or pm9 = "" Then pm9 = NumberFormat(a(1),0,2)
-					Case timeArray(22)
-						If pm10 = zeroRange Or pm10 = "" Then pm10 = NumberFormat(a(1),0,2)
-					Case timeArray(23)
-						If pm11 = zeroRange Or pm11 = "" Then pm11 = NumberFormat(a(1),0,2)
-				End Select
-				If fileDay = "Today" Then
-					tempRightNow = NumberFormat(a(1),0,2)
-					DateTime.TimeFormat = "h:mm a"
-				End If
+
+			If EntryTicks >= LatestTicks Then
+				LatestTicks = EntryTicks
+				LatestValue = NumberFormat(Value, 0, 2)
+				tempRightNow = LatestValue
 			End If
 		Loop
-			
+
 		TextReader1.Close
-		'Next
-
 	Catch
-		Log(LastException)
+		Log("AccumulateRollingLatestFile: " & LastException)
 	End Try
 End Sub
 
-Sub ReadHumidityHourly(fileDay As String)
+Private Sub ParseChartLogTicks(FileDay As Long, line As String) As Long
 	Try
-		Dim TextReader1 As TextReader
-		Dim Now As Long
-		Dim Month As Int
-		Dim Day As Int
-		Dim Year As Int
-		Dim FileName As String
-	
-		am12 = zeroRange
-		am1 = zeroRange
-		am2 = zeroRange
-		am3 = zeroRange
-		am4 = zeroRange
-		am5 = zeroRange
-		am6 = zeroRange
-		am7 = zeroRange
-		am8 = zeroRange
-		am9 = zeroRange
-		am10 = zeroRange
-		am11 = zeroRange
-		pm12 = zeroRange
-		pm1 = zeroRange
-		pm2 = zeroRange
-		pm3 = zeroRange
-		pm4 = zeroRange
-		pm5 = zeroRange
-		pm6 = zeroRange
-		pm7 = zeroRange
-		pm8 = zeroRange
-		pm9 = zeroRange
-		pm10 = zeroRange
-		pm11 = zeroRange
+		If line.Length < 8 Then Return 0
 
-		Dim Tomorrow As Boolean
-		If NumberFormat(DateTime.GetHour(DateTime.Now),2,0) <= 2 Then
-			Tomorrow = True
-		End If
-		
-		Now = DateTime.Now
-		Month = DateTime.GetMonth(Now)
-		Day = DateTime.GetDayOfMonth (Now)
-		Year = DateTime.GetYear(Now)
-			
-		If fileDay = "Today" Then
-			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-		Else
-			Now = DateTime.add(DateTime.Now, 0, 0, -1)
-			Month = DateTime.GetMonth(Now)
-			Day = DateTime.GetDayOfMonth (Now)
-			Year = DateTime.GetYear(Now)
-			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-		End If
-		
-		shared = rp.GetSafeDirDefaultExternal("")
-		TextReader1.Initialize(File.OpenInput(shared, FileName))
-		Dim line As String
-		line = TextReader1.ReadLine
-		Do While line <> Null
-			'Log(line) 'write the line to LogCat
-			line = TextReader1.ReadLine
-			If line = Null Then
-				Exit
-			End If
-			Dim a() As String = Regex.Split("\|",line)
-			If a.Length = 9 Then
-				Dim timeStamp As String
-				timeStamp = a(0).SubString2(0,5)
-					
-				If IsNumber(a(2)) = False Then Continue
-				
-				If timeStamp.Contains("c") Then
-					If Tomorrow Then
-						timeStamp = timeStamp.Replace("c",":")
-					Else
-						Continue
-					End If
-				End If
-						
-				Select timeStamp
-					Case timeArray(0)
-						If am12 = zeroRange Or am12 = "" Then am12 = NumberFormat(a(2),0,2)
-					Case timeArray(1)
-						If am1 = zeroRange Or am1 = "" Then am1 = NumberFormat(a(2),0,2)
-					Case timeArray(2)
-						If am2 = zeroRange Or am2 = "" Then am2 = NumberFormat(a(2),0,2)
-					Case timeArray(3)
-						If am3 = zeroRange Or am3 = "" Then am3 = NumberFormat(a(2),0,2)
-					Case timeArray(4)
-						If am4 = zeroRange Or am4 = "" Then am4 = NumberFormat(a(2),0,2)
-					Case timeArray(5)
-						If am5 = zeroRange Or am5 = "" Then am5 = NumberFormat(a(2),0,2)
-					Case timeArray(6)
-						If am6 = zeroRange Or am6 = "" Then am6 = NumberFormat(a(2),0,2)
-					Case timeArray(7)
-						If am7 = zeroRange Or am7 = "" Then am7 = NumberFormat(a(2),0,2)
-					Case timeArray(8)
-						If am8 = zeroRange Or am8 = "" Then am8 = NumberFormat(a(2),0,2)
-					Case timeArray(9)
-						If am9 = zeroRange Or am9 = "" Then am9 = NumberFormat(a(2),0,2)
-					Case timeArray(10)
-						If am10 = zeroRange Or am10 = "" Then am10 = NumberFormat(a(2),0,2)
-					Case timeArray(11)
-						If am11 = zeroRange Or am11 = "" Then am11 = NumberFormat(a(2),0,2)
-					Case timeArray(12)
-						If pm12 = zeroRange Or pm12 = "" Then pm12 = NumberFormat(a(2),0,2)
-					Case timeArray(13)
-						If pm1 = zeroRange Or pm1 = "" Then pm1 = NumberFormat(a(2),0,2)
-					Case timeArray(14)
-						If pm2 = zeroRange Or pm2 = "" Then pm2 = NumberFormat(a(2),0,2)
-					Case timeArray(15)
-						If pm3 = zeroRange Or pm3 = "" Then pm3 = NumberFormat(a(2),0,2)
-					Case timeArray(16)
-						If pm4 = zeroRange Or pm4 = "" Then pm4 = NumberFormat(a(2),0,2)
-					Case timeArray(17)
-						If pm5 = zeroRange Or pm5 = "" Then pm5 = NumberFormat(a(2),0,2)
-					Case timeArray(18)
-						If pm6 = zeroRange Or pm6 = "" Then pm6 = NumberFormat(a(2),0,2)
-					Case timeArray(19)
-						If pm7 = zeroRange Or pm7 = "" Then pm7 = NumberFormat(a(2),0,2)
-					Case timeArray(20)
-						If pm8 = zeroRange Or pm8 = "" Then pm8 = NumberFormat(a(2),0,2)
-					Case timeArray(21)
-						If pm9 = zeroRange Or pm9 = "" Then pm9 = NumberFormat(a(2),0,2)
-					Case timeArray(22)
-						If pm10 = zeroRange Or pm10 = "" Then pm10 = NumberFormat(a(2),0,2)
-					Case timeArray(23)
-						If pm11 = zeroRange Or pm11 = "" Then pm11 = NumberFormat(a(2),0,2)
-				End Select
-				If fileDay = "Today" Then
-					tempRightNow = NumberFormat(a(2),0,2)
-					DateTime.TimeFormat = "h:mm a"
-				End If
-			End If
-		Loop
-			
-		TextReader1.Close
-		'Next
+		Dim TimePart As String = line.SubString2(0, 8)
 
+		'Legacy lines copied into the following day's file used "c"
+		'instead of the first colon.  They are duplicates, not real samples
+		'for that date, so never include them in averages.
+		If TimePart.Contains("c") Then Return 0
+
+		Dim t() As String = Regex.Split(":", TimePart)
+		If t.Length <> 3 Then Return 0
+		If IsNumber(t(0)) = False Or IsNumber(t(1)) = False Or IsNumber(t(2)) = False Then Return 0
+
+		Return DateUtils.SetDateAndTime( _
+			DateTime.GetYear(FileDay), _
+			DateTime.GetMonth(FileDay), _
+			DateTime.GetDayOfMonth(FileDay), _
+			t(0), t(1), t(2))
 	Catch
-		Log(LastException)
+		Return 0
 	End Try
 End Sub
 
-Sub CheckTempBoundaries
-	Try
-		Dim tempList As List
-		tempList.Initialize
-		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
-		tempList.Sort(True)
-			
-		'Dim tempZeroRange As Float
-		tempZeroRange = tempList.Get(0)-0.3
-		
-		Dim temphook As String = tempZeroRange
-		
-		If am12 = zeroRange Then am12 = tempZeroRange Else temphook=am12
-		If am1 = zeroRange Then am1 = temphook Else temphook=am1
-		If am2 = zeroRange Then am2 = temphook Else temphook=am2
-		If am3 = zeroRange Then am3 = temphook Else temphook=am3
-		If am4 = zeroRange Then am4 = temphook Else temphook=am4
-		If am5 = zeroRange Then am5 = temphook Else temphook=am5
-		If am6 = zeroRange Then am6 = temphook Else temphook=am6
-		If am7 = zeroRange Then am7 = temphook Else temphook=am7
-		If am8 = zeroRange Then am8 = temphook Else temphook=am8
-		If am9 = zeroRange Then am9 = temphook Else temphook=am9
-		If am10 = zeroRange Then am10 = temphook Else temphook=am10
-		If am11 = zeroRange Then am11 = temphook Else temphook=am11
-		If pm12 = zeroRange Then pm12 = temphook Else temphook=pm12
-		If pm1 = zeroRange Then pm1 = temphook Else temphook=pm1
-		If pm2 = zeroRange Then pm2 = temphook Else temphook=pm2
-		If pm3 = zeroRange Then pm3 = temphook Else temphook=pm3
-		If pm4 = zeroRange Then pm4 = temphook Else temphook=pm4
-		If pm5 = zeroRange Then pm5 = temphook Else temphook=pm5
-		If pm6 = zeroRange Then pm6 = temphook Else temphook=pm6
-		If pm7 = zeroRange Then pm7 = temphook Else temphook=pm7
-		If pm8 = zeroRange Then pm8 = temphook Else temphook=pm8
-		If pm9 = zeroRange Then pm9 = temphook Else temphook=pm9
-		If pm10 = zeroRange Then pm10 = temphook Else temphook=pm10
-		If pm11 = zeroRange Then pm11 = temphook Else temphook=pm11
-		
-		am12 = NumberFormat(am12,0,2)
-		am1 = NumberFormat(am1,0,2)
-		am2 = NumberFormat(am2,0,2)
-		am3 = NumberFormat(am3,0,2)
-		am4 = NumberFormat(am4,0,2)
-		am5 = NumberFormat(am5,0,2)
-		am6 = NumberFormat(am6,0,2)
-		am7 = NumberFormat(am7,0,2)
-		am8 = NumberFormat(am8,0,2)
-		am9 = NumberFormat(am9,0,2)
-		am10 = NumberFormat(am10,0,2)
-		am11 = NumberFormat(am11,0,2)
-		pm12 = NumberFormat(pm12,0,2)
-		pm1 = NumberFormat(pm1,0,2)
-		pm2 = NumberFormat(pm2,0,2)
-		pm3 = NumberFormat(pm3,0,2)
-		pm4 = NumberFormat(pm4,0,2)
-		pm5 = NumberFormat(pm5,0,2)
-		pm6 = NumberFormat(pm6,0,2)
-		pm7 = NumberFormat(pm7,0,2)
-		pm8 = NumberFormat(pm8,0,2)
-		pm9 = NumberFormat(pm9,0,2)
-		pm10 = NumberFormat(pm10,0,2)
-		pm11 = NumberFormat(pm11,0,2)
-		
-		tempList.Initialize
-		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
-		tempList.Sort(True)
-		
-		Dim minValue=0, maxValue=0 As Float
-		If tempRightNow <= tempList.Get(0) Then
-			minValue = tempRightNow-0.1
-		Else
-			minValue = tempList.Get(0)-0.1
-		End If
-	
-		If tempList.Get(tempList.Size-1) >= 88.88 Then
-			If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
-				maxValue = tempRightNow+0.6
-			Else
-				maxValue = (tempList.Get(tempList.Size-2))+0.6
-			End If
-		Else
-			If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
-				maxValue = tempRightNow+0.6
-			Else
-				maxValue = (tempList.Get(tempList.Size-1))+0.6
-			End If
-		End If
-	
-		If minValue <= 0 Then
-			minValue = tempList.Get(0)-0.1
-		End If
-	
-		If (maxValue-minValue) >= 20 Then
-			LineChart.YaxisRange(minValue-2, maxValue+2)
-		Else
-			LineChart.YaxisRange(minValue-.5, maxValue+.5)
-		End If
-	Catch
-		Log(LastException)
-	End Try
-
+Private Sub GetChartLogFileName(FileDay As Long) As String
+	Return DateTime.GetYear(FileDay) & "-" & _
+		NumberFormat(DateTime.GetMonth(FileDay), 2, 0) & "-" & _
+		NumberFormat(DateTime.GetDayOfMonth(FileDay), 2, 0) & ".log"
 End Sub
 
-Sub CheckTempBoundariesDaily
-	Try
-		Dim tempList As List
-		tempList.Initialize
-		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
-		tempList.Sort(True)
-			
-		tempZeroRange = tempList.Get(0)-0.3
-		
-		Dim temphook As String = tempZeroRange
-		
-		If am12 = zeroRange Then am12 = tempZeroRange Else temphook=am12
-		If am1 = zeroRange Then am1 = temphook Else temphook=am1
-		If am2 = zeroRange Then am2 = temphook Else temphook=am2
-		If am3 = zeroRange Then am3 = temphook Else temphook=am3
-		If am4 = zeroRange Then am4 = temphook Else temphook=am4
-		If am5 = zeroRange Then am5 = temphook Else temphook=am5
-		If am6 = zeroRange Then am6 = temphook Else temphook=am6
-		If am7 = zeroRange Then am7 = temphook Else temphook=am7
-		If am8 = zeroRange Then am8 = temphook Else temphook=am8
-		If am9 = zeroRange Then am9 = temphook Else temphook=am9
-		If am10 = zeroRange Then am10 = temphook Else temphook=am10
-		If am11 = zeroRange Then am11 = temphook Else temphook=am11
-		If pm12 = zeroRange Then pm12 = temphook Else temphook=pm12
-		If pm1 = zeroRange Then pm1 = temphook Else temphook=pm1
-		If pm2 = zeroRange Then pm2 = temphook Else temphook=pm2
-		If pm3 = zeroRange Then pm3 = temphook Else temphook=pm3
-		If pm4 = zeroRange Then pm4 = temphook Else temphook=pm4
-		If pm5 = zeroRange Then pm5 = temphook Else temphook=pm5
-		If pm6 = zeroRange Then pm6 = temphook Else temphook=pm6
-		If pm7 = zeroRange Then pm7 = temphook Else temphook=pm7
-		If pm8 = zeroRange Then pm8 = temphook Else temphook=pm8
-		If pm9 = zeroRange Then pm9 = temphook Else temphook=pm9
-		If pm10 = zeroRange Then pm10 = temphook Else temphook=pm10
-		If pm11 = zeroRange Then pm11 = temphook Else temphook=pm11
-		
-		am12 = NumberFormat(am12,0,2)
-		am1 = NumberFormat(am1,0,2)
-		am2 = NumberFormat(am2,0,2)
-		am3 = NumberFormat(am3,0,2)
-		am4 = NumberFormat(am4,0,2)
-		am5 = NumberFormat(am5,0,2)
-		am6 = NumberFormat(am6,0,2)
-		am7 = NumberFormat(am7,0,2)
-		am8 = NumberFormat(am8,0,2)
-		am9 = NumberFormat(am9,0,2)
-		am10 = NumberFormat(am10,0,2)
-		am11 = NumberFormat(am11,0,2)
-		pm12 = NumberFormat(pm12,0,2)
-		pm1 = NumberFormat(pm1,0,2)
-		pm2 = NumberFormat(pm2,0,2)
-		pm3 = NumberFormat(pm3,0,2)
-		pm4 = NumberFormat(pm4,0,2)
-		pm5 = NumberFormat(pm5,0,2)
-		pm6 = NumberFormat(pm6,0,2)
-		pm7 = NumberFormat(pm7,0,2)
-		pm8 = NumberFormat(pm8,0,2)
-		pm9 = NumberFormat(pm9,0,2)
-		pm10 = NumberFormat(pm10,0,2)
-		pm11 = NumberFormat(pm11,0,2)
-		
-		
-		tempList.Initialize
-		tempList.AddAll(Array As Float (am12, am1, am2, am3, am4, am5, am6, am7, am8, am9,am10, am11, pm12, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11))
-		tempList.Sort(True)
-	
-		Dim minValue=0, maxValue=0 As Float
-	
-		If tempRightNow <= tempList.Get(0) Then
-			If tempMinRange <= tempRightNow Then
-				minValue = tempMinRange-0.3
-			Else
-				minValue = tempRightNow-0.3
-			End If
-		Else
-			If tempMinRange > 0 And tempMinRange <= tempList.Get(0) Then
-				minValue = tempMinRange-0.3
-			Else
-				minValue = tempList.Get(0)-0.3
-			End If
-		End If
-	
-		If tempList.Get(tempList.Size-1) >= 88.88 Then
-			If tempRightNow >= (tempList.Get(tempList.Size-2)) Then
-				If tempMaxRange >= tempRightNow Then
-					maxValue =  tempMaxRange+0.6
-				Else
-					maxValue = tempRightNow+0.6
-				End If
-			Else
-				If tempMaxRange >= (tempList.Get(tempList.Size-2)) Then
-					maxValue =  tempMaxRange+0.6
-				Else
-					maxValue = (tempList.Get(tempList.Size-2))+0.6
-				End If
-			End If
-		Else
-			If tempRightNow >= (tempList.Get(tempList.Size-1)) Then
-				If tempMaxRange >= tempRightNow Then
-					maxValue =  tempMaxRange+0.6
-				Else
-					maxValue = tempRightNow+0.6
-				End If
-			Else
-				If tempMaxRange >= (tempList.Get(tempList.Size-1)) Then
-					maxValue =  tempMaxRange+0.6
-				Else
-					maxValue = (tempList.Get(tempList.Size-1))+0.6
-				End If
-			End If
-		End If
-	
-		If (maxValue-0.3) >= tempMaxRange Then
-			tempMaxRange = maxValue-0.3
-		End If
-	
-		If minValue <= 0 Then
-			If tempMinRange > 0 And tempMinRange <= tempList.Get(0) Then
-				minValue = tempMinRange-0.3
-			Else
-				minValue = tempList.Get(0)-0.3
-			End If
-		End If
-	
-		tempMinRange = minValue+0.5
-		
-		If (maxValue-minValue) >= 20 Then
-			LineChart.YaxisRange(minValue-2, maxValue+2)
-		Else
-			LineChart.YaxisRange(minValue-.5, maxValue+.5)	
-		End If
-	Catch
-		Log(LastException)
-	End Try
+Private Sub ResetChartBuckets
+	am12 = zeroRange
+	am1 = zeroRange
+	am2 = zeroRange
+	am3 = zeroRange
+	am4 = zeroRange
+	am5 = zeroRange
+	am6 = zeroRange
+	am7 = zeroRange
+	am8 = zeroRange
+	am9 = zeroRange
+	am10 = zeroRange
+	am11 = zeroRange
+	pm12 = zeroRange
+	pm1 = zeroRange
+	pm2 = zeroRange
+	pm3 = zeroRange
+	pm4 = zeroRange
+	pm5 = zeroRange
+	pm6 = zeroRange
+	pm7 = zeroRange
+	pm8 = zeroRange
+	pm9 = zeroRange
+	pm10 = zeroRange
+	pm11 = zeroRange
+	For i = 0 To 23
+		BucketHasData(i) = False
+	Next
+End Sub
 
+Private Sub ApplyBucketAverages(BucketSum() As Double, BucketCount() As Int)
+	For i = 0 To 23
+		If BucketCount(i) > 0 Then
+			SetChartBucket(i, NumberFormat(BucketSum(i) / BucketCount(i), 0, 2))
+		End If
+	Next
+End Sub
+
+Private Sub SetChartBucket(Index As Int, Value As String)
+	Select Index
+		Case 0
+			am12 = Value
+		Case 1
+			am1 = Value
+		Case 2
+			am2 = Value
+		Case 3
+			am3 = Value
+		Case 4
+			am4 = Value
+		Case 5
+			am5 = Value
+		Case 6
+			am6 = Value
+		Case 7
+			am7 = Value
+		Case 8
+			am8 = Value
+		Case 9
+			am9 = Value
+		Case 10
+			am10 = Value
+		Case 11
+			am11 = Value
+		Case 12
+			pm12 = Value
+		Case 13
+			pm1 = Value
+		Case 14
+			pm2 = Value
+		Case 15
+			pm3 = Value
+		Case 16
+			pm4 = Value
+		Case 17
+			pm5 = Value
+		Case 18
+			pm6 = Value
+		Case 19
+			pm7 = Value
+		Case 20
+			pm8 = Value
+		Case 21
+			pm9 = Value
+		Case 22
+			pm10 = Value
+		Case 23
+			pm11 = Value
+	End Select
+	If Index >= 0 And Index <= 23 Then BucketHasData(Index) = True
+End Sub
+
+
+
+' ============================================================
+' CHART DISPLAY HELPERS - PHASE 4.6
+'
+' Missing buckets remain missing. The legacy wrapper only accepts
+' Float arrays, so it is first given an aligned placeholder array.
+' After DrawTheGraphs creates its SimpleXYSeries objects, Reflection
+' changes each missing Y value to Java null. AndroidPlot renders null
+' Y values as breaks in the line instead of inventing a reading.
+' ============================================================
+
+Private Sub HasCurrentChartValue As Boolean
+	Return tempRightNow <> "" And IsNumber(tempRightNow)
+End Sub
+
+Private Sub GetSafeCurrentValue(DefaultValue As Float) As Float
+	If HasCurrentChartValue Then Return tempRightNow
+	Return DefaultValue
+End Sub
+
+Private Sub CopyBucketFlags As Boolean()
+	' Balanced geometry:
+	' index 0 = one left spacer
+	' indexes 1..24 = the 24 real buckets
+	' index 25 = one right spacer
+	Dim Result(26) As Boolean
+	For i = 0 To 23
+		Result(i + 1) = BucketHasData(i)
+	Next
+	Return Result
+End Sub
+
+Private Sub BuildChartData(DefaultValue As Float) As Float()
+	Dim Result(26) As Float
+	Dim Placeholder As Float = DefaultValue
+
+	For i = 0 To 23
+		If BucketHasData(i) Then
+			Placeholder = GetChartBucketValue(i)
+			Exit
+		End If
+	Next
+
+	For i = 0 To 25
+		Result(i) = Placeholder
+	Next
+
+	For i = 0 To 23
+		If BucketHasData(i) Then
+			Result(i + 1) = GetChartBucketValue(i)
+		End If
+	Next
+	Return Result
+End Sub
+
+Private Sub BuildFlatLine(Value As Float) As Float()
+	Dim Result(26) As Float
+	For i = 0 To 25
+		Result(i) = Value
+	Next
+	Return Result
+End Sub
+
+Private Sub BuildGreenReferenceLabelFlags As Boolean()
+	' Show one green value at the RIGHT spacer (original series index 25).
+	' The wrapper renderer preserves the original series index for labels.
+	Dim Result(26) As Boolean
+	Result(25) = True
+	Return Result
+End Sub
+
+Private Sub GetChartBucketValue(Index As Int) As Float
+	Select Index
+		Case 0: Return am12
+		Case 1: Return am1
+		Case 2: Return am2
+		Case 3: Return am3
+		Case 4: Return am4
+		Case 5: Return am5
+		Case 6: Return am6
+		Case 7: Return am7
+		Case 8: Return am8
+		Case 9: Return am9
+		Case 10: Return am10
+		Case 11: Return am11
+		Case 12: Return pm12
+		Case 13: Return pm1
+		Case 14: Return pm2
+		Case 15: Return pm3
+		Case 16: Return pm4
+		Case 17: Return pm5
+		Case 18: Return pm6
+		Case 19: Return pm7
+		Case 20: Return pm8
+		Case 21: Return pm9
+		Case 22: Return pm10
+		Case 23: Return pm11
+	End Select
+	Return 0
+End Sub
+
+Private Sub SetYAxisRangeSingle(Data() As Float, HasData() As Boolean, _
+	CurrentValue As Float, CurrentValid As Boolean, IsHumidity As Boolean)
+	Dim MinValue As Double = 1E+20
+	Dim MaxValue As Double = -1E+20
+	Dim Found As Boolean = False
+
+	For i = 0 To Data.Length - 1
+		If HasData(i) Then
+			If Data(i) < MinValue Then MinValue = Data(i)
+			If Data(i) > MaxValue Then MaxValue = Data(i)
+			Found = True
+		End If
+	Next
+
+	If CurrentValid Then
+		If CurrentValue < MinValue Then MinValue = CurrentValue
+		If CurrentValue > MaxValue Then MaxValue = CurrentValue
+		Found = True
+	End If
+
+	ApplySafeYAxisRange(MinValue, MaxValue, Found, IsHumidity)
+End Sub
+
+Private Sub SetYAxisRangeDouble(Data1() As Float, HasData1() As Boolean, _
+	Data2() As Float, HasData2() As Boolean, CurrentValue As Float, _
+	CurrentValid As Boolean, IsHumidity As Boolean)
+	Dim MinValue As Double = 1E+20
+	Dim MaxValue As Double = -1E+20
+	Dim Found As Boolean = False
+
+	For i = 0 To Data1.Length - 1
+		If HasData1(i) Then
+			If Data1(i) < MinValue Then MinValue = Data1(i)
+			If Data1(i) > MaxValue Then MaxValue = Data1(i)
+			Found = True
+		End If
+		If HasData2(i) Then
+			If Data2(i) < MinValue Then MinValue = Data2(i)
+			If Data2(i) > MaxValue Then MaxValue = Data2(i)
+			Found = True
+		End If
+	Next
+
+	If CurrentValid Then
+		If CurrentValue < MinValue Then MinValue = CurrentValue
+		If CurrentValue > MaxValue Then MaxValue = CurrentValue
+		Found = True
+	End If
+
+	ApplySafeYAxisRange(MinValue, MaxValue, Found, IsHumidity)
+End Sub
+
+Private Sub ApplySafeYAxisRange(MinValue As Double, MaxValue As Double, _
+	Found As Boolean, IsHumidity As Boolean)
+	If Found = False Then
+		If IsHumidity Then
+			LineChart.YaxisRange(0, 100)
+		Else
+			LineChart.YaxisRange(60, 80)
+		End If
+		Return
+	End If
+
+	Dim Span As Double = MaxValue - MinValue
+	Dim Margin As Double
+	If Span <= 0.01 Then
+		Margin = 1
+	Else If Span >= 20 Then
+		Margin = 2
+	Else
+		Margin = 0.5
+	End If
+
+	Dim Lower As Double = MinValue - Margin
+	Dim Upper As Double = MaxValue + Margin
+	If IsHumidity And Lower < 0 Then Lower = 0
+	If Upper <= Lower Then Upper = Lower + 2
+	LineChart.YaxisRange(Lower, Upper)
+End Sub
+
+Private Sub ApplyMissingGaps(LineNumber As Int, HasData() As Boolean)
+	Try
+		' AndroidPlot patched V4 works directly on the wrapper-created
+		' SimpleXYSeries, so placeholder values at missing positions are
+		' converted to real Java nulls and are not drawn.
+		LineChart.ApplyMissingGaps(LineNumber, HasData)
+	Catch
+		Log("ApplyMissingGaps: " & LastException)
+	End Try
+End Sub
+
+Private Sub BuildHourlyAxisLabels As String()
+	Dim Labels(26) As String
+	Labels(0) = ""
+	For i = 0 To 23
+		Labels(i + 1) = timeArray(i)
+	Next
+	Labels(25) = ""
+	Return Labels
+End Sub
+
+Private Sub BuildDailyAxisLabels As String()
+	Dim Hours() As String = Array As String( _
+		"12 am","1 am","2 am","3 am","4 am","5 am","6 am","7 am", _
+		"8 am","9 am","10 am","11 am","12 pm","1 pm","2 pm","3 pm", _
+		"4 pm","5 pm","6 pm","7 pm","8 pm","9 pm","10 pm","11 pm")
+	Dim Labels(26) As String
+	Labels(0) = ""
+	For i = 0 To 23
+		Labels(i + 1) = Hours(i)
+	Next
+	Labels(25) = ""
+	Return Labels
+End Sub
+
+Private Sub GetFiveMinuteWindowEnd(Ticks As Long) As Long
+	Dim MinuteValue As Int = DateTime.GetMinute(Ticks)
+	Dim MinutesToAdd As Int = 5 - (MinuteValue Mod 5)
+	Dim MinuteStart As Long = DateUtils.SetDateAndTime( _
+		DateTime.GetYear(Ticks), DateTime.GetMonth(Ticks), DateTime.GetDayOfMonth(Ticks), _
+		DateTime.GetHour(Ticks), MinuteValue, 0)
+	Return MinuteStart + (MinutesToAdd * DateTime.TicksPerMinute)
 End Sub
 
 Sub TemperatureHourlyTimer_Tick
 	Activity.RequestFocus
-	btnHumidityHourly.RemoveView
-	btnTempHourly.RemoveView
-	btnHumidityDaily.RemoveView
-	btnTempDaily.RemoveView
-	LineChart.RemoveView
-	tempMaxRange=0
-	tempMinRange=0
 	TemperatureHourlyCreate
 End Sub
 
 Sub HumidityHourlyTimer_Tick
 	Activity.RequestFocus
-	btnHumidityHourly.RemoveView
-	btnTempHourly.RemoveView
-	btnHumidityDaily.RemoveView
-	btnTempDaily.RemoveView
-	LineChart.RemoveView
-	tempMaxRange=0
-	tempMinRange=0
 	HumidityHourlyCreate
 End Sub
 
 Sub TemperatureDailyTimer_Tick
 	Activity.RequestFocus
-	btnHumidityHourly.RemoveView
-	btnTempHourly.RemoveView
-	btnHumidityDaily.RemoveView
-	btnTempDaily.RemoveView
-	LineChart.RemoveView
-	tempMaxRange=0
-	tempMinRange=0
 	TemperatureDailyCreate
 End Sub
 
 Sub HumidityDailyTimer_Tick
 	Activity.RequestFocus
-	btnHumidityHourly.RemoveView
-	btnTempHourly.RemoveView
-	btnHumidityDaily.RemoveView
-	btnTempDaily.RemoveView
-	LineChart.RemoveView
-	tempMaxRange=0
-	tempMinRange=0
 	HumidityDailyCreate
 End Sub
 

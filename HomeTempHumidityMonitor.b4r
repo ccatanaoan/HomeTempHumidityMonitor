@@ -11,50 +11,6 @@ NumberOfLibraries=6
 NumberOfModules=0
 Version=3.9
 @EndOfDesignText@
-' Home Weather Station Using DHT22 (AM2302)
-'
-' Features:
-'  - Determine heat index
-'  - Determine dewpoint
-'  - Determine thermal comfort:
-'    * Empiric comfort function based on comfort profiles(parametric lines)
-'    * Multiple comfort profiles possible. Default based on http://epb.apogee.net/res/refcomf.asp  (References invalid)
-'    * Determine If it's too cold, hot, humid, dry, based on current comfort profile
-'    * More info at [Determining Thermal Comfort Using a humidity And temperature Sensor](https://www.azosensors.com/article.aspx?ArticleID=487)
-'  - Determine human perception based on humidity, temperature And dew point according To Horstmeyer, Steve (2006-08-15). [Relative humidity....Relative To What? The Dew Point temperature...a better approach](http://www.shorstmeyer.com/wxfaqs/humidity/humidity.html)
-
-'     DHT-22 Sensor   ->      ESP8266
-'          OUT        ->        D3
-'          GRD -      ->        GRD
-'          VCC +      ->        3.3V
-
-'************************************************************************
-
-' Carbon Monoxide (CO) Monitor Using MQ-7 sensor
-'
-' I used the following sites To help me reach the outcome:
-'
-' Gas Sensor "Carbon Monoxide" - MQ-7 aka "Flying-Fish" - https://www.hackster.io/ingo-lohs/gas-sensor-carbon-monoxide-mq-7-aka-flying-fish-e58457
-' ARDUINO CO MONITOR USING MQ-7 SENSOR - http://www.instructables.com/id/Arduino-CO-Monitor-Using-MQ-7-Sensor/
-
-' MQ-7 Carbon Monoxide Sensor: It is sensitive To gases like Alcohol (hand sanitizer), Butane (a lighter) And Difluoroethane (compressed "air" duster), among other gasses. 
-' Datasheet found here: http://cvrr.ucsd.edu/ece156/ECE156Sensors/Carbon_Monoxide.pdf
-
-'     MQ-7 Sensor    ->      ESP8266
-'         A0         ->        A0
-'         D0         ->        D0
-'         VCC        ->        VIN (5.5V)
-'         GRD        ->        GRD
-
-'*****************************************************************************************************
-'How To Select the board in B4R
-'*****************************************************************************************************
-'1. After connecting the ESP32, determine the COM Port.
-'2. Tools > Board Selector
-'3. Board: ESP32 Dev Module. If encountering error, use NodeMCU 1.0 (ESP-12E Module)
-'4. Serial Port: COM12 Silicon Labs CP210x USB To UART Bridge - Note: COM port depends on system setup
-'*****************************************************************************************************
-
 #Region Project Attributes
 	#AutoFlushLogs: True
 	#CheckArrayBounds: True
@@ -62,232 +18,870 @@ Version=3.9
 #End Region
 
 Sub Process_Globals
-	'These global variables will be declared once when the application starts.
-	'Public variables can be accessed from all modules.
 	Public Serial1 As Serial
+
 	Private d1pins As D1Pins
+	Private d3pins As D1Pins
+
 	Private pin16 As Pin
 	Private d6 As Pin
+
 	Private WiFi As ESP8266WiFi
 	Private WiFiStr As WiFiSocket
+
 	Private MQTT As MqttClient
-	'Private MQTTHostName As String = "mqtt.eclipseprojects.io"
-	'Private MQTTHostName As String = "broker.hivemq.com"
-	'Private MQTTHostName As String = "test.mosquitto.org"
-	Private MQTTHostName As String = "broker.emqx.io"
-	Private MQTTPort As Int = 1883
-	Private ESP As ESP8266
-	Private WiFiSSID As String = "InternetOfThings"
+
+	Private WiFiSSID As String = "RiseAboveThisHome"
 	Private WiFiPassword As String = "<WIFI_PASSWORD>"
-	Public DHT22pin As Pin                    ' ESP8266 Pin connected to DHT22 signal
-	Private d3pins As D1Pins
+
+	Private MQTTPort As Int = 1883
+	Private MQTTClientId As String = "LivingRoomTempHumid"
+
+	Private WiFiRetryScheduled As Boolean = False
+	Private MQTTRetryScheduled As Boolean = False
+	Private MQTTInitialized As Boolean = False
+	Private MQTTConnected As Boolean = False
+	Private SensorLoopStarted As Boolean = False
+
+	Private ESP As ESP8266
+
+	Public DHT22pin As Pin
+
 	Public DHT22Temp As Double
 	Public DHT22Hum As Double
 	Public DHT22State As Int
+	Public DHT22Valid As Boolean
+
 	Public DHT22HeatIndex As Double
 	Public DHT22DewPoint As Double
 	Public DHT22Perception As Int
 	Public DHT22ComfortStatus As Int
-	Private bc As ByteConverter
+
 	Public DHT22HumidityAddValue As Double
+
+	Private bc As ByteConverter
+
 	Public timelib As ESPTimetools
-	Public timestamp As ULong
+
+	Private TimeClientInitialized As Boolean = False
+	Private ClockValid As Boolean = False
+
+	Private ClockBaseTimestamp As ULong
+	Private ClockBaseMillis As ULong
+
+	Private NTPAttempted As Boolean = False
+	Private LastNTPAttemptMillis As ULong
+	Private LastNTPSuccessMillis As ULong
 End Sub
+
 
 Private Sub AppStart
 	Serial1.Initialize(115200)
+
 	Delay(3000)
+
 	Log("AppStart")
-	
+
 	Dim bb() As Byte = "LivingRoomTempHumid"
+
 	RunNative("SetHostName", bb)
 	RunNative("stopAP", Null)
-	
-	' Pin 2 is the blue LED
-	' Pin 16 is the red LED
-	' D6 = pin 12 is the logic/signal pin. Use 3.3v pin of Node MCU.
+
 	pin16.Initialize(16, pin16.MODE_OUTPUT)
 	d6.Initialize(d1pins.D6, d6.MODE_OUTPUT)
-	
-	' Connect to WiFi
-	ConnectToWifi
 
-	' Connect to cloud MQTT broker
-	Dim ClientId As String = Rnd(0, 999999999) 'create a unique id
-	MQTT.Initialize2(WiFiStr.stream, MQTTHostName, MQTTPort, ClientId, "MQTT_MessageArrived", "MQTT_Disconnected")
-	MQTT_Connect(0)
-	
-	' Initialize pin D3 for DHT22
-	DHT22pin.Initialize(d3pins.D3, DHT22pin.MODE_INPUT)
-End Sub
-
-Sub MQTT_Connect(Unused As Byte)
-	If WiFi.IsConnected = False Then
-		ConnectToWifi
-	End If
-	
-	If MQTT.Connect = False Then
-		pin16.DigitalWrite(True)
-		Log("Not connected to broker")
-		MQTT.Connect
-		CallSubPlus("MQTT_Connect", 1000, 0)
-	Else
-		pin16.DigitalWrite(False)
-		Log("Connected to broker")
-		MQTT.Subscribe("TempHumid", 0)
-		MQTT.Subscribe("HumidityAddValue", 0)
-		ReadSensor
-	End If
-End Sub
-
-Sub mqtt_MessageArrived (Topic As String, Payload() As Byte)
-	Log("Message arrived. Topic=", Topic, " Payload=", Payload)
-	
-	If Topic = "TempHumid" Then
-		If Payload = "Restart controller" Then
-			MQTT.Publish("TempHumid","*Restarting relay by remote")
-			ESP.Restart
-		else If Payload = "Read weather" Then
-			ReadWeather(1)
-		End If
-	else If Topic = "HumidityAddValue" Then
-		DHT22HumidityAddValue = bc.StringFromBytes(Payload)
-		If IsNumber(DHT22HumidityAddValue) = False Then
-			DHT22HumidityAddValue = 0
-		End If
-	End If
-End Sub
-
-Sub mqtt_Disconnected
 	pin16.DigitalWrite(True)
-	Log("Disconnected from broker")
-	MQTT.Close
-	MQTT_Connect(0)
+
+	DHT22pin.Initialize(d3pins.D3, DHT22pin.MODE_INPUT)
+
+	RunNative("PrepareConfiguredWiFi", Null)
+
+	Delay(500)
+
+	ConnectToWifi
 End Sub
+
 
 Sub ConnectToWifi
+
 	If WiFi.IsConnected Then
-		Log("Connected to ",WiFiSSID," network, Local IP ", WiFi.LocalIp)
+
+		WiFiRetryScheduled = False
+
+		RunNative("EnableWifiAutoReconnect", Null)
+
+		Log("Connected to ", WiFiSSID, _
+			" network, Local IP ", WiFi.LocalIp)
+
+		InitializeMQTT
+
+		MQTT_Connect(0)
+
+		Return
+
+	End If
+
+
+	pin16.DigitalWrite(True)
+
+	Log("Connecting to ", WiFiSSID)
+
+
+	If WiFi.Connect2(WiFiSSID, WiFiPassword) Then
+
+		WiFiRetryScheduled = False
+
+		RunNative("EnableWifiAutoReconnect", Null)
+
+		Log("Connected to ", WiFiSSID, _
+			" network, Local IP ", WiFi.LocalIp)
+
+		InitializeMQTT
+
+		MQTT_Connect(0)
+
 	Else
+
+		Log("WiFi connection failed")
+
+		If WiFiRetryScheduled = False Then
+
+			WiFiRetryScheduled = True
+
+			CallSubPlus("WiFi_Retry", 5000, 0)
+
+		End If
+
+	End If
+
+End Sub
+
+
+Sub WiFi_Retry(Unused As Byte)
+
+	WiFiRetryScheduled = False
+
+	ConnectToWifi
+
+End Sub
+
+
+Private Sub InitializeMQTT
+
+	If MQTTInitialized Then Return
+
+	MQTT.Initialize( _
+		WiFiStr.stream, _
+		Array As Byte(192, 168, 1, 125), _
+		MQTTPort, _
+		MQTTClientId, _
+		"MQTT_MessageArrived", _
+		"MQTT_Disconnected")
+
+	MQTTInitialized = True
+
+End Sub
+
+
+Sub MQTT_Connect(Unused As Byte)
+
+	MQTTRetryScheduled = False
+
+
+	If WiFi.IsConnected = False Then
+
+		MQTTConnected = False
+
+		ConnectToWifi
+
+		Return
+
+	End If
+
+
+	If MQTTInitialized = False Then
+
+		InitializeMQTT
+
+	End If
+
+
+	If MQTT.Connect = False Then
+
+		MQTTConnected = False
+
 		pin16.DigitalWrite(True)
-		Log("Connecting to WiFi")
-		If WiFi.Connect2(WiFiSSID, WiFiPassword) = False Then
-			ConnectToWifi
+
+		Log("Not connected to broker")
+
+		If MQTTRetryScheduled = False Then
+
+			MQTTRetryScheduled = True
+
+			CallSubPlus("MQTT_Connect", 5000, 0)
+
 		End If
+
+	Else
+
+		MQTTConnected = True
+
+		pin16.DigitalWrite(False)
+
+		Log("Connected to broker")
+
+		MQTT.Subscribe("TempHumid", 0)
+		MQTT.Subscribe("HumidityAddValue", 0)
+
+		If SensorLoopStarted = False Then
+
+			ReadSensor
+
+		Else
+
+			ReadWeather(1)
+
+		End If
+
 	End If
+
 End Sub
 
-Sub ReadWeather(tag As Byte)
-	RunNative("ReadDHT22",Null)
-	
-	Dim localstate As String
-	Select Case DHT22State
-		Case 0
-			' The sensor samples And its checksum are OK.
-			localstate = "OK"
-		Case 1
-			' A timeout occurred, And communication has failed.
-			localstate = "TIMEOUT"
-		Case 2
-			' The checksum test failed. This means that data was received but may Not be correct.
-			localstate = "CHECKSUM"
-	End Select
 
-	If WiFi.IsConnected Then
-		If localstate = "OK" And IsNumber(DHT22Temp) Then
-			' Get the time
-			timelib.initialize("pool.ntp.org",0)
-			timestamp = timelib.timestamp
-			If timestamp <> 0 Then
-				Dim s As String
-				s = JoinStrings(Array As String(localstate,"|",DHT22Temp, "|",DHT22Hum , "|",DHT22Perception, "|", _
-				DHT22ComfortStatus, "|", DHT22HeatIndex,"|", DHT22DewPoint,"|",NumberFormat(timelib.getyear(timestamp),2,0),"-",NumberFormat(timelib.getmonth(timestamp),2,0),"-",NumberFormat(timelib.getday(timestamp),2,0),"|", _
-				NumberFormat(timelib.gethour(timestamp),2,0),":",NumberFormat(timelib.getminute(timestamp),2,0),":", _
-				NumberFormat(timelib.getseconds(timestamp),2,0)))
-				Log("TempHumid to MQTT: ",s)
-				MQTT.Publish("TempHumid",s)
+Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
+
+	Log("Message arrived. Topic=", Topic, _
+		" Payload=", Payload)
+
+
+	If Topic = "TempHumid" Then
+
+		If Payload = "Restart controller" Then
+
+			MQTT.Publish( _
+				"TempHumid", _
+				"*Restarting relay by remote")
+
+			Delay(250)
+
+			ESP.Restart
+
+		Else If Payload = "Read weather" Then
+
+			ReadWeather(1)
+
+		End If
+
+
+	Else If Topic = "HumidityAddValue" Then
+
+		DHT22HumidityAddValue = _
+			bc.StringFromBytes(Payload)
+
+		If IsNumber(DHT22HumidityAddValue) = False Then
+
+			DHT22HumidityAddValue = 0
+
+		End If
+
+	End If
+
+End Sub
+
+
+Sub MQTT_Disconnected
+
+	MQTTConnected = False
+
+	pin16.DigitalWrite(True)
+
+	Log("Disconnected from broker")
+
+	MQTT.Close
+
+	If MQTTRetryScheduled = False Then
+
+		MQTTRetryScheduled = True
+
+		CallSubPlus("MQTT_Connect", 5000, 0)
+
+	End If
+
+End Sub
+
+
+' ============================================================
+' TIME
+'
+' Sensor publishing never waits for NTP.
+'
+' First valid reading after boot:
+'   1. Publish immediately.
+'   2. If no synchronized clock exists, use:
+'      1970-01-01 | 00:00:00
+'   3. AFTER publishing, attempt NTP synchronization.
+'
+' After NTP succeeds:
+'   Local time advances from the saved NTP timestamp using
+'   Millis.
+'
+' Resync:
+'   Every 6 hours.
+'
+' NTP failure:
+'   Keep publishing.
+'   Preserve an already-valid local clock.
+'   Retry no more often than every 5 minutes.
+' ============================================================
+
+Private Sub StartTimeSystem
+
+	If TimeClientInitialized = False Then
+
+		timelib.initialize("pool.ntp.org", 0)
+
+		TimeClientInitialized = True
+
+		Log("NTP client initialized")
+
+	End If
+
+End Sub
+
+
+Private Sub TimeSync
+
+	If WiFi.IsConnected = False Then
+
+		Return
+
+	End If
+
+
+	NTPAttempted = True
+
+	LastNTPAttemptMillis = Millis
+
+
+	If TimeClientInitialized = False Then
+
+		StartTimeSystem
+
+	End If
+
+
+	Dim NewTimestamp As ULong
+
+	NewTimestamp = timelib.timestamp
+
+
+	If NewTimestamp <> 0 Then
+
+		ClockBaseTimestamp = NewTimestamp
+
+		ClockBaseMillis = Millis
+
+		LastNTPSuccessMillis = ClockBaseMillis
+
+		ClockValid = True
+
+		Log("NTP sync OK. Timestamp=", NewTimestamp)
+
+	Else
+
+		If ClockValid Then
+
+			Log("NTP sync failed - keeping synchronized local clock")
+
+		Else
+
+			Log("NTP sync failed - sensor publishing remains active")
+
+		End If
+
+	End If
+
+End Sub
+
+
+Private Sub GetCurrentTimestamp As ULong
+
+	If ClockValid = False Then
+
+		Return 0
+
+	End If
+
+
+	Dim ElapsedMs As ULong
+
+	ElapsedMs = Millis - ClockBaseMillis
+
+
+	Dim ElapsedSeconds As ULong
+
+	ElapsedSeconds = ElapsedMs / 1000
+
+
+	Return ClockBaseTimestamp + ElapsedSeconds
+
+End Sub
+
+
+Private Sub NTPRefreshIfNeeded
+
+	Dim CurrentMillis As ULong
+
+	CurrentMillis = Millis
+
+
+	If ClockValid = False Then
+
+		If NTPAttempted = False Then
+
+			TimeSync
+
+			Return
+
+		End If
+
+
+		Dim SinceAttempt As ULong
+
+		SinceAttempt = CurrentMillis - LastNTPAttemptMillis
+
+
+		If SinceAttempt >= 300000 Then
+
+			TimeSync
+
+		End If
+
+
+	Else
+
+		Dim SinceSuccess As ULong
+
+		SinceSuccess = CurrentMillis - LastNTPSuccessMillis
+
+
+		If SinceSuccess >= 21600000 Then
+
+			Dim SinceAttempt As ULong
+
+			SinceAttempt = CurrentMillis - LastNTPAttemptMillis
+
+
+			If SinceAttempt >= 300000 Then
+
+				TimeSync
+
 			End If
-			' Get the time
+
 		End If
+
 	End If
-	
-	If tag = 0 Then
-		CallSubPlus("ReadWeather",60000,0)
-	End If
+
 End Sub
+
 
 Public Sub ReadSensor
-	' Loop for DHT22 reading
-	RunNative("setup",Null)
-	ReadWeather(0)
+
+	Log("Initializing DHT22")
+
+	RunNative("setup", Null)
+
+	' DHT22 requires about 2 seconds after initialization.
+	Delay(2500)
+
+	If SensorLoopStarted = False Then
+
+		SensorLoopStarted = True
+
+		Log("Starting 60-second DHT22 loop")
+
+		ReadWeather(0)
+
+	End If
+
 End Sub
 
-#If C
-#include "DHTesp.h"
 
-#define DHT22Pin 0 //change here the IO-Pin
+Sub ReadWeather(tag As Byte)
+
+	RunNative("ReadDHT22", Null)
+
+
+	Dim localstate As String
+
+
+	Select Case DHT22State
+
+		Case 0
+
+			localstate = "OK"
+
+		Case 1
+
+			localstate = "TIMEOUT"
+
+		Case 2
+
+			localstate = "CHECKSUM"
+
+		Case 3
+
+			localstate = "INVALID"
+
+		Case Else
+
+			localstate = "UNKNOWN"
+
+	End Select
+
+
+	Log( _
+		"DHT22 read: State=", localstate, _
+		" Valid=", DHT22Valid, _
+		" Temp=", DHT22Temp, _
+		" Hum=", DHT22Hum)
+
+
+	If WiFi.IsConnected And MQTTConnected Then
+
+		If DHT22Valid Then
+
+
+			Dim CurrentTimestamp As ULong
+
+			CurrentTimestamp = GetCurrentTimestamp
+
+
+			Dim DatePart As String
+			Dim TimePart As String
+
+
+			If CurrentTimestamp <> 0 Then
+
+				DatePart = JoinStrings(Array As String( _
+					NumberFormat(timelib.getyear(CurrentTimestamp),2,0), "-", _
+					NumberFormat(timelib.getmonth(CurrentTimestamp),2,0), "-", _
+					NumberFormat(timelib.getday(CurrentTimestamp),2,0)))
+
+
+				TimePart = JoinStrings(Array As String( _
+					NumberFormat(timelib.gethour(CurrentTimestamp),2,0), ":", _
+					NumberFormat(timelib.getminute(CurrentTimestamp),2,0), ":", _
+					NumberFormat(timelib.getseconds(CurrentTimestamp),2,0)))
+
+			Else
+
+				DatePart = "1970-01-01"
+
+				TimePart = "00:00:00"
+
+				Log("Clock not synchronized - publishing sensor data anyway")
+
+			End If
+
+
+			Dim s As String
+
+
+			s = JoinStrings(Array As String( _
+				localstate, "|", _
+				DHT22Temp, "|", _
+				DHT22Hum, "|", _
+				DHT22Perception, "|", _
+				DHT22ComfortStatus, "|", _
+				DHT22HeatIndex, "|", _
+				DHT22DewPoint, "|", _
+				DatePart, "|", _
+				TimePart))
+
+
+			Log("TempHumid to MQTT: ", s)
+
+			MQTT.Publish("TempHumid", s)
+
+
+			' NTP happens only AFTER the valid sensor data
+			' has already been published.
+			NTPRefreshIfNeeded
+
+
+		Else
+
+			Log("DHT22 invalid - MQTT publish skipped")
+
+		End If
+
+	End If
+
+
+	If tag = 0 Then
+
+		Log("Next DHT22 read in 60 seconds")
+
+		CallSubPlus("ReadWeather", 60000, 0)
+
+	End If
+
+End Sub
+
+
+#If C
+
+#include "DHTesp.h"
+#include <math.h>
+
+#define DHT22Pin 0
 
 ComfortState cf;
 DHTesp dht22;
 
-void setup(B4R::Object* o){
-	dht22.setup(DHT22Pin, DHTesp::DHT22);
+
+void setup(B4R::Object* o) {
+
+	dht22.setup(
+		DHT22Pin,
+		DHTesp::DHT22
+	);
+
 }
+
 
 void SetHostName(B4R::Object* o) {
-	B4R::Array* b = (B4R::Array*)B4R::Object::toPointer(o);
+
+	B4R::Array* b =
+		(B4R::Array*)B4R::Object::toPointer(o);
+
 	char* c = (char*)b->data;
+
 	WiFi.hostname(c);
+
 }
 
-void stopAP (B4R::Object* u) {
+
+void stopAP(B4R::Object* u) {
+
 	WiFi.softAPdisconnect(true);
+
 }
+
+
+void PrepareConfiguredWiFi(B4R::Object* u) {
+
+	WiFi.persistent(false);
+
+	WiFi.setAutoReconnect(false);
+
+	WiFi.disconnect();
+
+	delay(250);
+
+	WiFi.mode(WIFI_STA);
+
+}
+
+
+void EnableWifiAutoReconnect(B4R::Object* u) {
+
+	WiFi.setAutoReconnect(true);
+
+}
+
 
 void ReadDHT22(B4R::Object* o) {
-	 b4r_main::_dht22state = dht22.getStatus();
-	 // Add 8 percent to relative humidity based on home hygrometer.
- 	 float humidity = dht22.getHumidity() + b4r_main::_dht22humidityaddvalue;
- 	 float temperature = dht22.toFahrenheit(dht22.getTemperature());
-     b4r_main::_dht22hum  = humidity; 
-     b4r_main::_dht22temp = temperature; 
-	 b4r_main::_dht22heatindex = dht22.computeHeatIndex(temperature, humidity, true);
-	 b4r_main::_dht22dewpoint = dht22.computeDewPoint(temperature, humidity, true);
-	 b4r_main::_dht22perception = dht22.computePerception(temperature, humidity, true);
-	 float cr = dht22.getComfortRatio(cf, temperature, humidity, true);
 
-	  switch(cf) {
-	    case Comfort_OK:
-	      b4r_main::_dht22comfortstatus = 0;
-	      break;
-	    case Comfort_TooHot:
-	      b4r_main::_dht22comfortstatus = 1;
-	      break;
-	    case Comfort_TooCold:
-	      b4r_main::_dht22comfortstatus = 2;
-	      break;
-	    case Comfort_TooDry:
-	      b4r_main::_dht22comfortstatus = 4;
-	      break;
-	    case Comfort_TooHumid:
-	      b4r_main::_dht22comfortstatus = 8;
-	      break;
-	    case Comfort_HotAndHumid:
-	      b4r_main::_dht22comfortstatus = 9;
-	      break;
-	    case Comfort_HotAndDry:
-	      b4r_main::_dht22comfortstatus = 5;
-	      break;
-	    case Comfort_ColdAndHumid:
-	      b4r_main::_dht22comfortstatus = 10;
-	      break;
-	    case Comfort_ColdAndDry:
-	      b4r_main::_dht22comfortstatus = 6;
-	      break;
-	    default:
-	      b4r_main::_dht22comfortstatus = -1;
-	      break;
-	  };
-  }
+	/*
+	 * Use the same DHTesp read sequence that worked in the
+	 * original firmware and is used by the DHTesp ESP8266 example:
+	 *
+	 *   getHumidity()
+	 *   getTemperature()
+	 *   getStatus()
+	 *
+	 * Do NOT use getTempAndHumidity() here.
+	 */
+
+	float rawHumidity =
+		dht22.getHumidity();
+
+	float rawTemperature =
+		dht22.getTemperature();
+
+	DHTesp::DHT_ERROR_t status =
+		dht22.getStatus();
+
+
+	b4r_main::_dht22state = status;
+
+
+	if (
+		status != DHTesp::ERROR_NONE ||
+		isnan(rawHumidity) ||
+		isnan(rawTemperature)
+	) {
+
+		b4r_main::_dht22valid = false;
+
+
+		if (
+			status == DHTesp::ERROR_NONE &&
+			(
+				isnan(rawHumidity) ||
+				isnan(rawTemperature)
+			)
+		) {
+
+			b4r_main::_dht22state = 3;
+
+		}
+
+
+		b4r_main::_dht22hum =
+			rawHumidity;
+
+		b4r_main::_dht22temp =
+			dht22.toFahrenheit(
+				rawTemperature
+			);
+
+		b4r_main::_dht22heatindex = NAN;
+		b4r_main::_dht22dewpoint = NAN;
+
+		return;
+
+	}
+
+
+	b4r_main::_dht22valid = true;
+
+
+	float humidity =
+		rawHumidity +
+		b4r_main::_dht22humidityaddvalue;
+
+
+	float temperature =
+		dht22.toFahrenheit(
+			rawTemperature
+		);
+
+
+	b4r_main::_dht22hum =
+		humidity;
+
+	b4r_main::_dht22temp =
+		temperature;
+
+
+	b4r_main::_dht22heatindex =
+		dht22.computeHeatIndex(
+			temperature,
+			humidity,
+			true
+		);
+
+
+	b4r_main::_dht22dewpoint =
+		dht22.computeDewPoint(
+			temperature,
+			humidity,
+			true
+		);
+
+
+	b4r_main::_dht22perception =
+		dht22.computePerception(
+			temperature,
+			humidity,
+			true
+		);
+
+
+	dht22.getComfortRatio(
+		cf,
+		temperature,
+		humidity,
+		true
+	);
+
+
+	switch(cf) {
+
+		case Comfort_OK:
+
+			b4r_main::_dht22comfortstatus = 0;
+
+			break;
+
+
+		case Comfort_TooHot:
+
+			b4r_main::_dht22comfortstatus = 1;
+
+			break;
+
+
+		case Comfort_TooCold:
+
+			b4r_main::_dht22comfortstatus = 2;
+
+			break;
+
+
+		case Comfort_TooDry:
+
+			b4r_main::_dht22comfortstatus = 4;
+
+			break;
+
+
+		case Comfort_TooHumid:
+
+			b4r_main::_dht22comfortstatus = 8;
+
+			break;
+
+
+		case Comfort_HotAndHumid:
+
+			b4r_main::_dht22comfortstatus = 9;
+
+			break;
+
+
+		case Comfort_HotAndDry:
+
+			b4r_main::_dht22comfortstatus = 5;
+
+			break;
+
+
+		case Comfort_ColdAndHumid:
+
+			b4r_main::_dht22comfortstatus = 10;
+
+			break;
+
+
+		case Comfort_ColdAndDry:
+
+			b4r_main::_dht22comfortstatus = 6;
+
+			break;
+
+
+		default:
+
+			b4r_main::_dht22comfortstatus = -1;
+
+			break;
+
+	}
+
+}
+
 #End If
-

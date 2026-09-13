@@ -14,6 +14,7 @@ Sub Process_Globals
 End Sub
 
 Sub Service_Create
+	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_NEVER
 	listener.Initialize("listener")
 End Sub
 
@@ -70,14 +71,10 @@ Sub Listener_NotificationRemoved (SBN As StatusBarNotification)
 			else If SBN.Id = 728 Then
 				SmartHomeMonitor.lngTicksTempHumidBasement = DateTime.now
 				SmartHomeMonitor.IsTempHumidityNotificationOnGoingBasement = False
-			else If SBN.Id = 730 Then
-				SmartHomeMonitor.IsOldTempHumidityNotificationOnGoingBasement = False
-			else If SBN.Id = 729 Then
-				SmartHomeMonitor.IsOldTempHumidityNotificationOnGoing = False
-			else If SBN.Id = 731 Then
-				SmartHomeMonitor.IsOldAirQualityNotificationOnGoing = False
-			else If SBN.Id = 732 Then
-				SmartHomeMonitor.IsOldAirQualityNotificationOnGoingBasement = False
+			else If SBN.Id = 730 Or SBN.Id = 729 Or SBN.Id = 731 Or SBN.Id = 732 Then
+				'Do not clear stale-sensor latches just because the user dismissed
+				'the notification. SmartHomeMonitor clears them only after a fresh
+				'valid sensor reading arrives. This prevents repeated stale alerts.
 			End If
 		End If
 	Catch

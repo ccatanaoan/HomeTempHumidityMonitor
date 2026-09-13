@@ -9,3 +9,8 @@
 *.mp4
 *.jpg
 datastore
+# B4R generated build output
+/Objects/
+
+# B4A generated build output
+/Android Client/Objects/

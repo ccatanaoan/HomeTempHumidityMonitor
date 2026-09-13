@@ -18,8 +18,12 @@ Sub Process_Globals
 	'Private MQTTServerURI As String = "tcp://mqtt.eclipseprojects.io:1883"
 	'Private MQTTServerURI As String = "tcp://broker.hivemq.com:1883"
 	'Private MQTTServerURI As String = "tcp://test.mosquitto.org:1883"
-	Private MQTTServerURI As String = "tcp://broker.emqx.io:1883"
+	Private MQTTServerURI As String = "tcp://192.168.137.1:1883"
+	Private MQTTRetryTimer As Timer
+	Private MQTTConnecting As Boolean
+	Private MQTTRetryDelay As Int = 5000
 	Private Notification1 As Notification
+	Private ForegroundNotification As Notification
 	Public IsAirQualityNotificationOnGoing As Boolean
 	Public IsTempHumidityNotificationOnGoing As Boolean
 	Public IsAirQualityNotificationOnGoingBasement As Boolean
@@ -34,11 +38,28 @@ Sub Process_Globals
 	Private bc As ByteConverter
 	Private rp As RuntimePermissions
 	Private shared As String
+	Private LastChartLogPruneDay As String
 End Sub
 
 Sub Service_Create
+	MQTTRetryTimer.Initialize("MQTTRetryTimer", MQTTRetryDelay)
+	MQTTRetryTimer.Enabled = False
+
+	'Use an explicit foreground service notification instead of the automatic
+	'foreground notification. This gives the service its own stable notification
+	'ID and marks it as ongoing so its status-bar icon is not cleared.
+	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_NEVER
+	ForegroundNotification = CreateServiceNotification
+
+	'Notification1 remains the helper object used to cancel sensor notifications.
 	Notification1.Initialize2(Notification1.IMPORTANCE_DEFAULT)
-	Service.AutomaticForegroundMode = Service.AUTOMATIC_FOREGROUND_ALWAYS
+
+	'Phase 4.28.2 migration cleanup: remove obsolete LOW-importance sensor
+	'channels and B4A automatic-foreground channels from earlier builds.
+	'Does not delete the current *_statusbar_v1 alert channels or the
+	'smart_home_monitor_service foreground-service channel.
+	DeleteObsoleteNotificationChannels
+
 	CreateNotification("Living area temperature","Living area temperature","temp",Main,False,False,False,"Living area temperature")
 	CreateNotification("Living area carbon monoxide","Living area carbon monoxide","co",Main,False,False,False,"Living area carbon monoxide")
 	CreateNotification("Basement temperature","Basement temperature","tempbasement",Main,False,False,False,"Basement temperature")
@@ -47,45 +68,90 @@ Sub Service_Create
 	CreateNotification("Living area DHT22 sensor issue","Living area DHT22 sensor issue","sensor",Main,False,False,False,"Living area DHT22 sensor issue")
 	CreateNotification("Living area CO sensor issue","Living area CO sensor issue","sensor",Main,False,False,False,"Living area CO sensor issue")
 	CreateNotification("Basement CO sensor issue","Basement CO sensor issue","sensor",Main,False,False,False,"Basement CO sensor issue")
-	
-	Notification1.Icon = "icon"
-	Notification1.Vibrate = False
-	Notification1.AutoCancel = False
-	Notification1.Sound = False
-	Notification1.SetInfo("Smart Home Monitor","Service is running. Tap to open.",Main)
-	Service.AutomaticForegroundNotification = Notification1
+
+	'Backward-compatible migration: existing installations already have the last
+	'sensor payload saved but do not yet have phone receive timestamps. Give each
+	'existing value a grace-period starting now. The next real reading replaces it.
+	EnsureReceiveTimestamp("TempHumidity", "TempHumidityReceivedAt")
+	EnsureReceiveTimestamp("TempHumidityBasement", "TempHumidityBasementReceivedAt")
+	EnsureReceiveTimestamp("AirQuality", "AirQualityReceivedAt")
+	EnsureReceiveTimestamp("AirQualityBasement", "AirQualityBasementReceivedAt")
+	StateManager.SaveSettings
+End Sub
+
+Private Sub DeleteObsoleteNotificationChannels
+	Dim p As Phone
+	If p.SdkVersion < 26 Then Return
+
+	Try
+		Dim ctxt As JavaObject
+		ctxt.InitializeContext
+		Dim manager As JavaObject = ctxt.RunMethod("getSystemService", Array("notification"))
+
+		Dim OldChannelIds() As String = Array As String( _
+			"Living area temperature", _
+			"Living area carbon monoxide", _
+			"Basement temperature", _
+			"Basement carbon monoxide", _
+			"Living area DHT22 sensor issue", _
+			"Basement DHT22 sensor issue", _
+			"Living area CO sensor issue", _
+			"Basement CO sensor issue", _
+			"channel_2", _
+			"channel_3")
+
+		For Each ChannelId As String In OldChannelIds
+			manager.RunMethod("deleteNotificationChannel", Array(ChannelId))
+		Next
+	Catch
+		Log("DeleteObsoleteNotificationChannels: " & LastException)
+	End Try
 End Sub
 
 Sub Service_Start (StartingIntent As Intent)
+	'724 is reserved for the persistent Smart Home Monitor service notification.
+	'Existing sensor / warning notifications use 725 through 732.
+	Service.StartForeground(724, ForegroundNotification)
 	MQTT_Connect
-	'Service.StopAutomaticForeground 'Call this when the background task completes (if there is one)
-	'StartActivity(Main)
 End Sub
 
 Sub Service_Destroy
-	
+	MQTTRetryTimer.Enabled = False
 End Sub
 
-'Connect to CloudMQTT broker
+'Connect to private GEEKOM Mosquitto broker
 Sub MQTT_Connect
 	Try
-		Dim ClientId As String = Rnd(0, 999999999) 'create a unique id
-		MQTT.Initialize("MQTT", MQTTServerURI, ClientId)
+		If MQTTConnecting Then Return
+		If MQTT.IsInitialized And MQTT.Connected Then Return
 
-		'Dim ConnOpt As MqttConnectOptions
-		'ConnOpt.Initialize(MQTTUser, MQTTPassword)
+		MQTTRetryTimer.Enabled = False
+		MQTTConnecting = True
+
+		If MQTT.IsInitialized = False Then
+			Dim ClientId As String = "SmartHomeMonitorService-" & Rnd(0, 999999999)
+			MQTT.Initialize("MQTT", MQTTServerURI, ClientId)
+		End If
+
+		Log("Connecting to MQTT broker: " & MQTTServerURI)
 		MQTT.Connect
 	Catch
-		Log(LastException)
+		MQTTConnecting = False
+		Log("MQTT_Connect: " & LastException)
+		ScheduleMQTTRetry
 	End Try
 End Sub
 
 Sub MQTT_Connected (Success As Boolean)
+	MQTTConnecting = False
+
 	Try
 		If Success = False Then
-			Log(LastException)
-			MQTT_Connect
+			Log("MQTT connection failed: " & LastException)
+			ScheduleMQTTRetry
 		Else
+			MQTTRetryTimer.Enabled = False
+			Log("Connected to MQTT broker: " & MQTTServerURI)
 			MQTT.Subscribe("TempHumid", 0)
 			MQTT.Subscribe("MQ7LivingRoomCloyd", 0)
 			MQTT.Subscribe("MQ7Basement", 0)
@@ -93,19 +159,35 @@ Sub MQTT_Connected (Success As Boolean)
 			MQTT.Subscribe("HumidityAddValue", 0)
 		End If
 	Catch
-		Log(LastException)
-		ToastMessageShow(LastException,False)
+		Log("MQTT_Connected: " & LastException)
+		ScheduleMQTTRetry
 	End Try
-    
 End Sub
 
 Private Sub MQTT_Disconnected
-	Try
-		MQTT_Connect
-	Catch
-		Log(LastException)
-		ToastMessageShow(LastException,False)
-	End Try
+	MQTTConnecting = False
+	Log("Disconnected from MQTT broker")
+	ScheduleMQTTRetry
+End Sub
+
+Private Sub ScheduleMQTTRetry
+	If MQTT.IsInitialized And MQTT.Connected Then Return
+	MQTTRetryTimer.Enabled = False
+	MQTTRetryTimer.Enabled = True
+	Log("MQTT reconnect scheduled in " & MQTTRetryDelay & " ms")
+End Sub
+
+Private Sub MQTTRetryTimer_Tick
+	MQTTRetryTimer.Enabled = False
+	MQTT_Connect
+End Sub
+
+Private Sub RefreshActiveUI(Topic As String)
+	'Only refresh the activity if it is already visible. Never launch it from
+	'the background service. State has already been saved before this is called.
+	If IsPaused(Main) = False Then
+		CallSubDelayed2(Main, "SensorDataUpdated", Topic)
+	End If
 End Sub
 
 Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
@@ -125,7 +207,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 				cs.Initialize
 				If a(0) = "OK" And a(1) > 0 Then
 					StateManager.SetSetting("TempHumidity",status)
+					StateManager.SetSetting("TempHumidityReceivedAt", DateTime.Now)
 					StateManager.SaveSettings
+					RefreshActiveUI("TempHumid")
 									
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 					If (a(3) > 3) Or (a(4) <> 0)  Then
@@ -190,7 +274,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			If a.Length = 3 Then
 				If IsNumber(a(0)) And a(0) > 0 Then
 					StateManager.SetSetting("AirQuality",status)
+					StateManager.SetSetting("AirQualityReceivedAt", DateTime.Now)
 					StateManager.SaveSettings
+					RefreshActiveUI("MQ7LivingRoomCloyd")
 					
 					Dim NotificationText As String
 					NotificationText = GetAirQuality((a(0)/10)) & ", at " & (a(0)/10) & " ppm"
@@ -215,7 +301,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			If a.Length = 3 Then
 				If IsNumber(a(0)) And a(0) > 0 Then
 					StateManager.SetSetting("AirQualityBasement",status)
+					StateManager.SetSetting("AirQualityBasementReceivedAt", DateTime.Now)
 					StateManager.SaveSettings
+					RefreshActiveUI("MQ7Basement")
 					
 					Dim NotificationText As String
 					NotificationText = GetAirQuality((a(0)/10)) & ", at " & (a(0)/10) & " ppm"
@@ -232,56 +320,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 				End If
 			End If
 			
-			' Delete log files older than 2 days
-			Dim FileNameToday As String
-			Dim FileNameYesterday As String
-			Dim FileNameTomorrow As String
-			Dim Now As Long
-			Dim Month As Int
-			Dim Day As Int
-			Dim Year As Int
-			Dim Yesterday As Long
-			Dim MonthYesterday As Int
-			Dim DayYesterday As Int
-			Dim YearYesterday As Int
-			Dim Tomorrow As Long
-			Dim MonthTomorrow As Int
-			Dim DayTomorrow As Int
-			Dim YearTomorrow As Int
 
-			Now = DateTime.Now
-			Month = DateTime.GetMonth(Now)
-			Day = DateTime.GetDayOfMonth (Now)
-			Year = DateTime.GetYear(Now)
-			
-			Yesterday = DateTime.add(DateTime.Now, 0, 0, -1)
-			MonthYesterday = DateTime.GetMonth(Yesterday)
-			DayYesterday = DateTime.GetDayOfMonth (Yesterday)
-			YearYesterday = DateTime.GetYear(Yesterday)
-			
-			Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-			MonthTomorrow = DateTime.GetMonth(Tomorrow)
-			DayTomorrow = DateTime.GetDayOfMonth (Tomorrow)
-			YearTomorrow = DateTime.GetYear(Tomorrow)
-
-			FileNameToday = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-			FileNameYesterday = YearYesterday & "-" & NumberFormat(MonthYesterday,2,0) & "-" & NumberFormat(DayYesterday,2,0) & ".log"
-			FileNameTomorrow = YearTomorrow & "-" & NumberFormat(MonthTomorrow,2,0) & "-" & NumberFormat(DayTomorrow,2,0) & ".log"
-			
-			shared = rp.GetSafeDirDefaultExternal("")
-			Dim flist As List = WildCardFilesList2(shared,"*.log",True, True)
-			
-			For i = 0 To flist.Size -1
-				Dim FileName As String = flist.Get(i)
-				If FileName <> FileNameToday Then
-					If FileName <> FileNameYesterday Then
-						If FileName <> FileNameTomorrow Then
-							File.Delete(shared,FileName)
-						End If
-					End If
-				End If
-			Next
-			
 		else If Topic = "TempHumidBasement" Then
 		
 			Dim status As String
@@ -293,7 +332,9 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 				cs.Initialize
 				If a(0) = "OK" And a(1) > 0 Then
 					StateManager.SetSetting("TempHumidityBasement",status)
+					StateManager.SetSetting("TempHumidityBasementReceivedAt", DateTime.Now)
 					StateManager.SaveSettings
+					RefreshActiveUI("TempHumidBasement")
 					
 					' OK|81.46|58.50|4|1|83.43|65.54|18-07-21|22:22:48
 					' Added "(a(4) <> 2)" as Too Cold is normal in the basement.
@@ -351,190 +392,103 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
 		End If
 		
-		Dim managerSensorNotRespondingTime As String = StateManager.GetSetting("SensorNotRespondingTime")
-		If managerSensorNotRespondingTime = "" Or IsNumber(managerSensorNotRespondingTime) = False Or managerSensorNotRespondingTime ="0" Then
-			managerSensorNotRespondingTime = 1
-		End If
-		
-		Dim status As String
-		Dim sensorInTrouble As String
-		sensorInTrouble = "TempHumidityBasement"
-		status = StateManager.GetSetting("TempHumidityBasement")
-		status = status.Replace("|24:","|00:")
-		Dim a() As String = Regex.Split("\|",status)
-		
-		Dim n As Notification 'ignore
-						
-		If a.Length = 9 Then
-			If a(7) = "" Then
-				Dim Tomorrow As Long
-				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-				DateTime.DateFormat = "yy-MM-dd"
-				a(7) = DateTime.Date(Tomorrow)
-			End If
-			If a(8).Contains("|24:") Then
-				a(8) = a(8).Replace("|24:","|00:")
-				Dim Tomorrow As Long
-				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-				DateTime.DateFormat = "yy-MM-dd"
-				a(7) = DateTime.Date(Tomorrow)
-			End If
-			
-			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
-			Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
-			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-			Dim lngTicks As Long = ticks
-			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1 Then
-				If IsOldTempHumidityNotificationOnGoingBasement = False Then
-					CreateNotification("Basement DHT22", "Temperature and humidity data is " & p.Minutes & " minutes old","sensorbasement",Main,False,False,False,"Basement DHT22 sensor issue").Notify(730)
-					MQTT.Publish("TempHumidBasement", bc.StringToBytes("Sensor is not working", "utf8"))
-				End If
-			Else
-				IsOldTempHumidityNotificationOnGoingBasement = False
-				n.Cancel(730)
-			End If
-		End If
-		
-		Dim status As String
-		sensorInTrouble = "TempHumidity"
-		status = StateManager.GetSetting("TempHumidity")
-		status = status.Replace("|24:","|00:")
-		Dim a() As String = Regex.Split("\|",status)
-						
-		If a.Length = 9 Then
-			If a(7) = "" Then
-				Dim Tomorrow As Long
-				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-				DateTime.DateFormat = "yy-MM-dd"
-				a(7) = DateTime.Date(Tomorrow)
-			End If
-			If a(8).Contains("|24:") Then
-				a(8) = a(8).Replace("|24:","|00:")
-				Dim Tomorrow As Long
-				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-				DateTime.DateFormat = "yy-MM-dd"
-				a(7) = DateTime.Date(Tomorrow)
-			End If
-			
-			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
+		'Freshness is based only on when this phone received a VALID sensor reading.
+		'The ESP timestamp is intentionally not used here. This keeps monitoring
+		'correct while an ESP is waiting for NTP and publishing the 1970 fallback.
+		'DHT22 sensors publish about every 60 seconds.
+		'2.25 minutes allows two expected readings to be missed before alerting.
+		IsOldTempHumidityNotificationOnGoingBasement = CheckSensorFreshness( _
+			"TempHumidityBasementReceivedAt", 730, "Basement DHT22", _
+			"Temperature and humidity data is ", "sensorbasement", _
+			"Basement DHT22 sensor issue", "TempHumidBasement", _
+			"DHTSensorNotRespondingTime", 2.25, _
+			IsOldTempHumidityNotificationOnGoingBasement)
 
-			Dim ticks As Long = DateTime.DateParse(a(7) & " " & a(8) & " GMT")
-			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-			Dim lngTicks As Long = ticks
-			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1  Then
-				If IsOldTempHumidityNotificationOnGoing = False Then
-					CreateNotification("Living area DHT22", "Temperature and humidity data is " & p.Minutes & " minutes old","sensor",Main,False,False,False,"Living area DHT22 sensor issue").Notify(729)
-					MQTT.Publish("TempHumid", bc.StringToBytes("Sensor is not working", "utf8"))
-				End If
-			Else
-				IsOldTempHumidityNotificationOnGoing = False
-				n.Cancel(729)
-			End If
-		End If
-		
-		Dim status As String
-		sensorInTrouble = "AirQuality"
-		status = StateManager.GetSetting("AirQuality")
-		status = status.Replace("|24:","|00:")
-		Dim a() As String = Regex.Split("\|",status)
-						
-		If a.Length = 3 Then
-			If a(1) = "" Then
-				Dim Tomorrow As Long
-				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-				DateTime.DateFormat = "yy-MM-dd"
-				a(1) = DateTime.Date(Tomorrow)
-			End If
-			If a(2).Contains("|24:") Then
-				a(2) = a(2).Replace("|24:","|00:")
-				Dim Tomorrow As Long
-				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-				DateTime.DateFormat = "yy-MM-dd"
-				a(2) = DateTime.Date(Tomorrow)
-			End If
-			
-			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
-			Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
-			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-			Dim lngTicks As Long = ticks
-			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1 Then
-				If IsOldAirQualityNotificationOnGoing = False Then
-					CreateNotification("Living area MQ7", "Air quality data is " & p.Minutes & " minutes old","sensor",Main,False,False,False,"Living area CO sensor issue").Notify(731)
-					MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Sensor is not working", "utf8"))
-				End If
-			Else
-				IsOldAirQualityNotificationOnGoing = False
-				n.Cancel(731)
-			End If
-		End If
-		
-		Dim status As String
-		sensorInTrouble = "AirQualityBasement"
-		status = StateManager.GetSetting("AirQualityBasement")
-		status = status.Replace("|24:","|00:")
-		Dim a() As String = Regex.Split("\|",status)
-						
-		If a.Length = 3 Then
-			If a(1) = "" Then
-				Dim Tomorrow As Long
-				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-				DateTime.DateFormat = "yy-MM-dd"
-				a(1) = DateTime.Date(Tomorrow)
-			End If
-			If a(2).Contains("|24:") Then
-				a(2) = a(2).Replace("|24:","|00:")
-				Dim Tomorrow As Long
-				Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-				DateTime.DateFormat = "yy-MM-dd"
-				a(2) = DateTime.Date(Tomorrow)
-			End If
-			
-			DateTime.DateFormat = "yy-MM-dd HH:mm:ss z"
-			Dim ticks As Long = DateTime.DateParse(a(1) & " " & a(2) & " GMT")
-			DateTime.DateFormat = "MMM d, yyyy h:mm:ss a z"
-			Dim lngTicks As Long = ticks
-			Dim p As Period = DateUtils.PeriodBetween(lngTicks,DateTime.now)
-			If p.Minutes <> 59 And p.Minutes > = managerSensorNotRespondingTime And p.Days <= 1 And p.Years < 1 And p.Months < 1 Then
-				If IsOldAirQualityNotificationOnGoingBasement = False Then
-					CreateNotification("Basement MQ7", "Air quality data is " & p.Minutes & " minutes old","sensorbasement",Main,False,False,False,"Basement CO sensor issue").Notify(732)
-					MQTT.Publish("MQ7Basement", bc.StringToBytes("Sensor is not working", "utf8"))
-				End If
-			Else
-				IsOldAirQualityNotificationOnGoingBasement = False
-				n.Cancel(732)
-			End If
-		End If
-		
+		IsOldTempHumidityNotificationOnGoing = CheckSensorFreshness( _
+			"TempHumidityReceivedAt", 729, "Living area DHT22", _
+			"Temperature and humidity data is ", "sensor", _
+			"Living area DHT22 sensor issue", "TempHumid", _
+			"DHTSensorNotRespondingTime", 2.25, _
+			IsOldTempHumidityNotificationOnGoing)
+
+		'MQ-7 heater/read cycle is about 151 seconds.
+		'6 minutes allows more than two normal cycles before declaring it stale.
+		IsOldAirQualityNotificationOnGoing = CheckSensorFreshness( _
+			"AirQualityReceivedAt", 731, "Living area MQ7", _
+			"Air quality data is ", "sensor", _
+			"Living area CO sensor issue", "MQ7LivingRoomCloyd", _
+			"MQ7SensorNotRespondingTime", 6, _
+			IsOldAirQualityNotificationOnGoing)
+
+		IsOldAirQualityNotificationOnGoingBasement = CheckSensorFreshness( _
+			"AirQualityBasementReceivedAt", 732, "Basement MQ7", _
+			"Air quality data is ", "sensorbasement", _
+			"Basement CO sensor issue", "MQ7Basement", _
+			"MQ7SensorNotRespondingTime", 6, _
+			IsOldAirQualityNotificationOnGoingBasement)
+
 	Catch
 		Log(LastException)
-		'If LastException.Message.Contains("Unparseable date") Then
-		Select sensorInTrouble
-			Case "TempHumidityBasement"
-				If IsOldTempHumidityNotificationOnGoingBasement = False Then
-					CreateNotification("Basement DHT22 sensor exception",LastException.Message,"sensorbasement",Main,False,False,False,"Basement DHT22 sensor issue").Notify(730)
-					MQTT.Publish("TempHumidBasement", bc.StringToBytes("TempHumidityBasement Exception: " & LastException.Message, "utf8"))
-				End If
-			Case "TempHumidity"
-				If IsOldTempHumidityNotificationOnGoing = False Then
-					CreateNotification("Living area DHT22 sensor exception", LastException.Message,"sensor",Main,False,False,False,"Living area DHT22 sensor issue").Notify(729)
-					MQTT.Publish("TempHumid", bc.StringToBytes("TempHumidity Exception: " & LastException.Message, "utf8"))
-				End If
-			Case "AirQuality"
-				If IsOldAirQualityNotificationOnGoing = False Then
-					CreateNotification("Living area carbon monoxide sensor exception", LastException.Message,"sensor",Main,False,False,False,"Living area CO sensor issue").Notify(731)
-					MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("AirQuality Exception: " & LastException.Message, "utf8"))
-				End If
-			Case "AirQualityBasement"
-				If IsOldAirQualityNotificationOnGoingBasement = False Then
-					CreateNotification("Basement carbon monoxide sensor exception", LastException.Message,"sensorbasement",Main,False,False,False,"Basement CO sensor issue").Notify(732)
-					MQTT.Publish("MQ7Basement", bc.StringToBytes("AirQualityBasement Exception: " & LastException.Message, "utf8"))
-				End If
-		End Select
-		'End If
 	End Try
+End Sub
+
+Private Sub EnsureReceiveTimestamp(DataKey As String, ReceivedKey As String)
+	Dim ExistingReceivedAt As String = StateManager.GetSetting(ReceivedKey)
+	If ExistingReceivedAt = "" Or IsNumber(ExistingReceivedAt) = False Then
+		If StateManager.GetSetting(DataKey) <> "" Then
+			StateManager.SetSetting(ReceivedKey, DateTime.Now)
+		End If
+	End If
+End Sub
+
+Private Sub CheckSensorFreshness(ReceivedKey As String, NotificationId As Int, _
+	NotificationTitle As String, MessagePrefix As String, Icon As String, _
+	ChannelName As String, Topic As String, StaleSettingKey As String, _
+	DefaultStaleMinutes As Double, NotificationOnGoing As Boolean) As Boolean
+
+	Dim ReceivedText As String = StateManager.GetSetting(ReceivedKey)
+
+	'No valid reading has been received yet. Do not manufacture a stale event.
+	If ReceivedText = "" Or IsNumber(ReceivedText) = False Then
+		Notification1.Cancel(NotificationId)
+		Return False
+	End If
+
+	Dim ReceivedAt As Long = ReceivedText
+	Dim AgeTicks As Long = DateTime.Now - ReceivedAt
+	If AgeTicks < 0 Then AgeTicks = 0
+
+	Dim StaleMinutesText As String = StateManager.GetSetting(StaleSettingKey)
+	Dim StaleMinutes As Double = DefaultStaleMinutes
+
+	If StaleMinutesText <> "" And IsNumber(StaleMinutesText) Then
+		Dim ConfiguredMinutes As Double = StaleMinutesText
+		If ConfiguredMinutes > 0 Then StaleMinutes = ConfiguredMinutes
+	End If
+
+	Dim StaleTicks As Long = Round(StaleMinutes * DateTime.TicksPerMinute)
+	Dim AgeMinutes As Int = AgeTicks / DateTime.TicksPerMinute
+
+	If AgeTicks >= StaleTicks Then
+		If NotificationOnGoing = False Then
+			CreateNotification(NotificationTitle, _
+				MessagePrefix & AgeMinutes & " minutes old", _
+				Icon, Main, False, False, False, ChannelName).Notify(NotificationId)
+
+			'Latch the stale state here instead of depending on NotificationListener.
+			'It is cleared only when fresh sensor data is received again.
+			NotificationOnGoing = True
+
+			If MQTT.IsInitialized And MQTT.Connected Then
+				MQTT.Publish(Topic, bc.StringToBytes("Sensor is not working", "utf8"))
+			End If
+		End If
+
+		Return True
+	Else
+		Notification1.Cancel(NotificationId)
+		Return False
+	End If
 End Sub
 
 Sub LogEvent(TextToLog As String)
@@ -562,35 +516,124 @@ Sub LogEvent(TextToLog As String)
 
 		FW1.Close
 		
-		If NumberFormat(DateTime.GetHour(Now),2,0) >= 22 Then
-			Dim Tomorrow As Long
-
-			Tomorrow = DateTime.add(DateTime.Now, 0, 0, 1)
-			Month = DateTime.GetMonth(Tomorrow)
-			Day = DateTime.GetDayOfMonth (Tomorrow)
-			Year = DateTime.GetYear(Tomorrow)
-			
-			FileName = Year & "-" & NumberFormat(Month,2,0) & "-" & NumberFormat(Day,2,0) & ".log"
-
-			shared = rp.GetSafeDirDefaultExternal("")
-			FW1.Initialize(File.OpenOutput (shared, FileName, True))
-			LogEntry = NumberFormat(DateTime.GetHour(Now),2,0) & "c" & NumberFormat(DateTime.GetMinute(Now),2,0)& ":" & NumberFormat(DateTime.GetSecond (Now),2,0)
-			LogEntry = LogEntry & " " & TextToLog
-			FW1.WriteLine(LogEntry)
-
-			FW1.Close
-		End If
-		
-		'If File.Exists(shared,"2024-12-24.log") = False Then
-			'File.Delete(shared,"2024-12-24.log")
-		'		File.Copy(File.DirAssets, "yesterday.log",shared,"2024-12-24.log")
-		'End If
+		'Phase 4.2: no more copied "c" lines in tomorrow's file.
+		'The rolling chart reads yesterday + today directly.
+		PruneOldChartLogsIfNeeded
 
 	Catch
 		Log("Error in Sub LogEvent: " & LastException.Message)
 		ToastMessageShow(LastException,False)
 	End Try
 
+End Sub
+
+
+' ============================================================
+' CHART LOG RETENTION - PHASE 4.2
+'
+' Keep 30 calendar days of raw Living Room DHT22 samples.
+' Pruning runs only once per day and only touches files whose names
+' exactly match yyyy-MM-dd.log. Other files are never deleted here.
+' ============================================================
+Private Sub PruneOldChartLogsIfNeeded
+	Try
+		Dim Now As Long = DateTime.Now
+		Dim TodayKey As String = DateTime.GetYear(Now) & "-" & _
+			NumberFormat(DateTime.GetMonth(Now), 2, 0) & "-" & _
+			NumberFormat(DateTime.GetDayOfMonth(Now), 2, 0)
+
+		If LastChartLogPruneDay = TodayKey Then Return
+		LastChartLogPruneDay = TodayKey
+
+		shared = rp.GetSafeDirDefaultExternal("")
+		Dim KeepFrom As Long = DateTime.Add(Now, 0, 0, -29)
+		Dim CutoffDate As Long = DateUtils.SetDate( _
+			DateTime.GetYear(KeepFrom), _
+			DateTime.GetMonth(KeepFrom), _
+			DateTime.GetDayOfMonth(KeepFrom))
+
+		Dim FilesFound As List = WildCardFilesList2(shared, "*.log", True, True)
+		For i = 0 To FilesFound.Size - 1
+			Dim FileName As String = FilesFound.Get(i)
+			Dim FileDate As Long = ChartLogDateFromFileName(FileName)
+			If FileDate > 0 And FileDate < CutoffDate Then
+				File.Delete(shared, FileName)
+			End If
+		Next
+	Catch
+		Log("PruneOldChartLogsIfNeeded: " & LastException)
+	End Try
+End Sub
+
+Private Sub ChartLogDateFromFileName(FileName As String) As Long
+	Try
+		If Regex.IsMatch("^\d{4}-\d{2}-\d{2}\.log$", FileName) = False Then Return 0
+
+		Dim YearText As String = FileName.SubString2(0, 4)
+		Dim MonthText As String = FileName.SubString2(5, 7)
+		Dim DayText As String = FileName.SubString2(8, 10)
+		If IsNumber(YearText) = False Or IsNumber(MonthText) = False Or IsNumber(DayText) = False Then Return 0
+
+		Dim YearValue As Int = YearText
+		Dim MonthValue As Int = MonthText
+		Dim DayValue As Int = DayText
+		Return DateUtils.SetDate(YearValue, MonthValue, DayValue)
+	Catch
+		Return 0
+	End Try
+End Sub
+
+Private Sub CreateServiceNotification As Notification
+	Dim p As Phone
+
+	If p.SdkVersion >= 21 Then
+		Dim nb As NotificationBuilder
+		nb.Initialize
+		nb.DefaultSound = False
+		nb.DefaultVibrate = False
+		nb.ContentTitle = "Smart Home Monitor"
+		nb.ContentText = "Service is running. Tap to open."
+		nb.setActivity(Main)
+		nb.OnlyAlertOnce = True
+		nb.OnGoingEvent = True
+		nb.SmallIcon = "icon"
+		nb.Tag = "Smart Home Monitor service"
+
+		If p.SdkVersion >= 26 Then
+			Dim ctxt As JavaObject
+			ctxt.InitializeContext
+
+			Dim manager As JavaObject
+			manager.InitializeStatic("android.app.NotificationManager")
+
+			Dim Channel As JavaObject
+			Dim ChannelId As String = "smart_home_monitor_service"
+			Dim ChannelVisibleName As String = "Smart Home Monitor service"
+			Dim importance As String = "IMPORTANCE_LOW"
+
+			Channel.InitializeNewInstance("android.app.NotificationChannel", _
+				Array(ChannelId, ChannelVisibleName, manager.GetField(importance)))
+			Channel.RunMethod("setShowBadge", Array(False))
+
+			manager = ctxt.RunMethod("getSystemService", Array("notification"))
+			manager.RunMethod("createNotificationChannel", Array(Channel))
+
+			Dim jo As JavaObject = nb
+			jo.RunMethod("setChannelId", Array(ChannelId))
+		End If
+
+		Return nb.GetNotification
+	Else
+		Dim n As Notification
+		n.Initialize
+		n.Icon = "icon"
+		n.Vibrate = False
+		n.Sound = False
+		n.AutoCancel = False
+		n.OnGoingEvent = True
+		n.SetInfo("Smart Home Monitor", "Service is running. Tap to open.", Main)
+		Return n
+	End If
 End Sub
 
 Private Sub CreateNotification(Title As String, Content As String, Icon As String, TargetActivity As Object, _
@@ -613,25 +656,58 @@ Private Sub CreateNotification(Title As String, Content As String, Icon As Strin
 			Dim manager As JavaObject
 			manager.InitializeStatic("android.app.NotificationManager")
 			Dim Channel As JavaObject
-			Dim importance As String
-			'If Sound Then importance = "IMPORTANCE_HIGH" Else importance = "IMPORTANCE_LOW"
+			Dim importance As String = "IMPORTANCE_DEFAULT"
+			Dim ChannelId As String
+			Dim ChannelVisibleName As String = ChannelName
+
+			'Phase 4.28:
+			'All non-service alerts should remain eligible for a status-bar icon.
+			'The old alert channels were created as LOW importance, and Android
+			'will not let an app raise the importance of an existing channel.
+			'Use fresh channel IDs at DEFAULT importance while keeping them silent.
+			'
+			'The foreground service notification does not use this routine.
+			'CreateServiceNotification remains on smart_home_monitor_service at LOW.
+			Select ChannelName
+				Case "Living area temperature"
+					ChannelId = "living_area_climate_alerts_statusbar_v1"
+				Case "Living area carbon monoxide"
+					ChannelId = "living_area_co_alerts_statusbar_v1"
+				Case "Basement temperature"
+					ChannelId = "basement_climate_alerts_statusbar_v1"
+				Case "Basement carbon monoxide"
+					ChannelId = "basement_co_alerts_statusbar_v1"
+				Case "Basement DHT22 sensor issue"
+					ChannelId = "basement_dht22_sensor_issue_statusbar_v1"
+				Case "Living area DHT22 sensor issue"
+					ChannelId = "living_area_dht22_sensor_issue_statusbar_v1"
+				Case "Living area CO sensor issue"
+					ChannelId = "living_area_co_sensor_issue_statusbar_v1"
+				Case "Basement CO sensor issue"
+					ChannelId = "basement_co_sensor_issue_statusbar_v1"
+				Case Else
+					'Future non-service notifications using this helper get a fresh
+					'DEFAULT-importance channel instead of silently falling back to LOW.
+					ChannelId = "alert_statusbar_v1_" & ChannelName
+			End Select
+
 '			IMPORTANCE_MAX: unused
 '			IMPORTANCE_HIGH: shows everywhere, makes noise And peeks
-'			IMPORTANCE_DEFAULT: shows everywhere, makes noise, but does Not visually intrude
-'			IMPORTANCE_LOW: shows everywhere, but Is Not intrusive
+'			IMPORTANCE_DEFAULT: status-bar eligible; kept silent below
+'			IMPORTANCE_LOW: reserved for the foreground service notification
 '			IMPORTANCE_MIN: only shows in the shade, below the fold
 '			IMPORTANCE_NONE: a notification with no importance; does Not show in the shade
-			importance = "IMPORTANCE_LOW"
-			Dim ChannelVisibleName As String = ChannelName 'Application.LabelName
 			Channel.InitializeNewInstance("android.app.NotificationChannel", _
-                   Array(ChannelName, ChannelVisibleName, manager.GetField(importance)))
-			'modify the channel
-			'For example: disable the badge feature
+                   Array(ChannelId, ChannelVisibleName, manager.GetField(importance)))
+
+			'Keep alert channels silent even though their importance is DEFAULT.
+			Channel.RunMethod("setSound", Array(Null, Null))
+			Channel.RunMethod("enableVibration", Array(False))
 			Channel.RunMethod("setShowBadge", Array(ShowBadge))
 			manager = ctxt.RunMethod("getSystemService", Array("notification"))
 			manager.RunMethod("createNotificationChannel", Array(Channel))
 			Dim jo As JavaObject = nb
-			jo.RunMethod("setChannelId", Array(ChannelName))
+			jo.RunMethod("setChannelId", Array(ChannelId))
 		End If
 		Return  nb.GetNotification
 	Else
