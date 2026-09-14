@@ -20,6 +20,7 @@ Sub Process_Globals
 	'Private MQTTServerURI As String = "tcp://test.mosquitto.org:1883"
 	Private MQTTServerURI As String = "tcp://192.168.137.1:1883"
 	Private MQTTRetryTimer As Timer
+	Private SensorFreshnessTimer As Timer
 	Private MQTTConnecting As Boolean
 	Private MQTTRetryDelay As Int = 5000
 	Private Notification1 As Notification
@@ -44,6 +45,8 @@ End Sub
 Sub Service_Create
 	MQTTRetryTimer.Initialize("MQTTRetryTimer", MQTTRetryDelay)
 	MQTTRetryTimer.Enabled = False
+	SensorFreshnessTimer.Initialize("SensorFreshnessTimer", 30000)
+	SensorFreshnessTimer.Enabled = False
 
 	'Use an explicit foreground service notification instead of the automatic
 	'foreground notification. This gives the service its own stable notification
@@ -112,11 +115,13 @@ Sub Service_Start (StartingIntent As Intent)
 	'724 is reserved for the persistent Smart Home Monitor service notification.
 	'Existing sensor / warning notifications use 725 through 732.
 	Service.StartForeground(724, ForegroundNotification)
+	SensorFreshnessTimer.Enabled = True
 	MQTT_Connect
 End Sub
 
 Sub Service_Destroy
 	MQTTRetryTimer.Enabled = False
+	SensorFreshnessTimer.Enabled = False
 End Sub
 
 'Connect to private GEEKOM Mosquitto broker
@@ -180,6 +185,49 @@ End Sub
 Private Sub MQTTRetryTimer_Tick
 	MQTTRetryTimer.Enabled = False
 	MQTT_Connect
+End Sub
+
+Private Sub SensorFreshnessTimer_Tick
+	RunSensorFreshnessChecks
+End Sub
+
+Private Sub RunSensorFreshnessChecks
+	Try
+		'Freshness is based only on when this phone received a VALID sensor reading.
+		'The ESP timestamp is intentionally not used here. This keeps monitoring
+		'correct while an ESP is waiting for NTP and publishing the 1970 fallback.
+		'DHT22 sensors publish about every 60 seconds.
+		IsOldTempHumidityNotificationOnGoingBasement = CheckSensorFreshness( _
+			"TempHumidityBasementReceivedAt", 730, "Basement DHT22", _
+			"Temperature and humidity data is ", "sensorbasement", _
+			"Basement DHT22 sensor issue", "TempHumidBasement", _
+			"DHTSensorNotRespondingTime", 2.25, _
+			IsOldTempHumidityNotificationOnGoingBasement)
+
+		IsOldTempHumidityNotificationOnGoing = CheckSensorFreshness( _
+			"TempHumidityReceivedAt", 729, "Living area DHT22", _
+			"Temperature and humidity data is ", "sensor", _
+			"Living area DHT22 sensor issue", "TempHumid", _
+			"DHTSensorNotRespondingTime", 2.25, _
+			IsOldTempHumidityNotificationOnGoing)
+
+		'MQ-7 heater/read cycle is about 151 seconds.
+		IsOldAirQualityNotificationOnGoing = CheckSensorFreshness( _
+			"AirQualityReceivedAt", 731, "Living area MQ7", _
+			"Air quality data is ", "sensor", _
+			"Living area CO sensor issue", "MQ7LivingRoomCloyd", _
+			"MQ7SensorNotRespondingTime", 6, _
+			IsOldAirQualityNotificationOnGoing)
+
+		IsOldAirQualityNotificationOnGoingBasement = CheckSensorFreshness( _
+			"AirQualityBasementReceivedAt", 732, "Basement MQ7", _
+			"Air quality data is ", "sensorbasement", _
+			"Basement CO sensor issue", "MQ7Basement", _
+			"MQ7SensorNotRespondingTime", 6, _
+			IsOldAirQualityNotificationOnGoingBasement)
+	Catch
+		Log("RunSensorFreshnessChecks: " & LastException)
+	End Try
 End Sub
 
 Private Sub RefreshActiveUI(Topic As String)
@@ -392,40 +440,7 @@ Private Sub MQTT_MessageArrived (Topic As String, Payload() As Byte)
 			MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
 		End If
 		
-		'Freshness is based only on when this phone received a VALID sensor reading.
-		'The ESP timestamp is intentionally not used here. This keeps monitoring
-		'correct while an ESP is waiting for NTP and publishing the 1970 fallback.
-		'DHT22 sensors publish about every 60 seconds.
-		'2.25 minutes allows two expected readings to be missed before alerting.
-		IsOldTempHumidityNotificationOnGoingBasement = CheckSensorFreshness( _
-			"TempHumidityBasementReceivedAt", 730, "Basement DHT22", _
-			"Temperature and humidity data is ", "sensorbasement", _
-			"Basement DHT22 sensor issue", "TempHumidBasement", _
-			"DHTSensorNotRespondingTime", 2.25, _
-			IsOldTempHumidityNotificationOnGoingBasement)
-
-		IsOldTempHumidityNotificationOnGoing = CheckSensorFreshness( _
-			"TempHumidityReceivedAt", 729, "Living area DHT22", _
-			"Temperature and humidity data is ", "sensor", _
-			"Living area DHT22 sensor issue", "TempHumid", _
-			"DHTSensorNotRespondingTime", 2.25, _
-			IsOldTempHumidityNotificationOnGoing)
-
-		'MQ-7 heater/read cycle is about 151 seconds.
-		'6 minutes allows more than two normal cycles before declaring it stale.
-		IsOldAirQualityNotificationOnGoing = CheckSensorFreshness( _
-			"AirQualityReceivedAt", 731, "Living area MQ7", _
-			"Air quality data is ", "sensor", _
-			"Living area CO sensor issue", "MQ7LivingRoomCloyd", _
-			"MQ7SensorNotRespondingTime", 6, _
-			IsOldAirQualityNotificationOnGoing)
-
-		IsOldAirQualityNotificationOnGoingBasement = CheckSensorFreshness( _
-			"AirQualityBasementReceivedAt", 732, "Basement MQ7", _
-			"Air quality data is ", "sensorbasement", _
-			"Basement CO sensor issue", "MQ7Basement", _
-			"MQ7SensorNotRespondingTime", 6, _
-			IsOldAirQualityNotificationOnGoingBasement)
+		RunSensorFreshnessChecks
 
 	Catch
 		Log(LastException)
