@@ -9,7 +9,7 @@ Library6=resp8266timetools
 NumberOfFiles=0
 NumberOfLibraries=6
 NumberOfModules=0
-Version=3.9
+Version=4
 @EndOfDesignText@
 #Region Project Attributes
 	#AutoFlushLogs: True
