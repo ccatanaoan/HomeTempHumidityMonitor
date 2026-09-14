@@ -725,11 +725,11 @@ Sub ReadHumidityDaily(fileDay As String)
 End Sub
 
 Sub ReadTemperatureHourly
-	ReadRollingTwoHourLatestSamples(1)
+	ReadRollingTwoHourMedianSamples(1)
 End Sub
 
 Sub ReadHumidityHourly
-	ReadRollingTwoHourLatestSamples(2)
+	ReadRollingTwoHourMedianSamples(2)
 End Sub
 
 ' ============================================================
@@ -740,8 +740,8 @@ End Sub
 ' an arbitrary first/exact-minute sample:
 '
 '   Hourly view: 24 x 5-minute buckets = rolling last 2 hours.
-'                Each point is the newest REAL sensor reading
-'                received in that 5-minute window (no averaging).
+'                Each point is the MEDIAN of all valid REAL sensor readings
+'                received in that 5-minute window (no interpolation).
 '
 '   Daily view:  24 x 1-hour buckets.
 '                Each point is the average of all valid samples
@@ -838,40 +838,53 @@ Private Sub AccumulateDailyFile(FileDay As Long, ValueIndex As Int, _
 	End Try
 End Sub
 
-Private Sub ReadRollingTwoHourLatestSamples(ValueIndex As Int)
+Private Sub ReadRollingTwoHourMedianSamples(ValueIndex As Int)
 	Try
 		ResetChartBuckets
 
-		' Keep the proven 24 x 5-minute chart layout from Phase 4.6,
-		' but do NOT average the readings inside each bucket.
-		' Each bucket shows the newest real sensor reading received
-		' during that five-minute window.
-		Dim BucketLatestTicks(24) As Long
+		' Keep the proven 24 x 5-minute rolling chart geometry.
+		' Each bucket now uses the MEDIAN of all valid real sensor
+		' readings received in that five-minute window.
+		' This rejects an isolated spike/drop naturally without inventing
+		' or interpolating any readings. A bucket with no readings stays a gap.
+		Dim BucketValues(24) As List
+		For i = 0 To 23
+			BucketValues(i).Initialize
+		Next
 
 		Dim WindowEnd As Long = timeRightNow
 		Dim WindowStart As Long = WindowEnd - (120 * 60 * 1000)
 
-		Dim LatestTicks As Long = 0
-		Dim LatestValue As String = ""
+		' Arrays are used as mutable holders so the newest REAL reading can
+		' still drive tempRightNow / the green real-time reference line.
+		Dim LatestTicks(1) As Long
+		Dim LatestValue(1) As String
 
 		Dim Yesterday As Long = DateTime.Add(WindowEnd, 0, 0, -1)
-		AccumulateRollingLatestFile(Yesterday, ValueIndex, WindowStart, WindowEnd, _
-			BucketLatestTicks, LatestTicks, LatestValue)
-		AccumulateRollingLatestFile(WindowEnd, ValueIndex, WindowStart, WindowEnd, _
-			BucketLatestTicks, LatestTicks, LatestValue)
+		AccumulateRollingMedianFile(Yesterday, ValueIndex, WindowStart, WindowEnd, _
+			BucketValues, LatestTicks, LatestValue)
+		AccumulateRollingMedianFile(WindowEnd, ValueIndex, WindowStart, WindowEnd, _
+			BucketValues, LatestTicks, LatestValue)
 
-		If LatestValue <> "" Then
-			tempRightNow = LatestValue
+		For Bucket = 0 To 23
+			If BucketValues(Bucket).Size > 0 Then
+				Dim MedianValue As Double = MedianOfValues(BucketValues(Bucket))
+				SetChartBucket(Bucket, NumberFormat(MedianValue, 0, 2))
+			End If
+		Next
+
+		If LatestValue(0) <> "" Then
+			tempRightNow = LatestValue(0)
 		End If
 
 	Catch
-		Log("ReadRollingTwoHourLatestSamples: " & LastException)
+		Log("ReadRollingTwoHourMedianSamples: " & LastException)
 	End Try
 End Sub
 
-Private Sub AccumulateRollingLatestFile(FileDay As Long, ValueIndex As Int, _
-	WindowStart As Long, WindowEnd As Long, BucketLatestTicks() As Long, _
-	LatestTicks As Long, LatestValue As String)
+Private Sub AccumulateRollingMedianFile(FileDay As Long, ValueIndex As Int, _
+	WindowStart As Long, WindowEnd As Long, BucketValues() As List, _
+	LatestTicks() As Long, LatestValue() As String)
 	Try
 		shared = rp.GetSafeDirDefaultExternal("")
 		Dim FileName As String = GetChartLogFileName(FileDay)
@@ -900,24 +913,43 @@ Private Sub AccumulateRollingLatestFile(FileDay As Long, ValueIndex As Int, _
 			Dim Bucket As Int = Floor((EntryTicks - WindowStart) / 300000)
 			If Bucket < 0 Or Bucket > 23 Then Continue
 
-			' Keep the newest REAL reading in this five-minute bucket.
-			' No averaging and no invented/interpolated value.
-			If EntryTicks >= BucketLatestTicks(Bucket) Then
-				BucketLatestTicks(Bucket) = EntryTicks
-				SetChartBucket(Bucket, NumberFormat(Value, 0, 2))
-			End If
+			' Keep every valid REAL reading in the bucket. The median is
+			' calculated only after both possible date files are scanned.
+			BucketValues(Bucket).Add(Value)
 
-			If EntryTicks >= LatestTicks Then
-				LatestTicks = EntryTicks
-				LatestValue = NumberFormat(Value, 0, 2)
-				tempRightNow = LatestValue
+			If EntryTicks >= LatestTicks(0) Then
+				LatestTicks(0) = EntryTicks
+				LatestValue(0) = NumberFormat(Value, 0, 2)
 			End If
 		Loop
 
 		TextReader1.Close
 	Catch
-		Log("AccumulateRollingLatestFile: " & LastException)
+		Log("AccumulateRollingMedianFile: " & LastException)
 	End Try
+End Sub
+
+Private Sub MedianOfValues(Values As List) As Double
+	' Work on a copy so the original bucket data remains untouched.
+	Dim Sorted As List
+	Sorted.Initialize
+	For Each Item As Object In Values
+		Sorted.Add(Item)
+	Next
+	Sorted.Sort(True)
+
+	Dim Count As Int = Sorted.Size
+	If Count = 0 Then Return 0
+
+	Dim Middle As Int = Floor(Count / 2)
+	If Count Mod 2 = 1 Then
+		Dim OddValue As Double = Sorted.Get(Middle)
+		Return OddValue
+	Else
+		Dim LowerValue As Double = Sorted.Get(Middle - 1)
+		Dim UpperValue As Double = Sorted.Get(Middle)
+		Return (LowerValue + UpperValue) / 2
+	End If
 End Sub
 
 Private Sub ParseChartLogTicks(FileDay As Long, line As String) As Long
