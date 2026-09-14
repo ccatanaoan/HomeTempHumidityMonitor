@@ -25,48 +25,48 @@ FileGroup8=Default Group
 FileGroup9=Default Group
 Group=Default Group
 Library1=ahpreferenceactivity
-Library10=dateutils
-Library11=javaobject
-Library12=jmqtt
-Library13=network
-Library14=notificationbuilder
-Library15=notificationlistener
-Library16=okhttputils2
-Library17=phone
-Library18=randomaccessfile
-Library19=reflection
+Library10=javaobject
+Library11=jmqtt
+Library12=network
+Library13=notificationbuilder
+Library14=notificationlistener
+Library15=okhttputils2
+Library16=phone
+Library17=randomaccessfile
+Library18=reflection
+Library19=runtimepermissions
 Library2=androidplot_0_6_2
-Library20=runtimepermissions
-Library21=sql
-Library22=tabstripviewpager
-Library23=xcustomlistview
-Library24=xmllayoutbuilder
-Library25=xui
-Library26=xui views
+Library20=sql
+Library21=tabstripviewpager
+Library22=xcustomlistview
+Library23=xmllayoutbuilder
+Library24=xui
+Library25=xui views
 Library3=appcompat
 Library4=b4xcollections
 Library5=b4xencryption
 Library6=bitmapcreator
 Library7=byteconverter
-Library8=callsubutils
-Library9=core
+Library8=core
+Library9=dateutils
 ManifestCode=AddManifestText(~\n~<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="29"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#90a4ae</color>~\n~   <color name="statusbar">#62757f</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~   <color name="navigationBar">#90a4ae</color>~\n~</resources>~\n~)~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light">~\n~        <item name="colorPrimary">@color/actionbar</item>~\n~        <item name="colorPrimaryDark">@color/statusbar</item>~\n~       <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~       <item name="android:navigationBarColor">@color/navigationBar</item>~\n~       <item name="windowNoTitle">true</item>~\n~       <item name="windowActionBar">false</item>~\n~       <item name="windowActionModeOverlay">true</item>~\n~    </style>~\n~	<style name="ToolbarMenu" parent="Base.ThemeOverlay.AppCompat.ActionBar">~\n~	    <item name="android:textColorPrimary">#000000</item>~\n~	    <item name="android:colorBackground">#B0BEC5</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~AddApplicationText(~\n~<service android:name="anywheresoftware.b4a.objects.NotificationListenerWrapper"~\n~   android:label="Smart Home Monitor"~\n~  android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">~\n~  <intent-filter>~\n~  <action android:name="android.service.notification.NotificationListenerService" />~\n~  </intent-filter>~\n~</service>)~\n~~\n~AddApplicationText(~\n~<activity~\n~  android:name="de.amberhome.objects.preferenceactivity"~\n~  android:theme="@android:style/Theme.Material.Light">~\n~</activity>~\n~)~\n~~\n~AddManifestText(~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="19" />~\n~)~\n~~\n~AddApplicationText(~\n~  <provider~\n~  android:name="android.support.v4.content.FileProvider"~\n~  android:authorities="$PACKAGE$.provider"~\n~  android:exported="false"~\n~  android:grantUriPermissions="true">~\n~  <meta-data~\n~  android:name="android.support.FILE_PROVIDER_PATHS"~\n~  android:resource="@xml/provider_paths"/>~\n~  </provider>~\n~)~\n~CreateResource(xml, provider_paths,~\n~   <files-path name="name" path="shared" />~\n~)~\n~~\n~SetApplicationAttribute(android:largeHeap, "true")
 Module1=B4XPageIndicator
-Module10=SmartHomeMonitor
-Module11=Starter
-Module12=StateManager
+Module10=NotificationService
+Module11=SmartHomeMonitor
+Module12=Starter
+Module13=StateManager
 Module2=Badger
-Module3=Chart
-Module4=cMediaData
-Module5=FileProvider
-Module6=Gauge
-Module7=KeyValueStore
-Module8=MJPEG
-Module9=NotificationService
+Module3=CallSubUtils
+Module4=Chart
+Module5=cMediaData
+Module6=FileProvider
+Module7=Gauge
+Module8=KeyValueStore
+Module9=MJPEG
 NumberOfFiles=12
-NumberOfLibraries=26
-NumberOfModules=12
-Version=9.801
+NumberOfLibraries=25
+NumberOfModules=13
+Version=14
 @EndOfDesignText@
 '***************************************************************************** 
 ' ************************ COMPILE IN PERSONAL LAPTOP ************************ 
@@ -74,8 +74,8 @@ Version=9.801
 
 #Region  Project Attributes 
 	#ApplicationLabel: Smart Home Monitor
-	#VersionCode: 2088
-	#VersionName: 2.0.8.8
+	#VersionCode: 2089
+	#VersionName: 2.0.8.9
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: portrait
 	#CanInstallToExternalStorage: False
@@ -89,7 +89,7 @@ Version=9.801
 	#AdditionalRes: "..\resource"
 	#Extends: android.support.v7.app.AppCompatActivity
 	#AdditionalJar: com.android.support:support-v4
-	#CustomBuildAction: 2, C:\Program Files (x86)\Java\jdk1.8.0_221\bin\java.exe, -jar "C:\Users\Cloyd\Desktop\Home Automation\Living Area TempHumidityMonitor\Android Client\compiletime.jar"
+	#CustomBuildAction: 2, %JAVABIN%\java.exe, -jar "%PROJECT%\compiletime.jar"
 	
 Sub Process_Globals
 	Private MQTT As MqttClient
