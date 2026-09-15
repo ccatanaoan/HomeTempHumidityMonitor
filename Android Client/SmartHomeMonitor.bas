@@ -6,7 +6,7 @@ Version=8
 @EndOfDesignText@
 #Region  Service Attributes 
 	#StartAtBoot: true
-	'#StartCommandReturnValue: android.app.Service.START_STICKY
+	#StartCommandReturnValue: android.app.Service.START_STICKY
 #End Region
 
 Sub Process_Globals
