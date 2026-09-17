@@ -93,9 +93,11 @@ Version=14
 	
 Sub Process_Globals
 	Private MQTT As MqttClient
-	Private MQTTServerURI As String = "tcp://192.168.137.1:1883"
+	Private MQTTServerURI As String
 	Private MQTTRetryTimer As Timer
 	Private MQTTConnecting As Boolean
+	Private MQTTSettingsOpen As Boolean
+	Private MQTTServerIPBeforeSettings As String
 	Private MQTTRetryDelay As Int = 5000
 	Private bc As ByteConverter
 	Private csu As CallSubUtils
@@ -329,7 +331,28 @@ End Sub
 Sub Activity_Resume
 	Try
 		Awake.KeepAlive(True)
+
+		Dim MQTTServerIPChanged As Boolean = False
+		Dim NewMQTTServerIP As String
+		If MQTTSettingsOpen Then
+			MQTTSettingsOpen = False
+			NewMQTTServerIP = manager.GetString("MQTTServerIP").Trim
+			If NewMQTTServerIP = "" Then
+				NewMQTTServerIP = "192.168.137.1"
+				manager.SetString("MQTTServerIP", NewMQTTServerIP)
+			End If
+			MQTTServerIPChanged = (NewMQTTServerIP <> MQTTServerIPBeforeSettings)
+			Log("MQTT Settings return. Old IP=" & MQTTServerIPBeforeSettings & ", New IP=" & NewMQTTServerIP & ", Changed=" & MQTTServerIPChanged)
+		End If
+
 		HandleSettings
+
+		If MQTTServerIPChanged Then
+			ToastMessageShow("MQTT server IP changed to " & NewMQTTServerIP & ". Reconnecting...", False)
+			ReconnectMQTTForServerChange(NewMQTTServerIP)
+			CallSubDelayed2(SmartHomeMonitor, "ReconnectMQTTForServerChange", NewMQTTServerIP)
+		End If
+
 		Dim in As Intent = Activity.GetStartingIntent
 		Dim NotificationClicked As String
 		If in.IsInitialized And in <> OldIntent Then
@@ -397,6 +420,12 @@ Sub Activity_Pause (UserClosed As Boolean)
 	Awake.ReleaseKeepAlive
 End Sub
 
+Private Sub GetMQTTServerURI As String
+	Dim MQTTServerIP As String = StateManager.GetSetting("MQTTServerIP").Trim
+	If MQTTServerIP = "" Then MQTTServerIP = "192.168.137.1"
+	Return "tcp://" & MQTTServerIP & ":1883"
+End Sub
+
 'Connect to private GEEKOM Mosquitto broker
 Sub MQTT_Connect
 	Try
@@ -407,6 +436,7 @@ Sub MQTT_Connect
 		MQTTConnecting = True
 
 		If MQTT.IsInitialized = False Then
+			MQTTServerURI = GetMQTTServerURI
 			Dim ClientId As String = "SmartHomeMonitorUI-" & Rnd(0, 999999999)
 			MQTT.Initialize("MQTT", MQTTServerURI, ClientId)
 		End If
@@ -458,6 +488,33 @@ Private Sub MQTT_Disconnected
 
 	Log("Disconnected from MQTT broker")
 	ScheduleMQTTRetry
+End Sub
+
+Private Sub ReconnectMQTTForServerChange(NewServerIP As String)
+	'An IP change must always supersede any previous connection attempt.
+	MQTTRetryTimer.Enabled = False
+	MQTTConnecting = False
+
+	Try
+		If MQTT.IsInitialized Then MQTT.Close
+
+		MQTTServerURI = "tcp://" & NewServerIP & ":1883"
+
+		'jMQTT 1.30: create and initialize a NEW LOCAL client.
+		'Do not reinitialize the Process_Globals wrapper after a failed connection.
+		Dim NewMQTT As MqttClient
+		Dim ClientId As String = "SmartHomeMonitorUI-" & Rnd(0, 999999999)
+		NewMQTT.Initialize("MQTT", MQTTServerURI, ClientId)
+		MQTT = NewMQTT
+
+		MQTTConnecting = True
+		Log("MQTT server changed. Connecting NEW UI client to: " & MQTTServerURI)
+		NewMQTT.Connect
+	Catch
+		MQTTConnecting = False
+		Log("ReconnectMQTTForServerChange: " & LastException)
+		ScheduleMQTTRetry
+	End Try
 End Sub
 
 Private Sub ScheduleMQTTRetry
@@ -609,6 +666,10 @@ Sub ACToolBarLight1_MenuItemClick (Item As ACMenuItem)
 		If Item.Title = "About" Then
 			ShowAboutMenu
 		else if Item.Title = "Settings" Then
+			MQTTServerIPBeforeSettings = manager.GetString("MQTTServerIP").Trim
+			If MQTTServerIPBeforeSettings = "" Then MQTTServerIPBeforeSettings = "192.168.137.1"
+			MQTTSettingsOpen = True
+			Log("Opening Settings. Current MQTT Server IP=" & MQTTServerIPBeforeSettings)
 			StartActivity(screen.CreateIntent)
 		Else If Item.Title = "Restart Application" Then
 			Dim bd As BitmapDrawable
@@ -992,7 +1053,7 @@ End Sub
 Sub CreatePreferenceScreen
 	screen.Initialize("Settings", "")
 	'create two categories
-	Dim cat1,cat2,cat3 As AHPreferenceCategory
+	Dim cat1,cat2,cat3,cat4 As AHPreferenceCategory
 	
 	cat1.Initialize("Temperature & Humidity")
 	cat1.AddEditText("HumidityAddValue", "Humidity Additional Value", "Value to be added to humidity to improve accuracy", "6","")
@@ -1006,9 +1067,13 @@ Sub CreatePreferenceScreen
 	cat3.AddEditText("DHTSensorNotRespondingTime", "DHT22 Not Responding", "Minutes without a valid temperature / humidity reading before warning", "2.25","")
 	cat3.AddEditText("MQ7SensorNotRespondingTime", "MQ-7 Not Responding", "Minutes without a valid CO reading before warning", "6","")
 	
+	cat4.Initialize("Network")
+	cat4.AddEditText("MQTTServerIP", "MQTT Server IP", "IP address of the MQTT server.", "192.168.137.1","")
+	
 	screen.AddPreferenceCategory(cat2)
 	screen.AddPreferenceCategory(cat1)
 	screen.AddPreferenceCategory(cat3)
+	screen.AddPreferenceCategory(cat4)
 
 	'Phase 2 migration: existing installations already have preference data, so
 	'the normal first-run defaults are not called. Seed the two new settings once.
@@ -1018,10 +1083,14 @@ Sub CreatePreferenceScreen
 	If manager.GetString("MQ7SensorNotRespondingTime") = "" Then
 		manager.SetString("MQ7SensorNotRespondingTime", "6")
 	End If
+	If manager.GetString("MQTTServerIP") = "" Then
+		manager.SetString("MQTTServerIP", "192.168.137.1")
+	End If
 
 	StateManager.SetSetting("HumidityAddValue","6")
 	StateManager.SetSetting("DHTSensorNotRespondingTime",manager.GetString("DHTSensorNotRespondingTime"))
 	StateManager.SetSetting("MQ7SensorNotRespondingTime",manager.GetString("MQ7SensorNotRespondingTime"))
+	StateManager.SetSetting("MQTTServerIP",manager.GetString("MQTTServerIP"))
 	StateManager.SaveSettings
 End Sub
 
@@ -1031,16 +1100,25 @@ Sub SetDefaults
 	manager.SetString("HumidityAddValue", "6")
 	manager.SetString("DHTSensorNotRespondingTime", "2.25")
 	manager.SetString("MQ7SensorNotRespondingTime", "6")
+	manager.SetString("MQTTServerIP", "192.168.137.1")
 	StateManager.SetSetting("HumidityAddValue","6")
 	StateManager.SetSetting("DHTSensorNotRespondingTime","2.25")
 	StateManager.SetSetting("MQ7SensorNotRespondingTime","6")
+	StateManager.SetSetting("MQTTServerIP","192.168.137.1")
 	StateManager.SaveSettings
 End Sub
 
 Sub HandleSettings
+	Dim MQTTServerIP As String = manager.GetString("MQTTServerIP").Trim
+	If MQTTServerIP = "" Then
+		MQTTServerIP = "192.168.137.1"
+		manager.SetString("MQTTServerIP", MQTTServerIP)
+	End If
+
 	StateManager.SetSetting("HumidityAddValue",manager.GetString("HumidityAddValue"))
 	StateManager.SetSetting("DHTSensorNotRespondingTime",manager.GetString("DHTSensorNotRespondingTime"))
 	StateManager.SetSetting("MQ7SensorNotRespondingTime",manager.GetString("MQ7SensorNotRespondingTime"))
+	StateManager.SetSetting("MQTTServerIP",MQTTServerIP)
 	StateManager.SaveSettings
 End Sub
 

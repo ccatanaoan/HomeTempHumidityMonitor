@@ -13,7 +13,7 @@ Sub Process_Globals
 	'These global variables will be declared once when the application starts.
 	'These variables can be accessed from all modules.
 	Private MQTT As MqttClient
-	Private MQTTServerURI As String = "tcp://192.168.137.1:1883"
+	Private MQTTServerURI As String
 	Private MQTTRetryTimer As Timer
 	Private SensorFreshnessTimer As Timer
 	Private MQTTConnecting As Boolean
@@ -119,6 +119,12 @@ Sub Service_Destroy
 	SensorFreshnessTimer.Enabled = False
 End Sub
 
+Private Sub GetMQTTServerURI As String
+	Dim MQTTServerIP As String = StateManager.GetSetting("MQTTServerIP").Trim
+	If MQTTServerIP = "" Then MQTTServerIP = "192.168.137.1"
+	Return "tcp://" & MQTTServerIP & ":1883"
+End Sub
+
 'Connect to private GEEKOM Mosquitto broker
 Sub MQTT_Connect
 	Try
@@ -129,6 +135,7 @@ Sub MQTT_Connect
 		MQTTConnecting = True
 
 		If MQTT.IsInitialized = False Then
+			MQTTServerURI = GetMQTTServerURI
 			Dim ClientId As String = "SmartHomeMonitorService-" & Rnd(0, 999999999)
 			MQTT.Initialize("MQTT", MQTTServerURI, ClientId)
 		End If
@@ -168,6 +175,33 @@ Private Sub MQTT_Disconnected
 	MQTTConnecting = False
 	Log("Disconnected from MQTT broker")
 	ScheduleMQTTRetry
+End Sub
+
+Public Sub ReconnectMQTTForServerChange(NewServerIP As String)
+	'An IP change must always supersede any previous connection attempt.
+	MQTTRetryTimer.Enabled = False
+	MQTTConnecting = False
+
+	Try
+		If MQTT.IsInitialized Then MQTT.Close
+
+		MQTTServerURI = "tcp://" & NewServerIP & ":1883"
+
+		'jMQTT 1.30: create and initialize a NEW LOCAL client.
+		'Do not reinitialize the Process_Globals wrapper after a failed connection.
+		Dim NewMQTT As MqttClient
+		Dim ClientId As String = "SmartHomeMonitorService-" & Rnd(0, 999999999)
+		NewMQTT.Initialize("MQTT", MQTTServerURI, ClientId)
+		MQTT = NewMQTT
+
+		MQTTConnecting = True
+		Log("MQTT server changed. Connecting NEW service client to: " & MQTTServerURI)
+		NewMQTT.Connect
+	Catch
+		MQTTConnecting = False
+		Log("ReconnectMQTTForServerChange: " & LastException)
+		ScheduleMQTTRetry
+	End Try
 End Sub
 
 Private Sub ScheduleMQTTRetry
