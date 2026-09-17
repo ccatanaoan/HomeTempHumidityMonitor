@@ -13,12 +13,7 @@ Sub Process_Globals
 	'These global variables will be declared once when the application starts.
 	'These variables can be accessed from all modules.
 	Private MQTT As MqttClient
-	'Private MQTTUser As String = "vynckfaq1"
-	'Private MQTTPassword As String = "KHSV1Q1qSUUY"
-	'Private MQTTServerURI As String = "tcp://mqtt.eclipseprojects.io:1883"
-	'Private MQTTServerURI As String = "tcp://broker.hivemq.com:1883"
-	'Private MQTTServerURI As String = "tcp://test.mosquitto.org:1883"
-	Private MQTTServerURI As String = "tcp://192.168.1.125:1883"
+	Private MQTTServerURI As String = "tcp://192.168.137.1:1883"
 	Private MQTTRetryTimer As Timer
 	Private SensorFreshnessTimer As Timer
 	Private MQTTConnecting As Boolean
