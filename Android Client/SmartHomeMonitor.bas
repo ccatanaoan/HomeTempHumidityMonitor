@@ -17,6 +17,7 @@ Sub Process_Globals
 	Private MQTTRetryTimer As Timer
 	Private SensorFreshnessTimer As Timer
 	Private MQTTConnecting As Boolean
+	Private MQTTRefreshAfterWireGuardPending As Boolean
 	Private MQTTRetryDelay As Int = 5000
 	Private Notification1 As Notification
 	Private ForegroundNotification As Notification
@@ -111,6 +112,16 @@ Sub Service_Start (StartingIntent As Intent)
 	'Existing sensor / warning notifications use 725 through 732.
 	Service.StartForeground(724, ForegroundNotification)
 	SensorFreshnessTimer.Enabled = True
+
+	'New feature: after Tasker verifies a successful WireGuard repair, force the
+	'background Smart Home Monitor MQTT client to reconnect immediately.
+	If StartingIntent.IsInitialized Then
+		If StartingIntent.Action = "cloyd.smart.home.monitor.MQTT_REFRESH" Then
+			RefreshMQTTAfterWireGuard
+			Return
+		End If
+	End If
+
 	MQTT_Connect
 End Sub
 
@@ -164,6 +175,10 @@ Sub MQTT_Connected (Success As Boolean)
 			MQTT.Subscribe("MQ7Basement", 0)
 			MQTT.Subscribe("TempHumidBasement", 0)
 			MQTT.Subscribe("HumidityAddValue", 0)
+
+			If MQTTRefreshAfterWireGuardPending Then
+				RequestFreshSensorReadingsAfterWireGuard
+			End If
 		End If
 	Catch
 		Log("MQTT_Connected: " & LastException)
@@ -175,6 +190,33 @@ Private Sub MQTT_Disconnected
 	MQTTConnecting = False
 	Log("Disconnected from MQTT broker")
 	ScheduleMQTTRetry
+End Sub
+
+Private Sub RefreshMQTTAfterWireGuard
+	Dim MQTTServerIP As String = StateManager.GetSetting("MQTTServerIP").Trim
+	If MQTTServerIP = "" Then MQTTServerIP = "192.168.137.1"
+
+	Log("WireGuard repair MQTT refresh intent received")
+	MQTTRefreshAfterWireGuardPending = True
+	ReconnectMQTTForServerChange(MQTTServerIP)
+End Sub
+
+Private Sub RequestFreshSensorReadingsAfterWireGuard
+	Try
+		Dim strHumidityAddValue As String = StateManager.GetSetting("HumidityAddValue")
+		If strHumidityAddValue = "" Then strHumidityAddValue = "0"
+
+		MQTT.Publish("TempHumid", bc.StringToBytes("Read weather", "utf8"))
+		MQTT.Publish("HumidityAddValue", bc.StringToBytes(strHumidityAddValue, "utf8"))
+		MQTT.Publish("MQ7LivingRoomCloyd", bc.StringToBytes("Read voltage", "utf8"))
+		MQTT.Publish("TempHumidBasement", bc.StringToBytes("Read weather", "utf8"))
+		MQTT.Publish("MQ7Basement", bc.StringToBytes("Read voltage", "utf8"))
+
+		MQTTRefreshAfterWireGuardPending = False
+		Log("WireGuard repair MQTT fresh-reading requests sent")
+	Catch
+		Log("RequestFreshSensorReadingsAfterWireGuard: " & LastException)
+	End Try
 End Sub
 
 Public Sub ReconnectMQTTForServerChange(NewServerIP As String)
