@@ -214,6 +214,14 @@ Private Sub RequestFreshSensorReadingsAfterWireGuard
 
 		MQTTRefreshAfterWireGuardPending = False
 		Log("WireGuard repair MQTT fresh-reading requests sent")
+
+		'Asynchronous acknowledgement to Tasker. This is intentionally fire-and-forget:
+		'no wait, no polling, and no dependency on the receiver finishing.
+		Dim ConfirmIntent As Intent
+		ConfirmIntent.Initialize("cloyd.smart.home.monitor.MQTT_REFRESH_CONFIRMED", "")
+		Dim Phone As Phone
+		Phone.SendBroadcastIntent(ConfirmIntent)
+		Log("WireGuard repair MQTT refresh confirmation broadcast sent")
 	Catch
 		Log("RequestFreshSensorReadingsAfterWireGuard: " & LastException)
 	End Try
